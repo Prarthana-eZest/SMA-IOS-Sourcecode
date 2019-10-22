@@ -273,6 +273,7 @@
             <connections>
                 <outlet property="btnServiceCount" destination="1SJ-zg-PCF" id="Lf4-Sw-c9N"/>
                 <outlet property="lblEndTime" destination="fAL-rm-Hcx" id="jeA-FI-e3d"/>
+                <outlet property="lblRatings" destination="Lxp-hd-FTi" id="nyh-0q-Oih"/>
                 <outlet property="lblServiceName" destination="m8x-tb-vhd" id="ysK-tb-vxw"/>
                 <outlet property="lblStartTime" destination="CSv-wE-CYh" id="Pep-B5-j3Z"/>
                 <outlet property="lblTotalDuration" destination="uWY-wb-j5a" id="l2b-Q3-eZ6"/>

@@ -30,8 +30,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
 
     @IBOutlet weak private var tableView: UITableView!
 
-    var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.myProfile,
-                                                                .employees,
+    var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.employees,
                                                                 .inventory,
                                                                 .stores,
                                                                 .audits,

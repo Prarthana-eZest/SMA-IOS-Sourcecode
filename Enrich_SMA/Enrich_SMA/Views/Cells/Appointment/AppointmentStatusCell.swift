@@ -24,6 +24,8 @@ class AppointmentStatusCell: UITableViewCell {
     @IBOutlet private weak var lblUserName: UILabel!
     @IBOutlet private weak var lblServiceName: UILabel!
     @IBOutlet private weak var btnServiceCount: UIButton!
+    @IBOutlet private weak var lblRatings: UILabel!
+    
     
     weak var delegate:AppointmentDelegate?
     var indexPath:IndexPath?
@@ -46,11 +48,17 @@ class AppointmentStatusCell: UITableViewCell {
         lblTotalDuration.text = model.totalDuration
         lblServiceName.text = model.services.first
         btnServiceCount.setTitle("+\(model.services.count - 1)", for: .normal)
+        statusColorView.backgroundColor = (model.status == .upcoming) ? UIColor(red: 145/255, green: 220/255, blue: 228/255, alpha: 1) : UIColor(red: 238/255, green: 91/255, blue: 70/255, alpha: 1)
+        lblRatings.text = "\(model.ratings)/5"
     }
     
     @IBAction func actionServiceCount(_ sender: UIButton) {
     }
     
+}
+
+enum AppointmentStatus{
+    case upcoming,completed
 }
 
 struct AppointmentStatusModel{
@@ -60,4 +68,6 @@ struct AppointmentStatusModel{
     let startTimr: String
     let endTime: String
     let totalDuration: String
+    let status: AppointmentStatus
+    let ratings: Double
 }

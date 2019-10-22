@@ -72,7 +72,7 @@ class YourTargetRevenueCell: UITableViewCell {
     }
     
     @IBAction func actionDaily(_ sender: UIButton) {
-        if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16){
+        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16){
             btnDaily.titleLabel?.font = font
         }
         if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16){
@@ -85,7 +85,7 @@ class YourTargetRevenueCell: UITableViewCell {
     }
     
     @IBAction func actionMonthly(_ sender: UIButton) {
-        if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16){
+        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16){
             btnMonthly.titleLabel?.font = font
         }
         if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16){

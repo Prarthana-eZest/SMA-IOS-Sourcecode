@@ -20,8 +20,13 @@ protocol AppointmentDisplayLogic: class
 class AppointmentVC: UIViewController, AppointmentDisplayLogic
 {
     var interactor: AppointmentBusinessLogic?
-    @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var tableView: UITableView!    
+    @IBOutlet weak var completedSelectionView: UIView!
+    @IBOutlet weak var ongoingSelectionView: UIView!
+    @IBOutlet weak var upcomingSelectionView: UIView!
+    @IBOutlet weak var btnCompleted: UIButton!
+    @IBOutlet weak var btnOnGoing: UIButton!
+    @IBOutlet weak var btnUpComing: UIButton!
     
     // MARK: Object lifecycle
     
@@ -68,7 +73,12 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         super.viewDidLoad()
         doSomething()
         tableView.register(UINib(nibName: "AppointmentStatusCell", bundle: nil), forCellReuseIdentifier: "AppointmentStatusCell")
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+        AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
     }
     
     // MARK: Do something
@@ -85,6 +95,52 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     {
         //nameTextField.text = viewModel.name
     }
+    
+    
+    @IBAction func actionCompleted(_ sender: UIButton) {
+        
+        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16){
+            btnCompleted.titleLabel?.font = font
+        }
+        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16){
+            btnOnGoing.titleLabel?.font = font
+            btnUpComing.titleLabel?.font = font
+        }
+        completedSelectionView.isHidden = false
+        ongoingSelectionView.isHidden = true
+        upcomingSelectionView.isHidden = true
+    }
+    
+    
+    @IBAction func actionOnGoing(_ sender: UIButton) {
+        
+        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16){
+            btnOnGoing.titleLabel?.font = font
+        }
+        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16){
+            btnCompleted.titleLabel?.font = font
+            btnUpComing.titleLabel?.font = font
+        }
+        completedSelectionView.isHidden = true
+        ongoingSelectionView.isHidden = false
+        upcomingSelectionView.isHidden = true
+    }
+    
+    
+    @IBAction func actionUpComing(_ sender: UIButton) {
+        
+        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16){
+            btnUpComing.titleLabel?.font = font
+        }
+        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16){
+            btnCompleted.titleLabel?.font = font
+            btnOnGoing.titleLabel?.font = font
+        }
+        completedSelectionView.isHidden = true
+        ongoingSelectionView.isHidden = true
+        upcomingSelectionView.isHidden = false
+    }
+    
 }
 
 extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {

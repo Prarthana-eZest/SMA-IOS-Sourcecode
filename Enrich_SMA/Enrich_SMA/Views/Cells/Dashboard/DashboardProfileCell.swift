@@ -49,7 +49,7 @@ class DashboardProfileCell: UITableViewCell {
 //            let salonAddress = String(format: "%@ (%@)", dummy.salon_name ?? "", "\(dummy.distance.rounded(toPlaces: 2))" + " km")
 //            self.locationDetailsbtnSalonLocation.setTitle(salonAddress, for: .normal)
 //        } else {
-            self.btnSelectALocation.setTitle("Select a Location", for: .normal)
+        //    self.btnSelectALocation.setTitle("Select a Location", for: .normal)
        // }
     }
     

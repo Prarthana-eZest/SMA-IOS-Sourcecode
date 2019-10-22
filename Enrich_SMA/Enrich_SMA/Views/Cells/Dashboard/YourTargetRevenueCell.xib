@@ -16,9 +16,6 @@
         <array key="FuturaPTDemi.otf">
             <string>FuturaPT-Demi</string>
         </array>
-        <array key="FuturaPTMedium.otf">
-            <string>FuturaPT-Medium</string>
-        </array>
         <array key="NotoSerif-Bold.ttf">
             <string>NotoSerif-Bold</string>
         </array>
@@ -41,7 +38,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uB6-ZI-Cwl">
                                         <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
-                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="16"/>
                                         <state key="normal" title="Daily">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>

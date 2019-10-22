@@ -551,9 +551,9 @@
 		E303414A235EE14000E0BF0A /* More */ = {
 			isa = PBXGroup;
 			children = (
+				E3034156235EE14000E0BF0A /* MoreModuleVC.swift */,
 				E303414B235EE14000E0BF0A /* MoreModuleWorker.swift */,
 				E303414C235EE14000E0BF0A /* MoreModuleModels.swift */,
-				E3034156235EE14000E0BF0A /* MoreModuleVC.swift */,
 				E3034157235EE14000E0BF0A /* MoreModuleInteractor.swift */,
 				E303415E235EE14000E0BF0A /* MoreModulePresenter.swift */,
 				E3034150235EE14000E0BF0A /* My Profile */,
