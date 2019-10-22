@@ -145,32 +145,27 @@
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-pA-3Al">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ner-jF-GvH">
                                                         <rect key="frame" x="60" y="0.0" width="25" height="34"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ner-jF-GvH">
-                                                                <rect key="frame" x="0.0" y="0.0" width="25" height="34"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-zg-PCF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="33"/>
-                                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
-                                                                        <state key="normal" title="+2">
-                                                                            <color key="titleColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="actionServiceCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7qD-yB-i1B"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21X-FD-ACw">
-                                                                        <rect key="frame" x="0.0" y="33" width="25" height="1"/>
-                                                                        <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="1" id="VM2-Qf-aTL"/>
-                                                                            <constraint firstAttribute="width" constant="25" id="l03-tZ-JDn"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                </subviews>
-                                                            </stackView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-zg-PCF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="25" height="33"/>
+                                                                <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                                <state key="normal" title="+2">
+                                                                    <color key="titleColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="actionServiceCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7qD-yB-i1B"/>
+                                                                </connections>
+                                                            </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21X-FD-ACw">
+                                                                <rect key="frame" x="0.0" y="33" width="25" height="1"/>
+                                                                <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="VM2-Qf-aTL"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="l03-tZ-JDn"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
