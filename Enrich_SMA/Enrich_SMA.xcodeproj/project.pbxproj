@@ -150,6 +150,7 @@
 		E3034303235EE5D900E0BF0A /* ReportsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FD235EE5D900E0BF0A /* ReportsModels.swift */; };
 		E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FE235EE5D900E0BF0A /* ReportsVC.swift */; };
 		E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */; };
+		E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,6 +326,7 @@
 		E30342FD235EE5D900E0BF0A /* ReportsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsModels.swift; sourceTree = "<group>"; };
 		E30342FE235EE5D900E0BF0A /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
 		E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsInteractor.swift; sourceTree = "<group>"; };
+		E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSPopUpVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -952,6 +954,7 @@
 				E30342EF235EE58300E0BF0A /* AppointmentWorker.swift */,
 				E30342F1235EE58300E0BF0A /* AppointmentModels.swift */,
 				E30342F3235EE58300E0BF0A /* AppointmentInteractor.swift */,
+				E3034306235F1ABE00E0BF0A /* SOS */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -986,6 +989,14 @@
 				E30342E8235EE29800E0BF0A /* More.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		E3034306235F1ABE00E0BF0A /* SOS */ = {
+			isa = PBXGroup;
+			children = (
+				E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */,
+			);
+			path = SOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1322,6 +1333,7 @@
 				E30340A3235EE11C00E0BF0A /* AppointmentStatusCell.swift in Sources */,
 				E30341F7235EE14000E0BF0A /* DashboardInteractor.swift in Sources */,
 				E30342D4235EE15800E0BF0A /* ListPickerDialog.swift in Sources */,
+				E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
 				E30342CF235EE15800E0BF0A /* ExtensionNavigationController.swift in Sources */,
 				E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */,
