@@ -29,11 +29,9 @@
 		E30340B9235EE11C00E0BF0A /* NotificationDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */; };
 		E30340BA235EE11C00E0BF0A /* EmployeeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3034034235EE11B00E0BF0A /* EmployeeCell.xib */; };
 		E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034035235EE11B00E0BF0A /* EmployeeCell.swift */; };
-		E30340BC235EE11C00E0BF0A /* TodaysAppointmentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034037235EE11B00E0BF0A /* TodaysAppointmentHeaderCell.swift */; };
 		E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034038235EE11B00E0BF0A /* DashboardProfileCell.swift */; };
 		E30340BE235EE11C00E0BF0A /* YourTargetRevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034039235EE11B00E0BF0A /* YourTargetRevenueCell.swift */; };
 		E30340BF235EE11C00E0BF0A /* DashboardProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E303403A235EE11B00E0BF0A /* DashboardProfileCell.xib */; };
-		E30340C0235EE11C00E0BF0A /* TodaysAppointmentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E303403B235EE11B00E0BF0A /* TodaysAppointmentHeaderCell.xib */; };
 		E30340C1235EE11C00E0BF0A /* YourTargetRevenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E303403C235EE11B00E0BF0A /* YourTargetRevenueCell.xib */; };
 		E3034112235EE11C00E0BF0A /* HeaderViewWithAdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E303409C235EE11C00E0BF0A /* HeaderViewWithAdCell.swift */; };
 		E3034113235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E303409D235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.xib */; };
@@ -206,11 +204,9 @@
 		E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsCell.swift; sourceTree = "<group>"; };
 		E3034034235EE11B00E0BF0A /* EmployeeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployeeCell.xib; sourceTree = "<group>"; };
 		E3034035235EE11B00E0BF0A /* EmployeeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
-		E3034037235EE11B00E0BF0A /* TodaysAppointmentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodaysAppointmentHeaderCell.swift; sourceTree = "<group>"; };
 		E3034038235EE11B00E0BF0A /* DashboardProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardProfileCell.swift; sourceTree = "<group>"; };
 		E3034039235EE11B00E0BF0A /* YourTargetRevenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourTargetRevenueCell.swift; sourceTree = "<group>"; };
 		E303403A235EE11B00E0BF0A /* DashboardProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardProfileCell.xib; sourceTree = "<group>"; };
-		E303403B235EE11B00E0BF0A /* TodaysAppointmentHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodaysAppointmentHeaderCell.xib; sourceTree = "<group>"; };
 		E303403C235EE11B00E0BF0A /* YourTargetRevenueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YourTargetRevenueCell.xib; sourceTree = "<group>"; };
 		E303409C235EE11C00E0BF0A /* HeaderViewWithAdCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewWithAdCell.swift; sourceTree = "<group>"; };
 		E303409D235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderViewWithSubTitleCell.xib; sourceTree = "<group>"; };
@@ -512,11 +508,9 @@
 		E3034036235EE11B00E0BF0A /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				E3034037235EE11B00E0BF0A /* TodaysAppointmentHeaderCell.swift */,
 				E3034038235EE11B00E0BF0A /* DashboardProfileCell.swift */,
-				E3034039235EE11B00E0BF0A /* YourTargetRevenueCell.swift */,
 				E303403A235EE11B00E0BF0A /* DashboardProfileCell.xib */,
-				E303403B235EE11B00E0BF0A /* TodaysAppointmentHeaderCell.xib */,
+				E3034039235EE11B00E0BF0A /* YourTargetRevenueCell.swift */,
 				E303403C235EE11B00E0BF0A /* YourTargetRevenueCell.xib */,
 			);
 			path = Dashboard;
@@ -1127,7 +1121,6 @@
 				E3034256235EE14700E0BF0A /* FuturaPTBold.otf in Resources */,
 				E30340AE235EE11C00E0BF0A /* MyProfileHeaderCell.xib in Resources */,
 				E30342B8235EE15800E0BF0A /* ErrorCustomView.xib in Resources */,
-				E30340C0235EE11C00E0BF0A /* TodaysAppointmentHeaderCell.xib in Resources */,
 				E3034269235EE14700E0BF0A /* NotoSerif-Italic.ttf in Resources */,
 				E30340BA235EE11C00E0BF0A /* EmployeeCell.xib in Resources */,
 				E30340C1235EE11C00E0BF0A /* YourTargetRevenueCell.xib in Resources */,
@@ -1343,7 +1336,6 @@
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
-				E30340BC235EE11C00E0BF0A /* TodaysAppointmentHeaderCell.swift in Sources */,
 				E30342C8235EE15800E0BF0A /* ExtensionUIButton.swift in Sources */,
 				E30342CA235EE15800E0BF0A /* ExtensionUITableView.swift in Sources */,
 				E30342CB235EE15800E0BF0A /* ExtensionString.swift in Sources */,

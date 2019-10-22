@@ -31,7 +31,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ec-A1-Ixw">
-                        <rect key="frame" x="20" y="15" width="476" height="195.5"/>
+                        <rect key="frame" x="20" y="15" width="476" height="205"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Yh-UW-acf">
                                 <rect key="frame" x="0.0" y="0.0" width="476" height="10"/>
@@ -41,7 +41,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="oJd-Qs-qzq">
-                                <rect key="frame" x="15" y="25" width="446" height="155.5"/>
+                                <rect key="frame" x="15" y="25" width="446" height="165"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LGX-Zl-f3x">
                                         <rect key="frame" x="0.0" y="0.0" width="313.5" height="50"/>
@@ -126,7 +126,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="nCY-xt-Ehs">
-                                        <rect key="frame" x="0.0" y="65" width="90" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="65" width="85" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mg-Kq-a9d">
                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="21"/>
@@ -135,35 +135,38 @@
                                                 <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-W8-1j8">
-                                                <rect key="frame" x="0.0" y="21" width="90" height="24.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-W8-1j8">
+                                                <rect key="frame" x="0.0" y="21" width="85" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HairCut" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8x-tb-vhd">
-                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="5.5" width="55" height="23.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-pA-3Al">
-                                                        <rect key="frame" x="60" y="0.0" width="30" height="24.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-pA-3Al">
+                                                        <rect key="frame" x="60" y="0.0" width="25" height="34"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ner-jF-GvH">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="24.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="25" height="34"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDP-ux-CsX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="23.5"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="18"/>
-                                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-zg-PCF">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="33"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                                        <state key="normal" title="+2">
+                                                                            <color key="titleColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="actionServiceCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7qD-yB-i1B"/>
+                                                                        </connections>
+                                                                    </button>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21X-FD-ACw">
-                                                                        <rect key="frame" x="0.0" y="23.5" width="30" height="1"/>
+                                                                        <rect key="frame" x="0.0" y="33" width="25" height="1"/>
                                                                         <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="1" id="VM2-Qf-aTL"/>
-                                                                            <constraint firstAttribute="width" constant="30" id="l03-tZ-JDn"/>
+                                                                            <constraint firstAttribute="width" constant="25" id="l03-tZ-JDn"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
@@ -175,7 +178,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zyb-AH-wIE">
-                                        <rect key="frame" x="0.0" y="125.5" width="446" height="30"/>
+                                        <rect key="frame" x="0.0" y="135" width="446" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Kalpana Sharma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPQ-Az-SMI">
                                                 <rect key="frame" x="0.0" y="2" width="331" height="26"/>
@@ -273,8 +276,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnServiceCount" destination="1SJ-zg-PCF" id="Lf4-Sw-c9N"/>
                 <outlet property="lblEndTime" destination="fAL-rm-Hcx" id="jeA-FI-e3d"/>
-                <outlet property="lblServiceCount" destination="lDP-ux-CsX" id="V3f-V9-3YR"/>
                 <outlet property="lblServiceName" destination="m8x-tb-vhd" id="ysK-tb-vxw"/>
                 <outlet property="lblStartTime" destination="CSv-wE-CYh" id="Pep-B5-j3Z"/>
                 <outlet property="lblTotalDuration" destination="uWY-wb-j5a" id="l2b-Q3-eZ6"/>

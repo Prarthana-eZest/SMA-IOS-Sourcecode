@@ -68,9 +68,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
         super.viewDidLoad()
         doSomething()
         tableView.register(UINib(nibName: "DashboardProfileCell", bundle: nil), forCellReuseIdentifier: "DashboardProfileCell")
-        tableView.register(UINib(nibName: "TodaysAppointmentHeaderCell", bundle: nil), forCellReuseIdentifier: "TodaysAppointmentHeaderCell")
         tableView.register(UINib(nibName: "YourTargetRevenueCell", bundle: nil), forCellReuseIdentifier: "YourTargetRevenueCell")
-        tableView.register(UINib(nibName: "AppointmentStatusCell", bundle: nil), forCellReuseIdentifier: "AppointmentStatusCell")
         
         tableView.contentInset =  UIEdgeInsets(top: -44, left: 0, bottom: 0, right: 0)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
@@ -133,7 +131,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -147,23 +145,6 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TodaysAppointmentHeaderCell", for: indexPath) as? TodaysAppointmentHeaderCell else {
-                return UITableViewCell()
-            }
-            cell.delegate = self
-            cell.selectionStyle = .none
-            return cell
-            
-        case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentStatusCell", for: indexPath) as? AppointmentStatusCell else {
-                return UITableViewCell()
-            }
-            cell.delegate = self
-            cell.indexPath = indexPath
-            cell.selectionStyle = .none
-            return cell
-            
-        case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "YourTargetRevenueCell", for: indexPath) as? YourTargetRevenueCell else {
                 return UITableViewCell()
             }

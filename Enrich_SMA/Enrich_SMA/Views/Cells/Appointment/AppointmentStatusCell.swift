@@ -23,7 +23,7 @@ class AppointmentStatusCell: UITableViewCell {
     @IBOutlet private weak var lblTotalDuration: UILabel!
     @IBOutlet private weak var lblUserName: UILabel!
     @IBOutlet private weak var lblServiceName: UILabel!
-    @IBOutlet private weak var lblServiceCount: UILabel!
+    @IBOutlet private weak var btnServiceCount: UIButton!
     
     weak var delegate:AppointmentDelegate?
     var indexPath:IndexPath?
@@ -45,9 +45,11 @@ class AppointmentStatusCell: UITableViewCell {
         lblEndTime.text = model.endTime
         lblTotalDuration.text = model.totalDuration
         lblServiceName.text = model.services.first
-        lblServiceCount.text = "+\(model.services.count - 1)"
+        btnServiceCount.setTitle("+\(model.services.count - 1)", for: .normal)
     }
     
+    @IBAction func actionServiceCount(_ sender: UIButton) {
+    }
     
 }
 

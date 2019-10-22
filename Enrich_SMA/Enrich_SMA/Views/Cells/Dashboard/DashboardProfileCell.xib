@@ -16,14 +16,11 @@
         <array key="FuturaPTMedium.otf">
             <string>FuturaPT-Medium</string>
         </array>
-        <array key="NotoSerif-Bold.ttf">
-            <string>NotoSerif-Bold</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DashboardProfileCell" rowHeight="212" id="DY1-Dg-Kpd" userLabel="DashboardProfileCell" customClass="DashboardProfileCell" customModule="Enrich_TMA" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DashboardProfileCell" rowHeight="212" id="DY1-Dg-Kpd" userLabel="DashboardProfileCell" customClass="DashboardProfileCell" customModule="Enrich_SMA" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="476" height="212"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DY1-Dg-Kpd" id="dP2-ub-42X">
@@ -42,7 +39,7 @@
                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 Customers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMZ-fz-pXa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Floor Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMZ-fz-pXa">
                                         <rect key="frame" x="0.0" y="31" width="336" height="23.5"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,39 +61,6 @@
                             </imageView>
                         </subviews>
                     </stackView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BN-nk-dwN">
-                        <rect key="frame" x="416" y="132" width="40" height="40"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starEnabled" translatesAutoresizingMaskIntoConstraints="NO" id="7xA-dA-3HX">
-                                <rect key="frame" x="14" y="6" width="12" height="12"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="IVP-Ld-sSS"/>
-                                    <constraint firstAttribute="width" constant="12" id="Zxa-pQ-Oko"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5/5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8v2-bV-pcE">
-                                <rect key="frame" x="0.0" y="18" width="40" height="16.5"/>
-                                <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="12"/>
-                                <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="7xA-dA-3HX" firstAttribute="centerY" secondItem="4BN-nk-dwN" secondAttribute="centerY" multiplier="0.6" id="679-78-dCL"/>
-                            <constraint firstItem="8v2-bV-pcE" firstAttribute="leading" secondItem="4BN-nk-dwN" secondAttribute="leading" id="69j-Fz-ueN"/>
-                            <constraint firstItem="8v2-bV-pcE" firstAttribute="top" secondItem="7xA-dA-3HX" secondAttribute="bottom" id="8V4-kM-IYv"/>
-                            <constraint firstItem="7xA-dA-3HX" firstAttribute="centerX" secondItem="4BN-nk-dwN" secondAttribute="centerX" id="Hpo-KE-3Kc"/>
-                            <constraint firstAttribute="height" constant="40" id="nfh-BN-eed"/>
-                            <constraint firstAttribute="trailing" secondItem="8v2-bV-pcE" secondAttribute="trailing" id="on1-tT-SFq"/>
-                            <constraint firstAttribute="width" constant="40" id="tIe-UN-4dh"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="VCornerRadius">
-                                <real key="value" value="20"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-zb-uAF">
                         <rect key="frame" x="20" y="40" width="146" height="22"/>
                         <subviews>
@@ -317,7 +281,6 @@
                 <constraints>
                     <constraint firstItem="Lb9-4r-7Bs" firstAttribute="leading" secondItem="dP2-ub-42X" secondAttribute="leading" id="5mD-ia-lnP"/>
                     <constraint firstItem="3aU-Ts-yWM" firstAttribute="top" secondItem="ONQ-zb-uAF" secondAttribute="bottom" constant="30" id="7OU-6B-R41"/>
-                    <constraint firstItem="4BN-nk-dwN" firstAttribute="trailing" secondItem="gMQ-zu-nFO" secondAttribute="trailing" id="YUN-eP-nUz"/>
                     <constraint firstItem="JK4-1v-2JJ" firstAttribute="leading" secondItem="dP2-ub-42X" secondAttribute="leading" id="Z5U-uH-6GO"/>
                     <constraint firstItem="3aU-Ts-yWM" firstAttribute="leading" secondItem="dP2-ub-42X" secondAttribute="leading" constant="20" id="c5A-IS-dYl"/>
                     <constraint firstAttribute="trailing" secondItem="JK4-1v-2JJ" secondAttribute="trailing" id="cy7-nY-YDw"/>
@@ -327,7 +290,6 @@
                     <constraint firstItem="Lb9-4r-7Bs" firstAttribute="top" secondItem="dP2-ub-42X" secondAttribute="top" id="kBV-ca-qZZ"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3aU-Ts-yWM" secondAttribute="bottom" constant="20" id="pDc-JK-Nbl"/>
                     <constraint firstItem="JK4-1v-2JJ" firstAttribute="top" secondItem="dP2-ub-42X" secondAttribute="top" id="pGl-cI-RlL"/>
-                    <constraint firstItem="4BN-nk-dwN" firstAttribute="bottom" secondItem="gMQ-zu-nFO" secondAttribute="bottom" id="qGd-qv-wv0"/>
                     <constraint firstItem="ONQ-zb-uAF" firstAttribute="top" secondItem="dP2-ub-42X" secondAttribute="top" constant="40" id="v6E-SC-3Ff">
                         <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                     </constraint>
@@ -352,6 +314,5 @@
         <image name="dropArrowSelectService" width="15" height="8"/>
         <image name="editProfileDefault" width="94" height="94"/>
         <image name="location" width="11" height="15"/>
-        <image name="starEnabled" width="15" height="17"/>
     </resources>
 </document>

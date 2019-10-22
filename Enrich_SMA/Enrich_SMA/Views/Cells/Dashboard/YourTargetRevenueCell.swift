@@ -38,6 +38,12 @@ class YourTargetRevenueCell: UITableViewCell {
     @IBOutlet weak var dailySelectionView: UIView!
     @IBOutlet weak var monthlySelectionView: UIView!
     
+    // Amount
+    @IBOutlet weak var lblTotalCash: UILabel!
+    @IBOutlet weak var lblTotalSales: UILabel!
+    @IBOutlet weak var lblTotalRevenue: UILabel!
+    @IBOutlet weak var lblSalesModified: UILabel!
+    
     
     weak var delegate: TargetRevenueDelegate?
         

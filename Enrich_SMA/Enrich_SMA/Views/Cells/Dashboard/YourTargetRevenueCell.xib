@@ -19,111 +19,259 @@
         <array key="FuturaPTMedium.otf">
             <string>FuturaPT-Medium</string>
         </array>
+        <array key="NotoSerif-Bold.ttf">
+            <string>NotoSerif-Bold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourTargetRevenueCell" rowHeight="392" id="KGk-i7-Jjw" customClass="YourTargetRevenueCell" customModule="Enrich_TMA" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="495" height="496"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourTargetRevenueCell" rowHeight="615" id="KGk-i7-Jjw" customClass="YourTargetRevenueCell" customModule="Enrich_SMA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="495" height="719"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="495" height="495.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="495" height="718.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="DUm-IV-hGy">
-                        <rect key="frame" x="20" y="10" width="455" height="349"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="1xI-AL-Qvp">
+                        <rect key="frame" x="0.0" y="10" width="495" height="50"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8O0-5H-fPR">
-                                <rect key="frame" x="0.0" y="0.0" width="455" height="96"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HdO-Op-gaS">
+                                <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="kXY-sg-WzF">
-                                        <rect key="frame" x="0.0" y="0.0" width="455" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uB6-ZI-Cwl">
+                                        <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                        <state key="normal" title="Daily">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionDaily:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qGH-21-ZdK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="leading" secondItem="6NH-De-rMC" secondAttribute="leading" id="3Y9-Md-GL2"/>
+                                    <constraint firstItem="6NH-De-rMC" firstAttribute="trailing" secondItem="uB6-ZI-Cwl" secondAttribute="trailing" id="98l-EH-H8F"/>
+                                    <constraint firstItem="6NH-De-rMC" firstAttribute="bottom" secondItem="uB6-ZI-Cwl" secondAttribute="bottom" id="Dhm-dF-48L"/>
+                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="centerX" secondItem="6NH-De-rMC" secondAttribute="centerX" id="Yog-Ct-lUe"/>
+                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="top" secondItem="6NH-De-rMC" secondAttribute="top" id="fG1-UJ-j1Y"/>
+                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="centerY" secondItem="6NH-De-rMC" secondAttribute="centerY" id="gtl-vb-j1u"/>
+                                    <constraint firstAttribute="height" constant="50" id="rWW-zB-dDO"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="6NH-De-rMC"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pc-X1-w6q">
+                                <rect key="frame" x="248" y="0.0" width="247" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-k6-4Nq">
+                                        <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                        <state key="normal" title="Monthly">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionMonthly:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0K3-wN-0WI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="4Ph-xc-1p1" firstAttribute="bottom" secondItem="4Tg-k6-4Nq" secondAttribute="bottom" id="2om-QJ-UZg"/>
+                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="top" secondItem="4Ph-xc-1p1" secondAttribute="top" id="CW5-DB-Z0H"/>
+                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="leading" secondItem="4Ph-xc-1p1" secondAttribute="leading" id="MrP-aq-RZC"/>
+                                    <constraint firstItem="4Ph-xc-1p1" firstAttribute="trailing" secondItem="4Tg-k6-4Nq" secondAttribute="trailing" id="NMe-jN-Vqx"/>
+                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="centerX" secondItem="4Ph-xc-1p1" secondAttribute="centerX" id="VYJ-0Y-tgh"/>
+                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="centerY" secondItem="4Ph-xc-1p1" secondAttribute="centerY" id="edN-GR-vuj"/>
+                                    <constraint firstAttribute="height" constant="50" id="kEL-C7-Kwf"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="4Ph-xc-1p1"/>
+                            </view>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DUm-IV-hGy">
+                        <rect key="frame" x="20" y="80" width="455" height="522"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue and Sales" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scd-0S-7Al">
+                                <rect key="frame" x="0.0" y="0.0" width="162.5" height="26"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
+                                <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-QZ-vPi">
+                                <rect key="frame" x="0.0" y="36" width="455" height="180"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lgV-Pz-HLs">
+                                        <rect key="frame" x="15" y="15" width="425" height="150"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Target Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7w-ab-hg2">
-                                                <rect key="frame" x="0.0" y="0.0" width="176" height="36"/>
-                                                <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
-                                                <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2AL-sQ-Tc3">
-                                                <rect key="frame" x="386" y="0.0" width="69" height="36"/>
-                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
-                                                <state key="normal" title="VIEW ALL">
-                                                    <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="actionViewAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kzd-bv-Yp1"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="1xI-AL-Qvp">
-                                        <rect key="frame" x="0.0" y="46" width="455" height="50"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HdO-Op-gaS">
-                                                <rect key="frame" x="0.0" y="0.0" width="227" height="50"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9ET-Pq-4u8">
+                                                <rect key="frame" x="0.0" y="0.0" width="425" height="65"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uB6-ZI-Cwl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="227" height="50"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
-                                                        <state key="normal" title="Daily">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="actionDaily:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qGH-21-ZdK"/>
-                                                        </connections>
-                                                    </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gp9-Ba-zpZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="65"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T8I-ml-4gL">
+                                                                <rect key="frame" x="58" y="12.5" width="86.5" height="40.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Cash" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDC-Xy-1eX">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="21"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="₹ 16,0545500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YnZ-si-ZkK">
+                                                                        <rect key="frame" x="0.0" y="21" width="86.5" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
+                                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="T8I-ml-4gL" firstAttribute="centerY" secondItem="Gp9-Ba-zpZ" secondAttribute="centerY" id="5rO-Ez-fvA"/>
+                                                            <constraint firstItem="T8I-ml-4gL" firstAttribute="centerX" secondItem="Gp9-Ba-zpZ" secondAttribute="centerX" id="8tA-UX-epq"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzS-Xk-zhb">
+                                                        <rect key="frame" x="222.5" y="0.0" width="202.5" height="65"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pKH-4i-eJO">
+                                                                <rect key="frame" x="68" y="12.5" width="67" height="40.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLS-qT-WkC">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="66.5" height="21"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="₹ 3,60,500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZg-6h-COK">
+                                                                        <rect key="frame" x="0.0" y="21" width="67" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
+                                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="pKH-4i-eJO" firstAttribute="centerY" secondItem="hzS-Xk-zhb" secondAttribute="centerY" id="7Yo-Id-1Rw"/>
+                                                            <constraint firstItem="pKH-4i-eJO" firstAttribute="centerX" secondItem="hzS-Xk-zhb" secondAttribute="centerX" id="NVX-Ia-eEV"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="leading" secondItem="6NH-De-rMC" secondAttribute="leading" id="3Y9-Md-GL2"/>
-                                                    <constraint firstItem="6NH-De-rMC" firstAttribute="trailing" secondItem="uB6-ZI-Cwl" secondAttribute="trailing" id="98l-EH-H8F"/>
-                                                    <constraint firstItem="6NH-De-rMC" firstAttribute="bottom" secondItem="uB6-ZI-Cwl" secondAttribute="bottom" id="Dhm-dF-48L"/>
-                                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="centerX" secondItem="6NH-De-rMC" secondAttribute="centerX" id="Yog-Ct-lUe"/>
-                                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="top" secondItem="6NH-De-rMC" secondAttribute="top" id="fG1-UJ-j1Y"/>
-                                                    <constraint firstItem="uB6-ZI-Cwl" firstAttribute="centerY" secondItem="6NH-De-rMC" secondAttribute="centerY" id="gtl-vb-j1u"/>
-                                                    <constraint firstAttribute="height" constant="50" id="rWW-zB-dDO"/>
-                                                </constraints>
-                                                <viewLayoutGuide key="safeArea" id="6NH-De-rMC"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pc-X1-w6q">
-                                                <rect key="frame" x="228" y="0.0" width="227" height="50"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ojf-f0-Zvx">
+                                                <rect key="frame" x="0.0" y="85" width="425" height="65"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-k6-4Nq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="227" height="50"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
-                                                        <state key="normal" title="Monthly">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="actionMonthly:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0K3-wN-0WI"/>
-                                                        </connections>
-                                                    </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEF-68-3kM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="65"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q1B-0T-F9y">
+                                                                <rect key="frame" x="58" y="12.5" width="86.5" height="40.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Revenue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UG4-mJ-gRw">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="21"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="₹ 16,0545500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnR-bE-XsH">
+                                                                        <rect key="frame" x="0.0" y="21" width="86.5" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
+                                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="q1B-0T-F9y" firstAttribute="centerX" secondItem="CEF-68-3kM" secondAttribute="centerX" id="E2S-Kl-Idv"/>
+                                                            <constraint firstItem="q1B-0T-F9y" firstAttribute="centerY" secondItem="CEF-68-3kM" secondAttribute="centerY" id="oUQ-AH-BzF"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQx-Q3-j74">
+                                                        <rect key="frame" x="222.5" y="0.0" width="202.5" height="65"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pb6-jB-TmB">
+                                                                <rect key="frame" x="54" y="12.5" width="94.5" height="40.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Sales Modified" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myU-qV-wsC">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="94.5" height="21"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="₹ 1,60,500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wO-IN-MpS">
+                                                                        <rect key="frame" x="14" y="21" width="67" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
+                                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="Pb6-jB-TmB" firstAttribute="centerY" secondItem="AQx-Q3-j74" secondAttribute="centerY" id="JvP-kt-oJG"/>
+                                                            <constraint firstItem="Pb6-jB-TmB" firstAttribute="centerX" secondItem="AQx-Q3-j74" secondAttribute="centerX" id="pS2-Sd-SMZ"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="4Ph-xc-1p1" firstAttribute="bottom" secondItem="4Tg-k6-4Nq" secondAttribute="bottom" id="2om-QJ-UZg"/>
-                                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="top" secondItem="4Ph-xc-1p1" secondAttribute="top" id="CW5-DB-Z0H"/>
-                                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="leading" secondItem="4Ph-xc-1p1" secondAttribute="leading" id="MrP-aq-RZC"/>
-                                                    <constraint firstItem="4Ph-xc-1p1" firstAttribute="trailing" secondItem="4Tg-k6-4Nq" secondAttribute="trailing" id="NMe-jN-Vqx"/>
-                                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="centerX" secondItem="4Ph-xc-1p1" secondAttribute="centerX" id="VYJ-0Y-tgh"/>
-                                                    <constraint firstItem="4Tg-k6-4Nq" firstAttribute="centerY" secondItem="4Ph-xc-1p1" secondAttribute="centerY" id="edN-GR-vuj"/>
-                                                    <constraint firstAttribute="height" constant="50" id="kEL-C7-Kwf"/>
-                                                </constraints>
-                                                <viewLayoutGuide key="safeArea" id="4Ph-xc-1p1"/>
-                                            </view>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="lgV-Pz-HLs" secondAttribute="bottom" constant="15" id="4BM-u2-iuT"/>
+                                    <constraint firstItem="lgV-Pz-HLs" firstAttribute="leading" secondItem="XnX-QZ-vPi" secondAttribute="leading" constant="15" id="Ech-e9-77R"/>
+                                    <constraint firstAttribute="trailing" secondItem="lgV-Pz-HLs" secondAttribute="trailing" constant="15" id="KFm-8E-44A"/>
+                                    <constraint firstAttribute="height" constant="180" id="UYV-o8-XD5"/>
+                                    <constraint firstItem="lgV-Pz-HLs" firstAttribute="top" secondItem="XnX-QZ-vPi" secondAttribute="top" constant="15" id="fdM-3r-uDf"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="VBorderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="VBorderColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="kXY-sg-WzF">
+                                <rect key="frame" x="0.0" y="226" width="455" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue at Salon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7w-ab-hg2">
+                                        <rect key="frame" x="0.0" y="0.0" width="149" height="36"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
+                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2AL-sQ-Tc3">
+                                        <rect key="frame" x="385" y="0.0" width="70" height="36"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
+                                        <state key="normal" title="More Info">
+                                            <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionViewAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kzd-bv-Yp1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SH-l6-L1l">
-                                <rect key="frame" x="0.0" y="96" width="455" height="253"/>
+                                <rect key="frame" x="0.0" y="272" width="455" height="250"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Yln-MJ-YbL">
-                                        <rect key="frame" x="15" y="15" width="425" height="223"/>
+                                        <rect key="frame" x="15" y="15" width="425" height="220"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3V7-5G-PmW">
-                                                <rect key="frame" x="0.0" y="0.0" width="425" height="63"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="425" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VrT-oS-ezD">
                                                         <rect key="frame" x="0.0" y="0.0" width="425" height="21"/>
@@ -155,7 +303,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </progressView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9K/10K" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzd-69-FNY">
-                                                        <rect key="frame" x="0.0" y="39" width="425" height="24"/>
+                                                        <rect key="frame" x="0.0" y="39" width="425" height="21"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                         <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -171,7 +319,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nj2-Mp-wyy">
-                                                <rect key="frame" x="0.0" y="83" width="425" height="60"/>
+                                                <rect key="frame" x="0.0" y="80" width="425" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Hh-9n-SJV">
                                                         <rect key="frame" x="0.0" y="0.0" width="425" height="21"/>
@@ -219,7 +367,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="FgC-eO-peP">
-                                                <rect key="frame" x="0.0" y="163" width="425" height="60"/>
+                                                <rect key="frame" x="0.0" y="160" width="425" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XeS-ht-GlD">
                                                         <rect key="frame" x="0.0" y="0.0" width="425" height="21"/>
@@ -295,14 +443,16 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="8O0-5H-fPR" firstAttribute="leading" secondItem="DUm-IV-hGy" secondAttribute="leading" id="Uji-GW-Vty"/>
-                            <constraint firstAttribute="trailing" secondItem="8O0-5H-fPR" secondAttribute="trailing" id="fdb-AR-5C8"/>
+                            <constraint firstAttribute="trailing" secondItem="XnX-QZ-vPi" secondAttribute="trailing" id="gNf-Nb-uTI"/>
                             <constraint firstAttribute="trailing" secondItem="4SH-l6-L1l" secondAttribute="trailing" id="gku-Z6-T4o"/>
+                            <constraint firstAttribute="trailing" secondItem="kXY-sg-WzF" secondAttribute="trailing" id="n7i-3d-8ZU"/>
+                            <constraint firstItem="kXY-sg-WzF" firstAttribute="leading" secondItem="DUm-IV-hGy" secondAttribute="leading" id="p9T-aH-NFW"/>
                             <constraint firstItem="4SH-l6-L1l" firstAttribute="leading" secondItem="DUm-IV-hGy" secondAttribute="leading" id="w43-U4-W07"/>
+                            <constraint firstItem="XnX-QZ-vPi" firstAttribute="leading" secondItem="DUm-IV-hGy" secondAttribute="leading" id="zWM-SY-OL3"/>
                         </constraints>
                     </stackView>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xg-Vl-Z93">
-                        <rect key="frame" x="341.5" y="101" width="40" height="5"/>
+                        <rect key="frame" x="351.5" y="55" width="40" height="5"/>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="h8a-ur-dLH"/>
@@ -310,23 +460,46 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgm-Ij-KVf">
-                        <rect key="frame" x="113.5" y="101" width="40" height="5"/>
+                        <rect key="frame" x="103.5" y="55" width="40" height="5"/>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="5" id="3aK-9V-AdZ"/>
                             <constraint firstAttribute="width" constant="40" id="bcj-FL-N9g"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxg-ip-iFC">
+                        <rect key="frame" x="247" y="138.5" width="1" height="135"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="sf7-OB-lZM"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lzb-aE-6Zr">
+                        <rect key="frame" x="77.5" y="205.5" width="340" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="4QJ-Ji-NFx"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="DUm-IV-hGy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="1Jz-IT-jTa"/>
+                    <constraint firstItem="Tgm-Ij-KVf" firstAttribute="bottom" secondItem="HdO-Op-gaS" secondAttribute="bottom" id="1xm-r6-Xfw"/>
+                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="centerY" secondItem="lgV-Pz-HLs" secondAttribute="centerY" id="2w3-WS-DBg"/>
+                    <constraint firstItem="DUm-IV-hGy" firstAttribute="top" secondItem="1xI-AL-Qvp" secondAttribute="bottom" constant="20" id="6wN-vw-o19"/>
+                    <constraint firstItem="pxg-ip-iFC" firstAttribute="centerX" secondItem="lgV-Pz-HLs" secondAttribute="centerX" id="9cY-Vp-EjI"/>
+                    <constraint firstItem="6Xg-Vl-Z93" firstAttribute="bottom" secondItem="4pc-X1-w6q" secondAttribute="bottom" id="D2y-Sm-tqF"/>
+                    <constraint firstAttribute="trailing" secondItem="1xI-AL-Qvp" secondAttribute="trailing" id="EGV-HA-ELA"/>
+                    <constraint firstItem="1xI-AL-Qvp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Flh-k3-Z2D"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DUm-IV-hGy" secondAttribute="bottom" constant="20" id="Id7-P6-2Ve"/>
-                    <constraint firstItem="6Xg-Vl-Z93" firstAttribute="bottom" secondItem="4pc-X1-w6q" secondAttribute="bottom" id="Mo7-gK-lp2"/>
-                    <constraint firstItem="6Xg-Vl-Z93" firstAttribute="centerX" secondItem="4Tg-k6-4Nq" secondAttribute="centerX" id="SpS-X4-fxo"/>
+                    <constraint firstItem="pxg-ip-iFC" firstAttribute="height" secondItem="lgV-Pz-HLs" secondAttribute="height" multiplier="0.9" id="LKT-fp-J3E"/>
+                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="centerX" secondItem="lgV-Pz-HLs" secondAttribute="centerX" id="MJ8-DS-JY9"/>
+                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="width" secondItem="lgV-Pz-HLs" secondAttribute="width" multiplier="0.8" id="S7i-0x-KJd"/>
+                    <constraint firstItem="1xI-AL-Qvp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="UZg-wj-YEc"/>
                     <constraint firstItem="DUm-IV-hGy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="b5O-Kz-yOU"/>
-                    <constraint firstItem="Tgm-Ij-KVf" firstAttribute="centerX" secondItem="uB6-ZI-Cwl" secondAttribute="centerX" id="tSd-u4-CEz"/>
+                    <constraint firstItem="6Xg-Vl-Z93" firstAttribute="centerX" secondItem="4pc-X1-w6q" secondAttribute="centerX" id="elS-gt-6VM"/>
+                    <constraint firstItem="pxg-ip-iFC" firstAttribute="centerY" secondItem="lgV-Pz-HLs" secondAttribute="centerY" id="gOo-X9-XoH"/>
+                    <constraint firstItem="Tgm-Ij-KVf" firstAttribute="centerX" secondItem="HdO-Op-gaS" secondAttribute="centerX" id="sXG-IP-psf"/>
                     <constraint firstAttribute="trailing" secondItem="DUm-IV-hGy" secondAttribute="trailing" constant="20" id="vAv-W1-UCc"/>
-                    <constraint firstItem="Tgm-Ij-KVf" firstAttribute="bottom" secondItem="HdO-Op-gaS" secondAttribute="bottom" id="zUm-3d-oNX"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -338,14 +511,18 @@
                 <outlet property="lblMembershipPercent" destination="Gtr-K2-B6E" id="jng-Ye-zYk"/>
                 <outlet property="lblProductRevenueAmount" destination="Sqz-qt-xmf" id="CDD-3g-s5u"/>
                 <outlet property="lblProductRevenuePercent" destination="7El-SM-6Ij" id="53S-JS-WS4"/>
+                <outlet property="lblSalesModified" destination="3wO-IN-MpS" id="RSP-mS-NV7"/>
                 <outlet property="lblServiceRevenueAmount" destination="zzd-69-FNY" id="Cd2-6E-Qx7"/>
                 <outlet property="lblServiceRevenuePercent" destination="Xnj-qy-V76" id="UIq-Vs-DGA"/>
+                <outlet property="lblTotalCash" destination="YnZ-si-ZkK" id="ELM-dP-9UI"/>
+                <outlet property="lblTotalRevenue" destination="QnR-bE-XsH" id="aUj-JM-o41"/>
+                <outlet property="lblTotalSales" destination="zZg-6h-COK" id="lXG-fT-zUl"/>
                 <outlet property="membershipProgressBar" destination="2Hj-HB-VJm" id="Hh6-1G-lbl"/>
                 <outlet property="monthlySelectionView" destination="6Xg-Vl-Z93" id="axX-ug-66p"/>
                 <outlet property="productRevenueProgressBar" destination="qmp-QM-fLM" id="Bto-9u-2Bc"/>
                 <outlet property="serviceRevenueProgressBar" destination="DzK-1H-aJ7" id="6b2-st-ge2"/>
             </connections>
-            <point key="canvasLocation" x="290.57971014492756" y="268.52678571428572"/>
+            <point key="canvasLocation" x="290.57971014492756" y="343.19196428571428"/>
         </tableViewCell>
     </objects>
 </document>
