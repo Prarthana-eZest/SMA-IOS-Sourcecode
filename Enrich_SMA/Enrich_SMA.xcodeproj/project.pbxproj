@@ -1106,6 +1106,7 @@
 				E3033FDC235EDF6400E0BF0A /* Resources */,
 				4A8BD3CEF9DE95BDB8A5F58A /* [CP] Embed Pods Frameworks */,
 				7509274F4856061FF7A74BBD /* [CP] Copy Pods Resources */,
+				E3CD5039237145FE00DE106E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1387,6 +1388,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E3CD5039237145FE00DE106E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" d5b7ae2e8f929bf80436d6f7af8fef1344cc5982 ff180789e7d2a69f8f58ce0a80b0ac19b5d34e971296b6722d73a7c3d4983870\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
