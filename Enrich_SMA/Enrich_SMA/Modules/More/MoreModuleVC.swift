@@ -137,7 +137,6 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
             
-            
         case .notifications :
             let vc = NotificationsVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
