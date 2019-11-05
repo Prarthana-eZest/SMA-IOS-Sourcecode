@@ -37,11 +37,6 @@ extension UIViewController {
         return(userstatus, usercustomerId, userAccessToken)
     }
 
-
-    func signOutUserFromApp() {
-        UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
-        UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUser)
-    }
 }
 
 // MARK: Resign Keyboard In case touch on Screen

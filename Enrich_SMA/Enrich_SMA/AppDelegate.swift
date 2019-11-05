@@ -181,3 +181,15 @@ extension AppDelegate {
     
 }
 
+extension AppDelegate{
+    
+    // Logout Flow
+    
+    func signOutUserFromApp() {
+        UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
+        UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUser)
+        let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)
+        self.window?.rootViewController = navigationC
+    }
+}
+
