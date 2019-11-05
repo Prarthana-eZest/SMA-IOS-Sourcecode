@@ -32,14 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func onBoardingScreen() {
         // authentication successful
         
-//        if UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUser) == nil {
-//            let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)
-//            self.window?.rootViewController = navigationC
-//            self.window?.makeKeyAndVisible()
-//            UserDefaults.standard.setValue(true, forKey: UserDefauiltsKeys.k_Key_LoginUser)
-//        } else {
+        if UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUser) == nil {
+            let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)
+            self.window?.rootViewController = navigationC
+            self.window?.makeKeyAndVisible()
+            UserDefaults.standard.setValue(true, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+        } else {
             moveToLandingScreen()
-       // }
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

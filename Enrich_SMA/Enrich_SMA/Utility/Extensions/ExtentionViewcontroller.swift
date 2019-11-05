@@ -41,7 +41,6 @@ extension UIViewController {
     func signOutUserFromApp() {
         UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
         UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUser)
-        UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_key_CustomerQuoteIdForCart)
     }
 }
 

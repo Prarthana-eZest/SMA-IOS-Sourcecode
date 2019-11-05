@@ -151,6 +151,24 @@
 		E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FE235EE5D900E0BF0A /* ReportsVC.swift */; };
 		E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */; };
 		E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */; };
+		E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */; };
+		E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */; };
+		E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501023713C3600DE106E /* LoginOTPModuleVC.swift */; };
+		E3CD502723713C3600DE106E /* LoginOTPModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501123713C3600DE106E /* LoginOTPModuleInteractor.swift */; };
+		E3CD502823713C3600DE106E /* LoginOTPModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501223713C3600DE106E /* LoginOTPModulePresenter.swift */; };
+		E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501423713C3600DE106E /* OTPVerificationModulePresenter.swift */; };
+		E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501523713C3600DE106E /* OTPVerificationModuleWorker.swift */; };
+		E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501623713C3600DE106E /* OTPVerificationModuleVC.swift */; };
+		E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501723713C3600DE106E /* OTPVerificationModuleModels.swift */; };
+		E3CD502D23713C3600DE106E /* OTPVerificationModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501823713C3600DE106E /* OTPVerificationModuleInteractor.swift */; };
+		E3CD502E23713C3600DE106E /* LoginNavigtionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501923713C3600DE106E /* LoginNavigtionController.swift */; };
+		E3CD503023713C3600DE106E /* LoginModuleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501C23713C3600DE106E /* LoginModuleModels.swift */; };
+		E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501D23713C3600DE106E /* LoginModuleWorker.swift */; };
+		E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501E23713C3600DE106E /* LoginModuleVC.swift */; };
+		E3CD503323713C3600DE106E /* LoginModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501F23713C3600DE106E /* LoginModulePresenter.swift */; };
+		E3CD503423713C3600DE106E /* LoginModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD502123713C3600DE106E /* LoginModuleInteractor.swift */; };
+		E3CD503523713C3600DE106E /* TermsAndConditionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD502323713C3600DE106E /* TermsAndConditionsVC.swift */; };
+		E3CD503723713C6500DE106E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CD503623713C6500DE106E /* Login.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +345,24 @@
 		E30342FE235EE5D900E0BF0A /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
 		E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsInteractor.swift; sourceTree = "<group>"; };
 		E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSPopUpVC.swift; sourceTree = "<group>"; };
+		E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleWorker.swift; sourceTree = "<group>"; };
+		E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleModels.swift; sourceTree = "<group>"; };
+		E3CD501023713C3600DE106E /* LoginOTPModuleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleVC.swift; sourceTree = "<group>"; };
+		E3CD501123713C3600DE106E /* LoginOTPModuleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleInteractor.swift; sourceTree = "<group>"; };
+		E3CD501223713C3600DE106E /* LoginOTPModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModulePresenter.swift; sourceTree = "<group>"; };
+		E3CD501423713C3600DE106E /* OTPVerificationModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerificationModulePresenter.swift; sourceTree = "<group>"; };
+		E3CD501523713C3600DE106E /* OTPVerificationModuleWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerificationModuleWorker.swift; sourceTree = "<group>"; };
+		E3CD501623713C3600DE106E /* OTPVerificationModuleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerificationModuleVC.swift; sourceTree = "<group>"; };
+		E3CD501723713C3600DE106E /* OTPVerificationModuleModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerificationModuleModels.swift; sourceTree = "<group>"; };
+		E3CD501823713C3600DE106E /* OTPVerificationModuleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPVerificationModuleInteractor.swift; sourceTree = "<group>"; };
+		E3CD501923713C3600DE106E /* LoginNavigtionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigtionController.swift; sourceTree = "<group>"; };
+		E3CD501C23713C3600DE106E /* LoginModuleModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleModels.swift; sourceTree = "<group>"; };
+		E3CD501D23713C3600DE106E /* LoginModuleWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleWorker.swift; sourceTree = "<group>"; };
+		E3CD501E23713C3600DE106E /* LoginModuleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleVC.swift; sourceTree = "<group>"; };
+		E3CD501F23713C3600DE106E /* LoginModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModulePresenter.swift; sourceTree = "<group>"; };
+		E3CD502123713C3600DE106E /* LoginModuleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleInteractor.swift; sourceTree = "<group>"; };
+		E3CD502323713C3600DE106E /* TermsAndConditionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsVC.swift; sourceTree = "<group>"; };
+		E3CD503623713C6500DE106E /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -542,6 +578,7 @@
 		E3034118235EE14000E0BF0A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E3CD500B23713C3600DE106E /* LoginModule */,
 				E303416B235EE14000E0BF0A /* Dashboard */,
 				E30342E0235EE1D000E0BF0A /* Appointment */,
 				E30342E1235EE1D900E0BF0A /* Reports */,
@@ -982,6 +1019,7 @@
 			isa = PBXGroup;
 			children = (
 				E3033FE5235EDF6400E0BF0A /* Main.storyboard */,
+				E3CD503623713C6500DE106E /* Login.storyboard */,
 				E30342E4235EE28900E0BF0A /* HomeLanding.storyboard */,
 				E30342E6235EE29200E0BF0A /* Dashboard.storyboard */,
 				E30342EA235EE3C100E0BF0A /* Appointment.storyboard */,
@@ -997,6 +1035,62 @@
 				E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */,
 			);
 			path = SOS;
+			sourceTree = "<group>";
+		};
+		E3CD500B23713C3600DE106E /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				E3CD501923713C3600DE106E /* LoginNavigtionController.swift */,
+				E3CD500C23713C3600DE106E /* OTPModule */,
+				E3CD501C23713C3600DE106E /* LoginModuleModels.swift */,
+				E3CD501D23713C3600DE106E /* LoginModuleWorker.swift */,
+				E3CD501E23713C3600DE106E /* LoginModuleVC.swift */,
+				E3CD501F23713C3600DE106E /* LoginModulePresenter.swift */,
+				E3CD502123713C3600DE106E /* LoginModuleInteractor.swift */,
+				E3CD502223713C3600DE106E /* Terms and Conditions */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		E3CD500C23713C3600DE106E /* OTPModule */ = {
+			isa = PBXGroup;
+			children = (
+				E3CD500D23713C3600DE106E /* LoginOTPModuleVC */,
+				E3CD501323713C3600DE106E /* OTPVerificationModule */,
+			);
+			path = OTPModule;
+			sourceTree = "<group>";
+		};
+		E3CD500D23713C3600DE106E /* LoginOTPModuleVC */ = {
+			isa = PBXGroup;
+			children = (
+				E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */,
+				E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */,
+				E3CD501023713C3600DE106E /* LoginOTPModuleVC.swift */,
+				E3CD501123713C3600DE106E /* LoginOTPModuleInteractor.swift */,
+				E3CD501223713C3600DE106E /* LoginOTPModulePresenter.swift */,
+			);
+			path = LoginOTPModuleVC;
+			sourceTree = "<group>";
+		};
+		E3CD501323713C3600DE106E /* OTPVerificationModule */ = {
+			isa = PBXGroup;
+			children = (
+				E3CD501423713C3600DE106E /* OTPVerificationModulePresenter.swift */,
+				E3CD501523713C3600DE106E /* OTPVerificationModuleWorker.swift */,
+				E3CD501623713C3600DE106E /* OTPVerificationModuleVC.swift */,
+				E3CD501723713C3600DE106E /* OTPVerificationModuleModels.swift */,
+				E3CD501823713C3600DE106E /* OTPVerificationModuleInteractor.swift */,
+			);
+			path = OTPVerificationModule;
+			sourceTree = "<group>";
+		};
+		E3CD502223713C3600DE106E /* Terms and Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				E3CD502323713C3600DE106E /* TermsAndConditionsVC.swift */,
+			);
+			path = "Terms and Conditions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1140,6 +1234,7 @@
 				E3034114235EE11C00E0BF0A /* HeaderViewWithAdCell.xib in Resources */,
 				E3034254235EE14700E0BF0A /* FuturaPTHeavyOblique.otf in Resources */,
 				E3033FEC235EDF6900E0BF0A /* Assets.xcassets in Resources */,
+				E3CD503723713C6500DE106E /* Login.storyboard in Resources */,
 				E303425A235EE14700E0BF0A /* FuturaPTCondBold.otf in Resources */,
 				E3034257235EE14700E0BF0A /* FuturaPTBook.otf in Resources */,
 				E3033FE7235EDF6500E0BF0A /* Main.storyboard in Resources */,
@@ -1300,8 +1395,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3CD503323713C3600DE106E /* LoginModulePresenter.swift in Sources */,
 				E30341F4235EE14000E0BF0A /* EmployeeListingInteractor.swift in Sources */,
+				E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
+				E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */,
 				E30341FB235EE14000E0BF0A /* DashboardVC.swift in Sources */,
 				E30341E0235EE14000E0BF0A /* MyProfileModels.swift in Sources */,
 				E30342BB235EE15800E0BF0A /* APIErrorModel.swift in Sources */,
@@ -1318,9 +1416,11 @@
 				E30341F0235EE14000E0BF0A /* NotificationsVC.swift in Sources */,
 				E30341F9235EE14000E0BF0A /* DashboardModels.swift in Sources */,
 				E3034303235EE5D900E0BF0A /* ReportsModels.swift in Sources */,
+				E3CD503023713C3600DE106E /* LoginModuleModels.swift in Sources */,
 				E30342DF235EE15800E0BF0A /* QRCodeGeneratorError.swift in Sources */,
 				E30342C7235EE15800E0BF0A /* UIBarButtonItem+Badge.swift in Sources */,
 				E30342BF235EE15800E0BF0A /* ErrorCodeHandlerClass.swift in Sources */,
+				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
 				E30341F6235EE14000E0BF0A /* EmployeeListingVC.swift in Sources */,
 				E30341EF235EE14000E0BF0A /* NotificationsWorker.swift in Sources */,
@@ -1328,22 +1428,29 @@
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
+				E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */,
 				E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */,
 				E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */,
+				E3CD502D23713C3600DE106E /* OTPVerificationModuleInteractor.swift in Sources */,
 				E30340A3235EE11C00E0BF0A /* AppointmentStatusCell.swift in Sources */,
 				E30341F7235EE14000E0BF0A /* DashboardInteractor.swift in Sources */,
+				E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */,
 				E30342D4235EE15800E0BF0A /* ListPickerDialog.swift in Sources */,
 				E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
 				E30342CF235EE15800E0BF0A /* ExtensionNavigationController.swift in Sources */,
+				E3CD502723713C3600DE106E /* LoginOTPModuleInteractor.swift in Sources */,
 				E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */,
+				E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */,
 				E30342C1235EE15800E0BF0A /* ImagePicker.swift in Sources */,
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
 				E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */,
+				E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */,
 				E30340B9235EE11C00E0BF0A /* NotificationDetailsCell.swift in Sources */,
 				E30341E3235EE14000E0BF0A /* MyProfilePresenter.swift in Sources */,
 				E30342B5235EE15800E0BF0A /* Configurations.swift in Sources */,
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
+				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
@@ -1354,6 +1461,7 @@
 				E3034117235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.swift in Sources */,
 				E30342C9235EE15800E0BF0A /* ExtensionUIView.swift in Sources */,
 				E30342C4235EE15800E0BF0A /* AnyEncodable.swift in Sources */,
+				E3CD503423713C3600DE106E /* LoginModuleInteractor.swift in Sources */,
 				E30342D9235EE15800E0BF0A /* CacheFolderNameKeys.swift in Sources */,
 				E30342DE235EE15800E0BF0A /* QRCodeGenratorHelper.swift in Sources */,
 				E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */,
@@ -1364,10 +1472,12 @@
 				E30342F7235EE58300E0BF0A /* AppointmentModels.swift in Sources */,
 				E30341F3235EE14000E0BF0A /* EmployeeListingWorker.swift in Sources */,
 				E30342F5235EE58300E0BF0A /* AppointmentWorker.swift in Sources */,
+				E3CD503523713C3600DE106E /* TermsAndConditionsVC.swift in Sources */,
 				E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */,
 				E30341F8235EE14000E0BF0A /* DashboardPresenter.swift in Sources */,
 				E30341EC235EE14000E0BF0A /* MoreModulePresenter.swift in Sources */,
 				E30342DC235EE15800E0BF0A /* ContactsHelper.swift in Sources */,
+				E3CD502E23713C3600DE106E /* LoginNavigtionController.swift in Sources */,
 				E30342BD235EE15800E0BF0A /* NetworkRechability.swift in Sources */,
 				E30341E5235EE14000E0BF0A /* MoreModuleVC.swift in Sources */,
 				E3033FEA235EDF6500E0BF0A /* Enrich_SMA.xcdatamodeld in Sources */,
@@ -1387,7 +1497,9 @@
 				E30341E1235EE14000E0BF0A /* MyProfileWorker.swift in Sources */,
 				E30341F2235EE14000E0BF0A /* EmployeeListingModels.swift in Sources */,
 				E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */,
+				E3CD502823713C3600DE106E /* LoginOTPModulePresenter.swift in Sources */,
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
+				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,
 				E30340B7235EE11C00E0BF0A /* LogoutCell.swift in Sources */,
@@ -1570,6 +1682,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DYKT5CBF5Z;
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1589,6 +1702,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DYKT5CBF5Z;
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

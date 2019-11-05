@@ -142,10 +142,10 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             let vc = NotificationsVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
             
-        case .logout:break
-            //            let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)
-            //            appDelegate.window?.rootViewController = navigationC
-            //            self.signOutUserFromApp()
+        case .logout:
+            let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)
+            appDelegate.window?.rootViewController = navigationC
+            self.signOutUserFromApp()
             
         case .employees:
             let vc = EmployeeListingVC.instantiate(fromAppStoryboard: .More)
