@@ -143,8 +143,8 @@ extension LoginModuleVC: UITextFieldDelegate {
 extension LoginModuleVC {
     @objc func editingChanged(_ textField: UITextField) {
         btnLogin.isEnabled = false
-        let enrichId = txtfEnrichId.text!.replacingOccurrences(of: " ", with: "")
-        let password = txtfPassword.text!.replacingOccurrences(of: " ", with: "")
+        let enrichId = txtfEnrichId.text!.trim()
+        let password = txtfPassword.text!.trim()
         if !enrichId.isEmpty,
             !password.isEmpty{
             btnLogin.isEnabled = true
