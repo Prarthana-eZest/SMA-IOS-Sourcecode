@@ -67,7 +67,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
     {
         super.viewDidLoad()
         doSomething()
-        tableView.register(UINib(nibName: "EmployeeCell", bundle: nil), forCellReuseIdentifier: "EmployeeCell")
+        tableView.register(UINib(nibName: CellIdentifier.employeeCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.employeeCell)
         
     }
     
@@ -105,7 +105,7 @@ extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeCell", for: indexPath) as? EmployeeCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.employeeCell, for: indexPath) as? EmployeeCell else {
             return UITableViewCell()
         }
         cell.selectionStyle = .none

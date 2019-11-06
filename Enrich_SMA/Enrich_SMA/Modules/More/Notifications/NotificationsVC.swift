@@ -68,7 +68,7 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic
     {
         super.viewDidLoad()
         doSomething()
-        tableView.register(UINib(nibName: "NotificationDetailsCell", bundle: nil), forCellReuseIdentifier: "NotificationDetailsCell")
+        tableView.register(UINib(nibName: CellIdentifier.notificationDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.notificationDetailsCell)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,7 +105,7 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let notificationCell = tableView.dequeueReusableCell(withIdentifier: "NotificationDetailsCell", for: indexPath) as? NotificationDetailsCell else {
+        guard let notificationCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.notificationDetailsCell, for: indexPath) as? NotificationDetailsCell else {
             return UITableViewCell()
         }
         notificationCell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)

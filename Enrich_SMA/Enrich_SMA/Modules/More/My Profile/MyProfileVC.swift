@@ -68,9 +68,9 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         super.viewDidLoad()
         doSomething()
         
-        tableView.register(UINib(nibName: "MyProfileHeaderCell", bundle: nil), forCellReuseIdentifier: "MyProfileHeaderCell")
-        tableView.register(UINib(nibName: "MyProfileCell", bundle: nil), forCellReuseIdentifier: "MyProfileCell")
-        tableView.register(UINib(nibName: "HeaderViewWithTitleCell", bundle: nil), forCellReuseIdentifier: "HeaderViewWithTitleCell")
+        tableView.register(UINib(nibName: CellIdentifier.myProfileHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileHeaderCell)
+        tableView.register(UINib(nibName: CellIdentifier.myProfileCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileCell)
+        tableView.register(UINib(nibName: CellIdentifier.headerViewWithTitleCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.headerViewWithTitleCell)
 
     }
     
@@ -112,7 +112,7 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
             
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyProfileHeaderCell", for: indexPath) as? MyProfileHeaderCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myProfileHeaderCell, for: indexPath) as? MyProfileHeaderCell else {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
@@ -120,7 +120,7 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyProfileCell", for: indexPath) as? MyProfileCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myProfileCell, for: indexPath) as? MyProfileCell else {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
@@ -141,7 +141,7 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
         
-        guard let cell: HeaderViewWithTitleCell = tableView.dequeueReusableCell(withIdentifier: "HeaderViewWithTitleCell") as? HeaderViewWithTitleCell else {
+        guard let cell: HeaderViewWithTitleCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else {
             return UITableViewCell()
         }
         cell.titleLabel.text = profileSections[section - 1].title

@@ -72,7 +72,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     {
         super.viewDidLoad()
         doSomething()
-        tableView.register(UINib(nibName: "AppointmentStatusCell", bundle: nil), forCellReuseIdentifier: "AppointmentStatusCell")
+        tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,7 +155,7 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentStatusCell", for: indexPath) as? AppointmentStatusCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.appointmentStatusCell, for: indexPath) as? AppointmentStatusCell else {
             return UITableViewCell()
         }
         cell.indexPath = indexPath

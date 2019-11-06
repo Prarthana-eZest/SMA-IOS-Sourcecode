@@ -67,8 +67,8 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
     {
         super.viewDidLoad()
         doSomething()
-        tableView.register(UINib(nibName: "DashboardProfileCell", bundle: nil), forCellReuseIdentifier: "DashboardProfileCell")
-        tableView.register(UINib(nibName: "YourTargetRevenueCell", bundle: nil), forCellReuseIdentifier: "YourTargetRevenueCell")
+        tableView.register(UINib(nibName: CellIdentifier.dashboardProfileCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.dashboardProfileCell)
+        tableView.register(UINib(nibName: CellIdentifier.yourTargetRevenueCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.yourTargetRevenueCell)
         
         tableView.contentInset =  UIEdgeInsets(top: -44, left: 0, bottom: 0, right: 0)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
@@ -138,14 +138,14 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardProfileCell", for: indexPath) as? DashboardProfileCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.dashboardProfileCell, for: indexPath) as? DashboardProfileCell else {
                 return UITableViewCell()
             }
             cell.configureCell()
             cell.selectionStyle = .none
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "YourTargetRevenueCell", for: indexPath) as? YourTargetRevenueCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.yourTargetRevenueCell, for: indexPath) as? YourTargetRevenueCell else {
                 return UITableViewCell()
             }
             cell.delegate = self

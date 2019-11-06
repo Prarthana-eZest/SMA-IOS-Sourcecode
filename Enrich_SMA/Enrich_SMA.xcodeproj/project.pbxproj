@@ -517,10 +517,10 @@
 		E3034024235EE11B00E0BF0A /* My Profile */ = {
 			isa = PBXGroup;
 			children = (
-				E3034025235EE11B00E0BF0A /* MyProfileHeaderCell.xib */,
-				E3034026235EE11B00E0BF0A /* MyProfileCell.xib */,
 				E3034027235EE11B00E0BF0A /* MyProfileHeaderCell.swift */,
+				E3034025235EE11B00E0BF0A /* MyProfileHeaderCell.xib */,
 				E3034028235EE11B00E0BF0A /* MyProfileCell.swift */,
+				E3034026235EE11B00E0BF0A /* MyProfileCell.xib */,
 			);
 			path = "My Profile";
 			sourceTree = "<group>";
@@ -528,8 +528,8 @@
 		E3034030235EE11B00E0BF0A /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				E3034031235EE11B00E0BF0A /* NotificationDetailsCell.xib */,
 				E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */,
+				E3034031235EE11B00E0BF0A /* NotificationDetailsCell.xib */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -537,8 +537,8 @@
 		E3034033235EE11B00E0BF0A /* Employee */ = {
 			isa = PBXGroup;
 			children = (
-				E3034034235EE11B00E0BF0A /* EmployeeCell.xib */,
 				E3034035235EE11B00E0BF0A /* EmployeeCell.swift */,
+				E3034034235EE11B00E0BF0A /* EmployeeCell.xib */,
 			);
 			path = Employee;
 			sourceTree = "<group>";
@@ -605,9 +605,9 @@
 		E3034150235EE14000E0BF0A /* My Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E3034153235EE14000E0BF0A /* MyProfileVC.swift */,
 				E3034151235EE14000E0BF0A /* MyProfileModels.swift */,
 				E3034152235EE14000E0BF0A /* MyProfileWorker.swift */,
-				E3034153235EE14000E0BF0A /* MyProfileVC.swift */,
 				E3034154235EE14000E0BF0A /* MyProfilePresenter.swift */,
 				E3034155235EE14000E0BF0A /* MyProfileInteractor.swift */,
 			);
@@ -617,10 +617,10 @@
 		E303415F235EE14000E0BF0A /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				E3034163235EE14000E0BF0A /* NotificationsVC.swift */,
 				E3034160235EE14000E0BF0A /* NotificationsModels.swift */,
 				E3034161235EE14000E0BF0A /* NotificationsPresenter.swift */,
 				E3034162235EE14000E0BF0A /* NotificationsWorker.swift */,
-				E3034163235EE14000E0BF0A /* NotificationsVC.swift */,
 				E3034164235EE14000E0BF0A /* NotificationsInteractor.swift */,
 			);
 			path = Notifications;
@@ -629,11 +629,11 @@
 		E3034165235EE14000E0BF0A /* Employees */ = {
 			isa = PBXGroup;
 			children = (
+				E303416A235EE14000E0BF0A /* EmployeeListingVC.swift */,
 				E3034166235EE14000E0BF0A /* EmployeeListingModels.swift */,
 				E3034167235EE14000E0BF0A /* EmployeeListingWorker.swift */,
 				E3034168235EE14000E0BF0A /* EmployeeListingInteractor.swift */,
 				E3034169235EE14000E0BF0A /* EmployeeListingPresenter.swift */,
-				E303416A235EE14000E0BF0A /* EmployeeListingVC.swift */,
 			);
 			path = Employees;
 			sourceTree = "<group>";
