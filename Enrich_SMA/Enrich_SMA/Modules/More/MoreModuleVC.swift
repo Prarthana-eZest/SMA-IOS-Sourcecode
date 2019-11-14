@@ -142,7 +142,14 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
             
         case .logout:
-            appDelegate.signOutUserFromApp()
+            let alertController = UIAlertController(title: alertTitle, message: AlertMessagesToAsk.askToLogout, preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
+                appDelegate.signOutUserFromApp()
+            })
+            alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.default) { _ -> Void in
+                // Do Nothing
+            })
+            self.present(alertController, animated: true, completion: nil)
             
         case .employees:
             let vc = EmployeeListingVC.instantiate(fromAppStoryboard: .More)

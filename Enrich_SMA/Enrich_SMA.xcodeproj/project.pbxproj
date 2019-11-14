@@ -151,6 +151,7 @@
 		E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FE235EE5D900E0BF0A /* ReportsVC.swift */; };
 		E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */; };
 		E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */; };
+		E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */; };
 		E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */; };
 		E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */; };
 		E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501023713C3600DE106E /* LoginOTPModuleVC.swift */; };
@@ -345,6 +346,7 @@
 		E30342FE235EE5D900E0BF0A /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
 		E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsInteractor.swift; sourceTree = "<group>"; };
 		E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSPopUpVC.swift; sourceTree = "<group>"; };
+		E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionAppDelegate.swift; sourceTree = "<group>"; };
 		E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleWorker.swift; sourceTree = "<group>"; };
 		E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleModels.swift; sourceTree = "<group>"; };
 		E3CD501023713C3600DE106E /* LoginOTPModuleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleVC.swift; sourceTree = "<group>"; };
@@ -868,6 +870,7 @@
 				E3034296235EE15700E0BF0A /* ExtensionGeneric.swift */,
 				E3034297235EE15700E0BF0A /* ExtensionNavigationController.swift */,
 				E3034298235EE15700E0BF0A /* ExtentionViewcontroller.swift */,
+				E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1437,6 +1440,7 @@
 				E3CD503023713C3600DE106E /* LoginModuleModels.swift in Sources */,
 				E30342DF235EE15800E0BF0A /* QRCodeGeneratorError.swift in Sources */,
 				E30342C7235EE15800E0BF0A /* UIBarButtonItem+Badge.swift in Sources */,
+				E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */,
 				E30342BF235EE15800E0BF0A /* ErrorCodeHandlerClass.swift in Sources */,
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,

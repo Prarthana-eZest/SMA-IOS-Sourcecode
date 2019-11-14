@@ -106,8 +106,10 @@ extension LoginModuleVC {
         if let obj = viewModel as? LoginModule.UserLogin.Response,
             obj.status,
             let data = obj.data{
-            UserDefaults.standard.set(encodable: data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
-            UserDefaults.standard.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(encodable: data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
+            userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+            userDefaults.synchronize()
         }
         
         

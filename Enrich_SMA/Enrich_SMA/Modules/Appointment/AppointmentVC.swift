@@ -177,7 +177,7 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
             // Do something
             self.view.alpha = 1.0
         }
-        self.appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
         
         
     }

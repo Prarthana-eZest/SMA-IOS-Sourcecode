@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
+var appDelegate: AppDelegate {
+    return UIApplication.shared.delegate as! AppDelegate
+}
 
-    var appDelegate: AppDelegate {
-            return UIApplication.shared.delegate as! AppDelegate
-    }
+extension UIViewController {    
 
     func showAlert( alertTitle title: String, alertMessage msg: String ) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
