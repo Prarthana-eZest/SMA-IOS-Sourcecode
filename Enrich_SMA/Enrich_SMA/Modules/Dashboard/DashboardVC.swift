@@ -102,6 +102,12 @@ extension DashboardVC:AppointmentDelegate{
         print("View All")
     }
     
+    func actionMoreInfo() {
+        print("More Info")
+        let vc = RevenueVC.instantiate(fromAppStoryboard: .Dashboard)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func actionDelete(indexPath: IndexPath) {
         print("Delete:\(indexPath.row)")
     }

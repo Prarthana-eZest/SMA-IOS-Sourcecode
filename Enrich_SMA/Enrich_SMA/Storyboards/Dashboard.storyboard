@@ -1,7 +1,74 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--RevenueVC-->
+        <scene sceneID="J9d-Rk-cob">
+            <objects>
+                <viewController storyboardIdentifier="RevenueVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mPd-Yi-Fha" customClass="RevenueVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UKS-IK-s9o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrB-t8-q19" userLabel="View Seprator">
+                                <rect key="frame" x="0.0" y="44" width="414" height="1"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ARB-mx-llP"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="1.5" height="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.25098039220000001" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R5K-Qq-FyH">
+                                <rect key="frame" x="20" y="64" width="374" height="778"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mPd-Yi-Fha" id="fuQ-8p-NR8"/>
+                                    <outlet property="delegate" destination="mPd-Yi-Fha" id="aal-BE-s34"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KrB-t8-q19" firstAttribute="leading" secondItem="UKS-IK-s9o" secondAttribute="leading" id="C5V-Bz-UZg"/>
+                            <constraint firstItem="qDp-F5-zFy" firstAttribute="trailing" secondItem="R5K-Qq-FyH" secondAttribute="trailing" constant="20" id="IKo-KA-N50"/>
+                            <constraint firstItem="KrB-t8-q19" firstAttribute="top" secondItem="qDp-F5-zFy" secondAttribute="top" id="TzJ-w2-7QN"/>
+                            <constraint firstItem="qDp-F5-zFy" firstAttribute="bottom" secondItem="R5K-Qq-FyH" secondAttribute="bottom" constant="20" id="U6L-zd-rXb"/>
+                            <constraint firstItem="R5K-Qq-FyH" firstAttribute="top" secondItem="qDp-F5-zFy" secondAttribute="top" constant="20" id="ZO5-Vg-mzA"/>
+                            <constraint firstAttribute="trailing" secondItem="KrB-t8-q19" secondAttribute="trailing" id="jmZ-Un-EvV"/>
+                            <constraint firstItem="R5K-Qq-FyH" firstAttribute="leading" secondItem="qDp-F5-zFy" secondAttribute="leading" constant="20" id="lmR-P6-U2R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qDp-F5-zFy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hgu-p3-ZLr"/>
+                    <connections>
+                        <outlet property="tableView" destination="R5K-Qq-FyH" id="EgG-Dd-UbP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lly-wB-hsV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="600" y="-842"/>
+        </scene>
+    </scenes>
 </document>

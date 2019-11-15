@@ -256,7 +256,7 @@
                                             <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="actionViewAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kzd-bv-Yp1"/>
+                                            <action selector="actionMoreInfo:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SaZ-yZ-9U7"/>
                                         </connections>
                                     </button>
                                 </subviews>

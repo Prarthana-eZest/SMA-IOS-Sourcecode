@@ -151,6 +151,13 @@
 		E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FE235EE5D900E0BF0A /* ReportsVC.swift */; };
 		E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */; };
 		E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */; };
+		E3060138237E9B4500988EEC /* RevenueModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060133237E9B4500988EEC /* RevenueModels.swift */; };
+		E3060139237E9B4600988EEC /* RevenueWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060134237E9B4500988EEC /* RevenueWorker.swift */; };
+		E306013A237E9B4600988EEC /* RevenuePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060135237E9B4500988EEC /* RevenuePresenter.swift */; };
+		E306013B237E9B4600988EEC /* RevenueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060136237E9B4500988EEC /* RevenueInteractor.swift */; };
+		E306013C237E9B4600988EEC /* RevenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060137237E9B4500988EEC /* RevenueVC.swift */; };
+		E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306013D237E9C8800988EEC /* RevenueCell.swift */; };
+		E3060140237E9C8800988EEC /* RevenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E306013E237E9C8800988EEC /* RevenueCell.xib */; };
 		E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */; };
 		E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */; };
 		E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */; };
@@ -346,6 +353,13 @@
 		E30342FE235EE5D900E0BF0A /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
 		E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsInteractor.swift; sourceTree = "<group>"; };
 		E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSPopUpVC.swift; sourceTree = "<group>"; };
+		E3060133237E9B4500988EEC /* RevenueModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueModels.swift; sourceTree = "<group>"; };
+		E3060134237E9B4500988EEC /* RevenueWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueWorker.swift; sourceTree = "<group>"; };
+		E3060135237E9B4500988EEC /* RevenuePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenuePresenter.swift; sourceTree = "<group>"; };
+		E3060136237E9B4500988EEC /* RevenueInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueInteractor.swift; sourceTree = "<group>"; };
+		E3060137237E9B4500988EEC /* RevenueVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueVC.swift; sourceTree = "<group>"; };
+		E306013D237E9C8800988EEC /* RevenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
+		E306013E237E9C8800988EEC /* RevenueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevenueCell.xib; sourceTree = "<group>"; };
 		E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionAppDelegate.swift; sourceTree = "<group>"; };
 		E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleWorker.swift; sourceTree = "<group>"; };
 		E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleModels.swift; sourceTree = "<group>"; };
@@ -552,6 +566,8 @@
 				E303403A235EE11B00E0BF0A /* DashboardProfileCell.xib */,
 				E3034039235EE11B00E0BF0A /* YourTargetRevenueCell.swift */,
 				E303403C235EE11B00E0BF0A /* YourTargetRevenueCell.xib */,
+				E306013D237E9C8800988EEC /* RevenueCell.swift */,
+				E306013E237E9C8800988EEC /* RevenueCell.xib */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -648,6 +664,7 @@
 				E303416D235EE14000E0BF0A /* DashboardPresenter.swift */,
 				E303416E235EE14000E0BF0A /* DashboardModels.swift */,
 				E303416F235EE14000E0BF0A /* DashboardWorker.swift */,
+				E3060132237E9B4500988EEC /* Revenue */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1040,6 +1057,19 @@
 			path = SOS;
 			sourceTree = "<group>";
 		};
+		E3060132237E9B4500988EEC /* Revenue */ = {
+			isa = PBXGroup;
+			children = (
+				E3060133237E9B4500988EEC /* RevenueModels.swift */,
+				E3060134237E9B4500988EEC /* RevenueWorker.swift */,
+				E3060135237E9B4500988EEC /* RevenuePresenter.swift */,
+				E3060136237E9B4500988EEC /* RevenueInteractor.swift */,
+				E3060137237E9B4500988EEC /* RevenueVC.swift */,
+			);
+			name = Revenue;
+			path = "../../../../../TMA-iOS/Enrich_TMA/Enrich_TMA/Modules/Revenue";
+			sourceTree = "<group>";
+		};
 		E3CD500B23713C3600DE106E /* LoginModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -1249,6 +1279,7 @@
 				E3034255235EE14700E0BF0A /* FuturaPTCondExtraBold.otf in Resources */,
 				E3034264235EE14700E0BF0A /* FuturaPTCondMediumOblique.otf in Resources */,
 				E3034258235EE14700E0BF0A /* FuturaPTLightOblique.otf in Resources */,
+				E3060140237E9C8800988EEC /* RevenueCell.xib in Resources */,
 				E303425D235EE14700E0BF0A /* FuturaPTCondExtraBoldOblique.otf in Resources */,
 				E303425F235EE14700E0BF0A /* FuturaPTBoldOblique.otf in Resources */,
 				E3034250235EE14700E0BF0A /* NotoSans-SemiBold.ttf in Resources */,
@@ -1421,7 +1452,9 @@
 				E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
 				E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */,
+				E306013B237E9B4600988EEC /* RevenueInteractor.swift in Sources */,
 				E30341FB235EE14000E0BF0A /* DashboardVC.swift in Sources */,
+				E306013C237E9B4600988EEC /* RevenueVC.swift in Sources */,
 				E30341E0235EE14000E0BF0A /* MyProfileModels.swift in Sources */,
 				E30342BB235EE15800E0BF0A /* APIErrorModel.swift in Sources */,
 				E30340B0235EE11C00E0BF0A /* MyProfileHeaderCell.swift in Sources */,
@@ -1450,6 +1483,7 @@
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
+				E3060139237E9B4600988EEC /* RevenueWorker.swift in Sources */,
 				E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */,
 				E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */,
 				E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */,
@@ -1476,6 +1510,7 @@
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
+				E306013A237E9B4600988EEC /* RevenuePresenter.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
 				E30342C8235EE15800E0BF0A /* ExtensionUIButton.swift in Sources */,
 				E30342CA235EE15800E0BF0A /* ExtensionUITableView.swift in Sources */,
@@ -1523,8 +1558,10 @@
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
+				E3060138237E9B4500988EEC /* RevenueModels.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,
 				E30340B7235EE11C00E0BF0A /* LogoutCell.swift in Sources */,
+				E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */,
 				E30342C2235EE15800E0BF0A /* AnyDecodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

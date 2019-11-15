@@ -12,6 +12,7 @@ protocol TargetRevenueDelegate:class {
     func actionDaily()
     func actionMonthly()
     func actionViewAll()
+    func actionMoreInfo()
 }
 
 class YourTargetRevenueCell: UITableViewCell {
@@ -67,8 +68,8 @@ class YourTargetRevenueCell: UITableViewCell {
     }
     
     
-    @IBAction func actionViewAll(_ sender: UIButton) {
-        delegate?.actionViewAll()
+    @IBAction func actionMoreInfo(_ sender: UIButton) {
+        delegate?.actionMoreInfo()
     }
     
     @IBAction func actionDaily(_ sender: UIButton) {

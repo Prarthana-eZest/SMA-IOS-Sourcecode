@@ -31,7 +31,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ec-A1-Ixw">
-                        <rect key="frame" x="20" y="15" width="476" height="205"/>
+                        <rect key="frame" x="20" y="15" width="476" height="261.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Yh-UW-acf">
                                 <rect key="frame" x="0.0" y="0.0" width="476" height="10"/>
@@ -41,7 +41,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="oJd-Qs-qzq">
-                                <rect key="frame" x="15" y="25" width="446" height="165"/>
+                                <rect key="frame" x="15" y="25" width="446" height="221.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LGX-Zl-f3x">
                                         <rect key="frame" x="0.0" y="0.0" width="313.5" height="50"/>
@@ -172,8 +172,27 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fwL-nL-t3N">
+                                        <rect key="frame" x="0.0" y="135" width="446" height="41.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="CL9-AW-fmN">
+                                                <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="BIt-Ka-2uc"/>
+                                                    <constraint firstAttribute="width" constant="15" id="q0h-lw-EOh"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" text="C-401 West Hills Apartments Dmart Retail Stores Wakad, Pune, MH, India" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfg-b2-TiC">
+                                                <rect key="frame" x="25" y="0.0" width="421" height="41.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zyb-AH-wIE">
-                                        <rect key="frame" x="0.0" y="135" width="446" height="30"/>
+                                        <rect key="frame" x="0.0" y="191.5" width="446" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Kalpana Sharma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPQ-Az-SMI">
                                                 <rect key="frame" x="0.0" y="2" width="331" height="26"/>
@@ -239,6 +258,8 @@
                                     <constraint firstItem="LGX-Zl-f3x" firstAttribute="leading" secondItem="oJd-Qs-qzq" secondAttribute="leading" id="SVs-l8-TaU"/>
                                     <constraint firstAttribute="trailing" secondItem="Zyb-AH-wIE" secondAttribute="trailing" id="amd-Nc-XRs"/>
                                     <constraint firstItem="Zyb-AH-wIE" firstAttribute="leading" secondItem="oJd-Qs-qzq" secondAttribute="leading" id="c21-dr-oRQ"/>
+                                    <constraint firstItem="fwL-nL-t3N" firstAttribute="leading" secondItem="oJd-Qs-qzq" secondAttribute="leading" id="egC-qT-w4w"/>
+                                    <constraint firstAttribute="trailing" secondItem="fwL-nL-t3N" secondAttribute="trailing" id="hmo-r8-iwL"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -273,17 +294,20 @@
             <connections>
                 <outlet property="btnServiceCount" destination="1SJ-zg-PCF" id="Lf4-Sw-c9N"/>
                 <outlet property="lblEndTime" destination="fAL-rm-Hcx" id="jeA-FI-e3d"/>
+                <outlet property="lblLocation" destination="rfg-b2-TiC" id="99Y-Vx-uR1"/>
                 <outlet property="lblRatings" destination="Lxp-hd-FTi" id="nyh-0q-Oih"/>
                 <outlet property="lblServiceName" destination="m8x-tb-vhd" id="ysK-tb-vxw"/>
                 <outlet property="lblStartTime" destination="CSv-wE-CYh" id="Pep-B5-j3Z"/>
                 <outlet property="lblTotalDuration" destination="uWY-wb-j5a" id="l2b-Q3-eZ6"/>
                 <outlet property="lblUserName" destination="iPQ-Az-SMI" id="Qxy-mh-cIo"/>
+                <outlet property="locationStackView" destination="fwL-nL-t3N" id="Agk-mQ-xlh"/>
                 <outlet property="statusColorView" destination="7Yh-UW-acf" id="lgN-Ep-1fX"/>
             </connections>
             <point key="canvasLocation" x="125" y="236"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="location" width="11" height="15"/>
         <image name="starEnabled" width="15" height="17"/>
     </resources>
 </document>

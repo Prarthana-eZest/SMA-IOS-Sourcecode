@@ -19,6 +19,7 @@ enum CellIdentifier{
     // Dashboard
     static let dashboardProfileCell = "DashboardProfileCell"
     static let yourTargetRevenueCell = "YourTargetRevenueCell"
+    static let revenueCell = "RevenueCell"
     
     // Appointment
     static let todaysAppointmentHeaderCell = "TodaysAppointmentHeaderCell"
