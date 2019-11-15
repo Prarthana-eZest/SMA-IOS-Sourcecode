@@ -12,6 +12,12 @@ enum SectionIdentifier: String {
 
     // ParentViewController Of AnyViewController
     case parentVC = "ParentVC"
+    
+    // Client Information
+    case generalClientInfo = "General"
+    case consulationInfo = "Consulation"
+    case memebershipInfo = "Membership"
+    case historyInfo = "History"
 }
 
 enum CellIdentifier{
@@ -24,6 +30,19 @@ enum CellIdentifier{
     // Appointment
     static let todaysAppointmentHeaderCell = "TodaysAppointmentHeaderCell"
     static let appointmentStatusCell = "AppointmentStatusCell"
+    
+    // Appointment Details
+    static let appointmentDetailsCell = "AppointmentDetailsCell"
+    static let appointmentTimelineCell = "AppointmentTimelineCell"
+    static let appointmentTimelineHeader = "AppointmentTimelineHeader"
+    
+    // Client Information
+    static let topicCell = "TopicCell"
+    static let membershipStatusCell = "MembershipStatusCell"
+    static let selectGenderCell = "SelectGenderCell"
+    static let tagViewCell = "TagViewCell"
+    static let serviceHistoryCell = "ServiceHistoryCell"
+    static let pointsCell = "PointsCell"
     
     // Profile
     static let myProfileHeaderCell = "MyProfileHeaderCell"

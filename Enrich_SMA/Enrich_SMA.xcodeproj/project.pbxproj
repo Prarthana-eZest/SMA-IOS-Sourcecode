@@ -151,13 +151,38 @@
 		E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FE235EE5D900E0BF0A /* ReportsVC.swift */; };
 		E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */; };
 		E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */; };
-		E3060138237E9B4500988EEC /* RevenueModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060133237E9B4500988EEC /* RevenueModels.swift */; };
-		E3060139237E9B4600988EEC /* RevenueWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060134237E9B4500988EEC /* RevenueWorker.swift */; };
-		E306013A237E9B4600988EEC /* RevenuePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060135237E9B4500988EEC /* RevenuePresenter.swift */; };
-		E306013B237E9B4600988EEC /* RevenueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060136237E9B4500988EEC /* RevenueInteractor.swift */; };
-		E306013C237E9B4600988EEC /* RevenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060137237E9B4500988EEC /* RevenueVC.swift */; };
 		E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306013D237E9C8800988EEC /* RevenueCell.swift */; };
 		E3060140237E9C8800988EEC /* RevenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E306013E237E9C8800988EEC /* RevenueCell.xib */; };
+		E3060165237EA49200988EEC /* AppointmentDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3060142237EA49200988EEC /* AppointmentDetailsCell.xib */; };
+		E3060166237EA49200988EEC /* AppointmentTimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3060143237EA49200988EEC /* AppointmentTimelineCell.xib */; };
+		E3060167237EA49200988EEC /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060145237EA49200988EEC /* TopicCell.swift */; };
+		E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060147237EA49200988EEC /* ServiceHistoryCell.swift */; };
+		E3060169237EA49200988EEC /* ServiceHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3060148237EA49200988EEC /* ServiceHistoryCell.xib */; };
+		E306016A237EA49200988EEC /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3060149237EA49200988EEC /* TopicCell.xib */; };
+		E306016B237EA49200988EEC /* TagViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E306014B237EA49200988EEC /* TagViewCell.xib */; };
+		E306016C237EA49200988EEC /* SelectGenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306014C237EA49200988EEC /* SelectGenderCell.swift */; };
+		E306016D237EA49200988EEC /* TagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E306014D237EA49200988EEC /* TagViewCell.swift */; };
+		E306016E237EA49200988EEC /* SelectGenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E306014E237EA49200988EEC /* SelectGenderCell.xib */; };
+		E306016F237EA49200988EEC /* MembershipStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3060150237EA49200988EEC /* MembershipStatusCell.xib */; };
+		E3060170237EA49200988EEC /* MembershipStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060151237EA49200988EEC /* MembershipStatusCell.swift */; };
+		E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060152237EA49200988EEC /* AppointmentTimelineCell.swift */; };
+		E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3060153237EA49200988EEC /* AppointmentDetailsCell.swift */; };
+		E30601B3237EA88200988EEC /* PointsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601B2237EA88200988EEC /* PointsCell.swift */; };
+		E30601BB237EAA4D00988EEC /* RevenueModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601B6237EAA4D00988EEC /* RevenueModels.swift */; };
+		E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601B7237EAA4D00988EEC /* RevenueWorker.swift */; };
+		E30601BD237EAA4D00988EEC /* RevenuePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601B8237EAA4D00988EEC /* RevenuePresenter.swift */; };
+		E30601BE237EAA4D00988EEC /* RevenueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601B9237EAA4D00988EEC /* RevenueInteractor.swift */; };
+		E30601BF237EAA4D00988EEC /* RevenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601BA237EAA4D00988EEC /* RevenueVC.swift */; };
+		E30601CC237EAA7A00988EEC /* AppointmentDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C1237EAA7A00988EEC /* AppointmentDetailsModels.swift */; };
+		E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C2237EAA7A00988EEC /* AppointmentDetailsVC.swift */; };
+		E30601CE237EAA7A00988EEC /* AppointmentDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C3237EAA7A00988EEC /* AppointmentDetailsWorker.swift */; };
+		E30601CF237EAA7A00988EEC /* AppointmentDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C4237EAA7A00988EEC /* AppointmentDetailsInteractor.swift */; };
+		E30601D0237EAA7A00988EEC /* AppointmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C5237EAA7A00988EEC /* AppointmentDetailsPresenter.swift */; };
+		E30601D1237EAA7A00988EEC /* ClientInformationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C7237EAA7A00988EEC /* ClientInformationInteractor.swift */; };
+		E30601D2237EAA7A00988EEC /* ClientInformationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C8237EAA7A00988EEC /* ClientInformationPresenter.swift */; };
+		E30601D3237EAA7A00988EEC /* ClientInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601C9237EAA7A00988EEC /* ClientInformationVC.swift */; };
+		E30601D4237EAA7A00988EEC /* ClientInformationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601CA237EAA7A00988EEC /* ClientInformationWorker.swift */; };
+		E30601D5237EAA7A00988EEC /* ClientInformationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601CB237EAA7A00988EEC /* ClientInformationModels.swift */; };
 		E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */; };
 		E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */; };
 		E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */; };
@@ -353,13 +378,38 @@
 		E30342FE235EE5D900E0BF0A /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
 		E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsInteractor.swift; sourceTree = "<group>"; };
 		E3034307235F1AF100E0BF0A /* SOSPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSPopUpVC.swift; sourceTree = "<group>"; };
-		E3060133237E9B4500988EEC /* RevenueModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueModels.swift; sourceTree = "<group>"; };
-		E3060134237E9B4500988EEC /* RevenueWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueWorker.swift; sourceTree = "<group>"; };
-		E3060135237E9B4500988EEC /* RevenuePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenuePresenter.swift; sourceTree = "<group>"; };
-		E3060136237E9B4500988EEC /* RevenueInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueInteractor.swift; sourceTree = "<group>"; };
-		E3060137237E9B4500988EEC /* RevenueVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueVC.swift; sourceTree = "<group>"; };
 		E306013D237E9C8800988EEC /* RevenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueCell.swift; sourceTree = "<group>"; };
 		E306013E237E9C8800988EEC /* RevenueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevenueCell.xib; sourceTree = "<group>"; };
+		E3060142237EA49200988EEC /* AppointmentDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentDetailsCell.xib; sourceTree = "<group>"; };
+		E3060143237EA49200988EEC /* AppointmentTimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentTimelineCell.xib; sourceTree = "<group>"; };
+		E3060145237EA49200988EEC /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		E3060147237EA49200988EEC /* ServiceHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceHistoryCell.swift; sourceTree = "<group>"; };
+		E3060148237EA49200988EEC /* ServiceHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceHistoryCell.xib; sourceTree = "<group>"; };
+		E3060149237EA49200988EEC /* TopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
+		E306014B237EA49200988EEC /* TagViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagViewCell.xib; sourceTree = "<group>"; };
+		E306014C237EA49200988EEC /* SelectGenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectGenderCell.swift; sourceTree = "<group>"; };
+		E306014D237EA49200988EEC /* TagViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewCell.swift; sourceTree = "<group>"; };
+		E306014E237EA49200988EEC /* SelectGenderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGenderCell.xib; sourceTree = "<group>"; };
+		E3060150237EA49200988EEC /* MembershipStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MembershipStatusCell.xib; sourceTree = "<group>"; };
+		E3060151237EA49200988EEC /* MembershipStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipStatusCell.swift; sourceTree = "<group>"; };
+		E3060152237EA49200988EEC /* AppointmentTimelineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentTimelineCell.swift; sourceTree = "<group>"; };
+		E3060153237EA49200988EEC /* AppointmentDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsCell.swift; sourceTree = "<group>"; };
+		E30601B2237EA88200988EEC /* PointsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsCell.swift; sourceTree = "<group>"; };
+		E30601B6237EAA4D00988EEC /* RevenueModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueModels.swift; sourceTree = "<group>"; };
+		E30601B7237EAA4D00988EEC /* RevenueWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueWorker.swift; sourceTree = "<group>"; };
+		E30601B8237EAA4D00988EEC /* RevenuePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenuePresenter.swift; sourceTree = "<group>"; };
+		E30601B9237EAA4D00988EEC /* RevenueInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueInteractor.swift; sourceTree = "<group>"; };
+		E30601BA237EAA4D00988EEC /* RevenueVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevenueVC.swift; sourceTree = "<group>"; };
+		E30601C1237EAA7A00988EEC /* AppointmentDetailsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsModels.swift; sourceTree = "<group>"; };
+		E30601C2237EAA7A00988EEC /* AppointmentDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsVC.swift; sourceTree = "<group>"; };
+		E30601C3237EAA7A00988EEC /* AppointmentDetailsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsWorker.swift; sourceTree = "<group>"; };
+		E30601C4237EAA7A00988EEC /* AppointmentDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsInteractor.swift; sourceTree = "<group>"; };
+		E30601C5237EAA7A00988EEC /* AppointmentDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsPresenter.swift; sourceTree = "<group>"; };
+		E30601C7237EAA7A00988EEC /* ClientInformationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientInformationInteractor.swift; sourceTree = "<group>"; };
+		E30601C8237EAA7A00988EEC /* ClientInformationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientInformationPresenter.swift; sourceTree = "<group>"; };
+		E30601C9237EAA7A00988EEC /* ClientInformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientInformationVC.swift; sourceTree = "<group>"; };
+		E30601CA237EAA7A00988EEC /* ClientInformationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientInformationWorker.swift; sourceTree = "<group>"; };
+		E30601CB237EAA7A00988EEC /* ClientInformationModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientInformationModels.swift; sourceTree = "<group>"; };
 		E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionAppDelegate.swift; sourceTree = "<group>"; };
 		E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleWorker.swift; sourceTree = "<group>"; };
 		E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleModels.swift; sourceTree = "<group>"; };
@@ -514,6 +564,7 @@
 			children = (
 				E3034016235EE11B00E0BF0A /* AppointmentStatusCell.swift */,
 				E3034018235EE11B00E0BF0A /* AppointmentStatusCell.xib */,
+				E3060141237EA49200988EEC /* Appointment Details */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -601,6 +652,7 @@
 				E30342E0235EE1D000E0BF0A /* Appointment */,
 				E30342E1235EE1D900E0BF0A /* Reports */,
 				E303414A235EE14000E0BF0A /* More */,
+				E3034306235F1ABE00E0BF0A /* SOS */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -664,7 +716,7 @@
 				E303416D235EE14000E0BF0A /* DashboardPresenter.swift */,
 				E303416E235EE14000E0BF0A /* DashboardModels.swift */,
 				E303416F235EE14000E0BF0A /* DashboardWorker.swift */,
-				E3060132237E9B4500988EEC /* Revenue */,
+				E30601B5237EAA4D00988EEC /* Revenue */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1011,7 +1063,7 @@
 				E30342EF235EE58300E0BF0A /* AppointmentWorker.swift */,
 				E30342F1235EE58300E0BF0A /* AppointmentModels.swift */,
 				E30342F3235EE58300E0BF0A /* AppointmentInteractor.swift */,
-				E3034306235F1ABE00E0BF0A /* SOS */,
+				E30601C0237EAA7A00988EEC /* Appointment Details */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -1057,17 +1109,95 @@
 			path = SOS;
 			sourceTree = "<group>";
 		};
-		E3060132237E9B4500988EEC /* Revenue */ = {
+		E3060141237EA49200988EEC /* Appointment Details */ = {
 			isa = PBXGroup;
 			children = (
-				E3060133237E9B4500988EEC /* RevenueModels.swift */,
-				E3060134237E9B4500988EEC /* RevenueWorker.swift */,
-				E3060135237E9B4500988EEC /* RevenuePresenter.swift */,
-				E3060136237E9B4500988EEC /* RevenueInteractor.swift */,
-				E3060137237E9B4500988EEC /* RevenueVC.swift */,
+				E3060153237EA49200988EEC /* AppointmentDetailsCell.swift */,
+				E3060142237EA49200988EEC /* AppointmentDetailsCell.xib */,
+				E3060152237EA49200988EEC /* AppointmentTimelineCell.swift */,
+				E3060143237EA49200988EEC /* AppointmentTimelineCell.xib */,
+				E3060144237EA49200988EEC /* Client Information */,
 			);
-			name = Revenue;
-			path = "../../../../../TMA-iOS/Enrich_TMA/Enrich_TMA/Modules/Revenue";
+			path = "Appointment Details";
+			sourceTree = "<group>";
+		};
+		E3060144237EA49200988EEC /* Client Information */ = {
+			isa = PBXGroup;
+			children = (
+				E30601B2237EA88200988EEC /* PointsCell.swift */,
+				E3060145237EA49200988EEC /* TopicCell.swift */,
+				E3060149237EA49200988EEC /* TopicCell.xib */,
+				E3060146237EA49200988EEC /* History */,
+				E306014A237EA49200988EEC /* Gender & TagView  */,
+				E306014F237EA49200988EEC /* Membership */,
+			);
+			path = "Client Information";
+			sourceTree = "<group>";
+		};
+		E3060146237EA49200988EEC /* History */ = {
+			isa = PBXGroup;
+			children = (
+				E3060147237EA49200988EEC /* ServiceHistoryCell.swift */,
+				E3060148237EA49200988EEC /* ServiceHistoryCell.xib */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		E306014A237EA49200988EEC /* Gender & TagView  */ = {
+			isa = PBXGroup;
+			children = (
+				E306014B237EA49200988EEC /* TagViewCell.xib */,
+				E306014C237EA49200988EEC /* SelectGenderCell.swift */,
+				E306014D237EA49200988EEC /* TagViewCell.swift */,
+				E306014E237EA49200988EEC /* SelectGenderCell.xib */,
+			);
+			path = "Gender & TagView ";
+			sourceTree = "<group>";
+		};
+		E306014F237EA49200988EEC /* Membership */ = {
+			isa = PBXGroup;
+			children = (
+				E3060150237EA49200988EEC /* MembershipStatusCell.xib */,
+				E3060151237EA49200988EEC /* MembershipStatusCell.swift */,
+			);
+			path = Membership;
+			sourceTree = "<group>";
+		};
+		E30601B5237EAA4D00988EEC /* Revenue */ = {
+			isa = PBXGroup;
+			children = (
+				E30601BA237EAA4D00988EEC /* RevenueVC.swift */,
+				E30601B6237EAA4D00988EEC /* RevenueModels.swift */,
+				E30601B7237EAA4D00988EEC /* RevenueWorker.swift */,
+				E30601B8237EAA4D00988EEC /* RevenuePresenter.swift */,
+				E30601B9237EAA4D00988EEC /* RevenueInteractor.swift */,
+			);
+			path = Revenue;
+			sourceTree = "<group>";
+		};
+		E30601C0237EAA7A00988EEC /* Appointment Details */ = {
+			isa = PBXGroup;
+			children = (
+				E30601C2237EAA7A00988EEC /* AppointmentDetailsVC.swift */,
+				E30601C1237EAA7A00988EEC /* AppointmentDetailsModels.swift */,
+				E30601C3237EAA7A00988EEC /* AppointmentDetailsWorker.swift */,
+				E30601C4237EAA7A00988EEC /* AppointmentDetailsInteractor.swift */,
+				E30601C5237EAA7A00988EEC /* AppointmentDetailsPresenter.swift */,
+				E30601C6237EAA7A00988EEC /* Client Information */,
+			);
+			path = "Appointment Details";
+			sourceTree = "<group>";
+		};
+		E30601C6237EAA7A00988EEC /* Client Information */ = {
+			isa = PBXGroup;
+			children = (
+				E30601C7237EAA7A00988EEC /* ClientInformationInteractor.swift */,
+				E30601C8237EAA7A00988EEC /* ClientInformationPresenter.swift */,
+				E30601C9237EAA7A00988EEC /* ClientInformationVC.swift */,
+				E30601CA237EAA7A00988EEC /* ClientInformationWorker.swift */,
+				E30601CB237EAA7A00988EEC /* ClientInformationModels.swift */,
+			);
+			path = "Client Information";
 			sourceTree = "<group>";
 		};
 		E3CD500B23713C3600DE106E /* LoginModule */ = {
@@ -1239,6 +1369,7 @@
 				E3034251235EE14700E0BF0A /* FuturaPTDemi.otf in Resources */,
 				E303425C235EE14700E0BF0A /* FuturaPTLight.otf in Resources */,
 				E30340A5235EE11C00E0BF0A /* AppointmentStatusCell.xib in Resources */,
+				E306016B237EA49200988EEC /* TagViewCell.xib in Resources */,
 				E30340BF235EE11C00E0BF0A /* DashboardProfileCell.xib in Resources */,
 				E3034268235EE14700E0BF0A /* NotoSerif-Regular.ttf in Resources */,
 				E303426A235EE14700E0BF0A /* NotoSerif-Bold.ttf in Resources */,
@@ -1260,10 +1391,15 @@
 				E3034256235EE14700E0BF0A /* FuturaPTBold.otf in Resources */,
 				E30340AE235EE11C00E0BF0A /* MyProfileHeaderCell.xib in Resources */,
 				E30342B8235EE15800E0BF0A /* ErrorCustomView.xib in Resources */,
+				E3060165237EA49200988EEC /* AppointmentDetailsCell.xib in Resources */,
+				E3060166237EA49200988EEC /* AppointmentTimelineCell.xib in Resources */,
 				E3034269235EE14700E0BF0A /* NotoSerif-Italic.ttf in Resources */,
 				E30340BA235EE11C00E0BF0A /* EmployeeCell.xib in Resources */,
+				E306016E237EA49200988EEC /* SelectGenderCell.xib in Resources */,
+				E306016A237EA49200988EEC /* TopicCell.xib in Resources */,
 				E30340C1235EE11C00E0BF0A /* YourTargetRevenueCell.xib in Resources */,
 				E3034113235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.xib in Resources */,
+				E306016F237EA49200988EEC /* MembershipStatusCell.xib in Resources */,
 				E3034259235EE14700E0BF0A /* FuturaPTCondBook.otf in Resources */,
 				E3034114235EE11C00E0BF0A /* HeaderViewWithAdCell.xib in Resources */,
 				E3034254235EE14700E0BF0A /* FuturaPTHeavyOblique.otf in Resources */,
@@ -1280,6 +1416,7 @@
 				E3034264235EE14700E0BF0A /* FuturaPTCondMediumOblique.otf in Resources */,
 				E3034258235EE14700E0BF0A /* FuturaPTLightOblique.otf in Resources */,
 				E3060140237E9C8800988EEC /* RevenueCell.xib in Resources */,
+				E3060169237EA49200988EEC /* ServiceHistoryCell.xib in Resources */,
 				E303425D235EE14700E0BF0A /* FuturaPTCondExtraBoldOblique.otf in Resources */,
 				E303425F235EE14700E0BF0A /* FuturaPTBoldOblique.otf in Resources */,
 				E3034250235EE14700E0BF0A /* NotoSans-SemiBold.ttf in Resources */,
@@ -1318,6 +1455,7 @@
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1328,6 +1466,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1451,15 +1590,16 @@
 				E30341F4235EE14000E0BF0A /* EmployeeListingInteractor.swift in Sources */,
 				E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
+				E30601CE237EAA7A00988EEC /* AppointmentDetailsWorker.swift in Sources */,
 				E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */,
-				E306013B237E9B4600988EEC /* RevenueInteractor.swift in Sources */,
 				E30341FB235EE14000E0BF0A /* DashboardVC.swift in Sources */,
-				E306013C237E9B4600988EEC /* RevenueVC.swift in Sources */,
 				E30341E0235EE14000E0BF0A /* MyProfileModels.swift in Sources */,
 				E30342BB235EE15800E0BF0A /* APIErrorModel.swift in Sources */,
 				E30340B0235EE11C00E0BF0A /* MyProfileHeaderCell.swift in Sources */,
 				E30342B9235EE15800E0BF0A /* ErrorCustomView.swift in Sources */,
 				E30341DD235EE14000E0BF0A /* MoreModuleModels.swift in Sources */,
+				E3060170237EA49200988EEC /* MembershipStatusCell.swift in Sources */,
+				E30601D0237EAA7A00988EEC /* AppointmentDetailsPresenter.swift in Sources */,
 				E30342D7235EE15800E0BF0A /* StorageType.swift in Sources */,
 				E30342BC235EE15800E0BF0A /* HTTPMethod.swift in Sources */,
 				E30342C3235EE15800E0BF0A /* AnyCodable.swift in Sources */,
@@ -1473,25 +1613,29 @@
 				E3CD503023713C3600DE106E /* LoginModuleModels.swift in Sources */,
 				E30342DF235EE15800E0BF0A /* QRCodeGeneratorError.swift in Sources */,
 				E30342C7235EE15800E0BF0A /* UIBarButtonItem+Badge.swift in Sources */,
+				E30601BF237EAA4D00988EEC /* RevenueVC.swift in Sources */,
 				E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */,
 				E30342BF235EE15800E0BF0A /* ErrorCodeHandlerClass.swift in Sources */,
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
 				E30341F6235EE14000E0BF0A /* EmployeeListingVC.swift in Sources */,
 				E30341EF235EE14000E0BF0A /* NotificationsWorker.swift in Sources */,
+				E30601CF237EAA7A00988EEC /* AppointmentDetailsInteractor.swift in Sources */,
 				E30341E4235EE14000E0BF0A /* MyProfileInteractor.swift in Sources */,
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
-				E3060139237E9B4600988EEC /* RevenueWorker.swift in Sources */,
 				E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */,
+				E306016C237EA49200988EEC /* SelectGenderCell.swift in Sources */,
 				E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */,
 				E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */,
 				E3CD502D23713C3600DE106E /* OTPVerificationModuleInteractor.swift in Sources */,
 				E30340A3235EE11C00E0BF0A /* AppointmentStatusCell.swift in Sources */,
 				E30341F7235EE14000E0BF0A /* DashboardInteractor.swift in Sources */,
+				E3060167237EA49200988EEC /* TopicCell.swift in Sources */,
 				E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */,
 				E30342D4235EE15800E0BF0A /* ListPickerDialog.swift in Sources */,
+				E30601B3237EA88200988EEC /* PointsCell.swift in Sources */,
 				E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
 				E30342CF235EE15800E0BF0A /* ExtensionNavigationController.swift in Sources */,
@@ -1503,17 +1647,22 @@
 				E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */,
 				E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */,
 				E30340B9235EE11C00E0BF0A /* NotificationDetailsCell.swift in Sources */,
+				E30601BE237EAA4D00988EEC /* RevenueInteractor.swift in Sources */,
 				E30341E3235EE14000E0BF0A /* MyProfilePresenter.swift in Sources */,
+				E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */,
 				E30342B5235EE15800E0BF0A /* Configurations.swift in Sources */,
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
 				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
-				E306013A237E9B4600988EEC /* RevenuePresenter.swift in Sources */,
+				E30601BD237EAA4D00988EEC /* RevenuePresenter.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
+				E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */,
+				E306016D237EA49200988EEC /* TagViewCell.swift in Sources */,
 				E30342C8235EE15800E0BF0A /* ExtensionUIButton.swift in Sources */,
 				E30342CA235EE15800E0BF0A /* ExtensionUITableView.swift in Sources */,
+				E30601D2237EAA7A00988EEC /* ClientInformationPresenter.swift in Sources */,
 				E30342CB235EE15800E0BF0A /* ExtensionString.swift in Sources */,
 				E3034117235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.swift in Sources */,
 				E30342C9235EE15800E0BF0A /* ExtensionUIView.swift in Sources */,
@@ -1525,10 +1674,13 @@
 				E3034301235EE5D900E0BF0A /* ReportsWorker.swift in Sources */,
 				E30341E6235EE14000E0BF0A /* MoreModuleInteractor.swift in Sources */,
 				E30342D8235EE15800E0BF0A /* CoreDataStack.swift in Sources */,
+				E30601D4237EAA7A00988EEC /* ClientInformationWorker.swift in Sources */,
 				E3034300235EE5D900E0BF0A /* ReportsPresenter.swift in Sources */,
 				E30342F7235EE58300E0BF0A /* AppointmentModels.swift in Sources */,
+				E30601D3237EAA7A00988EEC /* ClientInformationVC.swift in Sources */,
 				E30341F3235EE14000E0BF0A /* EmployeeListingWorker.swift in Sources */,
 				E30342F5235EE58300E0BF0A /* AppointmentWorker.swift in Sources */,
+				E30601BB237EAA4D00988EEC /* RevenueModels.swift in Sources */,
 				E3CD503523713C3600DE106E /* TermsAndConditionsVC.swift in Sources */,
 				E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */,
 				E30341F8235EE14000E0BF0A /* DashboardPresenter.swift in Sources */,
@@ -1539,26 +1691,31 @@
 				E30341E5235EE14000E0BF0A /* MoreModuleVC.swift in Sources */,
 				E3033FEA235EDF6500E0BF0A /* Enrich_SMA.xcdatamodeld in Sources */,
 				E30342D5235EE15800E0BF0A /* DatePickerDialog.swift in Sources */,
+				E30601D5237EAA7A00988EEC /* ClientInformationModels.swift in Sources */,
 				E30342D3235EE15800E0BF0A /* CustomTabbarController.swift in Sources */,
 				E30341ED235EE14000E0BF0A /* NotificationsModels.swift in Sources */,
+				E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */,
 				E30341EE235EE14000E0BF0A /* NotificationsPresenter.swift in Sources */,
 				E30342C5235EE15800E0BF0A /* UserDefaultKeys.swift in Sources */,
 				E30342CC235EE15800E0BF0A /* ExtensionTextField.swift in Sources */,
 				E30340B1235EE11C00E0BF0A /* MyProfileCell.swift in Sources */,
 				E3034112235EE11C00E0BF0A /* HeaderViewWithAdCell.swift in Sources */,
+				E30601D1237EAA7A00988EEC /* ClientInformationInteractor.swift in Sources */,
 				E30342CE235EE15800E0BF0A /* ExtensionGeneric.swift in Sources */,
 				E30342DA235EE15800E0BF0A /* ConstantsStrings.swift in Sources */,
+				E30601CC237EAA7A00988EEC /* AppointmentDetailsModels.swift in Sources */,
 				E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */,
 				E30342C0235EE15800E0BF0A /* KeyboardAnimation.swift in Sources */,
+				E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */,
 				E30342B4235EE15800E0BF0A /* JSONANYHandling.swift in Sources */,
 				E30341E1235EE14000E0BF0A /* MyProfileWorker.swift in Sources */,
 				E30341F2235EE14000E0BF0A /* EmployeeListingModels.swift in Sources */,
 				E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */,
 				E3CD502823713C3600DE106E /* LoginOTPModulePresenter.swift in Sources */,
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
+				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
-				E3060138237E9B4500988EEC /* RevenueModels.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,
 				E30340B7235EE11C00E0BF0A /* LogoutCell.swift in Sources */,
 				E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */,

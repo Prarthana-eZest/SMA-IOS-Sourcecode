@@ -171,14 +171,16 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
         
-        let vc = SOSPopUpVC.instantiate(fromAppStoryboard: .Appointment)
-        self.view.alpha = screenPopUpAlpha
-        vc.viewDismissBlock = { [unowned self] result in
-            // Do something
-            self.view.alpha = 1.0
-        }
-        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+//        let vc = SOSPopUpVC.instantiate(fromAppStoryboard: .Appointment)
+//        self.view.alpha = screenPopUpAlpha
+//        vc.viewDismissBlock = { [unowned self] result in
+//            // Do something
+//            self.view.alpha = 1.0
+//        }
+//        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
         
+        let vc = AppointmentDetailsVC.instantiate(fromAppStoryboard: .Appointment)
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
 }

@@ -58,6 +58,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - TagListView (1.4.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -67,6 +68,7 @@ DEPENDENCIES:
   - Firebase/Core
   - GooglePlaces (= 3.0.3)
   - Kingfisher (~> 4.0)
+  - TagListView (~> 1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -84,6 +86,7 @@ SPEC REPOS:
     - GoogleUtilities
     - Kingfisher
     - nanopb
+    - TagListView
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -100,7 +103,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: 67dc15076bef6d3eb1c255bea5cc51c06f9a2f65
+PODFILE CHECKSUM: 4f1dc2decd565f095b515ccd0bd35db7d6bb9dba
 
 COCOAPODS: 1.6.1
