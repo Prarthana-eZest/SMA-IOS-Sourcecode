@@ -8,14 +8,30 @@
 
 import UIKit
 
-class TermsAndConditionsVC: UIViewController {
-
+class TermsAndConditionsVC: UIViewController,UITextViewDelegate {
+    
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var btnAccept: UIButton!
+    
+    var viewDismissBlock: ((Bool) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        textView.delegate = self
+        btnAccept.isSelected = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        textView.scrollRangeToVisible(NSRange(location:0, length:0))
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !btnAccept.isSelected{
+            btnAccept.isSelected = !(scrollView.contentOffset.y + scrollView.bounds.height < scrollView.contentSize.height)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,17 +43,22 @@ class TermsAndConditionsVC: UIViewController {
     
     
     @IBAction func actionAccept(_ sender: Any) {
-        self.navigationController?.popViewController(animated:true)
+        if btnAccept.isSelected{
+            self.navigationController?.popViewController(animated:true)
+            viewDismissBlock?(true)
+        }
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
+

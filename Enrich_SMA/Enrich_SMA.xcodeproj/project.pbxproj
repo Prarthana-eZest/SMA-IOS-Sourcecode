@@ -202,6 +202,11 @@
 		E3CD503423713C3600DE106E /* LoginModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD502123713C3600DE106E /* LoginModuleInteractor.swift */; };
 		E3CD503523713C3600DE106E /* TermsAndConditionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD502323713C3600DE106E /* TermsAndConditionsVC.swift */; };
 		E3CD503723713C6500DE106E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CD503623713C6500DE106E /* Login.storyboard */; };
+		E3CF2A182382B08C003EB5F6 /* SetNewPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CF2A132382B08A003EB5F6 /* SetNewPasswordInteractor.swift */; };
+		E3CF2A192382B08C003EB5F6 /* SetNewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CF2A142382B08A003EB5F6 /* SetNewPasswordVC.swift */; };
+		E3CF2A1A2382B08C003EB5F6 /* SetNewPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CF2A152382B08B003EB5F6 /* SetNewPasswordWorker.swift */; };
+		E3CF2A1B2382B08C003EB5F6 /* SetNewPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CF2A162382B08C003EB5F6 /* SetNewPasswordPresenter.swift */; };
+		E3CF2A1C2382B08C003EB5F6 /* SetNewPasswordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CF2A172382B08C003EB5F6 /* SetNewPasswordModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -429,6 +434,11 @@
 		E3CD502123713C3600DE106E /* LoginModuleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleInteractor.swift; sourceTree = "<group>"; };
 		E3CD502323713C3600DE106E /* TermsAndConditionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsVC.swift; sourceTree = "<group>"; };
 		E3CD503623713C6500DE106E /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		E3CF2A132382B08A003EB5F6 /* SetNewPasswordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewPasswordInteractor.swift; sourceTree = "<group>"; };
+		E3CF2A142382B08A003EB5F6 /* SetNewPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewPasswordVC.swift; sourceTree = "<group>"; };
+		E3CF2A152382B08B003EB5F6 /* SetNewPasswordWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewPasswordWorker.swift; sourceTree = "<group>"; };
+		E3CF2A162382B08C003EB5F6 /* SetNewPasswordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewPasswordPresenter.swift; sourceTree = "<group>"; };
+		E3CF2A172382B08C003EB5F6 /* SetNewPasswordModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNewPasswordModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1204,13 +1214,14 @@
 			isa = PBXGroup;
 			children = (
 				E3CD501923713C3600DE106E /* LoginNavigtionController.swift */,
-				E3CD500C23713C3600DE106E /* OTPModule */,
+				E3CD501E23713C3600DE106E /* LoginModuleVC.swift */,
 				E3CD501C23713C3600DE106E /* LoginModuleModels.swift */,
 				E3CD501D23713C3600DE106E /* LoginModuleWorker.swift */,
-				E3CD501E23713C3600DE106E /* LoginModuleVC.swift */,
 				E3CD501F23713C3600DE106E /* LoginModulePresenter.swift */,
 				E3CD502123713C3600DE106E /* LoginModuleInteractor.swift */,
+				E3CF2A122382B060003EB5F6 /* New Group */,
 				E3CD502223713C3600DE106E /* Terms and Conditions */,
+				E3CD500C23713C3600DE106E /* OTPModule */,
 			);
 			path = LoginModule;
 			sourceTree = "<group>";
@@ -1239,9 +1250,9 @@
 		E3CD501323713C3600DE106E /* OTPVerificationModule */ = {
 			isa = PBXGroup;
 			children = (
+				E3CD501623713C3600DE106E /* OTPVerificationModuleVC.swift */,
 				E3CD501423713C3600DE106E /* OTPVerificationModulePresenter.swift */,
 				E3CD501523713C3600DE106E /* OTPVerificationModuleWorker.swift */,
-				E3CD501623713C3600DE106E /* OTPVerificationModuleVC.swift */,
 				E3CD501723713C3600DE106E /* OTPVerificationModuleModels.swift */,
 				E3CD501823713C3600DE106E /* OTPVerificationModuleInteractor.swift */,
 			);
@@ -1254,6 +1265,18 @@
 				E3CD502323713C3600DE106E /* TermsAndConditionsVC.swift */,
 			);
 			path = "Terms and Conditions";
+			sourceTree = "<group>";
+		};
+		E3CF2A122382B060003EB5F6 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				E3CF2A132382B08A003EB5F6 /* SetNewPasswordInteractor.swift */,
+				E3CF2A172382B08C003EB5F6 /* SetNewPasswordModels.swift */,
+				E3CF2A162382B08C003EB5F6 /* SetNewPasswordPresenter.swift */,
+				E3CF2A142382B08A003EB5F6 /* SetNewPasswordVC.swift */,
+				E3CF2A152382B08B003EB5F6 /* SetNewPasswordWorker.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1635,6 +1658,7 @@
 				E3060167237EA49200988EEC /* TopicCell.swift in Sources */,
 				E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */,
 				E30342D4235EE15800E0BF0A /* ListPickerDialog.swift in Sources */,
+				E3CF2A182382B08C003EB5F6 /* SetNewPasswordInteractor.swift in Sources */,
 				E30601B3237EA88200988EEC /* PointsCell.swift in Sources */,
 				E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
@@ -1651,6 +1675,7 @@
 				E30341E3235EE14000E0BF0A /* MyProfilePresenter.swift in Sources */,
 				E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */,
 				E30342B5235EE15800E0BF0A /* Configurations.swift in Sources */,
+				E3CF2A1C2382B08C003EB5F6 /* SetNewPasswordModels.swift in Sources */,
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
 				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
@@ -1680,6 +1705,8 @@
 				E30601D3237EAA7A00988EEC /* ClientInformationVC.swift in Sources */,
 				E30341F3235EE14000E0BF0A /* EmployeeListingWorker.swift in Sources */,
 				E30342F5235EE58300E0BF0A /* AppointmentWorker.swift in Sources */,
+				E3CF2A1B2382B08C003EB5F6 /* SetNewPasswordPresenter.swift in Sources */,
+				E3CF2A1A2382B08C003EB5F6 /* SetNewPasswordWorker.swift in Sources */,
 				E30601BB237EAA4D00988EEC /* RevenueModels.swift in Sources */,
 				E3CD503523713C3600DE106E /* TermsAndConditionsVC.swift in Sources */,
 				E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */,
@@ -1716,6 +1743,7 @@
 				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
+				E3CF2A192382B08C003EB5F6 /* SetNewPasswordVC.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,
 				E30340B7235EE11C00E0BF0A /* LogoutCell.swift in Sources */,
 				E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */,

@@ -21,7 +21,9 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     @IBOutlet weak var txtfEnrichId: UITextField!
     @IBOutlet weak var txtfPassword: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var iconImage: UIImageView!
     
+    var termsAccpeted = false
     
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -76,6 +78,10 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     @IBAction func actionTermsConditions(_ sender: UIButton) {
         let vc = TermsAndConditionsVC.instantiate(fromAppStoryboard: .Login)
         self.navigationController?.pushViewController(vc, animated: true)
+        vc.viewDismissBlock = { [unowned self] result in
+            // Do something
+            self.termsAccpeted = result
+        }
     }
     
     @IBAction func actionLogin(_ sender: UIButton) {
@@ -145,11 +151,13 @@ extension LoginModuleVC: UITextFieldDelegate {
 extension LoginModuleVC {
     @objc func editingChanged(_ textField: UITextField) {
         btnLogin.isEnabled = false
+        iconImage.image = UIImage(named: ImageNames.disabledLogo.rawValue)
         let enrichId = txtfEnrichId.text!.trim()
         let password = txtfPassword.text!.trim()
         if !enrichId.isEmpty,
             !password.isEmpty{
             btnLogin.isEnabled = true
+            iconImage.image = UIImage(named: ImageNames.enabledLogo.rawValue)
         }
     }
 }
