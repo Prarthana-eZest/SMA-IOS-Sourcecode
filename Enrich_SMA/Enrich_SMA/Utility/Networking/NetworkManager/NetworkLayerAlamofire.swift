@@ -228,7 +228,7 @@ open class NetworkLayerAlamofire {
         BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
         #elseif RELEASE
         print("RELEASE")
-        BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
+        BaseUrl = "https://enrichsalon.co.in/erp/source/live/rest/V1/"
         #endif
         
         var finalEndpoint = ""
