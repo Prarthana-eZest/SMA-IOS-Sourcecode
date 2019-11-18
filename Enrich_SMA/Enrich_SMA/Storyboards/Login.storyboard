@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -26,17 +26,17 @@
             <objects>
                 <viewController storyboardIdentifier="OTPVerificationModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sW2-6U-Dad" customClass="OTPVerificationModuleVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vpb-TA-5k5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9M-QE-2Cj" userLabel="ContentView">
-                                <rect key="frame" x="0.0" y="40" width="414" height="696"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EBt-DP-ibu" userLabel="Stack View Logo">
-                                        <rect key="frame" x="0.0" y="3" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="3" width="375" height="100"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconImgOtpNonSelected" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5N-Ni-hYX">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="LMK-c3-ePU"/>
                                                 </constraints>
@@ -44,10 +44,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gNw-TL-Svc" userLabel="Stack View 4 digit OTP">
-                                        <rect key="frame" x="0.0" y="115" width="414" height="22.666666666666657"/>
+                                        <rect key="frame" x="0.0" y="115" width="375" height="23"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 digit OTP has been sent to your number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbJ-7c-wpl">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="22.666666666666668"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="23"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="17.600000381469727"/>
                                                 <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cbn-ie-JDy" userLabel="Stack View Mobile No and Change">
-                                        <rect key="frame" x="122" y="152.66666666666666" width="170" height="30"/>
+                                        <rect key="frame" x="102.5" y="153" width="170" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="937377371" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDq-w1-ZQC">
                                                 <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
@@ -109,10 +109,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Gl-j1-iE7" userLabel="Stack View Fetching OTP">
-                                        <rect key="frame" x="145.66666666666666" y="202.66666666666666" width="122.66666666666666" height="20"/>
+                                        <rect key="frame" x="126.5" y="203" width="122.5" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching OTP:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEa-Nt-n1b">
-                                                <rect key="frame" x="0.0" y="0.0" width="84.666666666666671" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="84.5" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="u9h-rA-dwa">
                                                         <variation key="heightClass=regular-widthClass=regular" constant="30"/>
@@ -126,7 +126,7 @@
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvQ-Jg-0CS">
-                                                <rect key="frame" x="92.666666666666686" y="0.0" width="30" height="20"/>
+                                                <rect key="frame" x="92.5" y="0.0" width="30" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="YTz-me-rvB">
                                                         <variation key="heightClass=regular-widthClass=regular" constant="30"/>
@@ -142,7 +142,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="euB-gX-XhX" userLabel="Stack View OTP TextField">
-                                        <rect key="frame" x="122" y="242.66666666666669" width="170" height="30"/>
+                                        <rect key="frame" x="102.5" y="243" width="170" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 0 0 0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rhn-PR-auD" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
@@ -178,10 +178,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="764-H4-UQy" userLabel="Stack View Submit ">
-                                        <rect key="frame" x="41.333333333333343" y="311.66666666666669" width="331.33333333333326" height="48"/>
+                                        <rect key="frame" x="37.5" y="312" width="300" height="48"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtp-ut-pVw">
-                                                <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="48"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="CX1-1o-Y3L">
@@ -205,7 +205,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saz-tx-3Jz" userLabel="Resend Code">
-                                        <rect key="frame" x="141.66666666666666" y="379.66666666666669" width="130.99999999999997" height="22"/>
+                                        <rect key="frame" x="122" y="380" width="131" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="by2-gz-fBC">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="33"/>
@@ -226,7 +226,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFt-nw-tax">
-                                        <rect key="frame" x="157" y="403.66666666666669" width="100" height="1"/>
+                                        <rect key="frame" x="137.5" y="404" width="100" height="1"/>
                                         <color key="backgroundColor" red="1" green="0.3210160312" blue="0.19283141039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="Kq5-aN-pgl"/>
@@ -298,18 +298,18 @@
             <objects>
                 <viewController storyboardIdentifier="LoginOTPModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ya8-dP-qiw" customClass="LoginOTPModuleVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qte-oU-Cye">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconImgOtpNonSelected" translatesAutoresizingMaskIntoConstraints="NO" id="oM9-IF-JEE">
-                                <rect key="frame" x="147" y="43" width="120" height="100"/>
+                                <rect key="frame" x="127.5" y="43" width="120" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="XBx-Nn-VvY"/>
                                     <constraint firstAttribute="width" constant="120" id="jEU-Wa-FIT"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="she-5L-cEr">
-                                <rect key="frame" x="41.333333333333343" y="178" width="331.33333333333326" height="25.666666666666657"/>
+                                <rect key="frame" x="37.5" y="178" width="300" height="26"/>
                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -318,7 +318,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjd-P7-aVK">
-                                <rect key="frame" x="41.333333333333343" y="358.66666666666669" width="331.33333333333326" height="46.333333333333314"/>
+                                <rect key="frame" x="37.5" y="359" width="300" height="69.5"/>
                                 <string key="text">4 digit OTP will be sent to this number.
 Don’t worry, your number remains safe with us</string>
                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
@@ -329,7 +329,7 @@ Don’t worry, your number remains safe with us</string>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-qa-4t5">
-                                <rect key="frame" x="41.333333333333343" y="280.66666666666669" width="331.33333333333326" height="48"/>
+                                <rect key="frame" x="37.5" y="281" width="300" height="48"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="An0-ig-kR8">
@@ -349,7 +349,7 @@ Don’t worry, your number remains safe with us</string>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="C8g-j8-u9G">
-                                <rect key="frame" x="41.333333333333343" y="219.66666666666666" width="331.33333333333326" height="36"/>
+                                <rect key="frame" x="37.5" y="220" width="300" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYp-Uq-v1P">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="36"/>
@@ -366,7 +366,7 @@ Don’t worry, your number remains safe with us</string>
                                         </variation>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2eg-xc-lad">
-                                        <rect key="frame" x="17" y="0.0" width="314.33333333333331" height="36"/>
+                                        <rect key="frame" x="17" y="0.0" width="283" height="36"/>
                                         <subviews>
                                             <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="91" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ta-PH-ibA" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="33" height="36"/>
@@ -386,7 +386,7 @@ Don’t worry, your number remains safe with us</string>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="luM-mt-OEs" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
-                                                <rect key="frame" x="43" y="0.0" width="271.33333333333331" height="36"/>
+                                                <rect key="frame" x="43" y="0.0" width="240" height="36"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="28"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -407,7 +407,7 @@ Don’t worry, your number remains safe with us</string>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sq-9P-86z" userLabel="Resend Code">
-                                <rect key="frame" x="141.66666666666666" y="455" width="130.99999999999997" height="22"/>
+                                <rect key="frame" x="122" y="478.5" width="131" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="131" id="SNV-Tq-kqD">
                                         <variation key="heightClass=regular-widthClass=regular" constant="180"/>
@@ -425,7 +425,7 @@ Don’t worry, your number remains safe with us</string>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raQ-LN-QPH">
-                                <rect key="frame" x="157" y="479" width="100" height="1"/>
+                                <rect key="frame" x="137.5" y="502.5" width="100" height="1"/>
                                 <color key="backgroundColor" red="1" green="0.3210160312" blue="0.19283141039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="g2o-mW-dfY"/>
@@ -478,7 +478,7 @@ Don’t worry, your number remains safe with us</string>
             <objects>
                 <navigationController storyboardIdentifier="LoginNavigtionController" id="n7H-HW-4n2" customClass="LoginNavigtionController" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yxD-sJ-BCi">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -494,53 +494,53 @@ Don’t worry, your number remains safe with us</string>
             <objects>
                 <viewController storyboardIdentifier="LoginModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="x2R-u9-y58" customClass="LoginModuleVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gI3-vQ-vmg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LH8-F9-AWz">
-                                <rect key="frame" x="127.66666666666669" y="629.33333333333337" width="159" height="1"/>
+                                <rect key="frame" x="108" y="557" width="159" height="1"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="k2D-b0-6NQ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f85-QK-bRq">
-                                <rect key="frame" x="87.666666666666686" y="485.33333333333331" width="239" height="1"/>
+                                <rect key="frame" x="97.5" y="443" width="180" height="1"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="ZPj-LU-D96"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="EMu-Gc-Zp4">
-                                <rect key="frame" x="41.333333333333343" y="84" width="331.33333333333326" height="546.33333333333337"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="EMu-Gc-Zp4">
+                                <rect key="frame" x="37.5" y="84" width="300" height="474"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9CT-ye-B86">
-                                        <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="402.33333333333331"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9CT-ye-B86">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="360"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIs-cX-bB9">
-                                                <rect key="frame" x="142.33333333333331" y="0.0" width="47" height="25.666666666666668"/>
+                                                <rect key="frame" x="126.5" y="0.0" width="47" height="26"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
                                                 <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconImgOtpNonSelected" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-n3-73l">
-                                                <rect key="frame" x="105.66666666666666" y="45.666666666666657" width="120" height="100"/>
+                                                <rect key="frame" x="90" y="41" width="120" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="eWh-oC-dyW"/>
                                                     <constraint firstAttribute="height" constant="100" id="sav-P1-Xii"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gqc-1T-z1B">
-                                                <rect key="frame" x="0.0" y="165.66666666666666" width="331.33333333333331" height="68.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="156" width="300" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Planet Enrich ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScT-EE-VsB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="25.666666666666668"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="26"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
                                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Niy-Ma-V9k" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="35.666666666666657" width="331.33333333333331" height="33"/>
+                                                        <rect key="frame" x="0.0" y="36" width="300" height="33"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -562,10 +562,10 @@ Don’t worry, your number remains safe with us</string>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GEc-dX-xUH">
-                                                <rect key="frame" x="0.0" y="254.33333333333329" width="331.33333333333331" height="68.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="240" width="300" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1w-cV-FC4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="25.666666666666668"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="26"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
                                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -574,7 +574,7 @@ Don’t worry, your number remains safe with us</string>
                                                         </variation>
                                                     </label>
                                                     <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="r9g-42-vo5" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="35.666666666666686" width="331.33333333333331" height="33"/>
+                                                        <rect key="frame" x="0.0" y="36" width="300" height="33"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -595,27 +595,16 @@ Don’t worry, your number remains safe with us</string>
                                                     <constraint firstItem="r9g-42-vo5" firstAttribute="leading" secondItem="GEc-dX-xUH" secondAttribute="leading" id="icO-Pe-Zeo"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="msh-pa-Qv8">
-                                                <rect key="frame" x="46.333333333333343" y="343" width="239.00000000000003" height="59.333333333333314"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View and accept" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZA-yJ-6Gw">
-                                                        <rect key="frame" x="60.333333333333329" y="0.0" width="117.99999999999999" height="23.333333333333332"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
-                                                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-yv-v35">
-                                                        <rect key="frame" x="0.0" y="23.333333333333314" width="239" height="36"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
-                                                        <state key="normal" title="ENRICH TERMS &amp; CONDITIONS">
-                                                            <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="actionTermsConditions:" destination="x2R-u9-y58" eventType="touchUpInside" id="v9H-FK-Zqs"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-yv-v35">
+                                                <rect key="frame" x="60" y="324" width="180" height="36"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
+                                                <state key="normal" title="Enrich Terms &amp; Conditions">
+                                                    <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="actionTermsConditions:" destination="x2R-u9-y58" eventType="touchUpInside" id="v9H-FK-Zqs"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Gqc-1T-z1B" secondAttribute="trailing" id="YsB-Eh-8ak"/>
@@ -624,11 +613,11 @@ Don’t worry, your number remains safe with us</string>
                                             <constraint firstItem="Gqc-1T-z1B" firstAttribute="leading" secondItem="9CT-ye-B86" secondAttribute="leading" id="vNO-dD-6Y9"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="I4X-xy-o0m">
-                                        <rect key="frame" x="0.0" y="442.33333333333337" width="331.33333333333331" height="104"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="I4X-xy-o0m">
+                                        <rect key="frame" x="0.0" y="375" width="300" height="99"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fg1-hC-il4">
-                                                <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="48"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="WVV-l3-xsL"/>
@@ -647,7 +636,7 @@ Don’t worry, your number remains safe with us</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="v5i-qt-B52">
-                                                <rect key="frame" x="86.333333333333343" y="68" width="159" height="36"/>
+                                                <rect key="frame" x="70.5" y="63" width="159" height="36"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                 <state key="normal" title="FORGOT PASSWORD">
                                                     <color key="titleColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -667,15 +656,15 @@ Don’t worry, your number remains safe with us</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="f85-QK-bRq" firstAttribute="trailing" secondItem="qcQ-yv-v35" secondAttribute="trailing" id="2Td-XH-BU9"/>
                             <constraint firstItem="EMu-Gc-Zp4" firstAttribute="width" secondItem="gI3-vQ-vmg" secondAttribute="width" multiplier="0.8" id="ADD-Js-QUz"/>
                             <constraint firstItem="LH8-F9-AWz" firstAttribute="bottom" secondItem="v5i-qt-B52" secondAttribute="bottom" id="Add-uf-ICe"/>
                             <constraint firstItem="LH8-F9-AWz" firstAttribute="trailing" secondItem="v5i-qt-B52" secondAttribute="trailing" id="J1d-3v-aoz"/>
                             <constraint firstItem="LH8-F9-AWz" firstAttribute="leading" secondItem="v5i-qt-B52" secondAttribute="leading" id="Lbb-Ez-211"/>
                             <constraint firstItem="EMu-Gc-Zp4" firstAttribute="centerX" secondItem="gI3-vQ-vmg" secondAttribute="centerX" id="MjH-qd-6uz"/>
                             <constraint firstItem="EMu-Gc-Zp4" firstAttribute="top" secondItem="AP6-rH-eIM" secondAttribute="top" constant="20" id="UQd-YI-Zfc"/>
-                            <constraint firstItem="f85-QK-bRq" firstAttribute="bottom" secondItem="qcQ-yv-v35" secondAttribute="bottom" id="fIU-nM-kUP"/>
-                            <constraint firstItem="f85-QK-bRq" firstAttribute="leading" secondItem="qcQ-yv-v35" secondAttribute="leading" id="oUb-41-2u0"/>
+                            <constraint firstItem="f85-QK-bRq" firstAttribute="leading" secondItem="qcQ-yv-v35" secondAttribute="leading" id="Xcd-o4-W4D"/>
+                            <constraint firstItem="f85-QK-bRq" firstAttribute="trailing" secondItem="qcQ-yv-v35" secondAttribute="trailing" id="gJ9-BO-mEN"/>
+                            <constraint firstItem="f85-QK-bRq" firstAttribute="bottom" secondItem="qcQ-yv-v35" secondAttribute="bottom" id="q0n-5R-SUm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AP6-rH-eIM"/>
                     </view>
@@ -699,11 +688,11 @@ Don’t worry, your number remains safe with us</string>
             <objects>
                 <viewController storyboardIdentifier="TermsAndConditionsVC" id="7Tj-4h-HR9" customClass="TermsAndConditionsVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ynQ-g3-Bvm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IVO-Mv-yPH">
-                                <rect key="frame" x="30" y="50" width="354" height="606"/>
+                                <rect key="frame" x="30" y="50" width="315" height="537"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -714,13 +703,13 @@ Don’t worry, your number remains safe with us</string>
                                 </connections>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lD-Gc-tKU">
-                                <rect key="frame" x="0.0" y="666" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="3ST-U4-2Z8">
-                                        <rect key="frame" x="20" y="10" width="374" height="50"/>
+                                        <rect key="frame" x="20" y="10" width="335" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeE-j7-qCR">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                                 <state key="normal" title="I ACCEPT" backgroundImage="disabledButton"/>
                                                 <state key="disabled" backgroundImage="disabledButton"/>
@@ -768,30 +757,30 @@ Don’t worry, your number remains safe with us</string>
             <objects>
                 <viewController storyboardIdentifier="SetNewPasswordVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f7o-ps-PdN" customClass="SetNewPasswordVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fQ2-as-dcB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconImgOtpNonSelected" translatesAutoresizingMaskIntoConstraints="NO" id="ilb-XC-8T7">
-                                <rect key="frame" x="147" y="43" width="120" height="100"/>
+                                <rect key="frame" x="127.5" y="43" width="120" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="2BB-cy-cQ7"/>
                                     <constraint firstAttribute="width" constant="120" id="zh5-8w-IsN"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GFT-Bu-4UD">
-                                <rect key="frame" x="41.333333333333343" y="193" width="331.33333333333326" height="141.66666666666663"/>
+                                <rect key="frame" x="37.5" y="193" width="300" height="142"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jeE-cl-z1y">
-                                        <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="73.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="74"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLA-2e-GDP">
-                                                <rect key="frame" x="0.0" y="0.0" width="331.33333333333331" height="25.666666666666668"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="26"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
                                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="eyE-dg-QX0" customClass="CustomTextField" customModule="Enrich_TMA" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="40.666666666666657" width="331.33333333333331" height="33"/>
+                                                <rect key="frame" x="0.0" y="41" width="300" height="33"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -810,7 +799,7 @@ Don’t worry, your number remains safe with us</string>
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yj-CR-dNC">
-                                        <rect key="frame" x="0.0" y="93.666666666666686" width="330" height="48"/>
+                                        <rect key="frame" x="0.0" y="94" width="300" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="0ry-St-1nF">
