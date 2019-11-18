@@ -103,6 +103,7 @@ enum AlertMessagesToAsk {
     static let askToLogout = "Are you sure you want to logout?"
     static let askToDeleteAddress = "Are you sure you want to delete address?"
     static let defaultAddress = "Dafault address cannot be removed."
+    static let termsAdnConditions = "Please accept terms and conditions"
     
 }
 enum AlertButtonTitle {

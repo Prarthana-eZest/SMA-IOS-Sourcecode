@@ -85,6 +85,11 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     }
     
     @IBAction func actionLogin(_ sender: UIButton) {
+        if !termsAccpeted{
+            showAlert(alertTitle: alertTitle, alertMessage: AlertMessagesToAsk.termsAdnConditions)
+            return
+        }
+        
         if sender.isEnabled,
             let username = txtfEnrichId.text,
             let password = txtfPassword.text{
