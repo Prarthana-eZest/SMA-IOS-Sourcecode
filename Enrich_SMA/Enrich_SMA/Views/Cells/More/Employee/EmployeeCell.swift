@@ -15,6 +15,7 @@ class EmployeeCell: UITableViewCell {
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var lblLevel: UILabel!
     @IBOutlet weak var ratingsView: CosmosView!
+    @IBOutlet weak var lblStatus: UILabel!
     
     
     override func awakeFromNib() {
@@ -27,7 +28,8 @@ class EmployeeCell: UITableViewCell {
         lblEmplyeeName.text = model.name
         lblLevel.text = model.level
         ratingsView.rating = model.ratings
-        statusView.backgroundColor = (model.status == .available) ? UIColor(red: 70/255, green: 196/255, blue: 91/255, alpha: 1) : (model.status == .unAvailable) ? UIColor(red: 238/255, green: 91/255, blue: 70/255, alpha: 1)  : UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
+//        statusView.backgroundColor = (model.status == .available) ? UIColor(red: 70/255, green: 196/255, blue: 91/255, alpha: 1) : (model.status == .unAvailable) ? UIColor(red: 238/255, green: 91/255, blue: 70/255, alpha: 1)  : UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
+        lblStatus.text = model.status
         
     }
 
@@ -38,13 +40,9 @@ class EmployeeCell: UITableViewCell {
     }
 }
 
-enum EmployeeStatus{
-    case available,unAvailable,onLeave
-}
-
 struct EmployeeModel{
     let name: String
     let level: String
     let ratings: Double
-    let status: EmployeeStatus
+    let status: String
 }
