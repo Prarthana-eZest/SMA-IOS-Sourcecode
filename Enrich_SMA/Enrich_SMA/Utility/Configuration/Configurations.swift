@@ -47,6 +47,7 @@ enum CellIdentifier{
     // Profile
     static let myProfileHeaderCell = "MyProfileHeaderCell"
     static let myProfileCell = "MyProfileCell"
+    static let myProfileMultiOptionCell = "MyProfileMultiOptionCell"
     
     // Employees
     static let employeeCell = "EmployeeCell"

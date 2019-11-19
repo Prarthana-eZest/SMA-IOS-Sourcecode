@@ -17,11 +17,17 @@ protocol MyProfileDisplayLogic: class
     func displaySomething(viewModel: MyProfile.Something.ViewModel)
 }
 
+enum ProfileType {
+    case otherUser,selfUser
+}
+
 class MyProfileVC: UIViewController, MyProfileDisplayLogic
 {
     var interactor: MyProfileBusinessLogic?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var profileType:ProfileType = .selfUser
     
     // MARK: Object lifecycle
     
@@ -53,12 +59,12 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-//        if let scene = segue.identifier {
-//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//            if let router = router, router.responds(to: selector) {
-//                router.perform(selector, with: segue)
-//            }
-//        }
+        //        if let scene = segue.identifier {
+        //            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+        //            if let router = router, router.responds(to: selector) {
+        //                router.perform(selector, with: segue)
+        //            }
+        //        }
     }
     
     // MARK: View lifecycle
@@ -70,14 +76,16 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         
         tableView.register(UINib(nibName: CellIdentifier.myProfileHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileHeaderCell)
         tableView.register(UINib(nibName: CellIdentifier.myProfileCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileCell)
+        tableView.register(UINib(nibName: CellIdentifier.myProfileMultiOptionCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileMultiOptionCell)
+        
         tableView.register(UINib(nibName: CellIdentifier.headerViewWithTitleCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.headerViewWithTitleCell)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-        self.navigationController?.addCustomBackButton(title: "My Profile")
+        self.navigationController?.addCustomBackButton(title: profileType == .selfUser ? "My Profile" : "Profile Details")
     }
     
     // MARK: Do something
@@ -95,7 +103,12 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         //nameTextField.text = viewModel.name
     }
 }
-
+extension MyProfileVC: ProfileCellDelegate{
+    
+    func actionViewDetails(indexPath: IndexPath) {
+        print("View Details:\(indexPath.row)")
+    }
+}
 
 extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -119,14 +132,36 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             return cell
             
+            
+            
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myProfileCell, for: indexPath) as? MyProfileCell else {
-                return UITableViewCell()
+            
+            let model = profileSections[indexPath.section - 1].data[indexPath.row]
+            
+            if model.isMultiOption{
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myProfileMultiOptionCell, for: indexPath) as? MyProfileMultiOptionCell else {
+                    return UITableViewCell()
+                }
+                cell.indexPath = indexPath
+                cell.delegate = self
+                cell.selectionStyle = .none
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+                cell.configureCell(title:model.title)
+                return cell
+                
+            }else{
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myProfileCell, for: indexPath) as? MyProfileCell else {
+                    return UITableViewCell()
+                }
+                cell.selectionStyle = .none
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+                cell.configureCell(model: model)
+                return cell
+                
             }
-            cell.selectionStyle = .none
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-            cell.configureCell(model: profileSections[indexPath.section - 1].data[indexPath.row])
-            return cell
+            
         }
         
     }
@@ -141,7 +176,7 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
         
-        guard let cell: HeaderViewWithTitleCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else {
             return UITableViewCell()
         }
         cell.titleLabel.text = profileSections[section - 1].title

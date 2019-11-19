@@ -30,7 +30,8 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     
     @IBOutlet weak private var tableView: UITableView!
     
-    var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.employees,
+    var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.myProfile,
+                                                                 .employees,
                                                                 // .inventory,
                                                                  //.stores,
                                                                  //.audits,
@@ -135,6 +136,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             
         case .myProfile:
             let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
+            vc.profileType = .selfUser
             self.navigationController?.pushViewController(vc, animated: true)
             
         case .notifications :

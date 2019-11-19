@@ -39,4 +39,5 @@ struct MyProfileSection{
 struct MyProfileModel{
     let title: String
     let value: String
+    let isMultiOption: Bool
 }

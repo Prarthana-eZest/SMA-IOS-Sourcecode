@@ -119,5 +119,8 @@ extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
+        let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
+        vc.profileType = .otherUser
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
