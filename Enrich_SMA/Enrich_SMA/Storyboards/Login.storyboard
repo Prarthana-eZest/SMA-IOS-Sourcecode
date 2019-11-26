@@ -24,7 +24,7 @@
         <!--Verification ModuleVC-->
         <scene sceneID="ajq-N2-y8R">
             <objects>
-                <viewController storyboardIdentifier="OTPVerificationModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gtf-Q6-lTv" customClass="OTPVerificationModuleVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OTPVerificationModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gtf-Q6-lTv" customClass="OTPVerificationModuleVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0CU-hp-qMa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aqk-V7-4hQ" userLabel="Stack View OTP TextField">
                                                 <rect key="frame" x="65" y="63" width="170" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 0 0 0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ubK-kF-oqV" customClass="CustomTextField" customModule="Enrich_TMA" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 0 0 0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ubK-kF-oqV" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="170" id="7YZ-Gi-coN">
@@ -138,7 +138,7 @@
                                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="VzA-tz-nVi" customClass="CustomTextField" customModule="Enrich_TMA" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="VzA-tz-nVi" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="36" width="300" height="33"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="25"/>
@@ -159,7 +159,7 @@
                                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Bw7-gK-pwl" customClass="CustomTextField" customModule="Enrich_TMA" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Bw7-gK-pwl" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="36" width="300" height="33"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="25"/>
@@ -275,7 +275,7 @@
         <!--LoginOTP ModuleVC-->
         <scene sceneID="ohY-l8-nIn">
             <objects>
-                <viewController storyboardIdentifier="LoginOTPModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TeD-c9-UzH" customClass="LoginOTPModuleVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginOTPModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TeD-c9-UzH" customClass="LoginOTPModuleVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Vn-9P-8iK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,7 +302,7 @@
                                                     <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="30"/>
                                                 </variation>
                                             </label>
-                                            <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Lqs-UX-9xE" customClass="CustomTextField" customModule="Enrich_TMA" customModuleProvider="target">
+                                            <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Lqs-UX-9xE" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="41" width="300" height="36"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="28"/>
@@ -400,7 +400,7 @@
         <!--Login Navigtion Controller-->
         <scene sceneID="ekt-nv-UuY">
             <objects>
-                <navigationController storyboardIdentifier="LoginNavigtionController" id="dE9-A4-zWg" customClass="LoginNavigtionController" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigtionController" id="dE9-A4-zWg" customClass="LoginNavigtionController" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZLK-vN-erW">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -416,7 +416,7 @@
         <!--Login ModuleVC-->
         <scene sceneID="6fA-p5-vtM">
             <objects>
-                <viewController storyboardIdentifier="LoginModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uEa-A1-eFG" customClass="LoginModuleVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uEa-A1-eFG" customClass="LoginModuleVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KKx-ZR-UNB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -463,7 +463,7 @@
                                                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8gk-ui-qzY" customClass="CustomTextField" customModule="Enrich_TMA" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8gk-ui-qzY" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="36" width="300" height="33"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="25"/>
@@ -489,7 +489,7 @@
                                                             <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="30"/>
                                                         </variation>
                                                     </label>
-                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="txp-lq-b4f" customClass="CustomTextField" customModule="Enrich_TMA" customModuleProvider="target">
+                                                    <textField opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="txp-lq-b4f" customClass="CustomTextField" customModule="Enrich_SMA" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="36" width="300" height="33"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="25"/>
@@ -594,7 +594,7 @@
         <!--Terms And ConditionsVC-->
         <scene sceneID="7Tb-Ct-buv">
             <objects>
-                <viewController storyboardIdentifier="TermsAndConditionsVC" id="b91-pd-c8N" customClass="TermsAndConditionsVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsAndConditionsVC" id="b91-pd-c8N" customClass="TermsAndConditionsVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W87-u3-KS2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -602,7 +602,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b2J-vP-v8Y">
                                 <rect key="frame" x="30" y="50" width="315" height="537"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
