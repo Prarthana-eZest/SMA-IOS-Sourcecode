@@ -14,18 +14,21 @@ import UIKit
 
 protocol EmployeeListingPresentationLogic
 {
-  func presentSomething(response: EmployeeListing.Something.Response)
+    func presentGetEmployeeListSuccess<T: Decodable>(response: T)
+    func presentGetEmployeeListError(responseError: String?)
 }
 
 class EmployeeListingPresenter: EmployeeListingPresentationLogic
 {
-  weak var viewController: EmployeeListingDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: EmployeeListing.Something.Response)
-  {
-    let viewModel = EmployeeListing.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: EmployeeListingDisplayLogic?
+    
+    // MARK: Do something
+    
+    func presentGetEmployeeListSuccess<T>(response: T) where T : Decodable {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    
+    func presentGetEmployeeListError(responseError: String?) {
+        viewController?.displayError(errorMessage: responseError)
+    }
 }

@@ -14,7 +14,36 @@ import UIKit
 
 protocol EmployeeListingDisplayLogic: class
 {
-    func displaySomething(viewModel: EmployeeListing.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
+}
+
+enum AvailableStatusColor: String{
+    
+    case onTime = "on_time"
+    case delayed = "delayed"
+    case notCheckedIn = "not_checked_in"
+    case leave = "leave"
+    case unknown = "unknown"
+    
+    var color: UIColor{
+        
+        switch self {
+            
+        case .onTime:
+            return UIColor(red: 70/255, green: 196/255, blue: 91/255, alpha: 1)
+        case .delayed:
+            return UIColor(red: 238/255, green: 91/255, blue: 70/255, alpha: 1)
+        case .notCheckedIn:
+            return UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
+        case .leave:
+            return UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
+            
+        default:return UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
+            
+        }
+        
+    }
 }
 
 class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
@@ -22,6 +51,10 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
     var interactor: EmployeeListingBusinessLogic?
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lblNoRecords: UILabel!
+    
+    
+    var employeeList = [EmployeeModel]()
     
     // MARK: Object lifecycle
     
@@ -66,8 +99,10 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
+        getEmployeeList()
         tableView.register(UINib(nibName: CellIdentifier.employeeCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.employeeCell)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        
         
     }
     
@@ -81,16 +116,59 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
+    func getEmployeeList()
     {
-        let request = EmployeeListing.Something.Request()
-        interactor?.doSomething(request: request)
+        let todaysDate = Date().dayYearMonthDate
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        
+        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            
+            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate , employee_code: userData.data?.employee_code ?? "")
+            interactor?.doGetEmployeeListData(request:request, method: HTTPMethod.get)
+        }
+        
     }
     
-    func displaySomething(viewModel: EmployeeListing.Something.ViewModel)
-    {
-        //nameTextField.text = viewModel.name
+    
+    func displaySuccess<T>(viewModel: T) where T : Decodable {
+        EZLoadingActivity.hide()
+        print("Response: \(viewModel)")
+        if let model = viewModel as? EmployeeListing.GetEmployeeList.Response,model.status == true{
+            if let data = model.data, data.isEmpty{
+                showAlert(alertTitle: alertTitle, alertMessage: model.message)
+                return
+            }
+            modelMapping(response: model)
+        }
     }
+    
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        print("Failed: \(errorMessage ?? "")")
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+    }
+    
+    func modelMapping(response:EmployeeListing.GetEmployeeList.Response){
+        self.employeeList.removeAll()
+        response.data?.forEach{
+            
+            var statusType:AvailableStatusColor = AvailableStatusColor.leave
+            var statusText = ""
+            if $0.is_leave == 1{
+                statusText = $0.leave_type ?? ""
+            }else{
+                if let status = AvailableStatusColor(rawValue: $0.attendance_status ?? ""){
+                    statusType = status
+                    statusText = $0.attendance_status ?? ""
+                }
+            }
+            
+            let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "NA", ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText, employeeId: $0.employee_id)
+            self.employeeList.append(model)
+        }
+        self.tableView.reloadData()
+    }
+    
 }
 
 extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
@@ -100,7 +178,8 @@ extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        lblNoRecords.isHidden = !employeeList.isEmpty
+        return employeeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,8 +187,9 @@ extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.employeeCell, for: indexPath) as? EmployeeCell else {
             return UITableViewCell()
         }
+        cell.configureCell(model: employeeList[indexPath.row])
         cell.selectionStyle = .none
-        cell.separatorInset = UIEdgeInsets(top: 0, left:20, bottom: 0, right: 20)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return cell
     }
     
@@ -121,6 +201,7 @@ extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
         print("Selection")
         let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
         vc.profileType = .otherUser
+        vc.employeeId = employeeList[indexPath.row].employeeId
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

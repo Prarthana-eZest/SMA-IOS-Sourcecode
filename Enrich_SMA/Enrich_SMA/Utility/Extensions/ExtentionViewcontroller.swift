@@ -21,21 +21,20 @@ extension UIViewController {
         self.present(alert, animated: false, completion: nil)
     }
     
-    func isuserLoggedIn() ->(status: Bool, customerId: String, accessToken: String) {
+    func isuserLoggedIn() -> (status: Bool, accessToken: String) {
+        
         var userAccessToken: String = ""
-        var usercustomerId: String = ""
         var userstatus: Bool = false
         
-//        if UserDefaults.standard.value(OTPVerificationModule.MobileNumberWithOTPVerification.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) != nil {
-//            let dummy = UserDefaults.standard.value(OTPVerificationModule.MobileNumberWithOTPVerification.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
-//            userstatus = true
-//            usercustomerId = (dummy?.data?.customer_id)!
-//            userAccessToken = (dummy?.data?.access_token)!
-//            return(userstatus, usercustomerId, userAccessToken)
-//        }
+        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            userstatus = true
+            userAccessToken = userData.data?.access_token ?? ""
+            return (userstatus, userAccessToken)
+        }
         
-        return(userstatus, usercustomerId, userAccessToken)
+        return(userstatus, userAccessToken)
     }
+
 
 }
 

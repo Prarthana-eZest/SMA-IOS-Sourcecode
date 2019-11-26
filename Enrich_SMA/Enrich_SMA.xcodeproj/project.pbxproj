@@ -209,6 +209,8 @@
 		E3DB6857238CEE4A00CC569D /* TermsAndConditionsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB6853238CEE4900CC569D /* TermsAndConditionsModels.swift */; };
 		E3DB6858238CEE4A00CC569D /* TermsAndConditionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB6854238CEE4900CC569D /* TermsAndConditionsPresenter.swift */; };
 		E3DB685B238CEF7C00CC569D /* GenericClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685A238CEF7C00CC569D /* GenericClass.swift */; };
+		E3DB685E238CFD3A00CC569D /* ListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685D238CFD3A00CC569D /* ListingVC.swift */; };
+		E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685F238CFE8600CC569D /* ListingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -443,6 +445,8 @@
 		E3DB6853238CEE4900CC569D /* TermsAndConditionsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsModels.swift; sourceTree = "<group>"; };
 		E3DB6854238CEE4900CC569D /* TermsAndConditionsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsPresenter.swift; sourceTree = "<group>"; };
 		E3DB685A238CEF7C00CC569D /* GenericClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericClass.swift; sourceTree = "<group>"; };
+		E3DB685D238CFD3A00CC569D /* ListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingVC.swift; sourceTree = "<group>"; };
+		E3DB685F238CFE8600CC569D /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -604,6 +608,7 @@
 				E3034026235EE11B00E0BF0A /* MyProfileCell.xib */,
 				E31F816523840E8D00089572 /* MyProfileMultiOptionCell.swift */,
 				E31F816623840E8E00089572 /* MyProfileMultiOptionCell.xib */,
+				E3DB685F238CFE8600CC569D /* ListingCell.swift */,
 			);
 			path = "My Profile";
 			sourceTree = "<group>";
@@ -696,6 +701,7 @@
 				E3034152235EE14000E0BF0A /* MyProfileWorker.swift */,
 				E3034154235EE14000E0BF0A /* MyProfilePresenter.swift */,
 				E3034155235EE14000E0BF0A /* MyProfileInteractor.swift */,
+				E3DB685C238CFCFB00CC569D /* Listing */,
 			);
 			path = "My Profile";
 			sourceTree = "<group>";
@@ -1285,6 +1291,14 @@
 			path = "Generic Class";
 			sourceTree = "<group>";
 		};
+		E3DB685C238CFCFB00CC569D /* Listing */ = {
+			isa = PBXGroup;
+			children = (
+				E3DB685D238CFD3A00CC569D /* ListingVC.swift */,
+			);
+			path = Listing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1674,6 +1688,7 @@
 				E30342CF235EE15800E0BF0A /* ExtensionNavigationController.swift in Sources */,
 				E3CD502723713C3600DE106E /* LoginOTPModuleInteractor.swift in Sources */,
 				E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */,
+				E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */,
 				E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */,
 				E30342C1235EE15800E0BF0A /* ImagePicker.swift in Sources */,
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
@@ -1742,6 +1757,7 @@
 				E30601CC237EAA7A00988EEC /* AppointmentDetailsModels.swift in Sources */,
 				E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */,
 				E30342C0235EE15800E0BF0A /* KeyboardAnimation.swift in Sources */,
+				E3DB685E238CFD3A00CC569D /* ListingVC.swift in Sources */,
 				E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */,
 				E30342B4235EE15800E0BF0A /* JSONANYHandling.swift in Sources */,
 				E30341E1235EE14000E0BF0A /* MyProfileWorker.swift in Sources */,

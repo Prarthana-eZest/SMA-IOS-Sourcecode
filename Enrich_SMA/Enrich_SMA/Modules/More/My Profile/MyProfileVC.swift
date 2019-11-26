@@ -14,20 +14,36 @@ import UIKit
 
 protocol MyProfileDisplayLogic: class
 {
-    func displaySomething(viewModel: MyProfile.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
 }
 
 enum ProfileType {
     case otherUser,selfUser
 }
 
+enum ListingType:String{
+    case services = "Services Performed"
+    case shifts = "Shift Timing"
+}
+
 class MyProfileVC: UIViewController, MyProfileDisplayLogic
 {
+    
     var interactor: MyProfileBusinessLogic?
     
     @IBOutlet weak var tableView: UITableView!
     
     var profileType:ProfileType = .selfUser
+    
+    var profileSections = [MyProfileSection]()
+    
+    var profileHeader: MyProfileHeaderModel?
+    
+    var employeeId: Int?
+    
+    var service = [String]()
+    var rosterList = [String]()
     
     // MARK: Object lifecycle
     
@@ -72,13 +88,16 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
         
         tableView.register(UINib(nibName: CellIdentifier.myProfileHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileHeaderCell)
         tableView.register(UINib(nibName: CellIdentifier.myProfileCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileCell)
         tableView.register(UINib(nibName: CellIdentifier.myProfileMultiOptionCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.myProfileMultiOptionCell)
         
         tableView.register(UINib(nibName: CellIdentifier.headerViewWithTitleCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.headerViewWithTitleCell)
+        
+        getProfileData()
+        getServiceList()
+        getRosterDetails()
         
     }
     
@@ -92,21 +111,85 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
-    {
-        let request = MyProfile.Something.Request()
-        interactor?.doSomething(request: request)
+    func getProfileData()  {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        interactor?.doGetMyProfileData(employeeId:employeeId,accessToken: GenericClass.sharedInstance.isuserLoggedIn().accessToken, method: HTTPMethod.get)
     }
     
-    func displaySomething(viewModel: MyProfile.Something.ViewModel)
-    {
-        //nameTextField.text = viewModel.name
+    func getServiceList()  {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        interactor?.doGetServiceListData(accessToken: self.isuserLoggedIn().accessToken, method: .get)
     }
+    
+    func getRosterDetails()  {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        
+        
+        
+        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            
+            let request = MyProfile.GetRosterDetails.Request(salon_code: userData.data?.base_salon_code ?? "", employee_code: userData.data?.employee_code ?? "")
+            interactor?.doGetRosterData(request: request, method: .post)
+        }
+    }
+    
+    
+    func displaySuccess<T>(viewModel: T) where T : Decodable {
+        EZLoadingActivity.hide()
+        print("Response: \(viewModel)")
+        if let model = viewModel as? MyProfile.GetUserProfile.Response,model.status == true{
+            modelMapping(model: model)
+        }else if let model = viewModel as? MyProfile.GetServiceList.Response,model.status == true{
+            self.service.removeAll()
+            self.service.append(contentsOf: model.data?.service_list ?? [])
+        }else if let model = viewModel as? MyProfile.GetRosterDetails.Response,model.status == true{
+            if let data = model.data, data.isEmpty{
+                showAlert(alertTitle: alertTitle, alertMessage: model.message)
+                return
+            }
+            self.rosterList.removeAll()
+            model.data?.forEach{
+                let shift = "\($0.shift_name ?? "NA") : \($0.start_time ?? "NA") - \($0.end_time ?? "NA")"
+                self.rosterList.append(shift)
+            }
+        }
+    }
+    
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        print("Failed: \(errorMessage ?? "")")
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+    }
+    
+    
 }
 extension MyProfileVC: ProfileCellDelegate{
     
-    func actionViewDetails(indexPath: IndexPath) {
-        print("View Details:\(indexPath.row)")
+    func actionViewDetails(indexPath: IndexPath,type: ListingType) {
+        
+        if profileType == .otherUser{
+            return
+        }
+        
+        let vc = ListingVC.instantiate(fromAppStoryboard: .More)
+        self.view.alpha = screenPopUpAlpha
+        
+        switch type {
+            
+        case .services:
+            vc.listing = service
+            vc.screenTitle = "Services Performed"
+            
+        case .shifts:
+            vc.listing = rosterList
+            vc.screenTitle = "Shift Timing"
+        }
+        
+        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] result in
+            // Do something
+            self.view.alpha = 1.0
+        }
     }
 }
 
@@ -128,11 +211,13 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myProfileHeaderCell, for: indexPath) as? MyProfileHeaderCell else {
                 return UITableViewCell()
             }
+            
+            if let model = profileHeader{
+                cell.configureCell(model: model)
+            }
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             return cell
-            
-            
             
         default:
             
@@ -145,6 +230,9 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.indexPath = indexPath
                 cell.delegate = self
+                if let type = ListingType(rawValue: model.title){
+                    cell.listingType = type
+                }
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
                 cell.configureCell(title:model.title)
@@ -192,5 +280,41 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
+    }
+}
+
+
+extension MyProfileVC{
+    
+    func modelMapping(model:MyProfile.GetUserProfile.Response){
+        
+        if let data = model.data{
+            
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "", dateOfJoining: data.joining_date ?? "NA",ratings: data.rating ?? 0)
+            
+            let sections =
+                [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of joining",value:data.joining_date ?? "NA",isMultiOption:false),
+                                                                 MyProfileModel(title:"Gender",value:"NA",isMultiOption:false),
+                                                                 MyProfileModel(title:"Mobile No",value: "NA",isMultiOption:false),
+                                                                 MyProfileModel(title:"Home Contact No",value:"NA",isMultiOption:false),
+                                                                 MyProfileModel(title:"Email Id",value:"NA",isMultiOption:false),
+                                                                 MyProfileModel(title:"Passport No",value:"NA",isMultiOption:false),
+                                                                 MyProfileModel(title:"Address",value:"NA",isMultiOption:false)]),
+                 MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee Code",value:data.employee_code ?? "NA",isMultiOption:false),
+                                                                     MyProfileModel(title:"Nick Name",value:data.nickname ?? "NA",isMultiOption:false),
+                                                                     MyProfileModel(title:"Experience",value: "NA",isMultiOption:false),
+                                                                     MyProfileModel(title:"Center",value:data.base_salon_name ?? "NA",isMultiOption:false),
+                                                                     MyProfileModel(title:"Category",value:data.category ?? "NA",isMultiOption:false),
+                                                                     MyProfileModel(title:"Designation/Role",value:data.designation ?? "NA",isMultiOption:false),
+                                                                     MyProfileModel(title:"Services Performed",value:"NA",isMultiOption:true)]),
+                 
+                 MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"NA",isMultiOption:true),
+                                                              MyProfileModel(title:"Status",value:"NA",isMultiOption:false)])]
+            
+            self.profileSections.removeAll()
+            self.profileHeader = header
+            self.profileSections.append(contentsOf: sections)
+            self.tableView.reloadData()
+        }
     }
 }

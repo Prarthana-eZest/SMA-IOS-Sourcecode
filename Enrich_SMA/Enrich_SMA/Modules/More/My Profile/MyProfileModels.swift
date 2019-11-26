@@ -16,36 +16,91 @@ enum MyProfile
 {
     // MARK: Use cases
     
-    enum Something
-    {
-        struct Request
-        {
+    enum GetUserProfile {
+        
+        struct Request: Codable {
+            let is_custom: Bool = true
         }
-        struct Response
-        {
+        
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var data: UserData?
         }
-        struct ViewModel
-        {
+        
+        struct UserData: Codable {
+            var username: String?
+            var admin_id: String?
+            var firstname: String?
+            var middlename: String?
+            var lastname: String?
+            var nickname: String?
+            var employee_code: String?
+            var birthdate: String?
+            var designation: String?
+            var base_salon_code: String?
+            var base_salon_name: String?
+            var joining_date: String?
+            var category: String?
+            var profile_pic: String?
+            var rating: Double?
         }
     }
+    
+    enum GetServiceList {
+        
+        struct Request: Codable {
+            let is_custom: Bool = true
+        }
+        
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var data: Data?
+        }
+        
+        struct Data: Codable {
+            var service_count: Int?
+            var service_list: [String]?
+        }
+    }
+    
+    enum GetRosterDetails {
+        
+        struct Request: Codable {
+            let salon_code: String
+            let employee_code: String
+        }
+        
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var data: [EmployeeData]?
+            var time_stamp: String = ""
+        }
+        
+        struct EmployeeData: Codable {
+            let first_name: String?
+            let last_name: String?
+            let category_name: String?
+            let shift_name: String?
+            let start_time: String?
+            let end_time: String?
+            let date: String?
+            let is_leave: Int?
+            let leave_type_id: Int?
+            let leave_type: String?
+            let employee_id: Int?
+            let roster_id: Int?
+            let shift_id: Int?
+            let designation: String?
+            let rating: Double?
+            let attendance_status: String?
+        }
+    }
+    
 }
 
-let profileSections:[MyProfileSection] =
-    [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of joining",value:"DD/MM/YYY",isMultiOption:false),
-                                                     MyProfileModel(title:"Gender",value:"Male",isMultiOption:false),
-                                                     MyProfileModel(title:"Mobile No",value:"9876532445",isMultiOption:false),
-                                                     MyProfileModel(title:"Home Contact No",value:"020-27281174",isMultiOption:false),
-                                                     MyProfileModel(title:"Email Id",value:"abc@gmail.com",isMultiOption:false),
-                                                     MyProfileModel(title:"Passport No",value:"DFHH353456CV",isMultiOption:false),
-                                                     MyProfileModel(title:"Address",value:"terad xdgfg adgdfhZC zdgdghvbvx fhgdb fhghfg xfgdfgdf",isMultiOption:false)]),
-     MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee Code",value:"1234",isMultiOption:false),
-                                                         MyProfileModel(title:"Nick Name",value:"Parmo",isMultiOption:false),
-                                                         MyProfileModel(title:"Experience",value:"5 Years",isMultiOption:false),
-                                                         MyProfileModel(title:"Center",value:"Aundh",isMultiOption:false),
-                                                         MyProfileModel(title:"Category",value:"Hair",isMultiOption:false),
-                                                         MyProfileModel(title:"Designation/Role",value:"Maste Stylist",isMultiOption:false),
-                                                         MyProfileModel(title:"Services Performed",value:"Service 1,Service 2",isMultiOption:true)]),
-     MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Working Hours",value:"10 Hour",isMultiOption:false),
-                                                  MyProfileModel(title:"Shift Timing",value:"Shift 1(10.00 - 8.00)",isMultiOption:true),
-                                                  MyProfileModel(title:"Working Hours",value:"10 Hour",isMultiOption:false),
-                                                  MyProfileModel(title:"Status",value:"Active",isMultiOption:false)])]
+
+
+

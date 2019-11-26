@@ -14,28 +14,40 @@ import UIKit
 
 protocol MyProfileBusinessLogic
 {
-  func doSomething(request: MyProfile.Something.Request)
+    func doGetMyProfileData(employeeId:Int?,accessToken:String, method: HTTPMethod)
+    func doGetRosterData(request: MyProfile.GetRosterDetails.Request, method: HTTPMethod)
+    func doGetServiceListData(accessToken:String, method: HTTPMethod)
 }
 
 protocol MyProfileDataStore
 {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class MyProfileInteractor: MyProfileBusinessLogic, MyProfileDataStore
 {
-  var presenter: MyProfilePresentationLogic?
-  var worker: MyProfileWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: MyProfile.Something.Request)
-  {
-    worker = MyProfileWorker()
-    worker?.doSomeWork()
     
-    let response = MyProfile.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    var presenter: MyProfilePresentationLogic?
+    var worker: MyProfileWorker?
+    //var name: String = ""
+    
+    // MARK: Do something
+    func doGetMyProfileData(employeeId:Int?,accessToken: String, method: HTTPMethod) {
+        worker = MyProfileWorker()
+        worker?.presenter = self.presenter
+        worker?.getRequestForUserProfile(employeeId:employeeId,accessToken: accessToken, method: method)
+    }
+    
+    func doGetRosterData(request: MyProfile.GetRosterDetails.Request, method: HTTPMethod) {
+        worker = MyProfileWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestForServiceList(request: request, method: method)
+    }
+    
+    func doGetServiceListData(accessToken: String, method: HTTPMethod) {
+        worker = MyProfileWorker()
+        worker?.presenter = self.presenter
+        worker?.getRequestForServiceList(accessToken: accessToken, method: method)
+    }
+    
 }
