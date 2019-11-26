@@ -23,7 +23,9 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var iconImage: UIImageView!
     
+    
     var termsAccpeted = false
+    
     
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -85,16 +87,12 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     }
     
     @IBAction func actionLogin(_ sender: UIButton) {
-        if !termsAccpeted{
-            showAlert(alertTitle: alertTitle, alertMessage: AlertMessagesToAsk.termsAdnConditions)
-            return
-        }
         
         if sender.isEnabled,
             let username = txtfEnrichId.text,
             let password = txtfPassword.text{
             EZLoadingActivity.show("", disableUI: true)
-            let user = LoginModule.UserLogin.Request(username: username, password: password, is_custom: true)
+            let user = LoginModule.UserLogin.Request(username: username, password: password, is_custom: true, accept_terms: termsAccpeted)
             interactor?.doPostRequest(request: user, method: .post)
         }
     }
@@ -119,10 +117,9 @@ extension LoginModuleVC {
             let data = obj.data{
             let userDefaults = UserDefaults.standard
             userDefaults.set(encodable: data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
-            userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+            userDefaults.set(encodable: obj, forKey: UserDefauiltsKeys.k_Key_LoginUser)
             userDefaults.synchronize()
         }
-        
         
         let customTabbarController = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)
         appDelegate.window?.rootViewController = customTabbarController
@@ -132,9 +129,8 @@ extension LoginModuleVC {
     
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
-        showAlert(alertTitle: alertTitle, alertMessage: errorMessage!)
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
         self.view.isUserInteractionEnabled = true
-        
     }
 }
 

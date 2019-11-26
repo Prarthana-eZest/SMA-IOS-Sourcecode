@@ -8,8 +8,6 @@ public enum ConstantAPINames: String {
     case postListOfSalons = "salonlocator/salon/list" // Custom API
     case createData = "customers"
     case validateReferalCode = "customer/refercode/check"
-    case sendOTPOnMobile = "digimiles/sms/sendotp"
-    case validateOTPOnLogin =  "digimiles/customer/login"
     case validateOTPOnSignUp = "digimiles/otp/verify"
     case validateEmailSignUp = "customers/me/activate" // OOTB API
     case resendEmailConfirmation = "customer/resendconfirmation"
@@ -57,8 +55,18 @@ public enum ConstantAPINames: String {
     case paytmpayonline = "paytm/payonline"
     // More Tab
     
-    
     // Login Module
     case userLogin = "integration/admin/token"
+    case getTermsAndConditions = "cms/block"
+    
+    case sendOTPOnMobile = "employee/reset/password/generate/otp"
+    
+    case validateOTPOnLogin =  "digimiles/customer/login"
+    
+    case forgotPassword = "employee/reset/password"
+    
+    // My Profile
+    case getUserProfile = "employee/profile?is_custom=true"
+    case getEmployeeList = "lumen/roster"
     
 }

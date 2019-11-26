@@ -15,13 +15,13 @@ protocol LoginModuleBusinessLogic {
 }
 
 class LoginModuleInteractor: LoginModuleBusinessLogic {
-  var presenter: LoginModulePresentationLogic?
-  var worker = LoginModuleWorker()
+    var presenter: LoginModulePresentationLogic?
+    var worker = LoginModuleWorker()
     // MARK: Do something
     func doPostRequest(request: LoginModule.UserLogin.Request, method: HTTPMethod) {
         worker = LoginModuleWorker()
         worker.presenter = self.presenter
         worker.postRequest(request: request)
     }
-
+    
 }

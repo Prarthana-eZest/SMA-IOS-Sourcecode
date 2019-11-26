@@ -11,34 +11,35 @@
 import UIKit
 
 enum LoginModule {
-  // MARK: Use cases
-
-  enum UserLogin {
+    // MARK: Use cases
     
-    struct Request: Codable {
-        let username: String
-        let password: String
-        let is_custom: Bool
+    enum UserLogin {
+        
+        struct Request: Codable {
+            let username: String
+            let password: String
+            let is_custom: Bool
+            let accept_terms: Bool
+        }
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var data: UserData?
+        }
+        
+        struct UserData: Codable {
+            var access_token: String?
+            var username: String?
+            var admin_id: String?
+            var firstname: String?
+            var middlename: String?
+            var lastname: String?
+            var nickname: String?
+            var employee_code: String?
+            var birthdate: String?
+            var designation: String?
+            var base_salon_code: String?
+            var base_salon_name: String?
+        }
     }
-    struct Response: Codable {
-        var status: Bool = false
-        var message: String = ""
-        var data: UserData?
-    }
-    
-    struct UserData: Codable {
-        var access_token: String?
-        var username: String?
-        var admin_id: String?
-        var firstname: String?
-        var middlename: String?
-        var lastname: String?
-        var nickname: String?
-        var employee_code: String?
-        var birthdate: String?
-        var designation: String?
-        var base_salon_code: String?
-        var base_salon_name: String?
-    }
-  }
 }

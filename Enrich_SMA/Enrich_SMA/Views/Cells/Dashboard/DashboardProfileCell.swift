@@ -15,25 +15,19 @@ protocol DashboardHeaderCellDelegate: class {
 
 class DashboardProfileCell: UITableViewCell {
     
-    
-    @IBOutlet weak private var enableLocationView: UIView!
-    @IBOutlet weak private var btnEnableLocation: UIButton!
-    @IBOutlet weak var btnSelectALocation: UIButton!
+
+    @IBOutlet weak private var btnSelectALocation: UIButton!
     @IBOutlet weak private var locationNameView: UIStackView!
-    @IBOutlet weak private var locationDetailsView: UIView!
-    @IBOutlet weak private var locationDetailsbtnLocation: UIButton!
-    @IBOutlet weak private var locationDetailsbtnSalonLocation: UIButton!
+    @IBOutlet weak private var lblUserName: UILabel!
+    @IBOutlet weak private var lblDesignation: UILabel!
+    @IBOutlet weak private var profilePicture: UIImageView!
+    @IBOutlet weak private var lblRating: UILabel!
     
     weak var delegate: DashboardHeaderCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    
-        locationNameViewShowHide(status: false)
-        locationDetailViewShowHide(status: true)
-        enableLocationShowHide(status: true)
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,50 +36,17 @@ class DashboardProfileCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell() {
-//        if  let dummy = UserDefaults.standard.value( LocationModule.Something.SalonParamModel.self, forKey: UserDefauiltsKeys.k_Key_SelectedSalon) {
-//            self.btnSelectALocation.setTitle(dummy.current_city_area, for: .normal)
-//            self.locationDetailsbtnLocation.setTitle(dummy.current_city_area, for: .normal)
-//            let salonAddress = String(format: "%@ (%@)", dummy.salon_name ?? "", "\(dummy.distance.rounded(toPlaces: 2))" + " km")
-//            self.locationDetailsbtnSalonLocation.setTitle(salonAddress, for: .normal)
-//        } else {
-        //    self.btnSelectALocation.setTitle("Select a Location", for: .normal)
-       // }
+    func configureCell(model:DashboardProfileCellModel) {
+        lblUserName.text = model.userName
+        btnSelectALocation.setTitle(model.location, for: .normal)
+        lblRating.text = "\(model.rating)/5"
     }
     
-    @IBAction func actionEnableLocation(_ sender: UIButton) {
-        delegate?.locationUpdateAction()
-    }
-    
-    @IBAction func actionCloseEnableLocationView(_ sender: UIButton) {
-        enableLocationShowHide(status: true)
-    }
-    
-    @IBAction func actionCloseCurrentLocationView(_ sender: UIButton) {
-        locationDetailViewShowHide(status: true)
-        locationNameViewShowHide(status: false)
-    }
-    
-    @IBAction func actionChangeLocation(_ sender: UIButton) {
-    }
-    
-    @IBAction func actionChangeLocationDetailsView(_ sender: UIButton) {
-    }
-    
-    @IBAction func actionPinnedEnrichNearYouLocationDetailsView(_ sender: UIButton) {
-        delegate?.locationDetailViewUpdate()
-    }
-    
-    func enableLocationShowHide(status: Bool) {
-        enableLocationView.isHidden = status
-    }
-    
-    func locationNameViewShowHide(status: Bool) {
-        locationNameView.isHidden = status
-    }
-    
-    func locationDetailViewShowHide(status: Bool) {
-        locationDetailsView.isHidden = status
-    }
-    
+}
+
+struct DashboardProfileCellModel{
+    let userName: String
+    let location: String
+    let profilePictureURL: String
+    let rating: Double
 }

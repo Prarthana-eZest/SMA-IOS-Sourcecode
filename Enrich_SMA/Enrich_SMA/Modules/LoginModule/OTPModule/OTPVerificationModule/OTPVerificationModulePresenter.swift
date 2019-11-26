@@ -18,10 +18,10 @@ protocol OTPVerificationModulePresentationLogic
 
 class OTPVerificationModulePresenter: OTPVerificationModulePresentationLogic
 {
-  weak var viewController: OTPVerificationModuleDisplayLogic?
-  
-  // MARK: Do something
-  
+    weak var viewController: OTPVerificationModuleDisplayLogic?
+    
+    // MARK: Do something
+    
     // MARK: Do something
     func presentSomethingSuccess<T:Decodable>(response: T)
     {
@@ -31,5 +31,5 @@ class OTPVerificationModulePresenter: OTPVerificationModulePresentationLogic
     {
         viewController?.displayError(errorMessage: responseError)
     }
-   
+    
 }

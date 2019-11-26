@@ -18,28 +18,22 @@ protocol OTPVerificationModuleDisplayLogic: class
 class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDisplayLogic
 {
     @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var txtFieldOTP: CustomTextField!
+    @IBOutlet weak var txtFNewPassword: CustomTextField!
+    @IBOutlet weak var txtFConfirmPassword: CustomTextField!
+    
     @IBOutlet weak var lblOTPTimer: UILabel!
-    @IBOutlet weak var lblMobileNumber: UILabel!
     @IBOutlet weak var btnResendCode: UIButton!
     @IBOutlet weak var btnSubmit: UIButton!
     @IBOutlet weak var imgViewLogo: UIImageView!
-    
-    private  var userFirstName:String?
-    private  var userLastName:String?
-    private  var userMobileNumber:String?
-    private  var userGender:Int = 2
-    private  var userEmailFacebookOrGoogle:String?
-    private  var userReferalCode:String?
-    private  var userOTPCode:String?
-    private  var userOtherInclinedGender:String?
-    private  var userCountryCode:String?
     
     private  var loginOTPModuleViewController:LoginOTPModuleVC?
     
     //Timer Variables
     weak var countdownTimer: Timer!
     var totalTime = 45
+    var userName = ""
     
     var interactor: OTPVerificationModuleBusinessLogic?
     
@@ -69,25 +63,14 @@ class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDi
         presenter.viewController = viewController
     }
     
-    
-    
     // MARK: View lifecycle
     override func viewDidLoad()
     {
         super.viewDidLoad()
         title = "OTP Verification"
         hideKeyboardWhenTappedAround()
-        lblMobileNumber.text =  (  userCountryCode ?? "") +   userMobileNumber!
         startTimer()
-        txtFieldOTP.defaultTextAttributes.updateValue(10.0,
-                                                      forKey: NSAttributedString.Key.kern)
-        var padding: UIEdgeInsets {
-            get {
-                return UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
-            }
-        }
-        txtFieldOTP.bounds.inset(by: padding)
-        
+        [txtFieldOTP,txtFNewPassword,txtFConfirmPassword].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
         
         
     }
@@ -105,19 +88,10 @@ class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDi
     
     
     //MARK: IBActions
-    @IBAction func clickToChangeMobileNumber(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
+    
     @IBAction func clickResendCode(_ sender: Any) {
-        
         startTimer()
-        //        guard let nc =   navigationController else { return }
-        //        let exists = nc.containsViewController(ofKind: UserNameViewController.self)
-        //
-        //        if exists // This Condition is for user coming for registration
-        //        {connectToResendOTPForSignUp()}
-        //        else // This Condition is for user coming for login
-        //        {connectToResendOTPForLogin()}
+        connectToResendOTPForLogin()
     }
     
     @IBAction func clickToSubmit(_ sender: Any) {
@@ -126,48 +100,28 @@ class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDi
     }
     
     //MARK : PassData
-    func passData(firstName:String,lastName:String,gender:Int,mobileNumber:String,userFaceBookOrGoogleEmail:String,referalCode:String,OTPCode:String,otherInclinedGender:String,countryCode:String)
-    {
-        userFirstName = firstName
-        userLastName = lastName
-        userMobileNumber = mobileNumber
-        userGender = gender
-        userEmailFacebookOrGoogle = userFaceBookOrGoogleEmail
-        userReferalCode =  referalCode
-        userOTPCode = OTPCode
-        userOtherInclinedGender = otherInclinedGender
-        userCountryCode = countryCode
-    }
-    
     
     //MARK: Call Webservice
     func connectToServerForOTPVerification()
     {
         EZLoadingActivity.show("Loading...", disableUI: true)
-        let request = OTPVerificationModule.MobileNumberWithOTPVerification.Request(otp:  txtFieldOTP.text ?? "", mobile_number:   userMobileNumber ?? "")
-        interactor?.doPostRequest(request: request,method:HTTPMethod.post,endPoint:ConstantAPINames.validateOTPOnLogin.rawValue)
+        let request = OTPVerificationModule.ChangePasswordWithOTPVerification.Request(username: userName, otp:txtFieldOTP.text ?? "" , password: txtFConfirmPassword.text ?? "", confirm_password: txtFConfirmPassword.text ?? "")
+        interactor?.doPostRequest(request: request,method:HTTPMethod.post,endPoint:ConstantAPINames.forgotPassword.rawValue)
         
     }
     
     
     func displaySuccess<T:Decodable>(viewModel: T)
     {
-        if T.self == OTPVerificationModule.MobileNumberWithOTPVerification.Response.self{
-            let obj :OTPVerificationModule.MobileNumberWithOTPVerification.Response = viewModel as! OTPVerificationModule.MobileNumberWithOTPVerification.Response
-            
-            if(obj.status == true)
-            {
-                let vc = SetNewPasswordVC.instantiate(fromAppStoryboard: .Login)
-                self.navigationController?.pushViewController(vc, animated: true)
+        EZLoadingActivity.hide()
+        
+        if let model = viewModel as? OTPVerificationModule.ChangePasswordWithOTPVerification.Response{
+            if model.status == true{
+                self.navigationController?.popToRootViewController(animated: true)
             }
-            else
-            {
-                showAlert(alertTitle: alertTitle, alertMessage: obj.message ?? "")
-                
-            }
-            EZLoadingActivity.hide()
-            
+            showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
         }
+        
     }
     
     func displayError(errorMessage:String?)
@@ -175,7 +129,6 @@ class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDi
         DispatchQueue.main.async { [unowned self] in
             EZLoadingActivity.hide()
             self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
-            EZLoadingActivity.hide()
         }
     }
 }
@@ -187,30 +140,27 @@ extension OTPVerificationModuleVC:UITextFieldDelegate
         return true
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+}
+
+extension OTPVerificationModuleVC {
+    @objc func editingChanged(_ textField: UITextField) {
+        btnSubmit.isEnabled = false
+        btnSubmit.isSelected = true
+        imgViewLogo.image = UIImage(named: ImageNames.disabledLogo.rawValue)
+        let otp = txtFieldOTP.text!.trim()
+        let password = txtFNewPassword.text!.trim()
+        let confirmPassword = txtFConfirmPassword.text!.trim()
         
-        let s = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
-        guard !s.isEmpty else {
-            
-            return true }
-        if(s.count >= 4)
-        {
+        if otp.count >= 4,
+            !password.isEmpty,
+            !confirmPassword.isEmpty{
             btnSubmit.isEnabled = true
             btnSubmit.isSelected = true
-            imgViewLogo.image = UIImage(named: "OTPVerificationLogoSelected")
+            imgViewLogo.image = UIImage(named: ImageNames.enabledLogo.rawValue)
         }
-        else
-        {
-            btnSubmit.isEnabled = false
-            btnSubmit.isSelected = false
-            imgViewLogo.image = UIImage(named: "OTPVerificationLogoUnselected")
-            
-        }
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .none
-        return numberFormatter.number(from: s)?.intValue != nil
     }
 }
+
 
 extension OTPVerificationModuleVC
 {
@@ -252,15 +202,12 @@ extension OTPVerificationModuleVC:LoginOTPModuleDisplayLogic
     {
         loginOTPModuleViewController = LoginOTPModuleVC()
         loginOTPModuleViewController?.delegate = self
-        // let finalMobileNumberWithCountryCode = (  userCountryCode ?? "") +   userMobileNumber!
-        loginOTPModuleViewController?.connectToServerForMobileOTP(mobileNumber:   userMobileNumber!)
+        loginOTPModuleViewController?.connectToServerForMobileOTP(userName: userName)
     }
     func displaySuccessLoginOTPModule<T>(viewModel: T) where T : Decodable {
-        let obj :LoginOTPModule.OTP.Response = viewModel as! LoginOTPModule.OTP.Response
-        if(obj.status == true)
-        {
-            UserDefaults.standard.set(encodable: obj, forKey: UserDefauiltsKeys.k_Key_LoginUserOTPDetails)
-            userOTPCode = obj.data?.otpcode ?? ""
+        
+        if let model = viewModel as? LoginOTPModule.OTP.Response{
+            self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "OTP sent successfully")
         }
     }
     

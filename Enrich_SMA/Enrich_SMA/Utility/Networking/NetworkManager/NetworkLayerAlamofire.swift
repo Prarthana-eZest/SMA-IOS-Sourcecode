@@ -233,6 +233,10 @@ open class NetworkLayerAlamofire {
         
         var finalEndpoint = ""
         finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
+        
+        if endPoint == ConstantAPINames.getEmployeeList.rawValue{
+            finalEndpoint = finalEndpoint.replacingOccurrences(of: "/rest/V1", with: "")
+        }
         print("finalEndpoint \(finalEndpoint)")
         return finalEndpoint
     }
