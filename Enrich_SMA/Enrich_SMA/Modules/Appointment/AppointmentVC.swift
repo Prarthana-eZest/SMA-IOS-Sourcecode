@@ -27,6 +27,8 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     @IBOutlet weak var btnCompleted: UIButton!
     @IBOutlet weak var btnOnGoing: UIButton!
     @IBOutlet weak var btnUpComing: UIButton!
+    @IBOutlet weak var lblLocation: UILabel!
+    
     
     // MARK: Object lifecycle
     

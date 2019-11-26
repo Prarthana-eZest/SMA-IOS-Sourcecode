@@ -22,7 +22,6 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
     var interactor: DashboardBusinessLogic?
     @IBOutlet weak var tableView: UITableView!
     
-    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -147,7 +146,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.dashboardProfileCell, for: indexPath) as? DashboardProfileCell else {
                 return UITableViewCell()
             }
-            cell.configureCell()
+            //cell.configureCell(model: <#DashboardProfileCellModel#>)
             cell.selectionStyle = .none
             return cell
         case 1:
