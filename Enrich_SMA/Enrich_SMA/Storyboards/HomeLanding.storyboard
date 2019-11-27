@@ -144,7 +144,6 @@
                     <connections>
                         <segue destination="GK0-Ll-ad3" kind="relationship" relationship="viewControllers" id="ZJe-Zn-YWh"/>
                         <segue destination="ORm-2v-YJV" kind="relationship" relationship="viewControllers" id="edZ-a6-Tnl"/>
-                        <segue destination="dMu-xj-qgJ" kind="relationship" relationship="viewControllers" id="RWS-s9-9Tf"/>
                         <segue destination="4by-yA-Czg" kind="relationship" relationship="viewControllers" id="7KK-xq-PwZ"/>
                     </connections>
                 </tabBarController>
@@ -416,11 +415,11 @@
             <objects>
                 <viewController id="xzH-ET-48a" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NFX-M9-Hx3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INPROGRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otV-Yh-Iuh">
-                                <rect key="frame" x="156.5" y="395" width="101" height="23.5"/>
+                                <rect key="frame" x="156.5" y="436.5" width="101" height="23.5"/>
                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="18"/>
                                 <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

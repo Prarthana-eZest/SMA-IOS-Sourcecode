@@ -261,7 +261,7 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedTitleCell = indexPath.row
-        BottonButtonView.isHidden = (indexPath.row != 0)
+       // BottonButtonView.isHidden = (indexPath.row != 0)
         collectionView.reloadData()
         tableView.reloadData()
     }

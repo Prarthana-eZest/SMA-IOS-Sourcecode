@@ -88,7 +88,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DUm-IV-hGy">
-                        <rect key="frame" x="20" y="80" width="455" height="522"/>
+                        <rect key="frame" x="20" y="80" width="455" height="558"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue and Sales" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scd-0S-7Al">
                                 <rect key="frame" x="0.0" y="0.0" width="162.5" height="26"/>
@@ -262,10 +262,16 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SH-l6-L1l">
-                                <rect key="frame" x="0.0" y="272" width="455" height="250"/>
+                                <rect key="frame" x="0.0" y="272" width="455" height="286"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Required Run Rate: 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBu-kc-sbw">
+                                        <rect key="frame" x="15" y="10" width="425" height="21"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Yln-MJ-YbL">
-                                        <rect key="frame" x="15" y="15" width="425" height="220"/>
+                                        <rect key="frame" x="15" y="51" width="425" height="220"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3V7-5G-PmW">
                                                 <rect key="frame" x="0.0" y="0.0" width="425" height="60"/>
@@ -424,9 +430,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Yln-MJ-YbL" firstAttribute="top" secondItem="4SH-l6-L1l" secondAttribute="top" constant="15" id="G2R-ix-5WH"/>
+                                    <constraint firstItem="LBu-kc-sbw" firstAttribute="top" secondItem="4SH-l6-L1l" secondAttribute="top" constant="10" id="CXP-BQ-h1G"/>
                                     <constraint firstAttribute="trailing" secondItem="Yln-MJ-YbL" secondAttribute="trailing" constant="15" id="KUc-ah-cSr"/>
+                                    <constraint firstItem="LBu-kc-sbw" firstAttribute="leading" secondItem="4SH-l6-L1l" secondAttribute="leading" constant="15" id="O6d-U0-ogy"/>
                                     <constraint firstItem="Yln-MJ-YbL" firstAttribute="leading" secondItem="4SH-l6-L1l" secondAttribute="leading" constant="15" id="V9w-eg-5WA"/>
+                                    <constraint firstAttribute="trailing" secondItem="LBu-kc-sbw" secondAttribute="trailing" constant="15" id="iFf-aH-ucT"/>
+                                    <constraint firstItem="Yln-MJ-YbL" firstAttribute="top" secondItem="LBu-kc-sbw" secondAttribute="bottom" constant="20" id="vip-pa-6Py"/>
                                     <constraint firstAttribute="bottom" secondItem="Yln-MJ-YbL" secondAttribute="bottom" constant="15" id="zCz-KT-kuh"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

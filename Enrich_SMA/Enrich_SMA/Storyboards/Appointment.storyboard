@@ -218,7 +218,7 @@
         <!--Client InformationVC-->
         <scene sceneID="9rD-Ib-WxG">
             <objects>
-                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="daC-iw-YQM" customClass="ClientInformationVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="daC-iw-YQM" customClass="ClientInformationVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tfE-T0-dQl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -269,11 +269,11 @@
                                 <rect key="frame" x="0.0" y="175" width="414" height="687"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="fAN-bx-SYM">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="617"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="c0x-71-mfi" customClass="ProductsCollectionCell" customModule="Enrich_TMA" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="c0x-71-mfi" customClass="ProductsCollectionCell" customModule="Enrich_SMA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="1" width="414" height="200"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c0x-71-mfi" id="sJi-YB-1x6">
@@ -305,7 +305,7 @@
                                                     <outlet property="productCollectionView" destination="Oue-OE-JLc" id="Z9S-xv-RAB"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="eBH-0y-ClO" customClass="PointsCell" customModule="Enrich_TMA" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="eBH-0y-ClO" customClass="PointsCell" customModule="Enrich_SMA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="201" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eBH-0y-ClO" id="rxV-00-th5">
@@ -359,8 +359,8 @@
                                             <outlet property="delegate" destination="daC-iw-YQM" id="W6b-Ac-Vw8"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nK-wc-zdq">
-                                        <rect key="frame" x="0.0" y="617" width="414" height="70"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nK-wc-zdq">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="EmC-m8-e6F">
                                                 <rect key="frame" x="20" y="10" width="374" height="50"/>
@@ -449,7 +449,7 @@
         <!--Appointment DetailsVC-->
         <scene sceneID="bpr-M5-g8y">
             <objects>
-                <viewController storyboardIdentifier="AppointmentDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oNo-7O-YU9" customClass="AppointmentDetailsVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oNo-7O-YU9" customClass="AppointmentDetailsVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rTP-YG-8DB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

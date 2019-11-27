@@ -306,7 +306,7 @@
                                                 <rect key="frame" x="0.0" y="41" width="300" height="36"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="28"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="42"/>
                                                 </variation>
