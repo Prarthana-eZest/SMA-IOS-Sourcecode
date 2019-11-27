@@ -149,7 +149,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
             }
             self.rosterList.removeAll()
             model.data?.forEach{
-                let shift = "\($0.shift_name ?? "NA") : \($0.start_time ?? "NA") - \($0.end_time ?? "NA")"
+                let shift = "\($0.shift_name ?? "-") : \($0.start_time ?? "-") - \($0.end_time ?? "-")"
                 self.rosterList.append(shift)
             }
         }
@@ -290,26 +290,23 @@ extension MyProfileVC{
         
         if let data = model.data{
             
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "", dateOfJoining: data.joining_date ?? "NA",ratings: data.rating ?? 0)
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-",ratings: data.rating ?? 0)
             
             let sections =
-                [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of joining",value:data.joining_date ?? "NA",isMultiOption:false),
-                                                                 MyProfileModel(title:"Gender",value:"NA",isMultiOption:false),
-                                                                 MyProfileModel(title:"Mobile No",value: "NA",isMultiOption:false),
-                                                                 MyProfileModel(title:"Home Contact No",value:"NA",isMultiOption:false),
-                                                                 MyProfileModel(title:"Email Id",value:"NA",isMultiOption:false),
-                                                                 MyProfileModel(title:"Passport No",value:"NA",isMultiOption:false),
-                                                                 MyProfileModel(title:"Address",value:"NA",isMultiOption:false)]),
-                 MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee Code",value:data.employee_code ?? "NA",isMultiOption:false),
-                                                                     MyProfileModel(title:"Nick Name",value:data.nickname ?? "NA",isMultiOption:false),
-                                                                     MyProfileModel(title:"Experience",value: "NA",isMultiOption:false),
-                                                                     MyProfileModel(title:"Center",value:data.base_salon_name ?? "NA",isMultiOption:false),
-                                                                     MyProfileModel(title:"Category",value:data.category ?? "NA",isMultiOption:false),
-                                                                     MyProfileModel(title:"Designation/Role",value:data.designation ?? "NA",isMultiOption:false),
-                                                                     MyProfileModel(title:"Services Performed",value:"NA",isMultiOption:true)]),
+                [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.joining_date ?? "-",isMultiOption:false),
+                                                                 MyProfileModel(title:"Mobile Number",value: "-",isMultiOption:false),
+                                                                 MyProfileModel(title:"Other Contact Number",value:"-",isMultiOption:false),
+                                                                 MyProfileModel(title:"Email address",value:"-",isMultiOption:false),MyProfileModel(title:"Address",value:"-",isMultiOption:false)]),
+                 MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee ID",value:data.employee_code ?? "-",isMultiOption:false),
+                                                                     MyProfileModel(title:"Nick Name",value:data.nickname ?? "-",isMultiOption:false),
+                                                                     MyProfileModel(title:"Experience",value: "-",isMultiOption:false),
+                                                                     MyProfileModel(title:"Center",value:data.base_salon_name ?? "-",isMultiOption:false),
+                                                                     MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
+                                                                     MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false),
+                                                                     MyProfileModel(title:"Service Expertise",value:"-",isMultiOption:true)]),
                  
-                 MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"NA",isMultiOption:true),
-                                                              MyProfileModel(title:"Status",value:"NA",isMultiOption:false)])]
+                 MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
+                                                              MyProfileModel(title:"Status",value:"-",isMultiOption:false)])]
             
             self.profileSections.removeAll()
             self.profileHeader = header
