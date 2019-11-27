@@ -95,6 +95,9 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         
         tableView.register(UINib(nibName: CellIdentifier.headerViewWithTitleCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.headerViewWithTitleCell)
         
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+
+        
         getProfileData()
         getServiceList()
         getRosterDetails()
@@ -196,7 +199,7 @@ extension MyProfileVC: ProfileCellDelegate{
 extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return profileSections.count + 1
+        return profileSections.count + (profileHeader != nil ? 1 : 0)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
