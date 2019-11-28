@@ -62,7 +62,7 @@ class TermsAndConditionsVC: UIViewController, UITextViewDelegate,TermsAndConditi
         getTermsAndConditions()
         textView.delegate = self
         textView.isEditable = false
-        btnAccept.isSelected = true
+        btnAccept.isSelected = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,16 +106,19 @@ class TermsAndConditionsVC: UIViewController, UITextViewDelegate,TermsAndConditi
     
     func getTermsAndConditions()
     {
+        EZLoadingActivity.show("", disableUI: true)
         let query =  GenericClass.sharedInstance.getURLForType(arrSubCat_type: self.parseData())
         print("query : \(query)")
         interactor?.doGetTermsAndConditons(request: query, method: .get)
     }
     
     func displaySuccess<T: Decodable>(viewModel: T) {
+        EZLoadingActivity.hide()
         if let obj = viewModel as? TermsAndConditions.GetTermsAndConditions.Response{
             print(obj)
             let attributeString = NSMutableAttributedString(string: obj.items?.first?.content ?? "")
             self.textView.attributedText = attributeString
+            btnAccept.isSelected = true
         }
         
     }
