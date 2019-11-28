@@ -75,6 +75,11 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         super.viewDidLoad()
         doSomething()
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
+        
+        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            let data = userData.data
+            lblLocation.text = data?.base_salon_name ?? ""
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

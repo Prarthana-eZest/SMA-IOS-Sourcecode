@@ -36,10 +36,20 @@ class DashboardProfileCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(model:DashboardProfileCellModel) {
-        lblUserName.text = model.userName
-        btnSelectALocation.setTitle(model.location, for: .normal)
-        lblRating.text = "\(model.rating)/5"
+//    func configureCell(model:DashboardProfileCellModel) {
+//        lblUserName.text = model.userName
+//        btnSelectALocation.setTitle(model.location, for: .normal)
+//        lblRating.text = "\(model.rating)/5"
+    
+    func configureCell() {
+
+        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            let data = userData.data
+            lblUserName.text = "\(data?.firstname ?? "") \(data?.lastname ?? "")"
+            btnSelectALocation.setTitle(data?.base_salon_name ?? "", for: .normal)
+            lblRating.text = "\(0.0)/5"
+            lblDesignation.text = data?.designation ?? "-"
+        }
     }
     
 }

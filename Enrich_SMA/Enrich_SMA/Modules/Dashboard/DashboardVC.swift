@@ -146,7 +146,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.dashboardProfileCell, for: indexPath) as? DashboardProfileCell else {
                 return UITableViewCell()
             }
-            //cell.configureCell(model: <#DashboardProfileCellModel#>)
+            cell.configureCell()
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -169,5 +169,11 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
+        
+        if indexPath.row == 0{
+            let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
+            vc.profileType = .selfUser
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
