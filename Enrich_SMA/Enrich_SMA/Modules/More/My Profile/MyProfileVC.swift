@@ -296,7 +296,7 @@ extension MyProfileVC{
             let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-",ratings: data.rating ?? 0)
             
             let sections =
-                [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.joining_date ?? "-",isMultiOption:false),
+                [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
                                                                  MyProfileModel(title:"Mobile Number",value: "-",isMultiOption:false),
                                                                  MyProfileModel(title:"Other Contact Number",value:"-",isMultiOption:false),
                                                                  MyProfileModel(title:"Email address",value:"-",isMultiOption:false),MyProfileModel(title:"Address",value:"-",isMultiOption:false)]),
