@@ -116,12 +116,21 @@ class TermsAndConditionsVC: UIViewController, UITextViewDelegate,TermsAndConditi
         EZLoadingActivity.hide()
         if let obj = viewModel as? TermsAndConditions.GetTermsAndConditions.Response{
             print(obj)
-            let attributeString = NSMutableAttributedString(string: obj.items?.first?.content ?? "")
+            
+            let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 20)
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: font!,
+                .foregroundColor: UIColor.darkGray
+            ]
+            let text = obj.items?.first?.content ?? ""
+            let attributeString = NSAttributedString(string: text , attributes: attributes as [NSAttributedString.Key : Any])
             self.textView.attributedText = attributeString
-            btnAccept.isSelected = true
+            
+            btnAccept.isSelected = textView.contentSize.height <= textView.frame.size.height
         }
         
     }
+    
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         DispatchQueue.main.async { [unowned self] in
