@@ -186,6 +186,8 @@
 		E31F816723840E8E00089572 /* MyProfileMultiOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F816523840E8D00089572 /* MyProfileMultiOptionCell.swift */; };
 		E31F816823840E8E00089572 /* MyProfileMultiOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31F816623840E8E00089572 /* MyProfileMultiOptionCell.xib */; };
 		E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */; };
+		E3B2312C238FAB2B00C17B56 /* AddNotesSingatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2312A238FAB2B00C17B56 /* AddNotesSingatureCell.swift */; };
+		E3B2312D238FAB2B00C17B56 /* AddNotesSingatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3B2312B238FAB2B00C17B56 /* AddNotesSingatureCell.xib */; };
 		E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */; };
 		E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */; };
 		E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CD501023713C3600DE106E /* LoginOTPModuleVC.swift */; };
@@ -422,6 +424,8 @@
 		E31F816523840E8D00089572 /* MyProfileMultiOptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileMultiOptionCell.swift; sourceTree = "<group>"; };
 		E31F816623840E8E00089572 /* MyProfileMultiOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProfileMultiOptionCell.xib; sourceTree = "<group>"; };
 		E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionAppDelegate.swift; sourceTree = "<group>"; };
+		E3B2312A238FAB2B00C17B56 /* AddNotesSingatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesSingatureCell.swift; sourceTree = "<group>"; };
+		E3B2312B238FAB2B00C17B56 /* AddNotesSingatureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNotesSingatureCell.xib; sourceTree = "<group>"; };
 		E3CD500E23713C3600DE106E /* LoginOTPModuleWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleWorker.swift; sourceTree = "<group>"; };
 		E3CD500F23713C3600DE106E /* LoginOTPModuleModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleModels.swift; sourceTree = "<group>"; };
 		E3CD501023713C3600DE106E /* LoginOTPModuleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOTPModuleVC.swift; sourceTree = "<group>"; };
@@ -1169,10 +1173,12 @@
 		E306014A237EA49200988EEC /* Gender & TagView  */ = {
 			isa = PBXGroup;
 			children = (
+				E306014D237EA49200988EEC /* TagViewCell.swift */,
 				E306014B237EA49200988EEC /* TagViewCell.xib */,
 				E306014C237EA49200988EEC /* SelectGenderCell.swift */,
-				E306014D237EA49200988EEC /* TagViewCell.swift */,
 				E306014E237EA49200988EEC /* SelectGenderCell.xib */,
+				E3B2312A238FAB2B00C17B56 /* AddNotesSingatureCell.swift */,
+				E3B2312B238FAB2B00C17B56 /* AddNotesSingatureCell.xib */,
 			);
 			path = "Gender & TagView ";
 			sourceTree = "<group>";
@@ -1214,9 +1220,9 @@
 		E30601C6237EAA7A00988EEC /* Client Information */ = {
 			isa = PBXGroup;
 			children = (
+				E30601C9237EAA7A00988EEC /* ClientInformationVC.swift */,
 				E30601C7237EAA7A00988EEC /* ClientInformationInteractor.swift */,
 				E30601C8237EAA7A00988EEC /* ClientInformationPresenter.swift */,
-				E30601C9237EAA7A00988EEC /* ClientInformationVC.swift */,
 				E30601CA237EAA7A00988EEC /* ClientInformationWorker.swift */,
 				E30601CB237EAA7A00988EEC /* ClientInformationModels.swift */,
 			);
@@ -1429,6 +1435,7 @@
 				E3034263235EE14700E0BF0A /* FuturaPTCondBoldOblique.otf in Resources */,
 				E30342EB235EE3C100E0BF0A /* Appointment.storyboard in Resources */,
 				E3034261235EE14700E0BF0A /* FuturaPTHeavy.otf in Resources */,
+				E3B2312D238FAB2B00C17B56 /* AddNotesSingatureCell.xib in Resources */,
 				E30340B8235EE11C00E0BF0A /* NotificationDetailsCell.xib in Resources */,
 				E30342E7235EE29200E0BF0A /* Dashboard.storyboard in Resources */,
 				E3034253235EE14700E0BF0A /* FuturaPTCondMedium.otf in Resources */,
@@ -1704,6 +1711,7 @@
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
+				E3B2312C238FAB2B00C17B56 /* AddNotesSingatureCell.swift in Sources */,
 				E30601BD237EAA4D00988EEC /* RevenuePresenter.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
 				E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */,

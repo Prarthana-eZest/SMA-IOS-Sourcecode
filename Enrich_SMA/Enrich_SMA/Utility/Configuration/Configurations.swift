@@ -43,6 +43,7 @@ enum CellIdentifier{
     static let tagViewCell = "TagViewCell"
     static let serviceHistoryCell = "ServiceHistoryCell"
     static let pointsCell = "PointsCell"
+    static let addNotesSingatureCell = "AddNotesSingatureCell"
     
     // Profile
     static let myProfileHeaderCell = "MyProfileHeaderCell"

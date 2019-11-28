@@ -13,7 +13,7 @@
         <!--RevenueVC-->
         <scene sceneID="J9d-Rk-cob">
             <objects>
-                <viewController storyboardIdentifier="RevenueVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mPd-Yi-Fha" customClass="RevenueVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RevenueVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mPd-Yi-Fha" customClass="RevenueVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKS-IK-s9o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -33,6 +33,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
                                 "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
                                 "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."]
     
+    var notes:[String] = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                          "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
+                          "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."]
     
     
     var selectedTitleCell = 0
@@ -95,11 +98,22 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         tableView.register(UINib(nibName: CellIdentifier.headerViewWithTitleCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.headerViewWithTitleCell)
         tableView.register(UINib(nibName: CellIdentifier.membershipStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.membershipStatusCell)
         tableView.register(UINib(nibName: CellIdentifier.serviceHistoryCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.serviceHistoryCell)
-        
+        tableView.register(UINib(nibName: CellIdentifier.addNotesSingatureCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.addNotesSingatureCell)
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
-        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+        KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        KeyboardAnimation.sharedInstance.endKeyboardObservation()
+    }
+    
     
     @IBAction func actionAddClientNotes(_ sender: UIButton) {
     }
@@ -141,14 +155,18 @@ extension ClientInformationVC: SelectGenderDelegate{
 extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        switch selectedTitleCell {
+        case 0: return 2
+        default:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch selectedTitleCell {
-        case 0: return preferences.count + 1
-        case 1: return consulationData.count + 1
+        case 0: return section == 0 ? preferences.count + 1 : notes.count + 1
+        case 1: return consulationData.count + 2
         case 2: return 1
         case 3: return 5
             
@@ -167,7 +185,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else{
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = "Preference"
+                cell.titleLabel.text = indexPath.section == 0 ? "Preference" : "Client Notes"
                 cell.viewAllButton.isHidden = true
                 cell.viewAllButton.isHidden = true
                 cell.selectionStyle = .none
@@ -177,7 +195,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.pointsCell) as? PointsCell else {
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = preferences[indexPath.row - 1]
+                cell.titleLabel.text = indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell
@@ -194,6 +212,13 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 cell.configureCell(isEditable: false, selectedGender: .male)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
                 cell.selectionStyle = .none
+                return cell
+            }else if indexPath.row == (consulationData.count + 1){
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.addNotesSingatureCell) as? AddNotesSingatureCell else {
+                    return UITableViewCell()
+                }
+                cell.selectionStyle = .none
+                cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell
             }else{
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagViewCell, for: indexPath) as? TagViewCell else {
