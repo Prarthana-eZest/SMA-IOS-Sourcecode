@@ -27,7 +27,7 @@ class TermsAndConditionsVC: UIViewController, UITextViewDelegate,TermsAndConditi
     var viewDismissBlock: ((Bool) -> Void)?
     
     var interactor: TermsAndConditionsBusinessLogic?
-    
+        
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)

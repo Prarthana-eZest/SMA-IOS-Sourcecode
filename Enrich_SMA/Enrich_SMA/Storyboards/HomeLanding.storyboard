@@ -395,7 +395,7 @@
         <scene sceneID="9h6-8z-wFy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ORm-2v-YJV" userLabel="Navigation Controller Search" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Appointment" image="revenueTab" id="O5r-1Q-sqt"/>
+                    <tabBarItem key="tabBarItem" title="Appointment" image="appointmentTab" id="O5r-1Q-sqt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8FC-Dd-0eI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -549,7 +549,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyProfile" id="KBv-iR-Vfy">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyProfile" id="KBv-iR-Vfy">
                                         <rect key="frame" x="0.0" y="1" width="575" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KBv-iR-Vfy" id="Xba-yr-5K9">
@@ -586,7 +586,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Employees" id="6Cd-gT-ugv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Employees" id="6Cd-gT-ugv">
                                         <rect key="frame" x="0.0" y="45" width="575" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Cd-gT-ugv" id="Bm8-U5-VUn">
@@ -734,7 +734,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notifications" id="Qn3-OG-Kgg" customClass="NotificationCell" customModule="Enrich_SMA" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notifications" id="Qn3-OG-Kgg" customClass="NotificationCell" customModule="Enrich_SMA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="221" width="575" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qn3-OG-Kgg" id="jwi-wG-Jr2">
@@ -852,13 +852,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="appointmentTab" width="20" height="20"/>
         <image name="homeTab" width="28" height="28"/>
         <image name="location" width="11" height="15"/>
-        <image name="moreTab" width="24" height="6"/>
+        <image name="moreTab" width="21" height="20"/>
         <image name="myCustomerMenu" width="25" height="25"/>
         <image name="myProfileMenu" width="25" height="25"/>
         <image name="notificationMenu" width="24" height="26"/>
-        <image name="revenueTab" width="22" height="18"/>
         <image name="scheduleTab" width="18" height="19"/>
         <image name="wishlist-icon" width="22" height="26"/>
     </resources>

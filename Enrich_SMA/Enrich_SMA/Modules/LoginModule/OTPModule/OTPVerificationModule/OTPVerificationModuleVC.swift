@@ -72,20 +72,30 @@ class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDi
         startTimer()
         [txtFieldOTP,txtFNewPassword,txtFConfirmPassword].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
         
+        txtFieldOTP.delegate = self
+        txtFNewPassword.delegate = self
+        txtFConfirmPassword.delegate = self
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.OrientationLock.lock(to:UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         navigationController?.addCustomBackButton(title: "")
-        
+        KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
+        clearData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideKeyboard()
+        KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
     
+    func clearData(){
+        self.txtFieldOTP.text = ""
+        self.txtFNewPassword.text = ""
+        self.txtFConfirmPassword.text = ""
+    }
     
     //MARK: IBActions
     
@@ -207,6 +217,7 @@ extension OTPVerificationModuleVC:LoginOTPModuleDisplayLogic
     func displaySuccessLoginOTPModule<T>(viewModel: T) where T : Decodable {
         
         if let model = viewModel as? LoginOTPModule.OTP.Response{
+            clearData()
             self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "OTP sent successfully")
         }
     }

@@ -55,15 +55,20 @@ class LoginOTPModuleVC: DesignableViewController, LoginOTPModuleDisplayLogic {
         super.viewDidLoad()
         initialSetUp()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "")
-        
+        KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
+        self.txtFUserName.text = ""
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         hideKeyboard()
+        KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
+    
     // MARK: initialSetUp
     func initialSetUp() {
         hideKeyboardWhenTappedAround()

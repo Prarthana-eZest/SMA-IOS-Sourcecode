@@ -26,6 +26,7 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     
     var termsAccpeted = false
     
+    var fromTerms = false
     
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -63,6 +64,11 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
+        if !fromTerms{
+            self.txtfEnrichId.text = ""
+            self.txtfPassword.text = ""
+        }
+        fromTerms = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,6 +84,7 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     // MARK: IBActions
     
     @IBAction func actionTermsConditions(_ sender: UIButton) {
+        fromTerms = true
         let vc = TermsAndConditionsVC.instantiate(fromAppStoryboard: .Login)
         self.navigationController?.pushViewController(vc, animated: true)
         vc.viewDismissBlock = { [unowned self] result in

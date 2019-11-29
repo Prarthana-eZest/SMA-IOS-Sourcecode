@@ -33,7 +33,8 @@ class MyProfileHeaderCell: UITableViewCell {
         lblUserName.text = model.userName
         lblSpeciality.text = model.speciality
         lblDateOfJoining.text = model.dateOfJoining
-        lblRatings.text = "\(model.ratings)/5"
+        let rating = (model.ratings == nil) ? "0" : "\(model.ratings ?? 0)"
+        lblRatings.text = "\(rating)/5"
         
         let url = URL(string: model.profilePictureURL)
         let imageurl = model.profilePictureURL
@@ -52,5 +53,5 @@ struct MyProfileHeaderModel{
     let userName: String
     let speciality: String
     let dateOfJoining: String
-    let ratings: Double
+    let ratings: Double?
 }

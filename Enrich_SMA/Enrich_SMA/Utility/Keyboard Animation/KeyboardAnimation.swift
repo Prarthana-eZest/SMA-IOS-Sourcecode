@@ -58,13 +58,15 @@ class KeyboardAnimation: NSObject {
     }
 
     @objc internal func onTap(_ sender: UITapGestureRecognizer) {
-        let location = sender.location(in: view!)
-        let hitView = view?.hitTest(location, with: nil)
-        if hitView is UIButton {
-            return
+        if let view = view{
+            let location = sender.location(in: view)
+            let hitView = view.hitTest(location, with: nil)
+            if hitView is UIButton {
+                return
+            }
+            
+            view.endEditing(true)
         }
-
-        view?.endEditing(true)
     }
 
     @objc func textViewDidBeginEditing(_ notification: Foundation.Notification) {
