@@ -15,7 +15,7 @@ enum SectionIdentifier: String {
     
     // Client Information
     case generalClientInfo = "General"
-    case consulationInfo = "Consulation"
+    case consulationInfo = "Consultation"
     case memebershipInfo = "Membership"
     case historyInfo = "History"
 }
