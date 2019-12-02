@@ -69,6 +69,8 @@ enum MyProfile
         
         struct Request: Codable {
             let salon_code: String
+            let fromDate: String
+            let toDate: String
             let employee_code: String
         }
         

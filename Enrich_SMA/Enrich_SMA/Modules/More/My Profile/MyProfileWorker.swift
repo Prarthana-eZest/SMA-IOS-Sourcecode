@@ -43,7 +43,7 @@ class MyProfileWorker
             print(error)
             self.presenter?.presentGetProfileError(responseError: error)
         }
-        let successHandler: (EmployeeListing.GetEmployeeList.Response) -> Void = { (response) in
+        let successHandler: (MyProfile.GetRosterDetails.Response) -> Void = { (response) in
             print(response)
             self.presenter?.presentGetRosterDetailsSuccess(response: response)
         }

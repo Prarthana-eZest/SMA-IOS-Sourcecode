@@ -99,8 +99,10 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
 
         
         getProfileData()
-        getServiceList()
-        getRosterDetails()
+        if profileType == .selfUser{
+            getServiceList()
+            getRosterDetails()
+        }
         
     }
     
@@ -125,14 +127,16 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     }
     
     func getRosterDetails()  {
-        EZLoadingActivity.show("Loading...", disableUI: true)
         
-        
-        
-        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+        if let startDate = Date().startOfWeek,let endDate = Date().endOfWeek{
             
-            let request = MyProfile.GetRosterDetails.Request(salon_code: userData.data?.base_salon_code ?? "", employee_code: userData.data?.employee_code ?? "")
-            interactor?.doGetRosterData(request: request, method: .post)
+            if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+                
+                EZLoadingActivity.show("Loading...", disableUI: true)
+                
+                let request = MyProfile.GetRosterDetails.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: startDate.dayYearMonthDate, toDate: endDate.dayYearMonthDate, employee_code: userData.data?.employee_code ?? "")
+                interactor?.doGetRosterData(request: request, method: .post)
+            }
         }
     }
     
@@ -146,13 +150,9 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
             self.service.removeAll()
             self.service.append(contentsOf: model.data?.service_list ?? [])
         }else if let model = viewModel as? MyProfile.GetRosterDetails.Response,model.status == true{
-            if let data = model.data, data.isEmpty{
-                showAlert(alertTitle: alertTitle, alertMessage: model.message)
-                return
-            }
             self.rosterList.removeAll()
             model.data?.forEach{
-                let shift = "\($0.shift_name ?? "-") : \($0.start_time ?? "-") - \($0.end_time ?? "-")"
+                let shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
                 self.rosterList.append(shift)
             }
         }
@@ -181,7 +181,7 @@ extension MyProfileVC: ProfileCellDelegate{
             
         case .services:
             vc.listing = service
-            vc.screenTitle = "Services Performed"
+            vc.screenTitle = "Service Expertise"
             
         case .shifts:
             vc.listing = rosterList

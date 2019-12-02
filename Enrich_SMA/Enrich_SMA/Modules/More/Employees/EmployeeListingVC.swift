@@ -123,7 +123,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
         
         if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
-            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate , employee_code: userData.data?.employee_code ?? "")
+            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate )
             interactor?.doGetEmployeeListData(request:request, method: HTTPMethod.get)
         }
         
@@ -163,7 +163,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
                 }
             }
             
-            let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "NA", ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText, employeeId: $0.employee_id)
+            let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "", ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText, employeeId: $0.employee_id)
             self.employeeList.append(model)
         }
         self.tableView.reloadData()
