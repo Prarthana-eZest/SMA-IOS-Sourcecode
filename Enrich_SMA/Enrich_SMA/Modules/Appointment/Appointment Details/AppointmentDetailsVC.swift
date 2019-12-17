@@ -26,11 +26,11 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic
     
     // MARK: Object lifecycle
     
-    let appintmentTimeLine:[AppointmentTimelineModel] = [
-        AppointmentTimelineModel(time: "10:00 am", title: "K Resistance Extentioniste Ritual- Bond & Fibre Strengthening -Women", subTitle: "With Silicon free oil",alreadyCovered: true),
-        AppointmentTimelineModel(time: "10:30 am", title: "K Resistance Extentioniste Ritual- Bond & Fibre Strengthening -Women", subTitle: "With Silicon free oil",alreadyCovered: true),
-        AppointmentTimelineModel(time: "10:45 am ", title: "K Resistance Extentioniste Ritual- Bond & Fibre Strengthening -Women", subTitle: "With Silicon free oil",alreadyCovered: false),
-        AppointmentTimelineModel(time: "11:30 am ", title: "Appointment Ends", subTitle: "",alreadyCovered: false)]
+    var appointmentDetails: Appointment.GetAppointnents.Data?
+    
+    var selectedDate:Date = Date()
+    
+    var appintmentTimeLine:[AppointmentTimelineModel] = []
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
@@ -105,12 +105,22 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic
         self.present(vc, animated: true, completion: nil)
     }
     
+    func configureTimeline(){
+        self.appintmentTimeLine.removeAll()
+        appointmentDetails?.services?.forEach{
+            self.appintmentTimeLine.append(AppointmentTimelineModel(time: $0.start_time ?? "", title: $0.service_name ?? "", subTitle: $0.servicing_technician ?? "", alreadyCovered: $0.status == "completed"))
+        }
+        self.appintmentTimeLine.append(AppointmentTimelineModel(time: appointmentDetails?.services?.last?.end_time ?? "", title: "Appointment ends", subTitle: "", alreadyCovered: false))
+        self.tableView.reloadData()
+    }
+    
+    
 }
 
 extension AppointmentDetailsVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return (appointmentDetails?.services?.count ?? 0) > 0 ? 3 : 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,7 +136,9 @@ extension AppointmentDetailsVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.appointmentDetailsCell, for: indexPath) as? AppointmentDetailsCell else {
                 return UITableViewCell()
             }
-            //cell.configureCell(model: <#T##AppointmentDetailsModel#>)
+            if let model = appointmentDetails{
+                cell.configureCell(model: model,date: selectedDate)
+            }
             cell.selectionStyle = .none
             return cell
             
@@ -157,6 +169,10 @@ extension AppointmentDetailsVC: UITableViewDelegate, UITableViewDataSource {
         print("Selection")
     }
 }
+
+
+
+
 
 
 

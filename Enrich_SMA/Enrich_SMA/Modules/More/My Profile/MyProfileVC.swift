@@ -100,7 +100,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         
         getProfileData()
         if profileType == .selfUser{
-            getServiceList()
+           // getServiceList()
             getRosterDetails()
         }
         
@@ -305,9 +305,7 @@ extension MyProfileVC{
                                                                      MyProfileModel(title:"Experience",value: "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Center",value:data.base_salon_name ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Service Expertise",value:"-",isMultiOption:true)]),
-                 
+                                                                     MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false)]),
                  MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
                                                               MyProfileModel(title:"Status",value:"-",isMultiOption:false)])]
             

@@ -14,6 +14,11 @@ protocol AppointmentDelegate:class {
     func actionViewAll()
 }
 
+enum ServiceType:String{
+    case Salon = "salon"
+    case Belita = "home"
+}
+
 class AppointmentStatusCell: UITableViewCell {
 
     
@@ -29,6 +34,9 @@ class AppointmentStatusCell: UITableViewCell {
     @IBOutlet private weak var lblLocation: UILabel!
     @IBOutlet private weak var locationStackView: UIStackView!
     
+    let salonAppointmentColor = UIColor(red: 238/255, green: 91/255, blue: 71/255, alpha: 1)
+    let belitaAppointmentColor = UIColor(red: 135/255, green: 197/255, blue: 205/255, alpha: 1)
+
     
     weak var delegate:AppointmentDelegate?
     var indexPath:IndexPath?
@@ -44,16 +52,24 @@ class AppointmentStatusCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(model:AppointmentStatusModel){
-        lblUserName.text = model.userName
-        lblStartTime.text = model.startTimr
-        lblEndTime.text = model.endTime
-        lblTotalDuration.text = model.totalDuration
-        lblServiceName.text = model.services.first
-        btnServiceCount.setTitle("+\(model.services.count - 1)", for: .normal)
-        statusColorView.backgroundColor = (model.status == .upcoming) ? UIColor(red: 145/255, green: 220/255, blue: 228/255, alpha: 1) : UIColor(red: 238/255, green: 91/255, blue: 70/255, alpha: 1)
-        lblRatings.text = "\(model.ratings)/5"
-        lblLocation.text = model.location
+    func configureCell(model:Appointment.GetAppointnents.Data){
+        lblUserName.text = model.booked_by ?? ""
+        lblStartTime.text = model.start_time ?? ""
+        lblEndTime.text = model.end_time ?? ""
+        lblTotalDuration.text = "\(model.total_duration ?? "0") min"
+        lblServiceName.text = model.services?.first?.service_name ?? "Not available"
+        btnServiceCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
+        //lblAppointmentStatus.text = "\(model.status ?? "")"
+        lblLocation.text = model.customer_address ?? ""
+        locationStackView.isHidden = true
+        lblRatings.text = "\(model.avg_rating ?? 0)/5"
+        statusColorView.backgroundColor = salonAppointmentColor
+
+        if let typeText = model.appointment_type,
+            let type = ServiceType(rawValue: typeText){
+            locationStackView.isHidden = (type == .Salon)
+            statusColorView.backgroundColor = (type == .Salon) ? salonAppointmentColor : belitaAppointmentColor
+        }
     }
     
     @IBAction func actionServiceCount(_ sender: UIButton) {
@@ -61,20 +77,3 @@ class AppointmentStatusCell: UITableViewCell {
     
 }
 
-enum AppointmentStatus{
-    case upcoming,ongoing,completed
-}
-
-struct AppointmentStatusModel{
-    let userName: String
-    let services: [String]
-    let appointmentStatus: String
-    let startTimr: String
-    let endTime: String
-    let totalDuration: String
-    let status: AppointmentStatus
-    let ratings: Double
-    let location: String
-    let latitude: Double
-    let langitude: Double
-}

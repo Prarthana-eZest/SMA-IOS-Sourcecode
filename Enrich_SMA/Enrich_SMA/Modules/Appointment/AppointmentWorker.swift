@@ -14,7 +14,22 @@ import UIKit
 
 class AppointmentWorker
 {
-  func doSomeWork()
-  {
-  }
+    
+    let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
+    var presenter: AppointmentPresentationLogic?
+    
+    func postRequestForAppointments(request:Appointment.GetAppointnents.Request, method: HTTPMethod) {
+        
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (Appointment.GetAppointnents.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentGetAppointmentsSuccess(response: response)
+        }
+        
+        self.networkLayer.post(urlString: ConstantAPINames.getAppointments.rawValue, body: request, headers: ["X-Request-From": "sma"], successHandler: successHandler, errorHandler: errorHandler, method: .post)
+        
+    }
 }

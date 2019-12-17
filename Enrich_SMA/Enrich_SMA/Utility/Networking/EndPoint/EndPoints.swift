@@ -70,4 +70,7 @@ public enum ConstantAPINames: String {
     case getServiceList = "employee/services?is_custom=true"
     case getEmployeeList = "lumen/roster"
     
+    // Appoitments
+    case getAppointments = "lumen/appointments/appointment-list"
+    
 }

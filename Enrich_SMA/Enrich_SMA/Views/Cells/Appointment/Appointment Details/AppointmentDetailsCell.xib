@@ -160,7 +160,7 @@
                         </constraints>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ER7-qz-N91">
-                        <rect key="frame" x="0.0" y="240.5" width="418" height="208.5"/>
+                        <rect key="frame" x="0.0" y="240.5" width="418" height="245.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qQ-hh-4GS">
                                 <rect key="frame" x="0.0" y="0.0" width="418" height="106"/>
@@ -332,46 +332,78 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VnU-FQ-5aq">
-                                <rect key="frame" x="0.0" y="126" width="418" height="82.5"/>
+                                <rect key="frame" x="0.0" y="126" width="418" height="119.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXk-fv-4xZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="418" height="62"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="418" height="99"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Drq-WU-Z3Y">
-                                                <rect key="frame" x="20" y="0.0" width="398" height="62"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IEa-dR-m2a">
+                                                <rect key="frame" x="20" y="0.0" width="398" height="99"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="iXB-J3-Mw2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="15" id="8Ih-3c-I2m"/>
-                                                            <constraint firstAttribute="height" constant="15" id="KWf-tD-rBG"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bd-1f-7qa">
-                                                        <rect key="frame" x="25" y="0.0" width="283" height="62"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <string key="text">C-401 West Hills Apartments 
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zkm-z7-PZR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="308" height="88"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VIF-iE-Zh6">
+                                                                <rect key="frame" x="0.0" y="0.0" width="308" height="62"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="b7J-WV-zg9">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="15" id="7Gw-tD-2vI"/>
+                                                                            <constraint firstAttribute="width" constant="15" id="ZOd-wQ-5Sq"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDz-Rn-WjQ">
+                                                                        <rect key="frame" x="25" y="0.0" width="283" height="62"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <string key="text">C-401 West Hills Apartments 
 Dmart Retail Stores
 Wakad, Pune, MH, India</string>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
-                                                        <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LNJ-AH-RG9">
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gXI-oF-iJ8">
+                                                                <rect key="frame" x="0.0" y="67" width="308" height="21"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="900" verticalHuggingPriority="900" text="Landmark:" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXe-fa-9El">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="67.5" height="21"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" text="-" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0h2-aF-OwB">
+                                                                        <rect key="frame" x="72.5" y="0.0" width="235.5" height="21"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="gXI-oF-iJ8" secondAttribute="trailing" id="EFo-ME-eRD"/>
+                                                            <constraint firstAttribute="trailing" secondItem="VIF-iE-Zh6" secondAttribute="trailing" id="Eo0-ZD-ffd"/>
+                                                            <constraint firstItem="gXI-oF-iJ8" firstAttribute="leading" secondItem="zkm-z7-PZR" secondAttribute="leading" id="g3D-vE-MNj"/>
+                                                            <constraint firstItem="VIF-iE-Zh6" firstAttribute="leading" secondItem="zkm-z7-PZR" secondAttribute="leading" id="qVt-4s-ypw"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rlN-lf-aTq">
                                                         <rect key="frame" x="318" y="0.0" width="80" height="60.5"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-Si-OOg">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzy-Lt-8JQ">
                                                                 <rect key="frame" x="20" y="0.0" width="40" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="40" id="BlG-RF-sw8"/>
-                                                                    <constraint firstAttribute="height" constant="40" id="DJh-SN-Dhh"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="a1N-rt-0Gv"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="ki4-gZ-Kva"/>
                                                                 </constraints>
                                                                 <state key="normal" backgroundImage="googleMapIcon"/>
-                                                                <connections>
-                                                                    <action selector="actionFindAddress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bwC-aD-NbT"/>
-                                                                </connections>
                                                             </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" text="Find Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbp-7E-bcR">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" text="Find Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIV-Ui-hZF">
                                                                 <rect key="frame" x="10" y="45" width="60.5" height="15.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="12"/>
@@ -380,27 +412,27 @@ Wakad, Pune, MH, India</string>
                                                             </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="KFT-Si-OOg" firstAttribute="top" secondItem="LNJ-AH-RG9" secondAttribute="top" id="Eva-ft-wdC"/>
-                                                            <constraint firstAttribute="trailing" secondItem="KFT-Si-OOg" secondAttribute="trailing" constant="20" id="cPm-mB-Qhd"/>
+                                                            <constraint firstAttribute="trailing" secondItem="yzy-Lt-8JQ" secondAttribute="trailing" constant="20" id="LEc-gn-tLv"/>
+                                                            <constraint firstItem="yzy-Lt-8JQ" firstAttribute="top" secondItem="rlN-lf-aTq" secondAttribute="top" id="vFq-bb-nbC"/>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="LNJ-AH-RG9" firstAttribute="top" secondItem="Drq-WU-Z3Y" secondAttribute="top" id="QVM-XN-KtM"/>
-                                                    <constraint firstAttribute="trailing" secondItem="LNJ-AH-RG9" secondAttribute="trailing" id="uKL-ZG-Qhu"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rlN-lf-aTq" secondAttribute="trailing" id="Ld4-Pl-6oo"/>
+                                                    <constraint firstItem="rlN-lf-aTq" firstAttribute="top" secondItem="IEa-dR-m2a" secondAttribute="top" id="e4J-TY-G0l"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="Drq-WU-Z3Y" secondAttribute="bottom" id="0oO-Et-v6k"/>
-                                            <constraint firstItem="Drq-WU-Z3Y" firstAttribute="leading" secondItem="xXk-fv-4xZ" secondAttribute="leading" constant="20" id="6G0-oT-lTK"/>
-                                            <constraint firstItem="Drq-WU-Z3Y" firstAttribute="top" secondItem="xXk-fv-4xZ" secondAttribute="top" id="RWO-Yc-teU"/>
-                                            <constraint firstAttribute="trailing" secondItem="Drq-WU-Z3Y" secondAttribute="trailing" id="Yzx-NK-p6h"/>
+                                            <constraint firstAttribute="bottom" secondItem="IEa-dR-m2a" secondAttribute="bottom" id="Qm3-Wr-CvB"/>
+                                            <constraint firstItem="IEa-dR-m2a" firstAttribute="leading" secondItem="xXk-fv-4xZ" secondAttribute="leading" constant="20" id="o9A-dQ-pX9"/>
+                                            <constraint firstAttribute="trailing" secondItem="IEa-dR-m2a" secondAttribute="trailing" id="zC9-OL-aiG"/>
+                                            <constraint firstItem="IEa-dR-m2a" firstAttribute="top" secondItem="xXk-fv-4xZ" secondAttribute="top" id="zWM-5c-ooa"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hC-08-1xd">
-                                        <rect key="frame" x="0.0" y="82" width="418" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="119" width="418" height="0.5"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="SlV-ak-LCd"/>
@@ -468,8 +500,9 @@ Wakad, Pune, MH, India</string>
                 <outlet property="lblAppointmentStatus" destination="KOd-bp-pDz" id="bcd-EI-AgW"/>
                 <outlet property="lblDateTime" destination="YOR-OY-TLI" id="xlO-D3-rmt"/>
                 <outlet property="lblEndTime" destination="0Xr-S6-VJ8" id="xkk-dC-twt"/>
+                <outlet property="lblLandmark" destination="0h2-aF-OwB" id="NgL-py-10c"/>
                 <outlet property="lblLastVisit" destination="4vs-7l-yfK" id="hQH-JK-Dc0"/>
-                <outlet property="lblLocation" destination="8bd-1f-7qa" id="yIO-ki-ZDU"/>
+                <outlet property="lblLocation" destination="RDz-Rn-WjQ" id="cw6-gY-miL"/>
                 <outlet property="lblRatings" destination="wdd-bS-wcf" id="W9E-2R-Xvz"/>
                 <outlet property="lblStartTime" destination="D3g-8P-167" id="dGg-td-mDK"/>
                 <outlet property="lblStatus" destination="oNG-g7-1Ol" id="9KD-DP-zxQ"/>

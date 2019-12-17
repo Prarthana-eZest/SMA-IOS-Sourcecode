@@ -103,7 +103,7 @@ func daySuffix() -> String {
 //   print(Date().allDates(till: date))
 //usage let weekday = Date().weekdayName
 extension Date {
-
+    
     init(day: Int,
          hour: Int = 0,
          minute: Int = 0,
@@ -117,7 +117,7 @@ extension Date {
         components.timeZone = timeZone
         self = Calendar.current.date(from: components)!
     }
-
+    
     func allDates(till endDate: Date) -> [Date] {
         var date = self
         var array: [Date] = []
@@ -131,7 +131,7 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "E"
         return formatter.string(from: self as Date)
     }
-
+    
     var weekdayNameFull: String {
         let formatter = DateFormatter(); formatter.dateFormat = "EEEE"
         return formatter.string(from: self as Date)
@@ -140,17 +140,27 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "dd"
         return formatter.string(from: self as Date)
     }
-
+    
     var dayDateMonthYear: String {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMMM YYYY"
         return formatter.string(from: self as Date)
     }
-
+    
     var dayYearMonthDate: String {
         let formatter = DateFormatter(); formatter.dateFormat = "YYYY-MM-dd"
         return formatter.string(from: self as Date)
     }
-
+    
+    var dayMonthYearDate: String {
+        let formatter = DateFormatter(); formatter.dateFormat = "dd MMM YY"
+        return formatter.string(from: self as Date)
+    }
+    
+    var dayNameDateFormat: String {
+        let formatter = DateFormatter(); formatter.dateFormat = "EEE, dd MMM YYYY"
+        return formatter.string(from: self as Date)
+    }
+    
     var monthName: String {
         let formatter = DateFormatter(); formatter.dateFormat = "MMMM"
         return formatter.string(from: self as Date)
@@ -175,7 +185,7 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "hh : mm a"
         return formatter.string(from: self as Date)
     }
-
+    
     var DatewithMonth: String {
         let formatter = DateFormatter(); formatter.dateStyle = .medium ;        return formatter.string(from: self as Date)
     }

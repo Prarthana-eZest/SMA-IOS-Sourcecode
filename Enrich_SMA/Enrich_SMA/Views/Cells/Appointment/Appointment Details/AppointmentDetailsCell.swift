@@ -28,7 +28,10 @@ class AppointmentDetailsCell: UITableViewCell {
     
     @IBOutlet weak var locationStackView: UIStackView!
     
-    var model : AppointmentDetailsModel?
+    @IBOutlet weak var lblLandmark: UILabel!
+    
+    var appointmentDetails: Appointment.GetAppointnents.Data?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,43 +44,30 @@ class AppointmentDetailsCell: UITableViewCell {
     }
     
     
-    func configureCell(model:AppointmentDetailsModel){
-        lblDateTime.text = model.dateTime
-        lblUserName.text = model.userName
-        lblAppointmentStatus.text = model.appointmentStatus
-        lblLastVisit.text = model.lastVisit
-        lblRatings.text = "\(model.ratings)/5"
-        lblStatus.text = model.timeStatus
-        lblStartTime.text = model.startTimer
-        lblEndTime.text = model.endTime
-        lblTotalDuration.text = model.totalDuration
-        lblLocation.text = model.location
-        locationStackView.isHidden = model.location.isEmpty
+    func configureCell(model:Appointment.GetAppointnents.Data,date:Date){
+        appointmentDetails = model
+        lblUserName.text = model.booked_by ?? ""
+        lblStartTime.text = model.start_time ?? ""
+        lblEndTime.text = model.end_time ?? ""
+        lblTotalDuration.text = "\(model.total_duration ?? "0") min"
+        lblAppointmentStatus.text = model.status ?? ""
+        lblLocation.text = ""
+        lblLocation.text = model.customer_address ?? ""
+        lblDateTime.text = date.dayNameDateFormat
+        lblLastVisit.text = model.last_visit ?? ""
+        lblRatings.text = "\(model.avg_rating ?? 0)/5"
+        lblStatus.text = model.status ?? ""
+        lblTotalDuration.text = model.total_duration ?? ""
+        locationStackView.isHidden = model.customer_address?.isEmpty ?? true
+        lblLandmark.text = model.landmark ?? "-"
     }
     
     @IBAction func actionFindAddress(_ sender: UIButton) {
-        if let model = model{
-            appDelegate.openGoogleMaps(lat: model.latitude, long: model.longitude)
+        if let model = appointmentDetails,
+            let lat = model.customer_latitude,
+            let long = model.customer_longitude{
+            appDelegate.openGoogleMaps(lat: lat, long: long)
         }
     }
-    
-    
-}
-
-struct AppointmentDetailsModel{
-    
-    let dateTime: String
-    let appointmentStatus: String
-    let userName: String
-    let profilePictureURL:String
-    let ratings: Double
-    let lastVisit: String
-    let timeStatus: String
-    let startTimer: String
-    let endTime: String
-    let totalDuration: String
-    let location: String
-    let latitude: Double
-    let longitude: Double
 }
 
