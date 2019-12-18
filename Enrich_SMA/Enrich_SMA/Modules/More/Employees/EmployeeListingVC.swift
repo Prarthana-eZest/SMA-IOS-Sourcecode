@@ -123,7 +123,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
         
         if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
-            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate , employee_code: userData.data?.employee_code ?? "")
+            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate)
             interactor?.doGetEmployeeListData(request:request, method: HTTPMethod.get)
         }
         

@@ -223,20 +223,30 @@ open class NetworkLayerAlamofire {
         
         // "http://dummy.restapiexample.com/api/v1/" dummy data
         var  BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
+        var finalEndpoint = ""
+        
         #if DEBUG
         print("DEBUG")
-        BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
+        if endPoint == ConstantAPINames.getEmployeeList.rawValue{
+            BaseUrl = "https://enrich-magento.e-zest.net/lumen/"
+        }else{
+            BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
+        }
+        finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
+
+
         #elseif RELEASE
         print("RELEASE")
-        BaseUrl = "https://enrichsalon.co.in/erp/source/live/rest/V1/"
+        if endPoint == ConstantAPINames.getEmployeeList.rawValue{
+            BaseUrl = "https://enrichsalon.co.in/inventory-api/"
+        }else{
+            BaseUrl = "https://enrichsalon.co.in/erp/source/live/rest/V1/"
+        }
+        finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
+
+        
         #endif
         
-        var finalEndpoint = ""
-        finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
-        
-        if endPoint == ConstantAPINames.getEmployeeList.rawValue{
-            finalEndpoint = finalEndpoint.replacingOccurrences(of: "/rest/V1", with: "")
-        }
         print("finalEndpoint \(finalEndpoint)")
         return finalEndpoint
     }

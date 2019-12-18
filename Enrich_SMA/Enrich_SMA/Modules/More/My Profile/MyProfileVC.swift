@@ -99,7 +99,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
 
         
         getProfileData()
-        getServiceList()
+        //getServiceList()
         getRosterDetails()
         
     }
@@ -181,7 +181,7 @@ extension MyProfileVC: ProfileCellDelegate{
             
         case .services:
             vc.listing = service
-            vc.screenTitle = "Services Performed"
+            vc.screenTitle = "Services Expertise"
             
         case .shifts:
             vc.listing = rosterList
@@ -305,8 +305,7 @@ extension MyProfileVC{
                                                                      MyProfileModel(title:"Experience",value: "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Center",value:data.base_salon_name ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Service Expertise",value:"-",isMultiOption:true)]),
+                                                                     MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false)]),
                  
                  MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
                                                               MyProfileModel(title:"Status",value:"-",isMultiOption:false)])]
