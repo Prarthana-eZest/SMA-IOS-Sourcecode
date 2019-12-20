@@ -30,18 +30,32 @@ class MembershipStatusCell: UITableViewCell {
     
     
     func configureCell(model:MembershipStatusModel){
-        lblMemberType.text = model.memberType
-        lblMembershipType.text = model.membershipType
+        lblMemberType.text = model.type.rawValue
+        lblMembershipType.text = model.type.rawValue
+        
+        // Validity
         lblValidUpTo.text = "Valid up to \(model.validity)"
+        lblValidUpTo.isHidden = model.type == .general
+        membershipIcon.isHidden = model.type == .general
+        
+        switch model.type {
+            
+        case .general:break
+        case .clubMemberShip:membershipIcon.image = UIImage(named: "ClubMembership")
+        case .eliteMembership:membershipIcon.image = UIImage(named: "EliteMembership")
+        case .premierMembership:membershipIcon.image = UIImage(named: "PremierMembership")
+        }
+        
+        // Rewards Points
         lblRewardPoints.text = "Reward Points: \(model.rewardPoints)"
+        lblRewardPoints.isHidden = true
     }
     
 }
 
 struct MembershipStatusModel{
-    
-    let memberType: String
-    let membershipType: String
+    let type: MembershipType
     let validity: String
     let rewardPoints: String
 }
+

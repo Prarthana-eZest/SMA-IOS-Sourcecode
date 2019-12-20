@@ -23,8 +23,9 @@ enum ProfileType {
 }
 
 enum ListingType:String{
-    case services = "Services Performed"
+    case services = "Service Expertise"
     case shifts = "Shift Timing"
+    case appointmentServices = "Services"
 }
 
 class MyProfileVC: UIViewController, MyProfileDisplayLogic
@@ -186,6 +187,8 @@ extension MyProfileVC: ProfileCellDelegate{
         case .shifts:
             vc.listing = rosterList
             vc.screenTitle = "Shift Timing"
+            
+        default:break
         }
         
         appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
@@ -293,19 +296,28 @@ extension MyProfileVC{
         
         if let data = model.data{
             
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-",ratings: data.rating)
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating)
+            
+            var addressString = ["\(data.address?.first?.line_1 ?? "" )",
+                "\(data.address?.first?.line_2 ?? "" )",
+                "\(data.address?.first?.city ?? "" )",
+                "\(data.address?.first?.state ?? "" )",
+                "\(data.address?.first?.country ?? "" )"]
+            addressString.removeAll(where: {$0.isEmpty})
+            let address = addressString.joined(separator:", ")
             
             let sections =
                 [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
-                                                                 MyProfileModel(title:"Mobile Number",value: "-",isMultiOption:false),
+                                                                 MyProfileModel(title:"Mobile Number",value: data.mobile_number ?? "-",isMultiOption:false),
                                                                  MyProfileModel(title:"Other Contact Number",value:"-",isMultiOption:false),
-                                                                 MyProfileModel(title:"Email address",value:"-",isMultiOption:false),MyProfileModel(title:"Address",value:"-",isMultiOption:false)]),
+                                                                 MyProfileModel(title:"Email address",value: data.email ?? "-",isMultiOption:false),MyProfileModel(title:"Address",value:address,isMultiOption:false)]),
                  MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee ID",value:data.employee_code ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Nick Name",value:data.nickname ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Experience",value: "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Center",value:data.base_salon_name ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false)]),
+                 
                  MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
                                                               MyProfileModel(title:"Status",value:"-",isMultiOption:false)])]
             

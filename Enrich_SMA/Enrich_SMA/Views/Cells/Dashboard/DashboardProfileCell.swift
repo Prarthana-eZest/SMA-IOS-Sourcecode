@@ -47,7 +47,12 @@ class DashboardProfileCell: UITableViewCell {
             let data = userData.data
             lblUserName.text = "\(data?.firstname ?? "") \(data?.lastname ?? "")"
             btnSelectALocation.setTitle(data?.base_salon_name ?? "", for: .normal)
-            lblRating.text = "\(0)/5"
+            let rating = userData.data?.rating ?? 0
+            if rating == 0{
+                lblRating.text = "0/5"
+            }else{
+                lblRating.text = "\(rating)/5"
+            }
             lblDesignation.text = data?.designation ?? "-"
         }
     }

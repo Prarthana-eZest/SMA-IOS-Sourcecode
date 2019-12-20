@@ -78,12 +78,36 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic
         tableView.register(UINib(nibName: CellIdentifier.appointmentTimelineCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentTimelineCell)
         
         tableView.separatorColor = .clear
+        showNavigationBarButtons()
+        configureTimeline()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "")
+    }
+    
+    // MARK: - Top Navigation Bar And  Actions
+    func showNavigationBarButtons() {
+        
+        AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+        
+        guard let sosImg = UIImage(named: "SOS") else{
+                return
+        }
+        
+        let sosButton = UIBarButtonItem(image: sosImg, style: .plain, target: self, action: #selector(didTapSOSButton))
+        sosButton.tintColor = UIColor.black
+        
+        navigationItem.title = ""
+        navigationItem.rightBarButtonItems = [sosButton]
+        
+    }
+    
+  
+    @objc func didTapSOSButton() {
+        
     }
     
     // MARK: Do something
@@ -102,6 +126,7 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic
     
     @IBAction func actionClientInformation(_ sender: UIButton) {
         let vc = ClientInformationVC.instantiate(fromAppStoryboard: .Appointment)
+        vc.customerId = self.appointmentDetails?.booked_by_id
         self.present(vc, animated: true, completion: nil)
     }
     

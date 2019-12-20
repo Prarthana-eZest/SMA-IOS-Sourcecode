@@ -12,6 +12,7 @@ protocol AppointmentDelegate:class {
     func actionDelete(indexPath:IndexPath)
     func actionModify(indexPath:IndexPath)
     func actionViewAll()
+    func servicesAction(indexPath:IndexPath)
 }
 
 enum ServiceType:String{
@@ -62,7 +63,12 @@ class AppointmentStatusCell: UITableViewCell {
         //lblAppointmentStatus.text = "\(model.status ?? "")"
         lblLocation.text = model.customer_address ?? ""
         locationStackView.isHidden = true
-        lblRatings.text = "\(model.avg_rating ?? 0)/5"
+        let rating = model.avg_rating ?? 0
+        if rating == 0{
+            lblRatings.text = "0/5"
+        }else{
+            lblRatings.text = "\(rating)/5"
+        }
         statusColorView.backgroundColor = salonAppointmentColor
 
         if let typeText = model.appointment_type,
@@ -73,6 +79,9 @@ class AppointmentStatusCell: UITableViewCell {
     }
     
     @IBAction func actionServiceCount(_ sender: UIButton) {
+        if let indexPath = indexPath{
+            delegate?.servicesAction(indexPath: indexPath)
+        }
     }
     
 }

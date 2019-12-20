@@ -14,28 +14,27 @@ import UIKit
 
 protocol ClientInformationBusinessLogic
 {
-  func doSomething(request: ClientInformation.Something.Request)
+    func doGetAppointmentHistory(request: ClientInformation.GetAppointnentHistory.Request, method: HTTPMethod)
+    func doGetMembershipDetails(accessToken:String, method: HTTPMethod,request: ClientInformation.MembershipDetails.Request)
 }
 
-protocol ClientInformationDataStore
+class ClientInformationInteractor: ClientInformationBusinessLogic
 {
-  //var name: String { get set }
-}
-
-class ClientInformationInteractor: ClientInformationBusinessLogic, ClientInformationDataStore
-{
-  var presenter: ClientInformationPresentationLogic?
-  var worker: ClientInformationWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: ClientInformation.Something.Request)
-  {
-    worker = ClientInformationWorker()
-    worker?.doSomeWork()
+    var presenter: ClientInformationPresentationLogic?
+    var worker: ClientInformationWorker?
+    //var name: String = ""
     
-    let response = ClientInformation.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    func doGetAppointmentHistory(request: ClientInformation.GetAppointnentHistory.Request, method: HTTPMethod) {
+        worker = ClientInformationWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestForAppointmentHistory(request: request, method: method)
+    }
+    
+    func doGetMembershipDetails(accessToken:String, method: HTTPMethod,request: ClientInformation.MembershipDetails.Request){
+        worker = ClientInformationWorker()
+        worker?.presenter = self.presenter
+        worker?.getRequestForMembershipDetails(accessToken:accessToken, method: method,request:request)
+    }
 }

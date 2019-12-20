@@ -28,18 +28,22 @@ enum LoginModule {
         }
         
         struct UserData: Codable {
-            var access_token: String?
-            var username: String?
-            var admin_id: String?
-            var firstname: String?
-            var middlename: String?
-            var lastname: String?
-            var nickname: String?
-            var employee_code: String?
-            var birthdate: String?
-            var designation: String?
-            var base_salon_code: String?
-            var base_salon_name: String?
+            let access_token : String?
+            let username : String?
+            let employee_id : String?
+            let firstname : String?
+            let middlename : String?
+            let lastname : String?
+            let nickname : String?
+            let employee_code : String?
+            let birthdate : String?
+            let designation : String?
+            let base_salon_code : String?
+            let base_salon_name : String?
+            let salon_id : String?
+            let gender : String?
+            let profile_image : String?
+            let rating : Double?
         }
     }
 }

@@ -12,6 +12,7 @@ class ListingVC: UIViewController {
     
     var screenTitle = ""
     var listing = [String]()
+    var services = [ServiceListingModel]()
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblNoRecords: UILabel!
@@ -19,12 +20,15 @@ class ListingVC: UIViewController {
     
     var viewDismissBlock: ((Bool) -> Void)?
     
+    var listingType:ListingType = .services
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        lblTitle.text = screenTitle
+        lblTitle.text = listingType.rawValue
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        tableView.register(UINib(nibName: CellIdentifier.serviceListingCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.serviceListingCell)
         
     }
     
@@ -32,7 +36,6 @@ class ListingVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
         viewDismissBlock?(true)
     }
-    
     
     
     /*
@@ -54,19 +57,37 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        lblNoRecords.isHidden = !listing.isEmpty
-        return listing.count
+        if listingType == .appointmentServices{
+            lblNoRecords.isHidden = !services.isEmpty
+            return services.count
+        }else{
+            lblNoRecords.isHidden = !listing.isEmpty
+            return listing.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListingCell", for: indexPath) as? ListingCell else {
-            return UITableViewCell()
+        if listingType == .appointmentServices{
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.serviceListingCell, for: indexPath) as? ServiceListingCell else {
+                return UITableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            cell.configureCell(model: services[indexPath.row])
+            return cell
+            
+        }else{
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.listingCell, for: indexPath) as? ListingCell else {
+                return UITableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
+            cell.configureCell(text: listing[indexPath.row])
+            return cell
         }
-        cell.selectionStyle = .none
-        cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
-        cell.configureCell(text: listing[indexPath.row])
-        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -74,6 +95,9 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if listingType == .appointmentServices{
+            return UITableView.automaticDimension
+        }
         return 55
     }
 }

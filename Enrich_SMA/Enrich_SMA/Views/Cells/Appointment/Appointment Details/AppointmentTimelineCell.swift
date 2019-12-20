@@ -34,7 +34,7 @@ class AppointmentTimelineCell: UITableViewCell {
         lblTitle.text = model.title
         lblSubTitle.text = model.subTitle
         if !isEndCell{
-            self.contentView.alpha =  model.alreadyCovered ? 1 : 0.5
+            self.contentView.alpha =  1//model.alreadyCovered ? 1 : 0.5
             self.endView.isHidden = true
             self.roundView.isHidden = false
             self.lineView.backgroundColor = .lightGray

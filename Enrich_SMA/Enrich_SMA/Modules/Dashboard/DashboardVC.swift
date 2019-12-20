@@ -97,6 +97,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
 
 extension DashboardVC:AppointmentDelegate{
     
+    
     func actionViewAll() {
         print("View All")
     }
@@ -113,6 +114,9 @@ extension DashboardVC:AppointmentDelegate{
     
     func actionModify(indexPath: IndexPath) {
         print("Modify:\(indexPath.row)")
+    }
+    
+    func servicesAction(indexPath: IndexPath) {
     }
 }
 

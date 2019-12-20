@@ -55,7 +55,12 @@ class AppointmentDetailsCell: UITableViewCell {
         lblLocation.text = model.customer_address ?? ""
         lblDateTime.text = date.dayNameDateFormat
         lblLastVisit.text = model.last_visit ?? ""
-        lblRatings.text = "\(model.avg_rating ?? 0)/5"
+        let rating = model.avg_rating ?? 0
+        if rating == 0{
+            lblRatings.text = "0/5"
+        }else{
+            lblRatings.text = "\(rating)/5"
+        }
         lblStatus.text = model.status ?? ""
         lblTotalDuration.text = model.total_duration ?? ""
         locationStackView.isHidden = model.customer_address?.isEmpty ?? true

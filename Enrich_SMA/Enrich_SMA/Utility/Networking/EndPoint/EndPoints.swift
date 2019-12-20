@@ -68,9 +68,12 @@ public enum ConstantAPINames: String {
     // My Profile
     case getUserProfile = "employee/profile?is_custom=true"
     case getServiceList = "employee/services?is_custom=true"
-    case getEmployeeList = "lumen/roster"
+    case getEmployeeList = "roster"
     
     // Appoitments
-    case getAppointments = "lumen/appointments/appointment-list"
+    case getAppointments = "appointments/appointment-list"
+    
+    // Client Information
+    case membershipDetails = "mine/membership?is_custom=true"
     
 }

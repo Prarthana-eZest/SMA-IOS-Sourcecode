@@ -33,6 +33,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     @IBOutlet weak var btnOnGoing: UIButton!
     @IBOutlet weak var btnUpComing: UIButton!
     @IBOutlet weak var lblLocation: UILabel!
+    @IBOutlet weak var lblNoAppointments: UILabel!
     
     
     var appointments = [Appointment.GetAppointnents.Data]()
@@ -172,6 +173,7 @@ extension AppointmentVC{
             if appointments.count > 0{
                 self.tableView.scrollToTop()
             }
+            lblNoAppointments.isHidden = (appointments.count > 0)
         }
     }
     
@@ -182,6 +184,35 @@ extension AppointmentVC{
     }
 }
 
+extension AppointmentVC:AppointmentDelegate{
+    
+    func actionDelete(indexPath: IndexPath) {
+    }
+    
+    func actionModify(indexPath: IndexPath) {
+    }
+    
+    func actionViewAll() {
+    }
+    
+    func servicesAction(indexPath: IndexPath) {
+        
+        let appointment = appointments[indexPath.row]
+        
+        let vc = ListingVC.instantiate(fromAppStoryboard: .More)
+        self.view.alpha = screenPopUpAlpha
+        vc.services = appointment.services?.compactMap{ ServiceListingModel(name: $0.service_name ?? "", price: "\($0.price ?? 0)") } ?? []
+        vc.screenTitle = "Services"
+        vc.listingType = .appointmentServices
+        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] result in
+            // Do something
+            self.view.alpha = 1.0
+        }
+    }
+    
+
+}
 
 extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -200,6 +231,7 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
         }
         cell.configureCell(model: appointments[indexPath.row])
         cell.indexPath = indexPath
+        cell.delegate = self
         cell.selectionStyle = .none
         return cell
         

@@ -29,21 +29,32 @@ enum MyProfile
         }
         
         struct UserData: Codable {
-            var username: String?
-            var admin_id: String?
-            var firstname: String?
-            var middlename: String?
-            var lastname: String?
-            var nickname: String?
-            var employee_code: String?
-            var birthdate: String?
-            var designation: String?
-            var base_salon_code: String?
-            var base_salon_name: String?
-            var joining_date: String?
-            var category: String?
-            var profile_pic: String?
-            var rating: Double?
+            let username : String?
+            let admin_id : String?
+            let firstname : String?
+            let middlename : String?
+            let lastname : String?
+            let nickname : String?
+            let employee_code : String?
+            let birthdate : String?
+            let designation : String?
+            let base_salon_code : String?
+            let base_salon_name : String?
+            let joining_date : String?
+            let category : String?
+            let profile_pic : String?
+            let rating : Double?
+            let mobile_number : String?
+            let email : String?
+            let address : [Address]?
+        }
+        
+        struct Address : Codable {
+            let line_1 : String?
+            let line_2 : String?
+            let city : String?
+            let state : String?
+            let country : String?
         }
     }
     
