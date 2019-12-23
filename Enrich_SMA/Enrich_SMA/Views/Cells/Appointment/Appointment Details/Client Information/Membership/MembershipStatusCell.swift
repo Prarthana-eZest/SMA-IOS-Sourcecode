@@ -29,26 +29,37 @@ class MembershipStatusCell: UITableViewCell {
     }
     
     
-    func configureCell(model:MembershipStatusModel){
-        lblMemberType.text = model.type.rawValue
-        lblMembershipType.text = model.type.rawValue
-        
-        // Validity
-        lblValidUpTo.text = "Valid up to \(model.validity)"
-        lblValidUpTo.isHidden = model.type == .general
-        membershipIcon.isHidden = model.type == .general
-        
-        switch model.type {
+    func configureCell(model:MembershipStatusModel?){
+        if let model = model{
             
-        case .general:break
-        case .clubMemberShip:membershipIcon.image = UIImage(named: "ClubMembership")
-        case .eliteMembership:membershipIcon.image = UIImage(named: "EliteMembership")
-        case .premierMembership:membershipIcon.image = UIImage(named: "PremierMembership")
+            lblMemberType.text = model.type.rawValue
+            lblMembershipType.text = model.type.rawValue
+            lblMembershipType.isHidden = false
+            // Validity
+            lblValidUpTo.text = "Valid up to \(model.validity)"
+            lblValidUpTo.isHidden = model.type == .general
+            membershipIcon.isHidden = model.type == .general
+            
+            switch model.type {
+                
+            case .general:break
+            case .clubMemberShip:membershipIcon.image = UIImage(named: "ClubMembership")
+            case .eliteMembership:membershipIcon.image = UIImage(named: "EliteMembership")
+            case .premierMembership:membershipIcon.image = UIImage(named: "PremierMembership")
+            }
+            
+            // Rewards Points
+            lblRewardPoints.text = "Reward Points: \(model.rewardPoints)"
+            lblRewardPoints.isHidden = true
+            
+        }else{
+            
+            lblMemberType.text = "No active membership"
+            lblMembershipType.isHidden = true
+            lblValidUpTo.isHidden = true
+            membershipIcon.isHidden = true
+            lblRewardPoints.isHidden = true
         }
-        
-        // Rewards Points
-        lblRewardPoints.text = "Reward Points: \(model.rewardPoints)"
-        lblRewardPoints.isHidden = true
     }
     
 }

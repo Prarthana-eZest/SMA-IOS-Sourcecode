@@ -134,21 +134,21 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     
     @IBAction func actionAddClientNotes(_ sender: UIButton) {
         print("Add New Notes")
-//        let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Schedule)
-//        self.view.alpha = screenPopUpAlpha
-//        self.present(addNewNoteVC, animated: true, completion: nil)
-//        // appDelegate.window?.rootViewController!.present(addNewNoteVC, animated: true, completion: nil)
-//
-//        addNewNoteVC.onDoneBlock = { [unowned self] (result,note) in
-//            // Do something
-//            if(result) {
-//                print("Note:\(note)")
-//                self.notes.append(note)
-//                self.tableView.reloadData()
-//            }
-//            self.view.alpha = 1.0
-//
-//        }
+        //        let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Schedule)
+        //        self.view.alpha = screenPopUpAlpha
+        //        self.present(addNewNoteVC, animated: true, completion: nil)
+        //        // appDelegate.window?.rootViewController!.present(addNewNoteVC, animated: true, completion: nil)
+        //
+        //        addNewNoteVC.onDoneBlock = { [unowned self] (result,note) in
+        //            // Do something
+        //            if(result) {
+        //                print("Note:\(note)")
+        //                self.notes.append(note)
+        //                self.tableView.reloadData()
+        //            }
+        //            self.view.alpha = 1.0
+        //
+        //        }
     }
     
     
@@ -328,16 +328,14 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
             
         case 2:
             
-            if let memebershipDetails = memebershipDetails{
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.membershipStatusCell, for: indexPath) as? MembershipStatusCell else {
-                    return UITableViewCell()
-                }
-                cell.configureCell(model: memebershipDetails)
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
-                cell.selectionStyle = .none
-                return cell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.membershipStatusCell, for: indexPath) as? MembershipStatusCell else {
+                return UITableViewCell()
             }
-            return UITableViewCell()
+            cell.configureCell(model: memebershipDetails)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+            cell.selectionStyle = .none
+            return cell
+            
             
         case 3:
             

@@ -44,7 +44,9 @@ class ClientInformationWorker
             self.presenter?.presentGetMembershipDetailsSuccess(response: response)
         }
         
-        self.networkLayer.post(urlString: ConstantAPINames.membershipDetails.rawValue, body: request, headers: ["Authorization": "Bearer \(accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
+        let url = "\(ConstantAPINames.membershipDetails.rawValue)&customer_id=\(request.customer_id)"
+                
+        self.networkLayer.get(urlString: url, successHandler: successHandler, errorHandler: errorHandler)
     }
     
 }
