@@ -9,7 +9,7 @@
 import UIKit
 
 class AppointmentDetailsCell: UITableViewCell {
-
+    
     
     //Appointment Details
     @IBOutlet weak var lblDateTime: UILabel!
@@ -36,10 +36,10 @@ class AppointmentDetailsCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -63,7 +63,13 @@ class AppointmentDetailsCell: UITableViewCell {
         }
         lblStatus.text = model.status ?? ""
         lblTotalDuration.text = model.total_duration ?? ""
-        locationStackView.isHidden = model.customer_address?.isEmpty ?? true
+        
+        locationStackView.isHidden = true
+        if let typeText = model.appointment_type,
+            let type = ServiceType(rawValue: typeText){
+            locationStackView.isHidden = (type == .Salon)
+        }
+        
         lblLandmark.text = model.landmark ?? "-"
     }
     
