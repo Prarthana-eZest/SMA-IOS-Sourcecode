@@ -142,22 +142,22 @@ extension Date {
     }
     
     var dayDateMonthYear: String {
-        let formatter = DateFormatter(); formatter.dateFormat = "dd MMMM YYYY"
+        let formatter = DateFormatter(); formatter.dateFormat = "dd MMMM yyyy"
         return formatter.string(from: self as Date)
     }
     
     var dayYearMonthDate: String {
-        let formatter = DateFormatter(); formatter.dateFormat = "YYYY-MM-dd"
+        let formatter = DateFormatter(); formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: self as Date)
     }
     
     var dayMonthYearDate: String {
-        let formatter = DateFormatter(); formatter.dateFormat = "dd MMM YY"
+        let formatter = DateFormatter(); formatter.dateFormat = "dd MMM yy"
         return formatter.string(from: self as Date)
     }
     
     var dayNameDateFormat: String {
-        let formatter = DateFormatter(); formatter.dateFormat = "EEE, dd MMM YYYY"
+        let formatter = DateFormatter(); formatter.dateFormat = "EEE, dd MMM yyyy"
         return formatter.string(from: self as Date)
     }
     
@@ -166,11 +166,11 @@ extension Date {
         return formatter.string(from: self as Date)
     }
     var monthNameAndYear: String {
-        let formatter = DateFormatter(); formatter.dateFormat = "MMMM  YYYY"
+        let formatter = DateFormatter(); formatter.dateFormat = "MMMM  yyyy"
         return formatter.string(from: self as Date)
     }
     var OnlyYear: String {
-        let formatter = DateFormatter(); formatter.dateFormat = "YYYY"
+        let formatter = DateFormatter(); formatter.dateFormat = "yyyy"
         return formatter.string(from: self as Date)
     }
     var period: String {

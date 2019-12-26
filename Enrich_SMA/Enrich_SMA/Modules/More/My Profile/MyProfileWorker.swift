@@ -37,7 +37,7 @@ class MyProfileWorker
         
     }
     
-    func postRequestForServiceList(request:MyProfile.GetRosterDetails.Request, method: HTTPMethod) {
+    func postRequestForRosterDetails(request:MyProfile.GetRosterDetails.Request, method: HTTPMethod) {
         
         let errorHandler: (String) -> Void = { (error) in
             print(error)
