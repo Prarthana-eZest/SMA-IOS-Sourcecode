@@ -19,8 +19,8 @@ enum Appointment
     enum GetAppointnents
     {
         struct Request: Codable {
-            let salon_code: String
             let status: String
+            let salon_code: String
         }
         
         struct Response: Codable {
@@ -42,9 +42,9 @@ enum Appointment
             let booked_by_id : Int?
             let booking_technician : String?
             let payment_status : String?
+            let landmark : String?
             let last_visit : String?
             let avg_rating : Double?
-            let landmark : String?
             let services : [Services]?
             let serviceCount : Int?
             let total_duration : String?
@@ -55,6 +55,7 @@ enum Appointment
         }
         
         struct Services : Codable {
+            let appointment_type : String?
             let service_id : Int?
             let service_code : String?
             let service_name : String?
@@ -70,11 +71,12 @@ enum Appointment
             let technician_preference : String?
             let technician_designation : String?
             let status : String?
-            let previous_service_id : String?
+            let previous_service_id : Int?
             let id : Int?
             let technician_id : Int?
             let servicing_technician : String?
             let booked_for : String?
+            let booked_for_id : Int?
             let booked_for_contact : String?
         }
     }

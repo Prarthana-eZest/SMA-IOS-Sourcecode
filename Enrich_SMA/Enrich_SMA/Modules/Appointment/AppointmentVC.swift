@@ -106,7 +106,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = Appointment.GetAppointnents.Request(salon_code: userData.data?.base_salon_code ?? "", status: "\(status)")
+            let request = Appointment.GetAppointnents.Request(status: "\(status)", salon_code: userData.data?.base_salon_code ?? "")
             interactor?.doGetAppointmentList(request: request, method: .post)
         }
     }
