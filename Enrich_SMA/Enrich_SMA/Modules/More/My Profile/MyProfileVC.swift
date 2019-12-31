@@ -98,6 +98,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
 
+        getProfileData()
         if profileType == .selfUser{
            // getServiceList()
             getRosterDetails()
@@ -180,11 +181,11 @@ extension MyProfileVC: ProfileCellDelegate{
             
         case .services:
             vc.listing = service
-            vc.screenTitle = "Service Expertise"
+            vc.listingType = .services
             
         case .shifts:
             vc.listing = rosterList
-            vc.screenTitle = "Shift Timing"
+            vc.listingType = .shifts
             
         default:break
         }

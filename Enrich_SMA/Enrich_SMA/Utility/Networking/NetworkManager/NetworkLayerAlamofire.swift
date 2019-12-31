@@ -231,7 +231,7 @@ open class NetworkLayerAlamofire {
         print("DEBUG")
         if let end = ConstantAPINames(rawValue: endPoint),
             changeBaseList.contains(end){
-            BaseUrl = "https://enrich-magento.e-zest.net/lumen/es-v1/"
+            BaseUrl = "https://enrich-magento.e-zest.net/lumen/esa/"
         }else{
             BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
         }
