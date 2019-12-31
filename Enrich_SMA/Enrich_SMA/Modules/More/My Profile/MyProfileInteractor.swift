@@ -41,7 +41,7 @@ class MyProfileInteractor: MyProfileBusinessLogic, MyProfileDataStore
     func doGetRosterData(request: MyProfile.GetRosterDetails.Request, method: HTTPMethod) {
         worker = MyProfileWorker()
         worker?.presenter = self.presenter
-        worker?.postRequestForServiceList(request: request, method: method)
+        worker?.postRequestForRosterDetails(request: request, method: method)
     }
     
     func doGetServiceListData(accessToken: String, method: HTTPMethod) {

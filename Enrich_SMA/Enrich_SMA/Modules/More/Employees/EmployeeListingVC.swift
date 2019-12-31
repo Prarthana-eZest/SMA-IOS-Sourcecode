@@ -123,7 +123,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
         
         if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
-            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate)
+            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate )
             interactor?.doGetEmployeeListData(request:request, method: HTTPMethod.get)
         }
         
@@ -152,19 +152,25 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
         self.employeeList.removeAll()
         response.data?.forEach{
             
-            var statusType:AvailableStatusColor = AvailableStatusColor.leave
-            var statusText = ""
-            if $0.is_leave == 1{
-                statusText = $0.leave_type ?? ""
-            }else{
-                if let status = AvailableStatusColor(rawValue: $0.attendance_status ?? ""){
+            if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+                let employeeId = $0.employee_id,
+                let loginUserId = userData.data?.employee_id,
+                String(employeeId) != loginUserId{
+                
+                
+                var statusType:AvailableStatusColor = AvailableStatusColor.leave
+                var statusText = ""
+                
+                if $0.is_leave == 1{
+                    statusText = $0.leave_type ?? ""
+                }else if let status = AvailableStatusColor(rawValue: $0.attendance_status ?? ""){
                     statusType = status
                     statusText = $0.attendance_status ?? ""
                 }
+                
+                let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "", ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText, employeeId: $0.employee_id)
+                self.employeeList.append(model)
             }
-            
-            let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "NA", ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText, employeeId: $0.employee_id)
-            self.employeeList.append(model)
         }
         self.tableView.reloadData()
     }

@@ -14,7 +14,39 @@ import UIKit
 
 class ClientInformationWorker
 {
-  func doSomeWork()
-  {
-  }
+    let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
+    var presenter: ClientInformationPresentationLogic?
+    
+    func postRequestForAppointmentHistory(request:ClientInformation.GetAppointnentHistory.Request, method: HTTPMethod) {
+        
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (ClientInformation.GetAppointnentHistory.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentGetAppointmentHistorySuccess(response: response)
+        }
+        
+        self.networkLayer.post(urlString: ConstantAPINames.getAppointments.rawValue, body: request, headers: ["X-Request-From": "tma"], successHandler: successHandler, errorHandler: errorHandler, method: method)
+    }
+    
+    func getRequestForMembershipDetails(accessToken:String, method: HTTPMethod,request: ClientInformation.MembershipDetails.Request) {
+        
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        
+        let successHandler: (ClientInformation.MembershipDetails.Response) -> Void = { (employees) in
+            print(employees)
+            let response = employees
+            self.presenter?.presentGetMembershipDetailsSuccess(response: response)
+        }
+        
+        let url = "\(ConstantAPINames.membershipDetails.rawValue)&customer_id=\(request.customer_id)"
+                
+        self.networkLayer.get(urlString: url, successHandler: successHandler, errorHandler: errorHandler)
+    }
+    
 }

@@ -14,28 +14,25 @@ import UIKit
 
 protocol AppointmentBusinessLogic
 {
-  func doSomething(request: Appointment.Something.Request)
+    func doGetAppointmentList(request: Appointment.GetAppointnents.Request, method: HTTPMethod)
 }
 
 protocol AppointmentDataStore
 {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class AppointmentInteractor: AppointmentBusinessLogic, AppointmentDataStore
 {
-  var presenter: AppointmentPresentationLogic?
-  var worker: AppointmentWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Appointment.Something.Request)
-  {
-    worker = AppointmentWorker()
-    worker?.doSomeWork()
+    var presenter: AppointmentPresentationLogic?
+    var worker: AppointmentWorker?
+    //var name: String = ""
     
-    let response = Appointment.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    func doGetAppointmentList(request: Appointment.GetAppointnents.Request, method: HTTPMethod) {
+        worker = AppointmentWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestForAppointments(request: request, method: method)
+    }
 }

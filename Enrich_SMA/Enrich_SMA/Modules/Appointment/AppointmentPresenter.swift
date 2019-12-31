@@ -14,7 +14,8 @@ import UIKit
 
 protocol AppointmentPresentationLogic
 {
-  func presentSomething(response: Appointment.Something.Response)
+    func presentGetAppointmentsSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)
 }
 
 class AppointmentPresenter: AppointmentPresentationLogic
@@ -23,9 +24,11 @@ class AppointmentPresenter: AppointmentPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Appointment.Something.Response)
-  {
-    let viewModel = Appointment.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentGetAppointmentsSuccess<T>(response: T) where T : Decodable {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    
+    func presentError(responseError: String?) {
+        viewController?.displayError(errorMessage: responseError)
+    }
 }

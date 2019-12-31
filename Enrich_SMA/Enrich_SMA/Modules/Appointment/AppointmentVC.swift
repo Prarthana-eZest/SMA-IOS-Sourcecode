@@ -14,7 +14,12 @@ import UIKit
 
 protocol AppointmentDisplayLogic: class
 {
-    func displaySomething(viewModel: Appointment.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
+}
+
+enum AppointmentType{
+    case completed,ongoing,upcoming
 }
 
 class AppointmentVC: UIViewController, AppointmentDisplayLogic
@@ -28,7 +33,10 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     @IBOutlet weak var btnOnGoing: UIButton!
     @IBOutlet weak var btnUpComing: UIButton!
     @IBOutlet weak var lblLocation: UILabel!
+    @IBOutlet weak var lblNoAppointments: UILabel!
     
+    
+    var appointments = [Appointment.GetAppointnents.Data]()
     
     // MARK: Object lifecycle
     
@@ -73,8 +81,9 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
+        getAppointments(status: .ongoing)
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
+        tableView.separatorColor = .clear
         
         if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             let data = userData.data
@@ -92,17 +101,15 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
-    {
-        let request = Appointment.Something.Request()
-        interactor?.doSomething(request: request)
+    func getAppointments(status:AppointmentType){
+        
+        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = Appointment.GetAppointnents.Request(status: "\(status)", salon_code: userData.data?.base_salon_code ?? "")
+            interactor?.doGetAppointmentList(request: request, method: .post)
+        }
     }
-    
-    func displaySomething(viewModel: Appointment.Something.ViewModel)
-    {
-        //nameTextField.text = viewModel.name
-    }
-    
     
     @IBAction func actionCompleted(_ sender: UIButton) {
         
@@ -116,6 +123,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         completedSelectionView.isHidden = false
         ongoingSelectionView.isHidden = true
         upcomingSelectionView.isHidden = true
+        getAppointments(status: .completed)
     }
     
     
@@ -131,6 +139,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         completedSelectionView.isHidden = true
         ongoingSelectionView.isHidden = false
         upcomingSelectionView.isHidden = true
+        getAppointments(status: .ongoing)
     }
     
     
@@ -146,8 +155,63 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         completedSelectionView.isHidden = true
         ongoingSelectionView.isHidden = true
         upcomingSelectionView.isHidden = false
+        getAppointments(status: .upcoming)
     }
     
+}
+
+extension AppointmentVC{
+    
+    func displaySuccess<T>(viewModel: T) where T : Decodable {
+        EZLoadingActivity.hide()
+        print("Response: \(viewModel)")
+        
+        if let model = viewModel as? Appointment.GetAppointnents.Response, model.status == true{
+            self.appointments.removeAll()
+            self.appointments.append(contentsOf: model.data ?? [])
+            self.tableView.reloadData()
+            if appointments.count > 0{
+                self.tableView.scrollToTop()
+            }
+            lblNoAppointments.isHidden = (appointments.count > 0)
+        }
+    }
+    
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        print("Failed: \(errorMessage ?? "")")
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+    }
+}
+
+extension AppointmentVC:AppointmentDelegate{
+    
+    func actionDelete(indexPath: IndexPath) {
+    }
+    
+    func actionModify(indexPath: IndexPath) {
+    }
+    
+    func actionViewAll() {
+    }
+    
+    func servicesAction(indexPath: IndexPath) {
+        
+        let appointment = appointments[indexPath.row]
+        
+        let vc = ListingVC.instantiate(fromAppStoryboard: .More)
+        self.view.alpha = screenPopUpAlpha
+        vc.services = appointment.services?.compactMap{ ServiceListingModel(name: $0.service_name ?? "", price: "\($0.price ?? 0)") } ?? []
+        vc.screenTitle = "Services"
+        vc.listingType = .appointmentServices
+        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] result in
+            // Do something
+            self.view.alpha = 1.0
+        }
+    }
+    
+
 }
 
 extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
@@ -157,7 +221,7 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return appointments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,7 +229,9 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.appointmentStatusCell, for: indexPath) as? AppointmentStatusCell else {
             return UITableViewCell()
         }
+        cell.configureCell(model: appointments[indexPath.row])
         cell.indexPath = indexPath
+        cell.delegate = self
         cell.selectionStyle = .none
         return cell
         
@@ -185,9 +251,15 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
 //            self.view.alpha = 1.0
 //        }
 //        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        let appointment = appointments[indexPath.row]
+        if let dateString = appointment.appointment_date,
+            let date = dateString.getDateFromString(){
+            let vc = AppointmentDetailsVC.instantiate(fromAppStoryboard: .Appointment)
+            vc.appointmentDetails = appointments[indexPath.row]
+            vc.selectedDate = date
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
-        let vc = AppointmentDetailsVC.instantiate(fromAppStoryboard: .Appointment)
-        self.navigationController?.pushViewController(vc, animated: true)
         
     }
 }

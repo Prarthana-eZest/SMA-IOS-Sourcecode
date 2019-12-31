@@ -14,18 +14,25 @@ import UIKit
 
 protocol ClientInformationPresentationLogic
 {
-  func presentSomething(response: ClientInformation.Something.Response)
-}
+    func presentGetAppointmentHistorySuccess<T: Decodable>(response: T)
+    func presentGetMembershipDetailsSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)}
 
 class ClientInformationPresenter: ClientInformationPresentationLogic
 {
-  weak var viewController: ClientInformationDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: ClientInformation.Something.Response)
-  {
-    let viewModel = ClientInformation.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: ClientInformationDisplayLogic?
+    
+    // MARK: Do something
+    
+    func presentGetAppointmentHistorySuccess<T>(response: T) where T : Decodable {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    
+    func presentGetMembershipDetailsSuccess<T>(response: T) where T : Decodable {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    
+    func presentError(responseError: String?) {
+        viewController?.displayError(errorMessage: responseError)
+    }
 }

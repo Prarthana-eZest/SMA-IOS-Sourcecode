@@ -21,6 +21,7 @@ class EmployeeCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        ratingsView.isUserInteractionEnabled = false
     }
     
     

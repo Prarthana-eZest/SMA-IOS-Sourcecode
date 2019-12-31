@@ -23,8 +23,9 @@ enum ProfileType {
 }
 
 enum ListingType:String{
-    case services = "Services Performed"
+    case services = "Service Expertise"
     case shifts = "Shift Timing"
+    case appointmentServices = "Services"
 }
 
 class MyProfileVC: UIViewController, MyProfileDisplayLogic
@@ -97,10 +98,10 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
 
-        
-        getProfileData()
-        //getServiceList()
-        getRosterDetails()
+        if profileType == .selfUser{
+           // getServiceList()
+            getRosterDetails()
+        }
         
     }
     
@@ -125,14 +126,16 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     }
     
     func getRosterDetails()  {
-        EZLoadingActivity.show("Loading...", disableUI: true)
         
-        
-        
-        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+        if let startDate = Date().startOfWeek,let endDate = Date().endOfWeek{
             
-            let request = MyProfile.GetRosterDetails.Request(salon_code: userData.data?.base_salon_code ?? "", employee_code: userData.data?.employee_code ?? "")
-            interactor?.doGetRosterData(request: request, method: .post)
+            if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+                
+                EZLoadingActivity.show("Loading...", disableUI: true)
+                
+                let request = MyProfile.GetRosterDetails.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: startDate.dayYearMonthDate, toDate: endDate.dayYearMonthDate, employee_code: userData.data?.employee_code ?? "")
+                interactor?.doGetRosterData(request: request, method: .post)
+            }
         }
     }
     
@@ -146,13 +149,9 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
             self.service.removeAll()
             self.service.append(contentsOf: model.data?.service_list ?? [])
         }else if let model = viewModel as? MyProfile.GetRosterDetails.Response,model.status == true{
-            if let data = model.data, data.isEmpty{
-                showAlert(alertTitle: alertTitle, alertMessage: model.message)
-                return
-            }
             self.rosterList.removeAll()
             model.data?.forEach{
-                let shift = "\($0.shift_name ?? "-") : \($0.start_time ?? "-") - \($0.end_time ?? "-")"
+                let shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
                 self.rosterList.append(shift)
             }
         }
@@ -181,11 +180,13 @@ extension MyProfileVC: ProfileCellDelegate{
             
         case .services:
             vc.listing = service
-            vc.screenTitle = "Services Expertise"
+            vc.screenTitle = "Service Expertise"
             
         case .shifts:
             vc.listing = rosterList
             vc.screenTitle = "Shift Timing"
+            
+        default:break
         }
         
         appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
@@ -293,13 +294,21 @@ extension MyProfileVC{
         
         if let data = model.data{
             
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-",ratings: data.rating)
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating)
+            
+            var addressString = ["\(data.address?.first?.line_1 ?? "" )",
+                "\(data.address?.first?.line_2 ?? "" )",
+                "\(data.address?.first?.city ?? "" )",
+                "\(data.address?.first?.state ?? "" )",
+                "\(data.address?.first?.country ?? "" )"]
+            addressString.removeAll(where: {$0.isEmpty})
+            let address = addressString.joined(separator:", ")
             
             let sections =
                 [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
-                                                                 MyProfileModel(title:"Mobile Number",value: "-",isMultiOption:false),
+                                                                 MyProfileModel(title:"Mobile Number",value: data.mobile_number ?? "-",isMultiOption:false),
                                                                  MyProfileModel(title:"Other Contact Number",value:"-",isMultiOption:false),
-                                                                 MyProfileModel(title:"Email address",value:"-",isMultiOption:false),MyProfileModel(title:"Address",value:"-",isMultiOption:false)]),
+                                                                 MyProfileModel(title:"Email address",value: data.email ?? "-",isMultiOption:false),MyProfileModel(title:"Address",value:address,isMultiOption:false)]),
                  MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee ID",value:data.employee_code ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Nick Name",value:data.nickname ?? "-",isMultiOption:false),
                                                                      MyProfileModel(title:"Experience",value: "-",isMultiOption:false),

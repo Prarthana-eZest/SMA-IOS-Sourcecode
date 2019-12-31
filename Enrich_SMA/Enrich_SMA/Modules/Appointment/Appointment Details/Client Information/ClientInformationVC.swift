@@ -14,7 +14,15 @@ import UIKit
 
 protocol ClientInformationDisplayLogic: class
 {
-    func displaySomething(viewModel: ClientInformation.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
+}
+
+enum MembershipType:String {
+    case general = "General"
+    case clubMemberShip = "Club Membership"
+    case premierMembership = "Premier Membership"
+    case eliteMembership = "Elite Membership"
 }
 
 class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
@@ -26,8 +34,13 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     
     @IBOutlet weak private var BottonButtonView: UIView!
     
+    var customerId:Int?
     
     var sections = [SectionConfiguration]()
+    
+    var appointmentHistory = [ClientInformation.GetAppointnentHistory.Data]()
+    var memebershipDetails:MembershipStatusModel?
+    
     
     let preferences:[String] = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                 "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
@@ -36,6 +49,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     var notes:[String] = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                           "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
                           "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."]
+    
     
     
     var selectedTitleCell = 0
@@ -83,7 +97,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
+        getAppointmentHistory()
+        
+        BottonButtonView.isHidden = true
         
         sections.removeAll()
         sections.append(configureSection(idetifier: .generalClientInfo, items: 5, data: []))
@@ -100,7 +116,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         tableView.register(UINib(nibName: CellIdentifier.serviceHistoryCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.serviceHistoryCell)
         tableView.register(UINib(nibName: CellIdentifier.addNotesSingatureCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.addNotesSingatureCell)
         
+        
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,9 +132,25 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
     
-    
     @IBAction func actionAddClientNotes(_ sender: UIButton) {
+        print("Add New Notes")
+        //        let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Schedule)
+        //        self.view.alpha = screenPopUpAlpha
+        //        self.present(addNewNoteVC, animated: true, completion: nil)
+        //        // appDelegate.window?.rootViewController!.present(addNewNoteVC, animated: true, completion: nil)
+        //
+        //        addNewNoteVC.onDoneBlock = { [unowned self] (result,note) in
+        //            // Do something
+        //            if(result) {
+        //                print("Note:\(note)")
+        //                self.notes.append(note)
+        //                self.tableView.reloadData()
+        //            }
+        //            self.view.alpha = 1.0
+        //
+        //        }
     }
+    
     
     @IBAction func actionClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -128,15 +162,57 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
-    {
-        let request = ClientInformation.Something.Request()
-        interactor?.doSomething(request: request)
+    func getAppointmentHistory(){
+        
+        if let customerId = customerId,
+            let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            
+            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.data?.base_salon_code ?? "", employee_code: userData.data?.employee_code ??  "", customer_id: "\(customerId)")
+            interactor?.doGetAppointmentHistory(request: request, method: .post)
+        }
     }
     
-    func displaySomething(viewModel: ClientInformation.Something.ViewModel)
-    {
-        //nameTextField.text = viewModel.name
+    func getMembershipDetails() {
+        
+        if let customerId = customerId,
+            let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser){
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            
+            let request = ClientInformation.MembershipDetails.Request(customer_id: "\(customerId)")
+            interactor?.doGetMembershipDetails(accessToken: userData.data?.access_token ?? "", method: .post, request: request)
+        }
+        
+    }
+    
+}
+
+extension ClientInformationVC{
+    
+    func displaySuccess<T>(viewModel: T) where T : Decodable {
+        EZLoadingActivity.hide()
+        print("Response: \(viewModel)")
+        
+        if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response, model.status == true{
+            self.appointmentHistory.removeAll()
+            self.appointmentHistory.append(contentsOf: model.data ?? [])
+            self.tableView.reloadData()
+            if appointmentHistory.count > 0{
+                self.tableView.scrollToTop()
+            }
+        }else if let model = viewModel as? ClientInformation.MembershipDetails.Response, model.status == true,let name = model.data?.name,let type = MembershipType(rawValue: name){
+            
+            memebershipDetails = MembershipStatusModel(type: type, validity: model.data?.end_date ?? "-", rewardPoints: "0")
+            self.tableView.reloadData()
+        }
+    }
+    
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        print("Failed: \(errorMessage ?? "")")
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }
 
@@ -147,6 +223,25 @@ extension ClientInformationVC: SelectGenderDelegate{
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+}
+
+
+extension ClientInformationVC: ClientInformationDelegate{
+    
+    func actionOtherServices(indexPath: IndexPath) {
+        
+        let vc = ListingVC.instantiate(fromAppStoryboard: .More)
+        self.view.alpha = screenPopUpAlpha
+        vc.services = appointmentHistory[indexPath.row].services?.compactMap{ ServiceListingModel(name: $0.service_name ?? "", price: "\($0.price ?? 0)") } ?? []
+        vc.screenTitle = "Services"
+        vc.listingType = .appointmentServices
+        self.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] result in
+            // Do something
+            self.view.alpha = 1.0
+        }
+    }
+    
 }
 
 
@@ -168,7 +263,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
         case 0: return section == 0 ? preferences.count + 1 : notes.count + 1
         case 1: return consulationData.count + 2
         case 2: return 1
-        case 3: return 5
+        case 3: return appointmentHistory.count
             
         default:
             return 0
@@ -236,15 +331,20 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.membershipStatusCell, for: indexPath) as? MembershipStatusCell else {
                 return UITableViewCell()
             }
+            cell.configureCell(model: memebershipDetails)
             cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
             cell.selectionStyle = .none
             return cell
+            
             
         case 3:
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.serviceHistoryCell, for: indexPath) as? ServiceHistoryCell else {
                 return UITableViewCell()
             }
+            cell.indexPath = indexPath
+            cell.delegate = self
+            cell.configureCell(model: appointmentHistory[indexPath.row])
             cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
             cell.selectionStyle = .none
             return cell
@@ -285,10 +385,18 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedTitleCell = indexPath.row
-       // BottonButtonView.isHidden = (indexPath.row != 0)
+        selectedTitleCell = indexPath.row
         collectionView.reloadData()
         tableView.reloadData()
+        
+        switch selectedTitleCell {
+        case 0: break
+        case 1: break
+        case 2: getMembershipDetails()
+        case 3: getAppointmentHistory()
+        default:break
+        }
+        
     }
     
 }

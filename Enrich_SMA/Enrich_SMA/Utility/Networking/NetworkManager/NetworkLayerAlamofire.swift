@@ -224,26 +224,31 @@ open class NetworkLayerAlamofire {
         // "http://dummy.restapiexample.com/api/v1/" dummy data
         var  BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
         var finalEndpoint = ""
+        let changeBaseList = [ConstantAPINames.getAppointments,
+                              ConstantAPINames.getEmployeeList]
         
         #if DEBUG
         print("DEBUG")
-        if endPoint == ConstantAPINames.getEmployeeList.rawValue{
-            BaseUrl = "https://enrich-magento.e-zest.net/lumen/"
+        if let end = ConstantAPINames(rawValue: endPoint),
+            changeBaseList.contains(end){
+            BaseUrl = "https://enrich-magento.e-zest.net/lumen/es-v1/"
         }else{
             BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
         }
         finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
-
-
+        
+        
         #elseif RELEASE
         print("RELEASE")
-        if endPoint == ConstantAPINames.getEmployeeList.rawValue{
+        
+        if let end = ConstantAPINames(rawValue: endPoint),
+            changeBaseList.contains(end){
             BaseUrl = "https://enrichsalon.co.in/inventory-api/"
         }else{
             BaseUrl = "https://enrichsalon.co.in/erp/source/live/rest/V1/"
         }
         finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
-
+        
         
         #endif
         
