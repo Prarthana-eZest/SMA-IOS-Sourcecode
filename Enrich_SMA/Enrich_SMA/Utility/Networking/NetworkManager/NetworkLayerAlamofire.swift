@@ -221,19 +221,16 @@ open class NetworkLayerAlamofire {
     
     private func createBaseUrl(endPoint: String) -> String {
         
-        // "http://dummy.restapiexample.com/api/v1/" dummy data
-        var  BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
+        var  BaseUrl = ""
         var finalEndpoint = ""
-        let changeBaseList = [ConstantAPINames.getAppointments,
-                              ConstantAPINames.getEmployeeList]
         
         #if DEBUG
         print("DEBUG")
-        if let end = ConstantAPINames(rawValue: endPoint),
-            changeBaseList.contains(end){
-            BaseUrl = "https://enrich-magento.e-zest.net/lumen/es-v1/"
+        
+        if endPoint.contains("rest/V1"){
+            BaseUrl = "https://enrichsalon.co.in/erp/source/live/"
         }else{
-            BaseUrl = "https://enrich-magento.e-zest.net/rest/V1/"
+            BaseUrl = "https://enrichsalon.co.in/"
         }
         finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
         
@@ -241,14 +238,12 @@ open class NetworkLayerAlamofire {
         #elseif RELEASE
         print("RELEASE")
         
-        if let end = ConstantAPINames(rawValue: endPoint),
-            changeBaseList.contains(end){
-            BaseUrl = "https://enrichsalon.co.in/inventory-api/"
+        if endPoint.contains("rest/V1"){
+            BaseUrl = "https://enrichsalon.co.in/erp/source/live/"
         }else{
-            BaseUrl = "https://enrichsalon.co.in/erp/source/live/rest/V1/"
+            BaseUrl = "https://enrichsalon.co.in/"
         }
         finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
-        
         
         #endif
         

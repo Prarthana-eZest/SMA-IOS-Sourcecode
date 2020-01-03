@@ -55,25 +55,29 @@ public enum ConstantAPINames: String {
     case paytmpayonline = "paytm/payonline"
     // More Tab
     
+    
+    //.............................SMA New API........................................
+    
     // Login Module
-    case userLogin = "integration/admin/token"
-    case getTermsAndConditions = "cms/block"
+    case userLogin = "rest/V1/integration/admin/token"
+    case getTermsAndConditions = "rest/V1/cms/block"
     
-    case sendOTPOnMobile = "employee/reset/password/generate/otp"
+    //case sendOTPOnMobile = "digimiles/sms/sendotp"
+    case sendOTPOnMobile = "rest/V1/employee/reset/password/generate/otp"
     
-    case validateOTPOnLogin =  "digimiles/customer/login"
+    case validateOTPOnLogin =  "rest/V1/digimiles/customer/login"
     
-    case forgotPassword = "employee/reset/password"
+    case forgotPassword = "rest/V1/employee/reset/password"
     
     // My Profile
-    case getUserProfile = "employee/profile?is_custom=true"
-    case getServiceList = "employee/services?is_custom=true"
-    case getEmployeeList = "roster"
+    case getUserProfile = "rest/V1/employee/profile?is_custom=true"
+    case getServiceList = "rest/V1/employee/services?is_custom=true"
+    case getEmployeeList = "inventory-api/roster" // L
     
     // Appoitments
-    case getAppointments = "appointments/appointment-list"
+    case getAppointments = "inventory-api/appointments/appointment-list" // L
     
     // Client Information
-    case membershipDetails = "membership?is_custom=true"
+    case membershipDetails = "rest/V1/membership?is_custom=true"
     
 }
