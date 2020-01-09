@@ -194,6 +194,7 @@ extension AppointmentVC{
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
         self.appointments.removeAll()
+        self.lblNoAppointments.isHidden = false
         self.tableView.reloadData()
        // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
