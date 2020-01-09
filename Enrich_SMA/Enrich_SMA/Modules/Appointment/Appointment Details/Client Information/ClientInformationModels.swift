@@ -106,6 +106,56 @@ enum ClientInformation
         }
     }
     
+    enum Preferences {
+        
+        struct Request: Codable {
+            let customer_id:String
+        }
+        
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            let data: PreferencesData?
+        }
+        struct PreferencesData: Codable {
+            let bevarages: [String]?
+            let preffered_salon: [PrefferedSalon]?
+            let preffered_stylist: [String]?
+        }
+        
+        struct PrefferedSalon: Codable {
+            let salon_name: String?
+            let salon_location: String?
+        }
+        
+    }
+    
+    
+    enum ClientNotes {
+        
+        struct Request: Codable {
+            let customer_id:String
+        }
+        
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            let data: PreferencesData?
+        }
+        struct PreferencesData: Codable {
+            let bevarages: [String]?
+            let preffered_salon: [PrefferedSalon]?
+            let preffered_stylist: [String]?
+        }
+        
+        struct PrefferedSalon: Codable {
+            let salon_name: String?
+            let salon_location: String?
+        }
+        
+    }
+
+    
 }
 
 

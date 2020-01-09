@@ -42,14 +42,22 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     var memebershipDetails:MembershipStatusModel?
     
     
-    let preferences:[String] = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
-                                "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."]
+    let bevarages:PointsCellData = PointsCellData(title: "Preferred Bevarages", points: ["cold drink","tea","coffee"])
     
-    var notes:[String] = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                          "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
-                          "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."]
+    let preferredSalon:PointsCellData = PointsCellData(title: "Preferred Salon", points: ["Enrich Salon, Aundh",
+                                                                              "Enrich Salon, Wakad"])
     
+    let preferredStylist:PointsCellData = PointsCellData(title: "Preferred Stylist", points: ["Harshal Patil","Aman Gupta","Riya Gupta"])
+    
+    let askNotes:PointsCellData = PointsCellData(title: "Ask Notes", points: ["Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
+                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."])
+    
+    let observeNotes:PointsCellData = PointsCellData(title: "Observe Notes", points: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
+                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."])
+    
+    var preferenceData = [PointsCellData]()
     
     
     var selectedTitleCell = 0
@@ -119,6 +127,10 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
         
+        preferenceData.removeAll()
+        preferenceData.append(contentsOf: [bevarages,preferredSalon,preferredStylist,askNotes,observeNotes])
+        tableView.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -186,6 +198,30 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         
     }
     
+    func getClientPreferences() {
+        
+        if let customerId = customerId{
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            
+            let request = ClientInformation.Preferences.Request(customer_id: "\(customerId)")
+            interactor?.doGetClientPreferences(accessToken: self.getAccessToken(), method: .post, request: request)
+        }
+        
+    }
+    
+    func getClientNotes() {
+        
+        if let customerId = customerId{
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            
+            let request = ClientInformation.ClientNotes.Request(customer_id: "\(customerId)")
+            interactor?.doGetClientNotes(accessToken: self.getAccessToken(), method: .post, request: request)
+        }
+        
+    }
+    
 }
 
 extension ClientInformationVC{
@@ -205,6 +241,10 @@ extension ClientInformationVC{
             
             memebershipDetails = MembershipStatusModel(type: type, validity: model.data?.end_date ?? "-", rewardPoints: "0")
             self.tableView.reloadData()
+        }else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true{
+            
+        }else if let model = viewModel as? ClientInformation.ClientNotes.Response, model.status == true{
+            
         }
     }
     
@@ -250,7 +290,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         switch selectedTitleCell {
-        case 0: return 2
+        case 0: return preferenceData.count
         default:
             return 1
         }
@@ -259,7 +299,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch selectedTitleCell {
-        case 0: return section == 0 ? preferences.count + 1 : notes.count + 1
+        case 0: return preferenceData[section].points.count + 1
         case 1: return consulationData.count + 2
         case 2: return 1
         case 3: return appointmentHistory.count
@@ -279,7 +319,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else{
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = indexPath.section == 0 ? "Preference" : "Client Notes"
+                cell.titleLabel.text = preferenceData[indexPath.section].title//indexPath.section == 0 ? "Preference" : "Client Notes"
                 cell.viewAllButton.isHidden = true
                 cell.viewAllButton.isHidden = true
                 cell.selectionStyle = .none
@@ -289,7 +329,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.pointsCell) as? PointsCell else {
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
+                cell.titleLabel.text = preferenceData[indexPath.section].points[indexPath.row - 1]//indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell

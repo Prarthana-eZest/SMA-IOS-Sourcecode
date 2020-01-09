@@ -16,7 +16,10 @@ protocol ClientInformationPresentationLogic
 {
     func presentGetAppointmentHistorySuccess<T: Decodable>(response: T)
     func presentGetMembershipDetailsSuccess<T: Decodable>(response: T)
-    func presentError(responseError: String?)}
+    func presentGetClientPreferenceSuccess<T: Decodable>(response: T)
+    func presentGetClientNotesSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)
+}
 
 class ClientInformationPresenter: ClientInformationPresentationLogic
 {
@@ -34,5 +37,13 @@ class ClientInformationPresenter: ClientInformationPresentationLogic
     
     func presentError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
+    }
+    
+    func presentGetClientPreferenceSuccess<T: Decodable>(response: T){
+        viewController?.displaySuccess(viewModel: response)
+    }
+    
+    func presentGetClientNotesSuccess<T: Decodable>(response: T){
+        viewController?.displaySuccess(viewModel: response)
     }
 }
