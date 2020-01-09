@@ -81,19 +81,33 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16){
+            btnOnGoing.titleLabel?.font = font
+        }
+        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16){
+            btnCompleted.titleLabel?.font = font
+            btnUpComing.titleLabel?.font = font
+        }
+        completedSelectionView.isHidden = true
+        ongoingSelectionView.isHidden = false
+        upcomingSelectionView.isHidden = true
         getAppointments(status: .ongoing)
+        
+        
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
         tableView.separatorColor = .clear
-        
-        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            lblLocation.text = userData.base_salon_name ?? ""
-        }
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+        
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            lblLocation.text = userData.base_salon_name ?? ""
+        }
     }
     
     // MARK: Do something
@@ -181,7 +195,7 @@ extension AppointmentVC{
         print("Failed: \(errorMessage ?? "")")
         self.appointments.removeAll()
         self.tableView.reloadData()
-        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+       // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }
 

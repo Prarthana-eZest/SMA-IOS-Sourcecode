@@ -15,12 +15,13 @@ protocol ClientInformationDelegate:class {
 
 class ServiceHistoryCell: UITableViewCell {
     
-    @IBOutlet weak var lblDateTime: UILabel!
-    @IBOutlet weak var lblServiceStatus: UILabel!
-    @IBOutlet weak var lblUserName: UILabel!
-    @IBOutlet weak var lblServiceName: UILabel!
-    @IBOutlet weak var btnOtherServicesCount: UIButton!
-    @IBOutlet weak var ratingsView: CosmosView!
+    @IBOutlet private weak var lblDateTime: UILabel!
+    @IBOutlet private weak var lblServiceStatus: UILabel!
+    @IBOutlet private weak var lblUserName: UILabel!
+    @IBOutlet private weak var lblServiceName: UILabel!
+    @IBOutlet private weak var btnOtherServicesCount: UIButton!
+    @IBOutlet private weak var ratingsView: CosmosView!
+    @IBOutlet private weak var stackViewServiceCount: UIStackView!
     
     var indexPath: IndexPath?
     weak var delegate:ClientInformationDelegate?
@@ -51,6 +52,7 @@ class ServiceHistoryCell: UITableViewCell {
         lblServiceName.text = model.services?.first?.service_name ?? "Not available"
         btnOtherServicesCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
         ratingsView.rating = model.avg_rating ?? 0.0
+        stackViewServiceCount.isHidden = ((model.services?.count ?? 1) < 2)
     }
     
     @IBAction func actionOtherServices(_ sender: UIButton) {

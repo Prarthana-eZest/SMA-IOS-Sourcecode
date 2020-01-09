@@ -30,6 +30,10 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     
     @IBOutlet weak private var tableView: UITableView!
     
+    @IBOutlet weak private var btnCheckIn: UIButton!
+
+    var userCheckedIn = false
+    
     var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.myProfile,
                                                                  .employees,
                                                                 // .inventory,
@@ -90,6 +94,21 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     //            self.view.alpha = 1.0
     //        }
     //    }
+    
+    @IBAction func actionCheckIn(_ sender: UIButton) {
+        
+        let message = userCheckedIn ? AlertMessagesToAsk.askToCheckOut : AlertMessagesToAsk.askToCheckIn
+        let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
+            self.userCheckedIn = !self.userCheckedIn
+            sender.setTitle(self.userCheckedIn ? "CHECK OUT" : "CHECK IN", for: .normal)
+        })
+        alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.default) { _ -> Void in
+            // Do Nothing
+        })
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
 }
 
 
