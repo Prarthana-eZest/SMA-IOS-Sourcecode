@@ -209,7 +209,7 @@ open class NetworkLayerAlamofire {
     }
     
     private func isSuccessWithErrorCode(_ statusCode: Int) -> Bool {
-        return statusCode >= 400 && statusCode < 500
+        return statusCode >= 400 && statusCode == 500
     }
     
     private func isSuccessWithErrorCode(_ response: URLResponse?) -> Bool {
@@ -226,26 +226,15 @@ open class NetworkLayerAlamofire {
         
         #if DEBUG
         print("DEBUG")
-        
-        if endPoint.contains("rest/V1"){
-            BaseUrl = "https://enrichsalon.co.in/erp/source/live/"
-        }else{
-            BaseUrl = "https://enrichsalon.co.in/"
-        }
-        finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
-        
+        BaseUrl = "https://enrichsalon.co.in/"
         
         #elseif RELEASE
         print("RELEASE")
-        
-        if endPoint.contains("rest/V1"){
-            BaseUrl = "https://enrichsalon.co.in/erp/source/live/"
-        }else{
-            BaseUrl = "https://enrichsalon.co.in/"
-        }
-        finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
+        BaseUrl = "https://enrichsalon.co.in/"
         
         #endif
+        
+        finalEndpoint = String(format: "%@%@", BaseUrl, endPoint)
         
         print("finalEndpoint \(finalEndpoint)")
         return finalEndpoint

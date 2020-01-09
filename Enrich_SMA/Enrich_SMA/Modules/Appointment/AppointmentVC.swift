@@ -85,9 +85,8 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
         tableView.separatorColor = .clear
         
-        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            let data = userData.data
-            lblLocation.text = data?.base_salon_name ?? ""
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            lblLocation.text = userData.base_salon_name ?? ""
         }
     }
     
@@ -103,10 +102,10 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
     
     func getAppointments(status:AppointmentType){
         
-        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = Appointment.GetAppointnents.Request(status: "\(status)", salon_code: userData.data?.base_salon_code ?? "")
+            let request = Appointment.GetAppointnents.Request(status: "\(status)", salon_code: userData.base_salon_code ?? "")
             interactor?.doGetAppointmentList(request: request, method: .post)
         }
     }
@@ -180,6 +179,8 @@ extension AppointmentVC{
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
+        self.appointments.removeAll()
+        self.tableView.reloadData()
         showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }

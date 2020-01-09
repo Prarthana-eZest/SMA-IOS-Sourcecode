@@ -165,24 +165,23 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     func getAppointmentHistory(){
         
         if let customerId = customerId,
-            let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.data?.base_salon_code ?? "", employee_code: userData.data?.employee_code ??  "", customer_id: "\(customerId)")
+            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.base_salon_code ?? "", employee_code: userData.employee_code ??  "", customer_id: "\(customerId)")
             interactor?.doGetAppointmentHistory(request: request, method: .post)
         }
     }
     
     func getMembershipDetails() {
         
-        if let customerId = customerId,
-            let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser){
+        if let customerId = customerId{
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
             let request = ClientInformation.MembershipDetails.Request(customer_id: "\(customerId)")
-            interactor?.doGetMembershipDetails(accessToken: userData.data?.access_token ?? "", method: .post, request: request)
+            interactor?.doGetMembershipDetails(accessToken: self.getAccessToken(), method: .post, request: request)
         }
         
     }

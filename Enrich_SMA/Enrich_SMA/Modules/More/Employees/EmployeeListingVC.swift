@@ -121,9 +121,9 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
         let todaysDate = Date().dayYearMonthDate
         EZLoadingActivity.show("Loading...", disableUI: true)
         
-        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
-            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate )
+            let request = EmployeeListing.GetEmployeeList.Request(salon_code: userData.base_salon_code ?? "", fromDate: todaysDate, toDate: todaysDate )
             interactor?.doGetEmployeeListData(request:request, method: HTTPMethod.get)
         }
         
@@ -152,9 +152,9 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
         self.employeeList.removeAll()
         response.data?.forEach{
             
-            if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+            if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
                 let employeeId = $0.employee_id,
-                let loginUserId = userData.data?.employee_id,
+                let loginUserId = userData.employee_id,
                 String(employeeId) != loginUserId{
                 
                 

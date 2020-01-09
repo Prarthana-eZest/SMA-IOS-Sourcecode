@@ -123,8 +123,7 @@ extension LoginModuleVC {
             obj.status,
             let data = obj.data{
             let userDefaults = UserDefaults.standard
-            userDefaults.set(encodable: data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
-            userDefaults.set(encodable: obj, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+            userDefaults.set(data.access_token,forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
             userDefaults.synchronize()
         }
         

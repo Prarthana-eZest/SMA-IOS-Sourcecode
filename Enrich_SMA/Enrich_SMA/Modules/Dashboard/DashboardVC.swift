@@ -14,7 +14,8 @@ import UIKit
 
 protocol DashboardDisplayLogic: class
 {
-    func displaySomething(viewModel: Dashboard.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
 }
 
 class DashboardVC: UIViewController, DashboardDisplayLogic
@@ -65,7 +66,6 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        doSomething()
         tableView.register(UINib(nibName: CellIdentifier.dashboardProfileCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.dashboardProfileCell)
         tableView.register(UINib(nibName: CellIdentifier.yourTargetRevenueCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.yourTargetRevenueCell)
         
@@ -77,23 +77,48 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+        getProfileData()
     }
     
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
     
-    func doSomething()
-    {
-        let request = Dashboard.Something.Request()
-        interactor?.doSomething(request: request)
+    func getProfileData()  {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        interactor?.doGetMyProfileData(accessToken: self.getAccessToken(), method: .get)
     }
+    
     
     func displaySomething(viewModel: Dashboard.Something.ViewModel)
     {
         //nameTextField.text = viewModel.name
     }
 }
+
+extension DashboardVC{
+    
+    func displaySuccess<T>(viewModel: T) where T : Decodable {
+        EZLoadingActivity.hide()
+        print("Response: \(viewModel)")
+        
+        if let model = viewModel as? MyProfile.GetUserProfile.Response,model.status == true{
+            if let data = model.data{
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+                userDefaults.synchronize()
+            }
+            tableView.reloadData()
+        }
+    }
+    
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        print("Failed: \(errorMessage ?? "")")
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+    }
+}
+
 
 extension DashboardVC:AppointmentDelegate{
     

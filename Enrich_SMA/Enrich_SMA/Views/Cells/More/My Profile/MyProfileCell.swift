@@ -33,7 +33,7 @@ class MyProfileCell: UITableViewCell {
 
 struct MyProfileSection{
     let title: String
-    let data: [MyProfileModel]
+    var data: [MyProfileModel]
 }
 
 struct MyProfileModel{

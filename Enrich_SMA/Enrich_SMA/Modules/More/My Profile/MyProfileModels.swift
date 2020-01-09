@@ -36,6 +36,7 @@ enum MyProfile
             let lastname : String?
             let nickname : String?
             let employee_code : String?
+            let employee_id : String?
             let birthdate : String?
             let designation : String?
             let base_salon_code : String?
@@ -47,6 +48,10 @@ enum MyProfile
             let mobile_number : String?
             let email : String?
             let address : [Address]?
+            let gender: String?
+            let work_number: String?
+            let status: String?
+            let customer_count: String?
         }
         
         struct Address : Codable {
@@ -82,7 +87,7 @@ enum MyProfile
             let salon_code: String
             let fromDate: String
             let toDate: String
-            let employee_code: String
+            let employee_id: String
         }
         
         struct Response: Codable {

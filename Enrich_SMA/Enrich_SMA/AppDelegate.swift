@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func onBoardingScreen() {
         // authentication successful
         
-        if UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUser) == nil {
+        if UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) == nil {
             let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)
             self.window?.rootViewController = navigationC
             self.window?.makeKeyAndVisible()
