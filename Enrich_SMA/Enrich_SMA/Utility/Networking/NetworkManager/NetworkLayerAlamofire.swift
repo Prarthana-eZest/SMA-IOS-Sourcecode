@@ -209,7 +209,7 @@ open class NetworkLayerAlamofire {
     }
     
     private func isSuccessWithErrorCode(_ statusCode: Int) -> Bool {
-        return statusCode >= 400 && statusCode == 500
+        return statusCode >= 400 && statusCode < 500
     }
     
     private func isSuccessWithErrorCode(_ response: URLResponse?) -> Bool {
