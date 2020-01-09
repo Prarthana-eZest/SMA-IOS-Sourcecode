@@ -59,23 +59,22 @@ class ClientInformationWorker
         
         let url = "\(ConstantAPINames.clientPreferences.rawValue)&customer_id=\(request.customer_id)"
         
-        self.networkLayer.get(urlString: url, successHandler: successHandler, errorHandler: errorHandler)
+        self.networkLayer.get(urlString: url, headers: ["Authorization":"bearer \(accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
     }
     
-    func getRequestForClientNotes(accessToken:String, method: HTTPMethod,request: ClientInformation.ClientNotes.Request) {
+    func postRequestForClientNotes(request:ClientInformation.ClientNotes.Request, method: HTTPMethod) {
         
         let errorHandler: (String) -> Void = { (error) in
             print(error)
             self.presenter?.presentError(responseError: error)
         }
-        
         let successHandler: (ClientInformation.ClientNotes.Response) -> Void = { (response) in
+            print(response)
             self.presenter?.presentGetClientNotesSuccess(response: response)
         }
         
-        let url = "\(ConstantAPINames.clientNotes.rawValue)&customer_id=\(request.customer_id)"
+        self.networkLayer.post(urlString: ConstantAPINames.clientNotes.rawValue, body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler, method: .post)
         
-        self.networkLayer.get(urlString: url, successHandler: successHandler, errorHandler: errorHandler)
     }
     
 }

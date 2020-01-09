@@ -17,7 +17,7 @@ protocol ClientInformationBusinessLogic
     func doGetAppointmentHistory(request: ClientInformation.GetAppointnentHistory.Request, method: HTTPMethod)
     func doGetMembershipDetails(accessToken:String, method: HTTPMethod,request: ClientInformation.MembershipDetails.Request)
     func doGetClientPreferences(accessToken:String, method: HTTPMethod,request: ClientInformation.Preferences.Request)
-    func doGetClientNotes(accessToken:String, method: HTTPMethod,request: ClientInformation.ClientNotes.Request)
+    func doGetClientNotes(method: HTTPMethod,request: ClientInformation.ClientNotes.Request)
 }
 
 class ClientInformationInteractor: ClientInformationBusinessLogic
@@ -46,10 +46,10 @@ class ClientInformationInteractor: ClientInformationBusinessLogic
         worker?.getRequestForClientPreference(accessToken: accessToken, method: method, request: request)
     }
     
-    func doGetClientNotes(accessToken:String, method: HTTPMethod,request: ClientInformation.ClientNotes.Request){
+    func doGetClientNotes(method: HTTPMethod,request: ClientInformation.ClientNotes.Request){
         worker = ClientInformationWorker()
         worker?.presenter = self.presenter
-        worker?.getRequestForClientNotes(accessToken: accessToken, method: method, request: request)
+        worker?.postRequestForClientNotes(request: request, method: method)
     }
 
 }

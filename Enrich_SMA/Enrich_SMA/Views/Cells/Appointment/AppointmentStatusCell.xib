@@ -145,10 +145,10 @@
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ner-jF-GvH">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ner-jF-GvH">
                                                         <rect key="frame" x="60" y="0.0" width="25" height="34"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-zg-PCF">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="900" verticalHuggingPriority="900" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-zg-PCF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="33"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                                 <state key="normal" title="+2">

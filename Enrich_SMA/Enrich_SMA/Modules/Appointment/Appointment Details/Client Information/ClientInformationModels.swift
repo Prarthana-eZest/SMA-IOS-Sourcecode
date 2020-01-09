@@ -118,9 +118,14 @@ enum ClientInformation
             let data: PreferencesData?
         }
         struct PreferencesData: Codable {
-            let bevarages: [String]?
-            let preffered_salon: [PrefferedSalon]?
-            let preffered_stylist: [String]?
+            let preferred_bevarages: String?
+            let preferred_salon: [PrefferedSalon]?
+            let preferred_stylist: [PrefferedStylist]?
+        }
+        
+        struct PrefferedStylist: Codable {
+            let user_id: String?
+            let name: String?
         }
         
         struct PrefferedSalon: Codable {
@@ -135,22 +140,32 @@ enum ClientInformation
         
         struct Request: Codable {
             let customer_id:String
+            let limit:String
+            let is_custom:Bool
         }
         
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
-            let data: PreferencesData?
-        }
-        struct PreferencesData: Codable {
-            let bevarages: [String]?
-            let preffered_salon: [PrefferedSalon]?
-            let preffered_stylist: [String]?
+            let data: Data?
         }
         
-        struct PrefferedSalon: Codable {
-            let salon_name: String?
-            let salon_location: String?
+        struct Data: Codable {
+            let ask: [NotesData]?
+            let observe: [NotesData]?
+        }
+        
+        struct NotesData: Codable {
+            let entity_id: String?
+            let customer_id: String?
+            let note_type: String?
+            let note: String?
+            let note_by: String?
+            let customer_rating: String?
+            let customer_rating_comment: String?
+            let updated_by: String?
+            let created_at: String?
+            let updated_at: String?
         }
         
     }

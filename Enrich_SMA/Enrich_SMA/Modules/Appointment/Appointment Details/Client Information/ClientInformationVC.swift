@@ -41,22 +41,6 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     var appointmentHistory = [ClientInformation.GetAppointnentHistory.Data]()
     var memebershipDetails:MembershipStatusModel?
     
-    
-    let bevarages:PointsCellData = PointsCellData(title: "Preferred Bevarages", points: ["cold drink","tea","coffee"])
-    
-    let preferredSalon:PointsCellData = PointsCellData(title: "Preferred Salon", points: ["Enrich Salon, Aundh",
-                                                                              "Enrich Salon, Wakad"])
-    
-    let preferredStylist:PointsCellData = PointsCellData(title: "Preferred Stylist", points: ["Harshal Patil","Aman Gupta","Riya Gupta"])
-    
-    let askNotes:PointsCellData = PointsCellData(title: "Ask Notes", points: ["Lorem ipsum dolor sit amet consectetur adipiscing elit.",
-                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
-                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."])
-    
-    let observeNotes:PointsCellData = PointsCellData(title: "Observe Notes", points: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
-                                                                              "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."])
-    
     var preferenceData = [PointsCellData]()
     
     
@@ -105,7 +89,8 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        getAppointmentHistory()
+        getClientPreferences()
+        getClientNotes()
         
         BottonButtonView.isHidden = true
         
@@ -127,16 +112,13 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
         
-        preferenceData.removeAll()
-        preferenceData.append(contentsOf: [bevarages,preferredSalon,preferredStylist,askNotes,observeNotes])
-        tableView.reloadData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -204,8 +186,8 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = ClientInformation.Preferences.Request(customer_id: "\(customerId)")
-            interactor?.doGetClientPreferences(accessToken: self.getAccessToken(), method: .post, request: request)
+            let request = ClientInformation.Preferences.Request(customer_id: "\(26)")
+            interactor?.doGetClientPreferences(accessToken: self.getAccessToken(), method: .get, request: request)
         }
         
     }
@@ -216,8 +198,8 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = ClientInformation.ClientNotes.Request(customer_id: "\(customerId)")
-            interactor?.doGetClientNotes(accessToken: self.getAccessToken(), method: .post, request: request)
+            let request = ClientInformation.ClientNotes.Request(customer_id:"\(26)" , limit: "10", is_custom: true)
+            interactor?.doGetClientNotes(method: .post, request: request)
         }
         
     }
@@ -243,8 +225,40 @@ extension ClientInformationVC{
             self.tableView.reloadData()
         }else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true{
             
+            if let data = model.data{
+                
+                if let bevarages = data.preferred_bevarages{
+                    self.preferenceData.append(PointsCellData(title: "Preferred Bevarages", points: [bevarages]))
+                }
+                
+                if let salons = data.preferred_salon,salons.count > 0{
+                    let names = salons.compactMap{ "\($0.salon_name ?? ""), \($0.salon_location ?? "")"}
+                    self.preferenceData.append(PointsCellData(title: "Preferred Salon", points: names))
+                }
+                
+                if let stylist = data.preferred_stylist,stylist.count > 0{
+                    let names = stylist.compactMap{$0.name ?? ""}
+                    self.preferenceData.append(PointsCellData(title: "Preferred Stylist", points: names))
+                }
+                
+            }
+            self.tableView.reloadData()
+            
         }else if let model = viewModel as? ClientInformation.ClientNotes.Response, model.status == true{
             
+            if let data = model.data{
+                
+                if let askNotes = data.ask, askNotes.count > 0{
+                    let notes = askNotes.compactMap{$0.note ?? ""}
+                    self.preferenceData.append(PointsCellData(title: "Ask Notes", points: notes))
+                }
+                
+                if let observeNotes = data.observe, observeNotes.count > 0{
+                    let notes = observeNotes.compactMap{$0.note ?? ""}
+                    self.preferenceData.append(PointsCellData(title: "Observe Notes", points: notes))
+                }
+            }
+            self.tableView.reloadData()
         }
     }
     
@@ -429,7 +443,9 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
         tableView.reloadData()
         
         switch selectedTitleCell {
-        case 0: break
+        case 0:
+            getClientPreferences()
+            getClientNotes()
         case 1: break
         case 2: getMembershipDetails()
         case 3: getAppointmentHistory()
