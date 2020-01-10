@@ -283,7 +283,7 @@ extension ClientInformationVC{
         EZLoadingActivity.hide()
         dispatchGroup.leave()
         print("Failed: \(errorMessage ?? "")")
-        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+       // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }
 
