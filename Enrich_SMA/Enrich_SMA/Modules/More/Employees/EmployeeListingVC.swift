@@ -26,6 +26,22 @@ enum AvailableStatusColor: String{
     case leave = "leave"
     case unknown = "unknown"
     
+    var status: String{
+        switch self {
+            
+        case .onTime:
+            return "On Time"
+        case .delayed:
+            return "Delayed"
+        case .notCheckedIn:
+            return "Not Checked In"
+        case .leave:
+            return "On Leave"
+            
+        default:return ""
+        }
+    }
+    
     var color: UIColor{
         
         switch self {
@@ -165,7 +181,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic
                     statusText = $0.leave_type ?? ""
                 }else if let status = AvailableStatusColor(rawValue: $0.attendance_status ?? ""){
                     statusType = status
-                    statusText = $0.attendance_status ?? ""
+                    statusText = status.status//$0.attendance_status ?? ""
                 }
                 
                 let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "", ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText, employeeId: $0.employee_id)
