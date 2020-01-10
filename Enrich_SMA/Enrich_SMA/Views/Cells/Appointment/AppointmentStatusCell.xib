@@ -126,7 +126,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="nCY-xt-Ehs">
-                                        <rect key="frame" x="0.0" y="65" width="85" height="55"/>
+                                        <rect key="frame" x="0.0" y="65" width="446" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mg-Kq-a9d">
                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="21"/>
@@ -135,23 +135,26 @@
                                                 <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-W8-1j8">
-                                                <rect key="frame" x="0.0" y="21" width="85" height="34"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-W8-1j8">
+                                                <rect key="frame" x="0.0" y="21" width="90" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HairCut" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8x-tb-vhd">
-                                                        <rect key="frame" x="0.0" y="5.5" width="55" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="34"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ner-jF-GvH">
-                                                        <rect key="frame" x="60" y="0.0" width="25" height="34"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="900" verticalHuggingPriority="900" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ner-jF-GvH">
+                                                        <rect key="frame" x="60" y="0.0" width="30" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="900" verticalHuggingPriority="900" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-zg-PCF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="25" height="33"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="33"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="RcD-Rd-Aoz"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
-                                                                <state key="normal" title="+2">
+                                                                <state key="normal" title="+10">
                                                                     <color key="titleColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
@@ -159,11 +162,10 @@
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21X-FD-ACw">
-                                                                <rect key="frame" x="0.0" y="33" width="25" height="1"/>
+                                                                <rect key="frame" x="0.0" y="33" width="30" height="1"/>
                                                                 <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="VM2-Qf-aTL"/>
-                                                                    <constraint firstAttribute="width" constant="25" id="l03-tZ-JDn"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -171,6 +173,9 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ZQc-W8-1j8" firstAttribute="leading" secondItem="nCY-xt-Ehs" secondAttribute="leading" id="WO0-91-9oE"/>
+                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fwL-nL-t3N">
                                         <rect key="frame" x="0.0" y="135" width="446" height="41.5"/>
@@ -266,7 +271,9 @@
                                     <constraint firstAttribute="trailing" secondItem="Zyb-AH-wIE" secondAttribute="trailing" id="amd-Nc-XRs"/>
                                     <constraint firstItem="Zyb-AH-wIE" firstAttribute="leading" secondItem="oJd-Qs-qzq" secondAttribute="leading" id="c21-dr-oRQ"/>
                                     <constraint firstItem="fwL-nL-t3N" firstAttribute="leading" secondItem="oJd-Qs-qzq" secondAttribute="leading" id="egC-qT-w4w"/>
+                                    <constraint firstItem="nCY-xt-Ehs" firstAttribute="leading" secondItem="oJd-Qs-qzq" secondAttribute="leading" id="gkZ-B6-CvD"/>
                                     <constraint firstAttribute="trailing" secondItem="fwL-nL-t3N" secondAttribute="trailing" id="hmo-r8-iwL"/>
+                                    <constraint firstAttribute="trailing" secondItem="nCY-xt-Ehs" secondAttribute="trailing" id="oEZ-6z-4MS"/>
                                 </constraints>
                             </stackView>
                         </subviews>

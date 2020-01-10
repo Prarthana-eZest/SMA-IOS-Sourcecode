@@ -42,8 +42,12 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     var memebershipDetails:MembershipStatusModel?
     
     var preferenceData = [PointsCellData]()
+    var notesData = [PointsCellData]()
     
+    var data = [PointsCellData]()
     
+    private let dispatchGroup = DispatchGroup()
+
     var selectedTitleCell = 0
     
     // MARK: Object lifecycle
@@ -89,6 +93,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         getClientPreferences()
         getClientNotes()
         
@@ -111,6 +116,12 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        
+        dispatchGroup.notify(queue: .main) {[unowned self] in
+            self.data.append(contentsOf: self.preferenceData)
+            self.data.append(contentsOf: self.notesData)
+            self.tableView.reloadData()
+        }
         
     }
     
@@ -186,7 +197,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = ClientInformation.Preferences.Request(customer_id: "\(26)")
+            dispatchGroup.enter()
+            
+            let request = ClientInformation.Preferences.Request(customer_id: "\(customerId)")
             interactor?.doGetClientPreferences(accessToken: self.getAccessToken(), method: .get, request: request)
         }
         
@@ -198,7 +211,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = ClientInformation.ClientNotes.Request(customer_id:"\(26)" , limit: "10", is_custom: true)
+            dispatchGroup.enter()
+            
+            let request = ClientInformation.ClientNotes.Request(customer_id:"\(customerId)" , limit: "10", is_custom: true)
             interactor?.doGetClientNotes(method: .post, request: request)
         }
         
@@ -225,10 +240,11 @@ extension ClientInformationVC{
             self.tableView.reloadData()
         }else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true{
             
+            self.preferenceData.removeAll()
             if let data = model.data{
                 
                 if let bevarages = data.preferred_bevarages{
-                    self.preferenceData.append(PointsCellData(title: "Preferred Bevarages", points: [bevarages]))
+                    self.preferenceData.append(PointsCellData(title: "Preferred Beverages", points: [bevarages]))
                 }
                 
                 if let salons = data.preferred_salon,salons.count > 0{
@@ -242,28 +258,30 @@ extension ClientInformationVC{
                 }
                 
             }
-            self.tableView.reloadData()
+            dispatchGroup.leave()
             
         }else if let model = viewModel as? ClientInformation.ClientNotes.Response, model.status == true{
             
+            self.notesData.removeAll()
             if let data = model.data{
                 
                 if let askNotes = data.ask, askNotes.count > 0{
                     let notes = askNotes.compactMap{$0.note ?? ""}
-                    self.preferenceData.append(PointsCellData(title: "Ask Notes", points: notes))
+                    self.notesData.append(PointsCellData(title: "Ask Notes", points: notes))
                 }
                 
                 if let observeNotes = data.observe, observeNotes.count > 0{
                     let notes = observeNotes.compactMap{$0.note ?? ""}
-                    self.preferenceData.append(PointsCellData(title: "Observe Notes", points: notes))
+                    self.notesData.append(PointsCellData(title: "Observe Notes", points: notes))
                 }
             }
-            self.tableView.reloadData()
+            dispatchGroup.leave()
         }
     }
     
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
+        dispatchGroup.leave()
         print("Failed: \(errorMessage ?? "")")
         showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
@@ -304,7 +322,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         switch selectedTitleCell {
-        case 0: return preferenceData.count
+        case 0: return data.count
         default:
             return 1
         }
@@ -313,7 +331,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch selectedTitleCell {
-        case 0: return preferenceData[section].points.count + 1
+        case 0: return data[section].points.count + 1
         case 1: return consulationData.count + 2
         case 2: return 1
         case 3: return appointmentHistory.count
@@ -333,7 +351,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else{
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = preferenceData[indexPath.section].title//indexPath.section == 0 ? "Preference" : "Client Notes"
+                cell.titleLabel.text = data[indexPath.section].title//indexPath.section == 0 ? "Preference" : "Client Notes"
                 cell.viewAllButton.isHidden = true
                 cell.viewAllButton.isHidden = true
                 cell.selectionStyle = .none
@@ -343,7 +361,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.pointsCell) as? PointsCell else {
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = preferenceData[indexPath.section].points[indexPath.row - 1]//indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
+                cell.titleLabel.text = data[indexPath.section].points[indexPath.row - 1]//indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell
