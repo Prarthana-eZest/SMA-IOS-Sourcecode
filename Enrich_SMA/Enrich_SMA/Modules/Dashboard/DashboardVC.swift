@@ -122,6 +122,9 @@ extension DashboardVC{
 
 extension DashboardVC:AppointmentDelegate{
     
+    func actionRatings(indexPath: IndexPath) {
+        print("Ratings")
+    }
     
     func actionViewAll() {
         print("View All")

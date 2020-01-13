@@ -46,8 +46,6 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     
     var data = [PointsCellData]()
     
-    private let dispatchGroup = DispatchGroup()
-
     var selectedTitleCell = 0
     
     // MARK: Object lifecycle
@@ -97,8 +95,6 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         getClientPreferences()
         getClientNotes()
         
-        BottonButtonView.isHidden = true
-        
         sections.removeAll()
         sections.append(configureSection(idetifier: .generalClientInfo, items: 5, data: []))
         sections.append(configureSection(idetifier: .consulationInfo, items: consulationData.count + 1, data: []))
@@ -117,12 +113,6 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
         
-        dispatchGroup.notify(queue: .main) {[unowned self] in
-            self.data.append(contentsOf: self.preferenceData)
-            self.data.append(contentsOf: self.notesData)
-            self.tableView.reloadData()
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,23 +127,30 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
     
+    func reloadClientData(){
+        self.data.removeAll()
+        self.data.append(contentsOf: self.preferenceData)
+        self.data.append(contentsOf: self.notesData)
+        print("Data Reloaded")
+        self.tableView.reloadData()
+    }
+    
     @IBAction func actionAddClientNotes(_ sender: UIButton) {
         print("Add New Notes")
-        //        let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Schedule)
-        //        self.view.alpha = screenPopUpAlpha
-        //        self.present(addNewNoteVC, animated: true, completion: nil)
-        //        // appDelegate.window?.rootViewController!.present(addNewNoteVC, animated: true, completion: nil)
-        //
-        //        addNewNoteVC.onDoneBlock = { [unowned self] (result,note) in
-        //            // Do something
-        //            if(result) {
-        //                print("Note:\(note)")
-        //                self.notes.append(note)
-        //                self.tableView.reloadData()
-        //            }
-        //            self.view.alpha = 1.0
-        //
-        //        }
+        let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Appointment)
+        self.view.alpha = screenPopUpAlpha
+        addNewNoteVC.customerId = "\(customerId ?? 0)"
+        self.present(addNewNoteVC, animated: true, completion: nil)
+        
+        addNewNoteVC.onDoneBlock = { [unowned self] (result,note) in
+            // Do something
+            if(result) {
+                print("Note:\(note)")
+                self.getClientNotes()
+            }
+            self.view.alpha = 1.0
+            
+        }
     }
     
     
@@ -197,8 +194,6 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            dispatchGroup.enter()
-            
             let request = ClientInformation.Preferences.Request(customer_id: "\(customerId)")
             interactor?.doGetClientPreferences(accessToken: self.getAccessToken(), method: .get, request: request)
         }
@@ -211,9 +206,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            dispatchGroup.enter()
-            
-            let request = ClientInformation.ClientNotes.Request(customer_id:"\(customerId)" , limit: "10", is_custom: true)
+            let request = ClientInformation.ClientNotes.Request(customer_id:"\(customerId)", is_custom: true)
             interactor?.doGetClientNotes(method: .post, request: request)
         }
         
@@ -258,7 +251,7 @@ extension ClientInformationVC{
                 }
                 
             }
-            dispatchGroup.leave()
+            self.reloadClientData()
             
         }else if let model = viewModel as? ClientInformation.ClientNotes.Response, model.status == true{
             
@@ -275,13 +268,12 @@ extension ClientInformationVC{
                     self.notesData.append(PointsCellData(title: "Observe Notes", points: notes))
                 }
             }
-            dispatchGroup.leave()
+            self.reloadClientData()
         }
     }
     
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
-        dispatchGroup.leave()
         print("Failed: \(errorMessage ?? "")")
        // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
@@ -457,6 +449,7 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedTitleCell = indexPath.row
+        BottonButtonView.isHidden = (indexPath.row != 0)
         collectionView.reloadData()
         tableView.reloadData()
         

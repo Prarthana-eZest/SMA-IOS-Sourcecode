@@ -227,7 +227,13 @@ extension AppointmentVC:AppointmentDelegate{
         }
     }
     
-
+    func actionRatings(indexPath: IndexPath) {
+        if let id = appointments[indexPath.row].booked_by_id{
+            let vc = AllReviewsVC.instantiate(fromAppStoryboard: .Appointment)
+            vc.customerId = id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {

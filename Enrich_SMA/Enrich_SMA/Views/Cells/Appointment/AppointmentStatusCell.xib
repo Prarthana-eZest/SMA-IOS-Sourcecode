@@ -323,15 +323,25 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K43-fd-bc3">
+                        <rect key="frame" x="416" y="231.5" width="65" height="30"/>
+                        <connections>
+                            <action selector="actionRatings:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VBE-St-9oE"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="5Py-hN-ct2" firstAttribute="trailing" secondItem="Qrj-JQ-Fgq" secondAttribute="trailing" id="1Dy-Kg-Rao"/>
+                    <constraint firstItem="K43-fd-bc3" firstAttribute="bottom" secondItem="Koq-Ve-8px" secondAttribute="bottom" id="AL6-Ts-mNM"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1Ec-A1-Ixw" secondAttribute="bottom" id="C1Y-kF-QzG"/>
                     <constraint firstItem="z9g-hN-2OE" firstAttribute="centerY" secondItem="Qrj-JQ-Fgq" secondAttribute="centerY" id="GGj-hh-aMB"/>
+                    <constraint firstItem="K43-fd-bc3" firstAttribute="leading" secondItem="Koq-Ve-8px" secondAttribute="leading" id="I7X-Ti-N52"/>
                     <constraint firstAttribute="trailing" secondItem="1Ec-A1-Ixw" secondAttribute="trailing" constant="20" id="JhC-L5-916"/>
                     <constraint firstItem="1Ec-A1-Ixw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Kxw-WY-hK3"/>
+                    <constraint firstItem="K43-fd-bc3" firstAttribute="top" secondItem="Koq-Ve-8px" secondAttribute="top" id="MrQ-Ez-eeK"/>
                     <constraint firstItem="z9g-hN-2OE" firstAttribute="leading" secondItem="Qrj-JQ-Fgq" secondAttribute="leading" constant="-6" id="kPS-gu-I6m"/>
                     <constraint firstItem="5Py-hN-ct2" firstAttribute="centerY" secondItem="Qrj-JQ-Fgq" secondAttribute="centerY" id="lXn-IB-2Bj"/>
+                    <constraint firstItem="K43-fd-bc3" firstAttribute="trailing" secondItem="Koq-Ve-8px" secondAttribute="trailing" id="lyR-47-pXu"/>
                     <constraint firstItem="1Ec-A1-Ixw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="tCT-y4-cO6"/>
                 </constraints>
             </tableViewCellContentView>

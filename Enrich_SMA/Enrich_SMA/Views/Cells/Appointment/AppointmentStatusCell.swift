@@ -13,6 +13,7 @@ protocol AppointmentDelegate:class {
     func actionModify(indexPath:IndexPath)
     func actionViewAll()
     func servicesAction(indexPath:IndexPath)
+    func actionRatings(indexPath:IndexPath)
 }
 
 enum ServiceType:String{
@@ -83,6 +84,12 @@ class AppointmentStatusCell: UITableViewCell {
     @IBAction func actionServiceCount(_ sender: UIButton) {
         if let indexPath = indexPath{
             delegate?.servicesAction(indexPath: indexPath)
+        }
+    }
+    
+    @IBAction func actionRatings(_ sender: UIButton) {
+        if let indexPath = indexPath{
+            delegate?.actionRatings(indexPath: indexPath)
         }
     }
     

@@ -105,6 +105,7 @@ enum AlertMessagesToAsk {
     static let askToCheckOut = "Are you sure you want to check out?"
     static let askToDeleteAddress = "Are you sure you want to delete address?"
     static let defaultAddress = "Dafault address cannot be removed."
+    static let addNewNote = "Please add note"
     static let termsAdnConditions = "Please accept terms and conditions"
     
 }

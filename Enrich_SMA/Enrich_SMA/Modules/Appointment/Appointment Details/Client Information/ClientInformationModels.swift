@@ -140,7 +140,6 @@ enum ClientInformation
         
         struct Request: Codable {
             let customer_id:String
-            let limit:String
             let is_custom:Bool
         }
         
@@ -153,6 +152,7 @@ enum ClientInformation
         struct Data: Codable {
             let ask: [NotesData]?
             let observe: [NotesData]?
+            let ratings: [NotesData]?
         }
         
         struct NotesData: Codable {
