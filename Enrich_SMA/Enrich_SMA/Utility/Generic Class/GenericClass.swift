@@ -91,9 +91,9 @@ extension GenericClass {
         
         var userAccessToken: String = ""
         var userstatus: Bool = false
-        if let model = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String{
             userstatus = true
-            userAccessToken = (model.data?.access_token ?? "")
+            userAccessToken = accessToken
             return (userstatus, userAccessToken)
         }
         

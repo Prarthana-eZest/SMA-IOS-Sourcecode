@@ -72,12 +72,15 @@ public enum ConstantAPINames: String {
     // My Profile
     case getUserProfile = "rest/V1/employee/profile?is_custom=true"
     case getServiceList = "rest/V1/employee/services?is_custom=true"
-    case getEmployeeList = "inventory-api/roster" // L
+    case getEmployeeList = "esa/roster" // L
     
     // Appoitments
-    case getAppointments = "inventory-api/appointments/appointment-list" // L
-
+    case getAppointments = "esa/appointments/appointment-list" // L
+    
     // Client Information
     case membershipDetails = "rest/V1/membership?is_custom=true"
+    case clientPreferences = "rest/V1/customer-preferences?is_custom=true"
+    case clientNotes = "rest/V1/customer/ratingandnotes"
+    case addClientNote = "/rest/V1/customer/addnotes"
     
 }

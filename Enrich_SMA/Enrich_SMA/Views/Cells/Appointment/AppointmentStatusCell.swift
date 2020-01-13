@@ -13,6 +13,7 @@ protocol AppointmentDelegate:class {
     func actionModify(indexPath:IndexPath)
     func actionViewAll()
     func servicesAction(indexPath:IndexPath)
+    func actionRatings(indexPath:IndexPath)
 }
 
 enum ServiceType:String{
@@ -31,6 +32,7 @@ class AppointmentStatusCell: UITableViewCell {
     @IBOutlet private weak var lblServiceName: UILabel!
     @IBOutlet private weak var btnServiceCount: UIButton!
     @IBOutlet private weak var lblRatings: UILabel!
+    @IBOutlet private weak var stackViewServiceCount: UIStackView!
     
     @IBOutlet private weak var lblLocation: UILabel!
     @IBOutlet private weak var locationStackView: UIStackView!
@@ -60,6 +62,7 @@ class AppointmentStatusCell: UITableViewCell {
         lblTotalDuration.text = "\(model.total_duration ?? "0") min"
         lblServiceName.text = model.services?.first?.service_name ?? "Not available"
         btnServiceCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
+        stackViewServiceCount.isHidden = ((model.services?.count ?? 1) < 2)
         //lblAppointmentStatus.text = "\(model.status ?? "")"
         lblLocation.text = model.customer_address ?? ""
         locationStackView.isHidden = true
@@ -81,6 +84,12 @@ class AppointmentStatusCell: UITableViewCell {
     @IBAction func actionServiceCount(_ sender: UIButton) {
         if let indexPath = indexPath{
             delegate?.servicesAction(indexPath: indexPath)
+        }
+    }
+    
+    @IBAction func actionRatings(_ sender: UIButton) {
+        if let indexPath = indexPath{
+            delegate?.actionRatings(indexPath: indexPath)
         }
     }
     

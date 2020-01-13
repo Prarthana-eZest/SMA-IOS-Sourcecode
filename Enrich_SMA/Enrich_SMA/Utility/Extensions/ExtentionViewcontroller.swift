@@ -21,14 +21,22 @@ extension UIViewController {
         self.present(alert, animated: false, completion: nil)
     }
     
+    func getAccessToken() -> String{
+        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String{
+            return accessToken
+        }
+        
+        return ""
+    }
+    
     func isuserLoggedIn() -> (status: Bool, accessToken: String) {
         
         var userAccessToken: String = ""
         var userstatus: Bool = false
-        
-        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String{
+            // if let accessToken = UserDefaults.standard.value(String.self, forKey: ) {
             userstatus = true
-            userAccessToken = userData.data?.access_token ?? ""
+            userAccessToken = accessToken
             return (userstatus, userAccessToken)
         }
         

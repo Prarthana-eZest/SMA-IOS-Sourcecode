@@ -14,18 +14,21 @@ import UIKit
 
 protocol DashboardPresentationLogic
 {
-  func presentSomething(response: Dashboard.Something.Response)
+    func presentGetProfileSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)
 }
 
 class DashboardPresenter: DashboardPresentationLogic
 {
-  weak var viewController: DashboardDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: Dashboard.Something.Response)
-  {
-    let viewModel = Dashboard.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: DashboardDisplayLogic?
+    
+    // MARK: Do something
+    
+    func presentError(responseError: String?) {
+        viewController?.displayError(errorMessage: responseError)
+    }
+    
+    func presentGetProfileSuccess<T>(response: T) where T : Decodable {
+        viewController?.displaySuccess(viewModel: response)
+    }
 }

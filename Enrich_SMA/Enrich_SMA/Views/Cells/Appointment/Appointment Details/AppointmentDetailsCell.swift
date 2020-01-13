@@ -71,6 +71,17 @@ class AppointmentDetailsCell: UITableViewCell {
         }
         
         lblLandmark.text = model.landmark ?? "-"
+        
+        userProfile.layer.cornerRadius = userProfile.frame.size.height * 0.5
+        let url = URL(string: "" )
+        userProfile.kf.indicatorType = .activity
+        let gender = "1"
+        let defaultImage = (gender == "1" ? UIImage(named: "male-selected") : gender == "2" ? UIImage(named: "female-selected") : UIImage(named: "other-selected"))
+        if let imageurl = url{
+            userProfile.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
+        } else {
+            userProfile.image = defaultImage
+        }
     }
     
     @IBAction func actionFindAddress(_ sender: UIButton) {

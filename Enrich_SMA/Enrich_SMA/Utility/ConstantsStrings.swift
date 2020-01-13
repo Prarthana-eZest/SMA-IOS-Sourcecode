@@ -101,8 +101,11 @@ enum AlertMessagesSuccess {
 enum AlertMessagesToAsk {
     static let removeService = "Are you sure you want to remove this service?"
     static let askToLogout = "Are you sure you want to logout?"
+    static let askToPunchIn = "Are you sure you want to punch in?"
+    static let askToPunchOut = "Are you sure you want to punch out?"
     static let askToDeleteAddress = "Are you sure you want to delete address?"
     static let defaultAddress = "Dafault address cannot be removed."
+    static let addNewNote = "Please add note"
     static let termsAdnConditions = "Please accept terms and conditions"
     
 }

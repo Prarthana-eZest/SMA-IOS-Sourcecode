@@ -14,28 +14,20 @@ import UIKit
 
 protocol DashboardBusinessLogic
 {
-  func doSomething(request: Dashboard.Something.Request)
+    func doGetMyProfileData(accessToken:String, method: HTTPMethod)
 }
 
-protocol DashboardDataStore
+class DashboardInteractor: DashboardBusinessLogic
 {
-  //var name: String { get set }
-}
-
-class DashboardInteractor: DashboardBusinessLogic, DashboardDataStore
-{
-  var presenter: DashboardPresentationLogic?
-  var worker: DashboardWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Dashboard.Something.Request)
-  {
-    worker = DashboardWorker()
-    worker?.doSomeWork()
+    var presenter: DashboardPresentationLogic?
+    var worker: DashboardWorker?
+    //var name: String = ""
     
-    let response = Dashboard.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    func doGetMyProfileData(accessToken: String, method: HTTPMethod) {
+        worker = DashboardWorker()
+        worker?.presenter = self.presenter
+        worker?.getRequestForUserProfile(accessToken: accessToken, method: method)
+    }
 }

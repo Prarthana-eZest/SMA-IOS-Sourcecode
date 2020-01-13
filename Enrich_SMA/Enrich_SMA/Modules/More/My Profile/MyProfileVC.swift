@@ -42,6 +42,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     var profileHeader: MyProfileHeaderModel?
     
     var employeeId: Int?
+    var employeeCode: String?
     
     var service = [String]()
     var rosterList = [String]()
@@ -99,10 +100,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
 
         getProfileData()
-        if profileType == .selfUser{
-           // getServiceList()
-            getRosterDetails()
-        }
+        getRosterDetails()
         
     }
     
@@ -130,11 +128,13 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         
         if let startDate = Date().startOfWeek,let endDate = Date().endOfWeek{
             
-            if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
                 
                 EZLoadingActivity.show("Loading...", disableUI: true)
                 
-                let request = MyProfile.GetRosterDetails.Request(salon_code: userData.data?.base_salon_code ?? "", fromDate: startDate.dayYearMonthDate, toDate: endDate.dayYearMonthDate, employee_code: userData.data?.employee_code ?? "")
+                let id = (profileType == .selfUser ? (userData.employee_id ?? "0") : "\(employeeId ?? 0)")
+                
+                let request = MyProfile.GetRosterDetails.Request(salon_code: userData.base_salon_code ?? "", fromDate: startDate.dayYearMonthDate, toDate: endDate.dayYearMonthDate, employee_id: id)
                 interactor?.doGetRosterData(request: request, method: .post)
             }
         }
@@ -169,10 +169,6 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
 extension MyProfileVC: ProfileCellDelegate{
     
     func actionViewDetails(indexPath: IndexPath,type: ListingType) {
-        
-        if profileType == .otherUser{
-            return
-        }
         
         let vc = ListingVC.instantiate(fromAppStoryboard: .More)
         self.view.alpha = screenPopUpAlpha
@@ -294,8 +290,11 @@ extension MyProfileVC{
     func modelMapping(model:MyProfile.GetUserProfile.Response){
         
         if let data = model.data{
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+            userDefaults.synchronize()
             
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating)
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating,gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
             
             var addressString = ["\(data.address?.first?.line_1 ?? "" )",
                 "\(data.address?.first?.line_2 ?? "" )",
@@ -304,21 +303,25 @@ extension MyProfileVC{
                 "\(data.address?.first?.country ?? "" )"]
             addressString.removeAll(where: {$0.isEmpty})
             let address = addressString.joined(separator:", ")
+            let status = data.status ?? ""
             
-            let sections =
-                [MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
-                                                                 MyProfileModel(title:"Mobile Number",value: data.mobile_number ?? "-",isMultiOption:false),
-                                                                 MyProfileModel(title:"Other Contact Number",value:"-",isMultiOption:false),
-                                                                 MyProfileModel(title:"Email address",value: data.email ?? "-",isMultiOption:false),MyProfileModel(title:"Address",value:address,isMultiOption:false)]),
-                 MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee ID",value:data.employee_code ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Nick Name",value:data.nickname ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Experience",value: "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Center",value:data.base_salon_name ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
-                                                                     MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false)]),
-                 
-                 MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
-                                                              MyProfileModel(title:"Status",value:"-",isMultiOption:false)])]
+            let personalDetails = MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
+                                                                                  MyProfileModel(title:"Mobile Number",value: data.mobile_number ?? "-",isMultiOption:false),
+                                                                                  MyProfileModel(title:"Other Contact Number",value:data.work_number ?? "-",isMultiOption:false),
+                                                                                  MyProfileModel(title:"Email address",value: data.email ?? "-",isMultiOption:false),MyProfileModel(title:"Address",value:address,isMultiOption:false)])
+            
+            
+            let professionalDetails = MyProfileSection(title:"Professional details",data:[MyProfileModel(title:"Employee ID",value:data.employee_code ?? "-",isMultiOption:false),
+                                                                                          MyProfileModel(title:"Nick Name",value:data.nickname ?? "-",isMultiOption:false),
+                                                                                          MyProfileModel(title:"Center",value:data.base_salon_name ?? "-",isMultiOption:false),
+                                                                                          MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
+                                                                                          MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false)])
+            
+            var shiftDetails = MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
+                                                                            MyProfileModel(title:"Status",value: status == "1" ? "Active" : "Inactive",isMultiOption:false)])
+            
+            
+            let sections = [personalDetails,professionalDetails,shiftDetails]
             
             self.profileSections.removeAll()
             self.profileHeader = header

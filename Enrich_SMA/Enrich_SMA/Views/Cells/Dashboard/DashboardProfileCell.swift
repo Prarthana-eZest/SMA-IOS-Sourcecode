@@ -43,17 +43,27 @@ class DashboardProfileCell: UITableViewCell {
     
     func configureCell() {
 
-        if let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            let data = userData.data
-            lblUserName.text = "\(data?.firstname ?? "") \(data?.lastname ?? "")"
-            btnSelectALocation.setTitle(data?.base_salon_name ?? "", for: .normal)
-            let rating = userData.data?.rating ?? 0
-            if rating == 0{
-                lblRating.text = "0/5"
-            }else{
-                lblRating.text = "\(rating)/5"
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            lblUserName.text = "\(userData.firstname ?? "") \(userData.lastname ?? "")"
+            btnSelectALocation.setTitle(userData.base_salon_name ?? "", for: .normal)
+//            let rating = userData.rating ?? 0
+//            if rating == 0{
+//                lblRating.text = "0/5"
+//            }else{
+//                lblRating.text = "\(rating)/5"
+//            }
+            lblDesignation.text = userData.designation ?? "-"
+            
+            profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
+            let url = URL(string: userData.profile_pic ?? "" )
+            profilePicture.kf.indicatorType = .activity
+            let gender = userData.gender ?? "1"
+            let defaultImage = (gender == "1" ? UIImage(named: "male-selected") : gender == "2" ? UIImage(named: "female-selected") : UIImage(named: "other-selected"))
+            if let imageurl = url{
+                profilePicture.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
+            } else {
+                profilePicture.image = defaultImage
             }
-            lblDesignation.text = data?.designation ?? "-"
         }
     }
     

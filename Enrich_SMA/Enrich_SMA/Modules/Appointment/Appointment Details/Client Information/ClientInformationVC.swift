@@ -41,16 +41,10 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     var appointmentHistory = [ClientInformation.GetAppointnentHistory.Data]()
     var memebershipDetails:MembershipStatusModel?
     
+    var preferenceData = [PointsCellData]()
+    var notesData = [PointsCellData]()
     
-    let preferences:[String] = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
-                                "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."]
-    
-    var notes:[String] = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                          "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum.",
-                          "Curabitur non diam vel sem vulputate elementum vel in mauris. Sem vulputate elementum."]
-    
-    
+    var data = [PointsCellData]()
     
     var selectedTitleCell = 0
     
@@ -97,9 +91,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        getAppointmentHistory()
         
-        BottonButtonView.isHidden = true
+        getClientPreferences()
+        getClientNotes()
         
         sections.removeAll()
         sections.append(configureSection(idetifier: .generalClientInfo, items: 5, data: []))
@@ -125,6 +119,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         super.viewWillAppear(animated)
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -132,23 +127,30 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
     
+    func reloadClientData(){
+        self.data.removeAll()
+        self.data.append(contentsOf: self.preferenceData)
+        self.data.append(contentsOf: self.notesData)
+        print("Data Reloaded")
+        self.tableView.reloadData()
+    }
+    
     @IBAction func actionAddClientNotes(_ sender: UIButton) {
         print("Add New Notes")
-        //        let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Schedule)
-        //        self.view.alpha = screenPopUpAlpha
-        //        self.present(addNewNoteVC, animated: true, completion: nil)
-        //        // appDelegate.window?.rootViewController!.present(addNewNoteVC, animated: true, completion: nil)
-        //
-        //        addNewNoteVC.onDoneBlock = { [unowned self] (result,note) in
-        //            // Do something
-        //            if(result) {
-        //                print("Note:\(note)")
-        //                self.notes.append(note)
-        //                self.tableView.reloadData()
-        //            }
-        //            self.view.alpha = 1.0
-        //
-        //        }
+        let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Appointment)
+        self.view.alpha = screenPopUpAlpha
+        addNewNoteVC.customerId = "\(customerId ?? 0)"
+        self.present(addNewNoteVC, animated: true, completion: nil)
+        
+        addNewNoteVC.onDoneBlock = { [unowned self] (result,note) in
+            // Do something
+            if(result) {
+                print("Note:\(note)")
+                self.getClientNotes()
+            }
+            self.view.alpha = 1.0
+            
+        }
     }
     
     
@@ -165,24 +167,47 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     func getAppointmentHistory(){
         
         if let customerId = customerId,
-            let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.data?.base_salon_code ?? "", employee_code: userData.data?.employee_code ??  "", customer_id: "\(customerId)")
+            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.base_salon_code ?? "", employee_code: userData.employee_code ??  "", customer_id: "\(customerId)")
             interactor?.doGetAppointmentHistory(request: request, method: .post)
         }
     }
     
     func getMembershipDetails() {
         
-        if let customerId = customerId,
-            let userData = UserDefaults.standard.value(LoginModule.UserLogin.Response.self, forKey: UserDefauiltsKeys.k_Key_LoginUser){
+        if let customerId = customerId{
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
             let request = ClientInformation.MembershipDetails.Request(customer_id: "\(customerId)")
-            interactor?.doGetMembershipDetails(accessToken: userData.data?.access_token ?? "", method: .post, request: request)
+            interactor?.doGetMembershipDetails(accessToken: self.getAccessToken(), method: .post, request: request)
+        }
+        
+    }
+    
+    func getClientPreferences() {
+        
+        if let customerId = customerId{
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            
+            let request = ClientInformation.Preferences.Request(customer_id: "\(customerId)")
+            interactor?.doGetClientPreferences(accessToken: self.getAccessToken(), method: .get, request: request)
+        }
+        
+    }
+    
+    func getClientNotes() {
+        
+        if let customerId = customerId{
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            
+            let request = ClientInformation.ClientNotes.Request(customer_id:"\(customerId)", is_custom: true)
+            interactor?.doGetClientNotes(method: .post, request: request)
         }
         
     }
@@ -206,13 +231,51 @@ extension ClientInformationVC{
             
             memebershipDetails = MembershipStatusModel(type: type, validity: model.data?.end_date ?? "-", rewardPoints: "0")
             self.tableView.reloadData()
+        }else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true{
+            
+            self.preferenceData.removeAll()
+            if let data = model.data{
+                
+                if let bevarages = data.preferred_bevarages{
+                    self.preferenceData.append(PointsCellData(title: "Preferred Beverages", points: [bevarages]))
+                }
+                
+                if let salons = data.preferred_salon,salons.count > 0{
+                    let names = salons.compactMap{ "\($0.salon_name ?? ""), \($0.salon_location ?? "")"}
+                    self.preferenceData.append(PointsCellData(title: "Preferred Salon", points: names))
+                }
+                
+                if let stylist = data.preferred_stylist,stylist.count > 0{
+                    let names = stylist.compactMap{$0.name ?? ""}
+                    self.preferenceData.append(PointsCellData(title: "Preferred Stylist", points: names))
+                }
+                
+            }
+            self.reloadClientData()
+            
+        }else if let model = viewModel as? ClientInformation.ClientNotes.Response, model.status == true{
+            
+            self.notesData.removeAll()
+            if let data = model.data{
+                
+                if let askNotes = data.ask, askNotes.count > 0{
+                    let notes = askNotes.compactMap{$0.note ?? ""}
+                    self.notesData.append(PointsCellData(title: "Ask Notes", points: notes))
+                }
+                
+                if let observeNotes = data.observe, observeNotes.count > 0{
+                    let notes = observeNotes.compactMap{$0.note ?? ""}
+                    self.notesData.append(PointsCellData(title: "Observe Notes", points: notes))
+                }
+            }
+            self.reloadClientData()
         }
     }
     
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
-        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+       // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }
 
@@ -251,7 +314,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         switch selectedTitleCell {
-        case 0: return 2
+        case 0: return data.count
         default:
             return 1
         }
@@ -260,7 +323,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch selectedTitleCell {
-        case 0: return section == 0 ? preferences.count + 1 : notes.count + 1
+        case 0: return data[section].points.count + 1
         case 1: return consulationData.count + 2
         case 2: return 1
         case 3: return appointmentHistory.count
@@ -280,7 +343,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else{
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = indexPath.section == 0 ? "Preference" : "Client Notes"
+                cell.titleLabel.text = data[indexPath.section].title//indexPath.section == 0 ? "Preference" : "Client Notes"
                 cell.viewAllButton.isHidden = true
                 cell.viewAllButton.isHidden = true
                 cell.selectionStyle = .none
@@ -290,7 +353,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.pointsCell) as? PointsCell else {
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
+                cell.titleLabel.text = data[indexPath.section].points[indexPath.row - 1]//indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell
@@ -386,11 +449,14 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedTitleCell = indexPath.row
+        BottonButtonView.isHidden = (indexPath.row != 0)
         collectionView.reloadData()
         tableView.reloadData()
         
         switch selectedTitleCell {
-        case 0: break
+        case 0:
+            getClientPreferences()
+            getClientNotes()
         case 1: break
         case 2: getMembershipDetails()
         case 3: getAppointmentHistory()

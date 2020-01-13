@@ -8,6 +8,8 @@ import UIKit
 enum ProfileCellIdentifiers: String {
     
     // Dashboard
+    case punchIn = "Punch In"
+    case punchOut = "Punch Out"
     case myProfile = "MyProfile"
     case employees = "Employees"
     case inventory = "Inventory"
@@ -30,7 +32,10 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     
     @IBOutlet weak private var tableView: UITableView!
     
-    var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.myProfile,
+    var userPunchedIn = false
+    
+    var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.punchIn,
+                                                                 .myProfile,
                                                                  .employees,
                                                                 // .inventory,
                                                                  //.stores,
@@ -90,6 +95,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     //            self.view.alpha = 1.0
     //        }
     //    }
+    
 }
 
 
@@ -119,6 +125,11 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             cell = notificationCell
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }else if identifier == .punchIn{
+            let identifier = userPunchedIn ? ProfileCellIdentifiers.punchOut.rawValue : identifier.rawValue
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: identifier.rawValue, for: indexPath)
             cell.selectionStyle = .none
@@ -163,12 +174,27 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             
         case .audits:break
             
+        case .punchIn:
+            
+            let message = userPunchedIn ? AlertMessagesToAsk.askToPunchOut : AlertMessagesToAsk.askToPunchIn
+            let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
+                self.userPunchedIn = !self.userPunchedIn
+                self.tableView.reloadData()
+            })
+            alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.default) { _ -> Void in
+                // Do Nothing
+            })
+            self.present(alertController, animated: true, completion: nil)
+            
+        case .punchOut:break
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
+    
 }
 //extension MoreModuleViewController: LoginRegisterDelegate {
 //    func doLoginRegister() {

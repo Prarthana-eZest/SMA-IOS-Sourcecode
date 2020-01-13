@@ -24,7 +24,6 @@ class ClientInformationWorker
             self.presenter?.presentError(responseError: error)
         }
         let successHandler: (ClientInformation.GetAppointnentHistory.Response) -> Void = { (response) in
-            print(response)
             self.presenter?.presentGetAppointmentHistorySuccess(response: response)
         }
         
@@ -38,15 +37,44 @@ class ClientInformationWorker
             self.presenter?.presentError(responseError: error)
         }
         
-        let successHandler: (ClientInformation.MembershipDetails.Response) -> Void = { (employees) in
-            print(employees)
-            let response = employees
+        let successHandler: (ClientInformation.MembershipDetails.Response) -> Void = { (response) in
             self.presenter?.presentGetMembershipDetailsSuccess(response: response)
         }
         
         let url = "\(ConstantAPINames.membershipDetails.rawValue)&customer_id=\(request.customer_id)"
                 
         self.networkLayer.get(urlString: url, successHandler: successHandler, errorHandler: errorHandler)
+    }
+    
+    func getRequestForClientPreference(accessToken:String, method: HTTPMethod,request: ClientInformation.Preferences.Request) {
+        
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        
+        let successHandler: (ClientInformation.Preferences.Response) -> Void = { (response) in
+            self.presenter?.presentGetClientPreferenceSuccess(response: response)
+        }
+        
+        let url = "\(ConstantAPINames.clientPreferences.rawValue)&customer_id=\(request.customer_id)"
+        
+        self.networkLayer.get(urlString: url, headers: ["Authorization":"bearer \(accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
+    }
+    
+    func postRequestForClientNotes(request:ClientInformation.ClientNotes.Request, method: HTTPMethod) {
+        
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (ClientInformation.ClientNotes.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentGetClientNotesSuccess(response: response)
+        }
+        
+        self.networkLayer.post(urlString: ConstantAPINames.clientNotes.rawValue, body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler, method: .post)
+        
     }
     
 }

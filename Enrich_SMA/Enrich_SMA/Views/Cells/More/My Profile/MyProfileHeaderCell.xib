@@ -132,6 +132,7 @@
                 <outlet property="lblSpeciality" destination="Dqe-aB-xIL" id="uNz-ho-Ffs"/>
                 <outlet property="lblUserName" destination="HFR-sN-YLU" id="EKl-AF-55L"/>
                 <outlet property="profilePicture" destination="Ivf-MO-k62" id="SVf-6p-slx"/>
+                <outlet property="ratingsView" destination="btH-Lo-b9h" id="0mE-Ra-aOM"/>
             </connections>
             <point key="canvasLocation" x="181.8840579710145" y="191.18303571428569"/>
         </tableViewCell>
