@@ -16,6 +16,7 @@ class MyProfileHeaderCell: UITableViewCell {
     @IBOutlet weak var lblSpeciality: UILabel!
     @IBOutlet weak var lblDateOfJoining: UILabel!
     @IBOutlet weak var lblRatings: UILabel!
+    @IBOutlet weak var ratingsView: UIView!
     
     
     override func awakeFromNib() {
@@ -35,6 +36,7 @@ class MyProfileHeaderCell: UITableViewCell {
         lblDateOfJoining.text = model.dateOfJoining
         let rating = (model.ratings == nil) ? "0" : "\(model.ratings ?? 0)"
         lblRatings.text = "\(rating)/5"
+        ratingsView.isHidden = model.selfProfile
         
         profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
         let url = URL(string: model.profilePictureURL)
@@ -57,4 +59,5 @@ struct MyProfileHeaderModel{
     let dateOfJoining: String
     let ratings: Double?
     let gender: String
+    let selfProfile: Bool
 }

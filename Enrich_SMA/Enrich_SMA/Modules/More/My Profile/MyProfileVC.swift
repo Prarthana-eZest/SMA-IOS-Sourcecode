@@ -295,7 +295,7 @@ extension MyProfileVC{
             userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
             userDefaults.synchronize()
             
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating,gender: data.gender ?? "1")
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating,gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
             
             var addressString = ["\(data.address?.first?.line_1 ?? "" )",
                 "\(data.address?.first?.line_2 ?? "" )",
