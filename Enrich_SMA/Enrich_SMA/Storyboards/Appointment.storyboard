@@ -612,7 +612,7 @@
                                 <rect key="frame" x="0.0" y="65" width="414" height="797"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="UCj-tg-fps" customClass="ProductsCollectionCell" customModule="enrich" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="UCj-tg-fps" customClass="ProductsCollectionCell" customModule="Enrich_SMA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCj-tg-fps" id="Oe3-TH-WwP">
@@ -620,7 +620,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2XX-LW-vZU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6ZG-Uj-og4">
                                                         <size key="itemSize" width="413" height="192.5"/>
@@ -683,7 +683,7 @@
         <!--Add New NoteVC-->
         <scene sceneID="hl5-7f-qB3">
             <objects>
-                <viewController storyboardIdentifier="AddNewNoteVC" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uwo-p8-Eq5" customClass="AddNewNoteVC" customModule="Enrich_TMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewNoteVC" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uwo-p8-Eq5" customClass="AddNewNoteVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Dt-w8-gpT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -698,7 +698,7 @@
                                                 <rect key="frame" x="27" y="0.0" width="359" height="69"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Observe Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Tf-rO-68m">
-                                                        <rect key="frame" x="0.0" y="23" width="329" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="21.5" width="329" height="26"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="20"/>
                                                         <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -711,7 +711,7 @@
                                                         </constraints>
                                                         <state key="normal" image="closeLogin"/>
                                                         <connections>
-                                                            <action selector="actionClose:" destination="Uwo-p8-Eq5" eventType="touchUpInside" id="Uvk-Oz-2vy"/>
+                                                            <action selector="actionClose:" destination="Uwo-p8-Eq5" eventType="touchUpInside" id="kgu-pS-fj2"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

@@ -26,9 +26,7 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic
     var onDoneBlock: ((Bool,String) -> Void)?
     
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var btnAsk: UIButton!
-    @IBOutlet weak var btnObserve: UIButton!
-    
+   
     // MARK: Object lifecycle
     
     var customerId = ""
@@ -79,15 +77,13 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic
         super.viewDidDisappear(animated)
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
-    @IBAction func actionClose(_ sender: Any) {
-        onDoneBlock!(false,"")
+    
+    
+    @IBAction func actionClose(_ sender: UIButton) {
+        onDoneBlock?(false,"")
         self.dismiss(animated: false, completion: nil)
     }
     
-    @IBAction func actionRadio(_ sender: UIButton) {
-        btnAsk.isSelected = !btnAsk.isSelected
-        btnObserve.isSelected = !btnObserve.isSelected
-    }
     
     
     @IBAction func actionSubmit(_ sender: Any) {
@@ -106,17 +102,10 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic
     
     func addObserveNote()
     {
-        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            
-            let userName = "\(userData.firstname ?? "") \(userData.lastname ?? "")"
-            
-            let data = AddNewNote.ObserveNote.Data(customer_id: customerId, note_type: "observe", note: textView.text ?? "", updated_by: userName, customer_rating: "0", customer_rating_comment: "")
-            let request = AddNewNote.ObserveNote.Request(noteData: data, is_custom: true)
-            interactor?.doPostNewClientNotes(request: request, method: .post)
-        }
-        
+        let data = AddNewNote.ObserveNote.Data(customer_id: customerId, note_type: "observe", note: textView.text ?? "", updated_by: "", customer_rating: "0", customer_rating_comment: "")
+        let request = AddNewNote.ObserveNote.Request(noteData: data, is_custom: true)
+        interactor?.doPostNewClientNotes(request: request, method: .post)
     }
-    
 }
 
 
@@ -125,10 +114,10 @@ extension AddNewNoteVC{
     func displaySuccess<T>(viewModel: T) where T : Decodable {
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
-        onDoneBlock!(true,textView.text)
+        onDoneBlock?(true,textView.text)
         self.dismiss(animated: false, completion: nil)
     }
-
+    
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
