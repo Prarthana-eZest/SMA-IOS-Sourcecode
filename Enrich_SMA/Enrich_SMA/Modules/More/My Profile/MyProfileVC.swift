@@ -153,7 +153,15 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         }else if let model = viewModel as? MyProfile.GetRosterDetails.Response,model.status == true{
             self.rosterList.removeAll()
             model.data?.forEach{
-                let shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
+                
+                let shift:String
+                
+                if let isLeave = $0.is_leave,isLeave == 1{
+                    shift = "\($0.date ?? "-")  |  \($0.leave_type ?? "")"
+                }else{
+                    shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
+                }
+                
                 self.rosterList.append(shift)
             }
         }
@@ -295,7 +303,7 @@ extension MyProfileVC{
             userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
             userDefaults.synchronize()
             
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating,gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating?.description ?? "0",gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
             
             var addressString = ["\(data.address?.first?.line_1 ?? "" )",
                 "\(data.address?.first?.line_2 ?? "" )",

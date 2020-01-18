@@ -45,23 +45,28 @@ class AppointmentDetailsCell: UITableViewCell {
     
     
     func configureCell(model:Appointment.GetAppointnents.Data,date:Date){
+        
         appointmentDetails = model
         lblUserName.text = model.booked_by ?? ""
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
         lblTotalDuration.text = "\(model.total_duration ?? "0") min"
-        lblAppointmentStatus.text = model.status ?? ""
-        lblLocation.text = ""
+        
+        let status = model.status ?? ""
+        lblAppointmentStatus.text = status.uppercased()
+        lblStatus.text = status.uppercased()
+        
         lblLocation.text = model.customer_address ?? ""
         lblDateTime.text = date.dayNameDateFormat
         lblLastVisit.text = model.last_visit ?? ""
+        
         let rating = model.avg_rating ?? 0
         if rating == 0{
             lblRatings.text = "0/5"
         }else{
             lblRatings.text = "\(rating)/5"
         }
-        lblStatus.text = model.status ?? ""
+        
         lblTotalDuration.text = model.total_duration ?? ""
         
         locationStackView.isHidden = true

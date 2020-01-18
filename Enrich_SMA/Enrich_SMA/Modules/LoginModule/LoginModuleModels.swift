@@ -43,7 +43,7 @@ enum LoginModule {
             let salon_id : String?
             let gender : String?
             let profile_image : String?
-            let rating : Double?
+            let rating : AnyCodable?
         }
     }
 }

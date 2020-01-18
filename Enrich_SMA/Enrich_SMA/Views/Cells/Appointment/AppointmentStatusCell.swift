@@ -18,7 +18,8 @@ protocol AppointmentDelegate:class {
 
 enum ServiceType:String{
     case Salon = "salon"
-    case Belita = "home"
+    case Home = "home"
+    case Belita = "belita"
 }
 
 class AppointmentStatusCell: UITableViewCell {
