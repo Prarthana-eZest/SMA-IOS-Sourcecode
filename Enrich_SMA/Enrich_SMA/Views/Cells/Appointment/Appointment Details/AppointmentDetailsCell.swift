@@ -50,7 +50,7 @@ class AppointmentDetailsCell: UITableViewCell {
         lblUserName.text = model.booked_by ?? ""
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
-        lblTotalDuration.text = "\(model.total_duration ?? "0") min"
+        lblTotalDuration.text = "\(model.total_duration ?? 0) min"
         
         let status = model.status ?? ""
         lblAppointmentStatus.text = status.uppercased()
@@ -67,7 +67,7 @@ class AppointmentDetailsCell: UITableViewCell {
             lblRatings.text = "\(rating)/5"
         }
         
-        lblTotalDuration.text = model.total_duration ?? ""
+        lblTotalDuration.text = "\(model.total_duration ?? 0) min"
         
         locationStackView.isHidden = true
         if let typeText = model.appointment_type,
@@ -80,8 +80,8 @@ class AppointmentDetailsCell: UITableViewCell {
         userProfile.layer.cornerRadius = userProfile.frame.size.height * 0.5
         let url = URL(string: "" )
         userProfile.kf.indicatorType = .activity
-        let gender = "1"
-        let defaultImage = (gender == "1" ? UIImage(named: "male-selected") : gender == "2" ? UIImage(named: "female-selected") : UIImage(named: "other-selected"))
+        
+        let defaultImage = UIImage(named: "defaultProfile")
         if let imageurl = url{
             userProfile.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
         } else {

@@ -57,8 +57,7 @@ class DashboardProfileCell: UITableViewCell {
             profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
             let url = URL(string: userData.profile_pic ?? "" )
             profilePicture.kf.indicatorType = .activity
-            let gender = userData.gender ?? "1"
-            let defaultImage = (gender == "1" ? UIImage(named: "male-selected") : gender == "2" ? UIImage(named: "female-selected") : UIImage(named: "other-selected"))
+            let defaultImage = UIImage(named: "defaultProfile")
             if let imageurl = url{
                 profilePicture.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
             } else {
