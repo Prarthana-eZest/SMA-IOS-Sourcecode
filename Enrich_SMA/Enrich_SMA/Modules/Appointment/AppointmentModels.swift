@@ -65,7 +65,9 @@ enum Appointment
             let gender: Int?
             let profile_picture : String?
             let is_customer_rated: Bool?
+
         }
+        
         
         struct Services : Codable {
             let appointment_type : String?

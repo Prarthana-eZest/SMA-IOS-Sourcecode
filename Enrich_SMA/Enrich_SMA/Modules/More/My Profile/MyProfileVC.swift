@@ -98,7 +98,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         tableView.register(UINib(nibName: CellIdentifier.headerViewWithTitleCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.headerViewWithTitleCell)
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
-
+        
         
         getProfileData()
         getRosterDetails()
@@ -329,7 +329,7 @@ extension MyProfileVC{
                                                                                           MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
                                                                                           MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false)])
             
-            var shiftDetails = MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
+            let shiftDetails = MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
                                                                             MyProfileModel(title:"Status",value: status == "1" ? "Active" : "Inactive",isMultiOption:false)])
             
             

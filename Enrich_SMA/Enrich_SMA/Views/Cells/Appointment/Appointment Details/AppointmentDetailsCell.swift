@@ -73,7 +73,9 @@ class AppointmentDetailsCell: UITableViewCell {
         }else{
             lblRatings.text = "\(rating)/5"
         }
-                
+
+        lblTotalDuration.text = "\(model.total_duration ?? 0) min"
+        
         locationStackView.isHidden = true
         if let typeText = model.appointment_type,
             let type = ServiceType(rawValue: typeText){
