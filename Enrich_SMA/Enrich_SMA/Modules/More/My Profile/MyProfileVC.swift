@@ -101,7 +101,6 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         
         
         getProfileData()
-        getRosterDetails()
         
     }
     
@@ -143,10 +142,12 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     
     
     func displaySuccess<T>(viewModel: T) where T : Decodable {
-        EZLoadingActivity.hide()
         print("Response: \(viewModel)")
+        EZLoadingActivity.hide()
+        
         if let model = viewModel as? MyProfile.GetUserProfile.Response,model.status == true{
             modelMapping(model: model)
+            getRosterDetails()
         }else if let model = viewModel as? MyProfile.GetServiceList.Response,model.status == true{
             self.service.removeAll()
             self.service.append(contentsOf: model.data?.service_list ?? [])
