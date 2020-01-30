@@ -15,7 +15,7 @@ protocol DashboardHeaderCellDelegate: class {
 
 class DashboardProfileCell: UITableViewCell {
     
-
+    
     @IBOutlet weak private var btnSelectALocation: UIButton!
     @IBOutlet weak private var locationNameView: UIStackView!
     @IBOutlet weak private var lblUserName: UILabel!
@@ -36,29 +36,29 @@ class DashboardProfileCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    func configureCell(model:DashboardProfileCellModel) {
-//        lblUserName.text = model.userName
-//        btnSelectALocation.setTitle(model.location, for: .normal)
-//        lblRating.text = "\(model.rating)/5"
+    //    func configureCell(model:DashboardProfileCellModel) {
+    //        lblUserName.text = model.userName
+    //        btnSelectALocation.setTitle(model.location, for: .normal)
+    //        lblRating.text = "\(model.rating)/5"
     
     func configureCell() {
-
+        
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             lblUserName.text = "\(userData.firstname ?? "") \(userData.lastname ?? "")"
             btnSelectALocation.setTitle(userData.base_salon_name ?? "", for: .normal)
-//            let rating = userData.rating ?? 0
-//            if rating == 0{
-//                lblRating.text = "0/5"
-//            }else{
-//                lblRating.text = "\(rating)/5"
-//            }
+            //            let rating = userData.rating ?? 0
+            //            if rating == 0{
+            //                lblRating.text = "0/5"
+            //            }else{
+            //                lblRating.text = "\(rating)/5"
+            //            }
             lblDesignation.text = userData.designation ?? "-"
             
             profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
+            
             let url = URL(string: userData.profile_pic ?? "" )
             profilePicture.kf.indicatorType = .activity
-            let gender = userData.gender ?? "1"
-            let defaultImage = (gender == "1" ? UIImage(named: "male-selected") : gender == "2" ? UIImage(named: "female-selected") : UIImage(named: "other-selected"))
+            let defaultImage = UIImage(named: "defaultProfile")
             if let imageurl = url{
                 profilePicture.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
             } else {

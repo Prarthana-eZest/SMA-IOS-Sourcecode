@@ -46,10 +46,9 @@ class MyProfileHeaderCell: UITableViewCell {
         ratingsView.isHidden = model.selfProfile
         
         profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
-        let url = URL(string: model.profilePictureURL)
+        let url = URL(string: model.profilePictureURL )
         profilePicture.kf.indicatorType = .activity
-        let gender = model.gender
-        let defaultImage = (gender == "1" ? UIImage(named: "male-selected") : gender == "2" ? UIImage(named: "female-selected") : UIImage(named: "other-selected"))
+        let defaultImage = UIImage(named: "defaultProfile")
         if let imageurl = url{
             profilePicture.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
         } else {

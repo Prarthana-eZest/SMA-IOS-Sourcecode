@@ -22,8 +22,21 @@ enum ServiceType:String{
     case Belita = "belita"
 }
 
-class AppointmentStatusCell: UITableViewCell {
+enum PaymentStatus:String{
+    
+    case paid = "paid"
+    case unpaid = "unpaid"
+    
+    var color: UIColor {
+        switch self{
+        case .paid: return UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+        case .unpaid: return UIColor(red: 232/255, green: 34/255, blue: 25/255, alpha: 1)
+        }
+    }
+}
 
+class AppointmentStatusCell: UITableViewCell {
+    
     
     @IBOutlet private weak var statusColorView: UIView!
     @IBOutlet private weak var lblStartTime: UILabel!
@@ -38,9 +51,15 @@ class AppointmentStatusCell: UITableViewCell {
     @IBOutlet private weak var lblLocation: UILabel!
     @IBOutlet private weak var locationStackView: UIStackView!
     
+    @IBOutlet private weak var lblPaymentStatus: UILabel!
+    
+    @IBOutlet weak var iconHighSpending: UIImageView!
+    
+    
+    
     let salonAppointmentColor = UIColor(red: 238/255, green: 91/255, blue: 71/255, alpha: 1)
     let belitaAppointmentColor = UIColor(red: 135/255, green: 197/255, blue: 205/255, alpha: 1)
-
+    
     
     weak var delegate:AppointmentDelegate?
     var indexPath:IndexPath?
@@ -49,10 +68,10 @@ class AppointmentStatusCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -60,7 +79,7 @@ class AppointmentStatusCell: UITableViewCell {
         lblUserName.text = model.booked_by ?? ""
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
-        lblTotalDuration.text = "\(model.total_duration ?? "0") min"
+        lblTotalDuration.text = "\(model.total_duration ?? 0) min"
         lblServiceName.text = model.services?.first?.service_name ?? "Not available"
         btnServiceCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
         stackViewServiceCount.isHidden = ((model.services?.count ?? 1) < 2)
@@ -74,7 +93,18 @@ class AppointmentStatusCell: UITableViewCell {
             lblRatings.text = "\(rating)/5"
         }
         statusColorView.backgroundColor = salonAppointmentColor
-
+        
+        if let paymentStatus = PaymentStatus(rawValue: model.payment_status ?? "unpaid"){
+            lblPaymentStatus.text = paymentStatus.rawValue.uppercased()
+            lblPaymentStatus.textColor = paymentStatus.color
+        }
+        
+        if let highSpending = model.high_expensive,highSpending == true{
+            iconHighSpending.isHidden = false
+        }else{
+            iconHighSpending.isHidden = true
+        }
+        
         if let typeText = model.appointment_type,
             let type = ServiceType(rawValue: typeText){
             locationStackView.isHidden = (type == .Salon)

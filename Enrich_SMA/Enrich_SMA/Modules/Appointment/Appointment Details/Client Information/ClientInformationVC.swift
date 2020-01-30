@@ -220,7 +220,7 @@ extension ClientInformationVC{
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
         
-        if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response, model.status == true{
+        if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response{
             self.appointmentHistory.removeAll()
             self.appointmentHistory.append(contentsOf: model.data ?? [])
             self.tableView.reloadData()

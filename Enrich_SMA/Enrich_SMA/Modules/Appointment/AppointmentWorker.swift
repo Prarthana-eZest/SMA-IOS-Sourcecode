@@ -29,7 +29,7 @@ class AppointmentWorker
             self.presenter?.presentGetAppointmentsSuccess(response: response)
         }
         
-        self.networkLayer.post(urlString: ConstantAPINames.getAppointments.rawValue, body: request, headers: ["X-Request-From": "sma"], successHandler: successHandler, errorHandler: errorHandler, method: .post)
+        self.networkLayer.post(urlString: ConstantAPINames.getAppointments.rawValue, body: request, headers: ["X-Request-From": "sma","Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: .post)
         
     }
 }

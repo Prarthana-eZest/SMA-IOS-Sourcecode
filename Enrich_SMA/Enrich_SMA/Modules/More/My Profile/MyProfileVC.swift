@@ -299,9 +299,12 @@ extension MyProfileVC{
     func modelMapping(model:MyProfile.GetUserProfile.Response){
         
         if let data = model.data{
-            let userDefaults = UserDefaults.standard
-            userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
-            userDefaults.synchronize()
+            
+            if profileType == .selfUser{
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+                userDefaults.synchronize()
+            }
             
             let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating?.description ?? "0",gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
             
@@ -316,7 +319,7 @@ extension MyProfileVC{
             
             let personalDetails = MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
                                                                                   MyProfileModel(title:"Mobile Number",value: data.mobile_number ?? "-",isMultiOption:false),
-                                                                                  MyProfileModel(title:"Other Contact Number",value:data.work_number ?? "-",isMultiOption:false),
+                                                                                  MyProfileModel(title:"Work Contact No",value:data.work_number ?? "-",isMultiOption:false),
                                                                                   MyProfileModel(title:"Email address",value: data.email ?? "-",isMultiOption:false),MyProfileModel(title:"Address",value:address,isMultiOption:false)])
             
             

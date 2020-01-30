@@ -119,7 +119,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = Appointment.GetAppointnents.Request(status: "\(status)", salon_code: userData.base_salon_code ?? "")
+            let request = Appointment.GetAppointnents.Request(status: "\(status)", salon_code: userData.base_salon_code ?? "",date: Date().dayYearMonthDate)
             interactor?.doGetAppointmentList(request: request, method: .post)
         }
     }
@@ -179,7 +179,7 @@ extension AppointmentVC{
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
         
-        if let model = viewModel as? Appointment.GetAppointnents.Response, model.status == true{
+        if let model = viewModel as? Appointment.GetAppointnents.Response{
             self.appointments.removeAll()
             self.appointments.append(contentsOf: model.data ?? [])
             self.tableView.reloadData()
