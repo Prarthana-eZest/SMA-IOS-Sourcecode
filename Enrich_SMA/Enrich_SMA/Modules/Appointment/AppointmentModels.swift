@@ -75,7 +75,7 @@ enum Appointment
             let service_code : String?
             let service_name : String?
             let service_duration : Int?
-            let price : Int?
+            let price : AnyCodable?
             let start_time : String?
             let end_time : String?
             let customer_latitude : Double?
