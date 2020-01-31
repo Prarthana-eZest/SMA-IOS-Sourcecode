@@ -92,11 +92,11 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic
         completedSelectionView.isHidden = true
         ongoingSelectionView.isHidden = false
         upcomingSelectionView.isHidden = true
-        getAppointments(status: .ongoing)
-        
         
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
         tableView.separatorColor = .clear
+        
+        getAppointments(status: .ongoing)
     
     }
     
