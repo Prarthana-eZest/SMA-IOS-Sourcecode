@@ -318,7 +318,15 @@ extension MyProfileVC{
             let address = addressString.joined(separator:", ")
             let status = data.status ?? ""
             
-            let personalDetails = MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
+            let birthDate:String
+            if let dateString = data.birthdate,
+                let date = dateString.getDateFromString(){
+                birthDate = date.monthYearDate
+            }else{
+                birthDate = data.birthdate ?? "-"
+            }
+            
+            let personalDetails = MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value: birthDate ,isMultiOption:false),
                                                                                   MyProfileModel(title:"Mobile Number",value: data.mobile_number ?? "-",isMultiOption:false),
                                                                                   MyProfileModel(title:"Work Contact No",value:data.work_number ?? "-",isMultiOption:false),
                                                                                   MyProfileModel(title:"Email address",value: data.email ?? "-",isMultiOption:false),MyProfileModel(title:"Address",value:address,isMultiOption:false)])

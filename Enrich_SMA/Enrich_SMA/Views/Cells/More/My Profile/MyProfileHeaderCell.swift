@@ -33,7 +33,13 @@ class MyProfileHeaderCell: UITableViewCell {
     func configureCell(model:MyProfileHeaderModel){
         lblUserName.text = model.userName
         lblSpeciality.text = model.speciality
-        lblDateOfJoining.text = model.dateOfJoining
+        
+        let dateString = model.dateOfJoining
+        if let date = dateString.getDateFromString(){
+            lblDateOfJoining.text = date.monthYearDate
+        }else{
+            lblDateOfJoining.text = dateString
+        }
         
         
         let rating = Double(model.ratings)?.rounded(toPlaces: 1)
