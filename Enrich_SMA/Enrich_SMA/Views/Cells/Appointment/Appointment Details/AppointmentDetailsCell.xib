@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +28,7 @@
             <rect key="frame" x="0.0" y="0.0" width="418" height="561"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="418" height="560.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="418" height="561"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2TR-hF-eLn">
@@ -122,7 +120,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editProfileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="v7U-uo-8Eg">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfile" translatesAutoresizingMaskIntoConstraints="NO" id="v7U-uo-8Eg">
                                         <rect key="frame" x="288" y="0.0" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="8Gm-aF-8Mz"/>
@@ -499,6 +497,9 @@ Wakad, Pune, MH, India</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="dividerView" destination="K8G-c6-yDg" id="eS6-8u-bxZ"/>
+                <outlet property="iconHighSpending" destination="B9X-4j-8Kx" id="CDa-oK-4D9"/>
+                <outlet property="iconMembership" destination="n8d-kZ-zbB" id="4k8-GY-SCM"/>
                 <outlet property="lblAppointmentStatus" destination="KOd-bp-pDz" id="bcd-EI-AgW"/>
                 <outlet property="lblDateTime" destination="YOR-OY-TLI" id="xlO-D3-rmt"/>
                 <outlet property="lblEndTime" destination="0Xr-S6-VJ8" id="xkk-dC-twt"/>
@@ -511,6 +512,7 @@ Wakad, Pune, MH, India</string>
                 <outlet property="lblTotalDuration" destination="abP-0r-sPX" id="hWk-cD-vb8"/>
                 <outlet property="lblUserName" destination="IYa-Iy-jVb" id="6l8-6a-oV7"/>
                 <outlet property="locationStackView" destination="VnU-FQ-5aq" id="Dge-cw-eV7"/>
+                <outlet property="stackViewMemAndHighS" destination="6SS-bF-aSz" id="UJN-TZ-UEb"/>
                 <outlet property="userProfile" destination="v7U-uo-8Eg" id="8La-XL-ba6"/>
             </connections>
             <point key="canvasLocation" x="202.89855072463769" y="326.45089285714283"/>
@@ -518,7 +520,7 @@ Wakad, Pune, MH, India</string>
     </objects>
     <resources>
         <image name="clubMemberIcon" width="30" height="32"/>
-        <image name="editProfileDefault" width="94" height="94"/>
+        <image name="defaultProfile" width="76" height="76"/>
         <image name="googleMapIcon" width="31" height="31"/>
         <image name="highSpending" width="23" height="19"/>
         <image name="location" width="11" height="15"/>

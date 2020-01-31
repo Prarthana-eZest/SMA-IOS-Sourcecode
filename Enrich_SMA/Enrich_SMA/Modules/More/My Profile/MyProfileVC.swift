@@ -100,7 +100,6 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
 
         getProfileData()
-        getRosterDetails()
         
     }
     
@@ -142,17 +141,27 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic
     
     
     func displaySuccess<T>(viewModel: T) where T : Decodable {
-        EZLoadingActivity.hide()
         print("Response: \(viewModel)")
+        EZLoadingActivity.hide()
+        
         if let model = viewModel as? MyProfile.GetUserProfile.Response,model.status == true{
             modelMapping(model: model)
+            getRosterDetails()
         }else if let model = viewModel as? MyProfile.GetServiceList.Response,model.status == true{
             self.service.removeAll()
             self.service.append(contentsOf: model.data?.service_list ?? [])
         }else if let model = viewModel as? MyProfile.GetRosterDetails.Response,model.status == true{
             self.rosterList.removeAll()
             model.data?.forEach{
-                let shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
+                
+                let shift:String
+                
+                if let isLeave = $0.is_leave,isLeave == 1{
+                    shift = "\($0.date ?? "-")  |  \($0.leave_type ?? "")"
+                }else{
+                    shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
+                }
+                
                 self.rosterList.append(shift)
             }
         }
@@ -290,11 +299,14 @@ extension MyProfileVC{
     func modelMapping(model:MyProfile.GetUserProfile.Response){
         
         if let data = model.data{
-            let userDefaults = UserDefaults.standard
-            userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
-            userDefaults.synchronize()
             
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating,gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
+            if profileType == .selfUser{
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
+                userDefaults.synchronize()
+            }
+            
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating?.description ?? "0",gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
             
             var addressString = ["\(data.address?.first?.line_1 ?? "" )",
                 "\(data.address?.first?.line_2 ?? "" )",
@@ -305,9 +317,17 @@ extension MyProfileVC{
             let address = addressString.joined(separator:", ")
             let status = data.status ?? ""
             
-            let personalDetails = MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value:data.birthdate ?? "-",isMultiOption:false),
+            let birthDate:String
+            if let dateString = data.birthdate,
+                let date = dateString.getDateFromString(){
+                birthDate = date.monthYearDate
+            }else{
+                birthDate = data.birthdate ?? "-"
+            }
+            
+            let personalDetails = MyProfileSection(title:"Personal details",data:[MyProfileModel(title:"Date of Birth",value: birthDate ,isMultiOption:false),
                                                                                   MyProfileModel(title:"Mobile Number",value: data.mobile_number ?? "-",isMultiOption:false),
-                                                                                  MyProfileModel(title:"Other Contact Number",value:data.work_number ?? "-",isMultiOption:false),
+                                                                                  MyProfileModel(title:"Work Contact No",value:data.work_number ?? "-",isMultiOption:false),
                                                                                   MyProfileModel(title:"Email address",value: data.email ?? "-",isMultiOption:false),MyProfileModel(title:"Address",value:address,isMultiOption:false)])
             
             
@@ -317,7 +337,7 @@ extension MyProfileVC{
                                                                                           MyProfileModel(title:"Category",value:data.category ?? "-",isMultiOption:false),
                                                                                           MyProfileModel(title:"Designation",value:data.designation ?? "-",isMultiOption:false)])
             
-            var shiftDetails = MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
+            let shiftDetails = MyProfileSection(title:"Shift details",data:[MyProfileModel(title:"Shift Timing",value:"-",isMultiOption:true),
                                                                             MyProfileModel(title:"Status",value: status == "1" ? "Active" : "Inactive",isMultiOption:false)])
             
             

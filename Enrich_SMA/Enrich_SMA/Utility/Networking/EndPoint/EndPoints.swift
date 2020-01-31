@@ -75,12 +75,12 @@ public enum ConstantAPINames: String {
     case getEmployeeList = "esa/roster" // L
     
     // Appoitments
-    case getAppointments = "esa/appointments/appointment-list" // L
-    
+    case getAppointments = "rest/V1/appointments/appointment-list?is_custom=true"
+
     // Client Information
     case membershipDetails = "rest/V1/membership?is_custom=true"
     case clientPreferences = "rest/V1/customer-preferences?is_custom=true"
-    case clientNotes = "rest/V1/customer/ratingandnotes"
+    case clientNotes = "rest/V1/customer/ratingandnotes?is_custom=true"
     case addClientNote = "/rest/V1/customer/addnotes"
     
 }

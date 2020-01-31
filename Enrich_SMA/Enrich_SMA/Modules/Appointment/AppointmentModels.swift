@@ -21,6 +21,7 @@ enum Appointment
         struct Request: Codable {
             let status: String
             let salon_code: String
+            let date: String
         }
         
         struct Response: Codable {
@@ -47,12 +48,26 @@ enum Appointment
             let avg_rating : Double?
             let services : [Services]?
             let serviceCount : Int?
-            let total_duration : String?
+            let total_duration : Int?
             let start_time : String?
             let end_time : String?
             let customer_latitude : Double?
             let customer_longitude : Double?
+            
+            // Now params
+            let customer_name : String?
+            let customer_email : String?
+            let customer_mobile_number : String?
+            let customer_ratings : Double?
+            let high_expensive : Bool?
+            let membership : String?
+            let gender_label : String?
+            let gender: Int?
+            let profile_picture : String?
+            let is_customer_rated: Bool?
+
         }
+        
         
         struct Services : Codable {
             let appointment_type : String?
@@ -60,7 +75,7 @@ enum Appointment
             let service_code : String?
             let service_name : String?
             let service_duration : Int?
-            let price : Int?
+            let price : AnyCodable?
             let start_time : String?
             let end_time : String?
             let customer_latitude : Double?

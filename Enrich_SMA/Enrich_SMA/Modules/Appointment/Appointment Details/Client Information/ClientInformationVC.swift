@@ -34,6 +34,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
     
     @IBOutlet weak private var BottonButtonView: UIView!
     
+    @IBOutlet weak private var lblNoRecords: UILabel!
+
+    
     var customerId:Int?
     
     var sections = [SectionConfiguration]()
@@ -112,6 +115,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic
         
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        
+        lblNoRecords.isHidden = true
+
         
     }
     
@@ -220,9 +226,12 @@ extension ClientInformationVC{
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
         
-        if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response, model.status == true{
+        lblNoRecords.isHidden = true
+        
+        if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response{
             self.appointmentHistory.removeAll()
             self.appointmentHistory.append(contentsOf: model.data ?? [])
+            lblNoRecords.isHidden = !appointmentHistory.isEmpty
             self.tableView.reloadData()
             if appointmentHistory.count > 0{
                 self.tableView.scrollToTop()

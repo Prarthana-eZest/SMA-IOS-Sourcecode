@@ -36,7 +36,16 @@ class MembershipStatusCell: UITableViewCell {
             lblMembershipType.text = model.type.rawValue
             lblMembershipType.isHidden = false
             // Validity
-            lblValidUpTo.text = "Valid up to \(model.validity)"
+            
+            let validity:String
+            let dateString = model.validity
+            if let date = dateString.getDateFromShortString(){
+                validity = date.monthYearDate
+            }else{
+                validity = model.validity
+            }
+            
+            lblValidUpTo.text = "Valid up to \(validity)"
             lblValidUpTo.isHidden = model.type == .general
             membershipIcon.isHidden = model.type == .general
             

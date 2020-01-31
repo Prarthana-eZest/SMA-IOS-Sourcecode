@@ -33,16 +33,28 @@ class MyProfileHeaderCell: UITableViewCell {
     func configureCell(model:MyProfileHeaderModel){
         lblUserName.text = model.userName
         lblSpeciality.text = model.speciality
-        lblDateOfJoining.text = model.dateOfJoining
-        let rating = (model.ratings == nil) ? "0" : "\(model.ratings ?? 0)"
-        lblRatings.text = "\(rating)/5"
+        
+        let dateString = model.dateOfJoining
+        if let date = dateString.getDateFromString(){
+            lblDateOfJoining.text = date.monthYearDate
+        }else{
+            lblDateOfJoining.text = dateString
+        }
+        
+        
+        let rating = Double(model.ratings)?.rounded(toPlaces: 1)
+        if rating == 0{
+            lblRatings.text = "0/5"
+        }else{
+            lblRatings.text = "\(rating ?? 0)/5"
+        }
+        
         ratingsView.isHidden = model.selfProfile
         
         profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
-        let url = URL(string: model.profilePictureURL)
+        let url = URL(string: model.profilePictureURL )
         profilePicture.kf.indicatorType = .activity
-        let gender = model.gender
-        let defaultImage = (gender == "1" ? UIImage(named: "male-selected") : gender == "2" ? UIImage(named: "female-selected") : UIImage(named: "other-selected"))
+        let defaultImage = UIImage(named: "defaultProfile")
         if let imageurl = url{
             profilePicture.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
         } else {
@@ -57,7 +69,7 @@ struct MyProfileHeaderModel{
     let userName: String
     let speciality: String
     let dateOfJoining: String
-    let ratings: Double?
+    let ratings: String
     let gender: String
     let selfProfile: Bool
 }

@@ -154,4 +154,10 @@ extension String {
         let s = dateFormatter.date(from: self)
         return s
     }
+    func getDateFromShortString() -> Date?{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy-MM-dd"
+        let s = dateFormatter.date(from: self)
+        return s
+    }
 }

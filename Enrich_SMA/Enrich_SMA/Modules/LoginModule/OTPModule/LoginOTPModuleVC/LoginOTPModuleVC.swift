@@ -121,11 +121,14 @@ extension LoginOTPModuleVC {
             return
         }
         
-        let vc = OTPVerificationModuleVC.instantiate(fromAppStoryboard: .Login)
-        vc.userName = txtFUserName.text ?? ""
-        self.navigationController?.pushViewController(vc, animated: true)
         
         if let obj = viewModel as? LoginOTPModule.OTP.Response{
+            
+            if obj.status == true{
+                let vc = OTPVerificationModuleVC.instantiate(fromAppStoryboard: .Login)
+                vc.userName = txtFUserName.text ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             showAlert(alertTitle: alertTitle, alertMessage: obj.message ?? "")
         }
     }

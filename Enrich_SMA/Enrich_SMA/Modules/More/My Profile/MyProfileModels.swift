@@ -44,7 +44,7 @@ enum MyProfile
             let joining_date : String?
             let category : String?
             let profile_pic : String?
-            let rating : Double?
+            let rating : AnyCodable?
             let mobile_number : String?
             let email : String?
             let address : [Address]?
