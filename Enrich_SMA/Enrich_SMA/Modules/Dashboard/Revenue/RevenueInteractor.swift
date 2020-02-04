@@ -12,29 +12,25 @@
 
 import UIKit
 
-protocol RevenueBusinessLogic
-{
+protocol RevenueBusinessLogic {
   func doSomething(request: Revenue.Something.Request)
 }
 
-protocol RevenueDataStore
-{
+protocol RevenueDataStore {
   //var name: String { get set }
 }
 
-class RevenueInteractor: RevenueBusinessLogic, RevenueDataStore
-{
+class RevenueInteractor: RevenueBusinessLogic, RevenueDataStore {
   var presenter: RevenuePresentationLogic?
   var worker: RevenueWorker?
   //var name: String = ""
-  
+
   // MARK: Do something
-  
-  func doSomething(request: Revenue.Something.Request)
-  {
+
+  func doSomething(request: Revenue.Something.Request) {
     worker = RevenueWorker()
     worker?.doSomeWork()
-    
+
     let response = Revenue.Something.Response()
     presenter?.presentSomething(response: response)
   }

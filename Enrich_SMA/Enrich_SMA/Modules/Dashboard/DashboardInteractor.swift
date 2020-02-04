@@ -12,19 +12,17 @@
 
 import UIKit
 
-protocol DashboardBusinessLogic
-{
-    func doGetMyProfileData(accessToken:String, method: HTTPMethod)
+protocol DashboardBusinessLogic {
+    func doGetMyProfileData(accessToken: String, method: HTTPMethod)
 }
 
-class DashboardInteractor: DashboardBusinessLogic
-{
+class DashboardInteractor: DashboardBusinessLogic {
     var presenter: DashboardPresentationLogic?
     var worker: DashboardWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     func doGetMyProfileData(accessToken: String, method: HTTPMethod) {
         worker = DashboardWorker()
         worker?.presenter = self.presenter

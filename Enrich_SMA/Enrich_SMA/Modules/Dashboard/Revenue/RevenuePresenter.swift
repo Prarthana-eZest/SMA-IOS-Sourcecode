@@ -12,19 +12,16 @@
 
 import UIKit
 
-protocol RevenuePresentationLogic
-{
+protocol RevenuePresentationLogic {
   func presentSomething(response: Revenue.Something.Response)
 }
 
-class RevenuePresenter: RevenuePresentationLogic
-{
+class RevenuePresenter: RevenuePresentationLogic {
   weak var viewController: RevenueDisplayLogic?
-  
+
   // MARK: Do something
-  
-  func presentSomething(response: Revenue.Something.Response)
-  {
+
+  func presentSomething(response: Revenue.Something.Response) {
     let viewModel = Revenue.Something.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }

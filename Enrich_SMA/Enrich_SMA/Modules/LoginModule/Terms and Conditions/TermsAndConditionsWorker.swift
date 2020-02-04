@@ -12,24 +12,23 @@
 
 import UIKit
 
-class TermsAndConditionsWorker
-{
+class TermsAndConditionsWorker {
     let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
     var presenter: TermsAndConditionsPresentationLogic?
-    
-    func getRequestForTermsAndConditions(request:String, method: HTTPMethod) {
-        
+
+    func getRequestForTermsAndConditions(request: String, method: HTTPMethod) {
+
         let errorHandler: (String) -> Void = { (error) in
             self.presenter?.presentGetTermsAndConditionsError(responseError: error)
         }
-       
+
         let successHandler: (TermsAndConditions.GetTermsAndConditions.Response) -> Void = { (response) in
             self.presenter?.presentGetTermsAndConditionsSuccess(response: response)
         }
-        
+
         let url = ConstantAPINames.getTermsAndConditions.rawValue + request + "&is_custom=true"
-        
+
         self.networkLayer.get(urlString: url, successHandler: successHandler, errorHandler: errorHandler)
     }
-    
+
 }

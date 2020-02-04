@@ -12,9 +12,7 @@
 
 import UIKit
 
-class AppointmentDetailsWorker
-{
-  func doSomeWork()
-  {
+class AppointmentDetailsWorker {
+  func doSomeWork() {
   }
 }

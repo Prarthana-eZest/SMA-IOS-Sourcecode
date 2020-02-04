@@ -15,8 +15,7 @@ class MembershipStatusCell: UITableViewCell {
     @IBOutlet weak var lblMembershipType: UILabel!
     @IBOutlet weak var lblValidUpTo: UILabel!
     @IBOutlet weak var lblRewardPoints: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,42 +26,41 @@ class MembershipStatusCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
-    func configureCell(model:MembershipStatusModel?){
-        if let model = model{
-            
+
+    func configureCell(model: MembershipStatusModel?) {
+        if let model = model {
+
             lblMemberType.text = model.type.rawValue
             lblMembershipType.text = model.type.rawValue
             lblMembershipType.isHidden = false
             // Validity
-            
-            let validity:String
+
+            let validity: String
             let dateString = model.validity
-            if let date = dateString.getDateFromShortString(){
+            if let date = dateString.getDateFromShortString() {
                 validity = date.monthYearDate
-            }else{
+            } else {
                 validity = model.validity
             }
-            
+
             lblValidUpTo.text = "Valid up to \(validity)"
             lblValidUpTo.isHidden = model.type == .general
             membershipIcon.isHidden = model.type == .general
-            
+
             switch model.type {
-                
+
             case .general:break
             case .clubMemberShip:membershipIcon.image = UIImage(named: "ClubMembership")
             case .eliteMembership:membershipIcon.image = UIImage(named: "EliteMembership")
             case .premierMembership:membershipIcon.image = UIImage(named: "PremierMembership")
             }
-            
+
             // Rewards Points
             lblRewardPoints.text = "Reward Points: \(model.rewardPoints)"
             lblRewardPoints.isHidden = true
-            
-        }else{
-            
+
+        } else {
+
             lblMemberType.text = "No active membership"
             lblMembershipType.isHidden = true
             lblValidUpTo.isHidden = true
@@ -70,12 +68,11 @@ class MembershipStatusCell: UITableViewCell {
             lblRewardPoints.isHidden = true
         }
     }
-    
+
 }
 
-struct MembershipStatusModel{
+struct MembershipStatusModel {
     let type: MembershipType
     let validity: String
     let rewardPoints: String
 }
-

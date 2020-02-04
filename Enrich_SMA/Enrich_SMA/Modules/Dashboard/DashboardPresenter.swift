@@ -12,23 +12,21 @@
 
 import UIKit
 
-protocol DashboardPresentationLogic
-{
+protocol DashboardPresentationLogic {
     func presentGetProfileSuccess<T: Decodable>(response: T)
     func presentError(responseError: String?)
 }
 
-class DashboardPresenter: DashboardPresentationLogic
-{
+class DashboardPresenter: DashboardPresentationLogic {
     weak var viewController: DashboardDisplayLogic?
-    
+
     // MARK: Do something
-    
+
     func presentError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
     }
-    
-    func presentGetProfileSuccess<T>(response: T) where T : Decodable {
+
+    func presentGetProfileSuccess<T>(response: T) where T: Decodable {
         viewController?.displaySuccess(viewModel: response)
     }
 }

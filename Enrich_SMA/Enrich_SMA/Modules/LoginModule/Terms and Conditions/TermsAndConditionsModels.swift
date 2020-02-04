@@ -12,18 +12,16 @@
 
 import UIKit
 
-enum TermsAndConditions
-{
+enum TermsAndConditions {
     // MARK: Use cases
-    
-    enum GetTermsAndConditions
-    {
-        
+
+    enum GetTermsAndConditions {
+
         struct Response: Codable {
             var items: [TermsData]?
         }
-        
-        struct TermsData:Codable {
+
+        struct TermsData: Codable {
             var id: Int?
             var identifier: String?
             var title: String?
@@ -32,6 +30,6 @@ enum TermsAndConditions
             var update_time: String?
             var active: Bool
         }
-    
+
     }
 }

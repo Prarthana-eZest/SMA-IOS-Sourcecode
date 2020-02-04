@@ -12,23 +12,20 @@
 
 import UIKit
 
-protocol TermsAndConditionsBusinessLogic
-{
+protocol TermsAndConditionsBusinessLogic {
     func doGetTermsAndConditons(request: String, method: HTTPMethod)
 }
 
-protocol TermsAndConditionsDataStore
-{
+protocol TermsAndConditionsDataStore {
     //var name: String { get set }
 }
 
-class TermsAndConditionsInteractor: TermsAndConditionsBusinessLogic, TermsAndConditionsDataStore
-{
+class TermsAndConditionsInteractor: TermsAndConditionsBusinessLogic, TermsAndConditionsDataStore {
     var presenter: TermsAndConditionsPresentationLogic?
     var worker: TermsAndConditionsWorker?
-    
+
     // MARK: Do something
-   
+
     func doGetTermsAndConditons(request: String, method: HTTPMethod) {
         worker = TermsAndConditionsWorker()
         worker?.presenter = self.presenter

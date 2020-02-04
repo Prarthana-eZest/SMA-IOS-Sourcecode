@@ -17,9 +17,9 @@ protocol LoginModulePresentationLogic {
 
 class LoginModulePresenter: LoginModulePresentationLogic {
     weak var viewController: LoginModuleDisplayLogic?
-    
+
     // MARK: Do something
-    
+
     // MARK: Do something
     func presentLoginSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)
@@ -27,5 +27,5 @@ class LoginModulePresenter: LoginModulePresentationLogic {
     func presentLoginError(responseError: String? ) {
         viewController?.displayError(errorMessage: responseError)
     }
-    
+
 }

@@ -17,7 +17,7 @@ class TopicCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16.0){
+        if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16.0) {
             titleLabel.font = font
         }
         titleLabel.textColor = .white
@@ -29,11 +29,11 @@ class TopicCell: UICollectionViewCell {
         titleLabel.textColor = .white
 
         if model.indexSelected {
-            if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16.0){
+            if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16.0) {
                 titleLabel.font = font
             }
         } else {
-            if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16.0){
+            if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16.0) {
                 titleLabel.font = font
             }
         }

@@ -12,13 +12,12 @@
 
 import UIKit
 
-class AddNewNoteWorker
-{
+class AddNewNoteWorker {
     let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
     var presenter: AddNewNotePresentationLogic?
-    
-    func postRequestForAddClientNote(request:AddNewNote.ObserveNote.Request, method: HTTPMethod) {
-        
+
+    func postRequestForAddClientNote(request: AddNewNote.ObserveNote.Request, method: HTTPMethod) {
+
         let errorHandler: (String) -> Void = { (error) in
             print(error)
             self.presenter?.presentError(responseError: error)
@@ -27,8 +26,8 @@ class AddNewNoteWorker
             print(response)
             self.presenter?.presentAddClientNoteSuccess(response: response)
         }
-        
+
         self.networkLayer.post(urlString: ConstantAPINames.addClientNote.rawValue, body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler, method: .post)
-        
+
     }
 }

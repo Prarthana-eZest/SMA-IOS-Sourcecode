@@ -11,7 +11,7 @@ import UIKit
 class ListingCell: UITableViewCell {
 
     @IBOutlet weak var lblTitle: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,8 +22,8 @@ class ListingCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    func configureCell(text:String){
+
+    func configureCell(text: String) {
         lblTitle.text = text
     }
 

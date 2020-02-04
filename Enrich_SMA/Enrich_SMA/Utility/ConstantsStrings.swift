@@ -36,7 +36,7 @@ enum ImageNames: String {
 }
 
 class ConstantsStrings: NSObject {
-    
+
 }
 
 enum FontName: String {
@@ -45,7 +45,7 @@ enum FontName: String {
     case FuturaPTMedium = "FuturaPT-Medium"
     case NotoSansSemiBold = "NotoSans-SemiBold"
     case NotoSansRegular = "NotoSans-Regular"
-    
+
 }
 
 enum NavigationBarTitle {
@@ -56,20 +56,20 @@ enum NavigationBarTitle {
     static let editAddress = "Edit Address"
     static let myWishList = "My Wishlist"
     static let myBookings = "My Bookings"
-    
+
 }
 
 enum SalonServiceTypes {
     static let simple = "simple"
     static let configurable = "configurable"
     static let bundle = "bundle"
-    
+
 }
 enum SalonServiceAt {
     static let home = "Home"
     static let Salon = "Salon"
     static let Anny = "Any"
-    
+
 }
 enum PersonType {
     static let male = "Male"
@@ -84,11 +84,10 @@ enum ServiceStaticID: String {
     case salonId = "34"
     case homeId = "91"
 }
-enum ProductConfigurableDetailType  {
+enum ProductConfigurableDetailType {
     static let quantity = "container_qty"
     static let color = "color"
 }
-
 
 enum AlertMessagesSuccess {
     static let removedService = "Service Removed Successfully."
@@ -96,7 +95,7 @@ enum AlertMessagesSuccess {
     static let orderPlacedSuccessfully = "Order Placed Successfully."
     static let logoutSuccessfully = "Logout successfully."
     static let eventSuccess = "Event added successfully"
-    
+
 }
 enum AlertMessagesToAsk {
     static let removeService = "Are you sure you want to remove this service?"
@@ -107,7 +106,7 @@ enum AlertMessagesToAsk {
     static let defaultAddress = "Dafault address cannot be removed."
     static let addNewNote = "Please add note"
     static let termsAdnConditions = "Please accept terms and conditions"
-    
+
 }
 enum AlertButtonTitle {
     static let yes = "Yes"
@@ -116,6 +115,5 @@ enum AlertButtonTitle {
 enum AlertToWarn {
     static let selectedSalonNotInRange = "We are sorry!\nAt the moment our Home Services are not available in your selected location. \n You can try some other location\nor\nAvail our Salon Services."
     static let eventError = "Event not added."
-    
-    
+
 }

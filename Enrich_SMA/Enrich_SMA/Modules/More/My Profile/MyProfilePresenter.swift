@@ -12,32 +12,30 @@
 
 import UIKit
 
-protocol MyProfilePresentationLogic
-{
+protocol MyProfilePresentationLogic {
     func presentGetProfileSuccess<T: Decodable>(response: T)
     func presentGetServiceListSuccess<T: Decodable>(response: T)
     func presentGetRosterDetailsSuccess<T: Decodable>(response: T)
     func presentGetProfileError(responseError: String?)
 }
 
-class MyProfilePresenter: MyProfilePresentationLogic
-{
+class MyProfilePresenter: MyProfilePresentationLogic {
     weak var viewController: MyProfileDisplayLogic?
-    
+
     // MARK: Do something
-    
-    func presentGetProfileSuccess<T>(response: T) where T : Decodable {
+
+    func presentGetProfileSuccess<T>(response: T) where T: Decodable {
         viewController?.displaySuccess(viewModel: response)
     }
-    
-    func presentGetServiceListSuccess<T>(response: T) where T : Decodable {
+
+    func presentGetServiceListSuccess<T>(response: T) where T: Decodable {
         viewController?.displaySuccess(viewModel: response)
     }
-    
-    func presentGetRosterDetailsSuccess<T>(response: T) where T : Decodable {
+
+    func presentGetRosterDetailsSuccess<T>(response: T) where T: Decodable {
         viewController?.displaySuccess(viewModel: response)
     }
-    
+
     func presentGetProfileError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
     }

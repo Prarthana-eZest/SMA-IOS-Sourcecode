@@ -12,35 +12,30 @@
 
 import UIKit
 
-protocol DashboardDisplayLogic: class
-{
+protocol DashboardDisplayLogic: class {
     func displaySuccess<T: Decodable> (viewModel: T)
     func displayError(errorMessage: String?)
 }
 
-class DashboardVC: UIViewController, DashboardDisplayLogic
-{
+class DashboardVC: UIViewController, DashboardDisplayLogic {
     var interactor: DashboardBusinessLogic?
     @IBOutlet weak var tableView: UITableView!
-    
+
     // MARK: Object lifecycle
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
-    private func setup()
-    {
+
+    private func setup() {
         let viewController = self
         let interactor = DashboardInteractor()
         let presenter = DashboardPresenter()
@@ -48,11 +43,10 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-    
+
     // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //    if let scene = segue.identifier {
         //      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
         //      if let router = router, router.responds(to: selector) {
@@ -60,50 +54,47 @@ class DashboardVC: UIViewController, DashboardDisplayLogic
         //      }
         //    }
     }
-    
+
     // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: CellIdentifier.dashboardProfileCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.dashboardProfileCell)
         tableView.register(UINib(nibName: CellIdentifier.yourTargetRevenueCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.yourTargetRevenueCell)
-        
-        tableView.contentInset =  UIEdgeInsets(top: -44, left: 0, bottom: 0, right: 0)
+
+        tableView.contentInset = UIEdgeInsets(top: -44, left: 0, bottom: 0, right: 0)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         getProfileData()
     }
-    
+
     // MARK: Do something
-    
+
     //@IBOutlet weak var nameTextField: UITextField!
-    
-    func getProfileData()  {
+
+    func getProfileData() {
         EZLoadingActivity.show("Loading...", disableUI: true)
         interactor?.doGetMyProfileData(accessToken: self.getAccessToken(), method: .get)
     }
-    
-    
-    func displaySomething(viewModel: Dashboard.Something.ViewModel)
-    {
+
+    func displaySomething(viewModel: Dashboard.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
 }
 
-extension DashboardVC{
-    
-    func displaySuccess<T>(viewModel: T) where T : Decodable {
+extension DashboardVC {
+
+    func displaySuccess<T>(viewModel: T) where T: Decodable {
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
-        
-        if let model = viewModel as? MyProfile.GetUserProfile.Response,model.status == true{
-            if let data = model.data{
+
+        if let model = viewModel as? MyProfile.GetUserProfile.Response, model.status == true {
+            if let data = model.data {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
                 userDefaults.synchronize()
@@ -111,7 +102,7 @@ extension DashboardVC{
             tableView.reloadData()
         }
     }
-    
+
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
@@ -119,60 +110,58 @@ extension DashboardVC{
     }
 }
 
+extension DashboardVC: AppointmentDelegate {
 
-extension DashboardVC:AppointmentDelegate{
-    
     func actionRatings(indexPath: IndexPath) {
         print("Ratings")
     }
-    
+
     func actionViewAll() {
         print("View All")
     }
-    
+
     func actionMoreInfo() {
         print("More Info")
         let vc = RevenueVC.instantiate(fromAppStoryboard: .Dashboard)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
     func actionDelete(indexPath: IndexPath) {
         print("Delete:\(indexPath.row)")
     }
-    
+
     func actionModify(indexPath: IndexPath) {
         print("Modify:\(indexPath.row)")
     }
-    
+
     func servicesAction(indexPath: IndexPath) {
     }
 }
 
-extension DashboardVC:TargetRevenueDelegate{
-    
+extension DashboardVC: TargetRevenueDelegate {
+
     func actionDaily() {
         print("Daily")
     }
-    
+
     func actionMonthly() {
         print("Monthly")
     }
-    
+
 }
-    
 
 extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.dashboardProfileCell, for: indexPath) as? DashboardProfileCell else {
@@ -190,19 +179,19 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             return UITableViewCell()
-            
+
         }
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
-        
-        if indexPath.row == 0{
+
+        if indexPath.row == 0 {
             let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
             vc.profileType = .selfUser
             self.navigationController?.pushViewController(vc, animated: true)

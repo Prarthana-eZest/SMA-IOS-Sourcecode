@@ -11,7 +11,7 @@ import UIKit
 class NotificationCell: UITableViewCell {
 
     @IBOutlet weak private var lblTitle: UILabel!
-    
+
     @IBOutlet weak private var notificationView: UIView!
     @IBOutlet weak private var lblNotificationCount: UILabel!
 
@@ -27,7 +27,7 @@ class NotificationCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureCell(title:String,notificationCount: Int) {
+    func configureCell(title: String, notificationCount: Int) {
         lblTitle.text = title
         notificationView.layer.cornerRadius = notificationView.frame.size.width * 0.5
         notificationView.layer.masksToBounds = true

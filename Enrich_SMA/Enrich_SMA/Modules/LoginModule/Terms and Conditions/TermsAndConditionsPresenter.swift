@@ -12,23 +12,21 @@
 
 import UIKit
 
-protocol TermsAndConditionsPresentationLogic
-{
+protocol TermsAndConditionsPresentationLogic {
     func presentGetTermsAndConditionsSuccess<T: Decodable>(response: T)
     func presentGetTermsAndConditionsError(responseError: String?)
 }
 
-class TermsAndConditionsPresenter: TermsAndConditionsPresentationLogic
-{
-    
+class TermsAndConditionsPresenter: TermsAndConditionsPresentationLogic {
+
     weak var viewController: TermsAndConditionsDisplayLogic?
-    
+
     // MARK: Do something
-    
-    func presentGetTermsAndConditionsSuccess<T>(response: T) where T : Decodable {
+
+    func presentGetTermsAndConditionsSuccess<T>(response: T) where T: Decodable {
         viewController?.displaySuccess(viewModel: response)
     }
-    
+
     func presentGetTermsAndConditionsError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
     }

@@ -12,7 +12,7 @@ class MyProfileCell: UITableViewCell {
 
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblValue: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,20 +23,20 @@ class MyProfileCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    func configureCell(model:MyProfileModel){
+
+    func configureCell(model: MyProfileModel) {
         lblTitle.text = model.title
         lblValue.text = model.value
     }
-    
+
 }
 
-struct MyProfileSection{
+struct MyProfileSection {
     let title: String
     var data: [MyProfileModel]
 }
 
-struct MyProfileModel{
+struct MyProfileModel {
     let title: String
     let value: String
     let isMultiOption: Bool

@@ -12,25 +12,24 @@
 
 import UIKit
 
-enum EmployeeListing
-{
+enum EmployeeListing {
     // MARK: Use cases
-    
+
     enum GetEmployeeList {
-        
+
         struct Request: Codable {
             let salon_code: String
             let fromDate: String
             let toDate: String
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             var data: [EmployeeData]?
             var time_stamp: String = ""
         }
-        
+
         struct EmployeeData: Codable {
             let first_name: String?
             let last_name: String?

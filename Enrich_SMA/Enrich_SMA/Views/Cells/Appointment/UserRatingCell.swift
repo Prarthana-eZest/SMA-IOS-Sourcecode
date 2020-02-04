@@ -9,7 +9,7 @@
 import UIKit
 
 class UserRatingCell: UITableViewCell {
-    
+
     @IBOutlet weak var lblRating: UILabel!
     @IBOutlet weak var lblCustomerComments: UILabel!
     @IBOutlet weak var lblcustomerName: UILabel!
@@ -24,13 +24,11 @@ class UserRatingCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
-    func configureCell(model:ClientInformation.ClientNotes.NotesData){
+
+    func configureCell(model: ClientInformation.ClientNotes.NotesData) {
         lblRating.text = "\(model.customer_rating ?? "0")/5"
         lblCustomerComments.text = model.customer_rating_comment ?? ""
         lblcustomerName.text = "\(model.updated_by ?? "") | \(model.created_at ?? "")"
     }
 
 }
-

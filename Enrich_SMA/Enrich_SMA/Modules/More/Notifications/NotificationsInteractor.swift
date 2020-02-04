@@ -12,29 +12,25 @@
 
 import UIKit
 
-protocol NotificationsBusinessLogic
-{
+protocol NotificationsBusinessLogic {
   func doSomething(request: Notifications.Something.Request)
 }
 
-protocol NotificationsDataStore
-{
+protocol NotificationsDataStore {
   //var name: String { get set }
 }
 
-class NotificationsInteractor: NotificationsBusinessLogic, NotificationsDataStore
-{
+class NotificationsInteractor: NotificationsBusinessLogic, NotificationsDataStore {
   var presenter: NotificationsPresentationLogic?
   var worker: NotificationsWorker?
   //var name: String = ""
-  
+
   // MARK: Do something
-  
-  func doSomething(request: Notifications.Something.Request)
-  {
+
+  func doSomething(request: Notifications.Something.Request) {
     worker = NotificationsWorker()
     worker?.doSomeWork()
-    
+
     let response = Notifications.Something.Response()
     presenter?.presentSomething(response: response)
   }

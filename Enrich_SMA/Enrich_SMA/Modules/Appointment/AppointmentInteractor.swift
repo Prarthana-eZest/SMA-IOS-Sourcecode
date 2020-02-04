@@ -12,24 +12,21 @@
 
 import UIKit
 
-protocol AppointmentBusinessLogic
-{
+protocol AppointmentBusinessLogic {
     func doGetAppointmentList(request: Appointment.GetAppointnents.Request, method: HTTPMethod)
 }
 
-protocol AppointmentDataStore
-{
+protocol AppointmentDataStore {
     //var name: String { get set }
 }
 
-class AppointmentInteractor: AppointmentBusinessLogic, AppointmentDataStore
-{
+class AppointmentInteractor: AppointmentBusinessLogic, AppointmentDataStore {
     var presenter: AppointmentPresentationLogic?
     var worker: AppointmentWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     func doGetAppointmentList(request: Appointment.GetAppointnents.Request, method: HTTPMethod) {
         worker = AppointmentWorker()
         worker?.presenter = self.presenter

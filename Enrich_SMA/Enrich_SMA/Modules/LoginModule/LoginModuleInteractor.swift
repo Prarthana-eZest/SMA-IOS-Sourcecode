@@ -23,5 +23,5 @@ class LoginModuleInteractor: LoginModuleBusinessLogic {
         worker.presenter = self.presenter
         worker.postRequest(request: request)
     }
-    
+
 }

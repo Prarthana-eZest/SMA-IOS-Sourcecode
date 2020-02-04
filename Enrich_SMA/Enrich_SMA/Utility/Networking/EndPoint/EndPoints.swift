@@ -15,10 +15,10 @@ public enum ConstantAPINames: String {
     // Select star/unstar Location apis
     case addfavouriteSalon = "salonlocator/favourite/salon"// Custom API
     case removefavouriteSalon = "salonlocator/favourite/salon/remove"// Custom API
-    
+
     // Home Landing API
     case home = "home"
-    
+
     // Salon service And Details api
     case salonServiceCategory = "categories/children"// Custom API
     case salonTestimonials = "testimonials/"// Custom API
@@ -27,17 +27,17 @@ public enum ConstantAPINames: String {
     case removeFromWishList = "wishlist/delete"
     case productDetails = "products/" /// Service Details
     case bestsellerproducts = "bestsellerproducts/" /// Service Details
-    
+
     case productReview = "product/reviews" /// Product Review
     case frquentlyAvailedProduct = "customer/frequentlyavailedservices" // Frequently Availed Service
     case rateAService =  "review/save" // Rate a Service
-    
+
     // Product Module APIS
     case categorydetails = "category/details" // Products Landing Screen
     case blogDetails = "blog/details" // GetInsightfull section
     case productsShopby = "products/shop-by" // GetInsightfull section
     case recentlyviewedproducts = "recentlyviewedproducts"
-    
+
     // Product Cart APIS
     case getQuoteIdMine = "carts/$$$"  // Append Mine // Same for Delete Product from cart
     case addToCartGuest = "guest-carts" // Add To cart For Guest // Same API to Get all Cart Items from cart in case for Guest// DeleteFroCart API also Same
@@ -46,34 +46,33 @@ public enum ConstantAPINames: String {
     case moveToCartFromWishlist  = "wishlist/move/tocart"
     case addUpdateAddress = "customers/mine/address"
     case getStates = "directory/countries"
-    
+
     // BLOGS
     case blogListingCategories = "blog/categories"
     case blogList = "blog/lists" // GetInsightfull section
-    
+
     // PayTM Integration
     case paytmpayonline = "paytm/payonline"
     // More Tab
-    
-    
+
     //.............................SMA New API........................................
-    
+
     // Login Module
     case userLogin = "rest/V1/integration/admin/token"
     case getTermsAndConditions = "rest/V1/cms/block"
-    
+
     //case sendOTPOnMobile = "digimiles/sms/sendotp"
     case sendOTPOnMobile = "rest/V1/employee/reset/password/generate/otp"
-    
+
     case validateOTPOnLogin =  "rest/V1/digimiles/customer/login"
-    
+
     case forgotPassword = "rest/V1/employee/reset/password"
-    
+
     // My Profile
     case getUserProfile = "rest/V1/employee/profile?is_custom=true"
     case getServiceList = "rest/V1/employee/services?is_custom=true"
     case getEmployeeList = "esa/roster" // L
-    
+
     // Appoitments
     case getAppointments = "rest/V1/appointments/appointment-list?is_custom=true"
 
@@ -82,5 +81,5 @@ public enum ConstantAPINames: String {
     case clientPreferences = "rest/V1/customer-preferences?is_custom=true"
     case clientNotes = "rest/V1/customer/ratingandnotes?is_custom=true"
     case addClientNote = "/rest/V1/customer/addnotes"
-    
+
 }

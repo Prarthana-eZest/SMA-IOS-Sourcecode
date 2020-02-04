@@ -12,41 +12,36 @@
 
 import UIKit
 
-protocol AddNewNoteDisplayLogic: class
-{
+protocol AddNewNoteDisplayLogic: class {
     func displaySuccess<T: Decodable> (viewModel: T)
     func displayError(errorMessage: String?)
 }
 
-class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic
-{
+class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic {
     var interactor: AddNewNoteBusinessLogic?
-    
+
     static let TextViewPlaceHolder = "Add Note..."
-    var onDoneBlock: ((Bool,String) -> Void)?
-    
+    var onDoneBlock: ((Bool, String) -> Void)?
+
     @IBOutlet weak var textView: UITextView!
-   
+
     // MARK: Object lifecycle
-    
+
     var customerId = ""
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
-    private func setup()
-    {
+
+    private func setup() {
         let viewController = self
         let interactor = AddNewNoteInteractor()
         let presenter = AddNewNotePresenter()
@@ -54,15 +49,15 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-    
+
     // MARK: View lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         textView.text = AddNewNoteVC.TextViewPlaceHolder
         textView.textColor = UIColor.lightGray
-        
+
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -70,54 +65,48 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
         KeyboardAnimation.sharedInstance.extraBottomSpace = 50
-        
+
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
-    
-    
+
     @IBAction func actionClose(_ sender: UIButton) {
-        onDoneBlock?(false,"")
+        onDoneBlock?(false, "")
         self.dismiss(animated: false, completion: nil)
     }
-    
-    
-    
+
     @IBAction func actionSubmit(_ sender: Any) {
-        
+
         if textView.textColor == UIColor.lightGray {
             self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.addNewNote, seconds: toastMessageDuration)
             return
         }
         addObserveNote()
     }
-    
-    
+
     // MARK: Do something
-    
+
     //@IBOutlet weak var nameTextField: UITextField!
-    
-    func addObserveNote()
-    {
+
+    func addObserveNote() {
         let data = AddNewNote.ObserveNote.Data(customer_id: customerId, note_type: "observe", note: textView.text ?? "", updated_by: "", customer_rating: "0", customer_rating_comment: "")
         let request = AddNewNote.ObserveNote.Request(noteData: data, is_custom: true)
         interactor?.doPostNewClientNotes(request: request, method: .post)
     }
 }
 
+extension AddNewNoteVC {
 
-extension AddNewNoteVC{
-    
-    func displaySuccess<T>(viewModel: T) where T : Decodable {
+    func displaySuccess<T>(viewModel: T) where T: Decodable {
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
-        onDoneBlock?(true,textView.text)
+        onDoneBlock?(true, textView.text)
         self.dismiss(animated: false, completion: nil)
     }
-    
+
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")

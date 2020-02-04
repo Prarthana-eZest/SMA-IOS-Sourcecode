@@ -10,24 +10,22 @@
 
 import UIKit
 
-protocol OTPVerificationModuleBusinessLogic
-{
-    func doPostRequest(request: OTPVerificationModule.ChangePasswordWithOTPVerification.Request,method:HTTPMethod,endPoint:String)
+protocol OTPVerificationModuleBusinessLogic {
+    func doPostRequest(request: OTPVerificationModule.ChangePasswordWithOTPVerification.Request,
+                       method: HTTPMethod, endPoint: String)
 }
 
-protocol OTPVerificationModuleDataStore
-{
+protocol OTPVerificationModuleDataStore {
     //var name: String { get set }
 }
 
-class OTPVerificationModuleInteractor: OTPVerificationModuleBusinessLogic, OTPVerificationModuleDataStore
-{
+class OTPVerificationModuleInteractor: OTPVerificationModuleBusinessLogic, OTPVerificationModuleDataStore {
     var presenter: OTPVerificationModulePresentationLogic?
     var worker: OTPVerificationModuleWorker?
-    
+
     // MARK: Do something
-    func doPostRequest(request: OTPVerificationModule.ChangePasswordWithOTPVerification.Request,method:HTTPMethod,endPoint:String)
-    {
+    func doPostRequest(request: OTPVerificationModule.ChangePasswordWithOTPVerification.Request,
+                       method: HTTPMethod, endPoint: String) {
         worker = OTPVerificationModuleWorker()
         worker?.presenter = self.presenter
         worker?.postRequest(request: request, endPoint: endPoint)

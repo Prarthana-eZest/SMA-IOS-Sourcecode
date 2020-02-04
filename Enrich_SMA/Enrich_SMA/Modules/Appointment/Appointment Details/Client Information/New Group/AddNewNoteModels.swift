@@ -12,31 +12,29 @@
 
 import UIKit
 
-enum AddNewNote
-{
+enum AddNewNote {
   // MARK: Use cases
-    
+
     enum ObserveNote {
-        
+
         struct Request: Codable {
-            let noteData:Data
-            let is_custom:Bool
+            let noteData: Data
+            let is_custom: Bool
         }
-        
-        struct Data: Codable{
+
+        struct Data: Codable {
             let customer_id: String
-            let note_type : String
-            let note : String
+            let note_type: String
+            let note: String
             let updated_by: String
             let customer_rating: String
             let customer_rating_comment: String
         }
-        
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
         }
     }
-        
+
 }

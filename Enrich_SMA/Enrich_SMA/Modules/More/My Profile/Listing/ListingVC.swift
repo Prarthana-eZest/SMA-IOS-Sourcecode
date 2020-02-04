@@ -9,35 +9,34 @@
 import UIKit
 
 class ListingVC: UIViewController {
-    
+
     var screenTitle = ""
     var listing = [String]()
     var services = [ServiceListingModel]()
-    
+
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblNoRecords: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var viewDismissBlock: ((Bool) -> Void)?
-    
-    var listingType:ListingType = .services
-    
+
+    var listingType: ListingType = .services
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         lblTitle.text = listingType.rawValue
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
         tableView.register(UINib(nibName: CellIdentifier.serviceListingCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.serviceListingCell)
-        
+
     }
-    
+
     @IBAction func actionClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
         viewDismissBlock?(true)
     }
-    
-    
+
     /*
      // MARK: - Navigation
      
@@ -47,29 +46,29 @@ class ListingVC: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+
 }
 
 extension ListingVC: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if listingType == .appointmentServices{
+        if listingType == .appointmentServices {
             lblNoRecords.isHidden = !services.isEmpty
             return services.count
-        }else{
+        } else {
             lblNoRecords.isHidden = !listing.isEmpty
             return listing.count
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if listingType == .appointmentServices{
-            
+
+        if listingType == .appointmentServices {
+
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.serviceListingCell, for: indexPath) as? ServiceListingCell else {
                 return UITableViewCell()
             }
@@ -77,8 +76,8 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
             cell.configureCell(model: services[indexPath.row])
             return cell
-            
-        }else{
+
+        } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.listingCell, for: indexPath) as? ListingCell else {
                 return UITableViewCell()
             }
@@ -87,15 +86,15 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
             cell.configureCell(text: listing[indexPath.row])
             return cell
         }
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if listingType == .appointmentServices{
+        if listingType == .appointmentServices {
             return UITableView.automaticDimension
         }
         return 55

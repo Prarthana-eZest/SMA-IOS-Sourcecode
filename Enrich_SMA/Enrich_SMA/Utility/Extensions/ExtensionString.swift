@@ -147,14 +147,14 @@ extension String {
         }
         return Date()
     }
-    
-    func getDateFromString() -> Date?{
+
+    func getDateFromString() -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let s = dateFormatter.date(from: self)
         return s
     }
-    func getDateFromShortString() -> Date?{
+    func getDateFromShortString() -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy-MM-dd"
         let s = dateFormatter.date(from: self)

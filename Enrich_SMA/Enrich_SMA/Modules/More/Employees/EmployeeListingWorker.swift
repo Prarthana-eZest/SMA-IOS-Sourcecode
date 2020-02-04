@@ -12,14 +12,13 @@
 
 import UIKit
 
-class EmployeeListingWorker
-{
-    
+class EmployeeListingWorker {
+
     let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
     var presenter: EmployeeListingPresentationLogic?
-    
-    func postRequestForServiceList(request:EmployeeListing.GetEmployeeList.Request, method: HTTPMethod) {
-        
+
+    func postRequestForServiceList(request: EmployeeListing.GetEmployeeList.Request, method: HTTPMethod) {
+
         let errorHandler: (String) -> Void = { (error) in
             print(error)
             self.presenter?.presentGetEmployeeListError(responseError: error)
@@ -28,8 +27,8 @@ class EmployeeListingWorker
             print(response)
             self.presenter?.presentGetEmployeeListSuccess(response: response)
         }
-        
+
         self.networkLayer.post(urlString: ConstantAPINames.getEmployeeList.rawValue, body: request, headers: ["X-Request-From": "tma"], successHandler: successHandler, errorHandler: errorHandler, method: .post)
-        
+
     }
 }

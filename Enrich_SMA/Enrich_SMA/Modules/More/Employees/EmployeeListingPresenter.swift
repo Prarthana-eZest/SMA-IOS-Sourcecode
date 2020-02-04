@@ -12,22 +12,20 @@
 
 import UIKit
 
-protocol EmployeeListingPresentationLogic
-{
+protocol EmployeeListingPresentationLogic {
     func presentGetEmployeeListSuccess<T: Decodable>(response: T)
     func presentGetEmployeeListError(responseError: String?)
 }
 
-class EmployeeListingPresenter: EmployeeListingPresentationLogic
-{
+class EmployeeListingPresenter: EmployeeListingPresentationLogic {
     weak var viewController: EmployeeListingDisplayLogic?
-    
+
     // MARK: Do something
-    
-    func presentGetEmployeeListSuccess<T>(response: T) where T : Decodable {
+
+    func presentGetEmployeeListSuccess<T>(response: T) where T: Decodable {
         viewController?.displaySuccess(viewModel: response)
     }
-    
+
     func presentGetEmployeeListError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
     }

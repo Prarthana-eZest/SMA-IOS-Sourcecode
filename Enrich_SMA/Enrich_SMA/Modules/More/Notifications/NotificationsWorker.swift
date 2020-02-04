@@ -12,9 +12,7 @@
 
 import UIKit
 
-class NotificationsWorker
-{
-  func doSomeWork()
-  {
+class NotificationsWorker {
+  func doSomeWork() {
   }
 }
