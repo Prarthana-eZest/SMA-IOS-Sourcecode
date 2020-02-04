@@ -1377,6 +1377,7 @@
 				4A8BD3CEF9DE95BDB8A5F58A /* [CP] Embed Pods Frameworks */,
 				7509274F4856061FF7A74BBD /* [CP] Copy Pods Resources */,
 				E3CD5039237145FE00DE106E /* ShellScript */,
+				E33E5B6623E956FD00315BF5 /* Swiftlint Script */,
 			);
 			buildRules = (
 			);
@@ -1672,6 +1673,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E33E5B6623E956FD00315BF5 /* Swiftlint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swiftlint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		E3CD5039237145FE00DE106E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -183,10 +183,10 @@ extension AppointmentVC{
             self.appointments.removeAll()
             self.appointments.append(contentsOf: model.data ?? [])
             self.tableView.reloadData()
-            if appointments.count > 0{
+            if !appointments.isEmpty{
                 self.tableView.scrollToTop()
             }
-            lblNoAppointments.isHidden = (appointments.count > 0)
+            lblNoAppointments.isHidden = (!appointments.isEmpty)
         }
     }
     

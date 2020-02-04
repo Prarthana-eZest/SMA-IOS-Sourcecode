@@ -1,0 +1,35 @@
+opt_in_rules:
+- closure_end_indentation
+- empty_count
+- explicit_init
+- force_unwrapping
+- first_where
+- nimble_operator
+- operator_usage_whitespace
+- overridden_super_call
+- private_outlet
+- prohibited_super_call
+- switch_case_on_newline
+- redundant_nil_coalescing
+line_length: 120
+type_name:
+max_length: 60
+variable_name:
+min_length: 2
+warning_threshold: 1
+file_length:
+warning: 500
+error: 700
+
+disabled_rules:
+  - identifier_name
+  - type_name
+
+excluded:
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+  - Source/*/ExcludedFile.swift
+  - ProjectTests
+  - ProjectUITests

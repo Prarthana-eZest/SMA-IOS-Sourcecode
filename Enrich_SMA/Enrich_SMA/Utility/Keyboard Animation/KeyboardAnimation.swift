@@ -114,7 +114,7 @@ class KeyboardAnimation: NSObject {
                 if (controlFrame.origin.y + extraBottomSpace) > maxY {
 
                     kbHeight = view!.frame.origin.y + (controlFrame.origin.y - maxY)
-                    kbHeight = kbHeight + extraBottomSpace
+                    kbHeight += extraBottomSpace
                     self.animateView(true)
 
                 } else {

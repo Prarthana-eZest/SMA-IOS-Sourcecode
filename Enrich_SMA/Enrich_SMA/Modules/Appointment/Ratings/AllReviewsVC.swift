@@ -114,7 +114,7 @@ extension AllReviewsVC: AllReviewsModuleDisplayLogic {
                     self.ratings.append($0)
                 }
             }
-            lblNoRatings.isHidden = self.ratings.count > 0
+            lblNoRatings.isHidden = !self.ratings.isEmpty
             self.tableView.reloadData()
         }
     }

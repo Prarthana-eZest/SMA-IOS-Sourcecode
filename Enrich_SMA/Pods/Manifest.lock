@@ -58,6 +58,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - SwiftLint (0.33.0)
   - TagListView (1.4.0)
 
 DEPENDENCIES:
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - Firebase/Core
   - GooglePlaces (= 3.0.3)
   - Kingfisher (~> 4.0)
+  - SwiftLint
   - TagListView (~> 1.0)
 
 SPEC REPOS:
@@ -86,6 +88,7 @@ SPEC REPOS:
     - GoogleUtilities
     - Kingfisher
     - nanopb
+    - SwiftLint
     - TagListView
 
 SPEC CHECKSUMS:
@@ -103,8 +106,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: 4f1dc2decd565f095b515ccd0bd35db7d6bb9dba
+PODFILE CHECKSUM: f27b79a7800681d723453d1ea93a72b01baaf7b1
 
 COCOAPODS: 1.6.1

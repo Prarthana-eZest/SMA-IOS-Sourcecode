@@ -233,7 +233,7 @@ extension ClientInformationVC{
             self.appointmentHistory.append(contentsOf: model.data ?? [])
             lblNoRecords.isHidden = !appointmentHistory.isEmpty
             self.tableView.reloadData()
-            if appointmentHistory.count > 0{
+            if !appointmentHistory.isEmpty{
                 self.tableView.scrollToTop()
             }
         }else if let model = viewModel as? ClientInformation.MembershipDetails.Response, model.status == true,let name = model.data?.name,let type = MembershipType(rawValue: name){
@@ -249,12 +249,12 @@ extension ClientInformationVC{
                     self.preferenceData.append(PointsCellData(title: "Preferred Beverages", points: [bevarages]))
                 }
                 
-                if let salons = data.preferred_salon,salons.count > 0{
+                if let salons = data.preferred_salon,!salons.isEmpty{
                     let names = salons.compactMap{ "\($0.salon_name ?? ""), \($0.salon_location ?? "")"}
                     self.preferenceData.append(PointsCellData(title: "Preferred Salon", points: names))
                 }
                 
-                if let stylist = data.preferred_stylist,stylist.count > 0{
+                if let stylist = data.preferred_stylist,!stylist.isEmpty{
                     let names = stylist.compactMap{$0.name ?? ""}
                     self.preferenceData.append(PointsCellData(title: "Preferred Stylist", points: names))
                 }
@@ -267,12 +267,12 @@ extension ClientInformationVC{
             self.notesData.removeAll()
             if let data = model.data{
                 
-                if let askNotes = data.ask, askNotes.count > 0{
+                if let askNotes = data.ask, !askNotes.isEmpty{
                     let notes = askNotes.compactMap{$0.note ?? ""}
                     self.notesData.append(PointsCellData(title: "Ask Notes", points: notes))
                 }
                 
-                if let observeNotes = data.observe, observeNotes.count > 0{
+                if let observeNotes = data.observe, !observeNotes.isEmpty{
                     let notes = observeNotes.compactMap{$0.note ?? ""}
                     self.notesData.append(PointsCellData(title: "Observe Notes", points: notes))
                 }

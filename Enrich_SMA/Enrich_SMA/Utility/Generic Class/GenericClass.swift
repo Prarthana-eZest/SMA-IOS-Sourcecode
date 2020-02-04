@@ -145,14 +145,14 @@ extension GenericClass {
                         let strValueKey0 = "\(GenericClass.sharedInstance.getConditionalValueKey(index: index, indexFilter: indexObj))"
                         let strTypeKey0 = "\(GenericClass.sharedInstance.getConditionalTypeKey(index: index, indexFilter: indexObj))"
                         
-                        strFinal = strFinal + "\(strFieldKey0)=\(modelObj.field ?? "")" + "&\(strValueKey0)=\(modelObj.value ?? "")" + "&\(strTypeKey0)=\(modelObj.type ?? "")"
+                        strFinal += "\(strFieldKey0)=\(modelObj.field ?? "")" + "&\(strValueKey0)=\(modelObj.value ?? "")" + "&\(strTypeKey0)=\(modelObj.type ?? "")"
                     }
                 }
                 //  ---------- SORT CONDITIONS -----
             } else if model.field == "sort" {
                 strFinal = strFinal.isEmpty ? (strFinal + "?") : (strFinal + "&")
                 
-                strFinal = strFinal + "\(GenericClass.sharedInstance.getSortingFieldKey())=\(model.type ?? "")" + "&\(GenericClass.sharedInstance.getSortingDirectionKey())=\(model.value ?? "")"
+                strFinal +=  "\(GenericClass.sharedInstance.getSortingFieldKey())=\(model.type ?? "")" + "&\(GenericClass.sharedInstance.getSortingDirectionKey())=\(model.value ?? "")"
             } else {
                 strFinal = strFinal.isEmpty ? (strFinal + "?") : (strFinal + "&")
                 
@@ -167,7 +167,7 @@ extension GenericClass {
                 let strTypeKey2 = "&\(strTypeKey0)=\(model.type ?? "")"
                 
                 //  ---------- PARAMETERS -----
-                strFinal = strFinal + "\(strFieldKey2)" + "\(strValueKey2)" + "\(strTypeKey2)"
+                strFinal += "\(strFieldKey2)" + "\(strValueKey2)" + "\(strTypeKey2)"
             }
         }
         

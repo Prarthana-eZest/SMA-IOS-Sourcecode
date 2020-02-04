@@ -15,6 +15,7 @@ target 'Enrich_SMA' do
     pod 'Cosmos'
     pod 'GooglePlaces', '= 3.0.3'
     pod 'TagListView', '~> 1.0'
+    pod 'SwiftLint'
 
   target 'Enrich_SMATests' do
     inherit! :search_paths
