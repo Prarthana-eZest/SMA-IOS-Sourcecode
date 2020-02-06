@@ -51,6 +51,7 @@ enum MyProfile {
             let work_number: String?
             let status: String?
             let customer_count: String?
+            let service: [Service]?
         }
 
         struct Address: Codable {
@@ -59,6 +60,12 @@ enum MyProfile {
             let city: String?
             let state: String?
             let country: String?
+        }
+    
+        struct Service: Codable {
+            let service_id: String?
+            let service_name: String?
+            let service_sku: String?
         }
     }
 
