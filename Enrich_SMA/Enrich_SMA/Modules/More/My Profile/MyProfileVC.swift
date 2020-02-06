@@ -289,15 +289,16 @@ extension MyProfileVC {
     func modelMapping(model: MyProfile.GetUserProfile.Response) {
 
         if let data = model.data {
+            
+            self.service.removeAll()
+            model.data?.service?.forEach {
+                self.service.append($0.service_name ?? "")
+            }
 
             if profileType == .selfUser {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
                 userDefaults.synchronize()
-                self.service.removeAll()
-                model.data?.service?.forEach {
-                    self.service.append($0.service_name ?? "")
-                }
             }
 
             let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating?.description ?? "0", gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
@@ -328,7 +329,8 @@ extension MyProfileVC {
                                                                                           MyProfileModel(title: "Nick Name", value: data.nickname ?? "-", isMultiOption: false),
                                                                                           MyProfileModel(title: "Center", value: data.base_salon_name ?? "-", isMultiOption: false),
                                                                                           MyProfileModel(title: "Category", value: data.category ?? "-", isMultiOption: false),
-                                                                                          MyProfileModel(title: "Designation", value: data.designation ?? "-", isMultiOption: false)])
+                                                                                          MyProfileModel(title: "Designation", value: data.designation ?? "-", isMultiOption: false),
+                                                                                          MyProfileModel(title: "Service Expertise", value: "-", isMultiOption: true)])
 
             let shiftDetails = MyProfileSection(title: "Shift details", data: [MyProfileModel(title: "Shift Timing", value: "-", isMultiOption: true),
                                                                             MyProfileModel(title: "Status", value: status == "1" ? "Active" : "Inactive", isMultiOption: false)])

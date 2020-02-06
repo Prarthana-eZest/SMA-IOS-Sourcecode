@@ -82,7 +82,12 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
-            cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
+            if listingType == .services {
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            }
+            else {
+                cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
+            }
             cell.configureCell(text: listing[indexPath.row])
             return cell
         }
@@ -94,9 +99,12 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if listingType == .appointmentServices {
-            return UITableView.automaticDimension
+        if listingType == .shifts {
+            return 55
         }
-        return 55
+        else if  listingType == .services {
+            return 40
+        }
+        return UITableView.automaticDimension
     }
 }
