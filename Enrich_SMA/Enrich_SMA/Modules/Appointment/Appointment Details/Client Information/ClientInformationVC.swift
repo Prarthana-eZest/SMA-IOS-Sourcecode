@@ -238,7 +238,7 @@ extension ClientInformationVC {
                 }
 
                 if let salons = data.preferred_salon, !salons.isEmpty {
-                    let names = salons.compactMap { "\($0.salon_name ?? ""), \($0.salon_location ?? "")"}
+                    let names = salons.compactMap { "\($0.salon_name ?? "")"}
                     self.preferenceData.append(PointsCellData(title: "Preferred Salon", points: names))
                 }
 

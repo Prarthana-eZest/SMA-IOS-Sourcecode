@@ -141,6 +141,11 @@ enum ClientInformation {
         struct PrefferedSalon: Codable {
             let salon_name: String?
             let salon_location: String?
+            let salon_id: String?
+            let salon_code: String?
+            let address_1: String?
+            let address_2: String?
+            let city: String?
         }
 
     }
