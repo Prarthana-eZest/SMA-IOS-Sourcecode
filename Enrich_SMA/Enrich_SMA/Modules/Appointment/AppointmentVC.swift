@@ -100,6 +100,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             lblLocation.text = userData.base_salon_name ?? ""
         }
+        self.tableView.reloadData()
     }
 
     // MARK: Do something
