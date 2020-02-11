@@ -43,7 +43,7 @@ class DashboardProfileCell: UITableViewCell {
     func configureCell() {
 
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            lblUserName.text = "\(userData.firstname ?? "") \(userData.lastname ?? "")"
+            lblUserName.text = ("\(userData.firstname ?? "") \(userData.lastname ?? "")").capitalized
             btnSelectALocation.setTitle(userData.base_salon_name ?? "", for: .normal)
             //            let rating = userData.rating ?? 0
             //            if rating == 0{
@@ -51,7 +51,7 @@ class DashboardProfileCell: UITableViewCell {
             //            }else{
             //                lblRating.text = "\(rating)/5"
             //            }
-            lblDesignation.text = userData.designation ?? "-"
+            lblDesignation.text = (userData.designation ?? "-").capitalized
 
             profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
 

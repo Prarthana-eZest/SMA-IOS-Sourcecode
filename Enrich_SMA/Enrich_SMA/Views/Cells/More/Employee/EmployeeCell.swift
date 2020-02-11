@@ -24,8 +24,8 @@ class EmployeeCell: UITableViewCell {
     }
 
     func configureCell(model: EmployeeModel) {
-        lblEmplyeeName.text = model.name
-        lblLevel.text = model.level
+        lblEmplyeeName.text = model.name.capitalized
+        lblLevel.text = model.level.capitalized
         ratingsView.rating = model.ratings
 
         lblStatus.text = model.statusText
