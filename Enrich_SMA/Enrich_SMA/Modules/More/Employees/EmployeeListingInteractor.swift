@@ -12,24 +12,21 @@
 
 import UIKit
 
-protocol EmployeeListingBusinessLogic
-{
-    func doGetEmployeeListData(request:EmployeeListing.GetEmployeeList.Request, method: HTTPMethod)
+protocol EmployeeListingBusinessLogic {
+    func doGetEmployeeListData(request: EmployeeListing.GetEmployeeList.Request, method: HTTPMethod)
 }
 
-protocol EmployeeListingDataStore
-{
+protocol EmployeeListingDataStore {
     //var name: String { get set }
 }
 
-class EmployeeListingInteractor: EmployeeListingBusinessLogic, EmployeeListingDataStore
-{
+class EmployeeListingInteractor: EmployeeListingBusinessLogic, EmployeeListingDataStore {
     var presenter: EmployeeListingPresentationLogic?
     var worker: EmployeeListingWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     func doGetEmployeeListData(request: EmployeeListing.GetEmployeeList.Request, method: HTTPMethod) {
         worker = EmployeeListingWorker()
         worker?.presenter = self.presenter

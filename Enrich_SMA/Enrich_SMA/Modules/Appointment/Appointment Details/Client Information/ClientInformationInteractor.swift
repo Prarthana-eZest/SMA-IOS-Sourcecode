@@ -12,41 +12,39 @@
 
 import UIKit
 
-protocol ClientInformationBusinessLogic
-{
+protocol ClientInformationBusinessLogic {
     func doGetAppointmentHistory(request: ClientInformation.GetAppointnentHistory.Request, method: HTTPMethod)
-    func doGetMembershipDetails(accessToken:String, method: HTTPMethod,request: ClientInformation.MembershipDetails.Request)
-    func doGetClientPreferences(accessToken:String, method: HTTPMethod,request: ClientInformation.Preferences.Request)
-    func doGetClientNotes(method: HTTPMethod,request: ClientInformation.ClientNotes.Request)
+    func doGetMembershipDetails(accessToken: String, method: HTTPMethod, request: ClientInformation.MembershipDetails.Request)
+    func doGetClientPreferences(accessToken: String, method: HTTPMethod, request: ClientInformation.Preferences.Request)
+    func doGetClientNotes(method: HTTPMethod, request: ClientInformation.ClientNotes.Request)
 }
 
-class ClientInformationInteractor: ClientInformationBusinessLogic
-{
+class ClientInformationInteractor: ClientInformationBusinessLogic {
     var presenter: ClientInformationPresentationLogic?
     var worker: ClientInformationWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     func doGetAppointmentHistory(request: ClientInformation.GetAppointnentHistory.Request, method: HTTPMethod) {
         worker = ClientInformationWorker()
         worker?.presenter = self.presenter
         worker?.postRequestForAppointmentHistory(request: request, method: method)
     }
-    
-    func doGetMembershipDetails(accessToken:String, method: HTTPMethod,request: ClientInformation.MembershipDetails.Request){
+
+    func doGetMembershipDetails(accessToken: String, method: HTTPMethod, request: ClientInformation.MembershipDetails.Request) {
         worker = ClientInformationWorker()
         worker?.presenter = self.presenter
-        worker?.getRequestForMembershipDetails(accessToken:accessToken, method: method,request:request)
+        worker?.getRequestForMembershipDetails(accessToken: accessToken, method: method, request: request)
     }
-    
-    func doGetClientPreferences(accessToken:String, method: HTTPMethod,request: ClientInformation.Preferences.Request){
+
+    func doGetClientPreferences(accessToken: String, method: HTTPMethod, request: ClientInformation.Preferences.Request) {
         worker = ClientInformationWorker()
         worker?.presenter = self.presenter
         worker?.getRequestForClientPreference(accessToken: accessToken, method: method, request: request)
     }
-    
-    func doGetClientNotes(method: HTTPMethod,request: ClientInformation.ClientNotes.Request){
+
+    func doGetClientNotes(method: HTTPMethod, request: ClientInformation.ClientNotes.Request) {
         worker = ClientInformationWorker()
         worker?.presenter = self.presenter
         worker?.postRequestForClientNotes(request: request, method: method)

@@ -12,9 +12,9 @@ import UIKit
 
 enum LoginModule {
     // MARK: Use cases
-    
+
     enum UserLogin {
-        
+
         struct Request: Codable {
             let username: String
             let password: String
@@ -26,24 +26,25 @@ enum LoginModule {
             var message: String = ""
             var data: UserData?
         }
-        
+
         struct UserData: Codable {
-            let access_token : String?
-            let username : String?
-            let employee_id : String?
-            let firstname : String?
-            let middlename : String?
-            let lastname : String?
-            let nickname : String?
-            let employee_code : String?
-            let birthdate : String?
-            let designation : String?
-            let base_salon_code : String?
-            let base_salon_name : String?
-            let salon_id : String?
-            let gender : String?
-            let profile_image : String?
-            let rating : AnyCodable?
+
+            let access_token: String?
+            let username: String?
+            let employee_id: String?
+            let firstname: String?
+            let middlename: String?
+            let lastname: String?
+            let nickname: String?
+            let employee_code: String?
+            let birthdate: String?
+            let designation: String?
+            let base_salon_code: String?
+            let base_salon_name: String?
+            let salon_id: String?
+            let gender: String?
+            let profile_image: String?
+            let rating: AnyCodable?
         }
     }
 }

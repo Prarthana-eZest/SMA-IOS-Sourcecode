@@ -12,29 +12,25 @@
 
 import UIKit
 
-protocol ReportsBusinessLogic
-{
+protocol ReportsBusinessLogic {
   func doSomething(request: Reports.Something.Request)
 }
 
-protocol ReportsDataStore
-{
+protocol ReportsDataStore {
   //var name: String { get set }
 }
 
-class ReportsInteractor: ReportsBusinessLogic, ReportsDataStore
-{
+class ReportsInteractor: ReportsBusinessLogic, ReportsDataStore {
   var presenter: ReportsPresentationLogic?
   var worker: ReportsWorker?
   //var name: String = ""
-  
+
   // MARK: Do something
-  
-  func doSomething(request: Reports.Something.Request)
-  {
+
+  func doSomething(request: Reports.Something.Request) {
     worker = ReportsWorker()
     worker?.doSomeWork()
-    
+
     let response = Reports.Something.Response()
     presenter?.presentSomething(response: response)
   }

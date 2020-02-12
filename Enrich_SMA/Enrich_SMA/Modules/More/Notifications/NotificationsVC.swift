@@ -12,36 +12,30 @@
 
 import UIKit
 
-protocol NotificationsDisplayLogic: class
-{
+protocol NotificationsDisplayLogic: class {
     func displaySomething(viewModel: Notifications.Something.ViewModel)
 }
 
-class NotificationsVC: UIViewController, NotificationsDisplayLogic
-{
+class NotificationsVC: UIViewController, NotificationsDisplayLogic {
     var interactor: NotificationsBusinessLogic?
-    
+
     @IBOutlet weak private var tableView: UITableView!
-    
-    
+
     // MARK: Object lifecycle
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
-    private func setup()
-    {
+
+    private func setup() {
         let viewController = self
         let interactor = NotificationsInteractor()
         let presenter = NotificationsPresenter()
@@ -49,11 +43,10 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-    
+
     // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             //      if let router = router, router.responds(to: selector) {
@@ -61,63 +54,60 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic
             //      }
         }
     }
-    
+
     // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         doSomething()
         tableView.register(UINib(nibName: CellIdentifier.notificationDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.notificationDetailsCell)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Notifications")
     }
-    
+
     // MARK: Do something
-    
+
     //@IBOutlet weak var nameTextField: UITextField!
-    
-    func doSomething()
-    {
+
+    func doSomething() {
         let request = Notifications.Something.Request()
         interactor?.doSomething(request: request)
     }
-    
-    func displaySomething(viewModel: Notifications.Something.ViewModel)
-    {
+
+    func displaySomething(viewModel: Notifications.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
 }
 
 extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         guard let notificationCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.notificationDetailsCell, for: indexPath) as? NotificationDetailsCell else {
             return UITableViewCell()
         }
         notificationCell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         notificationCell.selectionStyle = .none
-        
+
         return notificationCell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

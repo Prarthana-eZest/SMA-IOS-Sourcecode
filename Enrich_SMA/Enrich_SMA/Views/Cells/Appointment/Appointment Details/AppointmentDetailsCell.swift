@@ -9,8 +9,7 @@
 import UIKit
 
 class AppointmentDetailsCell: UITableViewCell {
-    
-    
+
     //Appointment Details
     @IBOutlet weak var lblDateTime: UILabel!
     @IBOutlet weak var userProfile: UIImageView!
@@ -18,126 +17,126 @@ class AppointmentDetailsCell: UITableViewCell {
     @IBOutlet weak var lblAppointmentStatus: UILabel!
     @IBOutlet weak var lblLastVisit: UILabel!
     @IBOutlet weak var lblRatings: UILabel!
-    
+
     // Status
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblStartTime: UILabel!
     @IBOutlet weak var lblEndTime: UILabel!
     @IBOutlet weak var lblTotalDuration: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
-    
+
     @IBOutlet weak var locationStackView: UIStackView!
-    
+
     @IBOutlet weak var lblLandmark: UILabel!
-    
+
+
     @IBOutlet weak var iconMembership: UIImageView!
     @IBOutlet weak var dividerView: UIView!
-    
+
     @IBOutlet weak var iconHighSpending: UIImageView!
-    
+
     @IBOutlet weak var stackViewMemAndHighS: UIStackView!
-    
+
     var appointmentDetails: Appointment.GetAppointnents.Data?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
-    
-    
-    func configureCell(model:Appointment.GetAppointnents.Data,date:Date){
-        
+
+    func configureCell(model: Appointment.GetAppointnents.Data, date: Date) {
+
         appointmentDetails = model
         lblUserName.text = model.booked_by ?? ""
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
         lblTotalDuration.text = "\(model.total_duration ?? 0) min"
-        
+
         let status = model.status ?? ""
         lblAppointmentStatus.text = status.uppercased()
         lblStatus.text = status.uppercased()
-        
+
         lblLocation.text = model.customer_address ?? ""
         lblDateTime.text = date.dayNameDateFormat
         lblLastVisit.text = model.last_visit ?? ""
-        
+
         let rating = model.avg_rating ?? 0
-        if rating == 0{
+        if rating == 0 {
             lblRatings.text = "0/5"
-        }else{
+        } else {
             lblRatings.text = "\(rating)/5"
         }
 
         lblTotalDuration.text = "\(model.total_duration ?? 0) min"
-        
+
         locationStackView.isHidden = true
         if let typeText = model.appointment_type,
-            let type = ServiceType(rawValue: typeText){
+            let type = ServiceType(rawValue: typeText) {
             locationStackView.isHidden = (type == .Salon)
         }
-        
+
         lblLandmark.text = model.landmark ?? "-"
-        
+
         userProfile.layer.cornerRadius = userProfile.frame.size.height * 0.5
         let url = URL(string: model.profile_picture ?? "")
         userProfile.kf.indicatorType = .activity
-        
+
         let defaultImage = UIImage(named: "defaultProfile")
-        if let imageurl = url{
+        if let imageurl = url {
             userProfile.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
         } else {
             userProfile.image = defaultImage
         }
-        
+
+
         // Memebership
-        
+
         var isMember = false
         dividerView.isHidden = true
         stackViewMemAndHighS.isHidden = false
-        
-        if let memebrshipType = MembershipType(rawValue: model.membership ?? ""){
+
+        if let memebrshipType = MembershipType(rawValue: model.membership ?? "") {
             switch memebrshipType {
-                
+
             case .general:isMember = false
-                
+
             case .clubMemberShip:
                 iconMembership.image = UIImage(named: "ClubMembership")
                 isMember = true
-                
+
             case .eliteMembership:
                 iconMembership.image = UIImage(named: "EliteMembership")
                 isMember = true
-                
+
             case .premierMembership:
                 iconMembership.image = UIImage(named: "PremierMembership")
                 isMember = true
             }
         }
-        
+
         iconMembership.isHidden = !isMember
-        
-        if let highSpending = model.high_expensive,highSpending == true{
+
+        if let highSpending = model.high_expensive, highSpending == true {
             iconHighSpending.isHidden = false
-        }else{
+        } else {
             iconHighSpending.isHidden = true
-            if !isMember{
+            if !isMember {
                 stackViewMemAndHighS.isHidden = true
             }
         }
     }
-    
+
     @IBAction func actionFindAddress(_ sender: UIButton) {
         if let model = appointmentDetails,
             let lat = model.customer_latitude,
-            let long = model.customer_longitude{
+            let long = model.customer_longitude {
             appDelegate.openGoogleMaps(lat: lat, long: long)
         }
     }
 }
-

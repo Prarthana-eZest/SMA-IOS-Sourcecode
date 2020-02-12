@@ -6,7 +6,7 @@
 import UIKit
 
 enum ProfileCellIdentifiers: String {
-    
+
     // Dashboard
     case punchIn = "Punch In"
     case punchOut = "Punch Out"
@@ -17,7 +17,7 @@ enum ProfileCellIdentifiers: String {
     case audits = "Audits"
     case notifications = "Notifications"
     case logout = "Logout"
-    
+
 }
 
 protocol MoreModuleDisplayLogic: class {
@@ -27,13 +27,13 @@ protocol MoreModuleDisplayLogic: class {
 }
 
 class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
-    
+
     var interactor: MoreModuleBusinessLogic?
-    
+
     @IBOutlet weak private var tableView: UITableView!
-    
+
     var userPunchedIn = false
-    
+
     var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.punchIn,
                                                                  .myProfile,
                                                                  .employees,
@@ -42,20 +42,20 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
                                                                  //.audits,
                                                                  .notifications,
                                                                  .logout]
-    
+
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
+
     private func setup() {
         let viewController = self
         let interactor = MoreModuleInteractor()
@@ -63,19 +63,18 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController
-        
+
     }
-    
-    
+
     // MARK: View lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //self.doSomething()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
@@ -95,26 +94,25 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     //            self.view.alpha = 1.0
     //        }
     //    }
-    
+
 }
 
-
 extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return profileDashboardIdentifiers.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let identifier = profileDashboardIdentifiers[indexPath.row]
-        
+
         var cell = UITableViewCell()
-        if identifier == .notifications{
+        if identifier == .notifications {
             guard let notificationCell: NotificationCell = tableView.dequeueReusableCell(withIdentifier: ProfileCellIdentifiers.notifications.rawValue, for: indexPath) as? NotificationCell else {
                 return cell
             }
@@ -125,7 +123,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             cell = notificationCell
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        }else if identifier == .punchIn{
+        } else if identifier == .punchIn {
             let identifier = userPunchedIn ? ProfileCellIdentifiers.punchOut.rawValue : identifier.rawValue
             cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             cell.selectionStyle = .none
@@ -135,25 +133,25 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
         }
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let identifier = profileDashboardIdentifiers[indexPath.row]
         print("Selection: \(identifier.rawValue)")
-        
+
         switch identifier {
-            
+
         case .myProfile:
             let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
             vc.profileType = .selfUser
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .notifications :
             let vc = NotificationsVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .logout:
             let alertController = UIAlertController(title: alertTitle, message: AlertMessagesToAsk.askToLogout, preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
@@ -163,19 +161,19 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
                 // Do Nothing
             })
             self.present(alertController, animated: true, completion: nil)
-            
+
         case .employees:
             let vc = EmployeeListingVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .inventory:break
-            
+
         case .stores:break
-            
+
         case .audits:break
-            
+
         case .punchIn:
-            
+
             let message = userPunchedIn ? AlertMessagesToAsk.askToPunchOut : AlertMessagesToAsk.askToPunchIn
             let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
@@ -186,15 +184,15 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
                 // Do Nothing
             })
             self.present(alertController, animated: true, completion: nil)
-            
+
         case .punchOut:break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
-    
+
 }
 //extension MoreModuleViewController: LoginRegisterDelegate {
 //    func doLoginRegister() {
@@ -209,12 +207,12 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Call Webservice
 extension MoreModuleVC {
-    
+
     func doSomething() {
         let request = MoreModule.Something.Request(name: "TestData", salary: "100000", age: "10")
         interactor?.doPostRequest(request: request, method: HTTPMethod.post)
     }
-    
+
     func displaySuccess<T: Decodable>(viewModel: T) {
         let obj = viewModel as? MoreModule.Something.Response
         DispatchQueue.main.async {
@@ -226,12 +224,12 @@ extension MoreModuleVC {
             self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
         }
     }
-    
+
     func displaySuccess<T: Decodable>(responseSuccess: [T]) {
         DispatchQueue.main.async {
             var obj = responseSuccess as? [MoreModule.Something.Response]
             print("Get API Response -- \n \(obj)")
         }
     }
-    
+
 }

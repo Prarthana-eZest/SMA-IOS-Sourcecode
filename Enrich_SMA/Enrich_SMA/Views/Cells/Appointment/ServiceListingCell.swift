@@ -12,8 +12,7 @@ class ServiceListingCell: UITableViewCell {
 
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblValue: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,16 +23,15 @@ class ServiceListingCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    func configureCell(model:ServiceListingModel){
+
+    func configureCell(model: ServiceListingModel) {
         lblTitle.text = model.name
         lblValue.text = "₹\(model.price)"
     }
-    
+
 }
 
 struct ServiceListingModel {
     let name: String
     let price: String
 }
-

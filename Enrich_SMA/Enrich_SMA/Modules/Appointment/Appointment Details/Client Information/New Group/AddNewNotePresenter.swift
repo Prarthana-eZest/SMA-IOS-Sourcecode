@@ -12,22 +12,20 @@
 
 import UIKit
 
-protocol AddNewNotePresentationLogic
-{
+protocol AddNewNotePresentationLogic {
     func presentAddClientNoteSuccess<T: Decodable>(response: T)
     func presentError(responseError: String?)
 }
 
-class AddNewNotePresenter: AddNewNotePresentationLogic
-{
+class AddNewNotePresenter: AddNewNotePresentationLogic {
     weak var viewController: AddNewNoteDisplayLogic?
-    
+
     // MARK: Do something
-    
-    func presentAddClientNoteSuccess<T: Decodable>(response: T){
+
+    func presentAddClientNoteSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)
     }
-    func presentError(responseError: String?){
+    func presentError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
     }
 }

@@ -12,19 +12,16 @@
 
 import UIKit
 
-protocol NotificationsPresentationLogic
-{
+protocol NotificationsPresentationLogic {
   func presentSomething(response: Notifications.Something.Response)
 }
 
-class NotificationsPresenter: NotificationsPresentationLogic
-{
+class NotificationsPresenter: NotificationsPresentationLogic {
   weak var viewController: NotificationsDisplayLogic?
-  
+
   // MARK: Do something
-  
-  func presentSomething(response: Notifications.Something.Response)
-  {
+
+  func presentSomething(response: Notifications.Something.Response) {
     let viewModel = Notifications.Something.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }

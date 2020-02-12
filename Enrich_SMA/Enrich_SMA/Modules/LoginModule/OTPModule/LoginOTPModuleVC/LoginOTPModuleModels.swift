@@ -9,9 +9,9 @@ import UIKit
 
 enum LoginOTPModule {
     // MARK: Use cases
-    
+
     enum OTP {
-        
+
         struct Request: Codable {
             let username: String
             let is_custom: String = "1" // Custom API
@@ -20,7 +20,7 @@ enum LoginOTPModule {
             let message: String?
             let data: OTPCode?
             let status: Bool?
-            
+
         }
         struct OTPCode: Codable {
             let otpcode: String?

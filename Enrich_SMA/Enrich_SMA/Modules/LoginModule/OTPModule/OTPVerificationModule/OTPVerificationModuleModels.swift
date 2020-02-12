@@ -10,23 +10,19 @@
 
 import UIKit
 
-enum OTPVerificationModule
-{
+enum OTPVerificationModule {
     // MARK: Use cases
-    
-    enum ChangePasswordWithOTPVerification
-    {
-        struct Request:Codable
-        {
+
+    enum ChangePasswordWithOTPVerification {
+        struct Request: Codable {
             let username: String
             let otp: String
             let password: String
             let confirm_password: String
             let is_custom: String  = "1"
         }
-        
-        struct Response:Codable
-        {
+
+        struct Response: Codable {
             //let data: Any?
             let message: String?
             let status: Bool?

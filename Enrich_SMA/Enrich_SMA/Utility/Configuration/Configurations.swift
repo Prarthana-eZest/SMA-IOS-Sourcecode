@@ -12,7 +12,7 @@ enum SectionIdentifier: String {
 
     // ParentViewController Of AnyViewController
     case parentVC = "ParentVC"
-    
+
     // Client Information
     case generalClientInfo = "General"
     case consulationInfo = "Consultation"
@@ -20,23 +20,23 @@ enum SectionIdentifier: String {
     case historyInfo = "History"
 }
 
-enum CellIdentifier{
-    
+enum CellIdentifier {
+
     // Dashboard
     static let dashboardProfileCell = "DashboardProfileCell"
     static let yourTargetRevenueCell = "YourTargetRevenueCell"
     static let revenueCell = "RevenueCell"
-    
+
     // Appointment
     static let todaysAppointmentHeaderCell = "TodaysAppointmentHeaderCell"
     static let appointmentStatusCell = "AppointmentStatusCell"
-    
+
     // Appointment Details
     static let appointmentDetailsCell = "AppointmentDetailsCell"
     static let appointmentTimelineCell = "AppointmentTimelineCell"
     static let appointmentTimelineHeader = "AppointmentTimelineHeader"
     static let userRatingCell = "UserRatingCell"
-    
+
     // Client Information
     static let topicCell = "TopicCell"
     static let membershipStatusCell = "MembershipStatusCell"
@@ -45,24 +45,24 @@ enum CellIdentifier{
     static let serviceHistoryCell = "ServiceHistoryCell"
     static let pointsCell = "PointsCell"
     static let addNotesSingatureCell = "AddNotesSingatureCell"
-    
+
     // Profile
     static let myProfileHeaderCell = "MyProfileHeaderCell"
     static let myProfileCell = "MyProfileCell"
     static let myProfileMultiOptionCell = "MyProfileMultiOptionCell"
     static let serviceListingCell = "ServiceListingCell"
     static let listingCell = "ListingCell"
-    
+
     // Employees
     static let employeeCell = "EmployeeCell"
-    
+
     // Notifications
     static let notificationDetailsCell = "NotificationDetailsCell"
-    
+
     // Header Cells
     static let headerViewWithTitleCell = "HeaderViewWithTitleCell"
     static let headerViewWithSubTitleCell = "HeaderViewWithSubTitleCell"
-    
+
 }
 
 struct SectionConfiguration {

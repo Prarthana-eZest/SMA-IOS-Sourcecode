@@ -103,7 +103,7 @@ func daySuffix() -> String {
 //   print(Date().allDates(till: date))
 //usage let weekday = Date().weekdayName
 extension Date {
-    
+
     init(day: Int,
          hour: Int = 0,
          minute: Int = 0,
@@ -117,7 +117,7 @@ extension Date {
         components.timeZone = timeZone
         self = Calendar.current.date(from: components)!
     }
-    
+
     func allDates(till endDate: Date) -> [Date] {
         var date = self
         var array: [Date] = []
@@ -131,7 +131,7 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "E"
         return formatter.string(from: self as Date)
     }
-    
+
     var weekdayNameFull: String {
         let formatter = DateFormatter(); formatter.dateFormat = "EEEE"
         return formatter.string(from: self as Date)
@@ -140,22 +140,22 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "dd"
         return formatter.string(from: self as Date)
     }
-    
+
     var dayDateMonthYear: String {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMMM yyyy"
         return formatter.string(from: self as Date)
     }
-    
+
     var dayYearMonthDate: String {
         let formatter = DateFormatter(); formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: self as Date)
     }
-    
+
     var dayMonthYearDate: String {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMM yy"
         return formatter.string(from: self as Date)
     }
-    
+
     var monthYearDate: String {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMM yyyy"
         return formatter.string(from: self as Date)
@@ -165,7 +165,7 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "EEE, dd MMM yyyy"
         return formatter.string(from: self as Date)
     }
-    
+
     var monthName: String {
         let formatter = DateFormatter(); formatter.dateFormat = "MMMM"
         return formatter.string(from: self as Date)
@@ -190,17 +190,17 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "hh : mm a"
         return formatter.string(from: self as Date)
     }
-    
+
     var DatewithMonth: String {
         let formatter = DateFormatter(); formatter.dateStyle = .medium ;        return formatter.string(from: self as Date)
     }
-    
+
     var startOfWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
         return gregorian.date(byAdding: .day, value: 1, to: sunday)
     }
-    
+
     var endOfWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
@@ -243,7 +243,7 @@ extension Double {
     var cleanForRating: String {
         //return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.1f", self)
-        
+
     }
 }
 

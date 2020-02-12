@@ -20,19 +20,18 @@ class AddNotesSingatureCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }
 
 extension AddNotesSingatureCell: UITextFieldDelegate {
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
+
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
-

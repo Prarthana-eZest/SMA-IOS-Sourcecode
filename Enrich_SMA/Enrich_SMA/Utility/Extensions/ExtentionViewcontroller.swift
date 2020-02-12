@@ -13,36 +13,35 @@ var appDelegate: AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
 }
 
-extension UIViewController {    
+extension UIViewController {
 
     func showAlert( alertTitle title: String, alertMessage msg: String ) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: false, completion: nil)
     }
-    
-    func getAccessToken() -> String{
-        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String{
+
+    func getAccessToken() -> String {
+        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String {
             return accessToken
         }
-        
+
         return ""
     }
-    
+
     func isuserLoggedIn() -> (status: Bool, accessToken: String) {
-        
+
         var userAccessToken: String = ""
         var userstatus: Bool = false
-        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String{
+        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String {
             // if let accessToken = UserDefaults.standard.value(String.self, forKey: ) {
             userstatus = true
             userAccessToken = accessToken
             return (userstatus, userAccessToken)
         }
-        
+
         return(userstatus, userAccessToken)
     }
-
 
 }
 

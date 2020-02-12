@@ -12,91 +12,98 @@
 
 import UIKit
 
-enum MyProfile
-{
+enum MyProfile {
     // MARK: Use cases
-    
+
     enum GetUserProfile {
-        
+
         struct Request: Codable {
             let is_custom: Bool = true
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             var data: UserData?
         }
-        
+
         struct UserData: Codable {
-            let username : String?
-            let admin_id : String?
-            let firstname : String?
-            let middlename : String?
-            let lastname : String?
-            let nickname : String?
-            let employee_code : String?
-            let employee_id : String?
-            let birthdate : String?
-            let designation : String?
-            let base_salon_code : String?
-            let base_salon_name : String?
-            let joining_date : String?
-            let category : String?
-            let profile_pic : String?
-            let rating : AnyCodable?
-            let mobile_number : String?
-            let email : String?
-            let address : [Address]?
+
+            let username: String?
+            let admin_id: String?
+            let firstname: String?
+            let middlename: String?
+            let lastname: String?
+            let nickname: String?
+            let employee_code: String?
+            let employee_id: String?
+            let birthdate: String?
+            let designation: String?
+            let base_salon_code: String?
+            let base_salon_name: String?
+            let joining_date: String?
+            let category: String?
+            let profile_pic: String?
+            let rating: AnyCodable?
+            let mobile_number: String?
+            let email: String?
+            let address: [Address]?
             let gender: String?
             let work_number: String?
             let status: String?
             let customer_count: String?
+            let service: [Service]?
         }
-        
-        struct Address : Codable {
-            let line_1 : String?
-            let line_2 : String?
-            let city : String?
-            let state : String?
-            let country : String?
+
+        struct Address: Codable {
+            let line_1: String?
+            let line_2: String?
+            let city: String?
+            let state: String?
+            let country: String?
+        }
+    
+        struct Service: Codable {
+            let service_id: String?
+            let service_name: String?
+            let service_sku: String?
         }
     }
-    
+
     enum GetServiceList {
-        
+
         struct Request: Codable {
             let is_custom: Bool = true
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             var data: Data?
         }
-        
+
         struct Data: Codable {
             var service_count: Int?
             var service_list: [String]?
         }
     }
-    
+
     enum GetRosterDetails {
-        
+
         struct Request: Codable {
             let salon_code: String
             let fromDate: String
             let toDate: String
             let employee_id: String
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             var data: [EmployeeData]?
             var time_stamp: String = ""
         }
-        
+
         struct EmployeeData: Codable {
             let first_name: String?
             let last_name: String?
@@ -116,9 +123,5 @@ enum MyProfile
             let attendance_status: String?
         }
     }
-    
+
 }
-
-
-
-

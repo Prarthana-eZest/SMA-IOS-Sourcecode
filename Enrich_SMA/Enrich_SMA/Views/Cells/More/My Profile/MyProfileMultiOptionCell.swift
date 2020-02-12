@@ -8,36 +8,36 @@
 
 import UIKit
 
-protocol ProfileCellDelegate:class {
-    func actionViewDetails(indexPath:IndexPath,type:ListingType)
+protocol ProfileCellDelegate: class {
+    func actionViewDetails(indexPath: IndexPath, type: ListingType)
 }
 
 class MyProfileMultiOptionCell: UITableViewCell {
-    
+
     @IBOutlet weak var lblTitle: UILabel!
     weak var delegate: ProfileCellDelegate?
     var indexPath: IndexPath?
-    var listingType:ListingType = .services
-    
+    var listingType: ListingType = .services
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
-    
-    func configureCell(title:String){
+
+    func configureCell(title: String) {
         lblTitle.text = title
     }
-    
+
     @IBAction func actionViewDetails(_ sender: UIButton) {
-        if let indexPath = indexPath{
-            delegate?.actionViewDetails(indexPath: indexPath,type: listingType)
+        if let indexPath = indexPath {
+            delegate?.actionViewDetails(indexPath: indexPath, type: listingType)
         }
     }
-    
+
 }

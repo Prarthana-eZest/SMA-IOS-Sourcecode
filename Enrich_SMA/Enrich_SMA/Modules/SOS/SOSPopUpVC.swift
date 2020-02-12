@@ -17,23 +17,23 @@ class SOSPopUpVC: UIViewController {
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var txtfMessage: UITextField!
     @IBOutlet weak var btnOk: UIButton!
-    
+
     var viewDismissBlock: ((Bool) -> Void)?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+
     @IBAction func actionMobileNo(_ sender: UIButton) {
     }
-    
+
     @IBAction func actionOK(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
         viewDismissBlock!(true)
     }
-    
+
     /*
     // MARK: - Navigation
 

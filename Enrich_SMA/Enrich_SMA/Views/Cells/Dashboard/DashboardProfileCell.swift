@@ -14,37 +14,36 @@ protocol DashboardHeaderCellDelegate: class {
 }
 
 class DashboardProfileCell: UITableViewCell {
-    
-    
+
     @IBOutlet weak private var btnSelectALocation: UIButton!
     @IBOutlet weak private var locationNameView: UIStackView!
     @IBOutlet weak private var lblUserName: UILabel!
     @IBOutlet weak private var lblDesignation: UILabel!
     @IBOutlet weak private var profilePicture: UIImageView!
     @IBOutlet weak private var lblRating: UILabel!
-    
+
     weak var delegate: DashboardHeaderCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
-    
+
     //    func configureCell(model:DashboardProfileCellModel) {
     //        lblUserName.text = model.userName
     //        btnSelectALocation.setTitle(model.location, for: .normal)
     //        lblRating.text = "\(model.rating)/5"
-    
+
     func configureCell() {
         
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            lblUserName.text = "\(userData.firstname ?? "") \(userData.lastname ?? "")"
+            lblUserName.text = ("\(userData.firstname ?? "") \(userData.lastname ?? "")").capitalized
             btnSelectALocation.setTitle(userData.base_salon_name ?? "", for: .normal)
             //            let rating = userData.rating ?? 0
             //            if rating == 0{
@@ -52,24 +51,25 @@ class DashboardProfileCell: UITableViewCell {
             //            }else{
             //                lblRating.text = "\(rating)/5"
             //            }
-            lblDesignation.text = userData.designation ?? "-"
-            
+
+            lblDesignation.text = (userData.designation ?? "-").capitalized
+
             profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
-            
+
             let url = URL(string: userData.profile_pic ?? "" )
             profilePicture.kf.indicatorType = .activity
             let defaultImage = UIImage(named: "defaultProfile")
-            if let imageurl = url{
+            if let imageurl = url {
                 profilePicture.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
             } else {
                 profilePicture.image = defaultImage
             }
         }
     }
-    
+
 }
 
-struct DashboardProfileCellModel{
+struct DashboardProfileCellModel {
     let userName: String
     let location: String
     let profilePictureURL: String

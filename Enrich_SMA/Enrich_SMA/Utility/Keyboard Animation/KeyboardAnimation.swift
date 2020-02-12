@@ -58,13 +58,13 @@ class KeyboardAnimation: NSObject {
     }
 
     @objc internal func onTap(_ sender: UITapGestureRecognizer) {
-        if let view = view{
+        if let view = view {
             let location = sender.location(in: view)
             let hitView = view.hitTest(location, with: nil)
             if hitView is UIButton {
                 return
             }
-            
+
             view.endEditing(true)
         }
     }
@@ -114,7 +114,7 @@ class KeyboardAnimation: NSObject {
                 if (controlFrame.origin.y + extraBottomSpace) > maxY {
 
                     kbHeight = view!.frame.origin.y + (controlFrame.origin.y - maxY)
-                    kbHeight = kbHeight + extraBottomSpace
+                    kbHeight += extraBottomSpace
                     self.animateView(true)
 
                 } else {

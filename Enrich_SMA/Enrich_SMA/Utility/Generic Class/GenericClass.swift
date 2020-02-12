@@ -63,7 +63,7 @@ class GenericClass: NSObject {
 }
 
 extension GenericClass {
-  
+
     func resetServiceLabels(text: String, rangeText: String, fontName: UIFont, lable: UILabel) {
         let range = (text as NSString).range(of: rangeText)
         let attribute = NSMutableAttributedString(string: text)
@@ -86,100 +86,99 @@ extension GenericClass {
 
 extension GenericClass {
 
-    
     func isuserLoggedIn() ->(status: Bool, accessToken: String) {
-        
+
         var userAccessToken: String = ""
         var userstatus: Bool = false
-        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String{
+        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String {
             userstatus = true
             userAccessToken = accessToken
             return (userstatus, userAccessToken)
         }
-        
+
         return(userstatus, userAccessToken)
     }
 }
 
 extension GenericClass {
-    
+
     func getConditionalFieldKey(index: Int, indexFilter: Int) -> String {
         let strField = appendField.replacingOccurrences(of: "0", with: "\(indexFilter)")
         return filterGroups + "[\(index)]" + strField
     }
-    
+
     //searchCriteria[filterGroups] + [1] + [filters][0][value]
     func getConditionalValueKey(index: Int, indexFilter: Int) -> String {
         let strField = appendValue.replacingOccurrences(of: "0", with: "\(indexFilter)")
         return filterGroups + "[\(index)]" + strField
     }
-    
+
     func getConditionalTypeKey(index: Int, indexFilter: Int) -> String {
         let strField = appendConditionType.replacingOccurrences(of: "0", with: "\(indexFilter)")
         return filterGroups + "[\(index)]" + strField
     }
-    
+
     func getSortingFieldKey() -> String {
         return searchGroupField
     }
-    
+
     func getSortingDirectionKey() -> String {
         return searchGroupDirection
     }
-    
+
 //    func getURLForType(arrSubCat_type: [FilterKeys], pageSize: Int, currentPageNo: Int) -> String
-    func getURLForType(arrSubCat_type: [FilterKeys]) -> String{
-        
+    func getURLForType(arrSubCat_type: [FilterKeys]) -> String {
+
         var strFinal = ""
         for (index, value) in arrSubCat_type.enumerated() {
-            
+
             let model = value
-            
+
             //  ---------- FILTER And Description CONDITIONS -----
             if model.field == "filter" || model.field == "description_own" {
                 if let arrFilters = model.value as? [FilterKeys] {
                     for (indexObj, modelObj) in arrFilters.enumerated() {
                         strFinal = strFinal.isEmpty ? (strFinal + "?") : (strFinal + "&")
-                        
+
                         let strFieldKey0 = "\(GenericClass.sharedInstance.getConditionalFieldKey(index: index, indexFilter: indexObj))"
                         let strValueKey0 = "\(GenericClass.sharedInstance.getConditionalValueKey(index: index, indexFilter: indexObj))"
                         let strTypeKey0 = "\(GenericClass.sharedInstance.getConditionalTypeKey(index: index, indexFilter: indexObj))"
-                        
-                        strFinal = strFinal + "\(strFieldKey0)=\(modelObj.field ?? "")" + "&\(strValueKey0)=\(modelObj.value ?? "")" + "&\(strTypeKey0)=\(modelObj.type ?? "")"
+
+                        strFinal += "\(strFieldKey0)=\(modelObj.field ?? "")" + "&\(strValueKey0)=\(modelObj.value ?? "")" + "&\(strTypeKey0)=\(modelObj.type ?? "")"
                     }
                 }
                 //  ---------- SORT CONDITIONS -----
             } else if model.field == "sort" {
                 strFinal = strFinal.isEmpty ? (strFinal + "?") : (strFinal + "&")
-                
-                strFinal = strFinal + "\(GenericClass.sharedInstance.getSortingFieldKey())=\(model.type ?? "")" + "&\(GenericClass.sharedInstance.getSortingDirectionKey())=\(model.value ?? "")"
+
+                strFinal +=  "\(GenericClass.sharedInstance.getSortingFieldKey())=\(model.type ?? "")" + "&\(GenericClass.sharedInstance.getSortingDirectionKey())=\(model.value ?? "")"
             } else {
                 strFinal = strFinal.isEmpty ? (strFinal + "?") : (strFinal + "&")
-                
+
                 // GET KEYS
                 let strFieldKey0 = "\(GenericClass.sharedInstance.getConditionalFieldKey(index: index, indexFilter: 0))"
                 let strValueKey0 = "\(GenericClass.sharedInstance.getConditionalValueKey(index: index, indexFilter: 0))"
                 let strTypeKey0 = "\(GenericClass.sharedInstance.getConditionalTypeKey(index: index, indexFilter: 0))"
-                
+
                 // CREATE PARAMETERS WITH VALUES
                 let strFieldKey2 = "\(strFieldKey0)=\(model.field ?? "")"
                 let strValueKey2 = "&\(strValueKey0)=\(model.value ?? 0)"
                 let strTypeKey2 = "&\(strTypeKey0)=\(model.type ?? "")"
-                
+
                 //  ---------- PARAMETERS -----
-                strFinal = strFinal + "\(strFieldKey2)" + "\(strValueKey2)" + "\(strTypeKey2)"
+                strFinal += "\(strFieldKey2)" + "\(strValueKey2)" + "\(strTypeKey2)"
             }
         }
-        
+
 //        // IF CATEGORYID AVAIALABLE ADD
 //        if(customer_id != 0 && isCustomerIdNeed) {
 //            strFinal = strFinal + "&" + "customer_id=\(customer_id)"
 //        }
-        
+
 //        //  ---------- PAGINATION -----
 //        strFinal = strFinal + "&" + "searchCriteria[pageSize]=\(pageSize)"
 //        strFinal = strFinal + "&" + "searchCriteria[currentPage]=\(currentPageNo)"
-        
+
         print("\(strFinal)")
         return strFinal
     }

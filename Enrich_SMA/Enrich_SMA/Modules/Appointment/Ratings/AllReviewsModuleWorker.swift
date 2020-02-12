@@ -15,8 +15,8 @@ class AllReviewsModuleWorker {
     // let networkLayer = NetworkLayer() // Uncomment this in case do request using URLsession
     var presenter: AllReviewsModulePresentationLogic?
 
-    func postRequestForRatings(request:ClientInformation.ClientNotes.Request, method: HTTPMethod) {
-        
+    func postRequestForRatings(request: ClientInformation.ClientNotes.Request, method: HTTPMethod) {
+
         let errorHandler: (String) -> Void = { (error) in
             print(error)
             self.presenter?.presentError(responseError: error)
@@ -25,9 +25,9 @@ class AllReviewsModuleWorker {
             print(response)
             self.presenter?.presentGetRatingsSuccess(response: response)
         }
-        
+
         self.networkLayer.post(urlString: ConstantAPINames.clientNotes.rawValue, body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler, method: .post)
-        
+
     }
 
 }

@@ -12,40 +12,35 @@
 
 import UIKit
 
-protocol TermsAndConditionsDisplayLogic: class
-{
+protocol TermsAndConditionsDisplayLogic: class {
     func displaySuccess<T: Decodable> (viewModel: T)
     func displayError(errorMessage: String?)
 }
 
-class TermsAndConditionsVC: UIViewController, UITextViewDelegate,TermsAndConditionsDisplayLogic
-{
-    
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var btnAccept: UIButton!
-    
+class TermsAndConditionsVC: UIViewController, UITextViewDelegate, TermsAndConditionsDisplayLogic {
+
+    @IBOutlet weak private var textView: UITextView!
+    @IBOutlet weak private var btnAccept: UIButton!
+
     var viewDismissBlock: ((Bool) -> Void)?
-    
+
     var interactor: TermsAndConditionsBusinessLogic?
-        
+
     // MARK: Object lifecycle
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
-    private func setup()
-    {
+
+    private func setup() {
         let viewController = self
         let interactor = TermsAndConditionsInteractor()
         let presenter = TermsAndConditionsPresenter()
@@ -53,84 +48,81 @@ class TermsAndConditionsVC: UIViewController, UITextViewDelegate,TermsAndConditi
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-    
+
     // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         getTermsAndConditions()
         textView.delegate = self
         textView.isEditable = false
         btnAccept.isSelected = false
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        textView.scrollRangeToVisible(NSRange(location:0, length:0))
+        textView.scrollRangeToVisible(NSRange(location: 0, length: 0))
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if !btnAccept.isSelected{
+        if !btnAccept.isSelected {
             btnAccept.isSelected = !(scrollView.contentOffset.y + scrollView.bounds.height < scrollView.contentSize.height)
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Enrich Terms & Conditions")
     }
-    
-    
+
     @IBAction func actionAccept(_ sender: Any) {
-        if btnAccept.isSelected{
-            self.navigationController?.popViewController(animated:true)
+        if btnAccept.isSelected {
+            self.navigationController?.popViewController(animated: true)
             viewDismissBlock?(true)
         }
     }
-    
+
     // MARK: Do something
-    
+
     //@IBOutlet weak var nameTextField: UITextField!
-    
+
     // MARK: - Get Search data
     func parseData() -> [FilterKeys] {
         var arrForKeysValues: [FilterKeys] = []
-        
+
         arrForKeysValues.append(FilterKeys(field: "identifier", value: "emp_terms_conditions", type: "="))
-        
+
         return arrForKeysValues
     }
-    
-    func getTermsAndConditions()
-    {
+
+    func getTermsAndConditions() {
         EZLoadingActivity.show("", disableUI: true)
-        let query =  GenericClass.sharedInstance.getURLForType(arrSubCat_type: self.parseData())
+        let query = GenericClass.sharedInstance.getURLForType(arrSubCat_type: self.parseData())
         print("query : \(query)")
         interactor?.doGetTermsAndConditons(request: query, method: .get)
     }
-    
+
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
-        if let obj = viewModel as? TermsAndConditions.GetTermsAndConditions.Response{
+        if let obj = viewModel as? TermsAndConditions.GetTermsAndConditions.Response {
             print(obj)
-            
+
             let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 20)
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: font!,
                 .foregroundColor: UIColor.darkGray
             ]
             let text = obj.items?.first?.content ?? ""
-            let attributeString = NSAttributedString(string: text , attributes: attributes as [NSAttributedString.Key : Any])
+            let attributeString = NSAttributedString(string: text, attributes: attributes as [NSAttributedString.Key: Any])
             self.textView.attributedText = attributeString
-            
+
             btnAccept.isSelected = textView.contentSize.height <= textView.frame.size.height
         }
-        
+
     }
-    
+
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         DispatchQueue.main.async { [unowned self] in

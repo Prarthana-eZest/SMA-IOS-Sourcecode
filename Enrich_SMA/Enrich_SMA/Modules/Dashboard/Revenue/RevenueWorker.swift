@@ -12,9 +12,7 @@
 
 import UIKit
 
-class RevenueWorker
-{
-  func doSomeWork()
-  {
+class RevenueWorker {
+  func doSomeWork() {
   }
 }

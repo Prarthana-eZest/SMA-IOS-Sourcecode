@@ -12,20 +12,17 @@
 
 import UIKit
 
-protocol AddNewNoteBusinessLogic
-{
+protocol AddNewNoteBusinessLogic {
     func doPostNewClientNotes(request: AddNewNote.ObserveNote.Request, method: HTTPMethod)
 }
 
-
-class AddNewNoteInteractor: AddNewNoteBusinessLogic
-{
+class AddNewNoteInteractor: AddNewNoteBusinessLogic {
     var presenter: AddNewNotePresentationLogic?
     var worker: AddNewNoteWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     func doPostNewClientNotes(request: AddNewNote.ObserveNote.Request, method: HTTPMethod) {
         worker = AddNewNoteWorker()
         worker?.presenter = self.presenter

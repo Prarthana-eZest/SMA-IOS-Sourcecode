@@ -114,7 +114,11 @@ extension CoreDataStack {
         let request = T.fetchRequest()
         do {
             let results = try context.fetch(request)
-            return results as! [T]
+            if let result = results as? [T] {
+                return result
+            } else {
+                return []
+            }
         } catch {
             print("Error with request: \(error)")
             return []
@@ -135,7 +139,11 @@ extension CoreDataStack {
 
         do {
             let results = try context.fetch(request)
-            return results as! [T]
+            if let result = results as? [T] {
+                return result
+            } else {
+                return []
+            }
         } catch {
             print("Error with request: \(error)")
             return []
