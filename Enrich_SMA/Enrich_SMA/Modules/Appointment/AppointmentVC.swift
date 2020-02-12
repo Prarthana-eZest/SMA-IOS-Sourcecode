@@ -34,6 +34,8 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
     @IBOutlet weak var lblNoAppointments: UILabel!
 
     var appointments = [Appointment.GetAppointnents.Data]()
+    
+    var selectedTab:AppointmentType = .ongoing
 
     // MARK: Object lifecycle
 
@@ -87,9 +89,6 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
 
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
         tableView.separatorColor = .clear
-
-        getAppointments(status: .ongoing)
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +99,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             lblLocation.text = userData.base_salon_name ?? ""
         }
-        self.tableView.reloadData()
+        getAppointments(status: selectedTab)
     }
 
     // MARK: Do something
@@ -129,6 +128,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         completedSelectionView.isHidden = false
         ongoingSelectionView.isHidden = true
         upcomingSelectionView.isHidden = true
+        selectedTab = .completed
         getAppointments(status: .completed)
     }
 
@@ -144,6 +144,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         completedSelectionView.isHidden = true
         ongoingSelectionView.isHidden = false
         upcomingSelectionView.isHidden = true
+        selectedTab = .ongoing
         getAppointments(status: .ongoing)
     }
 
@@ -159,6 +160,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         completedSelectionView.isHidden = true
         ongoingSelectionView.isHidden = true
         upcomingSelectionView.isHidden = false
+        selectedTab = .upcoming
         getAppointments(status: .upcoming)
     }
 
