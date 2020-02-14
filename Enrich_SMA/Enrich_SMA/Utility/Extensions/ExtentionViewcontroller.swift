@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-var appDelegate: AppDelegate {
-    return UIApplication.shared.delegate as! AppDelegate
-}
-
 extension UIViewController {
 
     func showAlert( alertTitle title: String, alertMessage msg: String ) {
@@ -105,7 +101,6 @@ extension UIViewController {
                                                object: nil, queue: OperationQueue.main, using: { [weak self](notification) in
                                                 if let userInfo = notification.userInfo,
                                                     let frame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-                                                    let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
                                                     let c = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
                                                     let kFrame = self?.view.convert(frame, from: nil),
                                                     let kBounds = self?.view.bounds {
@@ -115,12 +110,14 @@ extension UIViewController {
                                                     UIView.animate(withDuration: 0, delay: 0, options: animationType, animations: {
                                                         if kBounds.intersects(kFrame) { // keyboard will be shown
                                                             willShowClosure?(kHeight)
-                                                        } else { // keyboard will be hidden
+                                                        }
+                                                        else { // keyboard will be hidden
                                                             willHideClosure?(kHeight)
                                                         }
                                                     }, completion: nil)
 
-                                                } else {
+                                                }
+                                                else {
                                                     print("Invalid conditions for UIKeyboardWillChangeFrameNotification")
                                                 }
         })
@@ -139,7 +136,8 @@ class DesignableViewController: UIViewController {
         get {
             if LightStatusBar {
                 return UIStatusBarStyle.lightContent
-            } else {
+            }
+            else {
                 return UIStatusBarStyle.default
             }
         }

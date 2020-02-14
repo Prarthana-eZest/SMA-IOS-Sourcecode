@@ -44,17 +44,6 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic {
         presenter.viewController = viewController
     }
 
-    // MARK: Routing
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            //      if let router = router, router.responds(to: selector) {
-            //        router.perform(selector, with: segue)
-            //      }
-        }
-    }
-
     // MARK: View lifecycle
 
     override func viewDidLoad() {
@@ -64,6 +53,7 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Notifications")

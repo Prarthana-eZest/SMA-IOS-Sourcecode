@@ -56,6 +56,7 @@ class LoginOTPModuleVC: DesignableViewController, LoginOTPModuleDisplayLogic {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait,
                                          andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "")
@@ -64,7 +65,7 @@ class LoginOTPModuleVC: DesignableViewController, LoginOTPModuleDisplayLogic {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         hideKeyboard()
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
@@ -111,11 +112,10 @@ extension LoginOTPModuleVC {
     func displaySuccessLoginOTPModule<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide(true, animated: false)
 
-        if((delegate) != nil) {
+        if delegate != nil {
             delegate?.displaySuccessLoginOTPModule(viewModel: viewModel)
             return
         }
-
 
         if let obj = viewModel as? LoginOTPModule.OTP.Response {
 
@@ -130,11 +130,11 @@ extension LoginOTPModuleVC {
 
     func displayErrorLoginOTPModule(errorMessage: String?) {
         EZLoadingActivity.hide()
-        if((delegate) != nil) {
+        if delegate != nil {
             delegate?.displayErrorLoginOTPModule(errorMessage: errorMessage)
             return
         }
-        showAlert(alertTitle: alertTitle, alertMessage: errorMessage!)
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
     }
 }
 

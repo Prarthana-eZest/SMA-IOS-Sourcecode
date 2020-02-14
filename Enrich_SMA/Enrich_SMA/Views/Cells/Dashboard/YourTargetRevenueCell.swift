@@ -18,31 +18,31 @@ protocol TargetRevenueDelegate: class {
 class YourTargetRevenueCell: UITableViewCell {
 
     // Service Revenue
-    @IBOutlet weak var lblServiceRevenuePercent: UILabel!
-    @IBOutlet weak var serviceRevenueProgressBar: UIProgressView!
-    @IBOutlet weak var lblServiceRevenueAmount: UILabel!
+    @IBOutlet weak private var lblServiceRevenuePercent: UILabel!
+    @IBOutlet weak private var serviceRevenueProgressBar: UIProgressView!
+    @IBOutlet weak private var lblServiceRevenueAmount: UILabel!
 
     // Product Revenue
-    @IBOutlet weak var lblProductRevenuePercent: UILabel!
-    @IBOutlet weak var productRevenueProgressBar: UIProgressView!
-    @IBOutlet weak var lblProductRevenueAmount: UILabel!
+    @IBOutlet weak private var lblProductRevenuePercent: UILabel!
+    @IBOutlet weak private var productRevenueProgressBar: UIProgressView!
+    @IBOutlet weak private var lblProductRevenueAmount: UILabel!
 
     // Membership Sold
-    @IBOutlet weak var lblMembershipPercent: UILabel!
-    @IBOutlet weak var membershipProgressBar: UIProgressView!
-    @IBOutlet weak var lblMembershipAmount: UILabel!
+    @IBOutlet weak private var lblMembershipPercent: UILabel!
+    @IBOutlet weak private var membershipProgressBar: UIProgressView!
+    @IBOutlet weak private var lblMembershipAmount: UILabel!
 
-    @IBOutlet weak var btnDaily: UIButton!
-    @IBOutlet weak var btnMonthly: UIButton!
+    @IBOutlet weak private var btnDaily: UIButton!
+    @IBOutlet weak private var btnMonthly: UIButton!
 
-    @IBOutlet weak var dailySelectionView: UIView!
-    @IBOutlet weak var monthlySelectionView: UIView!
+    @IBOutlet weak private var dailySelectionView: UIView!
+    @IBOutlet weak private var monthlySelectionView: UIView!
 
     // Amount
-    @IBOutlet weak var lblTotalCash: UILabel!
-    @IBOutlet weak var lblTotalSales: UILabel!
-    @IBOutlet weak var lblTotalRevenue: UILabel!
-    @IBOutlet weak var lblSalesModified: UILabel!
+    @IBOutlet weak private var lblTotalCash: UILabel!
+    @IBOutlet weak private var lblTotalSales: UILabel!
+    @IBOutlet weak private var lblTotalRevenue: UILabel!
+    @IBOutlet weak private var lblSalesModified: UILabel!
 
     weak var delegate: TargetRevenueDelegate?
 

@@ -26,7 +26,9 @@ class ClientInformationWorker {
             self.presenter?.presentGetAppointmentHistorySuccess(response: response)
         }
 
-        self.networkLayer.post(urlString: ConstantAPINames.getAppointments.rawValue, body: request, headers: ["X-Request-From": "tma", "Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
+        self.networkLayer.post(urlString: ConstantAPINames.getAppointments.rawValue, body: request,
+                               headers: ["X-Request-From": "tma", "Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: method)
     }
 
     func getRequestForMembershipDetails(accessToken: String, method: HTTPMethod, request: ClientInformation.MembershipDetails.Request) {

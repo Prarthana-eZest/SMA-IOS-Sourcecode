@@ -31,7 +31,7 @@ extension UITextField {
 }
 extension String {
     func safelyLimitedTo(length n: Int) -> String {
-        if (self.count <= n) {
+        if self.count <= n {
             return self
         }
         return String( Array(self).prefix(upTo: n) )
@@ -61,6 +61,7 @@ class CustomTextField: UITextField {
     var bottomBorder = UIView()
 
     override func awakeFromNib() {
+        super.awakeFromNib()
 
         // Setup Bottom-Border
 
@@ -81,11 +82,12 @@ class CustomTextField: UITextField {
     @IBInspectable var hasError: Bool = false {
         didSet {
 
-            if (hasError) {
+            if hasError {
 
                 bottomBorder.backgroundColor = UIColor.red
 
-            } else {
+            }
+            else {
 
                 bottomBorder.backgroundColor = UIColor(red: 74 / 255.0, green: 74 / 255.0, blue: 74 / 255.04, alpha: 1.0)
 
@@ -127,7 +129,8 @@ class CustomTextField: UITextField {
             imageView.tintColor = color
             viewObj.addSubview(imageView)
             leftView = viewObj
-        } else {
+        }
+        else {
             leftViewMode = UITextField.ViewMode.never
             leftView = nil
         }

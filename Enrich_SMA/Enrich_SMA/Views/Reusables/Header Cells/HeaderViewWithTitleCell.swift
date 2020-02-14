@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol HeaderDelegate {
+protocol HeaderDelegate: class {
     func actionViewAll(identifier: SectionIdentifier)
 }
 
@@ -17,7 +17,7 @@ class HeaderViewWithTitleCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var viewAllButton: UIButton!
 
-    var delegate: HeaderDelegate?
+    weak var delegate: HeaderDelegate?
     var identifier: SectionIdentifier?
 
     override func awakeFromNib() {

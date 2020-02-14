@@ -43,7 +43,8 @@ class ServiceHistoryCell: UITableViewCell {
         if let dateString = model.appointment_date,
             let date = dateString.getDateFromString() {
             lblDateTime.text = date.dayNameDateFormat
-        } else {
+        }
+        else {
             lblDateTime.text = ""
         }
 

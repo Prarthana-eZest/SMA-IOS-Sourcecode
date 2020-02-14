@@ -62,7 +62,7 @@ enum MyProfile {
             let state: String?
             let country: String?
         }
-    
+
         struct Service: Codable {
             let service_id: String?
             let service_name: String?

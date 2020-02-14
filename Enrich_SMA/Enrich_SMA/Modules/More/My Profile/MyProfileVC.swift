@@ -31,7 +31,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
 
     var interactor: MyProfileBusinessLogic?
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak private var tableView: UITableView!
 
     var profileType: ProfileType = .selfUser
 
@@ -97,6 +97,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: profileType == .selfUser ? "My Profile" : "Profile Details")
@@ -139,10 +140,12 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
         if let model = viewModel as? MyProfile.GetUserProfile.Response, model.status == true {
             modelMapping(model: model)
             getRosterDetails()
-        } else if let model = viewModel as? MyProfile.GetServiceList.Response, model.status == true {
+        }
+        else if let model = viewModel as? MyProfile.GetServiceList.Response, model.status == true {
             self.service.removeAll()
             self.service.append(contentsOf: model.data?.service_list ?? [])
-        } else if let model = viewModel as? MyProfile.GetRosterDetails.Response, model.status == true {
+        }
+        else if let model = viewModel as? MyProfile.GetRosterDetails.Response, model.status == true {
             self.rosterList.removeAll()
 
             model.data?.forEach {
@@ -151,7 +154,8 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
 
                 if let isLeave = $0.is_leave, isLeave == 1 {
                     shift = "\($0.date ?? "-")  |  \($0.leave_type ?? "")"
-                } else {
+                }
+                else {
                     shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
                 }
 
@@ -184,10 +188,11 @@ extension MyProfileVC: ProfileCellDelegate {
             vc.listing = rosterList
             vc.listingType = .shifts
 
-        default:break
+        default:
+            break
         }
 
-        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
         vc.viewDismissBlock = { [unowned self] result in
             // Do something
             self.view.alpha = 1.0
@@ -240,7 +245,8 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
                 cell.configureCell(title: model.title)
                 return cell
 
-            } else {
+            }
+            else {
 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.myProfileCell, for: indexPath) as? MyProfileCell else {
                     return UITableViewCell()
@@ -285,13 +291,12 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MyProfileVC{
-    
+extension MyProfileVC {
 
     func modelMapping(model: MyProfile.GetUserProfile.Response) {
 
         if let data = model.data {
-    
+
             self.service.removeAll()
             model.data?.service?.forEach {
                 self.service.append($0.service_name ?? "")
@@ -303,7 +308,11 @@ extension MyProfileVC{
                 userDefaults.synchronize()
             }
 
-            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "", userName: "\(data.firstname ?? "") \(data.lastname ?? "")", speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-", ratings: data.rating?.description ?? "0", gender: data.gender ?? "1", selfProfile: profileType == .selfUser)
+            let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "",
+                                              userName: "\(data.firstname ?? "") \(data.lastname ?? "")",
+                                              speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-",
+                                              ratings: data.rating?.description ?? "0", gender: data.gender ?? "1",
+                                              selfProfile: profileType == .selfUser)
 
             var addressString = ["\(data.address?.first?.line_1 ?? "" )",
                 "\(data.address?.first?.line_2 ?? "" )",
@@ -318,14 +327,16 @@ extension MyProfileVC{
             if let dateString = data.birthdate,
                 let date = dateString.getDateFromString() {
                 birthDate = date.monthYearDate
-            } else {
+            }
+            else {
                 birthDate = data.birthdate ?? "-"
             }
 
             let personalDetails = MyProfileSection(title: "Personal details", data: [MyProfileModel(title: "Date of Birth", value: birthDate, isMultiOption: false),
                                                                                   MyProfileModel(title: "Mobile Number", value: data.mobile_number ?? "-", isMultiOption: false),
                                                                                   MyProfileModel(title: "Work Contact No", value: data.work_number ?? "-", isMultiOption: false),
-                                                                                  MyProfileModel(title: "Email address", value: data.email ?? "-", isMultiOption: false), MyProfileModel(title: "Address", value: address, isMultiOption: false)])
+                                                                                  MyProfileModel(title: "Email address", value: data.email ?? "-", isMultiOption: false),
+                                                                                  MyProfileModel(title: "Address", value: address, isMultiOption: false)])
 
             let professionalDetails = MyProfileSection(title: "Professional details", data: [MyProfileModel(title: "Employee ID", value: data.employee_code ?? "-", isMultiOption: false),
                                                                                           MyProfileModel(title: "Nick Name", value: data.nickname ?? "-", isMultiOption: false),

@@ -10,8 +10,8 @@ import UIKit
 
 class ServiceListingCell: UITableViewCell {
 
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblValue: UILabel!
+    @IBOutlet weak private var lblTitle: UILabel!
+    @IBOutlet weak private var lblValue: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

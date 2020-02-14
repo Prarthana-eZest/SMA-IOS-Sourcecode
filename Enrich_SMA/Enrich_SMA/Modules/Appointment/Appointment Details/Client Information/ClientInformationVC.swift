@@ -118,7 +118,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
 
@@ -211,10 +211,10 @@ extension ClientInformationVC {
     func displaySuccess<T>(viewModel: T) where T: Decodable {
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
-        
+
         lblNoRecords.isHidden = true
-        
-        if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response{
+
+        if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response {
 
             self.appointmentHistory.removeAll()
             self.appointmentHistory.append(contentsOf: model.data ?? [])
@@ -223,12 +223,14 @@ extension ClientInformationVC {
             if !appointmentHistory.isEmpty {
                 self.tableView.scrollToTop()
             }
-        } else if let model = viewModel as? ClientInformation.MembershipDetails.Response,
+        }
+        else if let model = viewModel as? ClientInformation.MembershipDetails.Response,
             model.status == true, let name = model.data?.name, let type = MembershipType(rawValue: name) {
 
             memebershipDetails = MembershipStatusModel(type: type, validity: model.data?.end_date ?? "-", rewardPoints: "0")
             self.tableView.reloadData()
-        } else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true {
+        }
+        else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true {
 
             self.preferenceData.removeAll()
             if let data = model.data {
@@ -250,7 +252,8 @@ extension ClientInformationVC {
             }
             self.reloadClientData()
 
-        } else if let model = viewModel as? ClientInformation.ClientNotes.Response, model.status == true {
+        }
+        else if let model = viewModel as? ClientInformation.ClientNotes.Response, model.status == true {
 
             self.notesData.removeAll()
             if let data = model.data {
@@ -308,7 +311,8 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         switch selectedTitleCell {
-        case 0: return data.count
+        case 0:
+            return data.count
         default:
             return 1
         }
@@ -347,11 +351,12 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell
-            } else {
+            }
+            else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.pointsCell) as? PointsCell else {
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = data[indexPath.section].points[indexPath.row - 1]//indexPath.section == 0 ? preferences[indexPath.row - 1] : notes[indexPath.row - 1]
+                cell.configureCell(title: data[indexPath.section].points[indexPath.row - 1])
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell
@@ -368,14 +373,16 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
                 cell.selectionStyle = .none
                 return cell
-            } else if indexPath.row == (consulationData.count + 1) {
+            }
+            else if indexPath.row == (consulationData.count + 1) {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.addNotesSingatureCell) as? AddNotesSingatureCell else {
                     return UITableViewCell()
                 }
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell
-            } else {
+            }
+            else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagViewCell, for: indexPath) as? TagViewCell else {
                     return UITableViewCell()
                 }
@@ -452,10 +459,14 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
         case 0:
             getClientPreferences()
             getClientNotes()
-        case 1: break
-        case 2: getMembershipDetails()
-        case 3: getAppointmentHistory()
-        default:break
+        case 1:
+            break
+        case 2:
+            getMembershipDetails()
+        case 3:
+            getAppointmentHistory()
+        default:
+            break
         }
 
     }
@@ -476,25 +487,45 @@ extension ClientInformationVC {
         case .generalClientInfo:
 
             cellWidth = is_iPAD ? 150 : 100
-            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth, showHeader: true, showFooter: false, headerHeight: headerHeight, footerHeight: 0, leftMargin: margin, rightMarging: 0, isPagingEnabled: false, textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight,
+                                        cellWidth: cellWidth, showHeader: true, showFooter: false,
+                                        headerHeight: headerHeight, footerHeight: 0,
+                                        leftMargin: margin, rightMarging: 0, isPagingEnabled: false,
+                                        textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
 
         case .consulationInfo:
             cellHeight = is_iPAD ? 250 : 150
 
-            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth, showHeader: false, showFooter: false, headerHeight: 0, footerHeight: 0, leftMargin: 0, rightMarging: 0, isPagingEnabled: false, textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight,
+                                        cellWidth: cellWidth, showHeader: false, showFooter: false,
+                                        headerHeight: 0, footerHeight: 0,
+                                        leftMargin: 0, rightMarging: 0, isPagingEnabled: false, textFont: nil,
+                                        textColor: .black, items: items, identifier: idetifier, data: data)
 
         case .memebershipInfo:
 
             cellWidth = is_iPAD ? 150 : 100
-            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth, showHeader: true, showFooter: false, headerHeight: headerHeight, footerHeight: 0, leftMargin: margin, rightMarging: 0, isPagingEnabled: false, textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight,
+                                        cellWidth: cellWidth, showHeader: true, showFooter: false,
+                                        headerHeight: headerHeight, footerHeight: 0, leftMargin: margin,
+                                        rightMarging: 0, isPagingEnabled: false, textFont: nil,
+                                        textColor: .black, items: items, identifier: idetifier, data: data)
 
         case .historyInfo:
             cellHeight = is_iPAD ? 250 : 150
 
-            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth, showHeader: false, showFooter: false, headerHeight: 0, footerHeight: 0, leftMargin: 0, rightMarging: 0, isPagingEnabled: false, textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight,
+                                        cellWidth: cellWidth, showHeader: false, showFooter: false,
+                                        headerHeight: 0, footerHeight: 0, leftMargin: 0, rightMarging: 0,
+                                        isPagingEnabled: false, textFont: nil, textColor: .black,
+                                        items: items, identifier: idetifier, data: data)
 
         default :
-            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: 0, cellWidth: cellWidth, showHeader: false, showFooter: false, headerHeight: headerHeight, footerHeight: 0, leftMargin: 0, rightMarging: 0, isPagingEnabled: false, textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: 0,
+                                        cellWidth: cellWidth, showHeader: false, showFooter: false,
+                                        headerHeight: headerHeight, footerHeight: 0, leftMargin: 0,
+                                        rightMarging: 0, isPagingEnabled: false, textFont: nil,
+                                        textColor: .black, items: items, identifier: idetifier, data: data)
         }
     }
 }

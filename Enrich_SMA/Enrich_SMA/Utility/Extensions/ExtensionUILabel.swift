@@ -34,7 +34,8 @@ func resetServiceTime(text: String, rangeText: String) {
     let range = (text as NSString).range(of: rangeText)
     let attribute = NSMutableAttributedString(string: text)
     attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: range)
-    attribute.addAttribute(NSAttributedString.Key.font, value: UIFont(name: FontName.FuturaPTDemi.rawValue, size: is_iPAD ? 24.0 : 16.0)!, range: range)
+    attribute.addAttribute(NSAttributedString.Key.font, value: UIFont(name: FontName.FuturaPTDemi.rawValue,
+                                                                      size: is_iPAD ? 24.0 : 16.0) ?? UIFont.systemFont(ofSize: is_iPAD ? 24.0 : 16.0), range: range)
     self.attributedText = attribute
 
 }
@@ -48,10 +49,11 @@ extension UILabel {
         paragraphStyle.alignment = self.textAlignment
 
         let attrString = NSMutableAttributedString()
-        if (self.attributedText != nil) {
-            attrString.append( self.attributedText!)
-        } else {
-            attrString.append( NSMutableAttributedString(string: self.text!))
+        if self.attributedText != nil {
+            attrString.append( self.attributedText ?? NSAttributedString(string: ""))
+        }
+        else {
+            attrString.append( NSMutableAttributedString(string: self.text ?? ""))
             attrString.addAttribute(NSAttributedString.Key.font, value: self.font, range: NSRange(location: 0, length: attrString.length))
         }
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attrString.length))

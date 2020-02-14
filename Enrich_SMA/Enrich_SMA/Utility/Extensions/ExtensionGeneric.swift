@@ -90,10 +90,14 @@ func daySuffix() -> String {
     let calendar = Calendar.current
     let dayOfMonth = calendar.component(.day, from: self)
     switch dayOfMonth {
-    case 1, 21, 31: return "st"
-    case 2, 22: return "nd"
-    case 3, 23: return "rd"
-    default: return "th"
+    case 1, 21, 31:
+        return "st"
+    case 2, 22:
+        return "nd"
+    case 3, 23:
+        return "rd"
+    default:
+        return "th"
     }
 }
 }
@@ -108,14 +112,14 @@ extension Date {
          hour: Int = 0,
          minute: Int = 0,
          second: Int = 0,
-         timeZone: TimeZone = TimeZone(abbreviation: "UTC")!) {
+         timeZone: TimeZone = TimeZone(abbreviation: "UTC") ?? TimeZone.current) {
         var components = DateComponents()
         components.day = day
         components.hour = hour
         components.minute = minute
         components.second = second
         components.timeZone = timeZone
-        self = Calendar.current.date(from: components)!
+        self = Calendar.current.date(from: components) ?? Date()
     }
 
     func allDates(till endDate: Date) -> [Date] {
@@ -123,7 +127,7 @@ extension Date {
         var array: [Date] = []
         while date <= endDate {
             array.append(date)
-            date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
+            date = Calendar.current.date(byAdding: .day, value: 1, to: date) ?? Date()
         }
         return array
     }
@@ -160,7 +164,7 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMM yyyy"
         return formatter.string(from: self as Date)
     }
-    
+
     var dayNameDateFormat: String {
         let formatter = DateFormatter(); formatter.dateFormat = "EEE, dd MMM yyyy"
         return formatter.string(from: self as Date)

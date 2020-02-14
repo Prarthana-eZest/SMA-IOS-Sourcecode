@@ -10,8 +10,8 @@ import UIKit
 
 class TopicCell: UICollectionViewCell {
 
-    @IBOutlet weak var selectionView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak private var selectionView: UIView!
+    @IBOutlet weak private var titleLabel: UILabel!
     var selectedMenuCell = 0
 
     override func awakeFromNib() {
@@ -32,7 +32,8 @@ class TopicCell: UICollectionViewCell {
             if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16.0) {
                 titleLabel.font = font
             }
-        } else {
+        }
+        else {
             if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16.0) {
                 titleLabel.font = font
             }

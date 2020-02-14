@@ -109,7 +109,10 @@ class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDi
     // MARK: Call Webservice
     func connectToServerForOTPVerification() {
         EZLoadingActivity.show("Loading...", disableUI: true)
-        let request = OTPVerificationModule.ChangePasswordWithOTPVerification.Request(username: userName, otp: txtFieldOTP.text ?? "", password: txtFConfirmPassword.text ?? "", confirm_password: txtFConfirmPassword.text ?? "")
+        let request =
+            OTPVerificationModule.ChangePasswordWithOTPVerification.Request(username: userName, otp: txtFieldOTP.text ?? "",
+                                                                            password: txtFConfirmPassword.text ?? "",
+                                                                            confirm_password: txtFConfirmPassword.text ?? "")
         interactor?.doPostRequest(request: request, method: HTTPMethod.post,
                                   endPoint: ConstantAPINames.forgotPassword.rawValue)
 
@@ -174,7 +177,8 @@ extension OTPVerificationModuleVC {
         if totalTime != 0 {
             totalTime -= 1
 
-        } else {
+        }
+        else {
             endTimer()
         }
     }

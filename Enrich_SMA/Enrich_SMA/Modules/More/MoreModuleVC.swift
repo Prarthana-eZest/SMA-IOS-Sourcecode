@@ -123,12 +123,14 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             cell = notificationCell
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        } else if identifier == .punchIn {
+        }
+        else if identifier == .punchIn {
             let identifier = userPunchedIn ? ProfileCellIdentifiers.punchOut.rawValue : identifier.rawValue
             cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        } else {
+        }
+        else {
             cell = tableView.dequeueReusableCell(withIdentifier: identifier.rawValue, for: indexPath)
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
@@ -155,7 +157,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
         case .logout:
             let alertController = UIAlertController(title: alertTitle, message: AlertMessagesToAsk.askToLogout, preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
-                appDelegate.signOutUserFromApp()
+                UserFactory.shared.signOutUserFromApp()
             })
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.default) { _ -> Void in
                 // Do Nothing
@@ -166,11 +168,14 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             let vc = EmployeeListingVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
 
-        case .inventory:break
+        case .inventory:
+            break
 
-        case .stores:break
+        case .stores:
+            break
 
-        case .audits:break
+        case .audits:
+            break
 
         case .punchIn:
 
@@ -181,11 +186,11 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
                 self.tableView.reloadData()
             })
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.default) { _ -> Void in
-                // Do Nothing
             })
             self.present(alertController, animated: true, completion: nil)
 
-        case .punchOut:break
+        case .punchOut:
+            break
         }
     }
 
@@ -214,21 +219,21 @@ extension MoreModuleVC {
     }
 
     func displaySuccess<T: Decodable>(viewModel: T) {
-        let obj = viewModel as? MoreModule.Something.Response
-        DispatchQueue.main.async {
-        }
+        EZLoadingActivity.hide()
     }
     func displayError(errorMessage: String?) {
-        EZLoadingActivity.hide()
         DispatchQueue.main.async { [unowned self] in
+            EZLoadingActivity.hide()
             self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
         }
     }
 
     func displaySuccess<T: Decodable>(responseSuccess: [T]) {
         DispatchQueue.main.async {
-            var obj = responseSuccess as? [MoreModule.Something.Response]
-            print("Get API Response -- \n \(obj)")
+            EZLoadingActivity.hide()
+            if let obj = responseSuccess as? [MoreModule.Something.Response] {
+                print("Get API Response -- \n \(obj)")
+            }
         }
     }
 

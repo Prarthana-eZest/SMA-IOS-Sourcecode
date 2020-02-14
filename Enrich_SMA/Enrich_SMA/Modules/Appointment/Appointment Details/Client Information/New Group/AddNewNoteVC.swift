@@ -23,7 +23,7 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic {
     static let TextViewPlaceHolder = "Add Note..."
     var onDoneBlock: ((Bool, String) -> Void)?
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak private var textView: UITextView!
 
     // MARK: Object lifecycle
 
@@ -61,6 +61,7 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
@@ -69,7 +70,7 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
 

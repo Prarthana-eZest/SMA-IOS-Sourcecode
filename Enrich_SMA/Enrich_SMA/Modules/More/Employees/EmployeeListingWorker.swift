@@ -28,7 +28,9 @@ class EmployeeListingWorker {
             self.presenter?.presentGetEmployeeListSuccess(response: response)
         }
 
-        self.networkLayer.post(urlString: ConstantAPINames.getEmployeeList.rawValue, body: request, headers: ["X-Request-From": "tma"], successHandler: successHandler, errorHandler: errorHandler, method: .post)
+        self.networkLayer.post(urlString: ConstantAPINames.getEmployeeList.rawValue, body: request,
+                               headers: ["X-Request-From": "tma"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: .post)
 
     }
 }

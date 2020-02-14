@@ -45,9 +45,9 @@ class GooglePlacesViewController: UIViewController {
             textField.placeholder = "Search for area, street name…"
         }
 
-        let subView = UIView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)! + 35, width: self.view.frame.size.width - 40, height: 45.0))
+        let subView = UIView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height ?? 0) + 35, width: self.view.frame.size.width - 40, height: 45.0))
 
-        subView.addSubview((searchController?.searchBar)!)
+        subView.addSubview(searchController?.searchBar ?? UIView())
         view.addSubview(subView)
         searchController?.searchBar.sizeToFit()
         searchController?.hidesNavigationBarDuringPresentation = false
@@ -59,6 +59,7 @@ class GooglePlacesViewController: UIViewController {
         //*** *** *** *** *** *** ***
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "")
 
@@ -96,8 +97,8 @@ class GooglePlacesViewController: UIViewController {
         // Add the search bar to the right of the nav bar,
         // use a popover to display the results.
         // Set an explicit size as we don't want to use the entire nav bar.
-        searchController?.searchBar.frame = (navigationController?.navigationBar.frame)!
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: (searchController?.searchBar)!)
+        searchController?.searchBar.frame = navigationController?.navigationBar.frame ?? UIView().frame
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchController?.searchBar ?? UIView())
 
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
@@ -116,7 +117,7 @@ class GooglePlacesViewController: UIViewController {
 
              DispatchQueue.main.async {
 
-            if(self.placesClient == nil) {
+            if self.placesClient == nil {
                 self.placesClient = GMSPlacesClient.shared()
             }
             self.placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
@@ -162,7 +163,6 @@ extension GooglePlacesViewController: GMSAutocompleteResultsViewControllerDelega
 
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                            didFailAutocompleteWithError error: Error) {
-        // TODO: handle the error.
         print("Error: ", error.localizedDescription)
         self.delegate?.somethingError(responseError: error.localizedDescription)
         self.navigationController?.popViewController(animated: false)

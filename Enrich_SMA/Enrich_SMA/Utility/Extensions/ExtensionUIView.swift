@@ -96,7 +96,8 @@ extension UIView {
         set {
             if let color = newValue {
                 layer.shadowColor = color.cgColor
-            } else {
+            }
+            else {
                 layer.shadowColor = nil
             }
         }
@@ -121,7 +122,7 @@ extension UIView {
     /** Loads instance from nib with the same name. */
     func loadNib() -> UIView {
         let bundle = Bundle(for: type(of: self))
-        let nibName = type(of: self).description().components(separatedBy: ".").last!
+        let nibName = type(of: self).description().components(separatedBy: ".").last ?? ""
         let nib = UINib(nibName: nibName, bundle: bundle)
         if let view = nib.instantiate(withOwner: self, options: nil).first as? UIView {
             return view

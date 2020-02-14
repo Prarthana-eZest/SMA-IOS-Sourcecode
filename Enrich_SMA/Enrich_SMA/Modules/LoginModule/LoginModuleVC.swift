@@ -18,10 +18,10 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
 
     var interactor: LoginModuleBusinessLogic?
 
-    @IBOutlet weak var txtfEnrichId: UITextField!
-    @IBOutlet weak var txtfPassword: UITextField!
-    @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak private var txtfEnrichId: UITextField!
+    @IBOutlet weak private var txtfPassword: UITextField!
+    @IBOutlet weak private var btnLogin: UIButton!
+    @IBOutlet weak private var iconImage: UIImageView!
 
     var termsAccpeted = false
 
@@ -71,7 +71,7 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
@@ -129,8 +129,8 @@ extension LoginModuleVC {
         }
 
         let customTabbarController = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)
-        appDelegate.window?.rootViewController = customTabbarController
-        appDelegate.window?.makeKeyAndVisible()
+        UIApplication.shared.keyWindow?.rootViewController = customTabbarController
+        UIApplication.shared.keyWindow?.makeKeyAndVisible()
 
     }
 

@@ -10,11 +10,11 @@ import UIKit
 
 class MembershipStatusCell: UITableViewCell {
 
-    @IBOutlet weak var membershipIcon: UIImageView!
-    @IBOutlet weak var lblMemberType: UILabel!
-    @IBOutlet weak var lblMembershipType: UILabel!
-    @IBOutlet weak var lblValidUpTo: UILabel!
-    @IBOutlet weak var lblRewardPoints: UILabel!
+    @IBOutlet weak private var membershipIcon: UIImageView!
+    @IBOutlet weak private var lblMemberType: UILabel!
+    @IBOutlet weak private var lblMembershipType: UILabel!
+    @IBOutlet weak private var lblValidUpTo: UILabel!
+    @IBOutlet weak private var lblRewardPoints: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +39,8 @@ class MembershipStatusCell: UITableViewCell {
             let dateString = model.validity
             if let date = dateString.getDateFromShortString() {
                 validity = date.monthYearDate
-            } else {
+            }
+            else {
                 validity = model.validity
             }
 
@@ -49,17 +50,22 @@ class MembershipStatusCell: UITableViewCell {
 
             switch model.type {
 
-            case .general:break
-            case .clubMemberShip:membershipIcon.image = UIImage(named: "ClubMembership")
-            case .eliteMembership:membershipIcon.image = UIImage(named: "EliteMembership")
-            case .premierMembership:membershipIcon.image = UIImage(named: "PremierMembership")
+            case .general:
+                break
+            case .clubMemberShip:
+                membershipIcon.image = UIImage(named: "ClubMembership")
+            case .eliteMembership:
+                membershipIcon.image = UIImage(named: "EliteMembership")
+            case .premierMembership:
+                membershipIcon.image = UIImage(named: "PremierMembership")
             }
 
             // Rewards Points
             lblRewardPoints.text = "Reward Points: \(model.rewardPoints)"
             lblRewardPoints.isHidden = true
 
-        } else {
+        }
+        else {
 
             lblMemberType.text = "No active membership"
             lblMembershipType.isHidden = true

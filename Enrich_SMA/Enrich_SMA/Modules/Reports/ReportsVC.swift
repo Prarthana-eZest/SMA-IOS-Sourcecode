@@ -18,7 +18,7 @@ protocol ReportsDisplayLogic: class {
 
 class ReportsVC: UIViewController, ReportsDisplayLogic {
     var interactor: ReportsBusinessLogic?
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak private var tableView: UITableView!
 
     // MARK: Object lifecycle
 

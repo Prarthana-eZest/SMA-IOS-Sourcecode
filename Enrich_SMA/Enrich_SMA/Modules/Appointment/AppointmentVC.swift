@@ -23,19 +23,19 @@ enum AppointmentType {
 
 class AppointmentVC: UIViewController, AppointmentDisplayLogic {
     var interactor: AppointmentBusinessLogic?
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var completedSelectionView: UIView!
-    @IBOutlet weak var ongoingSelectionView: UIView!
-    @IBOutlet weak var upcomingSelectionView: UIView!
-    @IBOutlet weak var btnCompleted: UIButton!
-    @IBOutlet weak var btnOnGoing: UIButton!
-    @IBOutlet weak var btnUpComing: UIButton!
-    @IBOutlet weak var lblLocation: UILabel!
-    @IBOutlet weak var lblNoAppointments: UILabel!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var completedSelectionView: UIView!
+    @IBOutlet weak private var ongoingSelectionView: UIView!
+    @IBOutlet weak private var upcomingSelectionView: UIView!
+    @IBOutlet weak private var btnCompleted: UIButton!
+    @IBOutlet weak private var btnOnGoing: UIButton!
+    @IBOutlet weak private var btnUpComing: UIButton!
+    @IBOutlet weak private var lblLocation: UILabel!
+    @IBOutlet weak private var lblNoAppointments: UILabel!
 
     var appointments = [Appointment.GetAppointnents.Data]()
-    
-    var selectedTab:AppointmentType = .ongoing
+
+    var selectedTab: AppointmentType = .ongoing
 
     // MARK: Object lifecycle
 
@@ -173,7 +173,6 @@ extension AppointmentVC {
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
 
-
         if let model = viewModel as? Appointment.GetAppointnents.Response {
             self.appointments.removeAll()
             self.appointments.append(contentsOf: model.data ?? [])
@@ -215,7 +214,7 @@ extension AppointmentVC: AppointmentDelegate {
         vc.services = appointment.services?.compactMap { ServiceListingModel(name: $0.service_name ?? "", price: "\($0.price ?? 0)") } ?? []
         vc.screenTitle = "Services"
         vc.listingType = .appointmentServices
-        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
         vc.viewDismissBlock = { [unowned self] result in
             // Do something
             self.view.alpha = 1.0

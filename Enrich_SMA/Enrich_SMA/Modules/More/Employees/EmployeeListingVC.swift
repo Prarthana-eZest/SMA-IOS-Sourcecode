@@ -37,7 +37,8 @@ enum AvailableStatusColor: String {
         case .leave:
             return "On Leave"
 
-        default:return ""
+        default:
+            return ""
         }
     }
 
@@ -54,18 +55,17 @@ enum AvailableStatusColor: String {
         case .leave:
             return UIColor(red: 83 / 255, green: 83 / 255, blue: 83 / 255, alpha: 1)
 
-        default:return UIColor(red: 83 / 255, green: 83 / 255, blue: 83 / 255, alpha: 1)
-
+        default:
+            return UIColor(red: 83 / 255, green: 83 / 255, blue: 83 / 255, alpha: 1)
         }
-
     }
 }
 
 class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic {
     var interactor: EmployeeListingBusinessLogic?
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lblNoRecords: UILabel!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var lblNoRecords: UILabel!
 
     var employeeList = [EmployeeModel]()
 
@@ -114,6 +114,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Employees")
@@ -167,12 +168,15 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic {
 
                 if $0.is_leave == 1 {
                     statusText = $0.leave_type ?? ""
-                } else if let status = AvailableStatusColor(rawValue: $0.attendance_status ?? "") {
+                }
+                else if let status = AvailableStatusColor(rawValue: $0.attendance_status ?? "") {
                     statusType = status
                     statusText = status.status//$0.attendance_status ?? ""
                 }
 
-                let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "", ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText, employeeId: $0.employee_id)
+                let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "",
+                                          ratings: $0.rating ?? 0, statusType: statusType, statusText: statusText,
+                                          employeeId: $0.employee_id)
                 self.employeeList.append(model)
             }
         }

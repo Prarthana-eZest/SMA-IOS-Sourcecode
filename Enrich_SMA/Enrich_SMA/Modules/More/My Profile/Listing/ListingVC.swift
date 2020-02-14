@@ -14,9 +14,9 @@ class ListingVC: UIViewController {
     var listing = [String]()
     var services = [ServiceListingModel]()
 
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblNoRecords: UILabel!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak private var lblTitle: UILabel!
+    @IBOutlet weak private var lblNoRecords: UILabel!
+    @IBOutlet weak private var tableView: UITableView!
 
     var viewDismissBlock: ((Bool) -> Void)?
 
@@ -59,7 +59,8 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
         if listingType == .appointmentServices {
             lblNoRecords.isHidden = !services.isEmpty
             return services.count
-        } else {
+        }
+        else {
             lblNoRecords.isHidden = !listing.isEmpty
             return listing.count
         }
@@ -77,7 +78,8 @@ extension ListingVC: UITableViewDelegate, UITableViewDataSource {
             cell.configureCell(model: services[indexPath.row])
             return cell
 
-        } else {
+        }
+        else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.listingCell, for: indexPath) as? ListingCell else {
                 return UITableViewCell()
             }

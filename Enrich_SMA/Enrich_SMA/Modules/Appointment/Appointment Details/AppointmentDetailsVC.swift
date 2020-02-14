@@ -19,8 +19,8 @@ protocol AppointmentDetailsDisplayLogic: class {
 class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic {
     var interactor: AppointmentDetailsBusinessLogic?
 
-    @IBOutlet weak var btnBeginAppoinement: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak private var btnBeginAppoinement: UIButton!
+    @IBOutlet weak private var tableView: UITableView!
 
     // MARK: Object lifecycle
 
@@ -78,6 +78,7 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait,
                                          andRotateTo: UIInterfaceOrientation.portrait)

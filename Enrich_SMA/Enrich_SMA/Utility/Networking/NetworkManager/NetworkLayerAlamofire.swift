@@ -14,8 +14,8 @@ public enum APIErrorMessage: CustomStringConvertible {
     public var description: String {
         switch self {
         // Use Internationalization, as appropriate.
-        case .internetConnectionError: return "The Internet connection appears to be offline."
-
+        case .internetConnectionError:
+            return "The Internet connection appears to be offline."
         }
     }
 }
@@ -65,7 +65,8 @@ open class NetworkLayerAlamofire {
                         print(jsonString)
                     }
                     successHandler(responseObject)
-                } catch {
+                }
+                catch {
                     print(error)
                     return errorHandler( urlString + error.localizedDescription)
 
@@ -101,7 +102,7 @@ open class NetworkLayerAlamofire {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields?["Content-Type"] = "application/json"
 
-        if(!headers.isEmpty) {
+        if !headers.isEmpty {
             for (key, value) in headers {
                 request.allHTTPHeaderFields?[key] = value
             }
@@ -145,7 +146,8 @@ open class NetworkLayerAlamofire {
                         print(jsonString)
                     }
                     successHandler(responseObject)
-                } catch {
+                }
+                catch {
                     print(error)
                     return errorHandler( urlString + error.localizedDescription)
 
@@ -179,7 +181,7 @@ open class NetworkLayerAlamofire {
         request.httpMethod = method.rawValue
         //request.allHTTPHeaderFields = getHeaders()//headers
         request.allHTTPHeaderFields?["Content-Type"] = "application/json"
-        if(!headers.isEmpty) {
+        if !headers.isEmpty {
             for (key, value) in headers {
                 request.allHTTPHeaderFields?[key] = value
             }
@@ -227,7 +229,7 @@ open class NetworkLayerAlamofire {
         #if DEBUG
         print("DEBUG")
         BaseUrl = "https://enrichsalon.co.in/"
-        
+
         #elseif STAGE
         print("STAGE")
         BaseUrl = "https://stage.enrichsalon.co.in/"
@@ -277,20 +279,21 @@ extension NetworkLayerAlamofire {
                     }
                     self.get(urlString: urlString, headers: headers, successHandler: successHandler, errorHandler: errorHandler)
 
-                } catch {
+                }
+                catch {
                     print(error)
                     return errorHandler( urlString + error.localizedDescription)
 
                 }
                 return
-            } else {
+            }
+            else {
                 self.getRequestRefreshToken(urlString: urlString, headers: headers, successHandler: successHandler, errorHandler: errorHandler)
             }
 
             errorHandler(GenericError)
         }
 
-        #warning("TODO: URL needs to be change")
         guard let url = URL(string: createBaseUrl(endPoint: ConstantAPINames.validateOTPOnLogin.rawValue)) else {
             return errorHandler("Unable to create URL from given string")
         }
@@ -299,7 +302,7 @@ extension NetworkLayerAlamofire {
         request.httpMethod = "POST"
         request.allHTTPHeaderFields?["Content-Type"] = "application/json"
 
-        if(!headers.isEmpty) {
+        if !headers.isEmpty {
             for (key, value) in headers {
                 request.allHTTPHeaderFields?[key] = value
             }
@@ -337,13 +340,15 @@ extension NetworkLayerAlamofire {
                     }
                     self.post(urlString: urlString, body: body, successHandler: successHandler,
                               errorHandler: errorHandler, method: method)
-                } catch {
+                }
+                catch {
                     print(error)
                     return errorHandler( urlString + error.localizedDescription)
 
                 }
                 return
-            } else {
+            }
+            else {
                 self.putDeletePostRequestRefreshToken(urlString: urlString, body: body, headers: headers,
                                                       successHandler: successHandler, errorHandler: errorHandler, method: method)
             }
@@ -351,7 +356,6 @@ extension NetworkLayerAlamofire {
             errorHandler(GenericError)
         }
 
-        #warning("TODO: URL needs to be change")
         guard let url = URL(string: createBaseUrl(endPoint: ConstantAPINames.validateOTPOnLogin.rawValue)) else {
             return errorHandler("Unable to create URL from given string")
         }
@@ -374,7 +378,7 @@ extension NetworkLayerAlamofire {
 
     private func isUserAuthorizedSuccessCode(_ statusCode: Int) -> Bool {
         return statusCode == 401 || statusCode == 403
-        
+
     }
 
     private func isUserAuthorizedSuccessCode(_ response: URLResponse?) -> Bool {

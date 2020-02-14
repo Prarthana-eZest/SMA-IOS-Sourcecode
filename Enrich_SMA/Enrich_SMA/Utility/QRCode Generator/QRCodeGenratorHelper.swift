@@ -20,14 +20,16 @@ class QRCodeGenratorHelper: NSObject {
     func generateQRCode(from string: String?) {
 
         if let textData = string {
-            if(textData.isEmpty) {
+            if textData.isEmpty {
                delegate?.qrCodeGenratedError(error: QRCodeGeneratorError.QRTextNotProvided.description)
 
-            } else {
+            }
+            else {
 
-                if let qrImage = genratedQRCodeImage(from: ((string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))!)) {
+                if let qrImage = genratedQRCodeImage(from: ((string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)) ?? "")) {
                     delegate?.qrCodeGenratedSuccess(qrImage)
-                } else {
+                }
+                else {
                     delegate?.qrCodeGenratedError(error: QRCodeGeneratorError.QRCodeNotCreated.description)
 
                 }

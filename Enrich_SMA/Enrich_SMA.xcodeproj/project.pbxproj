@@ -24,7 +24,6 @@
 		E30340B0235EE11C00E0BF0A /* MyProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034027235EE11B00E0BF0A /* MyProfileHeaderCell.swift */; };
 		E30340B1235EE11C00E0BF0A /* MyProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034028235EE11B00E0BF0A /* MyProfileCell.swift */; };
 		E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E303402E235EE11B00E0BF0A /* NotificationCell.swift */; };
-		E30340B7235EE11C00E0BF0A /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E303402F235EE11B00E0BF0A /* LogoutCell.swift */; };
 		E30340B8235EE11C00E0BF0A /* NotificationDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3034031235EE11B00E0BF0A /* NotificationDetailsCell.xib */; };
 		E30340B9235EE11C00E0BF0A /* NotificationDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */; };
 		E30340BA235EE11C00E0BF0A /* EmployeeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3034034235EE11B00E0BF0A /* EmployeeCell.xib */; };
@@ -127,7 +126,6 @@
 		E30342D5235EE15800E0BF0A /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342A1235EE15700E0BF0A /* DatePickerDialog.swift */; };
 		E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342A4235EE15700E0BF0A /* LocalJSONStore.swift */; };
 		E30342D7235EE15800E0BF0A /* StorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342A5235EE15700E0BF0A /* StorageType.swift */; };
-		E30342D8235EE15800E0BF0A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342A7235EE15700E0BF0A /* CoreDataStack.swift */; };
 		E30342D9235EE15800E0BF0A /* CacheFolderNameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342A8235EE15700E0BF0A /* CacheFolderNameKeys.swift */; };
 		E30342DA235EE15800E0BF0A /* ConstantsStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342A9235EE15700E0BF0A /* ConstantsStrings.swift */; };
 		E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342AB235EE15700E0BF0A /* ContactsErrors.swift */; };
@@ -185,6 +183,9 @@
 		E30601D5237EAA7A00988EEC /* ClientInformationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30601CB237EAA7A00988EEC /* ClientInformationModels.swift */; };
 		E31F816723840E8E00089572 /* MyProfileMultiOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F816523840E8D00089572 /* MyProfileMultiOptionCell.swift */; };
 		E31F816823840E8E00089572 /* MyProfileMultiOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31F816623840E8E00089572 /* MyProfileMultiOptionCell.xib */; };
+		E361182D23F6BEC800E0AF02 /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361182A23F6BEC800E0AF02 /* UIFactory.swift */; };
+		E361182E23F6BEC800E0AF02 /* ApplicationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361182B23F6BEC800E0AF02 /* ApplicationFactory.swift */; };
+		E361182F23F6BEC800E0AF02 /* UserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361182C23F6BEC800E0AF02 /* UserFactory.swift */; };
 		E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */; };
 		E3B2312C238FAB2B00C17B56 /* AddNotesSingatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2312A238FAB2B00C17B56 /* AddNotesSingatureCell.swift */; };
 		E3B2312D238FAB2B00C17B56 /* AddNotesSingatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3B2312B238FAB2B00C17B56 /* AddNotesSingatureCell.xib */; };
@@ -279,7 +280,6 @@
 		E3034027235EE11B00E0BF0A /* MyProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderCell.swift; sourceTree = "<group>"; };
 		E3034028235EE11B00E0BF0A /* MyProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileCell.swift; sourceTree = "<group>"; };
 		E303402E235EE11B00E0BF0A /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		E303402F235EE11B00E0BF0A /* LogoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
 		E3034031235EE11B00E0BF0A /* NotificationDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationDetailsCell.xib; sourceTree = "<group>"; };
 		E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsCell.swift; sourceTree = "<group>"; };
 		E3034034235EE11B00E0BF0A /* EmployeeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployeeCell.xib; sourceTree = "<group>"; };
@@ -382,7 +382,6 @@
 		E30342A1235EE15700E0BF0A /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		E30342A4235EE15700E0BF0A /* LocalJSONStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalJSONStore.swift; sourceTree = "<group>"; };
 		E30342A5235EE15700E0BF0A /* StorageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageType.swift; sourceTree = "<group>"; };
-		E30342A7235EE15700E0BF0A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E30342A8235EE15700E0BF0A /* CacheFolderNameKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheFolderNameKeys.swift; sourceTree = "<group>"; };
 		E30342A9235EE15700E0BF0A /* ConstantsStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantsStrings.swift; sourceTree = "<group>"; };
 		E30342AB235EE15700E0BF0A /* ContactsErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsErrors.swift; sourceTree = "<group>"; };
@@ -440,6 +439,9 @@
 		E30601CB237EAA7A00988EEC /* ClientInformationModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientInformationModels.swift; sourceTree = "<group>"; };
 		E31F816523840E8D00089572 /* MyProfileMultiOptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileMultiOptionCell.swift; sourceTree = "<group>"; };
 		E31F816623840E8E00089572 /* MyProfileMultiOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProfileMultiOptionCell.xib; sourceTree = "<group>"; };
+		E361182A23F6BEC800E0AF02 /* UIFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFactory.swift; sourceTree = "<group>"; };
+		E361182B23F6BEC800E0AF02 /* ApplicationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationFactory.swift; sourceTree = "<group>"; };
+		E361182C23F6BEC800E0AF02 /* UserFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFactory.swift; sourceTree = "<group>"; };
 		E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionAppDelegate.swift; sourceTree = "<group>"; };
 		E3B2312A238FAB2B00C17B56 /* AddNotesSingatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesSingatureCell.swift; sourceTree = "<group>"; };
 		E3B2312B238FAB2B00C17B56 /* AddNotesSingatureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNotesSingatureCell.xib; sourceTree = "<group>"; };
@@ -633,7 +635,6 @@
 			isa = PBXGroup;
 			children = (
 				E303402E235EE11B00E0BF0A /* NotificationCell.swift */,
-				E303402F235EE11B00E0BF0A /* LogoutCell.swift */,
 				E3034024235EE11B00E0BF0A /* My Profile */,
 				E3034030235EE11B00E0BF0A /* Notification */,
 				E3034033235EE11B00E0BF0A /* Employee */,
@@ -855,6 +856,7 @@
 		E303426B235EE15700E0BF0A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E361182923F6BEC800E0AF02 /* Factory Class */,
 				E303426C235EE15700E0BF0A /* JSONANY */,
 				E303426E235EE15700E0BF0A /* Configuration */,
 				E3034272235EE15700E0BF0A /* AppConfiguration.swift */,
@@ -1055,7 +1057,6 @@
 			isa = PBXGroup;
 			children = (
 				E30342A3235EE15700E0BF0A /* Storage */,
-				E30342A6235EE15700E0BF0A /* Core Data  Helper */,
 				E30342A8235EE15700E0BF0A /* CacheFolderNameKeys.swift */,
 			);
 			path = CacheData;
@@ -1068,14 +1069,6 @@
 				E30342A5235EE15700E0BF0A /* StorageType.swift */,
 			);
 			path = Storage;
-			sourceTree = "<group>";
-		};
-		E30342A6235EE15700E0BF0A /* Core Data  Helper */ = {
-			isa = PBXGroup;
-			children = (
-				E30342A7235EE15700E0BF0A /* CoreDataStack.swift */,
-			);
-			path = "Core Data  Helper";
 			sourceTree = "<group>";
 		};
 		E30342AA235EE15700E0BF0A /* ContactsHelper */ = {
@@ -1267,6 +1260,16 @@
 				E3CEA5C423CC731000DD213F /* New Group */,
 			);
 			path = "Client Information";
+			sourceTree = "<group>";
+		};
+		E361182923F6BEC800E0AF02 /* Factory Class */ = {
+			isa = PBXGroup;
+			children = (
+				E361182A23F6BEC800E0AF02 /* UIFactory.swift */,
+				E361182B23F6BEC800E0AF02 /* ApplicationFactory.swift */,
+				E361182C23F6BEC800E0AF02 /* UserFactory.swift */,
+			);
+			path = "Factory Class";
 			sourceTree = "<group>";
 		};
 		E3CD500B23713C3600DE106E /* LoginModule */ = {
@@ -1696,7 +1699,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		E3CD5039237145FE00DE106E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1741,6 +1744,7 @@
 				E30342D7235EE15800E0BF0A /* StorageType.swift in Sources */,
 				E30342BC235EE15800E0BF0A /* HTTPMethod.swift in Sources */,
 				E30342C3235EE15800E0BF0A /* AnyCodable.swift in Sources */,
+				E361182F23F6BEC800E0AF02 /* UserFactory.swift in Sources */,
 				E3CEA5CE23CC736F00DD213F /* AddNewNoteModels.swift in Sources */,
 				E30341DC235EE14000E0BF0A /* MoreModuleWorker.swift in Sources */,
 				E30342F8235EE58300E0BF0A /* AppointmentVC.swift in Sources */,
@@ -1766,6 +1770,7 @@
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
 				E3DB6857238CEE4A00CC569D /* TermsAndConditionsModels.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
+				E361182D23F6BEC800E0AF02 /* UIFactory.swift in Sources */,
 				E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */,
 				E306016C237EA49200988EEC /* SelectGenderCell.swift in Sources */,
 				E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */,
@@ -1779,6 +1784,7 @@
 				E3DB6855238CEE4A00CC569D /* TermsAndConditionsInteractor.swift in Sources */,
 				E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */,
 				E30342D4235EE15800E0BF0A /* ListPickerDialog.swift in Sources */,
+				E361182E23F6BEC800E0AF02 /* ApplicationFactory.swift in Sources */,
 				E30601B3237EA88200988EEC /* PointsCell.swift in Sources */,
 				E3034308235F1AF100E0BF0A /* SOSPopUpVC.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
@@ -1824,7 +1830,6 @@
 				E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */,
 				E3034301235EE5D900E0BF0A /* ReportsWorker.swift in Sources */,
 				E30341E6235EE14000E0BF0A /* MoreModuleInteractor.swift in Sources */,
-				E30342D8235EE15800E0BF0A /* CoreDataStack.swift in Sources */,
 				E30601D4237EAA7A00988EEC /* ClientInformationWorker.swift in Sources */,
 				E3034300235EE5D900E0BF0A /* ReportsPresenter.swift in Sources */,
 				E30342F7235EE58300E0BF0A /* AppointmentModels.swift in Sources */,
@@ -1874,7 +1879,6 @@
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,
-				E30340B7235EE11C00E0BF0A /* LogoutCell.swift in Sources */,
 				E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */,
 				E30342C2235EE15800E0BF0A /* AnyDecodable.swift in Sources */,
 			);

@@ -14,7 +14,7 @@ protocol ProfileCellDelegate: class {
 
 class MyProfileMultiOptionCell: UITableViewCell {
 
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak private var lblTitle: UILabel!
     weak var delegate: ProfileCellDelegate?
     var indexPath: IndexPath?
     var listingType: ListingType = .services

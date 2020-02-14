@@ -11,11 +11,11 @@ import Cosmos
 
 class EmployeeCell: UITableViewCell {
 
-    @IBOutlet weak var lblEmplyeeName: UILabel!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var lblLevel: UILabel!
-    @IBOutlet weak var ratingsView: CosmosView!
-    @IBOutlet weak var lblStatus: UILabel!
+    @IBOutlet weak private var lblEmplyeeName: UILabel!
+    @IBOutlet weak private var statusView: UIView!
+    @IBOutlet weak private var lblLevel: UILabel!
+    @IBOutlet weak private var ratingsView: CosmosView!
+    @IBOutlet weak private var lblStatus: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

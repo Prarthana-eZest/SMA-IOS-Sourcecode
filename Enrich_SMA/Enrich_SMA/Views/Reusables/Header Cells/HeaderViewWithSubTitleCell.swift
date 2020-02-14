@@ -14,7 +14,7 @@ class HeaderViewWithSubTitleCell: UITableViewCell {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var btnViewAll: UIButton!
 
-    var delegate: HeaderDelegate?
+    weak var delegate: HeaderDelegate?
     var identifier: SectionIdentifier?
 
     override func awakeFromNib() {

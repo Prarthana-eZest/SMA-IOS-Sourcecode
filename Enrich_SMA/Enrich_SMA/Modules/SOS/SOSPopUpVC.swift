@@ -10,13 +10,13 @@ import UIKit
 
 class SOSPopUpVC: UIViewController {
 
-    @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var lblUserName: UILabel!
-    @IBOutlet weak var lblLevel: UILabel!
-    @IBOutlet weak var btnMobileNo: UIButton!
-    @IBOutlet weak var lblAddress: UILabel!
-    @IBOutlet weak var txtfMessage: UITextField!
-    @IBOutlet weak var btnOk: UIButton!
+    @IBOutlet weak private var profilePicture: UIImageView!
+    @IBOutlet weak private var lblUserName: UILabel!
+    @IBOutlet weak private var lblLevel: UILabel!
+    @IBOutlet weak private var btnMobileNo: UIButton!
+    @IBOutlet weak private var lblAddress: UILabel!
+    @IBOutlet weak private var txtfMessage: UITextField!
+    @IBOutlet weak private var btnOk: UIButton!
 
     var viewDismissBlock: ((Bool) -> Void)?
 
@@ -31,7 +31,7 @@ class SOSPopUpVC: UIViewController {
 
     @IBAction func actionOK(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        viewDismissBlock!(true)
+        viewDismissBlock?(true)
     }
 
     /*

@@ -19,7 +19,7 @@ protocol DashboardDisplayLogic: class {
 
 class DashboardVC: UIViewController, DashboardDisplayLogic {
     var interactor: DashboardBusinessLogic?
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak private var tableView: UITableView!
 
     // MARK: Object lifecycle
 

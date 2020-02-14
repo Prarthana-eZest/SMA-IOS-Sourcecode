@@ -10,9 +10,9 @@ import UIKit
 
 class UserRatingCell: UITableViewCell {
 
-    @IBOutlet weak var lblRating: UILabel!
-    @IBOutlet weak var lblCustomerComments: UILabel!
-    @IBOutlet weak var lblcustomerName: UILabel!
+    @IBOutlet weak private var lblRating: UILabel!
+    @IBOutlet weak private var lblCustomerComments: UILabel!
+    @IBOutlet weak private var lblcustomerName: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

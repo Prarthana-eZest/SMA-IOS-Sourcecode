@@ -30,9 +30,10 @@ extension UINavigationController {
     func addCustomBackButton(title: String = "") {
 
         var backButtonTitle: String = ""
-        if (title.count <= navigationBarTitleTrimTo) {
+        if title.count <= navigationBarTitleTrimTo {
             backButtonTitle = title
-        } else {
+        }
+        else {
             backButtonTitle = String(title.prefix(navigationBarTitleTrimTo)) + "..."
         }
 

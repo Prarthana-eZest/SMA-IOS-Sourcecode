@@ -42,18 +42,18 @@ open class DatePickerDialog: UIView {
     func setupView() {
         self.dialogView = createContainerView()
 
-        self.dialogView!.layer.shouldRasterize = true
-        self.dialogView!.layer.rasterizationScale = UIScreen.main.scale
+        self.dialogView?.layer.shouldRasterize = true
+        self.dialogView?.layer.rasterizationScale = UIScreen.main.scale
 
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
 
-        self.dialogView!.layer.opacity = 0.5
-        self.dialogView!.layer.transform = CATransform3DMakeScale(1.3, 1.3, 1)
+        self.dialogView?.layer.opacity = 0.5
+        self.dialogView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 1)
 
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
 
-        self.addSubview(self.dialogView!)
+        self.addSubview(self.dialogView ?? UIView())
     }
 
     /// Handle device orientation changes
@@ -65,7 +65,9 @@ open class DatePickerDialog: UIView {
     }
 
     /// Create the dialog view, and animate opening the dialog
-    open func show(_ title: String, doneButtonTitle: String = "Done", cancelButtonTitle: String = "Cancel", defaultDate: Date = Date(), minimumDate: Date? = nil, maximumDate: Date? = nil, datePickerMode: UIDatePicker.Mode = .dateAndTime, callback: @escaping DatePickerCallback) {
+    open func show(_ title: String, doneButtonTitle: String = "Done", cancelButtonTitle: String = "Cancel",
+                   defaultDate: Date = Date(), minimumDate: Date? = nil, maximumDate: Date? = nil,
+                   datePickerMode: UIDatePicker.Mode = .dateAndTime, callback: @escaping DatePickerCallback) {
         self.titleLabel.text = title
         self.doneButton.setTitle(doneButtonTitle, for: .normal)
         if showCancelButton {
@@ -95,20 +97,22 @@ open class DatePickerDialog: UIView {
             options: .curveEaseInOut,
             animations: {
                 self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-                self.dialogView!.layer.opacity = 1
-                self.dialogView!.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                self.dialogView?.layer.opacity = 1
+                self.dialogView?.layer.transform = CATransform3DMakeScale(1, 1, 1)
             }
         )
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     /// Dialog close animation then cleaning and removing the view from the parent
     private func close() {
-        NotificationCenter.default.removeObserver(self)
 
         let currentTransform = self.dialogView.layer.transform
 
         let startRotation = (self.value(forKeyPath: "layer.transform.rotation.z") as? NSNumber) as? Double ?? 0.0
-        let rotation = CATransform3DMakeRotation((CGFloat)(-startRotation + M_PI * 270 / 180), 0, 0, 0)
+        let rotation = CATransform3DMakeRotation((CGFloat)(-startRotation + Double.pi * 270 / 180), 0, 0, 0)
 
         self.dialogView.layer.transform = CATransform3DConcat(rotation, CATransform3DMakeScale(1, 1, 1))
         self.dialogView.layer.opacity = 1
@@ -144,7 +148,6 @@ open class DatePickerDialog: UIView {
         self.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
 
         // This is the dialog's container; we attach the custom content and the buttons to this one
-//        let dialogContainer = UIView(frame: CGRect(x: (screenSize.width - dialogSize.width) / 2, y: (screenSize.height - dialogSize.height) / 2, width: dialogSize.width, height: dialogSize.height))
         let y: CGFloat = screenSize.height - dialogSize.height //(screenSize.height - dialogSize.height) / 2
         let x: CGFloat = 0.0//(screenSize.width - dialogSize.width) / 2
         let dialogContainer = UIView(frame: CGRect(x: x, y: y, width: screenSize.width, height: dialogSize.height))
@@ -170,9 +173,9 @@ open class DatePickerDialog: UIView {
         dialogContainer.layer.shadowPath = UIBezierPath(roundedRect: dialogContainer.bounds, cornerRadius: dialogContainer.layer.cornerRadius).cgPath
 
         // There is a line above the button
-//        let lineView = UIView(frame: CGRect(x: 0, y: dialogContainer.bounds.size.height - kDatePickerDialogDefaultButtonHeight - kDatePickerDialogDefaultButtonSpacerHeight, width: dialogContainer.bounds.size.width, height: kDatePickerDialogDefaultButtonSpacerHeight))
-
-        let lineView = UIView(frame: CGRect(x: 0, y: kDatePickerDialogDefaultButtonHeight - kDatePickerDialogDefaultButtonSpacerHeight, width: dialogContainer.bounds.size.width, height: kDatePickerDialogDefaultButtonSpacerHeight))
+        let lineView = UIView(frame: CGRect(x: 0, y: kDatePickerDialogDefaultButtonHeight - kDatePickerDialogDefaultButtonSpacerHeight,
+                                            width: dialogContainer.bounds.size.width,
+                                            height: kDatePickerDialogDefaultButtonSpacerHeight))
 
         lineView.backgroundColor = UIColor(red: 198 / 255, green: 198 / 255, blue: 198 / 255, alpha: 1)
         dialogContainer.addSubview(lineView)
@@ -254,7 +257,8 @@ open class DatePickerDialog: UIView {
     @objc func buttonTapped(sender: UIButton!) {
         if sender.tag == kDatePickerDialogDoneButtonTag {
             self.callback?(self.datePicker.date)
-        } else {
+        }
+        else {
             self.callback?(nil)
         }
 

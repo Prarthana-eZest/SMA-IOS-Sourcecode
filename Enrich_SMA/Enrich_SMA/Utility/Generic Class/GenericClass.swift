@@ -44,9 +44,10 @@ class GenericClass: NSObject {
         do {
             let jsonData = try jsonEncoder.encode(obj)
             let jsonString = String(data: jsonData, encoding: .utf8)
-            return jsonString!
+            return jsonString ?? ""
 
-        } catch {
+        }
+        catch {
 
         }
         return nil
@@ -54,7 +55,8 @@ class GenericClass: NSObject {
     func convertJSONToData(json: Any) -> Data? {
         do {
             return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
-        } catch let myJSONError {
+        }
+        catch let myJSONError {
             print(myJSONError)
         }
         return nil
@@ -148,11 +150,13 @@ extension GenericClass {
                     }
                 }
                 //  ---------- SORT CONDITIONS -----
-            } else if model.field == "sort" {
+            }
+            else if model.field == "sort" {
                 strFinal = strFinal.isEmpty ? (strFinal + "?") : (strFinal + "&")
 
                 strFinal +=  "\(GenericClass.sharedInstance.getSortingFieldKey())=\(model.type ?? "")" + "&\(GenericClass.sharedInstance.getSortingDirectionKey())=\(model.value ?? "")"
-            } else {
+            }
+            else {
                 strFinal = strFinal.isEmpty ? (strFinal + "?") : (strFinal + "&")
 
                 // GET KEYS

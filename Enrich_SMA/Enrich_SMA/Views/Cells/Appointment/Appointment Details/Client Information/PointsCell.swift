@@ -10,7 +10,7 @@ import UIKit
 
 class PointsCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +21,10 @@ class PointsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configureCell(title: String) {
+        titleLabel.text = title
     }
 
 }

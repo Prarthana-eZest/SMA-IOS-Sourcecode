@@ -12,8 +12,10 @@ public enum QRCodeGeneratorError: CustomStringConvertible {
     public var description: String {
         switch self {
         // Use Internationalization, as appropriate.
-        case.QRTextNotProvided: return "QrCode text not provided."
-        case.QRCodeNotCreated: return "QrImage not created.Please try again."
+        case.QRTextNotProvided:
+            return "QrCode text not provided."
+        case.QRCodeNotCreated:
+            return "QrImage not created.Please try again."
         }
     }
 }

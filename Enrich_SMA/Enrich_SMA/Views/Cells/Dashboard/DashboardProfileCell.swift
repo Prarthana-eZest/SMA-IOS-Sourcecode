@@ -41,27 +41,21 @@ class DashboardProfileCell: UITableViewCell {
     //        lblRating.text = "\(model.rating)/5"
 
     func configureCell() {
-        
+
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             lblUserName.text = ("\(userData.firstname ?? "") \(userData.lastname ?? "")").capitalized
             btnSelectALocation.setTitle(userData.base_salon_name ?? "", for: .normal)
-            //            let rating = userData.rating ?? 0
-            //            if rating == 0{
-            //                lblRating.text = "0/5"
-            //            }else{
-            //                lblRating.text = "\(rating)/5"
-            //            }
-
             lblDesignation.text = (userData.designation ?? "-").capitalized
 
             profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
-
-            let url = URL(string: userData.profile_pic ?? "" )
             profilePicture.kf.indicatorType = .activity
+
             let defaultImage = UIImage(named: "defaultProfile")
-            if let imageurl = url {
+            if let url = userData.profile_pic,
+                let imageurl = URL(string: url) {
                 profilePicture.kf.setImage(with: imageurl, placeholder: defaultImage, options: nil, progressBlock: nil, completionHandler: nil)
-            } else {
+            }
+            else {
                 profilePicture.image = defaultImage
             }
         }

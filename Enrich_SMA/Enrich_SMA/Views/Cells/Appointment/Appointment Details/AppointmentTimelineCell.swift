@@ -10,12 +10,12 @@ import UIKit
 
 class AppointmentTimelineCell: UITableViewCell {
 
-    @IBOutlet weak var lblTime: UILabel!
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblSubTitle: UILabel!
-    @IBOutlet weak var roundView: UIView!
-    @IBOutlet weak var endView: UIView!
-    @IBOutlet weak var lineView: UIView!
+    @IBOutlet weak private var lblTime: UILabel!
+    @IBOutlet weak private var lblTitle: UILabel!
+    @IBOutlet weak private var lblSubTitle: UILabel!
+    @IBOutlet weak private var roundView: UIView!
+    @IBOutlet weak private var endView: UIView!
+    @IBOutlet weak private var lineView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +37,8 @@ class AppointmentTimelineCell: UITableViewCell {
             self.endView.isHidden = true
             self.roundView.isHidden = false
             self.lineView.backgroundColor = .lightGray
-        } else {
+        }
+        else {
             self.contentView.alpha = 1
             self.roundView.isHidden = true
             self.endView.isHidden = false

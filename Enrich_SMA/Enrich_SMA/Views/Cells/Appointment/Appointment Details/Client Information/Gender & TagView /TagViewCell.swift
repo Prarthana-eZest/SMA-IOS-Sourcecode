@@ -15,12 +15,12 @@ protocol TagViewSelectionDelegate: class {
 
 class TagViewCell: UITableViewCell, TagListViewDelegate {
 
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var tagListView: TagListView!
+    @IBOutlet weak private var lblTitle: UILabel!
+    @IBOutlet weak private var tagListView: TagListView!
 
     var indexPath: IndexPath?
     var isSingleSelection = false
-    var delegate: TagViewSelectionDelegate?
+    weak var delegate: TagViewSelectionDelegate?
     var tagViewModel: TagViewModel?
 
     override func awakeFromNib() {
@@ -64,7 +64,8 @@ class TagViewCell: UITableViewCell, TagListViewDelegate {
             self.tagViewModel?.tagView.forEach {$0.isSelected = false}
             let tags = self.tagViewModel?.tagView.filter {$0.text == title}
             tags?.first?.isSelected = status
-        } else {
+        }
+        else {
             let tags = self.tagViewModel?.tagView.filter {$0.text == title}
             tags?.first?.isSelected = status
         }

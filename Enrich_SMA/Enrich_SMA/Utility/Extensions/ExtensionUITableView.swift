@@ -26,7 +26,7 @@ extension UITableView {
         messageLabel.textColor = .black
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
-        messageLabel.font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: is_iPAD ? 24.0 : 16.0)!
+        messageLabel.font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: is_iPAD ? 24.0 : 16.0) ?? UIFont.systemFont(ofSize: is_iPAD ? 24.0 : 16.0)
         messageLabel.sizeToFit()
 
         self.backgroundView = messageLabel

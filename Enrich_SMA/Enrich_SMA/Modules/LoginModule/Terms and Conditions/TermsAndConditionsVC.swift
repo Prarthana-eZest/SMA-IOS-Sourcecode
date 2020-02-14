@@ -111,7 +111,7 @@ class TermsAndConditionsVC: UIViewController, UITextViewDelegate, TermsAndCondit
 
             let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 20)
             let attributes: [NSAttributedString.Key: Any] = [
-                .font: font!,
+                .font: font ?? UIFont.systemFont(ofSize: 20),
                 .foregroundColor: UIColor.darkGray
             ]
             let text = obj.items?.first?.content ?? ""
