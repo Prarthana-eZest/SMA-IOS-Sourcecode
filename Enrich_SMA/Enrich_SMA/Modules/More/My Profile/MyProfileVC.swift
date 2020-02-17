@@ -275,8 +275,7 @@ extension MyProfileVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else {
             return UITableViewCell()
         }
-        cell.titleLabel.text = profileSections[section - 1].title
-        cell.viewAllButton.isHidden = true
+        cell.configureHeader(title: profileSections[section - 1].title, hideViewAllButton: true)
         cell.backgroundColor = .white
 
         return cell

@@ -10,9 +10,9 @@ import UIKit
 
 class HeaderViewWithSubTitleCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
-    @IBOutlet weak var btnViewAll: UIButton!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var subTitleLabel: UILabel!
+    @IBOutlet weak private var btnViewAll: UIButton!
 
     weak var delegate: HeaderDelegate?
     var identifier: SectionIdentifier?
@@ -26,6 +26,12 @@ class HeaderViewWithSubTitleCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configureHeader(title: String, subTitle: String, hideViewButton: Bool) {
+        titleLabel.text = title
+        subTitleLabel.text = subTitle
+        btnViewAll.isHidden = hideViewButton
     }
 
     @IBAction func actionViewAll(_ sender: Any) {

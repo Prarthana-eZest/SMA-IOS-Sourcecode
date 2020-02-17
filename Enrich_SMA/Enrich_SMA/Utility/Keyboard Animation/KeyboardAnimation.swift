@@ -170,10 +170,8 @@ extension UIView {
             return self
         }
 
-        for view in self.subviews {
-            if view.isFirstResponder {
-                return view
-            }
+        for view in (self.subviews.filter { $0.isFirstResponder }) {
+            return view
         }
         return nil
     }

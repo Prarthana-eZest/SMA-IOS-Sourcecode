@@ -136,7 +136,7 @@ class CustomTextField: UITextField {
         }
 
         // Placeholder text color
-        attributedPlaceholder = NSAttributedString(string: placeholder != nil ?  placeholder! : "", attributes: [NSAttributedString.Key.foregroundColor: color])
+        attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: color])
     }
 
 //    var padding: UIEdgeInsets {

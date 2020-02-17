@@ -10,9 +10,9 @@ import UIKit
 
 class HeaderViewWithAdCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var viewAllButton: UIButton!
-    @IBOutlet weak var addTextLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var viewAllButton: UIButton!
+    @IBOutlet weak private var addTextLabel: UILabel!
 
     weak var delegate: HeaderDelegate?
     var identifier: SectionIdentifier?
@@ -28,6 +28,12 @@ class HeaderViewWithAdCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configureHeader(title: String, addText: String, hideViewButton: Bool) {
+        titleLabel.text = title
+        addTextLabel.text = addText
+        viewAllButton.isHidden = hideViewButton
     }
 
     @IBAction func actionViewAll(_ sender: Any) {

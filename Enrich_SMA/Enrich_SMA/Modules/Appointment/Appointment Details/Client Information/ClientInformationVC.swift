@@ -345,9 +345,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.headerViewWithTitleCell) as? HeaderViewWithTitleCell else {
                     return UITableViewCell()
                 }
-                cell.titleLabel.text = data[indexPath.section].title//indexPath.section == 0 ? "Preference" : "Client Notes"
-                cell.viewAllButton.isHidden = true
-                cell.viewAllButton.isHidden = true
+                cell.configureHeader(title: data[indexPath.section].title, hideViewAllButton: true)
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell

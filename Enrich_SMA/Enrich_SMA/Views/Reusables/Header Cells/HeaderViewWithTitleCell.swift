@@ -14,8 +14,8 @@ protocol HeaderDelegate: class {
 
 class HeaderViewWithTitleCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var viewAllButton: UIButton!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var viewAllButton: UIButton!
 
     weak var delegate: HeaderDelegate?
     var identifier: SectionIdentifier?
@@ -29,6 +29,11 @@ class HeaderViewWithTitleCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configureHeader(title: String, hideViewAllButton: Bool) {
+        titleLabel.text = title
+        viewAllButton.isHidden = hideViewAllButton
     }
 
     @IBAction func actionViewAll(_ sender: Any) {
