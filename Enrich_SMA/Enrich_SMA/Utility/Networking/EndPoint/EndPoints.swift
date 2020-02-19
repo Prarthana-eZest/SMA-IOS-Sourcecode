@@ -82,4 +82,6 @@ public enum ConstantAPINames: String {
     case clientNotes = "rest/V1/customer/ratingandnotes?is_custom=true"
     case addClientNote = "/rest/V1/customer/addnotes"
 
+    // Notifications
+    case getNotificationList = "rest/V1/notifications/get?is_custom=true"
 }

@@ -13,13 +13,16 @@
 import UIKit
 
 protocol NotificationsDisplayLogic: class {
-    func displaySomething(viewModel: Notifications.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
 }
 
 class NotificationsVC: UIViewController, NotificationsDisplayLogic {
     var interactor: NotificationsBusinessLogic?
 
     @IBOutlet weak private var tableView: UITableView!
+
+    private var arrNotificationList = [Notifications.MyNotificationList.MyNotificationListItems]()
 
     // MARK: Object lifecycle
 
@@ -48,7 +51,7 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        callToGetNotificationList()
         tableView.register(UINib(nibName: CellIdentifier.notificationDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.notificationDetailsCell)
     }
 
@@ -61,16 +64,34 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic {
 
     // MARK: Do something
 
-    //@IBOutlet weak var nameTextField: UITextField!
-
-    func doSomething() {
-        let request = Notifications.Something.Request()
-        interactor?.doSomething(request: request)
+    func callToGetNotificationList() {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        interactor?.getNotifications()
     }
 
-    func displaySomething(viewModel: Notifications.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+}
+
+extension NotificationsVC {
+
+    func displaySuccess<T: Decodable>(viewModel: T) {
+        EZLoadingActivity.hide()
+        if let model = viewModel as? Notifications.MyNotificationList.Response {
+            if let status = model.status, status == true {
+                arrNotificationList.removeAll()
+                arrNotificationList = model.data ?? []
+                self.tableView.reloadData()
+            }
+            else // Failure
+            {
+                self.showToast(alertTitle: alertTitle, message: model.message ?? "", seconds: toastMessageDuration)
+            }
+        }
     }
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
+    }
+
 }
 
 extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
@@ -80,7 +101,7 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return arrNotificationList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,8 +109,9 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
         guard let notificationCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.notificationDetailsCell, for: indexPath) as? NotificationDetailsCell else {
             return UITableViewCell()
         }
-        notificationCell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        notificationCell.separatorInset = UIEdgeInsets(top: 0, left: is_iPAD ? 30 : 20, bottom: 0, right: is_iPAD ? 30 : 20)
         notificationCell.selectionStyle = .none
+        notificationCell.configureNotification(model: arrNotificationList[indexPath.row])
 
         return notificationCell
     }

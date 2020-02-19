@@ -13,6 +13,29 @@
 import UIKit
 
 class NotificationsWorker {
-  func doSomeWork() {
-  }
+
+    let networkLayer = NetworkLayerAlamofire()
+    var presenter: NotificationsPresentationLogic?
+
+    func getNotificationList() {
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (Notifications.MyNotificationList.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        var deviceToken: String = ""
+        if  let deviceTokenKey = UserDefaults.standard.string(forKey: UserDefauiltsKeys.k_key_FCM_PushNotification) {
+            deviceToken = deviceTokenKey
+        }
+
+        let strURL: String = ConstantAPINames.getNotificationList.rawValue
+        //strURL = String(format: "\(strURL)&device_id=%@",deviceToken )
+        self.networkLayer.get(urlString: strURL, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                              successHandler: successHandler, errorHandler: errorHandler)
+    }
 }

@@ -9,6 +9,12 @@
 import UIKit
 
 class NotificationDetailsCell: UITableViewCell {
+    @IBOutlet weak private var lblTypeOfReminder: UILabel!
+    @IBOutlet weak private var lblReminderTitle: UILabel!
+    @IBOutlet weak private var btnDelete: UIButton!
+    @IBOutlet weak private var lblNotifcationDesicription: UILabel!
+    @IBOutlet weak private var lblLocationForWithTime: UILabel!
+    @IBOutlet weak private var lblTimeAgo: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +25,13 @@ class NotificationDetailsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configureNotification(model: Notifications.MyNotificationList.MyNotificationListItems ) {
+        lblTypeOfReminder.text = model.module?.uppercased() ?? ""
+        lblReminderTitle.text = model.subject ?? ""
+        lblNotifcationDesicription.text = model.message ?? ""
+
     }
 
 }

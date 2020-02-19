@@ -13,16 +13,19 @@
 import UIKit
 
 protocol NotificationsPresentationLogic {
-  func presentSomething(response: Notifications.Something.Response)
+    func presentSuccess(response: Notifications.MyNotificationList.Response)
+    func presentError(responseError: String?)
 }
 
 class NotificationsPresenter: NotificationsPresentationLogic {
-  weak var viewController: NotificationsDisplayLogic?
+    weak var viewController: NotificationsDisplayLogic?
 
-  // MARK: Do something
+    // MARK: Do something
 
-  func presentSomething(response: Notifications.Something.Response) {
-    let viewModel = Notifications.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentSuccess<T: Decodable>(response: T) {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    func presentError(responseError: String? ) {
+        viewController?.displayError(errorMessage: responseError)
+    }
 }

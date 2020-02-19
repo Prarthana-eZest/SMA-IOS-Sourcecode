@@ -24,8 +24,6 @@
 		E30340B0235EE11C00E0BF0A /* MyProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034027235EE11B00E0BF0A /* MyProfileHeaderCell.swift */; };
 		E30340B1235EE11C00E0BF0A /* MyProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034028235EE11B00E0BF0A /* MyProfileCell.swift */; };
 		E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E303402E235EE11B00E0BF0A /* NotificationCell.swift */; };
-		E30340B8235EE11C00E0BF0A /* NotificationDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3034031235EE11B00E0BF0A /* NotificationDetailsCell.xib */; };
-		E30340B9235EE11C00E0BF0A /* NotificationDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */; };
 		E30340BA235EE11C00E0BF0A /* EmployeeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3034034235EE11B00E0BF0A /* EmployeeCell.xib */; };
 		E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034035235EE11B00E0BF0A /* EmployeeCell.swift */; };
 		E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3034038235EE11B00E0BF0A /* DashboardProfileCell.swift */; };
@@ -184,6 +182,8 @@
 		E31F816723840E8E00089572 /* MyProfileMultiOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F816523840E8D00089572 /* MyProfileMultiOptionCell.swift */; };
 		E31F816823840E8E00089572 /* MyProfileMultiOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31F816623840E8E00089572 /* MyProfileMultiOptionCell.xib */; };
 		E33BA97523FD2E5B00AABFE2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E33BA97423FD2E5B00AABFE2 /* GoogleService-Info.plist */; };
+		E33BA97C23FD4CE400AABFE2 /* NotificationDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E33BA97A23FD4CE400AABFE2 /* NotificationDetailsCell.xib */; };
+		E33BA97D23FD4CE400AABFE2 /* NotificationDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33BA97B23FD4CE400AABFE2 /* NotificationDetailsCell.swift */; };
 		E361182D23F6BEC800E0AF02 /* UIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361182A23F6BEC800E0AF02 /* UIFactory.swift */; };
 		E361182E23F6BEC800E0AF02 /* ApplicationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361182B23F6BEC800E0AF02 /* ApplicationFactory.swift */; };
 		E361182F23F6BEC800E0AF02 /* UserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E361182C23F6BEC800E0AF02 /* UserFactory.swift */; };
@@ -281,8 +281,6 @@
 		E3034027235EE11B00E0BF0A /* MyProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileHeaderCell.swift; sourceTree = "<group>"; };
 		E3034028235EE11B00E0BF0A /* MyProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileCell.swift; sourceTree = "<group>"; };
 		E303402E235EE11B00E0BF0A /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		E3034031235EE11B00E0BF0A /* NotificationDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationDetailsCell.xib; sourceTree = "<group>"; };
-		E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsCell.swift; sourceTree = "<group>"; };
 		E3034034235EE11B00E0BF0A /* EmployeeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployeeCell.xib; sourceTree = "<group>"; };
 		E3034035235EE11B00E0BF0A /* EmployeeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeCell.swift; sourceTree = "<group>"; };
 		E3034038235EE11B00E0BF0A /* DashboardProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardProfileCell.swift; sourceTree = "<group>"; };
@@ -442,6 +440,8 @@
 		E31F816623840E8E00089572 /* MyProfileMultiOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProfileMultiOptionCell.xib; sourceTree = "<group>"; };
 		E33BA97323FD1FF500AABFE2 /* Enrich_SMA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Enrich_SMA.entitlements; sourceTree = "<group>"; };
 		E33BA97423FD2E5B00AABFE2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E33BA97A23FD4CE400AABFE2 /* NotificationDetailsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationDetailsCell.xib; sourceTree = "<group>"; };
+		E33BA97B23FD4CE400AABFE2 /* NotificationDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsCell.swift; sourceTree = "<group>"; };
 		E361182A23F6BEC800E0AF02 /* UIFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFactory.swift; sourceTree = "<group>"; };
 		E361182B23F6BEC800E0AF02 /* ApplicationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationFactory.swift; sourceTree = "<group>"; };
 		E361182C23F6BEC800E0AF02 /* UserFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFactory.swift; sourceTree = "<group>"; };
@@ -664,8 +664,8 @@
 		E3034030235EE11B00E0BF0A /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				E3034032235EE11B00E0BF0A /* NotificationDetailsCell.swift */,
-				E3034031235EE11B00E0BF0A /* NotificationDetailsCell.xib */,
+				E33BA97B23FD4CE400AABFE2 /* NotificationDetailsCell.swift */,
+				E33BA97A23FD4CE400AABFE2 /* NotificationDetailsCell.xib */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1514,7 +1514,7 @@
 				E30342EB235EE3C100E0BF0A /* Appointment.storyboard in Resources */,
 				E3034261235EE14700E0BF0A /* FuturaPTHeavy.otf in Resources */,
 				E3B2312D238FAB2B00C17B56 /* AddNotesSingatureCell.xib in Resources */,
-				E30340B8235EE11C00E0BF0A /* NotificationDetailsCell.xib in Resources */,
+				E33BA97C23FD4CE400AABFE2 /* NotificationDetailsCell.xib in Resources */,
 				E30342E7235EE29200E0BF0A /* Dashboard.storyboard in Resources */,
 				E3034253235EE14700E0BF0A /* FuturaPTCondMedium.otf in Resources */,
 				E3034256235EE14700E0BF0A /* FuturaPTBold.otf in Resources */,
@@ -1811,7 +1811,6 @@
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
 				E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */,
 				E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */,
-				E30340B9235EE11C00E0BF0A /* NotificationDetailsCell.swift in Sources */,
 				E30601BE237EAA4D00988EEC /* RevenueInteractor.swift in Sources */,
 				E30341E3235EE14000E0BF0A /* MyProfilePresenter.swift in Sources */,
 				E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */,
@@ -1868,6 +1867,7 @@
 				E30342D3235EE15800E0BF0A /* CustomTabbarController.swift in Sources */,
 				E30341ED235EE14000E0BF0A /* NotificationsModels.swift in Sources */,
 				E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */,
+				E33BA97D23FD4CE400AABFE2 /* NotificationDetailsCell.swift in Sources */,
 				E30341EE235EE14000E0BF0A /* NotificationsPresenter.swift in Sources */,
 				E30342C5235EE15800E0BF0A /* UserDefaultKeys.swift in Sources */,
 				E3CEA5BD23CC57B200DD213F /* AllReviewsModulePresenter.swift in Sources */,
