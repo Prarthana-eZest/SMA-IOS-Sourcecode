@@ -30,4 +30,7 @@ enum UserDefauiltsKeys {
     static let k_key_GuestQuoteIdForCart = "k_key_GuestQuoteIdForCart"
     static let k_key_CustomerQuoteIdForCart = "k_key_CustomerQuoteIdForCart"
 
+    // Push Notification
+    static let k_key_FCM_PushNotification = "k_key_FCM_PushNotification"
+
 }
