@@ -19,6 +19,7 @@ class NotificationDetailsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        lblLocationForWithTime.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,7 +32,9 @@ class NotificationDetailsCell: UITableViewCell {
         lblTypeOfReminder.text = model.module?.uppercased() ?? ""
         lblReminderTitle.text = model.subject ?? ""
         lblNotifcationDesicription.text = model.message ?? ""
-
+        if let orderDate = model.created_at, !orderDate.isEmpty {
+            let date = orderDate.getFormattedDate()
+            lblTimeAgo.text = date.timeAgoSinceDate(date: date as NSDate, numericDates: true)
+        }
     }
-
 }

@@ -32,7 +32,7 @@ class NotificationCell: UITableViewCell {
         notificationView.layer.cornerRadius = notificationView.frame.size.width * 0.5
         notificationView.layer.masksToBounds = true
         lblNotificationCount.text = "\(notificationCount)"
-        notificationView.isHidden = !(notificationCount > 0)
+        notificationView.isHidden = true//!(notificationCount > 0)
     }
 
 }

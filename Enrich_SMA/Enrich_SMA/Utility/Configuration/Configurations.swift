@@ -18,6 +18,10 @@ enum SectionIdentifier: String {
     case consulationInfo = "Consultation"
     case memebershipInfo = "Membership"
     case historyInfo = "History"
+
+    case dashboardProfile = "Dashboard Profile"
+    case targetRevenue = "Your Target Revenue"
+
 }
 
 enum CellIdentifier {

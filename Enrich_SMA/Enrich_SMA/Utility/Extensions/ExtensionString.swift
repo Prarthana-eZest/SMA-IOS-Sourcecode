@@ -162,4 +162,21 @@ extension String {
         let s = dateFormatter.date(from: self)
         return s
     }
+
+    func getFormattedDatehh() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" // This formate is input formated .
+
+        if let formateDate = dateFormatter.date(from: self) {
+            return formateDate
+        }
+        else {
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss" // This formate is input formated .
+            if let formateDate = dateFormatter.date(from: self) {
+                return formateDate
+            }
+
+        }
+        return Date()
+    }
 }

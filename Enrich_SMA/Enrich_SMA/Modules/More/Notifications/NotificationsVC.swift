@@ -21,6 +21,10 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic {
     var interactor: NotificationsBusinessLogic?
 
     @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var cartCountView: UIView!
+    @IBOutlet weak private var lblMyCartCount: UILabel!
+    @IBOutlet weak private var btnBack: UIButton!
+    @IBOutlet weak private var lblBackTitle: LabelButton!
 
     private var arrNotificationList = [Notifications.MyNotificationList.MyNotificationListItems]()
 
@@ -57,9 +61,26 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-        self.navigationController?.addCustomBackButton(title: "Notifications")
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.addCustomBackButton(title: "")
+        cartCountView.layer.cornerRadius = cartCountView.frame.size.height * 0.5
+        cartCountView.layer.masksToBounds = true
+
+        lblMyCartCount.text = "0"
+
+        lblBackTitle.onClick = {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+
+    @IBAction func actionBackButton(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
 
     // MARK: Do something
@@ -79,6 +100,7 @@ extension NotificationsVC {
             if let status = model.status, status == true {
                 arrNotificationList.removeAll()
                 arrNotificationList = model.data ?? []
+                lblMyCartCount.text = arrNotificationList.isEmpty ? "0" : String(format: "%d", arrNotificationList.count)
                 self.tableView.reloadData()
             }
             else // Failure
@@ -97,7 +119,14 @@ extension NotificationsVC {
 extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if arrNotificationList.isEmpty {
+            tableView.setEmptyMessage(TableViewNoData.tableViewNoNotificationsAvailable)
+            return 0
+        }
+        else {
+            tableView.restore()
+            return 1
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

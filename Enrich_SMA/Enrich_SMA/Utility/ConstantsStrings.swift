@@ -39,6 +39,24 @@ class ConstantsStrings: NSObject {
 
 }
 
+enum TableViewNoData {
+    static let tableViewNoDataAvailable = "No data available"
+    static let tableViewNoSalonAvailable = "No salons available"
+    static let tableViewNoServiceAvailable = "No services available"
+    static let tableViewNoAddOnsAvailable = "No add-ons available"
+    static let tableViewNoReviewsAvailable = "No reviews available"
+    static let tableViewNoAddressAvailable = "No addresses available"
+    static let tableViewNoGiftSentAvailable = "No gifts sent data available"
+    static let tableViewNoGiftReceivedAvailable = "No gifts received data available"
+    static let tableViewNoPastBookingsAvailable = "No bookings available"
+    static let tableViewNoValuePackagesAvailable = "No value package data available"
+    static let tableViewNoServicePackagesAvailable = "No service package data available"
+    static let tableViewNoReferalPointsAvailable = "No referral points available"
+    static let tableViewNoOrdersAvailable = "No orders available"
+    static let tableViewNoNotificationsAvailable = "No notifications available"
+
+}
+
 enum FontName: String {
     case FuturaPTBook = "FuturaPT-Book"
     case FuturaPTDemi = "FuturaPT-Demi"

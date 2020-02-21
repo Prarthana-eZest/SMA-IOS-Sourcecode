@@ -21,6 +21,8 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
     var interactor: DashboardBusinessLogic?
     @IBOutlet weak private var tableView: UITableView!
 
+    var sections = [SectionConfiguration]()
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -73,6 +75,14 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         getProfileData()
     }
 
+    func configureAppointmentData() {
+        sections.removeAll()
+        sections.append(configureSection(idetifier: .dashboardProfile, items: 1, data: []))
+        sections.append(configureSection(idetifier: .targetRevenue, items: 1, data: []))
+        tableView.reloadData()
+        print("Reload tableview")
+    }
+
     // MARK: Do something
 
     //@IBOutlet weak var nameTextField: UITextField!
@@ -98,8 +108,8 @@ extension DashboardVC {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
                 userDefaults.synchronize()
+                configureAppointmentData()
             }
-            tableView.reloadData()
         }
     }
 
@@ -153,24 +163,28 @@ extension DashboardVC: TargetRevenueDelegate {
 extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        switch indexPath.row {
-        case 0:
+        let data = sections[indexPath.section]
+
+        switch data.identifier {
+
+        case .dashboardProfile:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.dashboardProfileCell, for: indexPath) as? DashboardProfileCell else {
                 return UITableViewCell()
             }
             cell.configureCell()
             cell.selectionStyle = .none
             return cell
-        case 1:
+
+        case .targetRevenue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.yourTargetRevenueCell, for: indexPath) as? YourTargetRevenueCell else {
                 return UITableViewCell()
             }
@@ -179,7 +193,6 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             return UITableViewCell()
-
         }
 
     }
@@ -190,11 +203,50 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
+        let data = sections[indexPath.section]
 
-        if indexPath.row == 0 {
+        switch data.identifier {
+        case .dashboardProfile:
             let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
             vc.profileType = .selfUser
             self.navigationController?.pushViewController(vc, animated: true)
+
+        default:
+            break
+        }
+    }
+}
+
+extension DashboardVC {
+
+    func configureSection(idetifier: SectionIdentifier, items: Int, data: Any) -> SectionConfiguration {
+
+        let headerHeight: CGFloat = 60
+        let cellWidth: CGFloat = (tableView.frame.size.width - 40)
+        let cellHeight: CGFloat = 320
+        let margin: CGFloat = 20
+
+        switch idetifier {
+
+        case .dashboardProfile:
+
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth,
+                                        showHeader: true, showFooter: false, headerHeight: headerHeight, footerHeight: 0,
+                                        leftMargin: margin, rightMarging: 0, isPagingEnabled: false,
+                                        textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+
+        case .targetRevenue:
+
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth,
+                                        showHeader: false, showFooter: false, headerHeight: 0, footerHeight: 0,
+                                        leftMargin: 0, rightMarging: 0, isPagingEnabled: false,
+                                        textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+
+        default :
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: 0, cellWidth: cellWidth,
+                                        showHeader: false, showFooter: false, headerHeight: headerHeight, footerHeight: 0,
+                                        leftMargin: 0, rightMarging: 0, isPagingEnabled: false,
+                                        textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
         }
     }
 }
