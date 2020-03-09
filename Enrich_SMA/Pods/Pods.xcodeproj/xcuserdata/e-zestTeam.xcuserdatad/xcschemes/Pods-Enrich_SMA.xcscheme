@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C9F455575787070FAB9EE3FA2BC661C0"
+               BlueprintIdentifier = "93CF96F628A064383371168A6BFC3621"
                BuildableName = "Pods_Enrich_SMA.framework"
                BlueprintName = "Pods-Enrich_SMA"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C9F455575787070FAB9EE3FA2BC661C0"
+            BlueprintIdentifier = "93CF96F628A064383371168A6BFC3621"
             BuildableName = "Pods_Enrich_SMA.framework"
             BlueprintName = "Pods-Enrich_SMA"
             ReferencedContainer = "container:Pods.xcodeproj">

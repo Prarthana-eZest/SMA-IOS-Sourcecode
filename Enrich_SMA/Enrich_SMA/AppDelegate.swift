@@ -8,8 +8,6 @@
 
 import UIKit
 import CoreData
-import Fabric
-import Crashlytics
 import Firebase
 import FirebaseMessaging
 
@@ -27,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         FirebaseApp.configure()
         self.registerForPushNotification()
-
-        Fabric.with([Crashlytics.self]) // My personal aman.gupta@e-zest.in CrashAnalaytic key added
 
         // ********* App Flow Functions *******
         UIFactory.shared.navigationbackButtonBehaviour()
