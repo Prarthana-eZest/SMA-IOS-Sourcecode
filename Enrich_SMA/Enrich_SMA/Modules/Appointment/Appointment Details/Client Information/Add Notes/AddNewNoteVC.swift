@@ -24,6 +24,8 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic {
     var onDoneBlock: ((Bool, String) -> Void)?
 
     @IBOutlet weak private var textView: UITextView!
+    @IBOutlet weak private var btnAsk: UIButton!
+    @IBOutlet weak private var btnObserve: UIButton!
 
     // MARK: Object lifecycle
 
@@ -74,9 +76,14 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic {
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
 
-    @IBAction func actionClose(_ sender: UIButton) {
+    @IBAction func actionClose(_ sender: Any) {
         onDoneBlock?(false, "")
         self.dismiss(animated: false, completion: nil)
+    }
+
+    @IBAction func actionRadio(_ sender: UIButton) {
+        btnAsk.isSelected = !btnAsk.isSelected
+        btnObserve.isSelected = !btnObserve.isSelected
     }
 
     @IBAction func actionSubmit(_ sender: Any) {
@@ -90,13 +97,18 @@ class AddNewNoteVC: UIViewController, AddNewNoteDisplayLogic {
 
     // MARK: Do something
 
-    //@IBOutlet weak var nameTextField: UITextField!
-
     func addObserveNote() {
-        let data = AddNewNote.ObserveNote.Data(customer_id: customerId, note_type: "observe", note: textView.text ?? "", updated_by: "", customer_rating: "0", customer_rating_comment: "")
+        let noteType = btnAsk.isSelected ? "ask" : "observe"
+
+        let data = AddNewNote.ObserveNote.Data(customer_id: customerId, note_type: noteType,
+                                               note: textView.text ?? "", updated_by: "",
+                                               customer_rating: "0", customer_rating_comment: "", appointment_id: "")
+
         let request = AddNewNote.ObserveNote.Request(noteData: data, is_custom: true)
         interactor?.doPostNewClientNotes(request: request, method: .post)
+
     }
+
 }
 
 extension AddNewNoteVC {

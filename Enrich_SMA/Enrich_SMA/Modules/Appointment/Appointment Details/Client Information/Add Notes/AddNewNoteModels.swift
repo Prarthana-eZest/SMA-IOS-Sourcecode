@@ -13,7 +13,7 @@
 import UIKit
 
 enum AddNewNote {
-  // MARK: Use cases
+    // MARK: Use cases
 
     enum ObserveNote {
 
@@ -29,6 +29,7 @@ enum AddNewNote {
             let updated_by: String
             let customer_rating: String
             let customer_rating_comment: String
+            let appointment_id: String
         }
 
         struct Response: Codable {

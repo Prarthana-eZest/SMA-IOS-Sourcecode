@@ -1262,7 +1262,7 @@
 				E30601C8237EAA7A00988EEC /* ClientInformationPresenter.swift */,
 				E30601CA237EAA7A00988EEC /* ClientInformationWorker.swift */,
 				E30601CB237EAA7A00988EEC /* ClientInformationModels.swift */,
-				E3CEA5C423CC731000DD213F /* New Group */,
+				E3CEA5C423CC731000DD213F /* Add Notes */,
 			);
 			path = "Client Information";
 			sourceTree = "<group>";
@@ -1349,7 +1349,7 @@
 			path = Ratings;
 			sourceTree = "<group>";
 		};
-		E3CEA5C423CC731000DD213F /* New Group */ = {
+		E3CEA5C423CC731000DD213F /* Add Notes */ = {
 			isa = PBXGroup;
 			children = (
 				E3CEA5C923CC736F00DD213F /* AddNewNoteVC.swift */,
@@ -1358,7 +1358,7 @@
 				E3CEA5C623CC736F00DD213F /* AddNewNoteWorker.swift */,
 				E3CEA5C823CC736F00DD213F /* AddNewNoteModels.swift */,
 			);
-			path = "New Group";
+			path = "Add Notes";
 			sourceTree = "<group>";
 		};
 		E3DB6859238CEF7C00CC569D /* Generic Class */ = {
