@@ -163,7 +163,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
             EZLoadingActivity.show("Loading...", disableUI: true)
 
-            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.base_salon_code ?? "", employee_code: userData.employee_code ??  "", customer_id: "\(customerId)")
+            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.base_salon_code ?? "", customer_id: "\(customerId)")
             interactor?.doGetAppointmentHistory(request: request, method: .post)
         }
     }

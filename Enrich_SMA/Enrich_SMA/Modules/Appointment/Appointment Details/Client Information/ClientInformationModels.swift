@@ -18,7 +18,6 @@ enum ClientInformation {
     enum GetAppointnentHistory {
         struct Request: Codable {
             let salon_code: String
-            let employee_code: String
             let customer_id: String
         }
 
