@@ -84,4 +84,9 @@ public enum ConstantAPINames: String {
 
     // Notifications
     case getNotificationList = "rest/V1/notifications/get?is_custom=true"
+    
+    // Salon Ratings
+    case getSalonRatings = "rest/V1/customer/appointmentfeedbacklist"
+
+    
 }

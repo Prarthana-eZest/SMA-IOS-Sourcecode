@@ -16,6 +16,7 @@ enum ProfileCellIdentifiers: String {
     case stores = "Stores"
     case audits = "Audits"
     case notifications = "Notifications"
+    case salonFeedback = "Salon Feedback"
     case logout = "Logout"
 
 }
@@ -40,7 +41,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
                                                                 // .inventory,
                                                                  //.stores,
                                                                  //.audits,
-                                                                 .notifications,
+                                                                 .salonFeedback,.notifications,
                                                                  .logout]
 
     // MARK: Object lifecycle
@@ -176,6 +177,11 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
         case .audits:
             break
+
+        case .salonFeedback:
+            let vc = AllReviewsVC.instantiate(fromAppStoryboard: .Appointment)
+            vc.ratingType = .salon
+            self.navigationController?.pushViewController(vc, animated: true)
 
         case .punchIn:
 

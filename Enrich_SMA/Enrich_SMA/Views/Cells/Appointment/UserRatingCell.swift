@@ -25,10 +25,17 @@ class UserRatingCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureCell(model: ClientInformation.ClientNotes.NotesData) {
-        lblRating.text = "\(model.customer_rating ?? "0")/5"
-        lblCustomerComments.text = model.customer_rating_comment ?? ""
-        lblcustomerName.text = "\(model.updated_by ?? "") | \(model.created_at ?? "")"
+    func configureCell(model: RatingModel) {
+        lblRating.text = "\(model.rating)/5"
+        lblCustomerComments.text = model.comment
+        lblcustomerName.text = "\(model.customerNane) | \(model.date)"
     }
 
+}
+
+struct RatingModel {
+    let rating: String
+    let customerNane: String
+    let comment: String
+    let date: String
 }

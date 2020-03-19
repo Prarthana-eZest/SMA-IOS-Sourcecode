@@ -11,7 +11,8 @@
 import UIKit
 
 protocol AllReviewsModuleBusinessLogic {
-    func doGetRatings(method: HTTPMethod, request: ClientInformation.ClientNotes.Request)
+    func doGetCustomerRatings(method: HTTPMethod, request: ClientInformation.ClientNotes.Request)
+    func doGetSalonRatings(method: HTTPMethod, request: AllReviewsModule.SalonRatings.Request)
 }
 
 protocol AllReviewsModuleDataStore {
@@ -27,10 +28,16 @@ class AllReviewsModuleInteractor: AllReviewsModuleBusinessLogic, AllReviewsModul
     // MARK: Do something
 
     // MARK: Do something
-    func doGetRatings(method: HTTPMethod, request: ClientInformation.ClientNotes.Request) {
+    func doGetCustomerRatings(method: HTTPMethod, request: ClientInformation.ClientNotes.Request) {
         worker = AllReviewsModuleWorker()
         worker?.presenter = self.presenter
-        worker?.postRequestForRatings(request: request, method: method)
+        worker?.postRequestForCustomerRatings(request: request, method: method)
+    }
+    
+    func doGetSalonRatings(method: HTTPMethod, request: AllReviewsModule.SalonRatings.Request) {
+        worker = AllReviewsModuleWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestForSalonRatings(request: request, method: method)
     }
 
 }

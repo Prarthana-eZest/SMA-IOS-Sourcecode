@@ -225,6 +225,7 @@ extension AppointmentVC: AppointmentDelegate {
         if let id = appointments[indexPath.row].booked_by_id {
             let vc = AllReviewsVC.instantiate(fromAppStoryboard: .Appointment)
             vc.customerId = id
+            vc.ratingType = .customer
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
