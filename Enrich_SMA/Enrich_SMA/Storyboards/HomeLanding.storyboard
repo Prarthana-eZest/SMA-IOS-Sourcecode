@@ -798,7 +798,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="575" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wishlist-icon" translatesAutoresizingMaskIntoConstraints="NO" id="cOk-NL-Zkj">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SalonFeedback" translatesAutoresizingMaskIntoConstraints="NO" id="cOk-NL-Zkj">
                                                     <rect key="frame" x="20" y="9.5" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="h5G-bC-PCM">
@@ -946,6 +946,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SalonFeedback" width="36" height="28"/>
         <image name="appointmentTab" width="20" height="20"/>
         <image name="homeTab" width="28" height="28"/>
         <image name="location" width="11" height="15"/>

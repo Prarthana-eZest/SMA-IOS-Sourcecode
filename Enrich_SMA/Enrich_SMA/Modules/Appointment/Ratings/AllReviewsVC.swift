@@ -73,7 +73,12 @@ class AllReviewsVC: UIViewController {
         super.viewWillAppear(animated)
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Ratings & Reviews")
+        if ratingType == .customer {
+            self.navigationController?.addCustomBackButton(title: "Ratings & Reviews")
+        }
+        else if ratingType == .salon {
+            self.navigationController?.addCustomBackButton(title: "Salon Feedback")
+        }
         self.tableView.separatorColor = .clear
     }
     
