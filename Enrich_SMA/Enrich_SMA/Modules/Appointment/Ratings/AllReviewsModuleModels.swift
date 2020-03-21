@@ -19,6 +19,7 @@ enum AllReviewsModule {
             let salon_code: String
             let date: String
             let is_custom: Bool
+            let customer_id: String
         }
 
         struct Response: Codable {

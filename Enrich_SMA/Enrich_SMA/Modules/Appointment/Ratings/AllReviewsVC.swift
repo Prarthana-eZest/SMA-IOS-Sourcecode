@@ -61,7 +61,7 @@ class AllReviewsVC: UIViewController {
         tableView.register(UINib(nibName: CellIdentifier.userRatingCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.userRatingCell)
         
         if ratingType == .customer {
-            getCustomerRatings()
+            getAppointmentRatings()
         }
         else if ratingType == .salon {
             getSalonRatings()
@@ -86,14 +86,23 @@ class AllReviewsVC: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    func getCustomerRatings() {
+    func getAppointmentRatings() {
         
-        if let customerId = customerId {
+//        if let customerId = customerId {
+//
+//            EZLoadingActivity.show("Loading...", disableUI: true)
+//
+//            let request = ClientInformation.ClientNotes.Request(customer_id: "\(customerId)", is_custom: true)
+//            interactor?.doGetCustomerRatings(method: .post, request: request)
+//        }
+        
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+            let customerId = customerId {
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = ClientInformation.ClientNotes.Request(customer_id: "\(customerId)", is_custom: true)
-            interactor?.doGetCustomerRatings(method: .post, request: request)
+            let request = AllReviewsModule.SalonRatings.Request(salon_code: userData.base_salon_code ?? "", date: "", is_custom: true, customer_id: "\(customerId)")
+            interactor?.doGetSalonRatings(method: .post, request: request)
         }
         
     }
@@ -104,7 +113,7 @@ class AllReviewsVC: UIViewController {
             
             EZLoadingActivity.show("Loading...", disableUI: true)
             
-            let request = AllReviewsModule.SalonRatings.Request(salon_code: userData.base_salon_code ?? "", date: "", is_custom: true)
+            let request = AllReviewsModule.SalonRatings.Request(salon_code: userData.base_salon_code ?? "", date: "", is_custom: true, customer_id: "")
             interactor?.doGetSalonRatings(method: .post, request: request)
         }
         
@@ -133,34 +142,55 @@ extension AllReviewsVC: AllReviewsModuleDisplayLogic {
     
     func displaySuccess<T>(viewModel: T) where T: Decodable {
         EZLoadingActivity.hide()
-        if let model = viewModel as? ClientInformation.ClientNotes.Response,
+//        if let model = viewModel as? ClientInformation.ClientNotes.Response,
+//            model.status == true {
+//
+//            self.ratings.removeAll()
+//            model.data?.ratings?.forEach {
+//                if self.ratings.count < 3 {
+//                    self.ratings.append(RatingModel(rating: $0.customer_rating ?? "0",
+//                                                    customerNane: $0.updated_by ?? "",
+//                                                    comment: $0.customer_rating_comment ?? "",
+//                                                    date: $0.updated_at ?? ""))
+//                }
+//            }
+//            lblNoRatings.isHidden = !self.ratings.isEmpty
+//            self.tableView.reloadData()
+//        }
+//        else
+       
+        if let model = viewModel as? AllReviewsModule.SalonRatings.Response,
             model.status == true {
             
             self.ratings.removeAll()
-            model.data?.ratings?.forEach {
-                if self.ratings.count < 3 {
-                    self.ratings.append(RatingModel(rating: $0.customer_rating ?? "0",
-                                                    customerNane: $0.updated_by ?? "",
-                                                    comment: $0.customer_rating_comment ?? "",
-                                                    date: $0.updated_at ?? ""))
-                }
-            }
-            lblNoRatings.isHidden = !self.ratings.isEmpty
-            self.tableView.reloadData()
-        }
-        else if let model = viewModel as? AllReviewsModule.SalonRatings.Response,
-            model.status == true {
             
-            self.ratings.removeAll()
-            model.data?.appointmentFeedbacks?.forEach { data in
-                
-                data.salon_feedback_data?.forEach { salonFeedback in
-                    self.ratings.append(RatingModel(rating: salonFeedback.rating ?? "0",
-                                                    customerNane: data.customer_name ?? "",
-                                                    comment: data.feedback_comment ?? "",
-                                                    date: data.appointment_date ?? ""))
+            if ratingType == .customer {
+                model.data?.appointmentFeedbacks?.forEach { data in
+                    
+                    if let feedback = data.service_feedback_data?.first {
+                        if self.ratings.count < 3 {
+                            self.ratings.append(RatingModel(rating: feedback.rating ?? "0",
+                                                        customerNane: data.customer_name ?? "",
+                                                        comment: data.feedback_comment ?? "",
+                                                        date: data.appointment_date ?? ""))
+                        }
+                    }
+                    
                 }
             }
+            else if ratingType == .salon {
+                model.data?.appointmentFeedbacks?.forEach { data in
+                    
+                    data.salon_feedback_data?.forEach { salonFeedback in
+                        
+                        self.ratings.append(RatingModel(rating: salonFeedback.rating ?? "0",
+                                                        customerNane: data.customer_name ?? "",
+                                                        comment: data.feedback_comment ?? "",
+                                                        date: data.appointment_date ?? ""))
+                    }
+                }
+            }
+            
             lblNoRatings.isHidden = !self.ratings.isEmpty
             self.tableView.reloadData()
         }
