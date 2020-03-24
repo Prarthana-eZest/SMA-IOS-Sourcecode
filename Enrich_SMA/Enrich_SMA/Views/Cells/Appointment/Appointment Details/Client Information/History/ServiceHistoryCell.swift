@@ -48,7 +48,7 @@ class ServiceHistoryCell: UITableViewCell {
             lblDateTime.text = ""
         }
 
-        lblServiceStatus.text = model.status ?? ""
+        lblServiceStatus.text = (model.status ?? "").uppercased()
         lblUserName.text = model.booked_by ?? ""
         lblServiceName.text = model.services?.first?.service_name ?? "Not available"
         btnOtherServicesCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
