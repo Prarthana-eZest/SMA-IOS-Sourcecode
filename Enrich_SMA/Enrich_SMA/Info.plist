@@ -55,5 +55,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Enrich need your current location.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Enrich need your current location.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Enrich need your current location.</string>
 </dict>
 </plist>

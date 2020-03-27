@@ -74,6 +74,8 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
 
         //self.doSomething()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
+        
+        LocationManager.sharedInstance.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +98,14 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     //        }
     //    }
 
+}
+
+extension MoreModuleVC: LocationManagerDelegate {
+    
+    func locationDidFound(_ latitude: Double, longitude: Double) {
+        print("Location Latitude:\(latitude) Longitude:\(longitude)")
+    }
+    
 }
 
 extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
@@ -188,8 +198,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             let message = userPunchedIn ? AlertMessagesToAsk.askToPunchOut : AlertMessagesToAsk.askToPunchIn
             let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
-                self.userPunchedIn = !self.userPunchedIn
-                self.tableView.reloadData()
+                self.markCheckInOut()
             })
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.default) { _ -> Void in
             })
@@ -218,29 +227,57 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Call Webservice
 extension MoreModuleVC {
-
-    func doSomething() {
-        let request = MoreModule.Something.Request(name: "TestData", salary: "100000", age: "10")
-        interactor?.doPostRequest(request: request, method: HTTPMethod.post)
-    }
-
-    func displaySuccess<T: Decodable>(viewModel: T) {
-        EZLoadingActivity.hide()
-    }
-    func displayError(errorMessage: String?) {
-        DispatchQueue.main.async { [unowned self] in
-            EZLoadingActivity.hide()
-            self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
+    
+    func getCheckInStatus() {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = MoreModule.GetCheckInStatus.Request(emp_code: userData.employee_code ?? "", date: Date().dayYearMonthDate, is_custom: true)
+            interactor?.doPostGetStatusRequest(request: request, method: .post)
         }
     }
-
-    func displaySuccess<T: Decodable>(responseSuccess: [T]) {
-        DispatchQueue.main.async {
-            EZLoadingActivity.hide()
-            if let obj = responseSuccess as? [MoreModule.Something.Response] {
-                print("Get API Response -- \n \(obj)")
+    
+    func markCheckInOut() {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let lat = "\(LocationManager.sharedInstance.location().latitude)" // "22.997"
+            let long = "\(LocationManager.sharedInstance.location().longitude)" //"72.608"
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "", emp_name: userData.username ?? "", branch_code: userData.base_salon_code ?? "", checkinout_time: Date().checkInOutDateTime, checkin: userPunchedIn ? "0" : "1", employee_latitude: lat, employee_longitude: long, is_custom: true)
+            
+            interactor?.doPostMarkCheckInOutRequest(request: request, method: .post)
+        }
+    }
+    
+    func displaySuccess<T: Decodable>(viewModel: T) {
+        EZLoadingActivity.hide()
+        if let model = viewModel as? MoreModule.GetCheckInStatus.Response,
+            model.status == true, let count = model.count {
+            userPunchedIn = !(count % 2 == 0)
+            self.tableView.reloadData()
+        }
+        else if let model = viewModel as? MoreModule.MarkCheckInOut.Response {
+            
+            if model.status == true {
+                userPunchedIn = !userPunchedIn
+                self.tableView.reloadData()
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.showAlert(alertTitle: alertTitle, alertMessage: model.message )
             }
         }
     }
-
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        DispatchQueue.main.async { [unowned self] in
+            self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
+        }
+    }
+    
+    func displaySuccess<T: Decodable>(responseSuccess: [T]) {
+        //        var obj = responseSuccess as? [MoreModule.Something.Response]
+        //        print("Get API Response -- \n \(obj)")
+    }
+    
 }

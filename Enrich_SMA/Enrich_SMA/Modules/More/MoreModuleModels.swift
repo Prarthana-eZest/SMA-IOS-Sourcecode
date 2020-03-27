@@ -11,20 +11,39 @@
 import UIKit
 
 enum MoreModule {
-  // MARK: Use cases
-
-  enum Something {
-    struct Request: Codable {
-        let name: String
-        let salary: String
-        let age: String
-        let id: String = "0"
+    // MARK: Use cases
+    
+    enum GetCheckInStatus {
+        
+        struct Request: Codable {
+            let emp_code: String
+            let date: String
+            let is_custom: Bool
+        }
+        
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var count: Int?
+        }
     }
-    struct Response: Codable {
-        let name: String?
-        let salary: String?
-        let age: String?
-        let id: String?
+    
+    enum MarkCheckInOut {
+        
+        struct Request: Codable {
+            let emp_code: String
+            let emp_name: String
+            let branch_code: String
+            let checkinout_time: String
+            let checkin: String
+            let employee_latitude: String
+            let employee_longitude: String
+            let is_custom: Bool
+        }
+        
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+        }
     }
-  }
 }

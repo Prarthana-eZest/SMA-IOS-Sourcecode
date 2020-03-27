@@ -160,6 +160,11 @@ extension Date {
         return formatter.string(from: self as Date)
     }
 
+    var checkInOutDateTime: String {
+        let formatter = DateFormatter(); formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return formatter.string(from: self as Date)
+    }
+    
     var monthYearDate: String {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMM yyyy"
         return formatter.string(from: self as Date)
