@@ -29,7 +29,7 @@ class AllReviewsModuleWorker {
         self.networkLayer.post(urlString: ConstantAPINames.clientNotes.rawValue, body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler, method: .post)
 
     }
-    
+
     func postRequestForSalonRatings(request: AllReviewsModule.SalonRatings.Request, method: HTTPMethod) {
 
         let errorHandler: (String) -> Void = { (error) in

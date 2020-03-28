@@ -12,24 +12,24 @@ import UIKit
 
 enum MoreModule {
     // MARK: Use cases
-    
+
     enum GetCheckInStatus {
-        
+
         struct Request: Codable {
             let emp_code: String
             let date: String
             let is_custom: Bool
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             var count: Int?
         }
     }
-    
+
     enum MarkCheckInOut {
-        
+
         struct Request: Codable {
             let emp_code: String
             let emp_name: String
@@ -40,7 +40,7 @@ enum MoreModule {
             let employee_longitude: String
             let is_custom: Bool
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""

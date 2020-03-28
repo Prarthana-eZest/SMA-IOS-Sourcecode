@@ -20,7 +20,7 @@ private let SharedInstance = LocationManager()
 
 class LocationManager: NSObject {
 
-    var delegate: LocationManagerDelegate?
+    weak var delegate: LocationManagerDelegate?
 
     class var sharedInstance: LocationManager {
         return SharedInstance

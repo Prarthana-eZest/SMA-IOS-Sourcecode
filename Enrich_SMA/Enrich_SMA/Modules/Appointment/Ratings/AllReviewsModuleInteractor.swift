@@ -33,7 +33,7 @@ class AllReviewsModuleInteractor: AllReviewsModuleBusinessLogic, AllReviewsModul
         worker?.presenter = self.presenter
         worker?.postRequestForCustomerRatings(request: request, method: method)
     }
-    
+
     func doGetSalonRatings(method: HTTPMethod, request: AllReviewsModule.SalonRatings.Request) {
         worker = AllReviewsModuleWorker()
         worker?.presenter = self.presenter

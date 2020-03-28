@@ -23,16 +23,16 @@ class MoreModuleInteractor: MoreModuleBusinessLogic, MoreModuleDataStore {
     var presenter: MoreModulePresentationLogic?
     var worker: MoreModuleWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     // MARK: Do something
     func doPostGetStatusRequest(request: MoreModule.GetCheckInStatus.Request, method: HTTPMethod) {
         worker = MoreModuleWorker()
         worker?.presenter = self.presenter
         worker?.postRequestForCheckInStatus(request: request, method: method)
     }
-    
+
     func doPostMarkCheckInOutRequest(request: MoreModule.MarkCheckInOut.Request, method: HTTPMethod) {
         worker = MoreModuleWorker()
         worker?.presenter = self.presenter

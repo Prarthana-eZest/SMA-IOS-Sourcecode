@@ -41,7 +41,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
                                                                 // .inventory,
                                                                  //.stores,
                                                                  //.audits,
-                                                                 .salonFeedback,.notifications,
+                                                                 .salonFeedback, .notifications,
                                                                  .logout]
 
     // MARK: Object lifecycle
@@ -74,7 +74,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
 
         //self.doSomething()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
-        
+
         LocationManager.sharedInstance.delegate = self
     }
 
@@ -101,11 +101,11 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
 }
 
 extension MoreModuleVC: LocationManagerDelegate {
-    
+
     func locationDidFound(_ latitude: Double, longitude: Double) {
         print("Location Latitude:\(latitude) Longitude:\(longitude)")
     }
-    
+
 }
 
 extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
@@ -227,7 +227,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Call Webservice
 extension MoreModuleVC {
-    
+
     func getCheckInStatus() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
@@ -235,21 +235,21 @@ extension MoreModuleVC {
             interactor?.doPostGetStatusRequest(request: request, method: .post)
         }
     }
-    
+
     func markCheckInOut() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            
+
             EZLoadingActivity.show("Loading...", disableUI: true)
             let lat = "\(LocationManager.sharedInstance.location().latitude)" // "22.997"
             let long = "\(LocationManager.sharedInstance.location().longitude)" //"72.608"
-            
+
             EZLoadingActivity.show("Loading...", disableUI: true)
             let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "", emp_name: userData.username ?? "", branch_code: userData.base_salon_code ?? "", checkinout_time: Date().checkInOutDateTime, checkin: userPunchedIn ? "0" : "1", employee_latitude: lat, employee_longitude: long, is_custom: true)
-            
+
             interactor?.doPostMarkCheckInOutRequest(request: request, method: .post)
         }
     }
-    
+
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
         if let model = viewModel as? MoreModule.GetCheckInStatus.Response,
@@ -258,7 +258,7 @@ extension MoreModuleVC {
             self.tableView.reloadData()
         }
         else if let model = viewModel as? MoreModule.MarkCheckInOut.Response {
-            
+
             if model.status == true {
                 userPunchedIn = !userPunchedIn
                 self.tableView.reloadData()
@@ -274,10 +274,10 @@ extension MoreModuleVC {
             self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
         }
     }
-    
+
     func displaySuccess<T: Decodable>(responseSuccess: [T]) {
         //        var obj = responseSuccess as? [MoreModule.Something.Response]
         //        print("Get API Response -- \n \(obj)")
     }
-    
+
 }

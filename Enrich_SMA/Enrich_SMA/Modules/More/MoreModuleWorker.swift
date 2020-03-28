@@ -11,14 +11,14 @@
 import UIKit
 
 class MoreModuleWorker {
-    
+
     let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
     // let networkLayer = NetworkLayer() // Uncomment this in case do request using URLsession
     var presenter: MoreModulePresentationLogic?
-    
+
     func postRequestForCheckInStatus(request: MoreModule.GetCheckInStatus.Request, method: HTTPMethod) {
         // *********** NETWORK CONNECTION
-        
+
         let errorHandler: (String) -> Void = { (error) in
             print(error)
             self.presenter?.presentError(responseError: error)
@@ -28,13 +28,13 @@ class MoreModuleWorker {
             let response = employees
             self.presenter?.presentSuccess(response: response)
         }
-        
+
         self.networkLayer.post(urlString: ConstantAPINames.getCheckInStatus.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
     }
-    
+
     func postRequestForMarkCheckInOut(request: MoreModule.MarkCheckInOut.Request, method: HTTPMethod) {
         // *********** NETWORK CONNECTION
-        
+
         let errorHandler: (String) -> Void = { (error) in
             print(error)
             self.presenter?.presentError(responseError: error)
@@ -44,8 +44,8 @@ class MoreModuleWorker {
             let response = employees
             self.presenter?.presentSuccess(response: response)
         }
-        
+
         self.networkLayer.post(urlString: ConstantAPINames.markCheckInOut.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
     }
-    
+
 }

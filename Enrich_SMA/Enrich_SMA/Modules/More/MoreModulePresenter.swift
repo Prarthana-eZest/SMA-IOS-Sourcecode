@@ -18,9 +18,9 @@ protocol MoreModulePresentationLogic {
 
 class MoreModulePresenter: MoreModulePresentationLogic {
     weak var viewController: MoreModuleDisplayLogic?
-    
+
     // MARK: Do something
-    
+
     // MARK: Do something
     func presentSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)
