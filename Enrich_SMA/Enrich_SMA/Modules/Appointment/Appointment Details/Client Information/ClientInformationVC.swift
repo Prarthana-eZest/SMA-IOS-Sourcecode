@@ -218,6 +218,7 @@ extension ClientInformationVC {
 
             self.appointmentHistory.removeAll()
             self.appointmentHistory.append(contentsOf: model.data ?? [])
+            self.appointmentHistory.sort {return ($0.appointment_date ?? "") > ($1.appointment_date ?? "")}
             lblNoRecords.isHidden = !appointmentHistory.isEmpty
             self.tableView.reloadData()
             if !appointmentHistory.isEmpty {
