@@ -229,6 +229,7 @@
 		E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685F238CFE8600CC569D /* ListingCell.swift */; };
 		E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */; };
 		E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */; };
+		F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */; };
 		F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -488,6 +489,7 @@
 		E3DB685F238CFE8600CC569D /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceListingCell.xib; sourceTree = "<group>"; };
 		E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListingCell.swift; sourceTree = "<group>"; };
+		F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseTopicFactory.swift; sourceTree = "<group>"; };
 		F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1276,6 +1278,7 @@
 				E361182A23F6BEC800E0AF02 /* UIFactory.swift */,
 				E361182B23F6BEC800E0AF02 /* ApplicationFactory.swift */,
 				E361182C23F6BEC800E0AF02 /* UserFactory.swift */,
+				F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */,
 			);
 			path = "Factory Class";
 			sourceTree = "<group>";
@@ -1769,6 +1772,7 @@
 				E30342F8235EE58300E0BF0A /* AppointmentVC.swift in Sources */,
 				E30342C6235EE15800E0BF0A /* ExtentionUserDefaults.swift in Sources */,
 				E30340BE235EE11C00E0BF0A /* YourTargetRevenueCell.swift in Sources */,
+				F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */,
 				E30341F0235EE14000E0BF0A /* NotificationsVC.swift in Sources */,
 				E30341F9235EE14000E0BF0A /* DashboardModels.swift in Sources */,
 				E3034303235EE5D900E0BF0A /* ReportsModels.swift in Sources */,

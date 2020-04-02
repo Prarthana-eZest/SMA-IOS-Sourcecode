@@ -135,3 +135,10 @@ enum AlertToWarn {
     static let eventError = "Event not added."
 
 }
+
+enum FCMTopicKeys {
+    static let employee = "EMPLOYEE_"
+    static let employeeAll = "EMPLOYEE"
+    static let salon = "SALON_"
+    static let manager = "MANAGER"
+}

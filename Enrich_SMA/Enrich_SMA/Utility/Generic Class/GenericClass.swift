@@ -213,4 +213,21 @@ extension GenericClass {
 
         return nil
     }
+    
+    func getFCMTopicKeys(keyFor: String) -> String {
+
+        var  fcmTopicKeys = "DEV_"
+        #if DEBUG
+        print("DEBUG")
+        fcmTopicKeys =  "DEV_" + keyFor
+        #elseif STAGE
+        print("STAGE")
+        fcmTopicKeys =  "STG_" + keyFor
+        #elseif RELEASE
+        print("RELEASE")
+        fcmTopicKeys = "PROD_" + keyFor
+        #endif
+
+        return fcmTopicKeys
+    }
 }

@@ -49,6 +49,7 @@ enum MyProfile {
             let email: String?
             let address: [Address]?
             let gender: String?
+            let salon_id: String?
             let work_number: String?
             let status: String?
             let customer_count: String?
