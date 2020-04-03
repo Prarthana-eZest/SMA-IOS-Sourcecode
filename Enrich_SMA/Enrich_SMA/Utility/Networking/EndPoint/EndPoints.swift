@@ -91,5 +91,8 @@ public enum ConstantAPINames: String {
     // Check In
     case getCheckInStatus = "rest/V1/biometric/employeeCheckinoutDetails"
     case markCheckInOut = "rest/V1/biometric/checkinoutMobile"
+    
+    // SOS
+    case sendSOSFeedback = "rest/V1/notifications/acknowledgeSos"
 
 }
