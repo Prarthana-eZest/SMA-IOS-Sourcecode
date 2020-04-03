@@ -14,6 +14,7 @@ import UIKit
 
 protocol DashboardBusinessLogic {
     func doGetMyProfileData(accessToken: String, method: HTTPMethod)
+    func doGetDashboardData(request: Dashboard.GetDashboardData.Request, method: HTTPMethod)
 }
 
 class DashboardInteractor: DashboardBusinessLogic {
@@ -28,4 +29,11 @@ class DashboardInteractor: DashboardBusinessLogic {
         worker?.presenter = self.presenter
         worker?.getRequestForUserProfile(accessToken: accessToken, method: method)
     }
+
+    func doGetDashboardData(request: Dashboard.GetDashboardData.Request, method: HTTPMethod) {
+        worker = DashboardWorker()
+        worker?.presenter = self.presenter
+        worker?.postGetDashboardData(request: request, method: method)
+    }
+
 }

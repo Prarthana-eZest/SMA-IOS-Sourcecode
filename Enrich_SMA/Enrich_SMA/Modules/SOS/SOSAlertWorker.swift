@@ -12,26 +12,23 @@
 
 import UIKit
 
-class SOSAlertWorker
-{
-    
+class SOSAlertWorker {
+
     let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
     // let networkLayer = NetworkLayer() // Uncomment this in case do request using URLsession
     var presenter: SOSAlertPresentationLogic?
-    
+
     func postSendSOSFeedback(request: SOSAlert.SendFeedback.Request, method: HTTPMethod) {
         // *********** NETWORK CONNECTION
-        
+
         let errorHandler: (String) -> Void = { (error) in
             print(error)
             self.presenter?.presentError(responseError: error)
         }
-        let successHandler: (SOSAlert.SendFeedback.Response) -> Void = { (employees) in
-            print(employees)
-            let response = employees
+        let successHandler: (SOSAlert.SendFeedback.Response) -> Void = { (response) in
             self.presenter?.presentSuccess(response: response)
         }
-        
+
         self.networkLayer.post(urlString: ConstantAPINames.sendSOSFeedback.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
     }
 }

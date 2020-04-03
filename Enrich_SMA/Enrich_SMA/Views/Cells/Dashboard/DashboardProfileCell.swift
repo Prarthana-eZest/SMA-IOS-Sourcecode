@@ -58,7 +58,7 @@ class DashboardProfileCell: UITableViewCell {
             else {
                 profilePicture.image = defaultImage
             }
-            
+
             FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: userData.employee_id ?? "", salonId: userData.salon_id ?? "")
         }
     }

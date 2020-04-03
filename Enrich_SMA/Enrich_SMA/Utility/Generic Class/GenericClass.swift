@@ -213,7 +213,7 @@ extension GenericClass {
 
         return nil
     }
-    
+
     func getFCMTopicKeys(keyFor: String) -> String {
 
         var  fcmTopicKeys = "DEV_"

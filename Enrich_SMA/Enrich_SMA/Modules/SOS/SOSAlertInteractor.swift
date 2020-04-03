@@ -12,24 +12,21 @@
 
 import UIKit
 
-protocol SOSAlertBusinessLogic
-{
+protocol SOSAlertBusinessLogic {
     func doPostSendSOSFeedback(request: SOSAlert.SendFeedback.Request, method: HTTPMethod)
 }
 
-protocol SOSAlertDataStore
-{
+protocol SOSAlertDataStore {
     //var name: String { get set }
 }
 
-class SOSAlertInteractor: SOSAlertBusinessLogic, SOSAlertDataStore
-{
+class SOSAlertInteractor: SOSAlertBusinessLogic, SOSAlertDataStore {
     var presenter: SOSAlertPresentationLogic?
     var worker: SOSAlertWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     func doPostSendSOSFeedback(request: SOSAlert.SendFeedback.Request, method: HTTPMethod) {
         worker = SOSAlertWorker()
         worker?.presenter = self.presenter

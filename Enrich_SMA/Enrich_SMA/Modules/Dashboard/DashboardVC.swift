@@ -83,21 +83,23 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         print("Reload tableview")
     }
 
-    // MARK: Do something
+}
 
-    //@IBOutlet weak var nameTextField: UITextField!
+extension DashboardVC {
 
     func getProfileData() {
         EZLoadingActivity.show("Loading...", disableUI: true)
         interactor?.doGetMyProfileData(accessToken: self.getAccessToken(), method: .get)
     }
 
-    func displaySomething(viewModel: Dashboard.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func getDashboardData() {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+            let salon_id = userData.salon_id {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = Dashboard.GetDashboardData.Request(is_custom: true, salon_id: salon_id)
+            interactor?.doGetDashboardData(request: request, method: .post)
+        }
     }
-}
-
-extension DashboardVC {
 
     func displaySuccess<T>(viewModel: T) where T: Decodable {
         EZLoadingActivity.hide()

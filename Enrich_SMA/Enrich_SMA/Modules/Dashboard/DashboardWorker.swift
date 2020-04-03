@@ -23,11 +23,24 @@ class DashboardWorker {
             self.presenter?.presentError(responseError: error)
         }
         let successHandler: (MyProfile.GetUserProfile.Response) -> Void = { (response) in
-            print(response)
-            self.presenter?.presentGetProfileSuccess(response: response)
+            self.presenter?.presentSuccess(response: response)
         }
 
         self.networkLayer.get(urlString: ConstantAPINames.getUserProfile.rawValue, headers: ["Authorization": "Bearer \(accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
 
+    }
+
+    func postGetDashboardData(request: Dashboard.GetDashboardData.Request, method: HTTPMethod) {
+        // *********** NETWORK CONNECTION
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (Dashboard.GetDashboardData.Response) -> Void = { (response) in
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.getDashboardData.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
     }
 }

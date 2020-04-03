@@ -13,7 +13,7 @@
 import UIKit
 
 protocol DashboardPresentationLogic {
-    func presentGetProfileSuccess<T: Decodable>(response: T)
+    func presentSuccess<T: Decodable>(response: T)
     func presentError(responseError: String?)
 }
 
@@ -26,7 +26,7 @@ class DashboardPresenter: DashboardPresentationLogic {
         viewController?.displayError(errorMessage: responseError)
     }
 
-    func presentGetProfileSuccess<T>(response: T) where T: Decodable {
+    func presentSuccess<T>(response: T) where T: Decodable {
         viewController?.displaySuccess(viewModel: response)
     }
 }

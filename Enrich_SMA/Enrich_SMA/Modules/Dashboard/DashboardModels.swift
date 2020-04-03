@@ -13,14 +13,19 @@
 import UIKit
 
 enum Dashboard {
-  // MARK: Use cases
 
-  enum Something {
-    struct Request {
+  // MARK: Use cases
+    enum GetDashboardData {
+
+        struct Request: Codable {
+            let is_custom: Bool
+            let salon_id: String
+        }
+
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var count: Int?
+        }
     }
-    struct Response {
-    }
-    struct ViewModel {
-    }
-  }
 }

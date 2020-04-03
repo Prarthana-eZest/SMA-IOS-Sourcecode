@@ -12,12 +12,11 @@
 
 import UIKit
 
-enum SOSAlert
-{
+enum SOSAlert {
     // MARK: Use cases
-    
+
     enum SendFeedback {
-        
+
         struct Request: Codable {
             let employee_id: String
             let message: String
@@ -25,7 +24,7 @@ enum SOSAlert
             let is_custom: Int
             let acknowledgedNotificationId: String
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""

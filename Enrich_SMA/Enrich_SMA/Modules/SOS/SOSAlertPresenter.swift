@@ -12,16 +12,14 @@
 
 import UIKit
 
-protocol SOSAlertPresentationLogic
-{
+protocol SOSAlertPresentationLogic {
     func presentSuccess<T: Decodable>(response: T)
     func presentError(responseError: String?)
 }
 
-class SOSAlertPresenter: SOSAlertPresentationLogic
-{
+class SOSAlertPresenter: SOSAlertPresentationLogic {
     weak var viewController: SOSAlertDisplayLogic?
-    
+
     // MARK: Do something
     func presentSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)

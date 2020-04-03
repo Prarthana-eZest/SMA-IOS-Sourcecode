@@ -13,12 +13,12 @@ class UserFactory {
     static let shared = UserFactory()
 
     func signOutUserFromApp() {
-        
+
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             FirebaseTopicFactory.shared.firebaseTopicUnSubscribe(employeeId: userData.employee_id ?? "", salonId: userData.salon_id ?? "")
-            
+
         }
-        
+
         let userDefaults = UserDefaults.standard
         userDefaults.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
         userDefaults.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUser)

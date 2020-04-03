@@ -12,16 +12,14 @@
 
 import UIKit
 
-protocol SOSAlertDisplayLogic: class
-{
+protocol SOSAlertDisplayLogic: class {
     func displaySuccess<T: Decodable> (viewModel: T)
     func displayError(errorMessage: String?)
 }
 
-class SOSAlertVC: UIViewController, SOSAlertDisplayLogic
-{
+class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
     var interactor: SOSAlertBusinessLogic?
-    
+
     @IBOutlet weak private var profilePicture: UIImageView!
     @IBOutlet weak private var lblUserName: UILabel!
     @IBOutlet weak private var lblLevel: UILabel!
@@ -29,27 +27,24 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic
     @IBOutlet weak private var lblAddress: UILabel!
     @IBOutlet weak private var txtfMessage: UITextField!
     @IBOutlet weak private var btnOk: UIButton!
-    
+
     var viewDismissBlock: ((Bool) -> Void)?
-    
+
     // MARK: Object lifecycle
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
-    private func setup()
-    {
+
+    private func setup() {
         let viewController = self
         let interactor = SOSAlertInteractor()
         let presenter = SOSAlertPresenter()
@@ -57,15 +52,13 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-    
 
     // MARK: View lifecycle
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     @IBAction func actionMobileNo(_ sender: UIButton) {
     }
 

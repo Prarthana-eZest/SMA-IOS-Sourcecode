@@ -126,7 +126,7 @@ extension LoginModuleVC {
             let userDefaults = UserDefaults.standard
             userDefaults.set(data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
             userDefaults.synchronize()
-            
+
             FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
         }
 
