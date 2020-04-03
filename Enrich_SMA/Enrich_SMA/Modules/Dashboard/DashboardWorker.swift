@@ -41,6 +41,9 @@ class DashboardWorker {
             self.presenter?.presentSuccess(response: response)
         }
 
-        self.networkLayer.post(urlString: ConstantAPINames.getDashboardData.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
+        self.networkLayer.post(urlString: ConstantAPINames.getDashboardData.rawValue,
+                               body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler,
+                               errorHandler: errorHandler, method: method)
     }
 }
