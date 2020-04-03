@@ -267,7 +267,7 @@
 		C4E64D78277E5B824569BA15 /* Pods_Enrich_SMA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Enrich_SMA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB808E85E64631D3941A1E58 /* Pods-Enrich_SMATests.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMATests.stage.xcconfig"; path = "Target Support Files/Pods-Enrich_SMATests/Pods-Enrich_SMATests.stage.xcconfig"; sourceTree = "<group>"; };
 		CCD8EF698F29EFAB52C7B140 /* Pods-Enrich_SMA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMA.debug.xcconfig"; path = "Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA.debug.xcconfig"; sourceTree = "<group>"; };
-		E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMA_Stage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3033FDE235EDF6400E0BF0A /* SMA_Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMA_Dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3033FE1235EDF6400E0BF0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3033FE6235EDF6400E0BF0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3033FE9235EDF6500E0BF0A /* Enrich_SMA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Enrich_SMA.xcdatamodel; sourceTree = "<group>"; };
@@ -570,7 +570,7 @@
 		E3033FDF235EDF6400E0BF0A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */,
+				E3033FDE235EDF6400E0BF0A /* SMA_Dev.app */,
 				E3033FF5235EDF6900E0BF0A /* Enrich_SMATests.xctest */,
 				E3034000235EDF6900E0BF0A /* Enrich_SMAUITests.xctest */,
 			);
@@ -1417,7 +1417,7 @@
 			);
 			name = Enrich_SMA;
 			productName = Enrich_SMA;
-			productReference = E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */;
+			productReference = E3033FDE235EDF6400E0BF0A /* SMA_Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E3033FF4235EDF6900E0BF0A /* Enrich_SMATests */ = {
@@ -2113,7 +2113,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = SMA_Dev;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMADev;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2137,7 +2137,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = SMA_Dev;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2310,7 +2310,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = SMA_Dev;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
