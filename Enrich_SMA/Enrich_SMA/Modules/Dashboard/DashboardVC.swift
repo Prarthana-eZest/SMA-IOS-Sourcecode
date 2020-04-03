@@ -23,6 +23,11 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
 
     var sections = [SectionConfiguration]()
 
+    var dailyData: Dashboard.GetDashboardData.revenueData?
+    var monthlyData: Dashboard.GetDashboardData.revenueData?
+
+    var selectedRevenueIndex = 0 // 0: Daily , 1:Monthy
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -73,9 +78,10 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         getProfileData()
+        getDashboardData()
     }
 
-    func configureAppointmentData() {
+    func configureSections() {
         sections.removeAll()
         sections.append(configureSection(idetifier: .dashboardProfile, items: 1, data: []))
         sections.append(configureSection(idetifier: .targetRevenue, items: 1, data: []))
@@ -110,8 +116,14 @@ extension DashboardVC {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
                 userDefaults.synchronize()
-                configureAppointmentData()
+                FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
+                configureSections()
             }
+        }
+        else if let model = viewModel as? Dashboard.GetDashboardData.Response {
+            dailyData = model.data?.daily_revenue_data?.first
+            monthlyData = model.data?.monthly_revenue_data?.first
+            configureSections()
         }
     }
 
@@ -154,10 +166,14 @@ extension DashboardVC: TargetRevenueDelegate {
 
     func actionDaily() {
         print("Daily")
+        selectedRevenueIndex = 0
+        tableView.reloadData()
     }
 
     func actionMonthly() {
         print("Monthly")
+        selectedRevenueIndex = 1
+        tableView.reloadData()
     }
 
 }
@@ -191,6 +207,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.delegate = self
+            cell.configureCell(selectedIndex: selectedRevenueIndex, data: selectedRevenueIndex == 0 ? dailyData : monthlyData)
             cell.selectionStyle = .none
             return cell
         default:

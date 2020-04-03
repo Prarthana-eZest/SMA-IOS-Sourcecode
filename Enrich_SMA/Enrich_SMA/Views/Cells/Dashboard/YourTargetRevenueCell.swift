@@ -44,6 +44,8 @@ class YourTargetRevenueCell: UITableViewCell {
     @IBOutlet weak private var lblTotalRevenue: UILabel!
     @IBOutlet weak private var lblSalesModified: UILabel!
 
+    @IBOutlet weak private var lblRunRate: UILabel!
+
     weak var delegate: TargetRevenueDelegate?
 
     override func awakeFromNib() {
@@ -65,34 +67,83 @@ class YourTargetRevenueCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(selectedIndex: Int, data: Dashboard.GetDashboardData.revenueData?) {
+
+        configureView(selectedIndex: selectedIndex)
+
+        lblRunRate.text = "Required Run Rate: \(data?.runrate_percentage?.cleanForPrice ?? "0")%"
+
+        // Cash Details
+        lblTotalCash.text = "₹ \(data?.total_collection?.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalSales.text = "₹ \(data?.total_gross_sales?.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalRevenue.text = "₹ \(data?.total_gross_revenue?.toDouble()?.cleanForPrice ?? "0")"
+        lblSalesModified.text = "₹ \(data?.sales_modified?.toDouble()?.cleanForPrice ?? "0")"
+
+        lblSalesModified.text = "₹ \(data?.sales_modified?.toDouble()?.cleanForPrice ?? "0")"
+
+        // Service
+        let servicePercent = data?.service_revenue_percentage ?? 0
+        let serviceRevenue = data?.service_revenue?.toDouble()?.cleanForPrice ?? "0"
+        let serviceTarget = data?.service_target?.toDouble()?.cleanForPrice ?? "0"
+
+        lblServiceRevenuePercent.text = "\(servicePercent.cleanForPrice)%"
+        lblServiceRevenueAmount.text = "\(serviceRevenue)/\(serviceTarget)"
+        serviceRevenueProgressBar.progress = Float(servicePercent)
+
+        // Products
+        let productPercent = data?.products_revenue_percentage ?? 0
+        let productRevenue = data?.products_revenue?.toDouble()?.cleanForPrice ?? "0"
+        let productTarget = data?.products_target?.toDouble()?.cleanForPrice ?? "0"
+
+        lblProductRevenuePercent.text = "\(productPercent)%"
+        lblProductRevenueAmount.text = "\(productRevenue)/\(productTarget)"
+        productRevenueProgressBar.progress = Float(productPercent)
+
+        // Membership
+        let membershipPercent = data?.membership_sold_percentage ?? 0
+        let membershipRevenue = data?.membership_revenue?.toDouble()?.cleanForPrice ?? "0"
+        let membershipTarget = data?.membership_target?.toDouble()?.cleanForPrice ?? "0"
+
+        lblMembershipPercent.text = "\(membershipPercent)%"
+        lblMembershipAmount.text = "\(membershipRevenue)/\(membershipTarget)"
+        membershipProgressBar.progress = Float(membershipPercent)
+
+    }
+
     @IBAction func actionMoreInfo(_ sender: UIButton) {
         delegate?.actionMoreInfo()
     }
 
     @IBAction func actionDaily(_ sender: UIButton) {
-        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16) {
-            btnDaily.titleLabel?.font = font
-        }
-        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
-            btnMonthly.titleLabel?.font = font
-        }
-        dailySelectionView.isHidden = false
-        monthlySelectionView.isHidden = true
-
         delegate?.actionDaily()
     }
 
     @IBAction func actionMonthly(_ sender: UIButton) {
-        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16) {
-            btnMonthly.titleLabel?.font = font
-        }
-        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
-            btnDaily.titleLabel?.font = font
-        }
-        dailySelectionView.isHidden = true
-        monthlySelectionView.isHidden = false
-
         delegate?.actionMonthly()
+    }
+
+    func configureView(selectedIndex: Int) {
+
+        if selectedIndex == 0 {
+            if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16) {
+                btnDaily.titleLabel?.font = font
+            }
+            if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
+                btnMonthly.titleLabel?.font = font
+            }
+            dailySelectionView.isHidden = false
+            monthlySelectionView.isHidden = true
+        }
+        else {
+            if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16) {
+                btnMonthly.titleLabel?.font = font
+            }
+            if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
+                btnDaily.titleLabel?.font = font
+            }
+            dailySelectionView.isHidden = true
+            monthlySelectionView.isHidden = false
+        }
     }
 
 }
