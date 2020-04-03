@@ -23,6 +23,7 @@ enum SOSAlert
             let message: String
             let sent_by_id: String
             let is_custom: Int
+            let acknowledgedNotificationId: String
         }
         
         struct Response: Codable {

@@ -81,7 +81,7 @@ extension SOSAlertVC {
     func sendSOSFeedback() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = SOSAlert.SendFeedback.Request(employee_id: "", message: txtfMessage.text ?? "", sent_by_id: "", is_custom: 1)
+            let request = SOSAlert.SendFeedback.Request(employee_id: "", message: txtfMessage.text ?? "", sent_by_id: "", is_custom: 1, acknowledgedNotificationId: "")
             interactor?.doPostSendSOSFeedback(request: request, method: .post)
         }
     }
