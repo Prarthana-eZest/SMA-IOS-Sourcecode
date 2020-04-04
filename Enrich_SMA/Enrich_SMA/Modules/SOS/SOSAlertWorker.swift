@@ -29,6 +29,26 @@ class SOSAlertWorker {
             self.presenter?.presentSuccess(response: response)
         }
 
-        self.networkLayer.post(urlString: ConstantAPINames.sendSOSFeedback.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
+        self.networkLayer.post(urlString: ConstantAPINames.sendSOSFeedback.rawValue,
+                               body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler,
+                               errorHandler: errorHandler, method: method)
+    }
+    
+    func getRequestForUserProfile(employeeId: Int) {
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (MyProfile.GetUserProfile.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        let url = ConstantAPINames.getUserProfile.rawValue + "&employee_id=\(employeeId)"
+
+        self.networkLayer.get(urlString: url, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
+
     }
 }

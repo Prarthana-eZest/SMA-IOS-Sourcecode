@@ -25,7 +25,7 @@
         <!--AlertVC-->
         <scene sceneID="x34-I4-Wwi">
             <objects>
-                <viewController storyboardIdentifier="SOSAlertVC" id="cNo-yn-GA3" customClass="SOSAlertVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SOSAlertVC" id="cNo-yn-GA3" customClass="SOSAlertVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hdL-5v-1YZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,7 +56,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0y1-uY-QMe">
                                                 <rect key="frame" x="0.0" y="0.0" width="172.5" height="60"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editProfileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="C4u-ax-6Cj">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfile" translatesAutoresizingMaskIntoConstraints="NO" id="C4u-ax-6Cj">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="60" id="Gxn-cz-waS"/>
@@ -139,7 +139,7 @@
                                                     <outlet property="delegate" destination="cNo-yn-GA3" id="sZa-Ag-LOc"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7T6-Um-2kw">
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7T6-Um-2kw">
                                                 <rect key="frame" x="0.0" y="246.5" width="270.5" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="a01-Z6-YWN"/>
@@ -216,7 +216,7 @@
         <!--Client InformationVC-->
         <scene sceneID="9rD-Ib-WxG">
             <objects>
-                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="daC-iw-YQM" customClass="ClientInformationVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="daC-iw-YQM" customClass="ClientInformationVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tfE-T0-dQl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,7 +271,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="c0x-71-mfi" customClass="ProductsCollectionCell" customModule="SMA_Stage" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="c0x-71-mfi" customClass="ProductsCollectionCell" customModule="SMA_Dev" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c0x-71-mfi" id="sJi-YB-1x6">
@@ -303,7 +303,7 @@
                                                     <outlet property="productCollectionView" destination="Oue-OE-JLc" id="Z9S-xv-RAB"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="eBH-0y-ClO" customClass="PointsCell" customModule="SMA_Stage" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="eBH-0y-ClO" customClass="PointsCell" customModule="SMA_Dev" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="228" width="414" height="41.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eBH-0y-ClO" id="rxV-00-th5">
@@ -456,7 +456,7 @@
         <!--Appointment DetailsVC-->
         <scene sceneID="bpr-M5-g8y">
             <objects>
-                <viewController storyboardIdentifier="AppointmentDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oNo-7O-YU9" customClass="AppointmentDetailsVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oNo-7O-YU9" customClass="AppointmentDetailsVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rTP-YG-8DB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -588,7 +588,7 @@
         <!--All ReviewsVC-->
         <scene sceneID="fYH-5G-Sy8">
             <objects>
-                <viewController storyboardIdentifier="AllReviewsVC" id="wCR-AH-a0j" customClass="AllReviewsVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllReviewsVC" id="wCR-AH-a0j" customClass="AllReviewsVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GMC-gE-ysQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -619,7 +619,7 @@
                                 <rect key="frame" x="0.0" y="65" width="414" height="797"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="UCj-tg-fps" customClass="ProductsCollectionCell" customModule="SMA_Stage" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="UCj-tg-fps" customClass="ProductsCollectionCell" customModule="SMA_Dev" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCj-tg-fps" id="Oe3-TH-WwP">
@@ -690,7 +690,7 @@
         <!--Add New NoteVC-->
         <scene sceneID="zCE-aR-Qad">
             <objects>
-                <viewController storyboardIdentifier="AddNewNoteVC" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vrP-c4-Dps" customClass="AddNewNoteVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewNoteVC" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vrP-c4-Dps" customClass="AddNewNoteVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MNV-Dd-gwP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -880,8 +880,8 @@
     </scenes>
     <resources>
         <image name="closeLogin" width="23" height="23"/>
+        <image name="defaultProfile" width="87" height="87"/>
         <image name="disabledButton" width="330" height="48"/>
-        <image name="editProfileDefault" width="94" height="94"/>
         <image name="enabledButton" width="330" height="48"/>
         <image name="location" width="11" height="15"/>
         <image name="radioSelected" width="18" height="18"/>

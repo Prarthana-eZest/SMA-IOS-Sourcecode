@@ -79,6 +79,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         getProfileData()
         getDashboardData()
+        checkForSOSNotification()
     }
 
     func configureSections() {
@@ -89,6 +90,18 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         print("Reload tableview")
     }
 
+    func checkForSOSNotification() {
+        SOSFactory.shared.getSOSNotification { (SOSAlert) in
+            let vc = SOSAlertVC.instantiate(fromAppStoryboard: .Appointment)
+            self.view.alpha = screenPopUpAlpha
+            UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+            vc.viewDismissBlock = { [unowned self] result in
+                // Do something
+                self.view.alpha = 1.0
+                //self.checkForSOSNotification()
+            }
+        }
+    }
 }
 
 extension DashboardVC {

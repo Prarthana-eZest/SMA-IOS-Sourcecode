@@ -34,6 +34,8 @@ enum Notifications {
             let created_at: String?
             let updated_at: String?
             let subject: String?
+            let data: String?
+            let is_read: String?
         }
 
     }

@@ -14,6 +14,7 @@ import UIKit
 
 protocol SOSAlertBusinessLogic {
     func doPostSendSOSFeedback(request: SOSAlert.SendFeedback.Request, method: HTTPMethod)
+    func doGetMyProfileData(employeeId: Int)
 }
 
 protocol SOSAlertDataStore {
@@ -32,4 +33,11 @@ class SOSAlertInteractor: SOSAlertBusinessLogic, SOSAlertDataStore {
         worker?.presenter = self.presenter
         worker?.postSendSOSFeedback(request: request, method: method)
     }
+    
+    func doGetMyProfileData(employeeId: Int) {
+        worker = SOSAlertWorker()
+        worker?.presenter = self.presenter
+        worker?.getRequestForUserProfile(employeeId: employeeId)
+    }
+
 }

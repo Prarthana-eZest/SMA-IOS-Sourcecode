@@ -228,6 +228,7 @@
 		E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685F238CFE8600CC569D /* ListingCell.swift */; };
 		E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */; };
 		E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */; };
+		F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F833CC252438C6F0007119AD /* SOSFactory.swift */; };
 		F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */; };
 		F838D9042437058300FDA998 /* SOSAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D8FE2437058300FDA998 /* SOSAlertPresenter.swift */; };
 		F838D9052437058300FDA998 /* SOSAlertWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D8FF2437058300FDA998 /* SOSAlertWorker.swift */; };
@@ -492,6 +493,7 @@
 		E3DB685F238CFE8600CC569D /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceListingCell.xib; sourceTree = "<group>"; };
 		E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListingCell.swift; sourceTree = "<group>"; };
+		F833CC252438C6F0007119AD /* SOSFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSFactory.swift; sourceTree = "<group>"; };
 		F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseTopicFactory.swift; sourceTree = "<group>"; };
 		F838D8FE2437058300FDA998 /* SOSAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertPresenter.swift; sourceTree = "<group>"; };
 		F838D8FF2437058300FDA998 /* SOSAlertWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertWorker.swift; sourceTree = "<group>"; };
@@ -1291,6 +1293,7 @@
 				E361182B23F6BEC800E0AF02 /* ApplicationFactory.swift */,
 				E361182C23F6BEC800E0AF02 /* UserFactory.swift */,
 				F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */,
+				F833CC252438C6F0007119AD /* SOSFactory.swift */,
 			);
 			path = "Factory Class";
 			sourceTree = "<group>";
@@ -1805,6 +1808,7 @@
 				E30341E4235EE14000E0BF0A /* MyProfileInteractor.swift in Sources */,
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
+				F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */,
 				E3DB6857238CEE4A00CC569D /* TermsAndConditionsModels.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
 				E361182D23F6BEC800E0AF02 /* UIFactory.swift in Sources */,

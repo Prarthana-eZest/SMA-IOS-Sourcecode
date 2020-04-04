@@ -30,6 +30,10 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
 
     var viewDismissBlock: ((Bool) -> Void)?
 
+    var alertData: Notifications.MyNotificationList.MyNotificationListItems?
+
+    var profileData: MyProfile.GetUserProfile.UserData?
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -57,14 +61,33 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getusershell()
+        txtfMessage.delegate = self
+        [txtfMessage].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
+    }
+
+    func configureUI() {
+        if let alertData = alertData,
+            let profileData = profileData {
+            lblUserName.text = "\(profileData.firstname ?? "") \(profileData.lastname ?? "")"
+            lblLevel.text = profileData.designation ?? ""
+            btnMobileNo.setTitle(profileData.mobile_number, for: .normal)
+            lblAddress.text = alertData.data ?? ""
+        }
+    }
+
+    func getProfileData() {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        interactor?.doGetMyProfileData(employeeId: 34)
     }
 
     @IBAction func actionMobileNo(_ sender: UIButton) {
     }
 
     @IBAction func actionOK(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-        viewDismissBlock?(true)
+        if btnOk.isEnabled {
+            sendSOSFeedback()
+        }
     }
 }
 
@@ -74,7 +97,7 @@ extension SOSAlertVC {
     func sendSOSFeedback() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = SOSAlert.SendFeedback.Request(employee_id: "", message: txtfMessage.text ?? "", sent_by_id: "", is_custom: 1, acknowledgedNotificationId: "")
+            let request = SOSAlert.SendFeedback.Request(employee_id: userData.employee_id ?? "", message: txtfMessage.text ?? "", sent_by_id: "", is_custom: 1, acknowledgedNotificationId: "")
             interactor?.doPostSendSOSFeedback(request: request, method: .post)
         }
     }
@@ -86,11 +109,38 @@ extension SOSAlertVC {
             viewDismissBlock?(true)
             self.dismiss(animated: true, completion: nil)
         }
+        else if let model = viewModel as? MyProfile.GetUserProfile.Response {
+            self.profileData = model.data
+            configureUI()
+        }
     }
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         DispatchQueue.main.async { [unowned self] in
             self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
+        }
+    }
+}
+
+extension SOSAlertVC: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension SOSAlertVC {
+    @objc func editingChanged(_ textField: UITextField) {
+        btnOk.isEnabled = false
+        let message = (txtfMessage.text ?? "").trim()
+        if !message.isEmpty {
+            btnOk.isEnabled = true
         }
     }
 }
