@@ -36,5 +36,5 @@ class NotificationsWorker {
         self.networkLayer.get(urlString: strURL, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
                               successHandler: successHandler, errorHandler: errorHandler)
     }
-    
+
 }

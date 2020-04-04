@@ -34,9 +34,15 @@ enum Notifications {
             let created_at: String?
             let updated_at: String?
             let subject: String?
-            let data: String?
+            let data: AnyCodable?
             let is_read: String?
         }
 
+        struct customerDetails: Codable {
+            let technician_id: Int?
+            let technician_name: String?
+            let technician_contact: String?
+            let address: String?
+        }
     }
 }

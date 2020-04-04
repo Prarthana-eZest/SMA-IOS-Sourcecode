@@ -32,8 +32,6 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
 
     var alertData: Notifications.MyNotificationList.MyNotificationListItems?
 
-    var profileData: MyProfile.GetUserProfile.UserData?
-
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -64,21 +62,28 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
         getusershell()
         txtfMessage.delegate = self
         [txtfMessage].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
+        configureUI()
     }
 
     func configureUI() {
         if let alertData = alertData,
-            let profileData = profileData {
-            lblUserName.text = "\(profileData.firstname ?? "") \(profileData.lastname ?? "")"
-            lblLevel.text = profileData.designation ?? ""
-            btnMobileNo.setTitle(profileData.mobile_number, for: .normal)
-            lblAddress.text = alertData.data ?? ""
+            let data = alertData.data,
+            let technicianData = getJSONFromString(string: data.description) {
+            lblUserName.text = String(describing: technicianData["technician_name"] ?? "")
+            lblLevel.text = "NA"
+            btnMobileNo.setTitle(String(describing: technicianData["technician_contact"] ?? ""), for: .normal)
+            lblAddress.text = String(describing: technicianData["address"] ?? "")
+        }
+        else {
+            print("Unable to parse data")
+            viewDismissBlock?(false)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 
-    func getProfileData() {
-        EZLoadingActivity.show("Loading...", disableUI: true)
-        interactor?.doGetMyProfileData(employeeId: 34)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        viewDismissBlock?(false)
     }
 
     @IBAction func actionMobileNo(_ sender: UIButton) {
@@ -88,6 +93,26 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
         if btnOk.isEnabled {
             sendSOSFeedback()
         }
+    }
+
+    func getJSONFromString(string: String) -> [String: Any]? {
+        if let data = string.data(using: .utf8) {
+            do {
+                if let jsonArray = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+                    print(jsonArray)
+                    return jsonArray
+                }
+                else {
+                    print("bad json")
+                    return nil
+                }
+            }
+            catch let error as NSError {
+                print(error)
+                return nil
+            }
+        }
+        return nil
     }
 }
 
@@ -109,10 +134,7 @@ extension SOSAlertVC {
             viewDismissBlock?(true)
             self.dismiss(animated: true, completion: nil)
         }
-        else if let model = viewModel as? MyProfile.GetUserProfile.Response {
-            self.profileData = model.data
-            configureUI()
-        }
+
     }
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
