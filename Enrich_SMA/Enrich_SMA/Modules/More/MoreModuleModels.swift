@@ -62,13 +62,13 @@ enum MoreModule {
         }
         
         struct Data: Codable {
-            let id: String
-            let emp_code: String
-            let emp_name: String
-            let branch_code: String
-            let checkinout_time: String
-            let checkin: String
-            let type: String
+            let id: String?
+            let emp_code: String?
+            let emp_name: String?
+            let branch_code: String?
+            let checkinout_time: String?
+            let checkin: String?
+            let type: String?
         }
     }
 }

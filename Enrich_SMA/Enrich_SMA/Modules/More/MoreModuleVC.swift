@@ -269,15 +269,19 @@ extension MoreModuleVC {
         }
         else if let model = viewModel as? MoreModule.CheckInOutDetails.Response {
             if model.status == true {
-                if let checkIn = model.data?.first(where: {$0.checkin == "0"}) {
-                    lblPunchInTime.text = checkIn.checkinout_time
+                if let checkIn = model.data?.first(where: {$0.checkin == "0"}),
+                    let dateTime = checkIn.checkinout_time,
+                    let time = dateTime.getCheckInTime(dateString: dateTime, withFormat: "hh:mm aaa") {
+                    lblPunchInTime.text = time
                 }
                 else {
                     lblPunchInTime.text = "-"
                 }
-                
-                if let checkOut = model.data?.last(where: {$0.checkin == "1"}) {
-                    lblPunchOutTime.text = checkOut.checkinout_time
+
+                if let checkOut = model.data?.last(where: {$0.checkin == "1"}),
+                    let dateTime = checkOut.checkinout_time,
+                    let time = dateTime.getCheckInTime(dateString: dateTime, withFormat: "hh:mm aaa") {
+                    lblPunchOutTime.text = time
                 }
                 else {
                     lblPunchOutTime.text = "-"
