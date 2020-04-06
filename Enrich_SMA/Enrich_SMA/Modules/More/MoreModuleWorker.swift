@@ -29,7 +29,10 @@ class MoreModuleWorker {
             self.presenter?.presentSuccess(response: response)
         }
 
-        self.networkLayer.post(urlString: ConstantAPINames.getCheckInStatus.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
+        self.networkLayer.post(urlString: ConstantAPINames.getCheckInStatus.rawValue, body: request,
+                               headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler,
+                               errorHandler: errorHandler, method: method)
     }
 
     func postRequestForMarkCheckInOut(request: MoreModule.MarkCheckInOut.Request, method: HTTPMethod) {
@@ -45,7 +48,29 @@ class MoreModuleWorker {
             self.presenter?.presentSuccess(response: response)
         }
 
-        self.networkLayer.post(urlString: ConstantAPINames.markCheckInOut.rawValue, body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler, method: method)
+        self.networkLayer.post(urlString: ConstantAPINames.markCheckInOut.rawValue,
+                               body: request, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler,
+                               errorHandler: errorHandler, method: method)
     }
+    
+    func postRequestForCheckInOutDetails(request: MoreModule.CheckInOutDetails.Request, method: HTTPMethod) {
+        // *********** NETWORK CONNECTION
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (MoreModule.CheckInOutDetails.Response) -> Void = { (employees) in
+            print(employees)
+            let response = employees
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.getCheckInOutDetails.rawValue, body: request,
+                               headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: method)
+    }
+
 
 }

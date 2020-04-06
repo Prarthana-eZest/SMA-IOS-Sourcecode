@@ -32,6 +32,8 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     var interactor: MoreModuleBusinessLogic?
 
     @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var lblPunchInTime: UILabel!
+    @IBOutlet weak private var lblPunchOutTime: UILabel!
 
     var userPunchedIn = false
 
@@ -83,21 +85,9 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "")
+        getCheckInStatus()
+        getCheckInDetails()
     }
-    // MARK: OpenLoginWindow
-    //    func openLoginWindow() {
-    //
-    //        let vc = DoLoginPopUpVC.instantiate(fromAppStoryboard: .Location)
-    //        vc.delegate = self
-    //        self.view.alpha = screenPopUpAlpha
-    //        self.appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
-    //        vc.onDoneBlock = { [unowned self] result in
-    //            // Do something
-    //            if(result) {} else {}
-    //            self.view.alpha = 1.0
-    //        }
-    //    }
-
 }
 
 extension MoreModuleVC: LocationManagerDelegate {
@@ -227,6 +217,14 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Call Webservice
 extension MoreModuleVC {
+    
+    func getCheckInDetails() {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = MoreModule.CheckInOutDetails.Request(date: Date().dayYearMonthDate, emp_code: userData.employee_code ?? "", is_custom: true)
+            interactor?.doPostCheckInOutDetailsRequest(request: request, method: .post)
+        }
+    }
 
     func getCheckInStatus() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
@@ -244,7 +242,9 @@ extension MoreModuleVC {
             let long = "\(LocationManager.sharedInstance.location().longitude)" //"72.608"
 
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "", emp_name: userData.username ?? "", branch_code: userData.base_salon_code ?? "", checkinout_time: Date().checkInOutDateTime, checkin: userPunchedIn ? "0" : "1", employee_latitude: lat, employee_longitude: long, is_custom: true)
+            let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "", emp_name: userData.username ?? "", branch_code: userData.base_salon_code ?? "", checkinout_time: Date().checkInOutDateTime,
+                checkin: userPunchedIn ? "0" : "1", employee_latitude: lat,
+                employee_longitude: long, is_custom: true)
 
             interactor?.doPostMarkCheckInOutRequest(request: request, method: .post)
         }
@@ -265,6 +265,23 @@ extension MoreModuleVC {
             }
             DispatchQueue.main.async { [unowned self] in
                 self.showAlert(alertTitle: alertTitle, alertMessage: model.message )
+            }
+        }
+        else if let model = viewModel as? MoreModule.CheckInOutDetails.Response {
+            if model.status == true {
+                if let checkIn = model.data?.first(where: {$0.checkin == "0"}) {
+                    lblPunchInTime.text = checkIn.checkinout_time
+                }
+                else {
+                    lblPunchInTime.text = "-"
+                }
+                
+                if let checkOut = model.data?.last(where: {$0.checkin == "1"}) {
+                    lblPunchOutTime.text = checkOut.checkinout_time
+                }
+                else {
+                    lblPunchOutTime.text = "-"
+                }
             }
         }
     }

@@ -46,4 +46,29 @@ enum MoreModule {
             var message: String = ""
         }
     }
+    
+    enum CheckInOutDetails {
+
+        struct Request: Codable {
+            let date: String
+            let emp_code: String
+            let is_custom: Bool
+        }
+
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            let data: [Data]?
+        }
+        
+        struct Data: Codable {
+            let id: String
+            let emp_code: String
+            let emp_name: String
+            let branch_code: String
+            let checkinout_time: String
+            let checkin: String
+            let type: String
+        }
+    }
 }
