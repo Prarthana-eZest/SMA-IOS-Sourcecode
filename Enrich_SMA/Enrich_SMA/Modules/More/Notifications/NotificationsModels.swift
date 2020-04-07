@@ -34,7 +34,7 @@ enum Notifications {
             let created_at: String?
             let updated_at: String?
             let subject: String?
-            let data: AnyCodable?
+            let data: customerDetails?
             let is_read: String?
         }
 
@@ -43,6 +43,9 @@ enum Notifications {
             let technician_name: String?
             let technician_contact: String?
             let address: String?
+            let profile_pic: String?
+            let designation: String?
+            let mobile_no: String?
         }
     }
 }

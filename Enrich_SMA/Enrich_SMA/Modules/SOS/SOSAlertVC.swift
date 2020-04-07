@@ -67,12 +67,11 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
 
     func configureUI() {
         if let alertData = alertData,
-            let data = alertData.data,
-            let technicianData = getJSONFromString(string: data.description) {
-            lblUserName.text = String(describing: technicianData["technician_name"] ?? "")
-            lblLevel.text = "NA"
-            btnMobileNo.setTitle(String(describing: technicianData["technician_contact"] ?? ""), for: .normal)
-            lblAddress.text = String(describing: technicianData["address"] ?? "")
+            let technicianData = alertData.data {
+            lblUserName.text = technicianData.technician_name ?? ""
+            lblLevel.text = technicianData.designation ?? "-"
+            btnMobileNo.setTitle(String(describing: technicianData.mobile_no ?? ""), for: .normal)
+            lblAddress.text = technicianData.address ?? ""
         }
         else {
             print("Unable to parse data")
@@ -120,9 +119,12 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
 extension SOSAlertVC {
 
     func sendSOSFeedback() {
-        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+            let alertData = alertData,
+            let technicianData = alertData.data,
+            let technicianId = technicianData.technician_id {
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = SOSAlert.SendFeedback.Request(employee_id: userData.employee_id ?? "", message: txtfMessage.text ?? "", sent_by_id: "", is_custom: 1, acknowledgedNotificationId: "")
+            let request = SOSAlert.SendFeedback.Request(employee_id: "\(technicianId)", message: txtfMessage.text ?? "", sent_by_id: userData.employee_id ?? "", is_custom: 1, acknowledgedNotificationId: alertData.notification_id ?? "")
             interactor?.doPostSendSOSFeedback(request: request, method: .post)
         }
     }
@@ -134,8 +136,8 @@ extension SOSAlertVC {
             viewDismissBlock?(true)
             self.dismiss(animated: true, completion: nil)
         }
-
     }
+    
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         DispatchQueue.main.async { [unowned self] in
