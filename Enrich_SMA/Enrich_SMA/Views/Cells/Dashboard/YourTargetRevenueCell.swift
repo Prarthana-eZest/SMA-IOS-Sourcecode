@@ -95,7 +95,7 @@ class YourTargetRevenueCell: UITableViewCell {
         let productRevenue = data?.products_revenue?.toDouble()?.cleanForPrice ?? "0"
         let productTarget = data?.products_target?.toDouble()?.cleanForPrice ?? "0"
 
-        lblProductRevenuePercent.text = "\(productPercent)%"
+        lblProductRevenuePercent.text = "\(productPercent.cleanForPrice)%"
         lblProductRevenueAmount.text = "\(productRevenue)/\(productTarget)"
         productRevenueProgressBar.progress = Float(productPercent)
 
@@ -104,7 +104,7 @@ class YourTargetRevenueCell: UITableViewCell {
         let membershipRevenue = data?.membership_revenue?.toDouble()?.cleanForPrice ?? "0"
         let membershipTarget = data?.membership_target?.toDouble()?.cleanForPrice ?? "0"
 
-        lblMembershipPercent.text = "\(membershipPercent)%"
+        lblMembershipPercent.text = "\(membershipPercent.cleanForPrice)%"
         lblMembershipAmount.text = "\(membershipRevenue)/\(membershipTarget)"
         membershipProgressBar.progress = Float(membershipPercent)
 

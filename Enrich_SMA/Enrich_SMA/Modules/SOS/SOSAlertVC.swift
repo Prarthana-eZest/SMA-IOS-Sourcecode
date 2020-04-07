@@ -69,8 +69,8 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
         if let alertData = alertData,
             let technicianData = alertData.data {
             lblUserName.text = technicianData.technician_name ?? ""
-            lblLevel.text = technicianData.designation ?? "-"
-            btnMobileNo.setTitle(String(describing: technicianData.mobile_no ?? ""), for: .normal)
+            lblLevel.text = technicianData.technician_designation ?? "-"
+            btnMobileNo.setTitle(String(describing: technicianData.technician_contact ?? ""), for: .normal)
             lblAddress.text = technicianData.address ?? ""
         }
         else {

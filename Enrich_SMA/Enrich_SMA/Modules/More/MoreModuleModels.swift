@@ -46,7 +46,7 @@ enum MoreModule {
             var message: String = ""
         }
     }
-    
+
     enum CheckInOutDetails {
 
         struct Request: Codable {
@@ -60,7 +60,7 @@ enum MoreModule {
             var message: String = ""
             let data: [Data]?
         }
-        
+
         struct Data: Codable {
             let id: String?
             let emp_code: String?
