@@ -44,7 +44,7 @@ enum Notifications {
             let technician_contact: String?
             let address: String?
             let profile_picture: String?
-            let technician_designation: String?
+            let designation: String?
         }
     }
 }
