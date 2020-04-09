@@ -26,7 +26,7 @@ class UserRatingCell: UITableViewCell {
     }
 
     func configureCell(model: RatingModel) {
-        lblRating.text = "\(model.rating)/5"
+        lblRating.text = "\(model.rating.toDouble()?.cleanForRating ?? "0")/5"
         lblCustomerComments.text = model.comment
         lblcustomerName.text = "\(model.customerNane) | \(model.date)"
     }

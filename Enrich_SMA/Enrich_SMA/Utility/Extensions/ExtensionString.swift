@@ -162,17 +162,17 @@ extension String {
         let s = dateFormatter.date(from: self)
         return s
     }
-    
+
     func getCheckInTime(dateString: String, withFormat format: String) -> String? {
-        
+
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
+
         if let date = inputFormatter.date(from: dateString) {
-            
+
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = format
-            
+
             return outputFormatter.string(from: date)
         }
         return nil
