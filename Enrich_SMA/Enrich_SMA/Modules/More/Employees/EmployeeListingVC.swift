@@ -23,6 +23,7 @@ enum AvailableStatusColor: String {
     case delayed = "delayed"
     case notCheckedIn = "not_checked_in"
     case leave = "leave"
+    case checkedIn = "checked_in"
     case unknown = "unknown"
 
     var status: String {
@@ -30,6 +31,8 @@ enum AvailableStatusColor: String {
 
         case .onTime:
             return "On Time"
+        case .checkedIn:
+            return "Checked In"
         case .delayed:
             return "Delayed"
         case .notCheckedIn:
@@ -46,7 +49,7 @@ enum AvailableStatusColor: String {
 
         switch self {
 
-        case .onTime:
+        case .onTime, .checkedIn:
             return UIColor(red: 70 / 255, green: 196 / 255, blue: 91 / 255, alpha: 1)
         case .delayed:
             return UIColor(red: 238 / 255, green: 91 / 255, blue: 70 / 255, alpha: 1)
@@ -171,7 +174,10 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic {
                 }
                 else if let status = AvailableStatusColor(rawValue: $0.attendance_status ?? "") {
                     statusType = status
-                    statusText = status.status//$0.attendance_status ?? ""
+                    statusText = status.status
+                }
+                else {
+                    statusText = $0.attendance_status ?? ""
                 }
 
                 let model = EmployeeModel(name: "\($0.first_name ?? "") \($0.last_name ?? "")", level: $0.designation ?? "",
