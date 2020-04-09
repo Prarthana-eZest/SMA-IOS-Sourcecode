@@ -366,7 +366,7 @@
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rz4-P8-Vo6">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
-                                                        <state key="normal" title="ADD OBSERVE NOTE"/>
+                                                        <state key="normal" title="ADD CLIENT NOTE"/>
                                                         <state key="selected" title="SUBMIT"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
