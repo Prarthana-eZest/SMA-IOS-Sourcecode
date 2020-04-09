@@ -64,6 +64,17 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
         [txtfMessage].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
         configureUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           self.navigationController?.navigationBar.isHidden = true
+        KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
+       }
+
+       override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(animated)
+           KeyboardAnimation.sharedInstance.endKeyboardObservation()
+       }
 
     func configureUI() {
         if let alertData = alertData,
@@ -86,6 +97,9 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
     }
 
     @IBAction func actionMobileNo(_ sender: UIButton) {
+        if let text = btnMobileNo.titleLabel?.text {
+            text.makeACall()
+        }
     }
 
     @IBAction func actionOK(_ sender: UIButton) {
