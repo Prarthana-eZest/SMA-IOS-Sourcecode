@@ -218,20 +218,10 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
     }
 
 }
-//extension MoreModuleViewController: LoginRegisterDelegate {
-//    func doLoginRegister() {
-//        // Put your code here
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {[unowned self] in
-//            let vc = LoginModuleVC.instantiate(fromAppStoryboard: .Main)
-//            let navigationContrl = UINavigationController(rootViewController: vc)
-//            self.present(navigationContrl, animated: true, completion: nil)
-//        }
-//    }
-//}
 
 // MARK: Call Webservice
 extension MoreModuleVC {
-    
+
     func getCheckInDetails() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
@@ -253,11 +243,15 @@ extension MoreModuleVC {
 
             EZLoadingActivity.show("Loading...", disableUI: true)
             let lat = "\(LocationManager.sharedInstance.location().latitude)" // "22.997"
-            let long = "\(LocationManager.sharedInstance.location().longitude)" //"72.608"
+            let long = "\(LocationManager.sharedInstance.location().longitude)" // "72.608"
 
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "", emp_name: userData.username ?? "", branch_code: userData.base_salon_code ?? "", checkinout_time: Date().checkInOutDateTime,
-                checkin: userPunchedIn ? "0" : "1", employee_latitude: lat,
+            let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "",
+                                                            emp_name: userData.username ?? "",
+                                                            branch_code: userData.base_salon_code ?? "",
+                                                            checkinout_time: Date().checkInOutDateTime,
+                                                            checkin: userPunchedIn ? "0" : "1",
+                                                            employee_latitude: lat,
                 employee_longitude: long, is_custom: true)
 
             interactor?.doPostMarkCheckInOutRequest(request: request, method: .post)
@@ -276,6 +270,7 @@ extension MoreModuleVC {
             if model.status == true {
                 userPunchedIn = !userPunchedIn
                 self.tableView.reloadData()
+                getCheckInDetails()
             }
             DispatchQueue.main.async { [unowned self] in
                 self.showAlert(alertTitle: alertTitle, alertMessage: model.message )
@@ -283,7 +278,7 @@ extension MoreModuleVC {
         }
         else if let model = viewModel as? MoreModule.CheckInOutDetails.Response {
             if model.status == true {
-                if let checkIn = model.data?.first(where: {$0.checkin == "0"}),
+                if let checkIn = model.data?.first(where: {$0.checkin == "1"}),
                     let dateTime = checkIn.checkinout_time,
                     let time = dateTime.getCheckInTime(dateString: dateTime, withFormat: "hh:mm aaa") {
                     lblPunchInTime.text = time
@@ -292,7 +287,7 @@ extension MoreModuleVC {
                     lblPunchInTime.text = "-"
                 }
 
-                if let checkOut = model.data?.last(where: {$0.checkin == "1"}),
+                if let checkOut = model.data?.last(where: {$0.checkin == "0"}),
                     let dateTime = checkOut.checkinout_time,
                     let time = dateTime.getCheckInTime(dateString: dateTime, withFormat: "hh:mm aaa") {
                     lblPunchOutTime.text = time
@@ -311,8 +306,6 @@ extension MoreModuleVC {
     }
 
     func displaySuccess<T: Decodable>(responseSuccess: [T]) {
-        //        var obj = responseSuccess as? [MoreModule.Something.Response]
-        //        print("Get API Response -- \n \(obj)")
     }
 
 }
