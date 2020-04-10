@@ -307,6 +307,22 @@ extension ClientInformationVC: ClientInformationDelegate {
 
 }
 
+extension ClientInformationVC: AddNotesSingatureDelegate {
+    
+    func actionClearSignature() {
+        self.tableView.reloadData()
+    }
+    
+    func actionSaveSignature(image: UIImage) {
+        self.tableView.reloadData()
+    }
+    
+    func reloadCell() {
+        self.tableView.reloadData()
+    }
+
+}
+
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
 
@@ -377,6 +393,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.addNotesSingatureCell) as? AddNotesSingatureCell else {
                     return UITableViewCell()
                 }
+                cell.delegate = self
                 cell.selectionStyle = .none
                 cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                 return cell

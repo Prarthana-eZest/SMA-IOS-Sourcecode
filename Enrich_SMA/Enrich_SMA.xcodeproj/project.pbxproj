@@ -228,6 +228,7 @@
 		E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685F238CFE8600CC569D /* ListingCell.swift */; };
 		E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */; };
 		E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */; };
+		F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */; };
 		F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F833CC252438C6F0007119AD /* SOSFactory.swift */; };
 		F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */; };
 		F838D9042437058300FDA998 /* SOSAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D8FE2437058300FDA998 /* SOSAlertPresenter.swift */; };
@@ -493,6 +494,7 @@
 		E3DB685F238CFE8600CC569D /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceListingCell.xib; sourceTree = "<group>"; };
 		E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListingCell.swift; sourceTree = "<group>"; };
+		F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
 		F833CC252438C6F0007119AD /* SOSFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSFactory.swift; sourceTree = "<group>"; };
 		F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseTopicFactory.swift; sourceTree = "<group>"; };
 		F838D8FE2437058300FDA998 /* SOSAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertPresenter.swift; sourceTree = "<group>"; };
@@ -896,6 +898,7 @@
 				E30342AD235EE15700E0BF0A /* Third Party */,
 				E30342B1235EE15700E0BF0A /* QRCode Generator */,
 				F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */,
+				F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1802,6 +1805,7 @@
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E3CEA5BF23CC57B200DD213F /* AllReviewsModuleWorker.swift in Sources */,
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
+				F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */,
 				E30341F6235EE14000E0BF0A /* EmployeeListingVC.swift in Sources */,
 				E30341EF235EE14000E0BF0A /* NotificationsWorker.swift in Sources */,
 				E30601CF237EAA7A00988EEC /* AppointmentDetailsInteractor.swift in Sources */,
