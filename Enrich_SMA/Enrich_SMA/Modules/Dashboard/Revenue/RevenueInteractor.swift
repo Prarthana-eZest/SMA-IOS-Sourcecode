@@ -13,25 +13,23 @@
 import UIKit
 
 protocol RevenueBusinessLogic {
-  func doSomething(request: Revenue.Something.Request)
+    func doGetOneClickRevenueData(request: Revenue.OneClickData.Request, method: HTTPMethod)
 }
 
 protocol RevenueDataStore {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class RevenueInteractor: RevenueBusinessLogic, RevenueDataStore {
-  var presenter: RevenuePresentationLogic?
-  var worker: RevenueWorker?
-  //var name: String = ""
-
-  // MARK: Do something
-
-  func doSomething(request: Revenue.Something.Request) {
-    worker = RevenueWorker()
-    worker?.doSomeWork()
-
-    let response = Revenue.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    
+    var presenter: RevenuePresentationLogic?
+    var worker: RevenueWorker?
+    //var name: String = ""
+    
+    // MARK: Do something
+    
+    func doGetOneClickRevenueData(request: Revenue.OneClickData.Request, method: HTTPMethod) {
+        worker = RevenueWorker()
+        worker?.postGetRevenueData(request: request, method: method)
+    }
 }

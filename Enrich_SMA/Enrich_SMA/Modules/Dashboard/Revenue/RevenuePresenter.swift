@@ -13,16 +13,20 @@
 import UIKit
 
 protocol RevenuePresentationLogic {
-  func presentSomething(response: Revenue.Something.Response)
+    func presentSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)
 }
 
 class RevenuePresenter: RevenuePresentationLogic {
-  weak var viewController: RevenueDisplayLogic?
-
-  // MARK: Do something
-
-  func presentSomething(response: Revenue.Something.Response) {
-    let viewModel = Revenue.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: RevenueDisplayLogic?
+    
+    // MARK: Do something
+    
+    func presentSuccess<T>(response: T) where T: Decodable {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    
+    func presentError(responseError: String?) {
+        viewController?.displayError(errorMessage: responseError)
+    }
 }
