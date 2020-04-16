@@ -124,7 +124,8 @@ enum AlertMessagesToAsk {
     static let defaultAddress = "Dafault address cannot be removed."
     static let addNewNote = "Please add note"
     static let termsAdnConditions = "Please accept terms and conditions"
-
+    static let customerSignature = "Please take customer signature"
+    static let formValidation = "Please fill all required fields"
 }
 enum AlertButtonTitle {
     static let yes = "Yes"

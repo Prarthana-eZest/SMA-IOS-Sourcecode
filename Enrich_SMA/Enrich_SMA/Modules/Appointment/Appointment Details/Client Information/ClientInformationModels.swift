@@ -180,54 +180,116 @@ enum ClientInformation {
             let created_at: String?
             let updated_at: String?
         }
-
     }
+}
+
+enum GenericCustomerConsulation {
+    
+    enum FormData {
+           
+           struct Request: Codable {
+               let customer_id: String
+               let service_id: String
+               let is_custom: Bool
+           }
+           
+           struct Response: Codable {
+               var status: Bool = false
+               var message: String = ""
+               let data: [Data]?
+           }
+           
+           struct Data: Codable {
+               let label: String?
+               let field_type: String?
+               let required: Bool?
+               let show_in_email: Bool?
+               let fieldcol: Int?
+               let wrappercol: Int?
+               let cid: String?
+               let field_cid: String?
+               let value: String?
+               let field_options: [Options]?
+           }
+           
+           struct Options: Codable {
+               let label : String?
+               let checked : Bool?
+           }
+       }
+       
+       enum SubmitFormData {
+           
+           struct Request: Codable {
+               let formData: FormDataRequest
+               let is_custom: Bool
+           }
+           
+           struct FormDataRequest: Codable {
+               let formId: String
+               let customer_id: String
+               let data: [Data]
+           }
+           
+           struct Data: Codable {
+               let id: String
+               let value: [String]
+               let size: String
+               let field_type: String
+           }
+           
+           struct Response: Codable {
+               var status: Bool = false
+               var message: String = ""
+           }
+           
+       }
 
 }
 
-let consulationData: [TagViewModel] = [TagViewModel(title: "Type of hair", tagView: [TagViewString(text: "DRY", isSelected: true),
-                                                                                    TagViewString(text: "FRIZZY", isSelected: false),
-                                                                                    TagViewString(text: "SENSITIVE", isSelected: false),
-                                                                                    TagViewString(text: "VERGIN", isSelected: false),
-                                                                                    TagViewString(text: "CHEMICALLY TREATED", isSelected: false)], isSingleSelection: true),
-
-                                      TagViewModel(title: "Hair Elasticity", tagView: [TagViewString(text: "POOR", isSelected: false),
-                                                                                       TagViewString(text: "GOOD", isSelected: true)], isSingleSelection: true),
-                                      TagViewModel(title: "Hair Sensitivity", tagView: [TagViewString(text: "POROUS", isSelected: false),
-                                                                                        TagViewString(text: "SENSITIZED", isSelected: false)], isSingleSelection: true),
-                                      TagViewModel(title: "Scalp Sensitivity", tagView: [TagViewString(text: "HEALTHY", isSelected: false),
-                                                                                         TagViewString(text: "ALLERGIC", isSelected: false),
-                                                                                         TagViewString(text: "ITCHY", isSelected: false),
-                                                                                         TagViewString(text: "INFECTED", isSelected: false),
-                                                                                         TagViewString(text: "REDNESS", isSelected: false)], isSingleSelection: false),
-
-                                      TagViewModel(title: "Hair Texture", tagView: [TagViewString(text: "FINE", isSelected: false),
-                                                                                    TagViewString(text: "MEDIUM", isSelected: false),
-                                                                                    TagViewString(text: "THICK", isSelected: false)], isSingleSelection: true),
-
-                                      TagViewModel(title: "Skin Type", tagView: [TagViewString(text: "NORMAL", isSelected: false),
-                                                                                 TagViewString(text: "OILY", isSelected: false),
-                                                                                 TagViewString(text: "DRY", isSelected: false),
-                                                                                 TagViewString(text: "COMBINATION", isSelected: false)], isSingleSelection: true),
-
-                                      TagViewModel(title: "Skin Sensitivity", tagView: [TagViewString(text: "NORMAL", isSelected: false),
-                                                                                        TagViewString(text: "SENSITIVE", isSelected: false),
-                                                                                        TagViewString(text: "HYPERSENSITIVE", isSelected: false)], isSingleSelection: true),
-
-                                      TagViewModel(title: "Muscle Tone", tagView: [TagViewString(text: "POOR", isSelected: false),
-                                                                                   TagViewString(text: "AVERAGE", isSelected: false),
-                                                                                   TagViewString(text: "GOOD", isSelected: false)], isSingleSelection: true),
-
-                                      TagViewModel(title: "Skin Concerns", tagView: [TagViewString(text: "PIGMENTATION", isSelected: false),
-                                                                                     TagViewString(text: "DEHYGRATION", isSelected: false),
-                                                                                     TagViewString(text: "BLACK HEADS", isSelected: false),
-                                                                                     TagViewString(text: "ACNE", isSelected: false),
-                                                                                     TagViewString(text: "HYPERSENSITIVE", isSelected: false)], isSingleSelection: false),
-
-                                      TagViewModel(title: "Contraindications for facial using high frequency or galvanic", tagView: [TagViewString(text: "PIGMENTATION", isSelected: false),
-                                                                                                                                     TagViewString(text: "HIGH BLOOD PRESSURE", isSelected: false),
-                                                                                                                                     TagViewString(text: "DIABETES", isSelected: false),
-                                                                                                                                     TagViewString(text: "CLAUSTROPHOBIA", isSelected: false),
-                                                                                                                                     TagViewString(text: "ASTHAMA", isSelected: false),
-                                                                                                                                     TagViewString(text: "METAL TOOTH FILLINGS", isSelected: false),
-                                                                                                                                     TagViewString(text: "PREGNANCY", isSelected: false)], isSingleSelection: false)]
+//let consulationData: [TagViewModel] = [TagViewModel(title: "Type of hair", tagView: [TagViewString(text: "DRY", isSelected: true),
+//                                                                                    TagViewString(text: "FRIZZY", isSelected: false),
+//                                                                                    TagViewString(text: "SENSITIVE", isSelected: false),
+//                                                                                    TagViewString(text: "VERGIN", isSelected: false),
+//                                                                                    TagViewString(text: "CHEMICALLY TREATED", isSelected: false)], isSingleSelection: true),
+//
+//                                      TagViewModel(title: "Hair Elasticity", tagView: [TagViewString(text: "POOR", isSelected: false),
+//                                                                                       TagViewString(text: "GOOD", isSelected: true)], isSingleSelection: true),
+//                                      TagViewModel(title: "Hair Sensitivity", tagView: [TagViewString(text: "POROUS", isSelected: false),
+//                                                                                        TagViewString(text: "SENSITIZED", isSelected: false)], isSingleSelection: true),
+//                                      TagViewModel(title: "Scalp Sensitivity", tagView: [TagViewString(text: "HEALTHY", isSelected: false),
+//                                                                                         TagViewString(text: "ALLERGIC", isSelected: false),
+//                                                                                         TagViewString(text: "ITCHY", isSelected: false),
+//                                                                                         TagViewString(text: "INFECTED", isSelected: false),
+//                                                                                         TagViewString(text: "REDNESS", isSelected: false)], isSingleSelection: false),
+//
+//                                      TagViewModel(title: "Hair Texture", tagView: [TagViewString(text: "FINE", isSelected: false),
+//                                                                                    TagViewString(text: "MEDIUM", isSelected: false),
+//                                                                                    TagViewString(text: "THICK", isSelected: false)], isSingleSelection: true),
+//
+//                                      TagViewModel(title: "Skin Type", tagView: [TagViewString(text: "NORMAL", isSelected: false),
+//                                                                                 TagViewString(text: "OILY", isSelected: false),
+//                                                                                 TagViewString(text: "DRY", isSelected: false),
+//                                                                                 TagViewString(text: "COMBINATION", isSelected: false)], isSingleSelection: true),
+//
+//                                      TagViewModel(title: "Skin Sensitivity", tagView: [TagViewString(text: "NORMAL", isSelected: false),
+//                                                                                        TagViewString(text: "SENSITIVE", isSelected: false),
+//                                                                                        TagViewString(text: "HYPERSENSITIVE", isSelected: false)], isSingleSelection: true),
+//
+//                                      TagViewModel(title: "Muscle Tone", tagView: [TagViewString(text: "POOR", isSelected: false),
+//                                                                                   TagViewString(text: "AVERAGE", isSelected: false),
+//                                                                                   TagViewString(text: "GOOD", isSelected: false)], isSingleSelection: true),
+//
+//                                      TagViewModel(title: "Skin Concerns", tagView: [TagViewString(text: "PIGMENTATION", isSelected: false),
+//                                                                                     TagViewString(text: "DEHYGRATION", isSelected: false),
+//                                                                                     TagViewString(text: "BLACK HEADS", isSelected: false),
+//                                                                                     TagViewString(text: "ACNE", isSelected: false),
+//                                                                                     TagViewString(text: "HYPERSENSITIVE", isSelected: false)], isSingleSelection: false),
+//
+//                                      TagViewModel(title: "Contraindications for facial using high frequency or galvanic", tagView: [TagViewString(text: "PIGMENTATION", isSelected: false),
+//                                                                                                                                     TagViewString(text: "HIGH BLOOD PRESSURE", isSelected: false),
+//                                                                                                                                     TagViewString(text: "DIABETES", isSelected: false),
+//                                                                                                                                     TagViewString(text: "CLAUSTROPHOBIA", isSelected: false),
+//                                                                                                                                     TagViewString(text: "ASTHAMA", isSelected: false),
+//                                                                                                                                     TagViewString(text: "METAL TOOTH FILLINGS", isSelected: false),
+//                                                                                                                                     TagViewString(text: "PREGNANCY", isSelected: false)], isSingleSelection: false)]

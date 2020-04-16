@@ -29,10 +29,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak private var tableView: UITableView!
-
     @IBOutlet weak private var BottonButtonView: UIView!
-
     @IBOutlet weak private var lblNoRecords: UILabel!
+    @IBOutlet weak private var submitFormView: UIView!
 
     var customerId: Int?
 
@@ -43,10 +42,11 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
     var preferenceData = [PointsCellData]()
     var notesData = [PointsCellData]()
-
     var data = [PointsCellData]()
 
     var selectedTitleCell = 0
+    var signatureImage: UIImage?
+    var consulationData = [TagViewModel]()
 
     // MARK: Object lifecycle
 
@@ -103,11 +103,15 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.headerViewWithTitleCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.headerViewWithTitleCell)
         tableView.register(UINib(nibName: CellIdentifier.membershipStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.membershipStatusCell)
         tableView.register(UINib(nibName: CellIdentifier.serviceHistoryCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.serviceHistoryCell)
-        tableView.register(UINib(nibName: CellIdentifier.addNotesSingatureCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.addNotesSingatureCell)
+        tableView.register(UINib(nibName: CellIdentifier.addNotesCell, bundle: nil),
+                           forCellReuseIdentifier: CellIdentifier.addNotesCell)
+        tableView.register(UINib(nibName: CellIdentifier.signatureCell, bundle: nil),
+        forCellReuseIdentifier: CellIdentifier.signatureCell)
 
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
 
         lblNoRecords.isHidden = true
+        submitFormView.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -150,6 +154,17 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
     @IBAction func actionClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func actionSubmitForm(_ sender: UIButton) {
+        if signatureImage == nil {
+            self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.customerSignature, seconds: toastMessageDuration)
+            return
+        }
+        else
+        {
+            submitGenericForm()
+        }
     }
 
     // MARK: Do something
@@ -204,6 +219,79 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
     }
 
+    func getGenericFormData() {
+        if let customerId = customerId {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = GenericCustomerConsulation.FormData.Request(customer_id: "\(customerId)", service_id: "generic_consultation_form", is_custom: true)
+            interactor?.doGetGenericFormData(request: request, method: .post)
+        }
+    }
+    
+    func submitGenericForm() {
+        if let customerId = customerId, let signature = signatureImage {
+            var fields = [GenericCustomerConsulation.SubmitFormData.Data]()
+            
+            var showValidationAlert = false
+            
+            consulationData.forEach {
+                
+                let value: [String]
+                
+                if $0.field_type == .signature {
+                    value = [convertImageToBase64(image: signature)]
+                }
+                else if $0.field_type == .commentBox {
+                    value = [$0.value]
+                }
+                else {
+                    value = $0.tagView.compactMap {
+                        if $0.isSelected {
+                            return $0.text
+                        }
+                        return nil
+                    }
+                    if !showValidationAlert {
+                        showValidationAlert = ($0.isRequired && value.isEmpty)
+                    }
+                }
+               
+                if !value.isEmpty {
+                    fields.append(GenericCustomerConsulation.SubmitFormData.Data(id: $0.id, value: value, size: $0.size, field_type: $0.field_type.rawValue))
+                }
+            }
+            
+            if showValidationAlert {
+                self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.formValidation, seconds: toastMessageDuration)
+                return
+            }
+            
+            EZLoadingActivity.show("Loading...", disableUI: true)
+                        
+            let formData = GenericCustomerConsulation.SubmitFormData.FormDataRequest(formId: "generic_consultation_form", customer_id: "\(customerId)", data: fields)
+            let request = GenericCustomerConsulation.SubmitFormData.Request(formData: formData, is_custom: true)
+            interactor?.doPostGenericFormData(request: request, method: .post)
+        }
+    }
+    
+    func convertImageToBase64(image: UIImage) -> String {
+        let imageData = image.jpegData(compressionQuality: 0.5)!
+        return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+    }
+    
+    func mapFormData(fields: [GenericCustomerConsulation.FormData.Data]) {
+        consulationData.removeAll()
+        fields.forEach {
+            var options = [TagViewString]()
+            $0.field_options?.forEach { option in
+                options.append(TagViewString(text: option.label ?? "", isSelected: option.checked ?? false))
+            }
+            if let fieldType = FieldType(rawValue: $0.field_type ?? "") {
+                consulationData.append(TagViewModel(title: $0.label ?? "", tagView: options, value: $0.value ?? "", id: $0.cid ?? "", size: "", field_type: fieldType, isRequired: $0.required ?? false))
+            }
+            
+        }
+        tableView.reloadData()
+    }
 }
 
 extension ClientInformationVC {
@@ -271,6 +359,12 @@ extension ClientInformationVC {
             }
             self.reloadClientData()
         }
+        else if let model = viewModel as? GenericCustomerConsulation.FormData.Response, model.status == true {
+            mapFormData(fields: model.data ?? [])
+        }
+        else if let model = viewModel as? GenericCustomerConsulation.SubmitFormData.Response {
+            self.showToast(alertTitle: alertTitle, message: model.message, seconds: toastMessageDuration)
+        }
     }
 
     func displayError(errorMessage: String?) {
@@ -307,21 +401,17 @@ extension ClientInformationVC: ClientInformationDelegate {
 
 }
 
-extension ClientInformationVC: AddNotesSingatureDelegate {
+extension ClientInformationVC: SingatureCellDelegate {
     
     func actionClearSignature() {
-        self.tableView.reloadData()
+        signatureImage = nil
     }
     
     func actionSaveSignature(image: UIImage) {
-        self.tableView.reloadData()
+        signatureImage = image
     }
-    
-    func reloadCell() {
-        self.tableView.reloadData()
-    }
-
 }
+
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
@@ -389,26 +479,40 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 return cell
             }
-            else if indexPath.row == (consulationData.count + 1) {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.addNotesSingatureCell) as? AddNotesSingatureCell else {
-                    return UITableViewCell()
-                }
-                cell.delegate = self
-                cell.selectionStyle = .none
-                cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
-                return cell
-            }
             else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagViewCell, for: indexPath) as? TagViewCell else {
-                    return UITableViewCell()
+                let formData = consulationData[indexPath.row - 1]
+                
+                if formData.field_type == .commentBox {
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.addNotesCell) as? AddNotesCell else {
+                        return UITableViewCell()
+                    }
+                    cell.configureCell(model: formData)
+                    cell.selectionStyle = .none
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+                    return cell
+                } else if formData.field_type == .signature {
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.signatureCell) as? SignatureCell else {
+                        return UITableViewCell()
+                    }
+                    cell.delegate = self
+                    cell.selectionStyle = .none
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+                    return cell
                 }
-                cell.indexPath = indexPath
-                cell.configureCell(model: consulationData[indexPath.row - 1])
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
-                cell.selectionStyle = .none
-                return cell
+                else {
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.tagViewCell,
+                                                                   for: indexPath) as? TagViewCell else {
+                                                                    return UITableViewCell()
+                    }
+                    
+                    cell.indexPath = indexPath
+                    cell.configureCell(model: formData)
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+                    cell.selectionStyle = .none
+                    return cell
+                }
             }
-
+        
         case 2:
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.membershipStatusCell, for: indexPath) as? MembershipStatusCell else {
@@ -468,6 +572,7 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedTitleCell = indexPath.row
         BottonButtonView.isHidden = (indexPath.row != 0)
+        submitFormView.isHidden = (indexPath.row != 1)
         collectionView.reloadData()
         tableView.reloadData()
 

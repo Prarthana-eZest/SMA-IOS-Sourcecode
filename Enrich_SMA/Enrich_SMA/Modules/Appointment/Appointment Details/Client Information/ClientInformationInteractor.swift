@@ -17,6 +17,8 @@ protocol ClientInformationBusinessLogic {
     func doGetMembershipDetails(accessToken: String, method: HTTPMethod, request: ClientInformation.MembershipDetails.Request)
     func doGetClientPreferences(accessToken: String, method: HTTPMethod, request: ClientInformation.Preferences.Request)
     func doGetClientNotes(method: HTTPMethod, request: ClientInformation.ClientNotes.Request)
+    func doGetGenericFormData(request: GenericCustomerConsulation.FormData.Request, method: HTTPMethod)
+    func doPostGenericFormData(request: GenericCustomerConsulation.SubmitFormData.Request, method: HTTPMethod)
 }
 
 class ClientInformationInteractor: ClientInformationBusinessLogic {
@@ -48,6 +50,19 @@ class ClientInformationInteractor: ClientInformationBusinessLogic {
         worker = ClientInformationWorker()
         worker?.presenter = self.presenter
         worker?.postRequestForClientNotes(request: request, method: method)
+    }
+    
+    func doGetGenericFormData(request: GenericCustomerConsulation.FormData.Request, method: HTTPMethod) {
+        worker = ClientInformationWorker()
+        worker?.presenter = self.presenter
+        worker?.getGenericConsultationForm(request: request, method: method)
+    }
+
+
+    func doPostGenericFormData(request: GenericCustomerConsulation.SubmitFormData.Request, method: HTTPMethod) {
+        worker = ClientInformationWorker()
+        worker?.presenter = self.presenter
+        worker?.postSubmitGenericForm(request: request, method: method)
     }
 
 }

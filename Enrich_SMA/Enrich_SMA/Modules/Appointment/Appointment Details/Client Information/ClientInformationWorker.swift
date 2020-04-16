@@ -23,7 +23,7 @@ class ClientInformationWorker {
             self.presenter?.presentError(responseError: error)
         }
         let successHandler: (ClientInformation.GetAppointnentHistory.Response) -> Void = { (response) in
-            self.presenter?.presentGetAppointmentHistorySuccess(response: response)
+            self.presenter?.presentSuccess(response: response)
         }
 
         self.networkLayer.post(urlString: ConstantAPINames.getAppointments.rawValue, body: request,
@@ -39,7 +39,7 @@ class ClientInformationWorker {
         }
 
         let successHandler: (ClientInformation.MembershipDetails.Response) -> Void = { (response) in
-            self.presenter?.presentGetMembershipDetailsSuccess(response: response)
+            self.presenter?.presentSuccess(response: response)
         }
 
         let url = "\(ConstantAPINames.membershipDetails.rawValue)&customer_id=\(request.customer_id)"
@@ -55,7 +55,7 @@ class ClientInformationWorker {
         }
 
         let successHandler: (ClientInformation.Preferences.Response) -> Void = { (response) in
-            self.presenter?.presentGetClientPreferenceSuccess(response: response)
+            self.presenter?.presentSuccess(response: response)
         }
 
         let url = "\(ConstantAPINames.clientPreferences.rawValue)&customer_id=\(request.customer_id)"
@@ -71,11 +71,46 @@ class ClientInformationWorker {
         }
         let successHandler: (ClientInformation.ClientNotes.Response) -> Void = { (response) in
             print(response)
-            self.presenter?.presentGetClientNotesSuccess(response: response)
+            self.presenter?.presentSuccess(response: response)
         }
 
         self.networkLayer.post(urlString: ConstantAPINames.clientNotes.rawValue, body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler, method: .post)
 
     }
+    
+    func getGenericConsultationForm(request: GenericCustomerConsulation.FormData.Request, method: HTTPMethod) {
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (GenericCustomerConsulation.FormData.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.getConsulationForm.rawValue,
+                               body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler,
+                               method: .post)
+
+    }
+
+    func postSubmitGenericForm(request: GenericCustomerConsulation.SubmitFormData.Request, method: HTTPMethod) {
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (GenericCustomerConsulation.SubmitFormData.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.setConsulationForm.rawValue,
+                               body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler,
+                               method: .post)
+
+    }
+
 
 }

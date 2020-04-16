@@ -10,13 +10,15 @@ import UIKit
 import TagListView
 
 protocol TagViewSelectionDelegate: class {
-    func actionTagSelection(tag: String)
+    func actionTagSelection(tag: String,index:Int)
 }
 
 class TagViewCell: UITableViewCell, TagListViewDelegate {
 
     @IBOutlet weak private var lblTitle: UILabel!
     @IBOutlet weak private var tagListView: TagListView!
+    @IBOutlet weak private var asteriskIcon: UIImageView!
+    
 
     var indexPath: IndexPath?
     var isSingleSelection = false
@@ -36,7 +38,7 @@ class TagViewCell: UITableViewCell, TagListViewDelegate {
 
     func configureCell(model: TagViewModel) {
         tagViewModel = model
-        isSingleSelection = model.isSingleSelection
+        isSingleSelection = (model.field_type == .radio)
         if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
             tagListView.textFont = font
         }
@@ -44,6 +46,7 @@ class TagViewCell: UITableViewCell, TagListViewDelegate {
         tagListView.delegate = self
         tagListView.removeAllTags()
         tagListView.alignment = .center
+        asteriskIcon.isHidden = !model.isRequired
 
         model.tagView.forEach {
             tagListView.addTag($0.text)
@@ -58,7 +61,9 @@ class TagViewCell: UITableViewCell, TagListViewDelegate {
         let status = !tagView.isSelected
         if isSingleSelection {tagListView.selectedTags().forEach {$0.isSelected = false}}
         tagView.isSelected = status
-        self.delegate?.actionTagSelection(tag: title)
+        if let indexPath = indexPath {
+            self.delegate?.actionTagSelection(tag: title, index: indexPath.row)
+        }
 
         if isSingleSelection {
             self.tagViewModel?.tagView.forEach {$0.isSelected = false}
@@ -79,6 +84,13 @@ class TagViewCell: UITableViewCell, TagListViewDelegate {
 
 }
 
+enum FieldType: String {
+    case radio = "radio"
+    case checkbox = "checkboxes"
+    case commentBox = "text"
+    case signature = "file_upload"
+}
+
 class TagViewString {
     let text: String
     var isSelected: Bool
@@ -88,14 +100,23 @@ class TagViewString {
         self.isSelected = isSelected
     }
 }
+
 class TagViewModel {
     let title: String
     let tagView: [TagViewString]
-    let isSingleSelection: Bool
+    var value: String
+    let id: String
+    let size: String
+    let field_type: FieldType
+    let isRequired: Bool
 
-    init(title: String, tagView: [TagViewString], isSingleSelection: Bool) {
+    init(title: String, tagView: [TagViewString], value: String, id: String, size: String, field_type: FieldType, isRequired: Bool) {
         self.title = title
         self.tagView = tagView
-        self.isSingleSelection = isSingleSelection
+        self.value = value
+        self.id = id
+        self.size = size
+        self.field_type = field_type
+        self.isRequired = isRequired
     }
 }

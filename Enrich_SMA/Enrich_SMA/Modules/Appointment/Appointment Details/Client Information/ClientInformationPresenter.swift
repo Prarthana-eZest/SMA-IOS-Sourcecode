@@ -13,10 +13,7 @@
 import UIKit
 
 protocol ClientInformationPresentationLogic {
-    func presentGetAppointmentHistorySuccess<T: Decodable>(response: T)
-    func presentGetMembershipDetailsSuccess<T: Decodable>(response: T)
-    func presentGetClientPreferenceSuccess<T: Decodable>(response: T)
-    func presentGetClientNotesSuccess<T: Decodable>(response: T)
+    func presentSuccess<T: Decodable>(response: T)
     func presentError(responseError: String?)
 }
 
@@ -25,23 +22,11 @@ class ClientInformationPresenter: ClientInformationPresentationLogic {
 
     // MARK: Do something
 
-    func presentGetAppointmentHistorySuccess<T>(response: T) where T: Decodable {
-        viewController?.displaySuccess(viewModel: response)
-    }
-
-    func presentGetMembershipDetailsSuccess<T>(response: T) where T: Decodable {
-        viewController?.displaySuccess(viewModel: response)
-    }
-
     func presentError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
     }
 
-    func presentGetClientPreferenceSuccess<T: Decodable>(response: T) {
-        viewController?.displaySuccess(viewModel: response)
-    }
-
-    func presentGetClientNotesSuccess<T: Decodable>(response: T) {
+    func presentSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)
     }
 }
