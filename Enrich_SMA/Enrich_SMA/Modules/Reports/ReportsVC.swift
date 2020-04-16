@@ -103,9 +103,12 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
-        let vc = WebViewVC.instantiate(fromAppStoryboard: .Reports)
-        vc.data = reports[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = WebViewVC.instantiate(fromAppStoryboard: .Reports)
+//        vc.data = reports[indexPath.row]
+//        self.navigationController?.pushViewController(vc, animated: true)
+        guard let urlString = reports[indexPath.row].url,
+            let url = URL(string: urlString) else { return }
+            UIApplication.shared.open(url)
     }
 }
 
