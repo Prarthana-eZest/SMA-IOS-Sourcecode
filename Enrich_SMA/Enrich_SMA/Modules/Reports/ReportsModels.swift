@@ -13,14 +13,22 @@
 import UIKit
 
 enum Reports {
-  // MARK: Use cases
+    // MARK: Use cases
 
-  enum Something {
-    struct Request {
+    enum GetReports {
+
+        struct Request: Codable {
+        }
+
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            let data: [Data]?
+        }
+
+        struct Data: Codable {
+            let type: String?
+            let url: String?
+        }
     }
-    struct Response {
-    }
-    struct ViewModel {
-    }
-  }
 }

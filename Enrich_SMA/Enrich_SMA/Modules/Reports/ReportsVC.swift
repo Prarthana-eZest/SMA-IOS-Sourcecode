@@ -13,11 +13,16 @@
 import UIKit
 
 protocol ReportsDisplayLogic: class {
-    func displaySomething(viewModel: Reports.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
 }
 
 class ReportsVC: UIViewController, ReportsDisplayLogic {
+
     var interactor: ReportsBusinessLogic?
+
+    var reports = [Reports.GetReports.Data]()
+
     @IBOutlet weak private var tableView: UITableView!
 
     // MARK: Object lifecycle
@@ -43,35 +48,30 @@ class ReportsVC: UIViewController, ReportsDisplayLogic {
         presenter.viewController = viewController
     }
 
-    // MARK: Routing
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let scene = segue.identifier {
-//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//            if let router = router, router.responds(to: selector) {
-//                router.perform(selector, with: segue)
-//            }
-//        }
-    }
-
     // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        tableView.register(UINib(nibName: CellIdentifier.reportCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.reportCell)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
+        showNavigationBarButtons()
     }
 
-    // MARK: Do something
-
-    //@IBOutlet weak var nameTextField: UITextField!
-
-    func doSomething() {
-        let request = Reports.Something.Request()
-        interactor?.doSomething(request: request)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        getReports()
     }
 
-    func displaySomething(viewModel: Reports.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func showNavigationBarButtons() {
+
+        let reportsButton = UIBarButtonItem(title: "Reports", style: .plain, target: self, action: #selector(didTapRevenueButton))
+        reportsButton.tintColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
+        navigationItem.title = ""
+        navigationItem.leftBarButtonItems = [reportsButton]
+    }
+
+    @objc func didTapRevenueButton() {
     }
 }
 
@@ -82,17 +82,18 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return reports.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentStatusCell", for: indexPath) as? AppointmentStatusCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.reportCell, for: indexPath) as? ReportCell else {
             return UITableViewCell()
-//        }
-//        cell.indexPath = indexPath
-//        cell.selectionStyle = .none
-//        return cell
+        }
+        cell.configureCell(title: reports[indexPath.row].type ?? "")
+        cell.selectionStyle = .none
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        return cell
 
     }
 
@@ -102,5 +103,34 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
+        let vc = WebViewVC.instantiate(fromAppStoryboard: .Reports)
+        vc.data = reports[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension ReportsVC {
+
+    func getReports() {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        let request = Reports.GetReports.Request()
+        interactor?.doGetReports(request: request, method: .post)
+    }
+
+    func displaySuccess<T>(viewModel: T) where T: Decodable {
+        EZLoadingActivity.hide()
+        print("Response: \(viewModel)")
+
+        if let model = viewModel as? Reports.GetReports.Response {
+            reports.removeAll()
+            reports.append(contentsOf: model.data ?? [])
+            tableView.reloadData()
+        }
+    }
+
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        print("Failed: \(errorMessage ?? "")")
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }

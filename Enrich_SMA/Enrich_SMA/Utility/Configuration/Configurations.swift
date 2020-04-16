@@ -35,6 +35,9 @@ enum CellIdentifier {
     static let todaysAppointmentHeaderCell = "TodaysAppointmentHeaderCell"
     static let appointmentStatusCell = "AppointmentStatusCell"
 
+    // Reports
+    static let reportCell = "ReportCell"
+
     // Appointment Details
     static let appointmentDetailsCell = "AppointmentDetailsCell"
     static let appointmentTimelineCell = "AppointmentTimelineCell"

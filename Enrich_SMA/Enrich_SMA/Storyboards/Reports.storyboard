@@ -1,7 +1,68 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Web ViewVC-->
+        <scene sceneID="oEw-2B-etU">
+            <objects>
+                <viewController storyboardIdentifier="WebViewVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WEM-a7-Q8g" customClass="WebViewVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8NU-pJ-rRr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tiW-MH-hHx" userLabel="View Seprator">
+                                <rect key="frame" x="0.0" y="44" width="414" height="1"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="hUT-fo-eVE"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="1.5" height="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.25098039220000001" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-eU-Qqu">
+                                <rect key="frame" x="10" y="50" width="394" height="802"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Mfo-eU-Qqu" firstAttribute="leading" secondItem="npN-Ep-NtM" secondAttribute="leading" constant="10" id="DEz-hf-ZQ0"/>
+                            <constraint firstItem="npN-Ep-NtM" firstAttribute="bottom" secondItem="Mfo-eU-Qqu" secondAttribute="bottom" constant="10" id="GOy-e0-9ub"/>
+                            <constraint firstItem="Mfo-eU-Qqu" firstAttribute="top" secondItem="tiW-MH-hHx" secondAttribute="bottom" constant="5" id="N0w-iK-aEj"/>
+                            <constraint firstItem="tiW-MH-hHx" firstAttribute="leading" secondItem="8NU-pJ-rRr" secondAttribute="leading" id="cGe-sp-nKP"/>
+                            <constraint firstItem="npN-Ep-NtM" firstAttribute="trailing" secondItem="Mfo-eU-Qqu" secondAttribute="trailing" constant="10" id="krP-tD-ytO"/>
+                            <constraint firstItem="tiW-MH-hHx" firstAttribute="top" secondItem="npN-Ep-NtM" secondAttribute="top" id="sbJ-Z5-4Tx"/>
+                            <constraint firstAttribute="trailing" secondItem="tiW-MH-hHx" secondAttribute="trailing" id="xF4-qu-Mg0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="npN-Ep-NtM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="U65-t6-AvO"/>
+                    <connections>
+                        <outlet property="subView" destination="Mfo-eU-Qqu" id="DqY-Ty-kry"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6mI-JZ-QtU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="616" y="-1438"/>
+        </scene>
+    </scenes>
 </document>

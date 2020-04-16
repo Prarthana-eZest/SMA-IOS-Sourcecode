@@ -238,6 +238,9 @@
 		F8804EBE244817FE00DEAA82 /* SignatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8804EBA244817FE00DEAA82 /* SignatureCell.xib */; };
 		F8804EC524481BA300DEAA82 /* TagViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8804EC324481BA300DEAA82 /* TagViewCell.xib */; };
 		F8804EC624481BA300DEAA82 /* TagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8804EC424481BA300DEAA82 /* TagViewCell.swift */; };
+		F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACAD72448620F006AB417 /* ReportCell.swift */; };
+		F8DACADA2448620F006AB417 /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DACAD82448620F006AB417 /* ReportCell.xib */; };
+		F8DACADD24486768006AB417 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACADC24486768006AB417 /* WebViewVC.swift */; };
 		F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -506,6 +509,9 @@
 		F8804EBA244817FE00DEAA82 /* SignatureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureCell.xib; sourceTree = "<group>"; };
 		F8804EC324481BA300DEAA82 /* TagViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagViewCell.xib; sourceTree = "<group>"; };
 		F8804EC424481BA300DEAA82 /* TagViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewCell.swift; sourceTree = "<group>"; };
+		F8DACAD72448620F006AB417 /* ReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
+		F8DACAD82448620F006AB417 /* ReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportCell.xib; sourceTree = "<group>"; };
+		F8DACADC24486768006AB417 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -636,7 +642,7 @@
 			children = (
 				E3034036235EE11B00E0BF0A /* Dashboard */,
 				E3034014235EE11B00E0BF0A /* Appointment */,
-				E30342E2235EE24200E0BF0A /* Reports */,
+				F8DACAD624486201006AB417 /* Reports */,
 				E303401E235EE11B00E0BF0A /* More */,
 			);
 			path = Cells;
@@ -1162,13 +1168,7 @@
 				E30342FB235EE5D900E0BF0A /* ReportsWorker.swift */,
 				E30342FD235EE5D900E0BF0A /* ReportsModels.swift */,
 				E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */,
-			);
-			path = Reports;
-			sourceTree = "<group>";
-		};
-		E30342E2235EE24200E0BF0A /* Reports */ = {
-			isa = PBXGroup;
-			children = (
+				F8DACADB24486747006AB417 /* Web View */,
 			);
 			path = Reports;
 			sourceTree = "<group>";
@@ -1407,6 +1407,23 @@
 			path = Listing;
 			sourceTree = "<group>";
 		};
+		F8DACAD624486201006AB417 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				F8DACAD72448620F006AB417 /* ReportCell.swift */,
+				F8DACAD82448620F006AB417 /* ReportCell.xib */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		F8DACADB24486747006AB417 /* Web View */ = {
+			isa = PBXGroup;
+			children = (
+				F8DACADC24486768006AB417 /* WebViewVC.swift */,
+			);
+			path = "Web View";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1584,6 +1601,7 @@
 				E3034250235EE14700E0BF0A /* NotoSans-SemiBold.ttf in Resources */,
 				E30340AF235EE11C00E0BF0A /* MyProfileCell.xib in Resources */,
 				E3034116235EE11C00E0BF0A /* HeaderViewWithTitleCell.xib in Resources */,
+				F8DACADA2448620F006AB417 /* ReportCell.xib in Resources */,
 				F8804EC524481BA300DEAA82 /* TagViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1905,6 +1923,7 @@
 				E30342D5235EE15800E0BF0A /* DatePickerDialog.swift in Sources */,
 				E30601D5237EAA7A00988EEC /* ClientInformationModels.swift in Sources */,
 				E30342D3235EE15800E0BF0A /* CustomTabbarController.swift in Sources */,
+				F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */,
 				E30341ED235EE14000E0BF0A /* NotificationsModels.swift in Sources */,
 				E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */,
 				E33BA97D23FD4CE400AABFE2 /* NotificationDetailsCell.swift in Sources */,
@@ -1929,6 +1948,7 @@
 				E30341F2235EE14000E0BF0A /* EmployeeListingModels.swift in Sources */,
 				E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */,
 				E3CD502823713C3600DE106E /* LoginOTPModulePresenter.swift in Sources */,
+				F8DACADD24486768006AB417 /* WebViewVC.swift in Sources */,
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
 				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,

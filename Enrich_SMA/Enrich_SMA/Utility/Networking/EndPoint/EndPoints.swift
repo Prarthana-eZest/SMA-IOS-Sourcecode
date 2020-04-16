@@ -103,4 +103,7 @@ public enum ConstantAPINames: String {
     // Consultaion Form
     case getConsulationForm = "rest/V1/getform"
     case setConsulationForm = "rest/V1/setform"
+
+    // Reports
+    case getReports = "rest/V1/getmisreports?is_custom=true"
 }

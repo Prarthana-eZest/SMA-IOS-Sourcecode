@@ -13,25 +13,20 @@
 import UIKit
 
 protocol ReportsBusinessLogic {
-  func doSomething(request: Reports.Something.Request)
+    func doGetReports(request: Reports.GetReports.Request, method: HTTPMethod)
 }
 
-protocol ReportsDataStore {
-  //var name: String { get set }
-}
+class ReportsInteractor: ReportsBusinessLogic {
+    var presenter: ReportsPresentationLogic?
+    var worker: ReportsWorker?
+    //var name: String = ""
 
-class ReportsInteractor: ReportsBusinessLogic, ReportsDataStore {
-  var presenter: ReportsPresentationLogic?
-  var worker: ReportsWorker?
-  //var name: String = ""
+    // MARK: Do something
 
-  // MARK: Do something
+    func doGetReports(request: Reports.GetReports.Request, method: HTTPMethod) {
+        worker = ReportsWorker()
+        worker?.presenter = self.presenter
+        worker?.getReports(request: request, method: method)
+    }
 
-  func doSomething(request: Reports.Something.Request) {
-    worker = ReportsWorker()
-    worker?.doSomeWork()
-
-    let response = Reports.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
 }
