@@ -36,6 +36,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     var customerId: Int?
 
     var sections = [SectionConfiguration]()
+    var gender = 1
 
     var appointmentHistory = [ClientInformation.GetAppointnentHistory.Data]()
     var memebershipDetails: MembershipStatusModel?
@@ -431,7 +432,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return data[section].points.count + 1
         case 1:
-            return consulationData.count + 2
+            return consulationData.count + 1
         case 2:
             return 1
         case 3:
@@ -474,7 +475,8 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                     return UITableViewCell()
                 }
                 cell.delegate = self
-                cell.configureCell(isEditable: false, selectedGender: .male)
+                let genderType:Gender = gender == 1 ? .male : gender == 2 ? .female : .otherMale
+                cell.configureCell(isEditable: false, selectedGender: genderType)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
                 cell.selectionStyle = .none
                 return cell
@@ -581,7 +583,7 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
             getClientPreferences()
             getClientNotes()
         case 1:
-            break
+            getGenericFormData()
         case 2:
             getMembershipDetails()
         case 3:
