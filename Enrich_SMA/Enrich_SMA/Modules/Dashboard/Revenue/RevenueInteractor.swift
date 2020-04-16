@@ -30,6 +30,7 @@ class RevenueInteractor: RevenueBusinessLogic, RevenueDataStore {
     
     func doGetOneClickRevenueData(request: Revenue.OneClickData.Request, method: HTTPMethod) {
         worker = RevenueWorker()
+        worker?.presenter = self.presenter
         worker?.postGetRevenueData(request: request, method: method)
     }
 }

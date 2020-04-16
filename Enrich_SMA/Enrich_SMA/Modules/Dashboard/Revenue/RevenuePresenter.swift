@@ -22,7 +22,7 @@ class RevenuePresenter: RevenuePresentationLogic {
     
     // MARK: Do something
     
-    func presentSuccess<T>(response: T) where T: Decodable {
+    func presentSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)
     }
     

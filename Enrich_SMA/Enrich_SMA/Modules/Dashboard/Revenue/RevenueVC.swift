@@ -145,7 +145,7 @@ extension RevenueVC {
         }
     }
     
-    func displaySuccess<T>(viewModel: T) where T: Decodable {
+    func displaySuccess<T: Decodable> (viewModel: T) {
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
         if let model = viewModel as? Revenue.OneClickData.Response, let data = model.data?.first {
