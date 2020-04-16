@@ -10,7 +10,7 @@ import UIKit
 import TagListView
 
 protocol TagViewSelectionDelegate: class {
-    func actionTagSelection(tag: String,index:Int)
+    func actionTagSelection(tag: String, index: Int)
 }
 
 class TagViewCell: UITableViewCell, TagListViewDelegate {
@@ -18,7 +18,6 @@ class TagViewCell: UITableViewCell, TagListViewDelegate {
     @IBOutlet weak private var lblTitle: UILabel!
     @IBOutlet weak private var tagListView: TagListView!
     @IBOutlet weak private var asteriskIcon: UIImageView!
-    
 
     var indexPath: IndexPath?
     var isSingleSelection = false

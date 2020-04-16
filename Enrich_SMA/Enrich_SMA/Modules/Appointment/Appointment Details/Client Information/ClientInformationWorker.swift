@@ -77,7 +77,7 @@ class ClientInformationWorker {
         self.networkLayer.post(urlString: ConstantAPINames.clientNotes.rawValue, body: request, headers: [:], successHandler: successHandler, errorHandler: errorHandler, method: .post)
 
     }
-    
+
     func getGenericConsultationForm(request: GenericCustomerConsulation.FormData.Request, method: HTTPMethod) {
 
         let errorHandler: (String) -> Void = { (error) in
@@ -111,6 +111,5 @@ class ClientInformationWorker {
                                method: .post)
 
     }
-
 
 }

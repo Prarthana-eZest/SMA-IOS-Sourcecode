@@ -184,21 +184,21 @@ enum ClientInformation {
 }
 
 enum GenericCustomerConsulation {
-    
+
     enum FormData {
-           
+
            struct Request: Codable {
                let customer_id: String
                let service_id: String
                let is_custom: Bool
            }
-           
+
            struct Response: Codable {
                var status: Bool = false
                var message: String = ""
                let data: [Data]?
            }
-           
+
            struct Data: Codable {
                let label: String?
                let field_type: String?
@@ -211,38 +211,38 @@ enum GenericCustomerConsulation {
                let value: String?
                let field_options: [Options]?
            }
-           
+
            struct Options: Codable {
-               let label : String?
-               let checked : Bool?
+               let label: String?
+               let checked: Bool?
            }
        }
-       
+
        enum SubmitFormData {
-           
+
            struct Request: Codable {
                let formData: FormDataRequest
                let is_custom: Bool
            }
-           
+
            struct FormDataRequest: Codable {
                let formId: String
                let customer_id: String
                let data: [Data]
            }
-           
+
            struct Data: Codable {
                let id: String
                let value: [String]
                let size: String
                let field_type: String
            }
-           
+
            struct Response: Codable {
                var status: Bool = false
                var message: String = ""
            }
-           
+
        }
 
 }

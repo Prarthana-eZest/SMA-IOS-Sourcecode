@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol SingatureCellDelegate {
+protocol SingatureCellDelegate: class {
     func actionClearSignature()
     func actionSaveSignature(image: UIImage)
 }
 
 class SignatureCell: UITableViewCell {
-    
+
     @IBOutlet private weak var signatureView: YPDrawSignatureView!
     @IBOutlet private weak var bottomView: UIView!
-    
-    var delegate: SingatureCellDelegate?
+
+    weak var delegate: SingatureCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +33,7 @@ class SignatureCell: UITableViewCell {
         bottomView.isHidden = true
         delegate?.actionClearSignature()
     }
-    
+
     @IBAction func actionSaveSignature(_ sender: UIButton) {
         if let signatureImage = self.signatureView.getSignature(scale: 10) {
            // UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
@@ -41,14 +41,14 @@ class SignatureCell: UITableViewCell {
             delegate?.actionSaveSignature(image: signatureImage)
         }
     }
-    
+
 }
 
 extension SignatureCell: YPSignatureDelegate {
 
     func didStart(_ view: YPDrawSignatureView) {
     }
-    
+
     func didFinish(_ view: YPDrawSignatureView) {
         bottomView.isHidden = false
     }

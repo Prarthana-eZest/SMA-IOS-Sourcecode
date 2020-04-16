@@ -14,20 +14,20 @@ import UIKit
 
 enum Revenue {
     // MARK: Use cases
-    
+
     enum OneClickData {
-        
+
         struct Request: Codable {
             let is_custom: Bool
             let salon_id: String
         }
-        
+
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             var data: [Data]?
         }
-        
+
         struct Data: Codable {
             let entity_id: AnyCodable?
             let salon_id: AnyCodable?

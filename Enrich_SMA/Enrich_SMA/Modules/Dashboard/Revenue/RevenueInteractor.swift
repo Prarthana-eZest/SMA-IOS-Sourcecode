@@ -21,13 +21,13 @@ protocol RevenueDataStore {
 }
 
 class RevenueInteractor: RevenueBusinessLogic, RevenueDataStore {
-    
+
     var presenter: RevenuePresentationLogic?
     var worker: RevenueWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
+
     func doGetOneClickRevenueData(request: Revenue.OneClickData.Request, method: HTTPMethod) {
         worker = RevenueWorker()
         worker?.presenter = self.presenter

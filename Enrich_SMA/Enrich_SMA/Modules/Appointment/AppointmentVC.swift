@@ -165,8 +165,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         selectedTab = .upcoming
         getAppointments(status: .upcoming)
     }
-    
-    
+
     func checkForSOSNotification() {
         SOSFactory.shared.getSOSNotification { (SOSAlert) in
             let vc = SOSAlertVC.instantiate(fromAppStoryboard: .Appointment)

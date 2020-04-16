@@ -162,8 +162,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
             self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.customerSignature, seconds: toastMessageDuration)
             return
         }
-        else
-        {
+        else {
             submitGenericForm()
         }
     }
@@ -227,17 +226,17 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
             interactor?.doGetGenericFormData(request: request, method: .post)
         }
     }
-    
+
     func submitGenericForm() {
         if let customerId = customerId, let signature = signatureImage {
             var fields = [GenericCustomerConsulation.SubmitFormData.Data]()
-            
+
             var showValidationAlert = false
-            
+
             consulationData.forEach {
-                
+
                 let value: [String]
-                
+
                 if $0.field_type == .signature {
                     value = [convertImageToBase64(image: signature)]
                 }
@@ -255,30 +254,30 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
                         showValidationAlert = ($0.isRequired && value.isEmpty)
                     }
                 }
-               
+
                 if !value.isEmpty {
                     fields.append(GenericCustomerConsulation.SubmitFormData.Data(id: $0.id, value: value, size: $0.size, field_type: $0.field_type.rawValue))
                 }
             }
-            
+
             if showValidationAlert {
                 self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.formValidation, seconds: toastMessageDuration)
                 return
             }
-            
+
             EZLoadingActivity.show("Loading...", disableUI: true)
-                        
+
             let formData = GenericCustomerConsulation.SubmitFormData.FormDataRequest(formId: "generic_consultation_form", customer_id: "\(customerId)", data: fields)
             let request = GenericCustomerConsulation.SubmitFormData.Request(formData: formData, is_custom: true)
             interactor?.doPostGenericFormData(request: request, method: .post)
         }
     }
-    
+
     func convertImageToBase64(image: UIImage) -> String {
         let imageData = image.jpegData(compressionQuality: 0.5)!
         return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
     }
-    
+
     func mapFormData(fields: [GenericCustomerConsulation.FormData.Data]) {
         consulationData.removeAll()
         fields.forEach {
@@ -289,7 +288,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
             if let fieldType = FieldType(rawValue: $0.field_type ?? "") {
                 consulationData.append(TagViewModel(title: $0.label ?? "", tagView: options, value: $0.value ?? "", id: $0.cid ?? "", size: "", field_type: fieldType, isRequired: $0.required ?? false))
             }
-            
+
         }
         tableView.reloadData()
     }
@@ -403,16 +402,15 @@ extension ClientInformationVC: ClientInformationDelegate {
 }
 
 extension ClientInformationVC: SingatureCellDelegate {
-    
+
     func actionClearSignature() {
         signatureImage = nil
     }
-    
+
     func actionSaveSignature(image: UIImage) {
         signatureImage = image
     }
 }
-
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
@@ -475,7 +473,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                     return UITableViewCell()
                 }
                 cell.delegate = self
-                let genderType:Gender = gender == 1 ? .male : gender == 2 ? .female : .otherMale
+                let genderType: Gender = gender == 1 ? .male : gender == 2 ? .female : .otherMale
                 cell.configureCell(isEditable: false, selectedGender: genderType)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
                 cell.selectionStyle = .none
@@ -483,7 +481,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
             }
             else {
                 let formData = consulationData[indexPath.row - 1]
-                
+
                 if formData.field_type == .commentBox {
                     guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.addNotesCell) as? AddNotesCell else {
                         return UITableViewCell()
@@ -492,7 +490,8 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                     cell.selectionStyle = .none
                     cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
                     return cell
-                } else if formData.field_type == .signature {
+                }
+                else if formData.field_type == .signature {
                     guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.signatureCell) as? SignatureCell else {
                         return UITableViewCell()
                     }
@@ -506,7 +505,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                                                                    for: indexPath) as? TagViewCell else {
                                                                     return UITableViewCell()
                     }
-                    
+
                     cell.indexPath = indexPath
                     cell.configureCell(model: formData)
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
@@ -514,7 +513,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                     return cell
                 }
             }
-        
+
         case 2:
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.membershipStatusCell, for: indexPath) as? MembershipStatusCell else {

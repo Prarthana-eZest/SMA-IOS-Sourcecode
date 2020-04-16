@@ -39,12 +39,11 @@ class MoreModuleInteractor: MoreModuleBusinessLogic, MoreModuleDataStore {
         worker?.presenter = self.presenter
         worker?.postRequestForMarkCheckInOut(request: request, method: method)
     }
-    
+
     func doPostCheckInOutDetailsRequest(request: MoreModule.CheckInOutDetails.Request, method: HTTPMethod) {
            worker = MoreModuleWorker()
            worker?.presenter = self.presenter
            worker?.postRequestForCheckInOutDetails(request: request, method: method)
        }
-
 
 }

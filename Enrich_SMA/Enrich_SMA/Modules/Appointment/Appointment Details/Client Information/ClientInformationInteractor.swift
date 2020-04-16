@@ -51,13 +51,12 @@ class ClientInformationInteractor: ClientInformationBusinessLogic {
         worker?.presenter = self.presenter
         worker?.postRequestForClientNotes(request: request, method: method)
     }
-    
+
     func doGetGenericFormData(request: GenericCustomerConsulation.FormData.Request, method: HTTPMethod) {
         worker = ClientInformationWorker()
         worker?.presenter = self.presenter
         worker?.getGenericConsultationForm(request: request, method: method)
     }
-
 
     func doPostGenericFormData(request: GenericCustomerConsulation.SubmitFormData.Request, method: HTTPMethod) {
         worker = ClientInformationWorker()

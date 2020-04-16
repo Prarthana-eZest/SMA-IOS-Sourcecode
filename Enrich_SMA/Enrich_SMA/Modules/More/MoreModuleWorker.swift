@@ -53,7 +53,7 @@ class MoreModuleWorker {
                                successHandler: successHandler,
                                errorHandler: errorHandler, method: method)
     }
-    
+
     func postRequestForCheckInOutDetails(request: MoreModule.CheckInOutDetails.Request, method: HTTPMethod) {
         // *********** NETWORK CONNECTION
 
@@ -71,6 +71,5 @@ class MoreModuleWorker {
                                headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
                                successHandler: successHandler, errorHandler: errorHandler, method: method)
     }
-
 
 }

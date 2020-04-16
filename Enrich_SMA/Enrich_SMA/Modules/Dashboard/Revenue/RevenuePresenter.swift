@@ -19,13 +19,13 @@ protocol RevenuePresentationLogic {
 
 class RevenuePresenter: RevenuePresentationLogic {
     weak var viewController: RevenueDisplayLogic?
-    
+
     // MARK: Do something
-    
+
     func presentSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)
     }
-    
+
     func presentError(responseError: String?) {
         viewController?.displayError(errorMessage: responseError)
     }

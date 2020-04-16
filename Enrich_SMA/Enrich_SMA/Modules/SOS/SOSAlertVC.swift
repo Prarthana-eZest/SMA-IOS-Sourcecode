@@ -64,7 +64,7 @@ class SOSAlertVC: UIViewController, SOSAlertDisplayLogic {
         [txtfMessage].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
         configureUI()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
            self.navigationController?.navigationBar.isHidden = true
@@ -151,7 +151,7 @@ extension SOSAlertVC {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
+
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         DispatchQueue.main.async { [unowned self] in
