@@ -17,6 +17,7 @@ enum ProfileCellIdentifiers: String {
     case audits = "Audits"
     case notifications = "Notifications"
     case salonFeedback = "Salon Feedback"
+    case approval = "Approval Request"
     case logout = "Logout"
 
 }
@@ -38,13 +39,12 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
     var userPunchedIn = false
 
     var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.punchIn,
-                                                                 .myProfile,
-                                                                 .employees,
-                                                                // .inventory,
-                                                                 //.stores,
-                                                                 //.audits,
-                                                                 .salonFeedback, .notifications,
-                                                                 .logout]
+                                                   .myProfile,
+                                                  .employees,
+                                                  .salonFeedback,
+                                                  .approval,
+                                                  .notifications,
+                                                  .logout]
 
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -191,6 +191,10 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
         case .audits:
             break
+            
+        case .approval:
+            let vc = ApprovalRequestListVC.instantiate(fromAppStoryboard: .More)
+            self.navigationController?.pushViewController(vc, animated: true)
 
         case .salonFeedback:
             let vc = AllReviewsVC.instantiate(fromAppStoryboard: .Appointment)

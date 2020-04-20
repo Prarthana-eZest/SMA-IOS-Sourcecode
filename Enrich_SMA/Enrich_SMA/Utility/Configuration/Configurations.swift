@@ -70,7 +70,9 @@ enum CellIdentifier {
     // Header Cells
     static let headerViewWithTitleCell = "HeaderViewWithTitleCell"
     static let headerViewWithSubTitleCell = "HeaderViewWithSubTitleCell"
-
+    
+    // Approval Request
+    static let approvalRequestCell = "ApprovalRequestCell"
 }
 
 struct SectionConfiguration {
