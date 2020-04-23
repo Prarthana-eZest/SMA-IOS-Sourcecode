@@ -428,7 +428,7 @@
         <scene sceneID="nQl-9Q-5k6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dMu-xj-qgJ" userLabel="Navigation Controller My Bookings" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Reports" id="E7f-Ny-BEl"/>
+                    <tabBarItem key="tabBarItem" title="Reports" image="reportTab" id="E7f-Ny-BEl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="17j-Cs-XA2">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -952,6 +952,7 @@
         <image name="myCustomerMenu" width="25" height="25"/>
         <image name="myProfileMenu" width="25" height="26"/>
         <image name="notificationMenu" width="24" height="26"/>
+        <image name="reportTab" width="16" height="20"/>
         <image name="wishlist-icon" width="22" height="26"/>
     </resources>
 </document>

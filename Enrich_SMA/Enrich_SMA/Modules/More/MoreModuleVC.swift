@@ -42,7 +42,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
                                                    .myProfile,
                                                   .employees,
                                                   .salonFeedback,
-                                                  .approval,
+                                                //  .approval,
                                                   .notifications,
                                                   .logout]
 
