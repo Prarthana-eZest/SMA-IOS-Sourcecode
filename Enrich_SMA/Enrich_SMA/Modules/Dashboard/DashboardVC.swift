@@ -78,7 +78,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         getProfileData()
-      //  getDashboardData()
+        getDashboardData()
         checkForSOSNotification()
     }
 
