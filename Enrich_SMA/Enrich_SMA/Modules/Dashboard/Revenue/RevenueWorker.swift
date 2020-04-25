@@ -30,7 +30,7 @@ class RevenueWorker {
 
         self.networkLayer.post(urlString: ConstantAPINames.getOneClickRevenueData.rawValue,
                                body: request,
-                               headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               headers: ["Content-Type": "application/json"],
                                successHandler: successHandler,
                                errorHandler: errorHandler, method: method)
     }

@@ -42,7 +42,7 @@ class DashboardWorker {
         }
 
         self.networkLayer.post(urlString: ConstantAPINames.getDashboardData.rawValue,
-                               body: request, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               body: request, headers: ["Content-Type": "application/json"],
                                successHandler: successHandler,
                                errorHandler: errorHandler, method: method)
     }
