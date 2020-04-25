@@ -17,11 +17,21 @@ protocol ReportsDisplayLogic: class {
     func displayError(errorMessage: String?)
 }
 
+class ReportsModel {
+    let category: Reports.GetReports.Category
+    var isSelected: Bool
+    
+    init(category: Reports.GetReports.Category, isSelected: Bool) {
+        self.category = category
+        self.isSelected = isSelected
+    }
+}
+
 class ReportsVC: UIViewController, ReportsDisplayLogic {
 
     var interactor: ReportsBusinessLogic?
 
-    var reports = [Reports.GetReports.Data]()
+    var reports = [ReportsModel]()
 
     @IBOutlet weak private var tableView: UITableView!
 
@@ -78,11 +88,16 @@ class ReportsVC: UIViewController, ReportsDisplayLogic {
 extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return reports.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reports.count
+        if reports[section].isSelected {
+            return (reports[section].category.links?.count ?? 0) + 1
+        }
+        else {
+            return 1
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,7 +105,17 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.reportCell, for: indexPath) as? ReportCell else {
             return UITableViewCell()
         }
-        cell.configureCell(title: reports[indexPath.row].type ?? "")
+        let category = reports[indexPath.section]
+        let title: String
+        if indexPath.row == 0 {
+            title = category.category.categoryName ?? ""
+        }
+        else {
+            title = category.category.links?[indexPath.row - 1].type ?? ""
+        }
+        cell.configureCell(title: title,
+                           isHeader: indexPath.row == 0,
+                           isSelected: category.isSelected)
         cell.selectionStyle = .none
         cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return cell
@@ -106,9 +131,19 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
 //        let vc = WebViewVC.instantiate(fromAppStoryboard: .Reports)
 //        vc.data = reports[indexPath.row]
 //        self.navigationController?.pushViewController(vc, animated: true)
-        guard let urlString = reports[indexPath.row].url,
+
+        if indexPath.row == 0 {
+            let isSelected = reports[indexPath.section].isSelected
+            reports.forEach { $0.isSelected = false }
+            reports[indexPath.section].isSelected = !isSelected
+            tableView.reloadData()
+        }
+        else {
+            guard let links = reports[indexPath.section].category.links,
+            let urlString = links[indexPath.row - 1].url,
             let url = URL(string: urlString) else { return }
             UIApplication.shared.open(url)
+        }
     }
 }
 
@@ -126,7 +161,9 @@ extension ReportsVC {
 
         if let model = viewModel as? Reports.GetReports.Response {
             reports.removeAll()
-            reports.append(contentsOf: model.data ?? [])
+            model.data?.forEach {
+                reports.append(ReportsModel(category: $0, isSelected: false))
+            }
             tableView.reloadData()
         }
     }

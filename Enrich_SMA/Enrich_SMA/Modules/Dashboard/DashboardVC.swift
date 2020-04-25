@@ -77,9 +77,9 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+        checkForSOSNotification()
         getProfileData()
         getDashboardData()
-        checkForSOSNotification()
     }
 
     func configureSections() {
@@ -94,7 +94,8 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         SOSFactory.shared.getSOSNotification { (SOSAlert) in
             let vc = SOSAlertVC.instantiate(fromAppStoryboard: .Appointment)
             self.view.alpha = screenPopUpAlpha
-            vc.alertData = SOSAlert; UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+            vc.alertData = SOSAlert
+            UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
             vc.viewDismissBlock = { [unowned self] result in
                 // Do something
                 self.view.alpha = 1.0

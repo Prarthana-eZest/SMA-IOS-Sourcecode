@@ -15,32 +15,52 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportCell" rowHeight="82" id="KGk-i7-Jjw" customClass="ReportCell" customModule="SMA_Dev" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="359" height="82"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportCell" rowHeight="97" id="KGk-i7-Jjw" customClass="ReportCell" customModule="SMA_Dev" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="97"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="359" height="82"/>
+                <rect key="frame" x="0.0" y="0.0" width="397" height="97"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjp-sd-gkg">
-                        <rect key="frame" x="20" y="15" width="319" height="21"/>
-                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
-                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xr4-v3-BrL">
+                        <rect key="frame" x="20" y="15" width="357" height="21"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjp-sd-gkg">
+                                <rect key="frame" x="0.0" y="0.0" width="337" height="21"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDH-KJ-yIn">
+                                <rect key="frame" x="337" y="3" width="20" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Aqz-sY-2d5"/>
+                                    <constraint firstAttribute="width" constant="20" id="kbi-i9-rDk"/>
+                                </constraints>
+                                <color key="tintColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="chevron.down" catalog="system"/>
+                                <state key="selected" image="chevron.up" catalog="system"/>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="cjp-sd-gkg" secondAttribute="trailing" constant="20" id="NCE-zy-AwZ"/>
-                    <constraint firstItem="cjp-sd-gkg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ZcN-We-jX5"/>
-                    <constraint firstItem="cjp-sd-gkg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="g62-dW-vpk"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cjp-sd-gkg" secondAttribute="bottom" constant="10" id="wdc-qz-oLi"/>
+                    <constraint firstAttribute="trailing" secondItem="xr4-v3-BrL" secondAttribute="trailing" constant="20" id="8YL-0s-J46"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xr4-v3-BrL" secondAttribute="bottom" constant="10" id="C44-Tv-NNB"/>
+                    <constraint firstItem="xr4-v3-BrL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="g3g-ZK-RGD"/>
+                    <constraint firstItem="xr4-v3-BrL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="ty5-RA-bCD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="dropDownIcon" destination="UDH-KJ-yIn" id="O4E-SL-sSh"/>
                 <outlet property="lblTitle" destination="cjp-sd-gkg" id="8Zo-qX-vgq"/>
             </connections>
-            <point key="canvasLocation" x="165.94202898550725" y="141.29464285714286"/>
+            <point key="canvasLocation" x="193.47826086956522" y="146.31696428571428"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chevron.down" catalog="system" width="64" height="36"/>
+        <image name="chevron.up" catalog="system" width="64" height="36"/>
+    </resources>
 </document>

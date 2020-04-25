@@ -23,7 +23,12 @@ enum Reports {
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
-            let data: [Data]?
+            let data: [Category]?
+        }
+
+        struct Category: Codable {
+            let categoryName: String?
+            let links: [Data]?
         }
 
         struct Data: Codable {
