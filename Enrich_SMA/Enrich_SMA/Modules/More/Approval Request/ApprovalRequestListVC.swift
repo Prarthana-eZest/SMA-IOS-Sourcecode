@@ -81,10 +81,9 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
         guard let notificationCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.approvalRequestCell, for: indexPath) as? ApprovalRequestCell else {
             return UITableViewCell()
         }
-        
+
        // let requestDetails = requestList[indexPath.row]
-        
-        
+
         notificationCell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         notificationCell.selectionStyle = .none
 
