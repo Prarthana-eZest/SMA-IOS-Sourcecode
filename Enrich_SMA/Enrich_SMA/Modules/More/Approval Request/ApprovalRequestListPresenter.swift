@@ -13,16 +13,19 @@
 import UIKit
 
 protocol ApprovalRequestListPresentationLogic {
-  func presentSomething(response: ApprovalRequestList.Something.Response)
+    func presentSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)
 }
 
 class ApprovalRequestListPresenter: ApprovalRequestListPresentationLogic {
-  weak var viewController: ApprovalRequestListDisplayLogic?
-
-  // MARK: Do something
-
-  func presentSomething(response: ApprovalRequestList.Something.Response) {
-    let viewModel = ApprovalRequestList.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: ApprovalRequestListDisplayLogic?
+    
+    // MARK: Do something
+    
+    func presentSuccess<T: Decodable>(response: T) {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    func presentError(responseError: String? ) {
+        viewController?.displayError(errorMessage: responseError)
+    }
 }

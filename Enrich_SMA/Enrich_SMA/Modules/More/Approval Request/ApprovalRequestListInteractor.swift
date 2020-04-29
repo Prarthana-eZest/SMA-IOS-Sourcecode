@@ -13,25 +13,20 @@
 import UIKit
 
 protocol ApprovalRequestListBusinessLogic {
-  func doSomething(request: ApprovalRequestList.Something.Request)
+    func doPostGetApprovalList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod)
 }
 
-protocol ApprovalRequestListDataStore {
-  //var name: String { get set }
-}
-
-class ApprovalRequestListInteractor: ApprovalRequestListBusinessLogic, ApprovalRequestListDataStore {
-  var presenter: ApprovalRequestListPresentationLogic?
-  var worker: ApprovalRequestListWorker?
-  //var name: String = ""
-
-  // MARK: Do something
-
-  func doSomething(request: ApprovalRequestList.Something.Request) {
-    worker = ApprovalRequestListWorker()
-    worker?.doSomeWork()
-
-    let response = ApprovalRequestList.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+class ApprovalRequestListInteractor: ApprovalRequestListBusinessLogic {
+    var presenter: ApprovalRequestListPresentationLogic?
+    var worker: ApprovalRequestListWorker?
+    //var name: String = ""
+    
+    // MARK: Do something
+    
+    func doPostGetApprovalList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod)
+    {
+        worker = ApprovalRequestListWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestForApprovalRequestList(request: request, method: method)
+    }
 }

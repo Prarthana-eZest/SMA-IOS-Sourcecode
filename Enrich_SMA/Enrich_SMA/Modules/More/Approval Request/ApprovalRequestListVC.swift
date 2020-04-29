@@ -13,7 +13,8 @@
 import UIKit
 
 protocol ApprovalRequestListDisplayLogic: class {
-    func displaySomething(viewModel: ApprovalRequestList.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
 }
 
 class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
@@ -22,6 +23,8 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
     @IBOutlet weak private var tableView: UITableView!
 
     // MARK: Object lifecycle
+    
+    var requestList = [ApprovalRequestList.GetRequestData.Data]()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -51,6 +54,7 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.approvalRequestCell, bundle: nil),
                            forCellReuseIdentifier: CellIdentifier.approvalRequestCell)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        getApprovalList()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,20 +63,6 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait,
                                          andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Approval Request")
-    }
-
-
-    // MARK: Do something
-
-    //@IBOutlet weak var nameTextField: UITextField!
-
-    func doSomething() {
-        let request = ApprovalRequestList.Something.Request()
-        interactor?.doSomething(request: request)
-    }
-
-    func displaySomething(viewModel: ApprovalRequestList.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
     }
 }
 
@@ -83,7 +73,7 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return requestList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,6 +81,10 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
         guard let notificationCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.approvalRequestCell, for: indexPath) as? ApprovalRequestCell else {
             return UITableViewCell()
         }
+        
+       // let requestDetails = requestList[indexPath.row]
+        
+        
         notificationCell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         notificationCell.selectionStyle = .none
 
@@ -103,5 +97,38 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+// MARK: Call Webservice
+extension ApprovalRequestListVC {
+
+    func getApprovalList() {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let salonData = ApprovalRequestList.GetRequestData.SalonDetails(salon_id: userData.salon_id)
+            let request = ApprovalRequestList.GetRequestData.Request(addData: salonData, is_custom: true)
+            interactor?.doPostGetApprovalList(request: request, method: .post)
+        }
+    }
+
+    func displaySuccess<T: Decodable>(viewModel: T) {
+        EZLoadingActivity.hide()
+        if let model = viewModel as? ApprovalRequestList.GetRequestData.Response {
+            if model.status == true {
+                requestList.removeAll()
+                requestList.append(contentsOf: model.data ?? [])
+                self.tableView.reloadData()
+            }
+            else {
+                self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
+            }
+        }
+    }
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        DispatchQueue.main.async { [unowned self] in
+            self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
+        }
     }
 }

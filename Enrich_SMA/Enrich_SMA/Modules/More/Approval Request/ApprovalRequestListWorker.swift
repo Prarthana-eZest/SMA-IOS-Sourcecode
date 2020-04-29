@@ -13,6 +13,25 @@
 import UIKit
 
 class ApprovalRequestListWorker {
-  func doSomeWork() {
-  }
+    
+    let networkLayer = NetworkLayerAlamofire()
+    // Uncomment this in case do request using Alamofire for client request
+    // let networkLayer = NetworkLayer() // Uncomment this in case do request using URLsession
+    var presenter: ApprovalRequestListPresentationLogic?
+  
+    func postRequestForApprovalRequestList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod) {
+        // *********** NETWORK CONNECTION
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (ApprovalRequestList.GetRequestData.Response) -> Void = { (response) in
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.getApprovalList.rawValue, body: request,
+                               headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: method)
+    }
 }
