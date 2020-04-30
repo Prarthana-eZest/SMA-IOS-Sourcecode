@@ -97,7 +97,7 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        lblNoRequest.isHidden = requestList.isEmpty
+        lblNoRequest.isHidden = !requestList.isEmpty
         return requestList.count
     }
 
@@ -163,11 +163,11 @@ extension ApprovalRequestListVC {
                 self.tableView.reloadData()
             }
             else {
-                self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
+                self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
             }
         }
         else if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
-            self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
+            self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
         }
     }
     func displayError(errorMessage: String?) {

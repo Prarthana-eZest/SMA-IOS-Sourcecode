@@ -28,7 +28,7 @@ enum ApprovalRequestList {
 
         struct Response: Codable {
             var status: Bool = false
-            var message: String = ""
+            var message: String?
             let data: [Data]?
         }
 
@@ -49,7 +49,7 @@ enum ApprovalRequestList {
             let technician_name: String?
             let technician: Int64?
         }
-        
+
         struct ApprovalData: Codable {
             let service_id: String?
             let service_name: String?
@@ -80,7 +80,7 @@ enum ApprovalRequestList {
 
         struct Response: Codable {
             var status: Bool = false
-            var message: String = ""
+            var message: String?
         }
     }
 }
