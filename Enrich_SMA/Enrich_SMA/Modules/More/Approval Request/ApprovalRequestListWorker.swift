@@ -13,12 +13,12 @@
 import UIKit
 
 class ApprovalRequestListWorker {
-    
+
     let networkLayer = NetworkLayerAlamofire()
     // Uncomment this in case do request using Alamofire for client request
     // let networkLayer = NetworkLayer() // Uncomment this in case do request using URLsession
     var presenter: ApprovalRequestListPresentationLogic?
-  
+
     func postRequestForApprovalRequestList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod) {
         // *********** NETWORK CONNECTION
 

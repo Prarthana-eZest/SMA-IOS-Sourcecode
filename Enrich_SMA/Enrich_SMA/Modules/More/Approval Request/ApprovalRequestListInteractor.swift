@@ -20,11 +20,10 @@ class ApprovalRequestListInteractor: ApprovalRequestListBusinessLogic {
     var presenter: ApprovalRequestListPresentationLogic?
     var worker: ApprovalRequestListWorker?
     //var name: String = ""
-    
+
     // MARK: Do something
-    
-    func doPostGetApprovalList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod)
-    {
+
+    func doPostGetApprovalList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod) {
         worker = ApprovalRequestListWorker()
         worker?.presenter = self.presenter
         worker?.postRequestForApprovalRequestList(request: request, method: method)

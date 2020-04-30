@@ -20,7 +20,7 @@ protocol ReportsDisplayLogic: class {
 class ReportsModel {
     let category: Reports.GetReports.Category
     var isSelected: Bool
-    
+
     init(category: Reports.GetReports.Category, isSelected: Bool) {
         self.category = category
         self.isSelected = isSelected

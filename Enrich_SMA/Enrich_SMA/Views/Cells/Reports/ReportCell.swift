@@ -11,7 +11,7 @@ class ReportCell: UITableViewCell {
 
     @IBOutlet weak private var lblTitle: UILabel!
     @IBOutlet weak private var dropDownIcon: UIButton!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

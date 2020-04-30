@@ -42,7 +42,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
                                                    .myProfile,
                                                   .employees,
                                                   .salonFeedback,
-                                                //  .approval,
+                                                  .approval,
                                                   .notifications,
                                                   .logout]
 
@@ -191,7 +191,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
         case .audits:
             break
-            
+
         case .approval:
             let vc = ApprovalRequestListVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)

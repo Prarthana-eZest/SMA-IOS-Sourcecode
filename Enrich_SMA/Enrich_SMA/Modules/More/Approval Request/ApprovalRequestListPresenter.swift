@@ -19,9 +19,9 @@ protocol ApprovalRequestListPresentationLogic {
 
 class ApprovalRequestListPresenter: ApprovalRequestListPresentationLogic {
     weak var viewController: ApprovalRequestListDisplayLogic?
-    
+
     // MARK: Do something
-    
+
     func presentSuccess<T: Decodable>(response: T) {
         viewController?.displaySuccess(viewModel: response)
     }

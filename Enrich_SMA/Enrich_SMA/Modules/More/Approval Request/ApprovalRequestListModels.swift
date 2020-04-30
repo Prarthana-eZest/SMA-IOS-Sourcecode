@@ -14,24 +14,24 @@ import UIKit
 
 enum ApprovalRequestList {
     // MARK: Use cases
-    
+
     enum GetRequestData {
-        
+
         struct Request: Codable {
             let addData: SalonDetails?
             let is_custom: Bool?
         }
-        
+
         struct SalonDetails: Codable {
             let salon_id: String?
         }
-        
+
         struct Response: Codable {
-            var status: Bool = false
-            var message: String = ""
+            var status: String?
+            var message: String?
             let data: [Data]?
         }
-        
+
         struct Data: Codable {
             let id: Int64?
             let module_name: String?
@@ -40,7 +40,7 @@ enum ApprovalRequestList {
             let description: String?
             let approval_status: String?
             let denied_reason: String?
-            let approved_by: String?
+            let approved_by: Int64?
             let approval_data: AnyCodable?
             let created_at: String?
             let updated_at: String?

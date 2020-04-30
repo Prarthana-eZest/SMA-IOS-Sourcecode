@@ -106,7 +106,7 @@ public enum ConstantAPINames: String {
 
     // Reports
     case getReports = "rest/V1/getmisreports?is_custom=true"
-    
+
     // Approval List
     case getApprovalList = "rest/V1/appointments/approval-list"
 }

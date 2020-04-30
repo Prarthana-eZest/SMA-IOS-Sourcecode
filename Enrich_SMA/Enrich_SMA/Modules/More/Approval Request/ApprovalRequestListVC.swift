@@ -23,7 +23,7 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
     @IBOutlet weak private var tableView: UITableView!
 
     // MARK: Object lifecycle
-    
+
     var requestList = [ApprovalRequestList.GetRequestData.Data]()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -78,16 +78,17 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let notificationCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.approvalRequestCell, for: indexPath) as? ApprovalRequestCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.approvalRequestCell, for: indexPath) as? ApprovalRequestCell else {
             return UITableViewCell()
         }
 
-       // let requestDetails = requestList[indexPath.row]
+        let requestDetails = requestList[indexPath.row]
+        cell.configureCell(model: requestDetails)
 
-        notificationCell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        notificationCell.selectionStyle = .none
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        cell.selectionStyle = .none
 
-        return notificationCell
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -114,13 +115,17 @@ extension ApprovalRequestListVC {
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
         if let model = viewModel as? ApprovalRequestList.GetRequestData.Response {
-            if model.status == true {
+            if model.status == "Success" {
                 requestList.removeAll()
                 requestList.append(contentsOf: model.data ?? [])
+                requestList.sort {
+                    return ($0.updated_at ?? "").lowercased() > ($1.updated_at ?? "").lowercased()
+                }
+
                 self.tableView.reloadData()
             }
             else {
-                self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
+                self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
             }
         }
     }
