@@ -44,7 +44,7 @@ class DenyReasonVC: UIViewController {
         }
         self.dismiss(animated: true, completion: nil)
         self.dismiss(animated: true) {
-            onDoneBlock?(true, reasonTextView.text)
+            self.onDoneBlock?(true, self.reasonTextView.text)
         }
     }
 
