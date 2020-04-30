@@ -166,6 +166,9 @@ extension ApprovalRequestListVC {
                 self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
             }
         }
+        else if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
+            self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
+        }
     }
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
