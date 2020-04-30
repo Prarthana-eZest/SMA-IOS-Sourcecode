@@ -42,8 +42,10 @@ class DenyReasonVC: UIViewController {
         if !sender.isSelected {
             return
         }
-        onDoneBlock?(true, reasonTextView.text)
         self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            onDoneBlock?(true, reasonTextView.text)
+        }
     }
 
     @IBAction func actionClose(_ sender: UIButton) {
