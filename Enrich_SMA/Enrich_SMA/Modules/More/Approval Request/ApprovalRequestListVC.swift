@@ -77,7 +77,7 @@ extension ApprovalRequestListVC: ApprovalCellDelegate {
             // Do something
             if result {
                 self.processRequestAPICall(
-                    type: ApprovalStatus.approved.rawValue,
+                    type: ApprovalStatus.denied.rawValue,
                     indexPath: indexPath, reason: reason)
             }
             self.view.alpha = 1.0
@@ -168,6 +168,9 @@ extension ApprovalRequestListVC {
         }
         else if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
             self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
+            if model.status == true {
+                getApprovalList()
+            }
         }
     }
     func displayError(errorMessage: String?) {
