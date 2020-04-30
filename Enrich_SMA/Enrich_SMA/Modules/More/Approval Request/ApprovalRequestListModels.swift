@@ -49,6 +49,17 @@ enum ApprovalRequestList {
             let technician_name: String?
             let technician: Int64?
         }
+        
+        struct ApprovalData: Codable {
+            let service_id: String?
+            let service_name: String?
+            let service_code: String?
+            let service_category: String?
+            let service_duration: String?
+            let price: String?
+            let start_time: String?
+            let end_time: String?
+        }
     }
 
     enum ProcessRequest {
