@@ -109,4 +109,5 @@ public enum ConstantAPINames: String {
 
     // Approval List
     case getApprovalList = "rest/V1/appointments/approval-list"
+    case processApprovalRequest = "rest/V1/appointments/processApproval"
 }

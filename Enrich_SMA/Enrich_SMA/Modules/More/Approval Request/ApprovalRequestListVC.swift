@@ -21,7 +21,8 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
     var interactor: ApprovalRequestListBusinessLogic?
 
     @IBOutlet weak private var tableView: UITableView!
-
+    @IBOutlet weak private var lblNoRequest: UILabel!
+    
     // MARK: Object lifecycle
 
     var requestList = [ApprovalRequestList.GetRequestData.Data]()
@@ -72,16 +73,20 @@ extension ApprovalRequestListVC: ApprovalCellDelegate {
         self.view.alpha = screenPopUpAlpha
         self.present(vc, animated: true, completion: nil)
 
-        vc.onDoneBlock = { [unowned self] (result, note) in
+        vc.onDoneBlock = { [unowned self] (result, reason) in
             // Do something
             if result {
+                self.processRequestAPICall(
+                    type: ApprovalStatus.approved.rawValue,
+                    indexPath: indexPath, reason: reason)
             }
             self.view.alpha = 1.0
         }
     }
 
     func actionApprove(indexPath: IndexPath) {
-
+        processRequestAPICall(type: ApprovalStatus.approved.rawValue,
+                       indexPath: indexPath, reason: nil)
     }
 }
 
@@ -92,6 +97,7 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        lblNoRequest.isHidden = requestList.isEmpty
         return requestList.count
     }
 
@@ -130,10 +136,24 @@ extension ApprovalRequestListVC {
         }
     }
 
+    func processRequestAPICall(type: String, indexPath: IndexPath, reason: String?) {
+
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let requestDetails = requestList[indexPath.row]
+            let requestData = ApprovalRequestList.ProcessRequest.RequestDetails(
+                status: type, ref_id: requestDetails.ref_id,
+                category: requestDetails.category, employee_id: userData.employee_id,
+                module_name: requestDetails.module_name, reason: reason)
+            let request = ApprovalRequestList.ProcessRequest.Request(addData: requestData, is_custom: true)
+            interactor?.doPostProcessApproval(request: request, method: .post)
+        }
+    }
+
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
         if let model = viewModel as? ApprovalRequestList.GetRequestData.Response {
-            if model.status == "Success" {
+            if model.status == true {
                 requestList.removeAll()
                 requestList.append(contentsOf: model.data ?? [])
                 requestList.sort {
@@ -143,7 +163,7 @@ extension ApprovalRequestListVC {
                 self.tableView.reloadData()
             }
             else {
-                self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
+                self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
             }
         }
     }

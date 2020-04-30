@@ -14,6 +14,7 @@ import UIKit
 
 protocol ApprovalRequestListBusinessLogic {
     func doPostGetApprovalList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod)
+    func doPostProcessApproval(request: ApprovalRequestList.ProcessRequest.Request, method: HTTPMethod)
 }
 
 class ApprovalRequestListInteractor: ApprovalRequestListBusinessLogic {
@@ -27,5 +28,11 @@ class ApprovalRequestListInteractor: ApprovalRequestListBusinessLogic {
         worker = ApprovalRequestListWorker()
         worker?.presenter = self.presenter
         worker?.postRequestForApprovalRequestList(request: request, method: method)
+    }
+
+    func doPostProcessApproval(request: ApprovalRequestList.ProcessRequest.Request, method: HTTPMethod) {
+        worker = ApprovalRequestListWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestForProcessRequest(request: request, method: method)
     }
 }
