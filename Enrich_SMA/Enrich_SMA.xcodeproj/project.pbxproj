@@ -232,6 +232,7 @@
 		F838D9072437058300FDA998 /* SOSAlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D9012437058300FDA998 /* SOSAlertModels.swift */; };
 		F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D9032437058300FDA998 /* SOSAlertInteractor.swift */; };
 		F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D90A243705C000FDA998 /* SOSAlertVC.swift */; };
+		F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C4361245AB4270031213F /* DenyReasonVC.swift */; };
 		F8784FBF244D720900104BE8 /* ApprovalRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */; };
 		F8784FC0244D720900104BE8 /* ApprovalRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */; };
 		F8784FC8244D722700104BE8 /* ApprovalRequestListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */; };
@@ -510,6 +511,7 @@
 		F838D9012437058300FDA998 /* SOSAlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertModels.swift; sourceTree = "<group>"; };
 		F838D9032437058300FDA998 /* SOSAlertInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertInteractor.swift; sourceTree = "<group>"; };
 		F838D90A243705C000FDA998 /* SOSAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSAlertVC.swift; sourceTree = "<group>"; };
+		F84C4361245AB4270031213F /* DenyReasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyReasonVC.swift; sourceTree = "<group>"; };
 		F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestCell.swift; sourceTree = "<group>"; };
 		F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApprovalRequestCell.xib; sourceTree = "<group>"; };
 		F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestListWorker.swift; sourceTree = "<group>"; };
@@ -1423,6 +1425,14 @@
 			path = Listing;
 			sourceTree = "<group>";
 		};
+		F84C4360245AB40B0031213F /* Deny Reason */ = {
+			isa = PBXGroup;
+			children = (
+				F84C4361245AB4270031213F /* DenyReasonVC.swift */,
+			);
+			path = "Deny Reason";
+			sourceTree = "<group>";
+		};
 		F8784FBC244D71ED00104BE8 /* Approval Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1440,6 +1450,7 @@
 				F8784FC4244D722700104BE8 /* ApprovalRequestListPresenter.swift */,
 				F8784FC5244D722700104BE8 /* ApprovalRequestListModels.swift */,
 				F8784FC6244D722700104BE8 /* ApprovalRequestListInteractor.swift */,
+				F84C4360245AB40B0031213F /* Deny Reason */,
 			);
 			path = "Approval Request";
 			sourceTree = "<group>";
@@ -1908,6 +1919,7 @@
 				E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */,
 				E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */,
 				E3CEA5BE23CC57B200DD213F /* AllReviewsModuleInteractor.swift in Sources */,
+				F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */,
 				E30342C1235EE15800E0BF0A /* ImagePicker.swift in Sources */,
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
 				E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */,

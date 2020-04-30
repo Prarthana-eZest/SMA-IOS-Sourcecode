@@ -65,6 +65,25 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
         self.navigationController?.addCustomBackButton(title: "Approval Request")
     }
 }
+extension ApprovalRequestListVC: ApprovalCellDelegate {
+
+    func actionDeny(indexPath: IndexPath) {
+        let vc = DenyReasonVC.instantiate(fromAppStoryboard: .More)
+        self.view.alpha = screenPopUpAlpha
+        self.present(vc, animated: true, completion: nil)
+
+        vc.onDoneBlock = { [unowned self] (result, note) in
+            // Do something
+            if result {
+            }
+            self.view.alpha = 1.0
+        }
+    }
+
+    func actionApprove(indexPath: IndexPath) {
+
+    }
+}
 
 extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
 
@@ -83,16 +102,15 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
         }
 
         let requestDetails = requestList[indexPath.row]
+        cell.indexPath = indexPath
+        cell.delegate = self
         cell.configureCell(model: requestDetails)
-
         cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         cell.selectionStyle = .none
-
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

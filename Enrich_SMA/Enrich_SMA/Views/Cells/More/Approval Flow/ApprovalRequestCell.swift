@@ -14,6 +14,11 @@ enum ApprovalStatus: String {
     case noAction = "no_action"
 }
 
+protocol ApprovalCellDelegate: class {
+    func actionApprove(indexPath: IndexPath)
+    func actionDeny(indexPath: IndexPath)
+}
+
 class ApprovalRequestCell: UITableViewCell {
 
     @IBOutlet weak private var lblModuleName: UILabel!
@@ -23,6 +28,12 @@ class ApprovalRequestCell: UITableViewCell {
     @IBOutlet weak private var lblTechnician: UILabel!
     @IBOutlet weak private var lblApprovalStatus: UILabel!
     @IBOutlet weak private var actionButtonsStackView: UIStackView!
+    @IBOutlet weak private var deniedReasonStackView: UIStackView!
+    @IBOutlet weak private var lblDeniedReason: UILabel!
+
+    weak var delegate: ApprovalCellDelegate?
+
+    var indexPath: IndexPath?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,17 +47,26 @@ class ApprovalRequestCell: UITableViewCell {
         lblCustomer.text = (model.customer_name ?? "").capitalized
         lblTechnician.text = (model.technician_name ?? "").capitalized
         actionButtonsStackView.isHidden = true
+        deniedReasonStackView.isHidden = true
         guard let status = ApprovalStatus(rawValue: model.approval_status ?? "") else {
             return
         }
         lblApprovalStatus.text = status.rawValue.capitalized
+        lblDeniedReason.text = (model.denied_reason ?? "").capitalized
+        deniedReasonStackView.isHidden = (status != .denied)
         actionButtonsStackView.isHidden = (status != .noAction)
     }
 
     @IBAction func actionDeny(_ sender: UIButton) {
+        if let indexPath = indexPath {
+            delegate?.actionDeny(indexPath: indexPath)
+        }
     }
 
     @IBAction func actionApprove(_ sender: UIButton) {
+        if let indexPath = indexPath {
+            delegate?.actionApprove(indexPath: indexPath)
+        }
     }
 
 }
