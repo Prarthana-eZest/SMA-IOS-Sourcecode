@@ -48,6 +48,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     var selectedTitleCell = 0
     var signatureImage: UIImage?
     var consulationData = [TagViewModel]()
+    
+    // Consulation Form
+    var form_id: String?
 
     // MARK: Object lifecycle
 
@@ -220,15 +223,17 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     }
 
     func getGenericFormData() {
-        if let customerId = customerId {
+        if let customerId = customerId, let id = form_id {
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = GenericCustomerConsulation.FormData.Request(customer_id: "\(customerId)", service_id: "generic_consultation_form", is_custom: true)
+            let request = GenericCustomerConsulation.FormData.Request(customer_id: "\(customerId)", form_id: id, is_custom: true)
             interactor?.doGetGenericFormData(request: request, method: .post)
         }
     }
 
     func submitGenericForm() {
-        if let customerId = customerId, let signature = signatureImage {
+        if let customerId = customerId,
+            let signature = signatureImage,
+            let id = form_id  {
             var fields = [GenericCustomerConsulation.SubmitFormData.Data]()
 
             var showValidationAlert = false
@@ -267,15 +272,17 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
             EZLoadingActivity.show("Loading...", disableUI: true)
 
-            let formData = GenericCustomerConsulation.SubmitFormData.FormDataRequest(formId: "generic_consultation_form", customer_id: "\(customerId)", data: fields)
+            let formData = GenericCustomerConsulation.SubmitFormData.FormDataRequest(form_id: id, customer_id: "\(customerId)", data: fields)
             let request = GenericCustomerConsulation.SubmitFormData.Request(formData: formData, is_custom: true)
             interactor?.doPostGenericFormData(request: request, method: .post)
         }
     }
 
     func convertImageToBase64(image: UIImage) -> String {
-        let imageData = image.jpegData(compressionQuality: 0.5)!
-        return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+        if let imageData = image.jpegData(compressionQuality: 0.5) {
+            return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+        }
+        return ""
     }
 
     func mapFormData(fields: [GenericCustomerConsulation.FormData.Data]) {
@@ -286,9 +293,12 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
                 options.append(TagViewString(text: option.label ?? "", isSelected: option.checked ?? false))
             }
             if let fieldType = FieldType(rawValue: $0.field_type ?? "") {
-                consulationData.append(TagViewModel(title: $0.label ?? "", tagView: options, value: $0.value ?? "", id: $0.cid ?? "", size: "", field_type: fieldType, isRequired: $0.required ?? false))
+                consulationData.append(
+                    TagViewModel(title: $0.label ?? "", tagView: options,
+                                 value: $0.value ?? "", id: $0.cid ?? "",
+                                 size: "", field_type: fieldType,
+                                 isRequired: $0.required ?? false))
             }
-
         }
         tableView.reloadData()
     }

@@ -189,7 +189,7 @@ enum GenericCustomerConsulation {
 
            struct Request: Codable {
                let customer_id: String
-               let service_id: String
+               let form_id: String
                let is_custom: Bool
            }
 
@@ -226,7 +226,7 @@ enum GenericCustomerConsulation {
            }
 
            struct FormDataRequest: Codable {
-               let formId: String
+               let form_id: String
                let customer_id: String
                let data: [Data]
            }

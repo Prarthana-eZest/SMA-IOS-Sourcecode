@@ -121,6 +121,9 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic {
         let vc = ClientInformationVC.instantiate(fromAppStoryboard: .Appointment)
         vc.customerId = self.appointmentDetails?.booked_by_id
         vc.gender = self.appointmentDetails?.gender ?? 1
+        if let forms = appointmentDetails?.generic_form_list {
+            vc.form_id = forms.first?.form_id
+        }
         self.present(vc, animated: true, completion: nil)
     }
 
