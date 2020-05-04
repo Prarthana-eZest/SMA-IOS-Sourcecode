@@ -32,6 +32,8 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     @IBOutlet weak private var BottonButtonView: UIView!
     @IBOutlet weak private var lblNoRecords: UILabel!
     @IBOutlet weak private var submitFormView: UIView!
+    
+    @IBOutlet weak private var btnSubmitForm: UIButton!
 
     var customerId: Int?
 
@@ -115,6 +117,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
 
         lblNoRecords.isHidden = true
+        btnSubmitForm.isEnabled = false
         submitFormView.isHidden = true
     }
 
@@ -300,6 +303,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
                                  isRequired: $0.required ?? false))
             }
         }
+        btnSubmitForm.isEnabled = !consulationData.isEmpty
         tableView.reloadData()
     }
 }

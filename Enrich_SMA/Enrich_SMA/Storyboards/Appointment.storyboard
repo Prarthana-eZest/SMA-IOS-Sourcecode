@@ -640,7 +640,7 @@
         <!--Client InformationVC-->
         <scene sceneID="Xn8-eX-Kgc">
             <objects>
-                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Wa-vj-q2W" customClass="ClientInformationVC" customModule="TMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Wa-vj-q2W" customClass="ClientInformationVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6be-oe-4Js">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -695,7 +695,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="3c9-S4-4Tt" customClass="ProductsCollectionCell" customModule="TMA_Dev" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="3c9-S4-4Tt" customClass="ProductsCollectionCell" customModule="SMA_Dev" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3c9-S4-4Tt" id="wzG-F5-mTj">
@@ -727,7 +727,7 @@
                                                     <outlet property="productCollectionView" destination="QXt-Ix-GIY" id="bgH-JK-w4c"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="n7Z-Of-wp9" customClass="PointsCell" customModule="TMA_Dev" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="n7Z-Of-wp9" customClass="PointsCell" customModule="SMA_Dev" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="228" width="414" height="41.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n7Z-Of-wp9" id="xT2-8v-uEx">
@@ -822,13 +822,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugb-H0-LSZ">
                                         <rect key="frame" x="0.0" y="617" width="414" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Og7-5V-Zw0">
+                                            <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Og7-5V-Zw0">
                                                 <rect key="frame" x="20" y="12.5" width="374" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="ROz-c0-rjr"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                                 <state key="normal" title="SUBMIT FORM" backgroundImage="enabledButton"/>
+                                                <state key="disabled" backgroundImage="disabledButton"/>
                                                 <state key="selected" backgroundImage="enabledButton"/>
                                                 <connections>
                                                     <action selector="actionSubmitForm:" destination="9Wa-vj-q2W" eventType="touchUpInside" id="V8Q-y7-7WZ"/>
@@ -892,6 +893,7 @@
                     </view>
                     <connections>
                         <outlet property="BottonButtonView" destination="V4l-Ql-nzq" id="lwd-yk-dlC"/>
+                        <outlet property="btnSubmitForm" destination="Og7-5V-Zw0" id="Ga7-VX-KGq"/>
                         <outlet property="collectionView" destination="w0t-bW-6Gh" id="iZM-ju-WzF"/>
                         <outlet property="lblNoRecords" destination="ee7-8J-h9C" id="9P6-ad-XBA"/>
                         <outlet property="submitFormView" destination="Ugb-H0-LSZ" id="47I-g7-XO6"/>
