@@ -105,7 +105,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                         title: $0.parent_name,
                         startTime: $0.start_time,
                         endTime: $0.end_time,
-                        price: $0.price))
+                        price: "\($0.price ?? 0)"))
                 }
             }
 
@@ -116,7 +116,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: "Original : \(original.date ?? "")",
                     startTime: original.start_time,
                     endTime: original.end_time,
-                    price: "\(original.price ?? 0)"))
+                    price: original.price?.description))
             }
 
             if let requested = requestDetails.requested {
@@ -124,10 +124,12 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: "Requested : \(requested.date ?? "")",
                     startTime: requested.start_time,
                     endTime: requested.end_time,
-                    price: "\(requested.price ?? 0)"))
+                    price: requested.price?.description))
             }
 
         case .add_service, .delete_service:
+            
+            appointmentDate = requestDetails.service?.first?.appointment_date ?? ""
 
             if let service = requestDetails.service {
                 categories.append(RequestCategoryModel(
@@ -138,13 +140,13 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             }
 
         case .replace_service, .change_service_timeslot:
-
+            
             if let original = requestDetails.original {
                 categories.append(RequestCategoryModel(
                     title: "Original : \(original.service_name ?? "")",
                     startTime: original.start_time,
                     endTime: original.end_time,
-                    price: "\(original.price ?? 0)"))
+                    price: original.price?.description))
             }
 
             if let requested = requestDetails.requested {
@@ -152,7 +154,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: "Requested : \(requested.service_name ?? "")",
                     startTime: requested.start_time,
                     endTime: requested.end_time,
-                    price: "\(requested.price ?? 0)"))
+                    price: requested.price?.description))
             }
         }
         self.tableView.reloadData()

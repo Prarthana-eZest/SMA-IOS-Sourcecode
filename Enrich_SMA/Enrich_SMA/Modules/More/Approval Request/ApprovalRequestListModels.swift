@@ -86,13 +86,13 @@ enum ApprovalRequestList {
         }
 
         struct Service: Codable {
-            let service_duration: String?
+            let service_duration: Int?
             let start_time: String?
             let end_time: String?
             let technician_preference: String?
             let appointment_type: String?
             let notes: String?
-            let price: String?
+            let price: Double?
             let customer_name: String?
             let customer_last_name: String?
             let customer_gender: String?
@@ -137,7 +137,7 @@ enum ApprovalRequestList {
             let start_time: String?
             let end_time: String?
             let date: String?
-            let price: Double?
+            let price: AnyCodable?
         }
     }
 
