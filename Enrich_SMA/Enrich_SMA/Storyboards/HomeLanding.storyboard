@@ -754,7 +754,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="575" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notificationMenu" translatesAutoresizingMaskIntoConstraints="NO" id="ki8-eI-aqF">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="approvalRequest" translatesAutoresizingMaskIntoConstraints="NO" id="ki8-eI-aqF">
                                                     <rect key="frame" x="20" y="9.5" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="6S8-5m-Otd">
@@ -946,6 +946,7 @@
     <resources>
         <image name="SalonFeedback" width="36" height="28"/>
         <image name="appointmentTab" width="20" height="20"/>
+        <image name="approvalRequest" width="27" height="28"/>
         <image name="homeTab" width="28" height="28"/>
         <image name="location" width="11" height="15"/>
         <image name="moreTab" width="21" height="20"/>

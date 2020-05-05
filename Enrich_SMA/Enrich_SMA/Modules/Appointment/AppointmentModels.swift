@@ -64,7 +64,7 @@ enum Appointment {
             let profile_picture: String?
             let is_customer_rated: Bool?
             let salon_name: String?
-            
+
             let generic_form_filled: Bool?
             let generic_form_list: [FormDetails]?
 
@@ -94,7 +94,7 @@ enum Appointment {
             let booked_for: String?
             let booked_for_id: Int?
             let booked_for_contact: String?
-            
+
             let is_consultation_required: Bool?
             let consultation_form_list: [FormDetails]?
         }
