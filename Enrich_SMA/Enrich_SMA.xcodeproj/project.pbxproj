@@ -246,6 +246,15 @@
 		F8804EBE244817FE00DEAA82 /* SignatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8804EBA244817FE00DEAA82 /* SignatureCell.xib */; };
 		F8804EC524481BA300DEAA82 /* TagViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8804EC324481BA300DEAA82 /* TagViewCell.xib */; };
 		F8804EC624481BA300DEAA82 /* TagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8804EC424481BA300DEAA82 /* TagViewCell.swift */; };
+		F8CE55E12461690100FF9487 /* RequestDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DB2461690100FF9487 /* RequestDetailsPresenter.swift */; };
+		F8CE55E22461690100FF9487 /* RequestDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DC2461690100FF9487 /* RequestDetailsWorker.swift */; };
+		F8CE55E42461690100FF9487 /* RequestDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DE2461690100FF9487 /* RequestDetailsModels.swift */; };
+		F8CE55E52461690100FF9487 /* RequestDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DF2461690100FF9487 /* RequestDetailsVC.swift */; };
+		F8CE55E62461690100FF9487 /* RequestDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55E02461690100FF9487 /* RequestDetailsInteractor.swift */; };
+		F8CE55E92461696A00FF9487 /* RequestDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55E72461696A00FF9487 /* RequestDetailsCell.swift */; };
+		F8CE55EA2461696A00FF9487 /* RequestDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8CE55E82461696A00FF9487 /* RequestDetailsCell.xib */; };
+		F8CE55ED24616C3000FF9487 /* RequestCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55EB24616C3000FF9487 /* RequestCategoryCell.swift */; };
+		F8CE55EE24616C3000FF9487 /* RequestCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8CE55EC24616C3000FF9487 /* RequestCategoryCell.xib */; };
 		F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACAD72448620F006AB417 /* ReportCell.swift */; };
 		F8DACADA2448620F006AB417 /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DACAD82448620F006AB417 /* ReportCell.xib */; };
 		F8DACADD24486768006AB417 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACADC24486768006AB417 /* WebViewVC.swift */; };
@@ -525,6 +534,15 @@
 		F8804EBA244817FE00DEAA82 /* SignatureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureCell.xib; sourceTree = "<group>"; };
 		F8804EC324481BA300DEAA82 /* TagViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagViewCell.xib; sourceTree = "<group>"; };
 		F8804EC424481BA300DEAA82 /* TagViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewCell.swift; sourceTree = "<group>"; };
+		F8CE55DB2461690100FF9487 /* RequestDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsPresenter.swift; sourceTree = "<group>"; };
+		F8CE55DC2461690100FF9487 /* RequestDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsWorker.swift; sourceTree = "<group>"; };
+		F8CE55DE2461690100FF9487 /* RequestDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsModels.swift; sourceTree = "<group>"; };
+		F8CE55DF2461690100FF9487 /* RequestDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsVC.swift; sourceTree = "<group>"; };
+		F8CE55E02461690100FF9487 /* RequestDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsInteractor.swift; sourceTree = "<group>"; };
+		F8CE55E72461696A00FF9487 /* RequestDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsCell.swift; sourceTree = "<group>"; };
+		F8CE55E82461696A00FF9487 /* RequestDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestDetailsCell.xib; sourceTree = "<group>"; };
+		F8CE55EB24616C3000FF9487 /* RequestCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCategoryCell.swift; sourceTree = "<group>"; };
+		F8CE55EC24616C3000FF9487 /* RequestCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestCategoryCell.xib; sourceTree = "<group>"; };
 		F8DACAD72448620F006AB417 /* ReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		F8DACAD82448620F006AB417 /* ReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportCell.xib; sourceTree = "<group>"; };
 		F8DACADC24486768006AB417 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
@@ -1438,6 +1456,10 @@
 			children = (
 				F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */,
 				F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */,
+				F8CE55E72461696A00FF9487 /* RequestDetailsCell.swift */,
+				F8CE55E82461696A00FF9487 /* RequestDetailsCell.xib */,
+				F8CE55EB24616C3000FF9487 /* RequestCategoryCell.swift */,
+				F8CE55EC24616C3000FF9487 /* RequestCategoryCell.xib */,
 			);
 			path = "Approval Flow";
 			sourceTree = "<group>";
@@ -1450,9 +1472,22 @@
 				F8784FC4244D722700104BE8 /* ApprovalRequestListPresenter.swift */,
 				F8784FC5244D722700104BE8 /* ApprovalRequestListModels.swift */,
 				F8784FC6244D722700104BE8 /* ApprovalRequestListInteractor.swift */,
+				F8CE55DA246168D400FF9487 /* Approval Details */,
 				F84C4360245AB40B0031213F /* Deny Reason */,
 			);
 			path = "Approval Request";
+			sourceTree = "<group>";
+		};
+		F8CE55DA246168D400FF9487 /* Approval Details */ = {
+			isa = PBXGroup;
+			children = (
+				F8CE55DF2461690100FF9487 /* RequestDetailsVC.swift */,
+				F8CE55DB2461690100FF9487 /* RequestDetailsPresenter.swift */,
+				F8CE55DC2461690100FF9487 /* RequestDetailsWorker.swift */,
+				F8CE55DE2461690100FF9487 /* RequestDetailsModels.swift */,
+				F8CE55E02461690100FF9487 /* RequestDetailsInteractor.swift */,
+			);
+			path = "Approval Details";
 			sourceTree = "<group>";
 		};
 		F8DACAD624486201006AB417 /* Reports */ = {
@@ -1611,6 +1646,7 @@
 				E3034261235EE14700E0BF0A /* FuturaPTHeavy.otf in Resources */,
 				E33BA97C23FD4CE400AABFE2 /* NotificationDetailsCell.xib in Resources */,
 				E30342E7235EE29200E0BF0A /* Dashboard.storyboard in Resources */,
+				F8CE55EA2461696A00FF9487 /* RequestDetailsCell.xib in Resources */,
 				E3034253235EE14700E0BF0A /* FuturaPTCondMedium.otf in Resources */,
 				E3034256235EE14700E0BF0A /* FuturaPTBold.otf in Resources */,
 				E30340AE235EE11C00E0BF0A /* MyProfileHeaderCell.xib in Resources */,
@@ -1632,6 +1668,7 @@
 				E3CD503723713C6500DE106E /* Login.storyboard in Resources */,
 				E303425A235EE14700E0BF0A /* FuturaPTCondBold.otf in Resources */,
 				E3034257235EE14700E0BF0A /* FuturaPTBook.otf in Resources */,
+				F8CE55EE24616C3000FF9487 /* RequestCategoryCell.xib in Resources */,
 				E3033FE7235EDF6500E0BF0A /* Main.storyboard in Resources */,
 				E3034260235EE14700E0BF0A /* FuturaPTCondBookOblique.otf in Resources */,
 				E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */,
@@ -1841,6 +1878,7 @@
 			files = (
 				E3CD503323713C3600DE106E /* LoginModulePresenter.swift in Sources */,
 				E30341F4235EE14000E0BF0A /* EmployeeListingInteractor.swift in Sources */,
+				F8CE55ED24616C3000FF9487 /* RequestCategoryCell.swift in Sources */,
 				E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */,
 				F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
@@ -1857,11 +1895,13 @@
 				E31F816723840E8E00089572 /* MyProfileMultiOptionCell.swift in Sources */,
 				E3060170237EA49200988EEC /* MembershipStatusCell.swift in Sources */,
 				E30601D0237EAA7A00988EEC /* AppointmentDetailsPresenter.swift in Sources */,
+				F8CE55E52461690100FF9487 /* RequestDetailsVC.swift in Sources */,
 				E30342D7235EE15800E0BF0A /* StorageType.swift in Sources */,
 				E30342BC235EE15800E0BF0A /* HTTPMethod.swift in Sources */,
 				E30342C3235EE15800E0BF0A /* AnyCodable.swift in Sources */,
 				E361182F23F6BEC800E0AF02 /* UserFactory.swift in Sources */,
 				E3CEA5CE23CC736F00DD213F /* AddNewNoteModels.swift in Sources */,
+				F8CE55E12461690100FF9487 /* RequestDetailsPresenter.swift in Sources */,
 				F8784FCA244D722700104BE8 /* ApprovalRequestListPresenter.swift in Sources */,
 				E30341DC235EE14000E0BF0A /* MoreModuleWorker.swift in Sources */,
 				E30342F8235EE58300E0BF0A /* AppointmentVC.swift in Sources */,
@@ -1948,8 +1988,10 @@
 				F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */,
 				E30342C9235EE15800E0BF0A /* ExtensionUIView.swift in Sources */,
 				E30342C4235EE15800E0BF0A /* AnyEncodable.swift in Sources */,
+				F8CE55E22461690100FF9487 /* RequestDetailsWorker.swift in Sources */,
 				E3CD503423713C3600DE106E /* LoginModuleInteractor.swift in Sources */,
 				E30342D9235EE15800E0BF0A /* CacheFolderNameKeys.swift in Sources */,
+				F8CE55E42461690100FF9487 /* RequestDetailsModels.swift in Sources */,
 				E30342DE235EE15800E0BF0A /* QRCodeGenratorHelper.swift in Sources */,
 				E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */,
 				E3034301235EE5D900E0BF0A /* ReportsWorker.swift in Sources */,
@@ -1989,6 +2031,8 @@
 				E30340B1235EE11C00E0BF0A /* MyProfileCell.swift in Sources */,
 				E3034112235EE11C00E0BF0A /* HeaderViewWithAdCell.swift in Sources */,
 				F8804EC624481BA300DEAA82 /* TagViewCell.swift in Sources */,
+				F8CE55E92461696A00FF9487 /* RequestDetailsCell.swift in Sources */,
+				F8CE55E62461690100FF9487 /* RequestDetailsInteractor.swift in Sources */,
 				E30601D1237EAA7A00988EEC /* ClientInformationInteractor.swift in Sources */,
 				E30342CE235EE15800E0BF0A /* ExtensionGeneric.swift in Sources */,
 				E30342DA235EE15800E0BF0A /* ConstantsStrings.swift in Sources */,

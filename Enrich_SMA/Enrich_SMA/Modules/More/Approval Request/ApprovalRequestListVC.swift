@@ -22,7 +22,7 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
 
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var lblNoRequest: UILabel!
-    
+
     // MARK: Object lifecycle
 
     var requestList = [ApprovalRequestList.GetRequestData.Data]()
@@ -117,6 +117,9 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = RequestDetailsVC.instantiate(fromAppStoryboard: .More)
+        vc.approvalRequest = requestList[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

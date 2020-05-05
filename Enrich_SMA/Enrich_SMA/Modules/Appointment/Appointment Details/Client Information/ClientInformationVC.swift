@@ -32,7 +32,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     @IBOutlet weak private var BottonButtonView: UIView!
     @IBOutlet weak private var lblNoRecords: UILabel!
     @IBOutlet weak private var submitFormView: UIView!
-    
+
     @IBOutlet weak private var btnSubmitForm: UIButton!
 
     var customerId: Int?
@@ -50,7 +50,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     var selectedTitleCell = 0
     var signatureImage: UIImage?
     var consulationData = [TagViewModel]()
-    
+
     // Consulation Form
     var form_id: String?
 
@@ -236,7 +236,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     func submitGenericForm() {
         if let customerId = customerId,
             let signature = signatureImage,
-            let id = form_id  {
+            let id = form_id {
             var fields = [GenericCustomerConsulation.SubmitFormData.Data]()
 
             var showValidationAlert = false

@@ -73,6 +73,9 @@ enum CellIdentifier {
 
     // Approval Request
     static let approvalRequestCell = "ApprovalRequestCell"
+    static let requestDetailsCell = "RequestDetailsCell"
+    static let requestCategoryCell = "RequestCategoryCell"
+
 }
 
 struct SectionConfiguration {

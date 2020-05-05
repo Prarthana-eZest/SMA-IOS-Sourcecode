@@ -1038,6 +1038,68 @@
             </objects>
             <point key="canvasLocation" x="6183" y="1021"/>
         </scene>
+        <!--Request DetailsVC-->
+        <scene sceneID="8lF-mB-jid">
+            <objects>
+                <viewController storyboardIdentifier="RequestDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Anc-80-zYW" customClass="RequestDetailsVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xT7-Bc-ep5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcj-fx-AQ2" userLabel="View Seprator">
+                                <rect key="frame" x="0.0" y="44" width="414" height="1"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ghN-we-52s"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="1.5" height="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="uu7-ap-9NM">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Anc-80-zYW" id="g39-BI-aYC"/>
+                                    <outlet property="delegate" destination="Anc-80-zYW" id="7EI-Jk-QIL"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fcj-fx-AQ2" secondAttribute="trailing" id="5DJ-Eb-ZMz"/>
+                            <constraint firstItem="uu7-ap-9NM" firstAttribute="trailing" secondItem="Pml-oO-3Jh" secondAttribute="trailing" id="6i3-bh-H2H"/>
+                            <constraint firstItem="fcj-fx-AQ2" firstAttribute="top" secondItem="Pml-oO-3Jh" secondAttribute="top" id="DWd-OM-qKq"/>
+                            <constraint firstItem="fcj-fx-AQ2" firstAttribute="leading" secondItem="xT7-Bc-ep5" secondAttribute="leading" id="NtX-is-rMN"/>
+                            <constraint firstItem="uu7-ap-9NM" firstAttribute="leading" secondItem="Pml-oO-3Jh" secondAttribute="leading" id="hMD-wf-XWx"/>
+                            <constraint firstItem="Pml-oO-3Jh" firstAttribute="bottom" secondItem="uu7-ap-9NM" secondAttribute="bottom" id="ljm-KO-hgU"/>
+                            <constraint firstItem="uu7-ap-9NM" firstAttribute="top" secondItem="fcj-fx-AQ2" secondAttribute="bottom" constant="3" id="wyi-75-Owy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pml-oO-3Jh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="E5U-5I-bKh"/>
+                    <connections>
+                        <outlet property="tableView" destination="uu7-ap-9NM" id="wiP-qA-6aC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A8N-UK-lYs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5406" y="1724"/>
+        </scene>
     </scenes>
     <resources>
         <image name="closeLogin" width="23" height="23"/>
