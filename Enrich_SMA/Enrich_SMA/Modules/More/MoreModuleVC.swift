@@ -171,7 +171,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
         case .logout:
             let alertController = UIAlertController(title: alertTitle, message: AlertMessagesToAsk.askToLogout, preferredStyle: UIAlertController.Style.alert)
-            
+
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.cancel) { _ -> Void in
                 // Do Nothing
             })

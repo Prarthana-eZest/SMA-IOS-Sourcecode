@@ -60,6 +60,7 @@ public enum ConstantAPINames: String {
     // Login Module
     case userLogin = "rest/V1/integration/admin/token"
     case getTermsAndConditions = "rest/V1/cms/block"
+    case authenticateDevice = "rest/V1/employee/device/authenticateRequest"
 
     //case sendOTPOnMobile = "digimiles/sms/sendotp"
     case sendOTPOnMobile = "rest/V1/employee/reset/password/generate/otp"

@@ -24,6 +24,7 @@ enum LoginModule {
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
+            let authenticated_device: Bool?
             var data: UserData?
         }
 
@@ -47,4 +48,17 @@ enum LoginModule {
             let rating: AnyCodable?
         }
     }
+
+    enum AuthenticateDevice {
+
+           struct Request: Codable {
+               let employee_id: String
+               let device_id: String
+               let is_custom: Bool
+           }
+           struct Response: Codable {
+               var status: Bool = false
+               var message: String = ""
+           }
+       }
 }

@@ -62,6 +62,30 @@ class GenericClass: NSObject {
         return nil
     }
 
+    func getDeviceUUID() -> String {
+        let uniqueDeviceId: String? = KeychainWrapper.standard.string(forKey: UserDefauiltsKeys.k_key_UniqueDeviceId)
+
+        guard uniqueDeviceId != nil else {
+            let uuid = generateUuid()
+            let saveSuccessful: Bool = KeychainWrapper.standard.set(uuid, forKey: UserDefauiltsKeys.k_key_UniqueDeviceId)
+            if saveSuccessful {
+                return uuid
+            }
+            else {
+                fatalError("Unable to save uuid")
+            }
+
+        }
+        return uniqueDeviceId!
+    }
+
+    private func generateUuid() -> String {
+
+        let uuidRef: CFUUID = CFUUIDCreate(nil)
+        let uuidStringRef: CFString = CFUUIDCreateString(nil, uuidRef)
+        return uuidStringRef as String
+    }
+
 }
 
 extension GenericClass {

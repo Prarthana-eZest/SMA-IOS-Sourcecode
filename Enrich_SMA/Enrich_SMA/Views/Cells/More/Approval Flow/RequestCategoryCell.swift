@@ -15,7 +15,7 @@ class RequestCategoryCell: UITableViewCell {
     @IBOutlet weak private var lblEndTime: UILabel!
     @IBOutlet weak private var lblPrice: UILabel!
     @IBOutlet weak private var lblDuration: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

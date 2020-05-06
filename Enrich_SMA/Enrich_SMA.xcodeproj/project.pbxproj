@@ -233,6 +233,8 @@
 		F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D9032437058300FDA998 /* SOSAlertInteractor.swift */; };
 		F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D90A243705C000FDA998 /* SOSAlertVC.swift */; };
 		F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C4361245AB4270031213F /* DenyReasonVC.swift */; };
+		F84DBEED2462F6DC0036DF42 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */; };
+		F84DBEEE2462F6DC0036DF42 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */; };
 		F8784FBF244D720900104BE8 /* ApprovalRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */; };
 		F8784FC0244D720900104BE8 /* ApprovalRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */; };
 		F8784FC8244D722700104BE8 /* ApprovalRequestListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */; };
@@ -521,6 +523,8 @@
 		F838D9032437058300FDA998 /* SOSAlertInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertInteractor.swift; sourceTree = "<group>"; };
 		F838D90A243705C000FDA998 /* SOSAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSAlertVC.swift; sourceTree = "<group>"; };
 		F84C4361245AB4270031213F /* DenyReasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyReasonVC.swift; sourceTree = "<group>"; };
+		F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestCell.swift; sourceTree = "<group>"; };
 		F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApprovalRequestCell.xib; sourceTree = "<group>"; };
 		F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestListWorker.swift; sourceTree = "<group>"; };
@@ -923,6 +927,7 @@
 		E303426B235EE15700E0BF0A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				F84DBEEA2462F6C70036DF42 /* KeyChain */,
 				E361182923F6BEC800E0AF02 /* Factory Class */,
 				E303426C235EE15700E0BF0A /* JSONANY */,
 				E303426E235EE15700E0BF0A /* Configuration */,
@@ -1451,6 +1456,15 @@
 			path = "Deny Reason";
 			sourceTree = "<group>";
 		};
+		F84DBEEA2462F6C70036DF42 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */,
+				F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */,
+			);
+			path = KeyChain;
+			sourceTree = "<group>";
+		};
 		F8784FBC244D71ED00104BE8 /* Approval Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1929,6 +1943,7 @@
 				E30341E4235EE14000E0BF0A /* MyProfileInteractor.swift in Sources */,
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
+				F84DBEEE2462F6DC0036DF42 /* KeychainItemAccessibility.swift in Sources */,
 				F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */,
 				E3DB6857238CEE4A00CC569D /* TermsAndConditionsModels.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
@@ -1991,6 +2006,7 @@
 				E30342C9235EE15800E0BF0A /* ExtensionUIView.swift in Sources */,
 				E30342C4235EE15800E0BF0A /* AnyEncodable.swift in Sources */,
 				E3CD503423713C3600DE106E /* LoginModuleInteractor.swift in Sources */,
+				F84DBEED2462F6DC0036DF42 /* KeychainWrapper.swift in Sources */,
 				E30342D9235EE15800E0BF0A /* CacheFolderNameKeys.swift in Sources */,
 				E30342DE235EE15800E0BF0A /* QRCodeGenratorHelper.swift in Sources */,
 				E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */,

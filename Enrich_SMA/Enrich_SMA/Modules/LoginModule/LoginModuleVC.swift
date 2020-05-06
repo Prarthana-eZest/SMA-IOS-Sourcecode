@@ -111,10 +111,30 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
+    func showAuthenticationAlert(employee_id: String) {
+
+        let alertController = UIAlertController(title: alertTitle, message: AlertMessagesToAsk.deviceAuthentication, preferredStyle: UIAlertController.Style.alert)
+
+        alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.cancel) { _ -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        })
+        alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.default) { _ -> Void in
+            self.deviceAuthenticationAPICall(employee_id: employee_id)
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
+
 }
 
 // MARK: Call Webservice
 extension LoginModuleVC {
+
+    func deviceAuthenticationAPICall(employee_id: String) {
+        EZLoadingActivity.show("", disableUI: true)
+        let device_id = GenericClass.sharedInstance.getDeviceUUID()
+        let request = LoginModule.AuthenticateDevice.Request(employee_id: employee_id, device_id: device_id, is_custom: true)
+        interactor?.doPostAuthenticateDeviceRequest(request: request)
+    }
 
     func displaySuccess<T: Decodable>(viewModel: T) {
 
@@ -123,16 +143,25 @@ extension LoginModuleVC {
         if let obj = viewModel as? LoginModule.UserLogin.Response,
             obj.status,
             let data = obj.data {
-            let userDefaults = UserDefaults.standard
-            userDefaults.set(data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
-            userDefaults.synchronize()
+//            let flag = obj.authenticated_device ?? false
+//            if !flag , let id = data.employee_id {
+//                showAuthenticationAlert(employee_id: id)
+//            }
+//            else {
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
+                userDefaults.synchronize()
 
-            FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
+                FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
+
+                let vc = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)
+                UIApplication.shared.keyWindow?.rootViewController = vc
+                UIApplication.shared.keyWindow?.makeKeyAndVisible()
+           // }
         }
-
-        let customTabbarController = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)
-        UIApplication.shared.keyWindow?.rootViewController = customTabbarController
-        UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        else if let obj = viewModel as? LoginModule.AuthenticateDevice.Response {
+            showAlert(alertTitle: alertTitle, alertMessage: obj.message)
+        }
 
     }
 

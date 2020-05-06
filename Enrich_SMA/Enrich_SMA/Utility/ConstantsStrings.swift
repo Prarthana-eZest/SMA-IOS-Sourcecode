@@ -126,6 +126,9 @@ enum AlertMessagesToAsk {
     static let termsAdnConditions = "Please accept terms and conditions"
     static let customerSignature = "Please take customer signature"
     static let formValidation = "Please fill all required fields"
+
+    // Device Authentication
+    static let deviceAuthentication = "Device is not authorised. Do you want to authenticate this device?"
 }
 enum AlertButtonTitle {
     static let yes = "Yes"

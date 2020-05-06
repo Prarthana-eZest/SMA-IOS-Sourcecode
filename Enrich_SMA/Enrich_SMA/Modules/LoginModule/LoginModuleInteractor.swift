@@ -12,6 +12,7 @@ import UIKit
 
 protocol LoginModuleBusinessLogic {
     func doPostRequest(request: LoginModule.UserLogin.Request, method: HTTPMethod)
+    func doPostAuthenticateDeviceRequest(request: LoginModule.AuthenticateDevice.Request)
 }
 
 class LoginModuleInteractor: LoginModuleBusinessLogic {
@@ -24,4 +25,9 @@ class LoginModuleInteractor: LoginModuleBusinessLogic {
         worker.postRequest(request: request)
     }
 
+    func doPostAuthenticateDeviceRequest(request: LoginModule.AuthenticateDevice.Request) {
+        worker = LoginModuleWorker()
+        worker.presenter = self.presenter
+        worker.postRequestAuthenticateDevice(request: request)
+    }
 }
