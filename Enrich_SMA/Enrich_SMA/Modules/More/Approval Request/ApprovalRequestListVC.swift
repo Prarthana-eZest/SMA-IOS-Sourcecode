@@ -25,6 +25,7 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
 
     var totalRecords = 0
     var pageNumber = 1
+    let limit = 10
 
     // MARK: Object lifecycle
 
@@ -147,7 +148,7 @@ extension ApprovalRequestListVC {
         print("Page index: \(pageNumber)")
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let salonData = ApprovalRequestList.GetRequestData.SalonDetails(salon_id: userData.salon_id, page_no: pageNumber, limit: 10)
+            let salonData = ApprovalRequestList.GetRequestData.SalonDetails(salon_id: userData.salon_id, page_no: pageNumber, limit: limit)
             let request = ApprovalRequestList.GetRequestData.Request(addData: salonData, is_custom: true)
             interactor?.doPostGetApprovalList(request: request, method: .post)
         }
