@@ -228,7 +228,7 @@ open class NetworkLayerAlamofire {
 
         #if DEBUG
         print("DEBUG")
-        BaseUrl = "https://enrichsalon.co.in/"
+        BaseUrl = "https://dev.enrichsalon.co.in/"
 
         #elseif STAGE
         print("STAGE")
@@ -236,7 +236,7 @@ open class NetworkLayerAlamofire {
 
         #elseif RELEASE
         print("RELEASE")
-        BaseUrl = "https://enrichsalon.co.in/"
+        BaseUrl = "https://dev.enrichsalon.co.in/"
 
         #endif
 
