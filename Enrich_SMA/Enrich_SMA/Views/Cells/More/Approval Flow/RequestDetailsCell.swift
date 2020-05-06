@@ -25,7 +25,8 @@ class RequestDetailsCell: UITableViewCell {
         // Initialization code
     }
 
-    func configureCell(model: ApprovalRequestList.GetRequestData.Data) {
+    func configureCell(model: ApprovalRequestList.GetRequestData.Data, date: String) {
+        lblAppointmentDate.text = date
         lblModuleName.text = (model.module_name ?? "").uppercased()
         lblDescription.text = model.description ?? ""
         lblRequestDate.text = model.updated_at ?? ""

@@ -29,20 +29,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjI-Qa-jt9">
-                        <rect key="frame" x="20" y="0.0" width="380" height="149.5"/>
+                        <rect key="frame" x="20" y="0.0" width="380" height="147"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vdy-Dk-Vy5">
-                                <rect key="frame" x="15" y="15" width="350" height="119.5"/>
+                                <rect key="frame" x="15" y="15" width="350" height="117"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70U-Jh-rBa">
-                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="26"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70U-Jh-rBa">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="23.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ywg-OR-9hu">
-                                        <rect key="frame" x="0.0" y="36" width="313.5" height="50"/>
+                                        <rect key="frame" x="0.0" y="33.5" width="313.5" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="xqy-J3-JKG">
                                                 <rect key="frame" x="0.0" y="4" width="63" height="42"/>
@@ -124,7 +124,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PVg-Ca-ota">
-                                        <rect key="frame" x="0.0" y="96" width="350" height="23.5"/>
+                                        <rect key="frame" x="0.0" y="93.5" width="350" height="23.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLC-6B-o2J">
                                                 <rect key="frame" x="0.0" y="0.0" width="42.5" height="23.5"/>
@@ -145,6 +145,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="PVg-Ca-ota" firstAttribute="leading" secondItem="Vdy-Dk-Vy5" secondAttribute="leading" id="AIU-D7-Ce9"/>
+                                    <constraint firstAttribute="trailing" secondItem="70U-Jh-rBa" secondAttribute="trailing" id="H30-XH-Z3Y"/>
+                                    <constraint firstItem="70U-Jh-rBa" firstAttribute="leading" secondItem="Vdy-Dk-Vy5" secondAttribute="leading" id="VqU-Dh-UeM"/>
                                     <constraint firstItem="ywg-OR-9hu" firstAttribute="leading" secondItem="Vdy-Dk-Vy5" secondAttribute="leading" id="o8k-AS-TDy"/>
                                     <constraint firstAttribute="trailing" secondItem="PVg-Ca-ota" secondAttribute="trailing" id="oAF-V0-hib"/>
                                 </constraints>
@@ -167,7 +169,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAy-l0-lJV">
-                        <rect key="frame" x="157" y="73" width="1" height="6"/>
+                        <rect key="frame" x="157" y="70.5" width="1" height="6"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="6" id="2gt-Z1-Cyy"/>
@@ -175,7 +177,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCc-2x-dfs">
-                        <rect key="frame" x="102" y="73" width="6" height="6"/>
+                        <rect key="frame" x="102" y="70.5" width="6" height="6"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="6" id="C1V-6H-r1M"/>
@@ -207,6 +209,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="lblDuration" destination="pGy-Oe-RAX" id="9zm-Uk-b3r"/>
                 <outlet property="lblEndTime" destination="cSa-13-n6v" id="Bx5-47-vaF"/>
                 <outlet property="lblPrice" destination="25H-mg-R85" id="ews-1x-3Vt"/>
                 <outlet property="lblStartTime" destination="iVi-Xs-1O7" id="2Yy-YY-nrB"/>

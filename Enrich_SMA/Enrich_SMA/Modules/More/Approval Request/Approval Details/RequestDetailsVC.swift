@@ -72,7 +72,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
         forCellReuseIdentifier: CellIdentifier.requestCategoryCell)
 
         tableView.separatorColor = .clear
-    
+
         if let request = approvalRequest,
             let category = ModifyRequestCategory(rawValue: request.category ?? ""),
             let status = ApprovalStatus(rawValue: request.approval_status ?? "") {
@@ -117,19 +117,20 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             let requestDetails = request.approval_request_details else {
             return
         }
+        appointmentDate = requestDetails.appointment?.appointment_date ?? ""
 
         switch category {
 
         case .add_app, .del_appointment:
 
-            appointmentDate = requestDetails.appointment?.appointment_date ?? ""
             if let services = requestDetails.services {
                 services.forEach {
                     categories.append(RequestCategoryModel(
-                        title: $0.parent_name,
+                        title: $0.service_name,
                         startTime: $0.start_time,
                         endTime: $0.end_time,
-                        price: "\($0.price ?? 0)"))
+                        price: "\($0.price ?? 0)",
+                        duration: "\($0.service_duration ?? 0)"))
                 }
             }
 
@@ -140,7 +141,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: "Original : \(original.date ?? "")",
                     startTime: original.start_time,
                     endTime: original.end_time,
-                    price: original.price?.description))
+                    price: original.price?.description,
+                    duration: "\(original.service_duration ?? 0)"))
             }
 
             if let requested = requestDetails.requested {
@@ -148,7 +150,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: "Requested : \(requested.date ?? "")",
                     startTime: requested.start_time,
                     endTime: requested.end_time,
-                    price: requested.price?.description))
+                    price: requested.price?.description,
+                    duration: requested.service_duration?.description))
             }
 
         case .add_new_service, .del_service:
@@ -160,7 +163,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: service.first?.service_name,
                     startTime: service.first?.start_time,
                     endTime: service.first?.end_time,
-                    price: "\(service.first?.service_price ?? 0)"))
+                    price: "\(service.first?.price ?? 0)",
+                    duration: "\(service.first?.service_duration ?? 0)"))
             }
 
         case .replace, .service_timeslot:
@@ -170,7 +174,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: "Original : \(original.service_name ?? "")",
                     startTime: original.start_time,
                     endTime: original.end_time,
-                    price: original.price?.description))
+                    price: original.price?.description,
+                    duration: "\(original.service_duration ?? 0)"))
             }
 
             if let requested = requestDetails.requested {
@@ -178,7 +183,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     title: "Requested : \(requested.service_name ?? "")",
                     startTime: requested.start_time,
                     endTime: requested.end_time,
-                    price: requested.price?.description))
+                    price: requested.price?.description, duration: requested.service_duration?.description))
             }
         }
         self.tableView.reloadData()
@@ -202,7 +207,7 @@ extension RequestDetailsVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             if let details = approvalRequest {
-                cell.configureCell(model: details)
+                cell.configureCell(model: details, date: appointmentDate)
             }
             cell.selectionStyle = .none
             return cell

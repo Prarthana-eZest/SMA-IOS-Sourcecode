@@ -14,7 +14,8 @@ class RequestCategoryCell: UITableViewCell {
     @IBOutlet weak private var lblStartTime: UILabel!
     @IBOutlet weak private var lblEndTime: UILabel!
     @IBOutlet weak private var lblPrice: UILabel!
-
+    @IBOutlet weak private var lblDuration: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +26,7 @@ class RequestCategoryCell: UITableViewCell {
         lblStartTime.text = model.startTime ?? ""
         lblEndTime.text = model.endTime ?? ""
         lblPrice.text = "₹\(model.price ?? "0")"
+        lblDuration.text = "\(model.duration ?? "0") min"
     }
 }
 
@@ -33,4 +35,5 @@ struct RequestCategoryModel {
     let startTime: String?
     let endTime: String?
     let price: String?
+    let duration: String?
 }
