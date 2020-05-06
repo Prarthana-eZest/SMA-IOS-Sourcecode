@@ -13,25 +13,22 @@
 import UIKit
 
 protocol RequestDetailsBusinessLogic {
-  func doSomething(request: RequestDetails.Something.Request)
+    func doPostProcessApproval(request: ApprovalRequestList.ProcessRequest.Request, method: HTTPMethod)
 }
 
 protocol RequestDetailsDataStore {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class RequestDetailsInteractor: RequestDetailsBusinessLogic, RequestDetailsDataStore {
-  var presenter: RequestDetailsPresentationLogic?
-  var worker: RequestDetailsWorker?
-  //var name: String = ""
+    var presenter: RequestDetailsPresentationLogic?
+    var worker: RequestDetailsWorker?
+    //var name: String = ""
+    // MARK: Do something
 
-  // MARK: Do something
-
-  func doSomething(request: RequestDetails.Something.Request) {
-    worker = RequestDetailsWorker()
-    worker?.doSomeWork()
-
-    let response = RequestDetails.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    func doPostProcessApproval(request: ApprovalRequestList.ProcessRequest.Request, method: HTTPMethod) {
+        worker = RequestDetailsWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestForProcessRequest(request: request, method: method)
+    }
 }

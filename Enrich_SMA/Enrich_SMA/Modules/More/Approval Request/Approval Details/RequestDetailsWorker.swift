@@ -13,6 +13,45 @@
 import UIKit
 
 class RequestDetailsWorker {
-  func doSomeWork() {
-  }
+
+    let networkLayer = NetworkLayerAlamofire()
+    // Uncomment this in case do request using Alamofire for client request
+    // let networkLayer = NetworkLayer() // Uncomment this in case do request using URLsession
+    var presenter: RequestDetailsPresentationLogic?
+
+    func postRequestForApprovalRequestList(request: ApprovalRequestList.GetRequestData.Request, method: HTTPMethod) {
+        // *********** NETWORK CONNECTION
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (ApprovalRequestList.GetRequestData.Response) -> Void = { (response) in
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.getApprovalList.rawValue, body: request,
+                               headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)",
+                                "Content-Type": "application/json",
+                                "X-Request-From": "sma"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: method)
+    }
+
+    func postRequestForProcessRequest(request: ApprovalRequestList.ProcessRequest.Request, method: HTTPMethod) {
+        // *********** NETWORK CONNECTION
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (ApprovalRequestList.ProcessRequest.Response) -> Void = { (response) in
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.processApprovalRequest.rawValue, body: request,
+                               headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)",
+                               "Content-Type": "application/json",
+                               "X-Request-From": "sma"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: method)
+    }
 }

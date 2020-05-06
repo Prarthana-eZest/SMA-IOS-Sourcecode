@@ -246,11 +246,11 @@
 		F8804EBE244817FE00DEAA82 /* SignatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8804EBA244817FE00DEAA82 /* SignatureCell.xib */; };
 		F8804EC524481BA300DEAA82 /* TagViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8804EC324481BA300DEAA82 /* TagViewCell.xib */; };
 		F8804EC624481BA300DEAA82 /* TagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8804EC424481BA300DEAA82 /* TagViewCell.swift */; };
-		F8CE55E12461690100FF9487 /* RequestDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DB2461690100FF9487 /* RequestDetailsPresenter.swift */; };
-		F8CE55E22461690100FF9487 /* RequestDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DC2461690100FF9487 /* RequestDetailsWorker.swift */; };
-		F8CE55E42461690100FF9487 /* RequestDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DE2461690100FF9487 /* RequestDetailsModels.swift */; };
+		F8B8729A24629FD10031DC97 /* RequestDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B8729624629FD00031DC97 /* RequestDetailsInteractor.swift */; };
+		F8B8729B24629FD10031DC97 /* RequestDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B8729724629FD00031DC97 /* RequestDetailsPresenter.swift */; };
+		F8B8729C24629FD10031DC97 /* RequestDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B8729824629FD00031DC97 /* RequestDetailsModels.swift */; };
+		F8B8729D24629FD10031DC97 /* RequestDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B8729924629FD00031DC97 /* RequestDetailsWorker.swift */; };
 		F8CE55E52461690100FF9487 /* RequestDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55DF2461690100FF9487 /* RequestDetailsVC.swift */; };
-		F8CE55E62461690100FF9487 /* RequestDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55E02461690100FF9487 /* RequestDetailsInteractor.swift */; };
 		F8CE55E92461696A00FF9487 /* RequestDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55E72461696A00FF9487 /* RequestDetailsCell.swift */; };
 		F8CE55EA2461696A00FF9487 /* RequestDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8CE55E82461696A00FF9487 /* RequestDetailsCell.xib */; };
 		F8CE55ED24616C3000FF9487 /* RequestCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE55EB24616C3000FF9487 /* RequestCategoryCell.swift */; };
@@ -534,11 +534,11 @@
 		F8804EBA244817FE00DEAA82 /* SignatureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureCell.xib; sourceTree = "<group>"; };
 		F8804EC324481BA300DEAA82 /* TagViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagViewCell.xib; sourceTree = "<group>"; };
 		F8804EC424481BA300DEAA82 /* TagViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewCell.swift; sourceTree = "<group>"; };
-		F8CE55DB2461690100FF9487 /* RequestDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsPresenter.swift; sourceTree = "<group>"; };
-		F8CE55DC2461690100FF9487 /* RequestDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsWorker.swift; sourceTree = "<group>"; };
-		F8CE55DE2461690100FF9487 /* RequestDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsModels.swift; sourceTree = "<group>"; };
+		F8B8729624629FD00031DC97 /* RequestDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsInteractor.swift; sourceTree = "<group>"; };
+		F8B8729724629FD00031DC97 /* RequestDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsPresenter.swift; sourceTree = "<group>"; };
+		F8B8729824629FD00031DC97 /* RequestDetailsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsModels.swift; sourceTree = "<group>"; };
+		F8B8729924629FD00031DC97 /* RequestDetailsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsWorker.swift; sourceTree = "<group>"; };
 		F8CE55DF2461690100FF9487 /* RequestDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsVC.swift; sourceTree = "<group>"; };
-		F8CE55E02461690100FF9487 /* RequestDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsInteractor.swift; sourceTree = "<group>"; };
 		F8CE55E72461696A00FF9487 /* RequestDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsCell.swift; sourceTree = "<group>"; };
 		F8CE55E82461696A00FF9487 /* RequestDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestDetailsCell.xib; sourceTree = "<group>"; };
 		F8CE55EB24616C3000FF9487 /* RequestCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCategoryCell.swift; sourceTree = "<group>"; };
@@ -1482,10 +1482,10 @@
 			isa = PBXGroup;
 			children = (
 				F8CE55DF2461690100FF9487 /* RequestDetailsVC.swift */,
-				F8CE55DB2461690100FF9487 /* RequestDetailsPresenter.swift */,
-				F8CE55DC2461690100FF9487 /* RequestDetailsWorker.swift */,
-				F8CE55DE2461690100FF9487 /* RequestDetailsModels.swift */,
-				F8CE55E02461690100FF9487 /* RequestDetailsInteractor.swift */,
+				F8B8729624629FD00031DC97 /* RequestDetailsInteractor.swift */,
+				F8B8729824629FD00031DC97 /* RequestDetailsModels.swift */,
+				F8B8729724629FD00031DC97 /* RequestDetailsPresenter.swift */,
+				F8B8729924629FD00031DC97 /* RequestDetailsWorker.swift */,
 			);
 			path = "Approval Details";
 			sourceTree = "<group>";
@@ -1901,7 +1901,6 @@
 				E30342C3235EE15800E0BF0A /* AnyCodable.swift in Sources */,
 				E361182F23F6BEC800E0AF02 /* UserFactory.swift in Sources */,
 				E3CEA5CE23CC736F00DD213F /* AddNewNoteModels.swift in Sources */,
-				F8CE55E12461690100FF9487 /* RequestDetailsPresenter.swift in Sources */,
 				F8784FCA244D722700104BE8 /* ApprovalRequestListPresenter.swift in Sources */,
 				E30341DC235EE14000E0BF0A /* MoreModuleWorker.swift in Sources */,
 				E30342F8235EE58300E0BF0A /* AppointmentVC.swift in Sources */,
@@ -1937,6 +1936,7 @@
 				F8784FC8244D722700104BE8 /* ApprovalRequestListWorker.swift in Sources */,
 				E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */,
 				E306016C237EA49200988EEC /* SelectGenderCell.swift in Sources */,
+				F8B8729C24629FD10031DC97 /* RequestDetailsModels.swift in Sources */,
 				E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */,
 				E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */,
 				E3CD502D23713C3600DE106E /* OTPVerificationModuleInteractor.swift in Sources */,
@@ -1964,6 +1964,7 @@
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
 				E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */,
 				E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */,
+				F8B8729A24629FD10031DC97 /* RequestDetailsInteractor.swift in Sources */,
 				E30601BE237EAA4D00988EEC /* RevenueInteractor.swift in Sources */,
 				E30341E3235EE14000E0BF0A /* MyProfilePresenter.swift in Sources */,
 				E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */,
@@ -1971,6 +1972,7 @@
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
 				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
 				E3CEA5C223CC624700DD213F /* UserRatingCell.swift in Sources */,
+				F8B8729B24629FD10031DC97 /* RequestDetailsPresenter.swift in Sources */,
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
@@ -1988,10 +1990,8 @@
 				F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */,
 				E30342C9235EE15800E0BF0A /* ExtensionUIView.swift in Sources */,
 				E30342C4235EE15800E0BF0A /* AnyEncodable.swift in Sources */,
-				F8CE55E22461690100FF9487 /* RequestDetailsWorker.swift in Sources */,
 				E3CD503423713C3600DE106E /* LoginModuleInteractor.swift in Sources */,
 				E30342D9235EE15800E0BF0A /* CacheFolderNameKeys.swift in Sources */,
-				F8CE55E42461690100FF9487 /* RequestDetailsModels.swift in Sources */,
 				E30342DE235EE15800E0BF0A /* QRCodeGenratorHelper.swift in Sources */,
 				E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */,
 				E3034301235EE5D900E0BF0A /* ReportsWorker.swift in Sources */,
@@ -1999,6 +1999,7 @@
 				E30601D4237EAA7A00988EEC /* ClientInformationWorker.swift in Sources */,
 				E3034300235EE5D900E0BF0A /* ReportsPresenter.swift in Sources */,
 				E30342F7235EE58300E0BF0A /* AppointmentModels.swift in Sources */,
+				F8B8729D24629FD10031DC97 /* RequestDetailsWorker.swift in Sources */,
 				E30601D3237EAA7A00988EEC /* ClientInformationVC.swift in Sources */,
 				E3CEA5CF23CC736F00DD213F /* AddNewNoteVC.swift in Sources */,
 				E3CEA5BB23CC57B200DD213F /* AllReviewsVC.swift in Sources */,
@@ -2032,7 +2033,6 @@
 				E3034112235EE11C00E0BF0A /* HeaderViewWithAdCell.swift in Sources */,
 				F8804EC624481BA300DEAA82 /* TagViewCell.swift in Sources */,
 				F8CE55E92461696A00FF9487 /* RequestDetailsCell.swift in Sources */,
-				F8CE55E62461690100FF9487 /* RequestDetailsInteractor.swift in Sources */,
 				E30601D1237EAA7A00988EEC /* ClientInformationInteractor.swift in Sources */,
 				E30342CE235EE15800E0BF0A /* ExtensionGeneric.swift in Sources */,
 				E30342DA235EE15800E0BF0A /* ConstantsStrings.swift in Sources */,

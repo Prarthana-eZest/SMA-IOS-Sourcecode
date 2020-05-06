@@ -23,6 +23,9 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var lblNoRequest: UILabel!
 
+    var totalRecords = 0
+    var pageNumber = 1
+
     // MARK: Object lifecycle
 
     var requestList = [ApprovalRequestList.GetRequestData.Data]()
@@ -55,6 +58,7 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.approvalRequestCell, bundle: nil),
                            forCellReuseIdentifier: CellIdentifier.approvalRequestCell)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        requestList.removeAll()
         getApprovalList()
     }
 
@@ -125,15 +129,25 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("Row index: \(indexPath.row)")
+           if indexPath.row == (requestList.count - 1) &&
+            requestList.count < totalRecords {
+                pageNumber += 1
+                self.getApprovalList()
+           }
+    }
 }
 
 // MARK: Call Webservice
 extension ApprovalRequestListVC {
 
     func getApprovalList() {
+        print("Page index: \(pageNumber)")
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let salonData = ApprovalRequestList.GetRequestData.SalonDetails(salon_id: userData.salon_id)
+            let salonData = ApprovalRequestList.GetRequestData.SalonDetails(salon_id: userData.salon_id, page_no: pageNumber, limit: 10)
             let request = ApprovalRequestList.GetRequestData.Request(addData: salonData, is_custom: true)
             interactor?.doPostGetApprovalList(request: request, method: .post)
         }
@@ -157,11 +171,11 @@ extension ApprovalRequestListVC {
         EZLoadingActivity.hide()
         if let model = viewModel as? ApprovalRequestList.GetRequestData.Response {
             if model.status == true {
-                requestList.removeAll()
-                requestList.append(contentsOf: model.data ?? [])
-                requestList.sort {
-                    return ($0.updated_at ?? "").lowercased() > ($1.updated_at ?? "").lowercased()
-                }
+                totalRecords = model.data?.total_records ?? 0
+                requestList.append(contentsOf: model.data?.records ?? [])
+//                requestList.sort {
+//                    return ($0.updated_at ?? "").lowercased() > ($1.updated_at ?? "").lowercased()
+//                }
 
                 self.tableView.reloadData()
             }

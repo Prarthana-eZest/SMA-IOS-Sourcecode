@@ -13,16 +13,19 @@
 import UIKit
 
 protocol RequestDetailsPresentationLogic {
-  func presentSomething(response: RequestDetails.Something.Response)
+    func presentSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)
 }
 
 class RequestDetailsPresenter: RequestDetailsPresentationLogic {
-  weak var viewController: RequestDetailsDisplayLogic?
+    weak var viewController: RequestDetailsDisplayLogic?
 
-  // MARK: Do something
+    // MARK: Do something
 
-  func presentSomething(response: RequestDetails.Something.Response) {
-    //let viewModel = RequestDetails.Something.ViewModel()
-    //viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentSuccess<T: Decodable>(response: T) {
+        viewController?.displaySuccess(viewModel: response)
+    }
+    func presentError(responseError: String? ) {
+        viewController?.displayError(errorMessage: responseError)
+    }
 }

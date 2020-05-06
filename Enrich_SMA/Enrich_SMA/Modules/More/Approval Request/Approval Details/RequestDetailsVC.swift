@@ -12,24 +12,26 @@
 
 import UIKit
 
-protocol RequestDetailsDisplayLogic: class {
-    //func displaySomething(viewModel: RequestDetails.Something.ViewModel)
+enum ModifyRequestCategory: String {
+    case add_app = "add_appointment"
+    case appointment_timeslot = "change_appointment_timeslot"
+    case del_appointment = "delete_appointment"
+    case add_new_service = "add_service"
+    case replace = "replace_service"
+    case service_timeslot = "change_service_timeslot"
+    case del_service = "delete_service"
 }
 
-enum ModifyRequestCategory: String {
-    case add_appointment = "add_appointment"
-    case change_appointment_timeslot = "change_appointment_timeslot"
-    case delete_appointment = "delete_appointment"
-    case add_service = "add_service"
-    case replace_service = "replace_service"
-    case change_service_timeslot = "change_service_timeslot"
-    case delete_service = "delete_service"
+protocol RequestDetailsDisplayLogic: class {
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
 }
 
 class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
     var interactor: RequestDetailsBusinessLogic?
 
     @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var btnView: UIView!
 
     // MARK: Object lifecycle
 
@@ -69,10 +71,12 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.requestCategoryCell, bundle: nil),
         forCellReuseIdentifier: CellIdentifier.requestCategoryCell)
 
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
-
+        tableView.separatorColor = .clear
+    
         if let request = approvalRequest,
-            let category = ModifyRequestCategory(rawValue: request.category ?? "") {
+            let category = ModifyRequestCategory(rawValue: request.category ?? ""),
+            let status = ApprovalStatus(rawValue: request.approval_status ?? "") {
+            btnView.isHidden = (status != .noAction)
             configureCatagories(category: category)
         }
     }
@@ -83,6 +87,26 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait,
                                          andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Request Details")
+    }
+
+    @IBAction func actionDeny(_ sender: UIButton) {
+
+        let vc = DenyReasonVC.instantiate(fromAppStoryboard: .More)
+        self.view.alpha = screenPopUpAlpha
+        self.present(vc, animated: true, completion: nil)
+
+        vc.onDoneBlock = { [unowned self] (result, reason) in
+            // Do something
+            if result {
+                self.processRequestAPICall(
+                    type: ApprovalStatus.denied.rawValue, reason: reason)
+            }
+            self.view.alpha = 1.0
+        }
+    }
+
+    @IBAction func actionApprove(_ sender: UIButton) {
+        processRequestAPICall(type: ApprovalStatus.approved.rawValue, reason: nil)
     }
 
     func configureCatagories(category: ModifyRequestCategory) {
@@ -96,7 +120,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
 
         switch category {
 
-        case .add_appointment, .delete_appointment:
+        case .add_app, .del_appointment:
 
             appointmentDate = requestDetails.appointment?.appointment_date ?? ""
             if let services = requestDetails.services {
@@ -109,7 +133,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                 }
             }
 
-        case .change_appointment_timeslot:
+        case .appointment_timeslot:
 
             if let original = requestDetails.original {
                 categories.append(RequestCategoryModel(
@@ -127,8 +151,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: requested.price?.description))
             }
 
-        case .add_service, .delete_service:
-            
+        case .add_new_service, .del_service:
+
             appointmentDate = requestDetails.service?.first?.appointment_date ?? ""
 
             if let service = requestDetails.service {
@@ -139,8 +163,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: "\(service.first?.service_price ?? 0)"))
             }
 
-        case .replace_service, .change_service_timeslot:
-            
+        case .replace, .service_timeslot:
+
             if let original = requestDetails.original {
                 categories.append(RequestCategoryModel(
                     title: "Original : \(original.service_name ?? "")",
@@ -180,7 +204,6 @@ extension RequestDetailsVC: UITableViewDelegate, UITableViewDataSource {
             if let details = approvalRequest {
                 cell.configureCell(model: details)
             }
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
             cell.selectionStyle = .none
             return cell
         }
@@ -189,7 +212,6 @@ extension RequestDetailsVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.configureCell(model: categories[indexPath.row])
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
             cell.selectionStyle = .none
             return cell
         }
@@ -205,49 +227,35 @@ extension RequestDetailsVC: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Call Webservice
 extension RequestDetailsVC {
-//
-//
-//    func processRequestAPICall(type: String, indexPath: IndexPath, reason: String?) {
-//
-//        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-//            EZLoadingActivity.show("Loading...", disableUI: true)
-//            let requestDetails = requestList[indexPath.row]
-//            let requestData = ApprovalRequestList.ProcessRequest.RequestDetails(
-//                status: type, ref_id: requestDetails.ref_id,
-//                category: requestDetails.category, employee_id: userData.employee_id,
-//                module_name: requestDetails.module_name, reason: reason)
-//            let request = ApprovalRequestList.ProcessRequest.Request(addData: requestData, is_custom: true)
-//            interactor?.doPostProcessApproval(request: request, method: .post)
-//        }
-//    }
-//
-//    func displaySuccess<T: Decodable>(viewModel: T) {
-//        EZLoadingActivity.hide()
-//        if let model = viewModel as? ApprovalRequestList.GetRequestData.Response {
-//            if model.status == true {
-//                requestList.removeAll()
-//                requestList.append(contentsOf: model.data ?? [])
-//                requestList.sort {
-//                    return ($0.updated_at ?? "").lowercased() > ($1.updated_at ?? "").lowercased()
-//                }
-//
-//                self.tableView.reloadData()
-//            }
-//            else {
-//                self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
-//            }
-//        }
-//        else if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
-//            self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
-//            if model.status == true {
-//                getApprovalList()
-//            }
-//        }
-//    }
-//    func displayError(errorMessage: String?) {
-//        EZLoadingActivity.hide()
-//        DispatchQueue.main.async { [unowned self] in
-//            self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
-//        }
-//    }
+
+    func processRequestAPICall(type: String, reason: String?) {
+
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+            let requestDetails = approvalRequest {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+
+            let requestData = ApprovalRequestList.ProcessRequest.RequestDetails(
+                status: type, ref_id: requestDetails.ref_id,
+                category: requestDetails.category, employee_id: userData.employee_id,
+                module_name: requestDetails.module_name, reason: reason)
+            let request = ApprovalRequestList.ProcessRequest.Request(addData: requestData, is_custom: true)
+            interactor?.doPostProcessApproval(request: request, method: .post)
+        }
+    }
+
+    func displaySuccess<T: Decodable>(viewModel: T) {
+        EZLoadingActivity.hide()
+        if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
+            self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
+            if model.status == true {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        DispatchQueue.main.async { [unowned self] in
+            self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
+        }
+    }
 }

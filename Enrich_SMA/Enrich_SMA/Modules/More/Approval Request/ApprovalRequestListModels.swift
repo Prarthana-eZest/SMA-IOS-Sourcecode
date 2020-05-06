@@ -24,12 +24,19 @@ enum ApprovalRequestList {
 
         struct SalonDetails: Codable {
             let salon_id: String?
+            let page_no: Int?
+            let limit: Int?
         }
 
         struct Response: Codable {
             var status: Bool = false
             var message: String?
-            let data: [Data]?
+            let data: ResponseDetails?
+        }
+
+        struct ResponseDetails: Codable {
+            let total_records: Int?
+            let records: [Data]?
         }
 
         struct Data: Codable {

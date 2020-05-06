@@ -1068,37 +1068,101 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="uu7-ap-9NM">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Anc-80-zYW" id="g39-BI-aYC"/>
-                                    <outlet property="delegate" destination="Anc-80-zYW" id="7EI-Jk-QIL"/>
-                                </connections>
-                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O2s-Ew-cFi">
+                                <rect key="frame" x="0.0" y="10" width="414" height="852"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="uu7-ap-9NM">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="772"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Anc-80-zYW" id="g39-BI-aYC"/>
+                                            <outlet property="delegate" destination="Anc-80-zYW" id="7EI-Jk-QIL"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGW-Hy-eag">
+                                        <rect key="frame" x="0.0" y="782" width="414" height="70"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="k8l-bA-V3A">
+                                                <rect key="frame" x="20" y="10" width="374" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-xq-HbU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="176" height="50"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <state key="normal" title="DENY" backgroundImage="enabledButton">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="actionDeny:" destination="Anc-80-zYW" eventType="touchUpInside" id="vhk-hK-j4X"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UyH-6E-eOz">
+                                                        <rect key="frame" x="198" y="0.0" width="176" height="50"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <state key="normal" title="APPROVE">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="VBorderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="VBorderColor">
+                                                                <color key="value" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="actionApprove:" destination="Anc-80-zYW" eventType="touchUpInside" id="GKH-jG-MIb"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="k8l-bA-V3A" secondAttribute="trailing" constant="20" id="EL9-4u-acE"/>
+                                            <constraint firstItem="k8l-bA-V3A" firstAttribute="top" secondItem="cGW-Hy-eag" secondAttribute="top" constant="10" id="Kbs-cy-DHV"/>
+                                            <constraint firstAttribute="bottom" secondItem="k8l-bA-V3A" secondAttribute="bottom" constant="10" id="aXV-Kx-gTJ"/>
+                                            <constraint firstItem="k8l-bA-V3A" firstAttribute="leading" secondItem="cGW-Hy-eag" secondAttribute="leading" constant="20" id="m6n-Bz-3Uh"/>
+                                            <constraint firstAttribute="height" constant="70" id="ycj-2a-Q1Y"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cGW-Hy-eag" firstAttribute="leading" secondItem="O2s-Ew-cFi" secondAttribute="leading" id="UL3-w3-4cS"/>
+                                    <constraint firstAttribute="trailing" secondItem="uu7-ap-9NM" secondAttribute="trailing" id="YNh-n7-PqV"/>
+                                    <constraint firstAttribute="trailing" secondItem="cGW-Hy-eag" secondAttribute="trailing" id="ibz-FD-1uv"/>
+                                    <constraint firstItem="uu7-ap-9NM" firstAttribute="leading" secondItem="O2s-Ew-cFi" secondAttribute="leading" id="p4H-cS-d6I"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="fcj-fx-AQ2" secondAttribute="trailing" id="5DJ-Eb-ZMz"/>
-                            <constraint firstItem="uu7-ap-9NM" firstAttribute="trailing" secondItem="Pml-oO-3Jh" secondAttribute="trailing" id="6i3-bh-H2H"/>
+                            <constraint firstItem="Pml-oO-3Jh" firstAttribute="bottom" secondItem="O2s-Ew-cFi" secondAttribute="bottom" id="BnO-g2-isB"/>
                             <constraint firstItem="fcj-fx-AQ2" firstAttribute="top" secondItem="Pml-oO-3Jh" secondAttribute="top" id="DWd-OM-qKq"/>
+                            <constraint firstItem="O2s-Ew-cFi" firstAttribute="top" secondItem="xT7-Bc-ep5" secondAttribute="top" constant="10" id="JDZ-3a-R1J"/>
                             <constraint firstItem="fcj-fx-AQ2" firstAttribute="leading" secondItem="xT7-Bc-ep5" secondAttribute="leading" id="NtX-is-rMN"/>
-                            <constraint firstItem="uu7-ap-9NM" firstAttribute="leading" secondItem="Pml-oO-3Jh" secondAttribute="leading" id="hMD-wf-XWx"/>
-                            <constraint firstItem="Pml-oO-3Jh" firstAttribute="bottom" secondItem="uu7-ap-9NM" secondAttribute="bottom" id="ljm-KO-hgU"/>
-                            <constraint firstItem="uu7-ap-9NM" firstAttribute="top" secondItem="fcj-fx-AQ2" secondAttribute="bottom" constant="3" id="wyi-75-Owy"/>
+                            <constraint firstAttribute="trailing" secondItem="O2s-Ew-cFi" secondAttribute="trailing" id="Yr6-ZO-IJ3"/>
+                            <constraint firstItem="O2s-Ew-cFi" firstAttribute="leading" secondItem="Pml-oO-3Jh" secondAttribute="leading" id="jxu-nb-eDw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pml-oO-3Jh"/>
                     </view>
                     <navigationItem key="navigationItem" id="E5U-5I-bKh"/>
                     <connections>
+                        <outlet property="btnView" destination="cGW-Hy-eag" id="1mv-zj-5fc"/>
                         <outlet property="tableView" destination="uu7-ap-9NM" id="wiP-qA-6aC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8N-UK-lYs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5406" y="1724"/>
+            <point key="canvasLocation" x="5405.7971014492759" y="1723.6607142857142"/>
         </scene>
     </scenes>
     <resources>
