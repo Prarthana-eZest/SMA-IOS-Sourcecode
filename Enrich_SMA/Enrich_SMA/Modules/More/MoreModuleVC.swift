@@ -171,11 +171,12 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
         case .logout:
             let alertController = UIAlertController(title: alertTitle, message: AlertMessagesToAsk.askToLogout, preferredStyle: UIAlertController.Style.alert)
-            alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
-                UserFactory.shared.signOutUserFromApp()
-            })
-            alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.default) { _ -> Void in
+            
+            alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.cancel) { _ -> Void in
                 // Do Nothing
+            })
+            alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.default) { _ -> Void in
+                UserFactory.shared.signOutUserFromApp()
             })
             self.present(alertController, animated: true, completion: nil)
 
