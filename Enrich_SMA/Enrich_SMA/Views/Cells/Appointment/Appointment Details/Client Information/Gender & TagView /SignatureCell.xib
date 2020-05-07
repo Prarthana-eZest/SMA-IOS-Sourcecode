@@ -11,22 +11,31 @@
         <array key="FuturaPTBook.otf">
             <string>FuturaPT-Book</string>
         </array>
+        <array key="NotoSerif-Regular.ttf">
+            <string>NotoSerif</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignatureCell" rowHeight="297" id="KGk-i7-Jjw" customClass="SignatureCell" customModule="TMA_Dev" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="381" height="297"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignatureCell" rowHeight="355" id="KGk-i7-Jjw" customClass="SignatureCell" customModule="SMA_Dev" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="355"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="381" height="297"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="355"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-vJ-4DV">
-                        <rect key="frame" x="30" y="10" width="321" height="200"/>
+                        <rect key="frame" x="30" y="10" width="333" height="250.5"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Kf-9z-eqC" customClass="YPDrawSignatureView" customModule="TMA_Dev" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="321" height="150"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Signature" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzm-v3-bYY">
+                                <rect key="frame" x="78.5" y="0.0" width="176.5" height="35.5"/>
+                                <fontDescription key="fontDescription" name="NotoSerif" family="Noto Serif" pointSize="26"/>
+                                <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Kf-9z-eqC" customClass="YPDrawSignatureView" customModule="SMA_Dev" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50.5" width="333" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Amk-ux-sja"/>
@@ -47,13 +56,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdF-CC-wK5">
-                                <rect key="frame" x="0.0" y="165" width="321" height="35"/>
+                                <rect key="frame" x="0.0" y="215.5" width="333" height="35"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-Ss-pJE">
-                                        <rect key="frame" x="0.0" y="0.0" width="321" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZL-V5-JVn">
-                                                <rect key="frame" x="0.0" y="0.0" width="153" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="159" height="35"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                 <state key="normal" title="Clear">
                                                     <color key="titleColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,7 +72,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RR-TW-xIs">
-                                                <rect key="frame" x="168" y="0.0" width="153" height="35"/>
+                                                <rect key="frame" x="174" y="0.0" width="159" height="35"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
@@ -104,10 +113,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="bottomView" destination="bdF-CC-wK5" id="fTp-Yq-xeS"/>
+                <outlet property="bottomView" destination="K0z-Ss-pJE" id="ZVy-TY-D3K"/>
                 <outlet property="signatureView" destination="9Kf-9z-eqC" id="nR6-Xt-Aqd"/>
             </connections>
-            <point key="canvasLocation" x="180.43478260869566" y="213.28125"/>
+            <point key="canvasLocation" x="189.13043478260872" y="232.70089285714283"/>
         </tableViewCell>
     </objects>
 </document>

@@ -42,9 +42,10 @@ class ApprovalRequestCell: UITableViewCell {
 
     func configureCell(model: ApprovalRequestList.GetRequestData.Data) {
         lblModuleName.text = (model.module_name ?? "").uppercased()
-        lblDescription.text = model.description ?? ""
+        lblDescription.text = (model.description ?? "").capitalized
         lblRequestDate.text = model.updated_at ?? ""
-        lblCustomer.text = (model.customer_name ?? "").capitalized
+        let name = "\(model.approval_request_details?.appointment?.customer_name ?? "") \(model.approval_request_details?.appointment?.customer_last_name ?? "")"
+        lblCustomer.text = name.capitalized
         lblTechnician.text = (model.approval_request_details?.appointment?.booking_technician ?? "").capitalized
         actionButtonsStackView.isHidden = true
         deniedReasonStackView.isHidden = true

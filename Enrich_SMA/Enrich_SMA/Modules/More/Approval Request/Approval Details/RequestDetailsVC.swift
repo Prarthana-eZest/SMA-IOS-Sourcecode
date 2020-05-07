@@ -142,7 +142,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     startTime: original.start_time,
                     endTime: original.end_time,
                     price: original.price?.description,
-                    duration: "\(original.service_duration ?? 0)"))
+                    duration: original.service_duration?.description))
             }
 
             if let requested = requestDetails.requested {
@@ -241,8 +241,10 @@ extension RequestDetailsVC {
 
             let requestData = ApprovalRequestList.ProcessRequest.RequestDetails(
                 status: type, ref_id: requestDetails.ref_id,
-                category: requestDetails.category, employee_id: userData.employee_id,
-                module_name: requestDetails.module_name, reason: reason)
+                category: requestDetails.category,
+                employee_id: userData.employee_id,
+                module_name: requestDetails.module_name, reason: reason,
+                customer_id: requestDetails.approval_request_details?.appointment?.customer_id)
             let request = ApprovalRequestList.ProcessRequest.Request(addData: requestData, is_custom: true)
             interactor?.doPostProcessApproval(request: request, method: .post)
         }

@@ -83,6 +83,7 @@ enum ApprovalRequestList {
             let booking_number: String?
             let payment_status: String?
             let customer_name: String?
+            let customer_last_name: String?
             let customer_id: Int64?
             let customer_gender: String?
             let customer_contact: String?
@@ -167,6 +168,7 @@ enum ApprovalRequestList {
             let employee_id: String?
             let module_name: String?
             let reason: String?
+            let customer_id: Int64?
         }
 
         struct Response: Codable {

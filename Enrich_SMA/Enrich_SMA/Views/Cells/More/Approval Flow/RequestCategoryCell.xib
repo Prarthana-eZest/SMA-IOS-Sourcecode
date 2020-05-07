@@ -214,6 +214,7 @@
                 <outlet property="lblPrice" destination="25H-mg-R85" id="ews-1x-3Vt"/>
                 <outlet property="lblStartTime" destination="iVi-Xs-1O7" id="2Yy-YY-nrB"/>
                 <outlet property="lblTitle" destination="70U-Jh-rBa" id="ORi-A6-Rxj"/>
+                <outlet property="priceStackView" destination="PVg-Ca-ota" id="Vfu-oG-Iqh"/>
             </connections>
             <point key="canvasLocation" x="210.1449275362319" y="168.41517857142856"/>
         </tableViewCell>

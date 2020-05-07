@@ -16,7 +16,7 @@ protocol SingatureCellDelegate: class {
 class SignatureCell: UITableViewCell {
 
     @IBOutlet private weak var signatureView: YPDrawSignatureView!
-    @IBOutlet private weak var bottomView: UIView!
+    @IBOutlet private weak var bottomView: UIStackView!
 
     weak var delegate: SingatureCellDelegate?
 

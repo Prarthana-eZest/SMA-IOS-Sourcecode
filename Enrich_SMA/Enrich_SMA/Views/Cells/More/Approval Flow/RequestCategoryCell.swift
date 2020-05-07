@@ -15,6 +15,7 @@ class RequestCategoryCell: UITableViewCell {
     @IBOutlet weak private var lblEndTime: UILabel!
     @IBOutlet weak private var lblPrice: UILabel!
     @IBOutlet weak private var lblDuration: UILabel!
+    @IBOutlet weak private var priceStackView: UIStackView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +26,8 @@ class RequestCategoryCell: UITableViewCell {
         lblTitle.text = model.title ?? ""
         lblStartTime.text = model.startTime ?? ""
         lblEndTime.text = model.endTime ?? ""
-        lblPrice.text = "₹\(model.price ?? "0")"
+        lblPrice.text =  "₹\(model.price ?? "0")"
+        priceStackView.isHidden = model.price == nil
         lblDuration.text = "\(model.duration ?? "0") min"
     }
 }
