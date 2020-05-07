@@ -28,27 +28,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vt3-Sg-3Ih">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="778"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Jbz-TH-tSk" id="LeE-tT-MM8"/>
                                     <outlet property="delegate" destination="Jbz-TH-tSk" id="9qW-BQ-H5F"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPJ-EZ-PWm">
-                                <rect key="frame" x="0.0" y="778" width="414" height="35"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPJ-EZ-PWm">
+                                <rect key="frame" x="0.0" y="813" width="414" height="0.0"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8hO-NF-sCe">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Appointments: 250" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eys-to-SVh">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                 <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Customer: 105" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Pq-Rg-eZ1">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="35"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                 <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -62,11 +62,11 @@
                                     <constraint firstItem="8hO-NF-sCe" firstAttribute="top" secondItem="GPJ-EZ-PWm" secondAttribute="top" id="gFQ-be-pNC"/>
                                     <constraint firstAttribute="bottom" secondItem="8hO-NF-sCe" secondAttribute="bottom" id="jPP-fv-0rz"/>
                                     <constraint firstItem="8hO-NF-sCe" firstAttribute="leading" secondItem="GPJ-EZ-PWm" secondAttribute="leading" id="mtu-bG-S7j"/>
-                                    <constraint firstAttribute="height" constant="35" id="wmk-mI-7KS"/>
+                                    <constraint firstAttribute="height" id="wmk-mI-7KS"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBP-RZ-cTi">
-                                <rect key="frame" x="206.5" y="778" width="1" height="35"/>
+                                <rect key="frame" x="206.5" y="813" width="1" height="0.0"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="f4T-8Q-qjA"/>
