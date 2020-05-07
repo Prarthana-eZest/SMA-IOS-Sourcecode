@@ -142,7 +142,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     startTime: original.start_time,
                     endTime: original.end_time,
                     price: original.price?.description,
-                    duration: original.service_duration?.description))
+                    duration: original.total_duration?.description))
             }
 
             if let requested = requestDetails.requested {
@@ -151,7 +151,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     startTime: requested.start_time,
                     endTime: requested.end_time,
                     price: requested.price?.description,
-                    duration: requested.service_duration?.description))
+                    duration: requested.total_duration?.description))
             }
 
         case .add_new_service, .del_service:

@@ -151,6 +151,7 @@ enum ApprovalRequestList {
             let date: String?
             let price: AnyCodable?
             let service_duration: AnyCodable?
+            let total_duration: AnyCodable?
         }
     }
 
