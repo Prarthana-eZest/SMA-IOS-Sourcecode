@@ -37,6 +37,10 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
 
     var selectedTab: AppointmentType = .ongoing
 
+    var totalRecords = 0
+    var pageNumber = 1
+    let limit = 10
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -100,7 +104,14 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
             lblLocation.text = userData.base_salon_name ?? ""
         }
         checkForSOSNotification()
-        getAppointments(status: selectedTab)
+        resetData(status: selectedTab)
+    }
+
+    func resetData(status: AppointmentType) {
+        pageNumber = 1
+        totalRecords = 0
+        appointments.removeAll()
+        getAppointments(status: status)
     }
 
     // MARK: Do something
@@ -131,7 +142,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         ongoingSelectionView.isHidden = true
         upcomingSelectionView.isHidden = true
         selectedTab = .completed
-        getAppointments(status: .completed)
+        resetData(status: .completed)
     }
 
     @IBAction func actionOnGoing(_ sender: UIButton) {
@@ -147,7 +158,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         ongoingSelectionView.isHidden = false
         upcomingSelectionView.isHidden = true
         selectedTab = .ongoing
-        getAppointments(status: .ongoing)
+        resetData(status: .ongoing)
     }
 
     @IBAction func actionUpComing(_ sender: UIButton) {
@@ -163,7 +174,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         ongoingSelectionView.isHidden = true
         upcomingSelectionView.isHidden = false
         selectedTab = .upcoming
-        getAppointments(status: .upcoming)
+        resetData(status: .upcoming)
     }
 
     func checkForSOSNotification() {
@@ -188,10 +199,13 @@ extension AppointmentVC {
         print("Response: \(viewModel)")
 
         if let model = viewModel as? Appointment.GetAppointnents.Response {
-            self.appointments.removeAll()
+           print("Page No: \(pageNumber)")
+            if pageNumber == 1 {
+                self.appointments.removeAll()
+            }
             self.appointments.append(contentsOf: model.data ?? [])
             self.tableView.reloadData()
-            if !appointments.isEmpty {
+            if !appointments.isEmpty, pageNumber == 1 {
                 self.tableView.scrollToTop()
             }
             lblNoAppointments.isHidden = (!appointments.isEmpty)
@@ -204,7 +218,7 @@ extension AppointmentVC {
         self.appointments.removeAll()
         self.lblNoAppointments.isHidden = false
         self.tableView.reloadData()
-       // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+        // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }
 
@@ -275,13 +289,13 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
 
-//        let vc = SOSPopUpVC.instantiate(fromAppStoryboard: .Appointment)
-//        self.view.alpha = screenPopUpAlpha
-//        vc.viewDismissBlock = { [unowned self] result in
-//            // Do something
-//            self.view.alpha = 1.0
-//        }
-//        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
+        //        let vc = SOSPopUpVC.instantiate(fromAppStoryboard: .Appointment)
+        //        self.view.alpha = screenPopUpAlpha
+        //        vc.viewDismissBlock = { [unowned self] result in
+        //            // Do something
+        //            self.view.alpha = 1.0
+        //        }
+        //        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
         let appointment = appointments[indexPath.row]
         if let dateString = appointment.appointment_date,
             let date = dateString.getDateFromString() {
@@ -291,5 +305,13 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == (appointments.count - 1) &&
+            appointments.count < totalRecords {
+            pageNumber += 1
+            self.resetData(status: selectedTab)
+        }
     }
 }
