@@ -133,6 +133,7 @@ enum AlertMessagesToAsk {
 enum AlertButtonTitle {
     static let yes = "Yes"
     static let no = "No"
+    static let ok = "Ok"
 }
 enum AlertToWarn {
     static let selectedSalonNotInRange = "We are sorry!\nAt the moment our Home Services are not available in your selected location. \n You can try some other location\nor\nAvail our Salon Services."

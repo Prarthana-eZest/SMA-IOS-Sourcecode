@@ -253,10 +253,13 @@ extension RequestDetailsVC {
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
         if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
-            self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
-            if model.status == true {
-                self.navigationController?.popViewController(animated: true)
-            }
+            let alertController = UIAlertController(title: alertTitle, message: model.message ?? "", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: AlertButtonTitle.ok, style: UIAlertAction.Style.cancel) { _ -> Void in
+                if model.status == true {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     func displayError(errorMessage: String?) {

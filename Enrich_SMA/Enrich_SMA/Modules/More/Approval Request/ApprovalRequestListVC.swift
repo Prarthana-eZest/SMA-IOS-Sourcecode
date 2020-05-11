@@ -59,8 +59,6 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.approvalRequestCell, bundle: nil),
                            forCellReuseIdentifier: CellIdentifier.approvalRequestCell)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
-        requestList.removeAll()
-        getApprovalList()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +67,9 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait,
                                          andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Approval Request")
+        requestList.removeAll()
+        pageNumber = 1
+        getApprovalList()
     }
 }
 extension ApprovalRequestListVC: ApprovalCellDelegate {
@@ -174,6 +175,9 @@ extension ApprovalRequestListVC {
         EZLoadingActivity.hide()
         if let model = viewModel as? ApprovalRequestList.GetRequestData.Response {
             if model.status == true {
+                if pageNumber == 1 {
+                    requestList.removeAll()
+                }
                 totalRecords = model.data?.total_records ?? 0
                 requestList.append(contentsOf: model.data?.records ?? [])
 //                requestList.sort {
@@ -189,6 +193,7 @@ extension ApprovalRequestListVC {
         else if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
             self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
             if model.status == true {
+                pageNumber = 1
                 getApprovalList()
             }
         }
