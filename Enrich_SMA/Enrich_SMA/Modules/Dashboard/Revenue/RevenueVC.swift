@@ -60,26 +60,27 @@ class RevenueVC: UIViewController, RevenueDisplayLogic {
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Revenue")
+        configureData(data: nil)
         getRevenueData()
     }
 
-    func configureData(data: Revenue.OneClickData.Data) {
+    func configureData(data: Revenue.OneClickData.Data?) {
 
         revenues.removeAll()
         revenues.append(contentsOf: [
         RevenueCellModel(title: "Revenue multiplier", subTitle: "", value: "-"),
 
-        RevenueCellModel(title: "YoY revenue growth", subTitle: "", value: "\(data.yoy_revenue_growth_services_and_product?.description.toDouble()?.cleanForPrice ?? "0")%"),
+        RevenueCellModel(title: "YoY revenue growth", subTitle: "", value: "\(data?.yoy_revenue_growth_services_and_product?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
         RevenueCellModel(title: "Client consultation", subTitle: "From 50 Customer", value: "-"),
 
-        RevenueCellModel(title: "Retail products", subTitle: "", value: "\(data.retail_products_as_percentage_to_services_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
+        RevenueCellModel(title: "Retail products", subTitle: "", value: "\(data?.retail_products_as_percentage_to_services_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-        RevenueCellModel(title: "Service revenue", subTitle: "", value: "\(data.total_service_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
+        RevenueCellModel(title: "Service revenue", subTitle: "", value: "\(data?.total_service_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-        RevenueCellModel(title: "Product revenue", subTitle: "", value: "\(data.total_products_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
+        RevenueCellModel(title: "Product revenue", subTitle: "", value: "\(data?.total_products_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-        RevenueCellModel(title: "Salon achievements", subTitle: "", value: "\(data.salon_achievement_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"),
+        RevenueCellModel(title: "Salon achievements", subTitle: "", value: "\(data?.salon_achievement_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
         RevenueCellModel(title: "RM consumption of category", subTitle: "", value: "-"),
 
