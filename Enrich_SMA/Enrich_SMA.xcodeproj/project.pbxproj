@@ -260,6 +260,16 @@
 		F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACAD72448620F006AB417 /* ReportCell.swift */; };
 		F8DACADA2448620F006AB417 /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DACAD82448620F006AB417 /* ReportCell.xib */; };
 		F8DACADD24486768006AB417 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACADC24486768006AB417 /* WebViewVC.swift */; };
+		F8E5D27E246E9B72005876CE /* TeleConsultationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D278246E9B72005876CE /* TeleConsultationModels.swift */; };
+		F8E5D27F246E9B72005876CE /* CustomerTeleHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D279246E9B72005876CE /* CustomerTeleHistoryVC.swift */; };
+		F8E5D280246E9B72005876CE /* TeleConsultationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D27A246E9B72005876CE /* TeleConsultationVC.swift */; };
+		F8E5D281246E9B72005876CE /* TeleConsultationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D27B246E9B72005876CE /* TeleConsultationWorker.swift */; };
+		F8E5D282246E9B72005876CE /* TeleConsultationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D27C246E9B72005876CE /* TeleConsultationPresenter.swift */; };
+		F8E5D283246E9B72005876CE /* TeleConsultationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D27D246E9B72005876CE /* TeleConsultationInteractor.swift */; };
+		F8E5D289246E9BB8005876CE /* TeleMarketingCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D285246E9BB8005876CE /* TeleMarketingCompletedCell.swift */; };
+		F8E5D28A246E9BB8005876CE /* TeleMarketingCompletedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */; };
+		F8E5D28B246E9BB8005876CE /* TeleMarketingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */; };
+		F8E5D28C246E9BB8005876CE /* TeleMarketingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8E5D288246E9BB8005876CE /* TeleMarketingCell.xib */; };
 		F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -550,6 +560,16 @@
 		F8DACAD72448620F006AB417 /* ReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		F8DACAD82448620F006AB417 /* ReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportCell.xib; sourceTree = "<group>"; };
 		F8DACADC24486768006AB417 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
+		F8E5D278246E9B72005876CE /* TeleConsultationModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleConsultationModels.swift; sourceTree = "<group>"; };
+		F8E5D279246E9B72005876CE /* CustomerTeleHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerTeleHistoryVC.swift; sourceTree = "<group>"; };
+		F8E5D27A246E9B72005876CE /* TeleConsultationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleConsultationVC.swift; sourceTree = "<group>"; };
+		F8E5D27B246E9B72005876CE /* TeleConsultationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleConsultationWorker.swift; sourceTree = "<group>"; };
+		F8E5D27C246E9B72005876CE /* TeleConsultationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleConsultationPresenter.swift; sourceTree = "<group>"; };
+		F8E5D27D246E9B72005876CE /* TeleConsultationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleConsultationInteractor.swift; sourceTree = "<group>"; };
+		F8E5D285246E9BB8005876CE /* TeleMarketingCompletedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleMarketingCompletedCell.swift; sourceTree = "<group>"; };
+		F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeleMarketingCompletedCell.xib; sourceTree = "<group>"; };
+		F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleMarketingCell.swift; sourceTree = "<group>"; };
+		F8E5D288246E9BB8005876CE /* TeleMarketingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeleMarketingCell.xib; sourceTree = "<group>"; };
 		F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -708,6 +728,7 @@
 				E3034030235EE11B00E0BF0A /* Notification */,
 				E3034033235EE11B00E0BF0A /* Employee */,
 				F8784FBC244D71ED00104BE8 /* Approval Flow */,
+				F8E5D284246E9B98005876CE /* Tele Marketing */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -803,6 +824,7 @@
 				E303415F235EE14000E0BF0A /* Notifications */,
 				E3034165235EE14000E0BF0A /* Employees */,
 				F8784FC1244D722700104BE8 /* Approval Request */,
+				F8E5D277246E9B3E005876CE /* Tele Consultation */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -1521,6 +1543,30 @@
 			path = "Web View";
 			sourceTree = "<group>";
 		};
+		F8E5D277246E9B3E005876CE /* Tele Consultation */ = {
+			isa = PBXGroup;
+			children = (
+				F8E5D27A246E9B72005876CE /* TeleConsultationVC.swift */,
+				F8E5D27D246E9B72005876CE /* TeleConsultationInteractor.swift */,
+				F8E5D278246E9B72005876CE /* TeleConsultationModels.swift */,
+				F8E5D27C246E9B72005876CE /* TeleConsultationPresenter.swift */,
+				F8E5D27B246E9B72005876CE /* TeleConsultationWorker.swift */,
+				F8E5D279246E9B72005876CE /* CustomerTeleHistoryVC.swift */,
+			);
+			path = "Tele Consultation";
+			sourceTree = "<group>";
+		};
+		F8E5D284246E9B98005876CE /* Tele Marketing */ = {
+			isa = PBXGroup;
+			children = (
+				F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */,
+				F8E5D288246E9BB8005876CE /* TeleMarketingCell.xib */,
+				F8E5D285246E9BB8005876CE /* TeleMarketingCompletedCell.swift */,
+				F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */,
+			);
+			path = "Tele Marketing";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1644,6 +1690,7 @@
 				E3034268235EE14700E0BF0A /* NotoSerif-Regular.ttf in Resources */,
 				E31F816823840E8E00089572 /* MyProfileMultiOptionCell.xib in Resources */,
 				E303426A235EE14700E0BF0A /* NotoSerif-Bold.ttf in Resources */,
+				F8E5D28A246E9BB8005876CE /* TeleMarketingCompletedCell.xib in Resources */,
 				E3034262235EE14700E0BF0A /* FuturaPTExtraBoldOblique.otf in Resources */,
 				E30342E5235EE28900E0BF0A /* HomeLanding.storyboard in Resources */,
 				E30342ED235EE3DA00E0BF0A /* Reports.storyboard in Resources */,
@@ -1662,6 +1709,7 @@
 				E30342E7235EE29200E0BF0A /* Dashboard.storyboard in Resources */,
 				F8CE55EA2461696A00FF9487 /* RequestDetailsCell.xib in Resources */,
 				E3034253235EE14700E0BF0A /* FuturaPTCondMedium.otf in Resources */,
+				F8E5D28C246E9BB8005876CE /* TeleMarketingCell.xib in Resources */,
 				E3034256235EE14700E0BF0A /* FuturaPTBold.otf in Resources */,
 				E30340AE235EE11C00E0BF0A /* MyProfileHeaderCell.xib in Resources */,
 				E30342B8235EE15800E0BF0A /* ErrorCustomView.xib in Resources */,
@@ -1906,6 +1954,8 @@
 				E30342B9235EE15800E0BF0A /* ErrorCustomView.swift in Sources */,
 				E30341DD235EE14000E0BF0A /* MoreModuleModels.swift in Sources */,
 				E3CEA5CC23CC736F00DD213F /* AddNewNoteWorker.swift in Sources */,
+				F8E5D28B246E9BB8005876CE /* TeleMarketingCell.swift in Sources */,
+				F8E5D283246E9B72005876CE /* TeleConsultationInteractor.swift in Sources */,
 				E31F816723840E8E00089572 /* MyProfileMultiOptionCell.swift in Sources */,
 				E3060170237EA49200988EEC /* MembershipStatusCell.swift in Sources */,
 				E30601D0237EAA7A00988EEC /* AppointmentDetailsPresenter.swift in Sources */,
@@ -1923,7 +1973,9 @@
 				E30340BE235EE11C00E0BF0A /* YourTargetRevenueCell.swift in Sources */,
 				F8784FCC244D722700104BE8 /* ApprovalRequestListInteractor.swift in Sources */,
 				F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */,
+				F8E5D281246E9B72005876CE /* TeleConsultationWorker.swift in Sources */,
 				E30341F0235EE14000E0BF0A /* NotificationsVC.swift in Sources */,
+				F8E5D282246E9B72005876CE /* TeleConsultationPresenter.swift in Sources */,
 				E30341F9235EE14000E0BF0A /* DashboardModels.swift in Sources */,
 				E3034303235EE5D900E0BF0A /* ReportsModels.swift in Sources */,
 				E3CD503023713C3600DE106E /* LoginModuleModels.swift in Sources */,
@@ -1942,6 +1994,7 @@
 				F8804EBB244817FE00DEAA82 /* SignatureCell.swift in Sources */,
 				E30341E4235EE14000E0BF0A /* MyProfileInteractor.swift in Sources */,
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
+				F8E5D27F246E9B72005876CE /* CustomerTeleHistoryVC.swift in Sources */,
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
 				F84DBEEE2462F6DC0036DF42 /* KeychainItemAccessibility.swift in Sources */,
 				F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */,
@@ -1982,6 +2035,7 @@
 				F8B8729A24629FD10031DC97 /* RequestDetailsInteractor.swift in Sources */,
 				E30601BE237EAA4D00988EEC /* RevenueInteractor.swift in Sources */,
 				E30341E3235EE14000E0BF0A /* MyProfilePresenter.swift in Sources */,
+				F8E5D289246E9BB8005876CE /* TeleMarketingCompletedCell.swift in Sources */,
 				E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */,
 				E30342B5235EE15800E0BF0A /* Configurations.swift in Sources */,
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
@@ -1996,6 +2050,7 @@
 				E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */,
 				E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */,
 				E30342C8235EE15800E0BF0A /* ExtensionUIButton.swift in Sources */,
+				F8E5D280246E9B72005876CE /* TeleConsultationVC.swift in Sources */,
 				E30342CA235EE15800E0BF0A /* ExtensionUITableView.swift in Sources */,
 				E30601D2237EAA7A00988EEC /* ClientInformationPresenter.swift in Sources */,
 				E3CEA5BC23CC57B200DD213F /* AllReviewsModuleModels.swift in Sources */,
@@ -2026,6 +2081,7 @@
 				E3DB685B238CEF7C00CC569D /* GenericClass.swift in Sources */,
 				E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */,
 				F838D9052437058300FDA998 /* SOSAlertWorker.swift in Sources */,
+				F8E5D27E246E9B72005876CE /* TeleConsultationModels.swift in Sources */,
 				E30341F8235EE14000E0BF0A /* DashboardPresenter.swift in Sources */,
 				E30341EC235EE14000E0BF0A /* MoreModulePresenter.swift in Sources */,
 				E30342DC235EE15800E0BF0A /* ContactsHelper.swift in Sources */,

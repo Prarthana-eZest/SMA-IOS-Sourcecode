@@ -888,8 +888,45 @@
                                             <outlet property="notificationView" destination="4Jo-8d-zAv" id="aHp-ay-5BZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Logout" id="coo-TX-a0K">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeleConsultation" id="Zi2-hr-96R">
                                         <rect key="frame" x="0.0" y="463" width="575" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zi2-hr-96R" id="7ZO-5S-kUq">
+                                            <rect key="frame" x="0.0" y="0.0" width="575" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teleMarketingMenu" translatesAutoresizingMaskIntoConstraints="NO" id="S1Q-k6-hHZ">
+                                                    <rect key="frame" x="20" y="9.5" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="BJq-xq-ab1">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="width" constant="25" id="prC-HW-jLh">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TELEMARKETING CONSULTATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5S-Gp-vWZ">
+                                                    <rect key="frame" x="60" y="11.5" width="228.5" height="21"/>
+                                                    <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                    <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="S1Q-k6-hHZ" firstAttribute="centerY" secondItem="7ZO-5S-kUq" secondAttribute="centerY" id="BDT-z5-RgW"/>
+                                                <constraint firstItem="z5S-Gp-vWZ" firstAttribute="centerY" secondItem="7ZO-5S-kUq" secondAttribute="centerY" id="ilW-Qh-vEM"/>
+                                                <constraint firstItem="z5S-Gp-vWZ" firstAttribute="leading" secondItem="S1Q-k6-hHZ" secondAttribute="trailing" constant="15" id="lNL-m0-kzA">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="25"/>
+                                                </constraint>
+                                                <constraint firstItem="S1Q-k6-hHZ" firstAttribute="leading" secondItem="7ZO-5S-kUq" secondAttribute="leading" constant="20" id="rub-hd-Uoi">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                                                </constraint>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Logout" id="coo-TX-a0K">
+                                        <rect key="frame" x="0.0" y="506.5" width="575" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="coo-TX-a0K" id="5PL-rG-WYc">
                                             <rect key="frame" x="0.0" y="0.0" width="575" height="43.5"/>
@@ -954,6 +991,7 @@
         <image name="myProfileMenu" width="25" height="26"/>
         <image name="notificationMenu" width="24" height="26"/>
         <image name="reportTab" width="16" height="20"/>
+        <image name="teleMarketingMenu" width="16" height="16"/>
         <image name="wishlist-icon" width="22" height="26"/>
     </resources>
 </document>

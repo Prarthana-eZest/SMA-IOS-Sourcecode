@@ -111,4 +111,10 @@ public enum ConstantAPINames: String {
     // Approval List
     case getApprovalList = "rest/V1/appointments/approval-list"
     case processApprovalRequest = "rest/V1/appointments/processApproval"
+
+    // Tele Marketing
+    case telemarketingPending = "/rest/V1/telemarketing/pending"
+    case telemarketingCompleted = "rest/V1/telemarketing/completed"
+    case submitTeleFeedback = "rest/V1/telemarketing/feedback"
+    case getTeleStatusList = "/rest/V1/telemarketing/status-list?is_custom=true"
 }

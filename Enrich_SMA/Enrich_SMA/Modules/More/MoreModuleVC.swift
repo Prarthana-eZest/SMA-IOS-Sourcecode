@@ -18,6 +18,7 @@ enum ProfileCellIdentifiers: String {
     case notifications = "Notifications"
     case salonFeedback = "Salon Feedback"
     case approval = "Approval Request"
+    case teleConsulation = "TeleConsultation"
     case logout = "Logout"
 
 }
@@ -43,6 +44,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
                                                   .employees,
                                                   .salonFeedback,
                                                   .approval,
+                                                  .teleConsulation,
                                                   .notifications,
                                                   .logout]
 
@@ -215,6 +217,9 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
 
         case .punchOut:
             break
+        case .teleConsulation:
+            let vc = TeleConsultationVC.instantiate(fromAppStoryboard: .More)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 

@@ -76,6 +76,10 @@ enum CellIdentifier {
     static let requestDetailsCell = "RequestDetailsCell"
     static let requestCategoryCell = "RequestCategoryCell"
 
+    // Tele Marketing
+    static let teleMarketingCell = "TeleMarketingCell"
+    static let teleMarketingCompletedCell = "TeleMarketingCompletedCell"
+
 }
 
 struct SectionConfiguration {

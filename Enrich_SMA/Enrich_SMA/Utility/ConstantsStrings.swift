@@ -20,7 +20,7 @@ let tableViewNoAddOnsAvailable = "No add-ons available"
 let noReviewsMessage = "Be the first one to review"
 let tableViewNoAddressAvailable = "No addresses available"
 
-let navigationBarTitleTrimTo = 25
+let navigationBarTitleTrimTo = 28
 let GenericError = "Something went wrong. Please try again later"
 let alertTitle = "Alert!"
 let alertTitleSuccess = "Success!"
