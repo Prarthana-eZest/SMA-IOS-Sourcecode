@@ -53,26 +53,14 @@ class RevenueVC: UIViewController, RevenueDisplayLogic {
         super.viewDidLoad()
         tableView.register(UINib(nibName: CellIdentifier.revenueCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.revenueCell)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
-        showNavigationBarButtons()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+        self.navigationController?.addCustomBackButton(title: "Revenue")
         getRevenueData()
-    }
-
-    func showNavigationBarButtons() {
-
-        let revenueButton = UIBarButtonItem(title: "Revenue", style: .plain, target: self, action: #selector(didTapRevenueButton))
-        revenueButton.tintColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
-
-        navigationItem.title = ""
-        navigationItem.leftBarButtonItems = [revenueButton]
-    }
-
-    @objc func didTapRevenueButton() {
     }
 
     func configureData(data: Revenue.OneClickData.Data) {
