@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="35" id="0N1-XX-Aut"/>
                                 </constraints>
                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="KGk-i7-Jjw" id="L5d-Fg-3fV"/>
