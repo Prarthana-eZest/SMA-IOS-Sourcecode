@@ -39,7 +39,7 @@ enum Notifications {
         }
 
         struct customerDetails: Codable {
-            let technician_id: Int?
+            let technician_id: AnyCodable?
             let technician_name: String?
             let technician_contact: String?
             let address: String?

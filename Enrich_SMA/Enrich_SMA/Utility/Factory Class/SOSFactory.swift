@@ -20,7 +20,7 @@ class SOSFactory {
             print(error)
         }
         let successHandler: (Notifications.MyNotificationList.Response) -> Void = { response in
-
+            print(response)
             guard let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
                 let salon_id = userData.salon_id else {
                 return
