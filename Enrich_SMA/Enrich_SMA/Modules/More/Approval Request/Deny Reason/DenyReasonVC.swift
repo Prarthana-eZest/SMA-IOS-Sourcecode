@@ -42,7 +42,6 @@ class DenyReasonVC: UIViewController {
         if !sender.isSelected {
             return
         }
-        self.dismiss(animated: true, completion: nil)
         self.dismiss(animated: true) {
             self.onDoneBlock?(true, self.reasonTextView.text)
         }
