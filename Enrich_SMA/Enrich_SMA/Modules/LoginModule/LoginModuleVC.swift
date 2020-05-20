@@ -98,10 +98,13 @@ class LoginModuleVC: DesignableViewController, LoginModuleDisplayLogic {
             let username = txtfEnrichId.text,
             let password = txtfPassword.text {
             EZLoadingActivity.show("", disableUI: true)
-            let user = LoginModule.UserLogin.Request(username: username,
-                                                     password: password,
-                                                     is_custom: true,
-                                                     accept_terms: termsAccpeted)
+
+            let device_id = GenericClass.sharedInstance.getDeviceUUID()
+
+            let user = LoginModule.UserLogin.Request(
+                username: username, password: password,
+                device_id: device_id, is_custom: true,
+                accept_terms: termsAccpeted)
             interactor?.doPostRequest(request: user, method: .post)
         }
     }
@@ -143,11 +146,11 @@ extension LoginModuleVC {
         if let obj = viewModel as? LoginModule.UserLogin.Response,
             obj.status,
             let data = obj.data {
-//            let flag = obj.authenticated_device ?? false
-//            if !flag , let id = data.employee_id {
-//                showAuthenticationAlert(employee_id: id)
-//            }
-//            else {
+            let flag = obj.authenticated_device ?? false
+            if !flag , let id = data.employee_id {
+                showAuthenticationAlert(employee_id: id)
+            }
+            else {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
                 userDefaults.synchronize()
@@ -157,7 +160,7 @@ extension LoginModuleVC {
                 let vc = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)
                 UIApplication.shared.keyWindow?.rootViewController = vc
                 UIApplication.shared.keyWindow?.makeKeyAndVisible()
-           // }
+            }
         }
         else if let obj = viewModel as? LoginModule.AuthenticateDevice.Response {
             showAlert(alertTitle: alertTitle, alertMessage: obj.message)

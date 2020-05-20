@@ -18,6 +18,7 @@ enum LoginModule {
         struct Request: Codable {
             let username: String
             let password: String
+            let device_id: String
             let is_custom: Bool
             let accept_terms: Bool
         }
