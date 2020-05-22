@@ -249,8 +249,7 @@ extension GenericClass {
         fcmTopicKeys =  "STG_" + keyFor
         #elseif RELEASE
         print("RELEASE")
-        //fcmTopicKeys = "PROD_" + keyFor
-        fcmTopicKeys = "DEV_" + keyFor
+        fcmTopicKeys = "PROD_" + keyFor
         #endif
 
         return fcmTopicKeys
