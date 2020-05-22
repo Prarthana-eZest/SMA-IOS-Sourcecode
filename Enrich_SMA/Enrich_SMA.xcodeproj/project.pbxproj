@@ -653,7 +653,7 @@
 		E3033FE0235EDF6400E0BF0A /* Enrich_SMA */ = {
 			isa = PBXGroup;
 			children = (
-				F836928E2477A6B10080CA8F /* Firebase Plist */,
+				F836928E2477A6B10080CA8F /* Firebase */,
 				E33BA97323FD1FF500AABFE2 /* Enrich_SMA.entitlements */,
 				E3034012235EE11B00E0BF0A /* Views */,
 				E3034118235EE14000E0BF0A /* Modules */,
@@ -1471,14 +1471,14 @@
 			path = Listing;
 			sourceTree = "<group>";
 		};
-		F836928E2477A6B10080CA8F /* Firebase Plist */ = {
+		F836928E2477A6B10080CA8F /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
 				F836928F2477A6C90080CA8F /* Dev */,
 				F83692902477A6CF0080CA8F /* Stage */,
 				F83692912477A6D60080CA8F /* Prod */,
 			);
-			path = "Firebase Plist";
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		F836928F2477A6C90080CA8F /* Dev */ = {
