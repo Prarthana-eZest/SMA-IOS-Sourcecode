@@ -1614,10 +1614,10 @@
 				E3033FDB235EDF6400E0BF0A /* Frameworks */,
 				E3033FDC235EDF6400E0BF0A /* Resources */,
 				4A8BD3CEF9DE95BDB8A5F58A /* [CP] Embed Pods Frameworks */,
+				F83692952477A77E0080CA8F /* Setup Firebase Environment GoogleService-Info.plist */,
 				7509274F4856061FF7A74BBD /* [CP] Copy Pods Resources */,
 				E33E5B6623E956FD00315BF5 /* Swiftlint Script */,
 				E327E5252416491F003DE450 /* Firebase Crashlytics */,
-				F83692952477A77E0080CA8F /* Setup Firebase Environment GoogleService-Info.plist */,
 			);
 			buildRules = (
 			);
@@ -1946,7 +1946,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		E33E5B6623E956FD00315BF5 /* Swiftlint Script */ = {
 			isa = PBXShellScriptBuildPhase;
