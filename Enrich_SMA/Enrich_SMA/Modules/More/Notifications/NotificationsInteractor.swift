@@ -13,7 +13,7 @@
 import UIKit
 
 protocol NotificationsBusinessLogic {
-    func getNotifications()
+    func getNotifications(salonId: String)
 }
 
 class NotificationsInteractor: NotificationsBusinessLogic {
@@ -23,9 +23,9 @@ class NotificationsInteractor: NotificationsBusinessLogic {
 
     // MARK: Do something
 
-    func getNotifications() {
+    func getNotifications(salonId: String) {
         worker = NotificationsWorker()
         worker?.presenter = self.presenter
-        worker?.getNotificationList()
+        worker?.getNotificationList(salonId: salonId)
     }
 }

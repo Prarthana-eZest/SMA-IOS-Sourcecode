@@ -17,7 +17,7 @@ class NotificationsWorker {
     let networkLayer = NetworkLayerAlamofire()
     var presenter: NotificationsPresentationLogic?
 
-    func getNotificationList() {
+    func getNotificationList(salonId: String) {
 
         let errorHandler: (String) -> Void = { (error) in
             self.presenter?.presentError(responseError: error)
@@ -26,13 +26,10 @@ class NotificationsWorker {
             self.presenter?.presentSuccess(response: response)
         }
 
-//        var deviceToken: String = ""
-//        if  let deviceTokenKey = UserDefaults.standard.string(forKey: UserDefauiltsKeys.k_key_FCM_PushNotification) {
-//            deviceToken = deviceTokenKey
-//        }
+        let deviceToken: String = GenericClass.sharedInstance.getFCMTopicKeys(keyFor: FCMTopicKeys.salon) + salonId
 
-        let strURL: String = ConstantAPINames.getNotificationList.rawValue
-        //strURL = String(format: "\(strURL)&device_id=%@",deviceToken )
+        var strURL: String = ConstantAPINames.getNotificationList.rawValue
+        strURL = String(format: "\(strURL)&device_id=%@", deviceToken)
         self.networkLayer.get(urlString: strURL, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
                               successHandler: successHandler, errorHandler: errorHandler)
     }

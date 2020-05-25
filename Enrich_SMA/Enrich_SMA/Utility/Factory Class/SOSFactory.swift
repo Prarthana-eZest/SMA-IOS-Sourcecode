@@ -21,19 +21,19 @@ class SOSFactory {
         }
         let successHandler: (Notifications.MyNotificationList.Response) -> Void = { response in
             print(response)
-            guard let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
-                let salon_id = userData.salon_id else {
-                return
-            }
-
-            let topic = GenericClass.sharedInstance.getFCMTopicKeys(keyFor: FCMTopicKeys.salon) + salon_id
-
-            if let sos = response.data?.first(where: {$0.is_read == "0" && $0.device_id == topic}) {
+            if let sos = response.data?.first(where: {$0.is_read == "0"}) {
                 SOSNotification?(sos)
             }
         }
+        
+        guard let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+            let salon_id = userData.salon_id else {
+            return
+        }
 
-        let strURL = ConstantAPINames.getNotificationList.rawValue + "&module=SOS"
+        let deviceToken: String = GenericClass.sharedInstance.getFCMTopicKeys(keyFor: FCMTopicKeys.salon) + salon_id
+
+        let strURL = ConstantAPINames.getNotificationList.rawValue + "&module=SOS" + "&device_id=\(deviceToken)"
         self.networkLayer.get(urlString: strURL, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
                               successHandler: successHandler, errorHandler: errorHandler)
     }
