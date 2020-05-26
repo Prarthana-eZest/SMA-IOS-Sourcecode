@@ -145,6 +145,11 @@ extension Date {
         return formatter.string(from: self as Date)
     }
 
+    var dayYearMonthDateAndTime: String {
+        let formatter = DateFormatter(); formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: self as Date)
+    }
+
     var dayDateMonthYear: String {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMMM yyyy"
         return formatter.string(from: self as Date)
@@ -368,4 +373,33 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+}
+
+extension Bundle {
+
+    var appName: String {
+        if let name = infoDictionary?["CFBundleName"] as? String {
+            return name
+        }
+        return ""
+    }
+
+    var bundleId: String {
+        return bundleIdentifier ?? ""
+    }
+
+    var versionNumber: String {
+        if let version = infoDictionary?["CFBundleShortVersionString"] as? String {
+            return version
+        }
+        return ""
+    }
+
+    var buildNumber: String {
+        if let build = infoDictionary?["CFBundleVersion"] as? String {
+            return build
+        }
+        return ""
+    }
+
 }

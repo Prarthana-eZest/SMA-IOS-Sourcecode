@@ -146,7 +146,7 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
 extension ApprovalRequestListVC {
 
     func getApprovalList() {
-        print("Page index: \(pageNumber)")
+        print("Page index Request : \(pageNumber)")
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
             let salonData = ApprovalRequestList.GetRequestData.SalonDetails(salon_id: userData.salon_id, page_no: pageNumber, limit: limit)
@@ -175,6 +175,8 @@ extension ApprovalRequestListVC {
         EZLoadingActivity.hide()
         if let model = viewModel as? ApprovalRequestList.GetRequestData.Response {
             if model.status == true {
+                print("Page index Success : \(pageNumber)")
+                print("Page index Records Found: \(model.data?.records?.count ?? 0)")
                 if pageNumber == 1 {
                     requestList.removeAll()
                 }
@@ -187,6 +189,7 @@ extension ApprovalRequestListVC {
                 self.tableView.reloadData()
             }
             else {
+                print("Page index Failed : \(pageNumber)")
                 self.showAlert(alertTitle: alertTitle, alertMessage: model.message ?? "")
             }
         }

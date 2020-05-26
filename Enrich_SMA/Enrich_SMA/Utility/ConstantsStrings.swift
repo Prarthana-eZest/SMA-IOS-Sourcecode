@@ -28,6 +28,8 @@ let maxlimitToProductQuantity: Int64 = 5
 let country = "IN"
 //let minlimitToProductQuantity = 1
 
+let forceUpdateNotNowDuration = 15
+
 enum ImageNames: String {
     case enabledRed = "enabledButton.png"
     case disabledGray = "disabledButton.png"
@@ -113,7 +115,7 @@ enum AlertMessagesSuccess {
     static let orderPlacedSuccessfully = "Order Placed Successfully."
     static let logoutSuccessfully = "Logout successfully."
     static let eventSuccess = "Event added successfully"
-
+    static let newAppVersion = "New version available. Update now & get new features."
 }
 enum AlertMessagesToAsk {
     static let removeService = "Are you sure you want to remove this service?"
@@ -134,7 +136,26 @@ enum AlertButtonTitle {
     static let yes = "Yes"
     static let no = "No"
     static let ok = "Ok"
+    static let home = "Home"
+    static let salon = "Salon"
+    static let cancel = "Cancel"
+    static let gotToCart = "Go To Cart"
+    static let proceed = "Proceed"
+    static let callUs = "Call"
+    static let emailUs = "Email"
+    static let alertTitle = "Alert!"
+    static let done = "Done"
+    static let select = "Select"
+    static let addToCart = "ADD TO CART"
+    static let needHelp = "Need Help?"
+    static let error = "Error"
+    static let save = "Save"
+    static let continuebtn = "Continue"
+    static let apply = "Apply"
+    static let update = "Update"
+    static let updateNotNow = "Not Now"
 }
+
 enum AlertToWarn {
     static let selectedSalonNotInRange = "We are sorry!\nAt the moment our Home Services are not available in your selected location. \n You can try some other location\nor\nAvail our Salon Services."
     static let eventError = "Event not added."

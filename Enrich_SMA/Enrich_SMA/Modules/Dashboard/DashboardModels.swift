@@ -14,7 +14,7 @@ import UIKit
 
 enum Dashboard {
 
-  // MARK: Use cases
+    // MARK: Use cases
     enum GetDashboardData {
 
         struct Request: Codable {
@@ -53,6 +53,29 @@ enum Dashboard {
             let total_gross_sales: String?
             let total_gross_revenue: String?
             let runrate_percentage: Double?
+        }
+    }
+    enum GetForceUpadateInfo {
+
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var data: Data?
+        }
+
+        struct Data: Codable {
+            let force_update_info: ForceUpdateInfo?
+        }
+
+        struct ForceUpdateInfo: Codable {
+            let tma_ios: Info?
+            let sma_ios: Info?
+        }
+
+        struct Info: Codable {
+            let latest_version: String?
+            let force_update: Bool?
+            let app_link: String?
         }
     }
 }

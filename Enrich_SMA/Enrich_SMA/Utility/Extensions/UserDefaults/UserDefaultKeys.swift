@@ -34,4 +34,6 @@ enum UserDefauiltsKeys {
     static let k_key_FCM_PushNotification = "k_key_FCM_PushNotification"
     static let k_key_UniqueDeviceId = "k_key_UniqueDeviceId"
 
+    static let k_key_ForceUpdateNotNow = "k_key_ForceUpdateNotNow"
+
 }

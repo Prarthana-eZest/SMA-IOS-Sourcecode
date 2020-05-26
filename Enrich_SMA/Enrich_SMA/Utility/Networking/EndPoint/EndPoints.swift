@@ -100,6 +100,7 @@ public enum ConstantAPINames: String {
     // Dashboard
     case getDashboardData = "rest/V1/getsalonmanagerdashboard"
     case getOneClickRevenueData = "rest/V1/getsmaoneclick"
+    case getForceUpdateInfo = "rest/V1/force-update-info?is_custom=true"
 
     // Consultaion Form
     case getConsulationForm = "rest/V1/getform"

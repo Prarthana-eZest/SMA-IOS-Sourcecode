@@ -79,6 +79,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         checkForSOSNotification()
         getProfileData()
+        getForceUpadateInfo()
     }
 
     func configureSections() {
@@ -102,6 +103,53 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
             }
         }
     }
+
+    func showAppUpdateAlert(response: Dashboard.GetForceUpadateInfo.Response) {
+
+        if let appInfo = response.data?.force_update_info, let iOSAppInfo = appInfo.sma_ios, let forceUpdate = iOSAppInfo.force_update, let appVersion = iOSAppInfo.latest_version {
+            if appVersion != Bundle.main.versionNumber {
+                if forceUpdate {
+                    alertForAppUpdate(
+                        alertTitle: alertTitle,
+                        messageTo: AlertMessagesSuccess.newAppVersion,
+                        buttonTitleYes: AlertButtonTitle.update,
+                        buttonTitleNo: AlertButtonTitle.updateNotNow,
+                        isForceUpdate: forceUpdate,
+                        newAppLink: iOSAppInfo.app_link ?? "")
+
+                }
+                else // Not Force Update
+                {
+                    if let notNowDate = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_key_ForceUpdateNotNow) as? Date {
+
+                        if notNowDate < Date() {
+                            UserDefaults.standard.removeObject(forKey: UserDefauiltsKeys.k_key_ForceUpdateNotNow)
+                            alertForAppUpdate(
+                                alertTitle: alertTitle,
+                                messageTo: AlertMessagesSuccess.newAppVersion,
+                                buttonTitleYes: AlertButtonTitle.update,
+                                buttonTitleNo: AlertButtonTitle.updateNotNow,
+                                isForceUpdate: forceUpdate,
+                                newAppLink: iOSAppInfo.app_link ?? "")
+                        }
+
+                    }
+                    else {
+                        alertForAppUpdate(
+                            alertTitle: alertTitle,
+                            messageTo: AlertMessagesSuccess.newAppVersion,
+                            buttonTitleYes: AlertButtonTitle.update,
+                            buttonTitleNo: AlertButtonTitle.updateNotNow,
+                            isForceUpdate: forceUpdate,
+                            newAppLink: iOSAppInfo.app_link ?? "")
+
+                    }
+
+                }
+            }
+        }
+
+    }
 }
 
 extension DashboardVC {
@@ -109,6 +157,11 @@ extension DashboardVC {
     func getProfileData() {
         EZLoadingActivity.show("Loading...", disableUI: true)
         interactor?.doGetMyProfileData(accessToken: self.getAccessToken(), method: .get)
+    }
+
+    func getForceUpadateInfo() {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        interactor?.doGetForceUpdateInfo()
     }
 
     func getDashboardData() {
@@ -135,9 +188,22 @@ extension DashboardVC {
             }
         }
         else if let model = viewModel as? Dashboard.GetDashboardData.Response {
-            dailyData = model.data?.daily_revenue_data?.first
-            monthlyData = model.data?.monthly_revenue_data?.first
-            configureSections()
+            if model.status == true {
+                dailyData = model.data?.daily_revenue_data?.first
+                monthlyData = model.data?.monthly_revenue_data?.first
+                configureSections()
+            }
+            else {
+                showAlert(alertTitle: alertTitle, alertMessage: model.message)
+            }
+        }
+        else if let model = viewModel as? Dashboard.GetForceUpadateInfo.Response {
+            if model.status == true {
+                showAppUpdateAlert(response: model)
+            }
+            else {
+                showAlert(alertTitle: alertTitle, alertMessage: model.message)
+            }
         }
     }
 

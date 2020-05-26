@@ -25,7 +25,7 @@ class SOSFactory {
                 SOSNotification?(sos)
             }
         }
-        
+
         guard let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
             let salon_id = userData.salon_id else {
             return

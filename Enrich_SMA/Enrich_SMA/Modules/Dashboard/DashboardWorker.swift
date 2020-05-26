@@ -46,4 +46,21 @@ class DashboardWorker {
                                successHandler: successHandler,
                                errorHandler: errorHandler, method: method)
     }
+
+    func getForceUpdateInfo() {
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (Dashboard.GetForceUpadateInfo.Response) -> Void = { (response) in
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.get(urlString: ConstantAPINames.getForceUpdateInfo.rawValue,
+                              headers: [:],
+                              successHandler: successHandler,
+                              errorHandler: errorHandler)
+
+    }
 }
