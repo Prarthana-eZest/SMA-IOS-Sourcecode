@@ -147,7 +147,7 @@ extension LoginModuleVC {
             obj.status,
             let data = obj.data {
             let flag = obj.authenticated_device ?? false
-            if !flag , let id = data.employee_id {
+            if !flag, let id = data.employee_id {
                 showAuthenticationAlert(employee_id: id)
             }
             else {
