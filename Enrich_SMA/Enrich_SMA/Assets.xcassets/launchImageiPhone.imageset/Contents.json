@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
-      "filename" : "iphone-1242x2688launch-white.pdf"
+      "idiom" : "universal",
+      "filename" : "launchImageiPhone.pdf"
     }
   ],
   "info" : {
