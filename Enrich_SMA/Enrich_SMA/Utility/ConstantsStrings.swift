@@ -21,12 +21,15 @@ let noReviewsMessage = "Be the first one to review"
 let tableViewNoAddressAvailable = "No addresses available"
 
 let navigationBarTitleTrimTo = 28
+let GenericErrorLoginRefreshToken = "Something went wrong. Please do login again."
 let GenericError = "Something went wrong. Please try again later"
 let alertTitle = "Alert!"
 let alertTitleSuccess = "Success!"
 let maxlimitToProductQuantity: Int64 = 5
 let country = "IN"
 //let minlimitToProductQuantity = 1
+
+let sessionExpire = "Your session is expired. Please do re-login again."
 
 let forceUpdateNotNowDuration = 15
 

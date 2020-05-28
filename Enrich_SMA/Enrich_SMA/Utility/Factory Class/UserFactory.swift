@@ -20,7 +20,7 @@ class UserFactory {
         }
 
         let userDefaults = UserDefaults.standard
-        userDefaults.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
+        KeychainWrapper.standard.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
         userDefaults.removeObject(forKey: UserDefauiltsKeys.k_Key_LoginUser)
         userDefaults.synchronize()
         let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)

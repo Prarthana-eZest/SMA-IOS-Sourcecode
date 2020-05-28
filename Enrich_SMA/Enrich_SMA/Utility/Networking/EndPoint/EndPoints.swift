@@ -19,6 +19,8 @@ public enum ConstantAPINames: String {
     // Home Landing API
     case home = "home"
 
+    case refreshToken =  "rest/V1/auth/token/refresh"
+
     // Salon service And Details api
     case salonServiceCategory = "categories/children"// Custom API
     case salonTestimonials = "testimonials/"// Custom API

@@ -151,10 +151,9 @@ extension LoginModuleVC {
                 showAuthenticationAlert(employee_id: id)
             }
             else {
-                let userDefaults = UserDefaults.standard
-                userDefaults.set(data.access_token, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
-                userDefaults.synchronize()
-
+                if let data = try? JSONEncoder().encode(data) {
+                    GenericClass.sharedInstance.setUserLoggedInfoInKeyChain(data: data)
+                }
                 FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
 
                 let vc = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)

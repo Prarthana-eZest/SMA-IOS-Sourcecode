@@ -41,13 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func onBoardingScreen() {
         // authentication successful
 
-        if UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) == nil {
+        if GenericClass.sharedInstance.isuserLoggedIn().status {
+            moveToLandingScreen()
+        }
+        else {
             let navigationC = LoginNavigtionController.instantiate(fromAppStoryboard: .Login)
             self.window?.rootViewController = navigationC
             self.window?.makeKeyAndVisible()
-        }
-        else {
-            moveToLandingScreen()
         }
     }
 

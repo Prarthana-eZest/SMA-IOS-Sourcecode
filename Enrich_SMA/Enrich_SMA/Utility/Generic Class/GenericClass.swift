@@ -108,21 +108,40 @@ extension GenericClass {
 
     }
 
+    func getUserLoggedInInfoKeyChain() -> LoginModule.UserLogin.UserData? {
+
+        let uniqueUserInfo: Data? = KeychainWrapper.standard.data(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
+        guard uniqueUserInfo != nil else {
+            return nil
+        }
+        if let data = uniqueUserInfo,
+            let value = try? JSONDecoder().decode(LoginModule.UserLogin.UserData.self, from: data) {
+            return value
+        }
+        return nil
+    }
+
+    func setUserLoggedInfoInKeyChain(data: Data) {
+        KeychainWrapper.standard.set(data, forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn)
+    }
+
 }
 
 extension GenericClass {
 
-    func isuserLoggedIn() ->(status: Bool, accessToken: String) {
+    func isuserLoggedIn() ->(status: Bool, accessToken: String, refreshToken: String) {
 
         var userAccessToken: String = ""
+        var userRefreshToken: String = ""
         var userstatus: Bool = false
-        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String {
+
+        if let dummy = getUserLoggedInInfoKeyChain() {
             userstatus = true
-            userAccessToken = accessToken
-            return (userstatus, userAccessToken)
+            userAccessToken = (dummy.access_token ?? "")
+            userRefreshToken = dummy.refresh_token ?? ""
         }
 
-        return(userstatus, userAccessToken)
+        return(userstatus, userAccessToken, userRefreshToken)
     }
 }
 

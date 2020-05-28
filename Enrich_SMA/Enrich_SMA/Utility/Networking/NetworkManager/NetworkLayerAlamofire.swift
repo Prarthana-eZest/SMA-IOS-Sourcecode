@@ -26,6 +26,95 @@ open class NetworkLayerAlamofire {
     public init() {
     }
 
+    open func delete<T: Decodable>(urlString: String,
+                                   headers: [String: String] = [:],
+                                   successHandler: @escaping (T) -> Void,
+                                   errorHandler: @escaping ErrorHandlerAlamofire) {
+        // *********** NETWORK CONNECTION
+        if !NetworkRechability.isConnectedToNetwork() {
+            errorHandler(APIErrorMessage.internetConnectionError.description)
+            return
+        }
+        let completionHandler: NetworkCompletionHandlerAlamofire = { (DataResponse) in
+            if let error = DataResponse.error {
+                print(error.localizedDescription)
+                errorHandler(error.localizedDescription)
+                return
+            }
+
+            //Refresh Token Code
+            if self.isUserAuthorizedSuccessCode(DataResponse.response) && GenericClass.sharedInstance.isuserLoggedIn().status {
+                self.refreshTokenForGet(urlString: urlString, headers: headers, successHandler: successHandler, errorHandler: errorHandler)
+            }
+            else {
+                if self.isSuccessCode(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler(GenericError)
+                    }
+                    do {
+                        let responseObject = try JSONDecoder().decode(T.self, from: data)
+                        if let jsonString = String(data: data, encoding: .utf8) {
+                            print(jsonString)
+                        }
+                        successHandler(responseObject)
+                    }
+                    catch {
+                        print(error)
+                        return errorHandler( urlString + error.localizedDescription)
+
+                    }
+                    return
+                }
+
+                if self.isSuccessWithErrorCode(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler("Unable to parse the response in given type")
+                    }
+                    if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
+                        //                    if let jsonString = String(data: data, encoding: .utf8) {
+                        //                        print(jsonString)
+                        errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+
+                        //                    }
+
+                        return
+                    }
+                }
+
+                errorHandler(GenericError)
+            }
+        }
+
+        var strUrlObj: String = ""
+        //        if urlString.containsIgnoringCase(find: "https") {
+        //            strUrlObj = urlString
+        //        }else{
+        strUrlObj = createBaseUrl(endPoint: urlString)
+        //        }
+
+        guard let url = URL(string: strUrlObj) else {
+            return errorHandler("Unable to create URL from given string")
+        }
+
+        var request = URLRequest(url: url)
+        //request.allHTTPHeaderFields = getHeaders()//headers
+        request.httpMethod = "DELETE"
+        if !headers.isEmpty {
+            for (key, value) in headers {
+                if key == "Authorization" {
+                    request.allHTTPHeaderFields?[key] = "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"
+                }
+                else {
+                    request.allHTTPHeaderFields?[key] = value
+                }
+            }
+        }
+        //  print("Headers: \(request.allHTTPHeaderFields)")
+        Alamofire.request(request).responseData(completionHandler: completionHandler)
+    }
+
     open func get<T: Decodable>(urlString: String,
                                 headers: [String: String] = [:],
                                 successHandler: @escaping (T) -> Void,
@@ -42,58 +131,62 @@ open class NetworkLayerAlamofire {
                 return
             }
 
-            /* Refresh Token Code
-             if self.isUserAuthorizedSuccessCode(DataResponse.response)
-             {
-             self.getRequestRefreshToken(urlString: urlString, headers: headers, successHandler: successHandler, errorHandler: errorHandler)
-             return
-             }*/
-
-            if self.isSuccessCode(DataResponse.response) {
-                guard let data = DataResponse.data else {
-                    print("Unable to parse the response in given type \(T.self)")
-                    return errorHandler(GenericError)
-                }
-
-                //                if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
-                //                    successHandler(responseObject)
-                //                    return
-                //                    }
-                do {
-                    let responseObject = try JSONDecoder().decode(T.self, from: data)
-                    if let jsonString = String(data: data, encoding: .utf8) {
-                        print(jsonString)
-                    }
-                    successHandler(responseObject)
-                }
-                catch {
-                    print(error)
-                    return errorHandler( urlString + error.localizedDescription)
-
-                }
-                return
+            // Refresh Token Code
+            if self.isUserAuthorizedSuccessCode(DataResponse.response) && GenericClass.sharedInstance.isuserLoggedIn().status {
+                self.refreshTokenForGet(urlString: urlString, headers: headers, successHandler: successHandler, errorHandler: errorHandler)
             }
+            else {
 
-            if self.isSuccessWithErrorCode(DataResponse.response) {
-                guard let data = DataResponse.data else {
-                    print("Unable to parse the response in given type \(T.self)")
-                    return errorHandler("Unable to parse the response in given type")
-                }
-                if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
-                    //                    if let jsonString = String(data: data, encoding: .utf8) {
-                    //                        print(jsonString)
-                    errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+                if self.isSuccessCode(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler(GenericError)
+                    }
 
+                    //                if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
+                    //                    successHandler(responseObject)
+                    //                    return
                     //                    }
+                    do {
+                        let responseObject = try JSONDecoder().decode(T.self, from: data)
+                        if let jsonString = String(data: data, encoding: .utf8) {
+                            print(jsonString)
+                        }
+                        successHandler(responseObject)
+                    }
+                    catch {
+                        print(error)
+                        return errorHandler( urlString + error.localizedDescription)
 
+                    }
                     return
                 }
+
+                if self.isSuccessWithErrorCode(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler("Unable to parse the response in given type")
+                    }
+                    if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
+                        //                    if let jsonString = String(data: data, encoding: .utf8) {
+                        //                        print(jsonString)
+                        errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+
+                        //                    }
+
+                        return
+                    }
+                }
+                errorHandler(GenericError)
+
             }
 
-            errorHandler(GenericError)
         }
 
-        guard let url = URL(string: createBaseUrl(endPoint: urlString)) else {
+        var urlString = createBaseUrl(endPoint: urlString)
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+
+        guard let url = URL(string: urlString) else {
             return errorHandler("Unable to create URL from given string")
         }
 
@@ -129,48 +222,51 @@ open class NetworkLayerAlamofire {
                 errorHandler(error.localizedDescription)
                 return
             }
-            /* Refresh Token Code
-             if self.isUserAuthorizedSuccessCode(DataResponse.response)
-             {
-             self.putDeletePostRequestRefreshToken(urlString: urlString, body: body, successHandler: successHandler, errorHandler: errorHandler, method: method)
-             return
-             }*/
-
-            if self.isSuccessCode(DataResponse.response) {
-                guard let data = DataResponse.data else {
-                    return errorHandler("Unable to parse the response in given type")
-                }
-                do {
-                    let responseObject = try JSONDecoder().decode(F.self, from: data)
-                    if let jsonString = String(data: data, encoding: .utf8) {
-                        print(jsonString)
-                    }
-                    successHandler(responseObject)
-                }
-                catch {
-                    print(error)
-                    return errorHandler( urlString + error.localizedDescription)
-
-                }
+            // Refresh Token Code
+            if self.isUserAuthorizedSuccessCode(DataResponse.response) {
+                self.refreshTokenForPutDeletePost(urlString: urlString, body: body, headers: headers, successHandler: successHandler, errorHandler: errorHandler, method: method)
                 return
             }
+            else {
 
-            if self.isSuccessWithErrorCode(DataResponse.response) {
-                guard let data = DataResponse.data else {
-                    return errorHandler("Unable to parse the response in given type")
-                }
-                if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
-                    //                    if let jsonString = String(data: data, encoding: .utf8) {
-                    //                        print(jsonString)
-                    errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+                if self.isSuccessCode(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        return errorHandler("Unable to parse the response in given type")
+                    }
+                    do {
+                        let responseObject = try JSONDecoder().decode(F.self, from: data)
+                        if let jsonString = String(data: data, encoding: .utf8) {
+                            print(jsonString)
+                        }
+                        successHandler(responseObject)
+                    }
+                    catch {
+                        print(error)
+                        return errorHandler( urlString + error.localizedDescription)
 
-                    //                    }
-
+                    }
                     return
                 }
+
+                if self.isSuccessWithErrorCode(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        return errorHandler("Unable to parse the response in given type")
+                    }
+                    if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
+                        //                    if let jsonString = String(data: data, encoding: .utf8) {
+                        //                        print(jsonString)
+                        errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+
+                        //                    }
+
+                        return
+                    }
+                }
+
+                errorHandler(GenericError)
+
             }
 
-            errorHandler(GenericError)
         }
 
         guard let url = URL(string: createBaseUrl(endPoint: urlString)) else {
@@ -247,33 +343,45 @@ open class NetworkLayerAlamofire {
     }
 
 }
-// MARK: Refresh Token Code Added
+// MARK: - Refresh Token Calls
 extension NetworkLayerAlamofire {
 
-    func getRequestRefreshToken<T: Decodable>(urlString: String,
-                                              headers: [String: String] = [:],
-                                              successHandler: @escaping (T) -> Void,
-                                              errorHandler: @escaping ErrorHandlerAlamofire) {
+    // MARK: GET : refreshTokenForGet
+    func refreshTokenForGet<T: Decodable>(urlString: String,
+                                          headers: [String: String] = [:],
+                                          successHandler: @escaping (T) -> Void,
+                                          errorHandler: @escaping ErrorHandlerAlamofire) {
+        print("Refresh Token For Get request")
+
         // *********** NETWORK CONNECTION
         if !NetworkRechability.isConnectedToNetwork() {
             errorHandler(APIErrorMessage.internetConnectionError.description)
             return
         }
 
-        let completionHandler: NetworkCompletionHandlerAlamofire = { (DataResponse) in
-            //            if let error = DataResponse.error {
-            //                print(error.localizedDescription)
-            //                errorHandler(error.localizedDescription)
-            //                return
-            //            }
+        let completionHandlerObj: NetworkCompletionHandlerAlamofire = { (DataResponse) in
+            if let error = DataResponse.error {
+                print(error.localizedDescription)
+               // errorHandler(sessionExpire)
+                self.showSessionExpiryAlert(message: sessionExpire)
+                return
+            }
 
             if self.isSuccessCode(DataResponse.response) {
+
                 guard let data = DataResponse.data else {
                     print("Unable to parse the response in given type \(T.self)")
                     return errorHandler(GenericError)
                 }
                 do {
-                    _ = try JSONDecoder().decode(T.self, from: data)
+                    let objectData = try JSONDecoder().decode(RefreshResponse.self, from: data)
+                    if objectData.success == false {
+                        //errorHandler(sessionExpire)
+                        self.showSessionExpiryAlert(message: sessionExpire)
+                        return
+                    }
+
+                    self.SetAccessTokenData(objectData: objectData)
                     if let jsonString = String(data: data, encoding: .utf8) {
                         print(jsonString)
                     }
@@ -282,103 +390,101 @@ extension NetworkLayerAlamofire {
                 }
                 catch {
                     print(error)
-                    return errorHandler( urlString + error.localizedDescription)
+                    self.showSessionExpiryAlert(message: sessionExpire)
+                    //errorHandler(self.errorForParsingIssue(actualError: urlString + error.localizedDescription))
+                    return
 
                 }
                 return
             }
-            else {
-                self.getRequestRefreshToken(urlString: urlString, headers: headers, successHandler: successHandler, errorHandler: errorHandler)
-            }
-
-            errorHandler(GenericError)
+            errorHandler(GenericErrorLoginRefreshToken)
         }
 
-        guard let url = URL(string: createBaseUrl(endPoint: ConstantAPINames.validateOTPOnLogin.rawValue)) else {
-            return errorHandler("Unable to create URL from given string")
-        }
+        // CALL REFRESH TOKEN API
 
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields?["Content-Type"] = "application/json"
-
-        if !headers.isEmpty {
-            for (key, value) in headers {
-                request.allHTTPHeaderFields?[key] = value
-            }
-        }
-        Alamofire.request(request).responseData(completionHandler: completionHandler)
-
+        generateRequestForRefreshToken(completionHandler: completionHandlerObj, errorHandler: errorHandler)
     }
 
-    func putDeletePostRequestRefreshToken<T: Encodable, F: Decodable>(urlString: String,
-                                                                      body: T,
-                                                                      headers: [String: String] = [:],
-                                                                      successHandler: @escaping (F) -> Void,
-                                                                      errorHandler: @escaping ErrorHandlerAlamofire, method: HTTPMethod) {
+    // MARK: POST/PUT : refreshTokenForPutDeletePost
+    func refreshTokenForPutDeletePost<T: Encodable, F: Decodable>(urlString: String,
+                                                                  body: T,
+                                                                  headers: [String: String] = [:],
+                                                                  successHandler: @escaping (F) -> Void,
+                                                                  errorHandler: @escaping ErrorHandlerAlamofire, method: HTTPMethod) {
+
+        print("Refresh Token For Post request")
+
         // *********** NETWORK CONNECTION
         if !NetworkRechability.isConnectedToNetwork() {
             errorHandler(APIErrorMessage.internetConnectionError.description)
             return
         }
 
-        let completionHandler: NetworkCompletionHandlerAlamofire = { (DataResponse) in
-            //            if let error = DataResponse.error {
-            //                print(error.localizedDescription)
-            //                errorHandler(error.localizedDescription)
-            //                return
-            //            }
+        let completionHandlerObj: NetworkCompletionHandlerAlamofire = { (DataResponse) in
+            if let error = DataResponse.error {
+                print(error.localizedDescription)
+               // errorHandler(sessionExpire)
+                self.showSessionExpiryAlert(message: sessionExpire)
+                return
+            }
 
             if self.isSuccessCode(DataResponse.response) {
                 guard let data = DataResponse.data else {
                     return errorHandler("Unable to parse the response in given type")
                 }
                 do {
-                    _ = try JSONDecoder().decode(F.self, from: data)
+                    let objectData = try JSONDecoder().decode(RefreshResponse.self, from: data)
+                    if objectData.success == false {
+                        //errorHandler(sessionExpire)
+                        self.showSessionExpiryAlert(message: sessionExpire)
+                        return
+                    }
+                    self.SetAccessTokenData(objectData: objectData)
+
                     if let jsonString = String(data: data, encoding: .utf8) {
                         print(jsonString)
                     }
-                    self.post(urlString: urlString, body: body, successHandler: successHandler,
-                              errorHandler: errorHandler, method: method)
+                    self.post(urlString: urlString, body: body, headers: headers, successHandler: successHandler, errorHandler: errorHandler, method: method)
                 }
                 catch {
                     print(error)
-                    return errorHandler( urlString + error.localizedDescription)
-
+                    self.showSessionExpiryAlert(message: sessionExpire)
+                    return //errorHandler(self.errorForParsingIssue(actualError: urlString + error.localizedDescription))
                 }
                 return
             }
-            else {
-                self.putDeletePostRequestRefreshToken(urlString: urlString, body: body, headers: headers,
-                                                      successHandler: successHandler, errorHandler: errorHandler, method: method)
-            }
-
-            errorHandler(GenericError)
+            errorHandler(GenericErrorLoginRefreshToken)
         }
 
-        guard let url = URL(string: createBaseUrl(endPoint: ConstantAPINames.validateOTPOnLogin.rawValue)) else {
+        // CALL REFRESH TOKEN API
+        generateRequestForRefreshToken(completionHandler: completionHandlerObj, errorHandler: errorHandler)
+    }
+
+    func generateRequestForRefreshToken(completionHandler: @escaping NetworkCompletionHandlerAlamofire, errorHandler :  @escaping ErrorHandlerAlamofire) {
+
+        // Generate request
+        guard let url = URL(string: createBaseUrl(endPoint: ConstantAPINames.refreshToken.rawValue)) else {
             return errorHandler("Unable to create URL from given string")
         }
         var request = URLRequest(url: url)
-        request.timeoutInterval = NetworkLayerAlamofire.requestTimeOut
         request.httpMethod = "POST"
+
+        // Header
         request.allHTTPHeaderFields?["Content-Type"] = "application/json"
-        if !headers.isEmpty {
-            for (key, value) in headers {
-                request.allHTTPHeaderFields?[key] = value
-            }
-        }
-        guard let data = try? JSONEncoder().encode(body) else {
+
+        // Body
+        let dataObj = GenericClass.sharedInstance.isuserLoggedIn()
+        let bodyDict = RefreshRequest(access_token: dataObj.accessToken, refresh_token: dataObj.refreshToken)
+        guard let data = try? JSONEncoder().encode(bodyDict) else {
             return errorHandler("Cannot encode given object into Data")
         }
         request.httpBody = data
-        Alamofire.request(request).responseData(completionHandler: completionHandler)
 
+        Alamofire.request(request).responseData(completionHandler: completionHandler)
     }
 
     private func isUserAuthorizedSuccessCode(_ statusCode: Int) -> Bool {
         return statusCode == 401 || statusCode == 403
-
     }
 
     private func isUserAuthorizedSuccessCode(_ response: URLResponse?) -> Bool {
@@ -386,6 +492,56 @@ extension NetworkLayerAlamofire {
             return false
         }
         return isUserAuthorizedSuccessCode(urlResponse.statusCode)
+    }
+
+    // MARK: - SET ACCESS TOKEN
+    func SetAccessTokenData(objectData: RefreshResponse) {
+        if  let userLoggedIn = GenericClass.sharedInstance.getUserLoggedInInfoKeyChain() {
+            let model = LoginModule.UserLogin.UserData(
+                access_token: objectData.data?.access_token ?? "",
+                refresh_token: userLoggedIn.refresh_token ?? "",
+                username: userLoggedIn.username ?? "",
+                employee_id: userLoggedIn.employee_id ?? "",
+                firstname: userLoggedIn.firstname ?? "",
+                middlename: userLoggedIn.middlename ?? "",
+                lastname: userLoggedIn.lastname ?? "",
+                nickname: userLoggedIn.nickname ?? "",
+                employee_code: userLoggedIn.employee_code ?? "",
+                birthdate: userLoggedIn.birthdate ?? "",
+                designation: userLoggedIn.designation ?? "",
+                base_salon_code: userLoggedIn.base_salon_code ?? "",
+                base_salon_name: userLoggedIn.base_salon_name ?? "",
+                salon_id: userLoggedIn.salon_id ?? "",
+                gender: userLoggedIn.gender ?? "",
+                profile_image: userLoggedIn.profile_image ?? "",
+                rating: userLoggedIn.rating ?? "0")
+
+            if let data = try? JSONEncoder().encode(model) {
+                GenericClass.sharedInstance.setUserLoggedInfoInKeyChain(data: data)
+            }
+        }
+    }
+
+    private func errorForParsingIssue(actualError: String) -> String {
+
+        var  genericError = GenericError
+        #if DEBUG
+        print("DEBUG")
+        genericError = actualError
+        #elseif STAGE
+        print("STAGE")
+        genericError = actualError
+        #endif
+
+        return genericError
+    }
+
+    func showSessionExpiryAlert(message: String) {
+        let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: AlertButtonTitle.ok, style: UIAlertAction.Style.cancel) { _ -> Void in
+            UserFactory.shared.signOutUserFromApp()
+        })
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: false, completion: nil)
     }
 
 }

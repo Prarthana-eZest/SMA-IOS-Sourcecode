@@ -110,11 +110,12 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
     func getProfileData() {
         EZLoadingActivity.show("Loading...", disableUI: true)
         interactor?.doGetMyProfileData(employeeId: employeeId, accessToken: GenericClass.sharedInstance.isuserLoggedIn().accessToken, method: HTTPMethod.get)
+
     }
 
     func getServiceList() {
         EZLoadingActivity.show("Loading...", disableUI: true)
-        interactor?.doGetServiceListData(accessToken: self.isuserLoggedIn().accessToken, method: .get)
+        interactor?.doGetServiceListData(accessToken: GenericClass.sharedInstance.isuserLoggedIn().accessToken, method: .get)
     }
 
     func getRosterDetails() {
@@ -309,9 +310,9 @@ extension MyProfileVC {
 
             let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "",
                                               userName: "\(data.firstname ?? "") \(data.lastname ?? "")",
-                                              speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-",
-                                              ratings: data.rating?.description ?? "0", gender: data.gender ?? "1",
-                                              selfProfile: profileType == .selfUser)
+                speciality: data.designation ?? "-", dateOfJoining: data.joining_date ?? "-",
+                ratings: data.rating?.description ?? "0", gender: data.gender ?? "1",
+                selfProfile: profileType == .selfUser)
 
             var addressString = ["\(data.address?.first?.line_1 ?? "" )",
                 "\(data.address?.first?.line_2 ?? "" )",
@@ -332,20 +333,20 @@ extension MyProfileVC {
             }
 
             let personalDetails = MyProfileSection(title: "Personal details", data: [MyProfileModel(title: "Date of Birth", value: birthDate, isMultiOption: false),
-                                                                                  MyProfileModel(title: "Mobile Number", value: data.mobile_number ?? "-", isMultiOption: false),
-                                                                                  MyProfileModel(title: "Work Contact No", value: data.work_number ?? "-", isMultiOption: false),
-                                                                                  MyProfileModel(title: "Email address", value: data.email ?? "-", isMultiOption: false),
-                                                                                  MyProfileModel(title: "Address", value: address, isMultiOption: false)])
+                                                                                     MyProfileModel(title: "Mobile Number", value: data.mobile_number ?? "-", isMultiOption: false),
+                                                                                     MyProfileModel(title: "Work Contact No", value: data.work_number ?? "-", isMultiOption: false),
+                                                                                     MyProfileModel(title: "Email address", value: data.email ?? "-", isMultiOption: false),
+                                                                                     MyProfileModel(title: "Address", value: address, isMultiOption: false)])
 
             let professionalDetails = MyProfileSection(title: "Professional details", data: [MyProfileModel(title: "Employee ID", value: data.employee_code ?? "-", isMultiOption: false),
-                                                                                          MyProfileModel(title: "Nick Name", value: data.nickname ?? "-", isMultiOption: false),
-                                                                                          MyProfileModel(title: "Center", value: data.base_salon_name ?? "-", isMultiOption: false),
-                                                                                          MyProfileModel(title: "Category", value: data.category ?? "-", isMultiOption: false),
-                                                                                          MyProfileModel(title: "Designation", value: data.designation ?? "-", isMultiOption: false),
-                                                                                          MyProfileModel(title: "Service Expertise", value: "-", isMultiOption: true)])
+                                                                                             MyProfileModel(title: "Nick Name", value: data.nickname ?? "-", isMultiOption: false),
+                                                                                             MyProfileModel(title: "Center", value: data.base_salon_name ?? "-", isMultiOption: false),
+                                                                                             MyProfileModel(title: "Category", value: data.category ?? "-", isMultiOption: false),
+                                                                                             MyProfileModel(title: "Designation", value: data.designation ?? "-", isMultiOption: false),
+                                                                                             MyProfileModel(title: "Service Expertise", value: "-", isMultiOption: true)])
 
             let shiftDetails = MyProfileSection(title: "Shift details", data: [MyProfileModel(title: "Shift Timing", value: "-", isMultiOption: true),
-                                                                            MyProfileModel(title: "Status", value: status == "1" ? "Active" : "Inactive", isMultiOption: false)])
+                                                                               MyProfileModel(title: "Status", value: status == "1" ? "Active" : "Inactive", isMultiOption: false)])
 
             let sections = [personalDetails, professionalDetails, shiftDetails]
 

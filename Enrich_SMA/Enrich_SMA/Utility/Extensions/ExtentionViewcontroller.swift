@@ -18,25 +18,11 @@ extension UIViewController {
     }
 
     func getAccessToken() -> String {
-        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String {
-            return accessToken
+        if let dummy = GenericClass.sharedInstance.getUserLoggedInInfoKeyChain() {
+            return dummy.access_token ?? ""
         }
 
         return ""
-    }
-
-    func isuserLoggedIn() -> (status: Bool, accessToken: String) {
-
-        var userAccessToken: String = ""
-        var userstatus: Bool = false
-        if let accessToken = UserDefaults.standard.value(forKey: UserDefauiltsKeys.k_Key_LoginUserSignIn) as? String {
-            // if let accessToken = UserDefaults.standard.value(String.self, forKey: ) {
-            userstatus = true
-            userAccessToken = accessToken
-            return (userstatus, userAccessToken)
-        }
-
-        return(userstatus, userAccessToken)
     }
 
 }

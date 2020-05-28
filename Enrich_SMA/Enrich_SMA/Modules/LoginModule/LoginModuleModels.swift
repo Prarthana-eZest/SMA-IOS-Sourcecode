@@ -30,8 +30,8 @@ enum LoginModule {
         }
 
         struct UserData: Codable {
-
             let access_token: String?
+            let refresh_token: String?
             let username: String?
             let employee_id: String?
             let firstname: String?

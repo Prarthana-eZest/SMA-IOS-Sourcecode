@@ -12,3 +12,20 @@ struct CustomError: Codable {
     let message: String?
     let status: Bool?
 }
+
+struct RefreshRequest: Codable {
+    let access_token: String?
+    let refresh_token: String?
+    let is_custom: Bool = true
+    let user_type: Int = 2
+}
+
+struct RefreshResponse: Codable {
+    let message: String?
+    let success: Bool?
+    let data: RefreshResponseAT?
+}
+
+struct RefreshResponseAT: Codable {
+    let access_token: String?
+}
