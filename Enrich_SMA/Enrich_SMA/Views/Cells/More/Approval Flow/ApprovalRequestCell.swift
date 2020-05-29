@@ -46,7 +46,7 @@ class ApprovalRequestCell: UITableViewCell {
         lblRequestDate.text = model.updated_at ?? ""
         let name = "\(model.approval_request_details?.appointment?.customer_name ?? "") \(model.approval_request_details?.appointment?.customer_last_name ?? "")"
         lblCustomer.text = name.capitalized
-        lblTechnician.text = (model.approval_request_details?.appointment?.booking_technician ?? "").capitalized
+        lblTechnician.text = (model.approval_request_details?.appointment?.requesting_technician ?? "").capitalized
         actionButtonsStackView.isHidden = true
         deniedReasonStackView.isHidden = true
         guard let status = ApprovalStatus(rawValue: model.approval_status ?? "") else {

@@ -94,6 +94,8 @@ enum ApprovalRequestList {
             let notes: String?
             let booking_technician_id: Int64?
             let booking_technician: String?
+            let requesting_technician_id: Int64?
+            let requesting_technician: String?
         }
 
         struct Service: Codable {
