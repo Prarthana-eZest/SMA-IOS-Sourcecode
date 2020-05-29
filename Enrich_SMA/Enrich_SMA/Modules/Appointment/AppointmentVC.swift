@@ -311,7 +311,7 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == (appointments.count - 1) &&
             appointments.count < totalRecords {
             pageNumber += 1
-            self.resetData(status: selectedTab)
+            self.getAppointments(status: selectedTab)
         }
     }
 }
