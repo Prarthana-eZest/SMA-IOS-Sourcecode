@@ -53,7 +53,7 @@ class ApprovalRequestCell: UITableViewCell {
             return
         }
         lblApprovalStatus.text = status.rawValue.capitalized
-        lblDeniedReason.text = (model.denied_reason ?? "").capitalized
+        lblDeniedReason.text = (model.denied_reason ?? "")
         deniedReasonStackView.isHidden = (status != .denied)
         actionButtonsStackView.isHidden = (status != .noAction)
     }
