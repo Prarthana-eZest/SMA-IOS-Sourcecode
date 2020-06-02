@@ -37,7 +37,7 @@ class RequestDetailsCell: UITableViewCell {
         guard let status = ApprovalStatus(rawValue: model.approval_status ?? "") else {
             return
         }
-        lblApprovalStatus.text = status.rawValue.capitalized
+        lblApprovalStatus.text = status.label
         lblDeniedReason.text = (model.denied_reason ?? "").capitalized
         deniedReasonStackView.isHidden = (status != .denied)
     }

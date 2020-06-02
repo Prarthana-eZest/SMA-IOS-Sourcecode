@@ -12,6 +12,17 @@ enum ApprovalStatus: String {
     case approved = "approved"
     case denied = "denied"
     case noAction = "no_action"
+    
+    var label : String {
+        switch self {
+        case .approved:
+            return "Approved"
+        case .denied:
+            return "Denied"
+        case .noAction
+            return "No Action"
+        }
+    }
 }
 
 protocol ApprovalCellDelegate: class {
@@ -52,7 +63,7 @@ class ApprovalRequestCell: UITableViewCell {
         guard let status = ApprovalStatus(rawValue: model.approval_status ?? "") else {
             return
         }
-        lblApprovalStatus.text = status.rawValue.capitalized
+        lblApprovalStatus.text = status.label
         lblDeniedReason.text = (model.denied_reason ?? "")
         deniedReasonStackView.isHidden = (status != .denied)
         actionButtonsStackView.isHidden = (status != .noAction)
