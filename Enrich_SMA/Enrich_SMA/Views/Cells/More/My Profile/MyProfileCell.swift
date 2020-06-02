@@ -26,7 +26,7 @@ class MyProfileCell: UITableViewCell {
 
     func configureCell(model: MyProfileModel) {
         lblTitle.text = model.title
-        lblValue.text = model.value
+        lblValue.text = model.value.isEmpty ? "-" : model.value
     }
 
 }

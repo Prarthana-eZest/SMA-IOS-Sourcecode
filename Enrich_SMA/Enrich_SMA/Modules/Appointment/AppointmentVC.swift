@@ -92,6 +92,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         upcomingSelectionView.isHidden = true
 
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
+        lblNoAppointments.isHidden = true
         tableView.separatorColor = .clear
     }
 
@@ -111,6 +112,8 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
         pageNumber = 1
         totalRecords = 0
         appointments.removeAll()
+        tableView.reloadData()
+        lblNoAppointments.isHidden = true
         getAppointments(status: status)
     }
 
