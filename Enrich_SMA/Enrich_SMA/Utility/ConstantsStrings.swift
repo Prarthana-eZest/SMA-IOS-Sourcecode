@@ -129,7 +129,8 @@ enum AlertMessagesToAsk {
     static let defaultAddress = "Dafault address cannot be removed."
     static let addNewNote = "Please add note"
     static let termsAdnConditions = "Please accept terms and conditions"
-    static let customerSignature = "Please take customer signature"
+    static let takeCustomerSignature = "Please take customer signature"
+    static let saveCustomerSignature = "Please save customer signature"
     static let formValidation = "Please fill all required fields"
 
     // Device Authentication

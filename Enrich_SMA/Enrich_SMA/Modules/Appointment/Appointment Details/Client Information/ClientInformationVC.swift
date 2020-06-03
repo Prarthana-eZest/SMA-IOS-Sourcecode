@@ -49,6 +49,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
     var selectedTitleCell = 0
     var signatureImage: UIImage?
+    var singatureCaptured = false
     var consulationData = [TagViewModel]()
 
     // Consulation Form
@@ -165,7 +166,12 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
     @IBAction func actionSubmitForm(_ sender: UIButton) {
         if signatureImage == nil {
-            self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.customerSignature, seconds: toastMessageDuration)
+            if singatureCaptured {
+                self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.saveCustomerSignature, seconds: toastMessageDuration)
+            }
+            else {
+                self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.takeCustomerSignature, seconds: toastMessageDuration)
+            }
             return
         }
         else {
@@ -416,14 +422,20 @@ extension ClientInformationVC: ClientInformationDelegate {
 }
 
 extension ClientInformationVC: SingatureCellDelegate {
-
+    
     func actionClearSignature() {
         signatureImage = nil
+        singatureCaptured = false
     }
 
     func actionSaveSignature(image: UIImage) {
         signatureImage = image
     }
+    
+    func actionCaptureSignature() {
+        singatureCaptured = true
+    }
+    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource

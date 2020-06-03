@@ -11,6 +11,7 @@ import UIKit
 protocol SingatureCellDelegate: class {
     func actionClearSignature()
     func actionSaveSignature(image: UIImage)
+    func actionCaptureSignature()
 }
 
 class SignatureCell: UITableViewCell {
@@ -51,5 +52,6 @@ extension SignatureCell: YPSignatureDelegate {
 
     func didFinish(_ view: YPDrawSignatureView) {
         bottomView.isHidden = false
+        delegate?.actionCaptureSignature()
     }
 }
