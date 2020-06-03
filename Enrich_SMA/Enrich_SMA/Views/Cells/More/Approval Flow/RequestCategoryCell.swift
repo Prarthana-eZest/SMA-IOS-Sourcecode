@@ -26,7 +26,8 @@ class RequestCategoryCell: UITableViewCell {
         lblTitle.text = model.title ?? ""
         lblStartTime.text = model.startTime ?? ""
         lblEndTime.text = model.endTime ?? ""
-        lblPrice.text =  "₹\(model.price ?? "0")"
+        let price = model.price?.toDouble()?.cleanForPrice ?? "0"
+        lblPrice.text =  "₹\(price)"
         priceStackView.isHidden = model.price == nil
         lblDuration.text = "\(model.duration ?? "0") min"
     }

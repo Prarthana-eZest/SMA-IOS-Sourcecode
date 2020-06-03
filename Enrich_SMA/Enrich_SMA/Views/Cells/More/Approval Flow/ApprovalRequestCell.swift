@@ -12,8 +12,8 @@ enum ApprovalStatus: String {
     case approved = "approved"
     case denied = "denied"
     case noAction = "no_action"
-    
-    var label : String {
+
+    var label: String {
         switch self {
         case .approved:
             return "Approved"

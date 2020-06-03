@@ -422,7 +422,7 @@ extension ClientInformationVC: ClientInformationDelegate {
 }
 
 extension ClientInformationVC: SingatureCellDelegate {
-    
+
     func actionClearSignature() {
         signatureImage = nil
         singatureCaptured = false
@@ -431,11 +431,11 @@ extension ClientInformationVC: SingatureCellDelegate {
     func actionSaveSignature(image: UIImage) {
         signatureImage = image
     }
-    
+
     func actionCaptureSignature() {
         singatureCaptured = true
     }
-    
+
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
