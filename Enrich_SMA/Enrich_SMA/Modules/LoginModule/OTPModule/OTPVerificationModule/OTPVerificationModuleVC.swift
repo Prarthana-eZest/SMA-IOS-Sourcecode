@@ -30,7 +30,7 @@ class OTPVerificationModuleVC: DesignableViewController, OTPVerificationModuleDi
 
     //Timer Variables
     weak var countdownTimer: Timer!
-    var totalTime = 45
+    var totalTime = 60
     var userName = ""
 
     var interactor: OTPVerificationModuleBusinessLogic?
@@ -185,7 +185,7 @@ extension OTPVerificationModuleVC {
     func endTimer() {
         lblOTPTimer.text = "0:00 sec"
         countdownTimer.invalidate()
-        totalTime = 45
+        totalTime = 60
         btnResendCode.isUserInteractionEnabled = true
     }
 
