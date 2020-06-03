@@ -20,7 +20,7 @@ enum ApprovalStatus: String {
         case .denied:
             return "Denied"
         case .noAction:
-            return "No Action"
+            return "No action"
         }
     }
 }
