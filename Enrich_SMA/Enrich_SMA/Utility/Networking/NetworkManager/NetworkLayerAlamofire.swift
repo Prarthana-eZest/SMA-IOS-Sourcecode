@@ -228,7 +228,7 @@ open class NetworkLayerAlamofire {
                 return
             }
             // Refresh Token Code
-            if self.isUserAuthorizedSuccessCode(DataResponse.response) {
+            if self.isUserAuthorizedSuccessCode(DataResponse.response) && GenericClass.sharedInstance.isuserLoggedIn().status {
                 self.refreshTokenForPutDeletePost(urlString: urlString, body: body, headers: headers, successHandler: successHandler, errorHandler: errorHandler, method: method)
                 return
             }
