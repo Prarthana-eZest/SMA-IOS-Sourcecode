@@ -77,7 +77,6 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-        checkForSOSNotification()
         getProfileData()
         getForceUpadateInfo()
     }
@@ -183,6 +182,7 @@ extension DashboardVC {
                 userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
                 userDefaults.synchronize()
                 getDashboardData()
+                checkForSOSNotification()
                 FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
                 configureSections()
             }
