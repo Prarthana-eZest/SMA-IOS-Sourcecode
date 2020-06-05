@@ -55,6 +55,10 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     // Consulation Form
     var form_id: String?
 
+    var page_no = 1
+    var limit = 10
+    var total_records = 0
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -113,7 +117,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.addNotesCell, bundle: nil),
                            forCellReuseIdentifier: CellIdentifier.addNotesCell)
         tableView.register(UINib(nibName: CellIdentifier.signatureCell, bundle: nil),
-        forCellReuseIdentifier: CellIdentifier.signatureCell)
+                           forCellReuseIdentifier: CellIdentifier.signatureCell)
 
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
 
@@ -190,7 +194,8 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
             EZLoadingActivity.show("Loading...", disableUI: true)
 
-            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.base_salon_code ?? "", customer_id: "\(customerId)")
+            let request = ClientInformation.GetAppointnentHistory.Request(salon_code: userData.base_salon_code ?? "", customer_id: "\(customerId)",
+                limit: limit, page_no: page_no)
             interactor?.doGetAppointmentHistory(request: request, method: .post)
         }
     }
@@ -324,12 +329,16 @@ extension ClientInformationVC {
 
         if let model = viewModel as? ClientInformation.GetAppointnentHistory.Response {
 
-            self.appointmentHistory.removeAll()
+            if page_no == 1 {
+                self.appointmentHistory.removeAll()
+            }
+            self.total_records = model.total_records ?? 0
             self.appointmentHistory.append(contentsOf: model.data ?? [])
-            self.appointmentHistory.sort {return ($0.appointment_date ?? "") > ($1.appointment_date ?? "")}
-            lblNoRecords.isHidden = !appointmentHistory.isEmpty
+          //  self.appointmentHistory.sort {return ($0.appointment_date ?? "") > ($1.appointment_date ?? "")}
             self.tableView.reloadData()
-            if !appointmentHistory.isEmpty {
+            lblNoRecords.isHidden = !appointmentHistory.isEmpty
+            if !appointmentHistory.isEmpty,
+                page_no == 1 {
                 self.tableView.scrollToTop()
             }
         }
@@ -390,7 +399,7 @@ extension ClientInformationVC {
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
-       // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+        // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }
 
@@ -612,6 +621,8 @@ extension ClientInformationVC: UICollectionViewDelegate, UICollectionViewDataSou
         case 2:
             getMembershipDetails()
         case 3:
+            page_no = 1
+            total_records = 0
             getAppointmentHistory()
         default:
             break

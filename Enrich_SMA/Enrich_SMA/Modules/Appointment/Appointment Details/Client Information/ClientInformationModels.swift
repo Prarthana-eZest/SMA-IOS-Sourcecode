@@ -19,31 +19,34 @@ enum ClientInformation {
         struct Request: Codable {
             let salon_code: String
             let customer_id: String
+            let limit: Int
+            let page_no: Int
         }
 
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
+            var total_records: Int?
             let data: [Data]?
             let time_stamp: String?
         }
 
         struct Data: Codable {
-            let appointment_id: Int?
+            let appointment_id: Int64?
             let appointment_date: String?
-            let booking_technician_id: Int?
+            let booking_technician_id: Int64?
             let appointment_type: String?
             let status: String?
             let booked_by: String?
             let customer_address: String?
             let booked_by_contact: String?
-            let booked_by_id: Int?
+            let booked_by_id: Int64?
             let booking_technician: String?
             let payment_status: String?
             let landmark: String?
             let last_visit: String?
             let avg_rating: Double?
-            let services: [Services]?
+            let services: [ClientInformation.GetAppointnentHistory.Services]?
             let serviceCount: Int?
             let total_duration: Int?
             let start_time: String?
@@ -62,11 +65,21 @@ enum ClientInformation {
             let gender: Int?
             let profile_picture: String?
             let is_customer_rated: Bool?
+            let salon_name: String?
 
+            let generic_form_filled: Bool?
+            let generic_form_list: [FormDetails]?
+
+            let approval_request: String?
+            let approval_status: String?
+
+            let is_selfie_uploaded: Bool?
+            let selfie_image: String?
         }
 
         struct Services: Codable {
-            let service_id: Int?
+            let appointment_type: String?
+            let service_id: Int64?
             let service_code: String?
             let service_name: String?
             let service_duration: Int?
@@ -75,18 +88,31 @@ enum ClientInformation {
             let end_time: String?
             let customer_latitude: Double?
             let customer_longitude: Double?
-            let station_id: Int?
+            let station_id: Int64?
             let reason: String?
             let category_name: String?
             let technician_preference: String?
             let technician_designation: String?
             let status: String?
-            let previous_service_id: String?
-            let id: Int?
-            let technician_id: Int?
+            let previous_service_id: Int64?
+            let id: Int64?
+            let technician_id: Int64?
             let servicing_technician: String?
             let booked_for: String?
+            let booked_for_id: Int64?
             let booked_for_contact: String?
+            let notes: String?
+
+            let is_consultation_required: Bool?
+            let consultation_form_list: [FormDetails]?
+
+            let approval_request: String?
+            let approval_status: String?
+        }
+
+        struct FormDetails: Codable {
+            let form_id: String?
+            let is_submitted: Bool?
         }
     }
 
@@ -187,63 +213,63 @@ enum GenericCustomerConsulation {
 
     enum FormData {
 
-           struct Request: Codable {
-               let customer_id: String
-               let form_id: String
-               let is_custom: Bool
-           }
+        struct Request: Codable {
+            let customer_id: String
+            let form_id: String
+            let is_custom: Bool
+        }
 
-           struct Response: Codable {
-               var status: Bool = false
-               var message: String = ""
-               let data: [Data]?
-           }
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            let data: [Data]?
+        }
 
-           struct Data: Codable {
-               let label: String?
-               let field_type: String?
-               let required: Bool?
-               let show_in_email: Bool?
-               let fieldcol: Int?
-               let wrappercol: Int?
-               let cid: String?
-               let field_cid: String?
-               let value: String?
-               let field_options: [Options]?
-           }
+        struct Data: Codable {
+            let label: String?
+            let field_type: String?
+            let required: Bool?
+            let show_in_email: Bool?
+            let fieldcol: Int?
+            let wrappercol: Int?
+            let cid: String?
+            let field_cid: String?
+            let value: String?
+            let field_options: [Options]?
+        }
 
-           struct Options: Codable {
-               let label: String?
-               let checked: Bool?
-           }
-       }
+        struct Options: Codable {
+            let label: String?
+            let checked: Bool?
+        }
+    }
 
-       enum SubmitFormData {
+    enum SubmitFormData {
 
-           struct Request: Codable {
-               let formData: FormDataRequest
-               let is_custom: Bool
-           }
+        struct Request: Codable {
+            let formData: FormDataRequest
+            let is_custom: Bool
+        }
 
-           struct FormDataRequest: Codable {
-               let form_id: String
-               let customer_id: String
-               let data: [Data]
-           }
+        struct FormDataRequest: Codable {
+            let form_id: String
+            let customer_id: String
+            let data: [Data]
+        }
 
-           struct Data: Codable {
-               let id: String
-               let value: [String]
-               let size: String
-               let field_type: String
-           }
+        struct Data: Codable {
+            let id: String
+            let value: [String]
+            let size: String
+            let field_type: String
+        }
 
-           struct Response: Codable {
-               var status: Bool = false
-               var message: String = ""
-           }
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+        }
 
-       }
+    }
 
 }
 

@@ -153,14 +153,17 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
 
                 let shift: String
 
-                if let isLeave = $0.is_leave, isLeave == 1 {
-                    shift = "\($0.date ?? "-")  |  \($0.leave_type ?? "")"
-                }
-                else {
-                    shift = "\($0.date ?? "-")  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
-                }
+                if let dateString = $0.date,
+                    let date = dateString.getDateFromString() {
+                    if let isLeave = $0.is_leave, isLeave == 1 {
+                        shift = "\(date.dayMonthYear)  |  \($0.leave_type ?? "")"
+                    }
+                    else {
+                        shift = "\(date.dayMonthYear)  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
+                    }
 
-                self.rosterList.append(shift)
+                    self.rosterList.append(shift)
+                }
             }
         }
     }

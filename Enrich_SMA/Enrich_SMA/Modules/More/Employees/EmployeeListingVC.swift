@@ -113,7 +113,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic {
         getEmployeeList()
         tableView.register(UINib(nibName: CellIdentifier.employeeCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.employeeCell)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
-
+        lblNoRecords.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -186,6 +186,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic {
                 self.employeeList.append(model)
             }
         }
+        lblNoRecords.isHidden = !employeeList.isEmpty
         self.tableView.reloadData()
     }
 
@@ -198,7 +199,6 @@ extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        lblNoRecords.isHidden = !employeeList.isEmpty
         return employeeList.count
     }
 

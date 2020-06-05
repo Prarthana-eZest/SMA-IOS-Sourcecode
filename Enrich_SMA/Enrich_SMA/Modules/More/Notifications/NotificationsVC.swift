@@ -57,6 +57,7 @@ class NotificationsVC: UIViewController, NotificationsDisplayLogic {
         super.viewDidLoad()
         callToGetNotificationList()
         tableView.register(UINib(nibName: CellIdentifier.notificationDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.notificationDetailsCell)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: tableView.frame.size.width)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +104,9 @@ extension NotificationsVC {
                 arrNotificationList.removeAll()
                 arrNotificationList = model.data ?? []
                 lblMyCartCount.text = arrNotificationList.isEmpty ? "0" : String(format: "%d", arrNotificationList.count)
+                if arrNotificationList.isEmpty {
+                    tableView.setEmptyMessage(TableViewNoData.tableViewNoNotificationsAvailable)
+                }
                 self.tableView.reloadData()
             }
             else // Failure
@@ -121,14 +125,7 @@ extension NotificationsVC {
 extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        if arrNotificationList.isEmpty {
-            tableView.setEmptyMessage(TableViewNoData.tableViewNoNotificationsAvailable)
-            return 0
-        }
-        else {
-            tableView.restore()
-            return 1
-        }
+        return arrNotificationList.isEmpty ? 0 : 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

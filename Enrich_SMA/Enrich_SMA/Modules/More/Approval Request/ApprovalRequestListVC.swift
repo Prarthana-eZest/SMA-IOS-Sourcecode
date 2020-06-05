@@ -59,6 +59,7 @@ class ApprovalRequestListVC: UIViewController, ApprovalRequestListDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.approvalRequestCell, bundle: nil),
                            forCellReuseIdentifier: CellIdentifier.approvalRequestCell)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        lblNoRequest.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -103,7 +104,6 @@ extension ApprovalRequestListVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        lblNoRequest.isHidden = !requestList.isEmpty
         return requestList.count
     }
 
@@ -185,7 +185,7 @@ extension ApprovalRequestListVC {
 //                requestList.sort {
 //                    return ($0.updated_at ?? "").lowercased() > ($1.updated_at ?? "").lowercased()
 //                }
-
+                lblNoRequest.isHidden = !requestList.isEmpty
                 self.tableView.reloadData()
             }
             else {

@@ -160,6 +160,11 @@ extension Date {
         return formatter.string(from: self as Date)
     }
 
+    var dayMonthYear: String {
+        let formatter = DateFormatter(); formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: self as Date)
+    }
+
     var dayMonthYearDate: String {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMM yy"
         return formatter.string(from: self as Date)
