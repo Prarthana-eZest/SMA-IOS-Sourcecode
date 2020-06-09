@@ -14,20 +14,20 @@ import UIKit
 
 enum Revenue {
     // MARK: Use cases
-
+    
     enum OneClickData {
-
+        
         struct Request: Codable {
             let is_custom: Bool
             let salon_id: String
         }
-
+        
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             var data: [Data]?
         }
-
+        
         struct Data: Codable {
             let entity_id: AnyCodable?
             let salon_id: AnyCodable?
@@ -45,6 +45,12 @@ enum Revenue {
             let retail_products_as_percentage_to_services_revenue: AnyCodable?
             let salon_achievement_percentage: AnyCodable?
             let st_month: AnyCodable?
+            let client_consultation: AnyCodable?
+            let service_name: AnyCodable?
+            let actual_qty: AnyCodable?
+            let bom_qty: AnyCodable?
+            let qty_percentage: AnyCodable?
+            let punctual_time: AnyCodable?
         }
     }
 }
