@@ -191,7 +191,7 @@ open class NetworkLayerAlamofire {
         }
 
         var request = URLRequest(url: url)
-        //request.allHTTPHeaderFields = getHeaders()//headers
+        request.allHTTPHeaderFields = headers
         request.httpMethod = "GET"
         request.allHTTPHeaderFields?["Content-Type"] = "application/json"
 
@@ -476,6 +476,7 @@ extension NetworkLayerAlamofire {
         guard let url = URL(string: createBaseUrl(endPoint: ConstantAPINames.refreshToken.rawValue)) else {
             return errorHandler("Unable to create URL from given string")
         }
+        EZLoadingActivity.show("Loading...", disableUI: true)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -547,6 +548,7 @@ extension NetworkLayerAlamofire {
     }
 
     func showSessionExpiryAlert(message: String) {
+        EZLoadingActivity.hide()
         let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title: AlertButtonTitle.ok, style: UIAlertAction.Style.cancel) { _ -> Void in
             UserFactory.shared.signOutUserFromApp()
