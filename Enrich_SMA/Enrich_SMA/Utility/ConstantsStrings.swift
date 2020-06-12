@@ -22,7 +22,7 @@ let tableViewNoAddressAvailable = "No addresses available"
 
 let navigationBarTitleTrimTo = 28
 let GenericErrorLoginRefreshToken = "Something went wrong. Please do login again."
-let GenericError = "Something went wrong. Please try again later"
+let GenericError = "Unable to fetch all the information from server. Please try after some time."
 let alertTitle = "Alert!"
 let alertTitleSuccess = "Success!"
 let maxlimitToProductQuantity: Int64 = 5
