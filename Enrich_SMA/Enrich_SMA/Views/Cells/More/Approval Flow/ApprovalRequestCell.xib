@@ -26,7 +26,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8vG-Ou-R2Q">
-                        <rect key="frame" x="20" y="10" width="378" height="263"/>
+                        <rect key="frame" x="20" y="10" width="378" height="286"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APPOINTMENT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPq-WQ-eLa">
                                 <rect key="frame" x="0.0" y="0.0" width="127.5" height="26"/>
@@ -53,7 +53,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NMa-3M-rY9">
-                                <rect key="frame" x="0.0" y="97" width="186.5" height="23.5"/>
+                                <rect key="frame" x="0.0" y="97" width="378" height="23.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" text="Booked For :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcA-OE-Q8F">
                                         <rect key="frame" x="0.0" y="0.0" width="91" height="23.5"/>
@@ -62,7 +62,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Aman Gupta" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNa-Yt-wI3">
-                                        <rect key="frame" x="96" y="0.0" width="90.5" height="23.5"/>
+                                        <rect key="frame" x="96" y="0.0" width="282" height="23.5"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UrJ-BE-Ie9">
-                                <rect key="frame" x="0.0" y="128.5" width="258.5" height="23.5"/>
+                                <rect key="frame" x="0.0" y="128.5" width="378" height="23.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" text="Requesting Technician :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcA-IZ-PO5">
                                         <rect key="frame" x="0.0" y="0.0" width="166" height="23.5"/>
@@ -79,7 +79,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Harshal Patil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgg-vI-IKF">
-                                        <rect key="frame" x="171" y="0.0" width="87.5" height="23.5"/>
+                                        <rect key="frame" x="171" y="0.0" width="207" height="23.5"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -87,7 +87,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2Dh-G0-oC2">
-                                <rect key="frame" x="0.0" y="160" width="134.5" height="23.5"/>
+                                <rect key="frame" x="0.0" y="160" width="378" height="23.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" text="Approval Status :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtZ-4S-eLh">
                                         <rect key="frame" x="0.0" y="0.0" width="123.5" height="23.5"/>
@@ -96,24 +96,27 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4U-0B-fkH">
-                                        <rect key="frame" x="128.5" y="0.0" width="6" height="23.5"/>
+                                        <rect key="frame" x="128.5" y="0.0" width="249.5" height="23.5"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yqX-Po-2wI">
-                                <rect key="frame" x="0.0" y="191.5" width="128" height="23.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yqX-Po-2wI">
+                                <rect key="frame" x="0.0" y="191.5" width="378" height="46.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" text="Denied Reason :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8P-Oo-LCI">
-                                        <rect key="frame" x="0.0" y="0.0" width="117" height="23.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Denied Reason :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8P-Oo-LCI">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="23.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="mzZ-zV-Cm7"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ifx-Co-kRE">
-                                        <rect key="frame" x="122" y="0.0" width="6" height="23.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="sfdad sljfhd lfhdlfhd ladhf ladh afadfbadf afafal adfdf dfdf adfdf" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ifx-Co-kRE">
+                                        <rect key="frame" x="125" y="0.0" width="253" height="46.5"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -121,7 +124,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="EgG-0l-vj0">
-                                <rect key="frame" x="0.0" y="223" width="378" height="40"/>
+                                <rect key="frame" x="0.0" y="246" width="378" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8t-5k-9fU">
                                         <rect key="frame" x="0.0" y="0.0" width="181.5" height="40"/>
@@ -162,7 +165,11 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="EgG-0l-vj0" secondAttribute="trailing" id="8XG-1a-AKN"/>
+                            <constraint firstAttribute="trailing" secondItem="UrJ-BE-Ie9" secondAttribute="trailing" id="JjY-av-aAM"/>
+                            <constraint firstAttribute="trailing" secondItem="2Dh-G0-oC2" secondAttribute="trailing" id="M2B-Ig-Gcm"/>
+                            <constraint firstAttribute="trailing" secondItem="yqX-Po-2wI" secondAttribute="trailing" id="ReE-5y-67u"/>
                             <constraint firstItem="EgG-0l-vj0" firstAttribute="leading" secondItem="8vG-Ou-R2Q" secondAttribute="leading" id="cOi-pm-eza"/>
+                            <constraint firstAttribute="trailing" secondItem="NMa-3M-rY9" secondAttribute="trailing" id="d4H-iR-rJ1"/>
                         </constraints>
                     </stackView>
                 </subviews>
