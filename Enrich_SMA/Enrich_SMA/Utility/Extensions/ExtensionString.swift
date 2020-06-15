@@ -80,6 +80,12 @@ extension String {
         return self.range(of: find, options: .caseInsensitive) != nil
     }
 }
+
+extension StringProtocol {
+    var firstUppercased: String { return prefix(1).uppercased() + dropFirst() }
+    var firstCapitalized: String { return prefix(1).capitalized + dropFirst() }
+}
+
 extension String {
     public var withoutHtml: String {
         guard let data = self.data(using: .utf8) else {

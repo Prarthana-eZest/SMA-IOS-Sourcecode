@@ -38,7 +38,7 @@ class RequestDetailsCell: UITableViewCell {
             return
         }
         lblApprovalStatus.text = status.label
-        lblDeniedReason.text = (model.denied_reason ?? "").capitalized
+        lblDeniedReason.text = (model.denied_reason ?? "").firstUppercased
         deniedReasonStackView.isHidden = (status != .denied)
     }
 }
