@@ -342,7 +342,7 @@ open class NetworkLayerAlamofire {
 
         #elseif RELEASE
         print("RELEASE")
-        BaseUrl = "https://dev.enrichsalon.co.in/"
+        BaseUrl = "https://enrichsalon.co.in/"
 
         #endif
 
