@@ -787,7 +787,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Siz-T8-HgA">
-                                <rect key="frame" x="0.0" y="110" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -804,7 +804,7 @@
                             <constraint firstItem="HSL-VK-SeF" firstAttribute="bottom" secondItem="Siz-T8-HgA" secondAttribute="bottom" id="aBT-wC-Vkz"/>
                             <constraint firstItem="HSL-VK-SeF" firstAttribute="top" secondItem="W0P-AV-8aN" secondAttribute="top" id="cMs-Db-Y4g"/>
                             <constraint firstItem="Siz-T8-HgA" firstAttribute="leading" secondItem="HSL-VK-SeF" secondAttribute="leading" id="tY1-7F-aM9"/>
-                            <constraint firstItem="Siz-T8-HgA" firstAttribute="top" secondItem="W0P-AV-8aN" secondAttribute="bottom" constant="6" id="z97-fM-EdX"/>
+                            <constraint firstItem="Siz-T8-HgA" firstAttribute="top" secondItem="W0P-AV-8aN" secondAttribute="bottom" id="z97-fM-EdX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HSL-VK-SeF"/>
                     </view>
@@ -1068,11 +1068,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O2s-Ew-cFi">
-                                <rect key="frame" x="0.0" y="10" width="414" height="852"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="O2s-Ew-cFi">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="uu7-ap-9NM">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="772"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="740"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1082,7 +1082,7 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGW-Hy-eag">
-                                        <rect key="frame" x="0.0" y="782" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="744" width="414" height="70"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="k8l-bA-V3A">
                                                 <rect key="frame" x="20" y="10" width="374" height="50"/>
@@ -1146,8 +1146,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="fcj-fx-AQ2" secondAttribute="trailing" id="5DJ-Eb-ZMz"/>
                             <constraint firstItem="Pml-oO-3Jh" firstAttribute="bottom" secondItem="O2s-Ew-cFi" secondAttribute="bottom" id="BnO-g2-isB"/>
+                            <constraint firstItem="O2s-Ew-cFi" firstAttribute="top" secondItem="fcj-fx-AQ2" secondAttribute="bottom" constant="3" id="CnR-TD-deJ"/>
                             <constraint firstItem="fcj-fx-AQ2" firstAttribute="top" secondItem="Pml-oO-3Jh" secondAttribute="top" id="DWd-OM-qKq"/>
-                            <constraint firstItem="O2s-Ew-cFi" firstAttribute="top" secondItem="xT7-Bc-ep5" secondAttribute="top" constant="10" id="JDZ-3a-R1J"/>
                             <constraint firstItem="fcj-fx-AQ2" firstAttribute="leading" secondItem="xT7-Bc-ep5" secondAttribute="leading" id="NtX-is-rMN"/>
                             <constraint firstAttribute="trailing" secondItem="O2s-Ew-cFi" secondAttribute="trailing" id="Yr6-ZO-IJ3"/>
                             <constraint firstItem="O2s-Ew-cFi" firstAttribute="leading" secondItem="Pml-oO-3Jh" secondAttribute="leading" id="jxu-nb-eDw"/>
@@ -1162,12 +1162,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8N-UK-lYs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6210" y="1722"/>
+            <point key="canvasLocation" x="6208.6956521739139" y="1721.6517857142856"/>
         </scene>
         <!--Tele Consultation VC-->
         <scene sceneID="oqJ-12-4Xr">
             <objects>
-                <viewController storyboardIdentifier="TeleConsultationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aip-yi-BJR" userLabel="Tele Consultation VC" customClass="TeleConsultationVC" customModule="TMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeleConsultationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aip-yi-BJR" userLabel="Tele Consultation VC" customClass="TeleConsultationVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CDl-W0-x59">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1301,7 +1301,7 @@
         <!--Customer Tele HistoryVC-->
         <scene sceneID="Ta4-MR-hJY">
             <objects>
-                <viewController storyboardIdentifier="CustomerTeleHistoryVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d4q-n2-4WM" customClass="CustomerTeleHistoryVC" customModule="TMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomerTeleHistoryVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d4q-n2-4WM" customClass="CustomerTeleHistoryVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nkk-SI-zi4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
