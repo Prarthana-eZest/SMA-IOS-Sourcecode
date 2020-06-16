@@ -58,6 +58,8 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     var page_no = 1
     var limit = 10
     var total_records = 0
+    
+    var backView = UIView()
 
     // MARK: Object lifecycle
 
@@ -124,6 +126,12 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
         lblNoRecords.isHidden = true
         btnSubmitForm.isEnabled = false
         submitFormView.isHidden = true
+        
+        backView.frame = self.view.frame
+        backView.backgroundColor = .black
+        self.view.addSubview(backView)
+        self.view.bringSubviewToFront(backView)
+        backView.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -149,7 +157,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     @IBAction func actionAddClientNotes(_ sender: UIButton) {
         print("Add New Notes")
         let addNewNoteVC = AddNewNoteVC.instantiate(fromAppStoryboard: .Appointment)
-        self.view.alpha = screenPopUpAlpha
+        backView.isHidden = false
+        backView.alpha = screenPopUpAlpha
+        self.view.alpha = 1.0
         addNewNoteVC.customerId = "\(customerId ?? 0)"
         self.present(addNewNoteVC, animated: true, completion: nil)
 
@@ -159,8 +169,8 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
                 print("Note:\(note)")
                 self.getClientNotes()
             }
-            self.view.alpha = 1.0
-
+            self.backView.alpha = 1.0
+            self.backView.isHidden = true
         }
     }
 
