@@ -87,7 +87,7 @@ class RevenueVC: UIViewController, RevenueDisplayLogic {
 
             RevenueCellModel(title: "Quality", subTitle: "", value: "-"),
 
-            RevenueCellModel(title: "Punctuality on appointments", subTitle: "", value: "\(data?.punctual_time_percent ?? "-")")])
+            RevenueCellModel(title: "Punctuality on appointments", subTitle: "", value: "\(data?.punctual_time_percent?.description.toDouble()?.cleanForPrice ?? "0")%")])
 
         tableView.reloadData()
     }
