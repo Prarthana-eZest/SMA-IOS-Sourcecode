@@ -28,6 +28,8 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
 
     var selectedRevenueIndex = 0 // 0: Daily , 1:Monthy
 
+    var forceUpdateData: Dashboard.GetForceUpadateInfo.Response?
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -102,9 +104,10 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         }
     }
 
-    func showAppUpdateAlert(response: Dashboard.GetForceUpadateInfo.Response) {
+    func showAppUpdateAlert() {
 
-        if let appInfo = response.data?.force_update_info, let iOSAppInfo = appInfo.sma_ios, let forceUpdate = iOSAppInfo.force_update, let appVersion = iOSAppInfo.latest_version {
+        if let response = forceUpdateData,
+            let appInfo = response.data?.force_update_info, let iOSAppInfo = appInfo.sma_ios, let forceUpdate = iOSAppInfo.force_update, let appVersion = iOSAppInfo.latest_version {
             if appVersion != Bundle.main.versionNumber {
                 if forceUpdate {
                     alertForAppUpdate(
@@ -199,7 +202,8 @@ extension DashboardVC {
         }
         else if let model = viewModel as? Dashboard.GetForceUpadateInfo.Response {
             if model.status == true {
-                showAppUpdateAlert(response: model)
+                self.forceUpdateData = model
+                showAppUpdateAlert()
             }
             else {
                 showAlert(alertTitle: alertTitle, alertMessage: model.message)

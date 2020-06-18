@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var orientationLock = UIInterfaceOrientationMask.all
 
     var window: UIWindow?
-    let customTabbarController = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -58,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        ApplicationFactory.shared.showAppUpdate()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

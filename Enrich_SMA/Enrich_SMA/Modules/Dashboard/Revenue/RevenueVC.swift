@@ -19,25 +19,25 @@ protocol RevenueDisplayLogic: class {
 
 class RevenueVC: UIViewController, RevenueDisplayLogic {
     var interactor: RevenueBusinessLogic?
-    
+
     @IBOutlet weak private var tableView: UITableView!
-    
+
     var revenues = [RevenueCellModel]()
-    
+
     // MARK: Object lifecycle
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
+
     private func setup() {
         let viewController = self
         let interactor = RevenueInteractor()
@@ -46,15 +46,15 @@ class RevenueVC: UIViewController, RevenueDisplayLogic {
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-    
+
     // MARK: View lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: CellIdentifier.revenueCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.revenueCell)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -63,47 +63,47 @@ class RevenueVC: UIViewController, RevenueDisplayLogic {
         configureData(data: nil)
         getRevenueData()
     }
-    
+
     func configureData(data: Revenue.OneClickData.Data?) {
-        
+
         revenues.removeAll()
         revenues.append(contentsOf: [
             RevenueCellModel(title: "Revenue multiplier", subTitle: "", value: "-"),
-            
+
             RevenueCellModel(title: "YoY revenue growth", subTitle: "", value: "\(data?.yoy_revenue_growth_services_and_product?.description.toDouble()?.cleanForPrice ?? "0")%"),
-            
+
             RevenueCellModel(title: "Client consultation", subTitle: "From 50 Customer", value: "\(data?.client_consultation?.description.toDouble()?.cleanForPrice ?? "0")%"),
-            
+
             RevenueCellModel(title: "Retail products", subTitle: "", value: "\(data?.retail_products_as_percentage_to_services_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
-            
+
             RevenueCellModel(title: "Service revenue", subTitle: "", value: "\(data?.total_service_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
-            
+
             RevenueCellModel(title: "Product revenue", subTitle: "", value: "\(data?.total_products_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
-            
+
             RevenueCellModel(title: "Salon achievements", subTitle: "", value: "\(data?.salon_achievement_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"),
-            
+
             RevenueCellModel(title: "RM consumption of category", subTitle: "", value: "-"),
-            
+
             RevenueCellModel(title: "Quality", subTitle: "", value: "\(data?.qty_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"),
-            
+
             RevenueCellModel(title: "Punctuality on appointments", subTitle: "", value: "\(data?.punctual_time ?? "-")")])
-        
+
         tableView.reloadData()
     }
 }
 
 extension RevenueVC: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return revenues.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.revenueCell, for: indexPath) as? RevenueCell else {
             return UITableViewCell()
         }
@@ -111,18 +111,18 @@ extension RevenueVC: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
     }
 }
 
 extension RevenueVC {
-    
+
     func getRevenueData() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
             let salon_id = userData.salon_id {
@@ -131,7 +131,7 @@ extension RevenueVC {
             interactor?.doGetOneClickRevenueData(request: request, method: .post)
         }
     }
-    
+
     func displaySuccess<T: Decodable> (viewModel: T) {
         EZLoadingActivity.hide()
         print("Response: \(viewModel)")
@@ -139,7 +139,7 @@ extension RevenueVC {
             configureData(data: data)
         }
     }
-    
+
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")

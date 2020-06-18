@@ -17,7 +17,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // MARK: Move To Landing Screen
     func moveToLandingScreen() {
         // authentication successful
-        self.window?.rootViewController = customTabbarController
+        self.window?.rootViewController = ApplicationFactory.shared.customTabbarController
         self.window?.makeKeyAndVisible()
     }
 

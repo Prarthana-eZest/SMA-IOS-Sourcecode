@@ -58,7 +58,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     var page_no = 1
     var limit = 10
     var total_records = 0
-    
+
     var backView = UIView()
 
     // MARK: Object lifecycle
@@ -126,7 +126,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
         lblNoRecords.isHidden = true
         btnSubmitForm.isEnabled = false
         submitFormView.isHidden = true
-        
+
         backView.frame = self.view.frame
         backView.backgroundColor = .black
         self.view.addSubview(backView)

@@ -12,6 +12,8 @@ class ApplicationFactory {
 
     static let shared = ApplicationFactory()
 
+    let customTabbarController = CustomTabbarController.instantiate(fromAppStoryboard: .HomeLanding)
+
     func openGoogleMaps(lat: Double, long: Double) {
 
         if let UrlNavigation = URL(string: "comgooglemaps://") {
@@ -36,6 +38,23 @@ class ApplicationFactory {
             }
         }
 
+    }
+
+    func showAppUpdate() {
+        if UIApplication.shared.keyWindow?.rootViewController == customTabbarController {
+            let selectedIndex = customTabbarController.selectedIndex
+            if selectedIndex == 0 {
+
+                if let viewC = customTabbarController.viewControllers?[0] {
+                    if let navController = viewC as? UINavigationController, navController.topViewController is DashboardVC {
+                        let cntrl = navController.topViewController as? DashboardVC
+                        cntrl?.showAppUpdateAlert()
+                    }
+
+                }
+
+            }
+        }
     }
 
 }
