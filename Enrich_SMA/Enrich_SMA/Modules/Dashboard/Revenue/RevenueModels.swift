@@ -29,28 +29,32 @@ enum Revenue {
         }
 
         struct Data: Codable {
-            let entity_id: AnyCodable?
+            let month: AnyCodable?
             let salon_id: AnyCodable?
+            let entity_id: AnyCodable?
             let salon_name: AnyCodable?
-            let target_table_salon_name: AnyCodable?
-            let current_year_date: AnyCodable?
-            let previous_year_date: AnyCodable?
+            let status: AnyCodable?
+            
             let service_revenue_current_year: AnyCodable?
             let service_revenue_previous_year: AnyCodable?
+            let service_revenue_percent: AnyCodable?
+            
             let products_revenue_current_year: AnyCodable?
             let products_revenue_previous_year: AnyCodable?
+            let product_revenue_percent: AnyCodable?
+            
             let yoy_revenue_growth_services_and_product: AnyCodable?
-            let total_service_revenue: AnyCodable?
-            let total_products_revenue: AnyCodable?
             let retail_products_as_percentage_to_services_revenue: AnyCodable?
             let salon_achievement_percentage: AnyCodable?
-            let st_month: AnyCodable?
-            let client_consultation: AnyCodable?
-            let service_name: AnyCodable?
-            let actual_qty: AnyCodable?
-            let bom_qty: AnyCodable?
-            let qty_percentage: AnyCodable?
-            let punctual_time: AnyCodable?
+            
+            let current_year_date: AnyCodable?
+            let previous_year_date: AnyCodable?
+            let rm_consumption: AnyCodable?
+            
+            let client_consultation_customer: AnyCodable?
+            let consultation_percent: AnyCodable?
+            
+            let punctual_time_percent: AnyCodable?
         }
     }
 }

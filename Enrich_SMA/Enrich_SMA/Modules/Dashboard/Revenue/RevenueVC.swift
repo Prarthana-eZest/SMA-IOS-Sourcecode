@@ -72,21 +72,22 @@ class RevenueVC: UIViewController, RevenueDisplayLogic {
 
             RevenueCellModel(title: "YoY revenue growth", subTitle: "", value: "\(data?.yoy_revenue_growth_services_and_product?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-            RevenueCellModel(title: "Client consultation", subTitle: "From 50 Customer", value: "\(data?.client_consultation?.description.toDouble()?.cleanForPrice ?? "0")%"),
+            RevenueCellModel(title: "Client consultation",
+                             subTitle: "From \(data?.client_consultation_customer?.description.toDouble()?.cleanForPrice ?? "0") Customer", value: "\(data?.consultation_percent?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
             RevenueCellModel(title: "Retail products", subTitle: "", value: "\(data?.retail_products_as_percentage_to_services_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-            RevenueCellModel(title: "Service revenue", subTitle: "", value: "\(data?.total_service_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
+            RevenueCellModel(title: "Service revenue", subTitle: "", value: "\(data?.service_revenue_percent?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-            RevenueCellModel(title: "Product revenue", subTitle: "", value: "\(data?.total_products_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
+          //  RevenueCellModel(title: "Product revenue", subTitle: "", value: "\(data?.total_products_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
             RevenueCellModel(title: "Salon achievements", subTitle: "", value: "\(data?.salon_achievement_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-            RevenueCellModel(title: "RM consumption of category", subTitle: "", value: "-"),
+            RevenueCellModel(title: "RM consumption of category", subTitle: "", value: "\(data?.rm_consumption?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-            RevenueCellModel(title: "Quality", subTitle: "", value: "\(data?.qty_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"),
+            RevenueCellModel(title: "Quality", subTitle: "", value: "-"),
 
-            RevenueCellModel(title: "Punctuality on appointments", subTitle: "", value: "\(data?.punctual_time ?? "-")")])
+            RevenueCellModel(title: "Punctuality on appointments", subTitle: "", value: "\(data?.punctual_time_percent ?? "-")")])
 
         tableView.reloadData()
     }
