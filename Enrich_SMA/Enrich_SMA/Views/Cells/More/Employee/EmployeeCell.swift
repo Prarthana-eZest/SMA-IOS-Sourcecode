@@ -21,6 +21,7 @@ class EmployeeCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         ratingsView.isUserInteractionEnabled = false
+        ratingsView.settings.fillMode = .precise
     }
 
     func configureCell(model: EmployeeModel) {
