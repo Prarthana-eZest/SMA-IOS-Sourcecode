@@ -96,6 +96,7 @@ enum ApprovalRequestList {
             let booking_technician: String?
             let requesting_technician_id: Int64?
             let requesting_technician: String?
+            let delete_reason: String?
         }
 
         struct Service: Codable {
@@ -121,7 +122,7 @@ enum ApprovalRequestList {
             let consultation_form_list: String?
             let servicing_technician: String?
             let booking_technician: String?
-
+            let delete_reason: String?
         }
 
         struct AddDeleteService: Codable {
@@ -144,6 +145,7 @@ enum ApprovalRequestList {
             let technician_preference: String?
             let appointment_type: String?
             let servicing_technician_designation: String?
+            let delete_reason: String?
         }
 
         struct TimeSlotDetails: Codable {

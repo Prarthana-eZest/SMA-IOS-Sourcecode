@@ -18,18 +18,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="325" id="KGk-i7-Jjw" customClass="RequestDetailsCell" customModule="SMA_Dev" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="366" height="325"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="368" id="KGk-i7-Jjw" customClass="RequestDetailsCell" customModule="SMA_Dev" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="405" height="368"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="366" height="325"/>
+                <rect key="frame" x="0.0" y="0.0" width="405" height="368"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dRD-kc-fMG">
-                        <rect key="frame" x="20" y="15" width="326" height="269.5"/>
+                        <rect key="frame" x="20" y="15" width="365" height="324"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OFU-qj-0Jf">
-                                <rect key="frame" x="0.0" y="0.0" width="326" height="215"/>
+                                <rect key="frame" x="0.0" y="0.0" width="365" height="269.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APPOINTMENT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZb-sP-bcO">
                                         <rect key="frame" x="0.0" y="0.0" width="127.5" height="26"/>
@@ -106,8 +106,28 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zub-fs-iaU">
+                                        <rect key="frame" x="0.0" y="191.5" width="365" height="46.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Deletion Reason :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b9-DD-aWb">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="23.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="vwM-fJ-7vu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="18"/>
+                                                <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="sfdad sljfhd lfhdlfhd ladhf ladh afadfbadf afafal adfdf dfdf adfdf" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwz-IE-Yds">
+                                                <rect key="frame" x="133" y="0.0" width="232" height="46.5"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
+                                                <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DhJ-fo-Lvb">
-                                        <rect key="frame" x="0.0" y="191.5" width="326" height="23.5"/>
+                                        <rect key="frame" x="0.0" y="246" width="365" height="23.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" text="Denied Reason :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKI-W0-Znm">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="23.5"/>
@@ -119,7 +139,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="-" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pje-ST-Chh">
-                                                <rect key="frame" x="125" y="0.0" width="201" height="23.5"/>
+                                                <rect key="frame" x="125" y="0.0" width="240" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                 <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -129,18 +149,19 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="DhJ-fo-Lvb" firstAttribute="leading" secondItem="OFU-qj-0Jf" secondAttribute="leading" id="HOu-ho-TxR"/>
+                                    <constraint firstAttribute="trailing" secondItem="zub-fs-iaU" secondAttribute="trailing" id="cbs-VR-KFB"/>
                                     <constraint firstAttribute="trailing" secondItem="DhJ-fo-Lvb" secondAttribute="trailing" id="jtO-v3-OeY"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub1-rl-Dfd">
-                                <rect key="frame" x="0.0" y="230" width="326" height="1"/>
+                                <rect key="frame" x="0.0" y="284.5" width="365" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="5YY-8t-NdF"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1OP-jV-Ybn">
-                                <rect key="frame" x="0.0" y="246" width="326" height="23.5"/>
+                                <rect key="frame" x="0.0" y="300.5" width="365" height="23.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="700" verticalHuggingPriority="700" text="Appointment Date :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eL-kG-tjP">
                                         <rect key="frame" x="0.0" y="0.0" width="139" height="23.5"/>
@@ -149,7 +170,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lE-b0-uGo">
-                                        <rect key="frame" x="144" y="0.0" width="182" height="23.5"/>
+                                        <rect key="frame" x="144" y="0.0" width="221" height="23.5"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -176,17 +197,19 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="deleteReasonStackView" destination="zub-fs-iaU" id="dWI-Q8-m2r"/>
                 <outlet property="deniedReasonStackView" destination="DhJ-fo-Lvb" id="emM-34-BVr"/>
                 <outlet property="lblAppointmentDate" destination="3lE-b0-uGo" id="2vx-CW-bJR"/>
                 <outlet property="lblApprovalStatus" destination="xMG-HM-3RQ" id="i3S-Yu-mQl"/>
                 <outlet property="lblCustomer" destination="GL5-rd-SlB" id="86D-XM-Kz5"/>
+                <outlet property="lblDeleteReason" destination="Xwz-IE-Yds" id="JZz-ti-fAC"/>
                 <outlet property="lblDeniedReason" destination="Pje-ST-Chh" id="DV4-e8-JmQ"/>
                 <outlet property="lblDescription" destination="BW4-JG-dV1" id="4Jc-14-9gc"/>
                 <outlet property="lblModuleName" destination="KZb-sP-bcO" id="x0W-Wn-9P7"/>
                 <outlet property="lblRequestDate" destination="iMA-Ov-CUD" id="D8Z-iE-GGV"/>
                 <outlet property="lblTechnician" destination="ZPL-y6-vO6" id="Khd-54-Dfi"/>
             </connections>
-            <point key="canvasLocation" x="171.01449275362319" y="221.98660714285714"/>
+            <point key="canvasLocation" x="197.82608695652175" y="236.38392857142856"/>
         </tableViewCell>
     </objects>
 </document>

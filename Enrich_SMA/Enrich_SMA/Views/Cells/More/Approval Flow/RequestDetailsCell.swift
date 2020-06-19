@@ -17,7 +17,10 @@ class RequestDetailsCell: UITableViewCell {
     @IBOutlet weak private var lblTechnician: UILabel!
     @IBOutlet weak private var lblApprovalStatus: UILabel!
     @IBOutlet weak private var deniedReasonStackView: UIStackView!
+    @IBOutlet weak private var deleteReasonStackView: UIStackView!
+
     @IBOutlet weak private var lblDeniedReason: UILabel!
+    @IBOutlet weak private var lblDeleteReason: UILabel!
     @IBOutlet weak private var lblAppointmentDate: UILabel!
 
     override func awakeFromNib() {
@@ -40,5 +43,17 @@ class RequestDetailsCell: UITableViewCell {
         lblApprovalStatus.text = status.label
         lblDeniedReason.text = (model.denied_reason ?? "").firstUppercased
         deniedReasonStackView.isHidden = (status != .denied)
+
+        if let category = ModifyRequestCategory(rawValue: model.category ?? "") {
+            var deleteReason = ""
+            if category == .del_appointment {
+                deleteReason = model.approval_request_details?.appointment?.delete_reason ?? ""
+            }
+            if category == .del_service {
+                deleteReason = model.approval_request_details?.service?.first?.delete_reason ?? ""
+            }
+            lblDeleteReason.text = deleteReason
+            deleteReasonStackView.isHidden = deleteReason.isEmpty
+        }
     }
 }

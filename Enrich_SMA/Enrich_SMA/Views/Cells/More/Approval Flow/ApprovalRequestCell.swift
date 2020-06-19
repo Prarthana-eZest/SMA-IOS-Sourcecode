@@ -40,7 +40,10 @@ class ApprovalRequestCell: UITableViewCell {
     @IBOutlet weak private var lblApprovalStatus: UILabel!
     @IBOutlet weak private var actionButtonsStackView: UIStackView!
     @IBOutlet weak private var deniedReasonStackView: UIStackView!
+    @IBOutlet weak private var deleteReasonStackView: UIStackView!
+
     @IBOutlet weak private var lblDeniedReason: UILabel!
+    @IBOutlet weak private var lblDeleteReason: UILabel!
 
     weak var delegate: ApprovalCellDelegate?
 
@@ -60,6 +63,7 @@ class ApprovalRequestCell: UITableViewCell {
         lblTechnician.text = (model.approval_request_details?.appointment?.requesting_technician ?? "").capitalized
         actionButtonsStackView.isHidden = true
         deniedReasonStackView.isHidden = true
+        deleteReasonStackView.isHidden = true
         guard let status = ApprovalStatus(rawValue: model.approval_status ?? "") else {
             return
         }
@@ -67,6 +71,18 @@ class ApprovalRequestCell: UITableViewCell {
         lblDeniedReason.text = (model.denied_reason ?? "").firstUppercased
         deniedReasonStackView.isHidden = (status != .denied)
         actionButtonsStackView.isHidden = (status != .noAction)
+
+        if let category = ModifyRequestCategory(rawValue: model.category ?? "") {
+            var deleteReason = ""
+            if category == .del_appointment {
+                deleteReason = model.approval_request_details?.appointment?.delete_reason ?? ""
+            }
+            if category == .del_service {
+                deleteReason = model.approval_request_details?.service?.first?.delete_reason ?? ""
+            }
+            lblDeleteReason.text = deleteReason
+            deleteReasonStackView.isHidden = deleteReason.isEmpty
+        }
     }
 
     @IBAction func actionDeny(_ sender: UIButton) {
