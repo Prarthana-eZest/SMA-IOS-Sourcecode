@@ -200,7 +200,7 @@ enum ClientInformation {
             let note_type: String?
             let note: String?
             let note_by: String?
-            let customer_rating: String?
+            let customer_rating: AnyCodable?
             let customer_rating_comment: String?
             let updated_by: String?
             let created_at: String?

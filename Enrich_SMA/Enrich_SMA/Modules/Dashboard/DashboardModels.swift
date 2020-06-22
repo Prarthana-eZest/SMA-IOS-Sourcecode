@@ -34,25 +34,25 @@ enum Dashboard {
         }
 
         struct revenueData: Codable {
-            let entity_id: String?
-            let salon_id: String?
-            let salon_name: String?
-            let monthly_date: String?
-            let membership_target: String?
-            let membership_revenue: String?
-            let membership_sold_percentage: Double?
-            let service_target: String?
-            let service_revenue: String?
-            let service_revenue_percentage: Double?
-            let products_target: String?
-            let products_revenue: String?
-            let products_revenue_percentage: Double?
-            let sales_modified: String?
-            let total_collection: String?
-            let total_net_revenue: String?
-            let total_gross_sales: String?
-            let total_gross_revenue: String?
-            let runrate_percentage: Double?
+            let entity_id: AnyCodable?
+            let salon_id: AnyCodable?
+            let salon_name: AnyCodable?
+            let monthly_date: AnyCodable?
+            let membership_target: AnyCodable?
+            let membership_revenue: AnyCodable?
+            let membership_sold_percentage: AnyCodable?
+            let service_target: AnyCodable?
+            let service_revenue: AnyCodable?
+            let service_revenue_percentage: AnyCodable?
+            let products_target: AnyCodable?
+            let products_revenue: AnyCodable?
+            let products_revenue_percentage: AnyCodable?
+            let sales_modified: AnyCodable?
+            let total_collection: AnyCodable?
+            let total_net_revenue: AnyCodable?
+            let total_gross_sales: AnyCodable?
+            let total_gross_revenue: AnyCodable?
+            let runrate_percentage: AnyCodable?
         }
     }
     enum GetForceUpadateInfo {

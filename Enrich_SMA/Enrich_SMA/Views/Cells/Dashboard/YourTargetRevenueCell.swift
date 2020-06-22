@@ -71,38 +71,38 @@ class YourTargetRevenueCell: UITableViewCell {
 
         configureView(selectedIndex: selectedIndex)
 
-        lblRunRate.text = "Required Run Rate: \(data?.runrate_percentage?.cleanForPrice ?? "0")%"
+        lblRunRate.text = "Required Run Rate: \(data?.runrate_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"
 
         // Cash Details
-        lblTotalCash.text = "₹ \(data?.total_collection?.toDouble()?.cleanForPrice ?? "0")"
-        lblTotalSales.text = "₹ \(data?.total_gross_sales?.toDouble()?.cleanForPrice ?? "0")"
-        lblTotalRevenue.text = "₹ \(data?.total_gross_revenue?.toDouble()?.cleanForPrice ?? "0")"
-        lblSalesModified.text = "₹ \(data?.sales_modified?.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalCash.text = "₹ \(data?.total_collection?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalSales.text = "₹ \(data?.total_gross_sales?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalRevenue.text = "₹ \(data?.total_gross_revenue?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblSalesModified.text = "₹ \(data?.sales_modified?.description.toDouble()?.cleanForPrice ?? "0")"
 
-        lblSalesModified.text = "₹ \(data?.sales_modified?.toDouble()?.cleanForPrice ?? "0")"
+        lblSalesModified.text = "₹ \(data?.sales_modified?.description.toDouble()?.cleanForPrice ?? "0")"
 
         // Service
-        let servicePercent = data?.service_revenue_percentage ?? 0
-        let serviceRevenue = data?.service_revenue?.toDouble()?.cleanForPrice ?? "0"
-        let serviceTarget = data?.service_target?.toDouble()?.cleanForPrice ?? "0"
+        let servicePercent = data?.service_revenue_percentage?.description.toDouble() ?? 0
+        let serviceRevenue = data?.service_revenue?.description.toDouble()?.cleanForPrice ?? "0"
+        let serviceTarget = data?.service_target?.description.toDouble()?.cleanForPrice ?? "0"
 
         lblServiceRevenuePercent.text = "\(servicePercent.cleanForPrice)%"
         lblServiceRevenueAmount.text = "\(serviceRevenue)/\(serviceTarget)"
         serviceRevenueProgressBar.progress = Float(servicePercent)
 
         // Products
-        let productPercent = data?.products_revenue_percentage ?? 0
-        let productRevenue = data?.products_revenue?.toDouble()?.cleanForPrice ?? "0"
-        let productTarget = data?.products_target?.toDouble()?.cleanForPrice ?? "0"
+        let productPercent = data?.products_revenue_percentage?.description.toDouble() ?? 0
+        let productRevenue = data?.products_revenue?.description.toDouble()?.cleanForPrice ?? "0"
+        let productTarget = data?.products_target?.description.toDouble()?.cleanForPrice ?? "0"
 
         lblProductRevenuePercent.text = "\(productPercent.cleanForPrice)%"
         lblProductRevenueAmount.text = "\(productRevenue)/\(productTarget)"
         productRevenueProgressBar.progress = Float(productPercent)
 
         // Membership
-        let membershipPercent = data?.membership_sold_percentage ?? 0
-        let membershipRevenue = data?.membership_revenue?.toDouble()?.cleanForPrice ?? "0"
-        let membershipTarget = data?.membership_target?.toDouble()?.cleanForPrice ?? "0"
+        let membershipPercent = data?.membership_sold_percentage?.description.toDouble() ?? 0
+        let membershipRevenue = data?.membership_revenue?.description.toDouble()?.cleanForPrice ?? "0"
+        let membershipTarget = data?.membership_target?.description.toDouble()?.cleanForPrice ?? "0"
 
         lblMembershipPercent.text = "\(membershipPercent.cleanForPrice)%"
         lblMembershipAmount.text = "\(membershipRevenue)/\(membershipTarget)"
