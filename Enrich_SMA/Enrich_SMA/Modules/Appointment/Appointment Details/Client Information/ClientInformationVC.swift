@@ -448,6 +448,7 @@ extension ClientInformationVC: SingatureCellDelegate {
     }
 
     func actionSaveSignature(image: UIImage) {
+        self.showToast(alertTitle: alertTitle, message: AlertMessagesSuccess.savedCustomerSignature, seconds: toastMessageDuration)
         signatureImage = image
     }
 

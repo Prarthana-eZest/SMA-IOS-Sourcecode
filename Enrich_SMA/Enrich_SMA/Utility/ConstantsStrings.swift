@@ -119,6 +119,7 @@ enum AlertMessagesSuccess {
     static let logoutSuccessfully = "Logout successfully."
     static let eventSuccess = "Event added successfully"
     static let newAppVersion = "New version available. Update now & get new features."
+    static let savedCustomerSignature = "Signature saved successfully"
 }
 enum AlertMessagesToAsk {
     static let removeService = "Are you sure you want to remove this service?"
