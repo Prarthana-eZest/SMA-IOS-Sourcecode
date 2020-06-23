@@ -409,7 +409,9 @@ extension ClientInformationVC {
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
-        // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+        if selectedTitleCell == 1 {
+            self.showToast(alertTitle: alertTitle, message: errorMessage ?? "", seconds: toastMessageDuration)
+        }
     }
 }
 
