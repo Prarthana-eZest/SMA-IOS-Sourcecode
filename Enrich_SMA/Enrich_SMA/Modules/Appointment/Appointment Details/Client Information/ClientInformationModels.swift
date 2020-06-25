@@ -254,6 +254,8 @@ enum GenericCustomerConsulation {
         struct FormDataRequest: Codable {
             let form_id: String
             let customer_id: String
+            let booking_number: String
+            let customer_name: String
             let data: [Data]
         }
 

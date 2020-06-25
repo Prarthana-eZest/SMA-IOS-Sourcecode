@@ -40,6 +40,7 @@ enum Appointment {
             let booked_by_contact: String?
             let booked_by_id: Int?
             let booking_technician: String?
+            let booking_number: String?
             let payment_status: String?
             let landmark: String?
             let last_visit: String?
