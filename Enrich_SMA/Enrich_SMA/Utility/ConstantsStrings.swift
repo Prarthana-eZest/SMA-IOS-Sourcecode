@@ -28,6 +28,8 @@ let alertTitleSuccess = "Success!"
 let maxlimitToProductQuantity: Int64 = 5
 let country = "IN"
 //let minlimitToProductQuantity = 1
+let salonDefaultNumer = "18602663000"
+let salonCustomerCareEmail = "customercare@enrichsalon.com"
 
 let sessionExpire = "Your session is expired. Please do re-login again."
 

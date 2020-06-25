@@ -57,4 +57,31 @@ class ApplicationFactory {
         }
     }
 
+    func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
+    }
+
+    func moveToMaintenanceScreen(message: String) {
+        EZLoadingActivity.hide()
+        let vc = ServerUnderMaintenanceModuleVC.instantiate(fromAppStoryboard: .HomeLanding)
+        if let topController = ApplicationFactory.shared.topViewController() {
+            if (topController.navigationController?.topViewController as? ServerUnderMaintenanceModuleVC) != nil {
+            }
+            else {
+                topController.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+
 }

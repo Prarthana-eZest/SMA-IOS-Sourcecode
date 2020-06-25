@@ -67,6 +67,17 @@ open class NetworkLayerAlamofire {
                     return
                 }
 
+                if self.isServiceUnderMaintainance(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler("Unable to parse the response in given type")
+                    }
+                    if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
+                        ApplicationFactory.shared.moveToMaintenanceScreen(message: responseObject.message ?? "")
+                        return
+                    }
+                }
+
                 if self.isSuccessWithErrorCode(DataResponse.response) {
                     guard let data = DataResponse.data else {
                         print("Unable to parse the response in given type \(T.self)")
@@ -162,6 +173,17 @@ open class NetworkLayerAlamofire {
                     return
                 }
 
+                if self.isServiceUnderMaintainance(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler("Unable to parse the response in given type")
+                    }
+                    if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
+                        ApplicationFactory.shared.moveToMaintenanceScreen(message: responseObject.message ?? "")
+                        return
+                    }
+                }
+
                 if self.isSuccessWithErrorCode(DataResponse.response) {
                     guard let data = DataResponse.data else {
                         print("Unable to parse the response in given type \(T.self)")
@@ -253,6 +275,17 @@ open class NetworkLayerAlamofire {
                     return
                 }
 
+                if self.isServiceUnderMaintainance(DataResponse.response) {
+                    guard let data = DataResponse.data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler("Unable to parse the response in given type")
+                    }
+                    if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
+                        ApplicationFactory.shared.moveToMaintenanceScreen(message: responseObject.message ?? "")
+                        return
+                    }
+                }
+
                 if self.isSuccessWithErrorCode(DataResponse.response) {
                     guard let data = DataResponse.data else {
                         return errorHandler("Unable to parse the response in given type")
@@ -316,8 +349,15 @@ open class NetworkLayerAlamofire {
         return isSuccessCode(urlResponse.statusCode)
     }
 
-    private func isSuccessWithErrorCode(_ statusCode: Int) -> Bool {
-        return statusCode >= 400 && statusCode < 500
+    private func isServiceUnderMaintainance(_ response: URLResponse?) -> Bool {
+        guard let urlResponse = response as? HTTPURLResponse else {
+            return false
+        }
+        return isServiceUnderMaintainance(urlResponse.statusCode)
+    }
+
+    private func isServiceUnderMaintainance(_ statusCode: Int) -> Bool {
+        return statusCode == 405 || statusCode == 502 || statusCode == 503
     }
 
     private func isSuccessWithErrorCode(_ response: URLResponse?) -> Bool {
@@ -326,6 +366,10 @@ open class NetworkLayerAlamofire {
         }
         return isSuccessWithErrorCode(urlResponse.statusCode)
     }
+
+    private func isSuccessWithErrorCode(_ statusCode: Int) -> Bool {
+           return statusCode >= 400 && statusCode < 500
+       }
 
     private func createBaseUrl(endPoint: String) -> String {
 
