@@ -56,9 +56,8 @@ class ServerUnderMaintenanceModuleVC: UIViewController {
         lblWhatsApp.text = salonDefaultWhatsAppNumber
         lblEmail.text = salonCustomerCareEmail
     }
-    
-    func callWhatsUp()
-    {
+
+    func callWhatsUp() {
         let urlWhats = "whatsapp://send?phone=91\(salonDefaultWhatsAppNumber)&text=Hi Enrich"
 
                    if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
@@ -74,7 +73,7 @@ class ServerUnderMaintenanceModuleVC: UIViewController {
                            }
                        }
                    }
-        
+
     }
 
     /*
@@ -107,4 +106,3 @@ extension ServerUnderMaintenanceModuleVC: MFMailComposeViewControllerDelegate {
         controller.dismiss(animated: true)
     }
 }
-
