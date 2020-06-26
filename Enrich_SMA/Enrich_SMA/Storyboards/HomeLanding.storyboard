@@ -17,12 +17,15 @@
         <array key="FuturaPTMedium.otf">
             <string>FuturaPT-Medium</string>
         </array>
+        <array key="NotoSerif-Regular.ttf">
+            <string>NotoSerif</string>
+        </array>
     </customFonts>
     <scenes>
         <!--DashboardVC-->
         <scene sceneID="Cxo-1g-ehp">
             <objects>
-                <viewController storyboardIdentifier="DashboardVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jbz-TH-tSk" customClass="DashboardVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jbz-TH-tSk" customClass="DashboardVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vQE-3n-gXm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,7 +107,7 @@
         <!--Custom Tabbar Controller-->
         <scene sceneID="i5a-z2-p9s">
             <objects>
-                <tabBarController storyboardIdentifier="CustomTabbarController" id="mXs-eC-fYx" customClass="CustomTabbarController" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CustomTabbarController" id="mXs-eC-fYx" customClass="CustomTabbarController" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="AHl-6i-JCU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -146,7 +149,7 @@
         <!--AppointmentVC-->
         <scene sceneID="d9h-Jn-AkH">
             <objects>
-                <viewController storyboardIdentifier="AppointmentVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AAn-Ch-0Ub" customClass="AppointmentVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AAn-Ch-0Ub" customClass="AppointmentVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="paZ-ku-Pxx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -367,7 +370,7 @@
         <!--ReportsVC-->
         <scene sceneID="GbL-07-EcL">
             <objects>
-                <viewController storyboardIdentifier="ReportsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UrZ-gx-aiu" customClass="ReportsVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UrZ-gx-aiu" customClass="ReportsVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gjf-lZ-BFa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -465,7 +468,7 @@
         <!--More ModuleVC-->
         <scene sceneID="BOY-Bt-vua">
             <objects>
-                <viewController storyboardIdentifier="MoreModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49n-vR-yqD" customClass="MoreModuleVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoreModuleVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49n-vR-yqD" customClass="MoreModuleVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iyK-jf-J5m">
                         <rect key="frame" x="0.0" y="0.0" width="575" height="1329"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -821,7 +824,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notifications" id="Qn3-OG-Kgg" customClass="NotificationCell" customModule="SMA_Stage" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Notifications" id="Qn3-OG-Kgg" customClass="NotificationCell" customModule="SMA_Dev" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="419.5" width="575" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qn3-OG-Kgg" id="jwi-wG-Jr2">
@@ -980,55 +983,128 @@
             <point key="canvasLocation" x="2623.913043478261" y="-1076.1160714285713"/>
         </scene>
         <!--Server Under Maintenance ModuleVC-->
-        <scene sceneID="bcv-Gl-yLD">
+        <scene sceneID="QNP-St-haY">
             <objects>
-                <viewController storyboardIdentifier="ServerUnderMaintenanceModuleVC" id="TnV-EK-xga" customClass="ServerUnderMaintenanceModuleVC" customModule="enrich" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3j0-bU-gJU">
+                <viewController storyboardIdentifier="ServerUnderMaintenanceModuleVC" hidesBottomBarWhenPushed="YES" id="sSX-zZ-Bo0" customClass="ServerUnderMaintenanceModuleVC" customModule="enrich" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aPo-qd-xvK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ebn-vk-lYu">
-                                <rect key="frame" x="20" y="419" width="374" height="58"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AlU-to-18P">
+                                <rect key="frame" x="20" y="211" width="374" height="474"/>
                                 <subviews>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enrich app is undergoing maintenance, and will be back shortly." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5Q-6g-jhW">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="38.5"/>
-                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="15"/>
-                                        <nil key="textColor"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfh-IS-gXp">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="243"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maintainance" translatesAutoresizingMaskIntoConstraints="NO" id="ghV-HF-0tC">
+                                                <rect key="frame" x="25" y="0.0" width="324" height="243"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ghV-HF-0tC" secondAttribute="height" multiplier="4:3" id="e8C-eC-fNC"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="ghV-HF-0tC" firstAttribute="top" secondItem="Sfh-IS-gXp" secondAttribute="top" id="0gW-xB-exp"/>
+                                            <constraint firstAttribute="trailing" secondItem="ghV-HF-0tC" secondAttribute="trailing" constant="25" id="X1p-vu-q7o"/>
+                                            <constraint firstAttribute="bottom" secondItem="ghV-HF-0tC" secondAttribute="bottom" id="b9M-Zz-xCh"/>
+                                            <constraint firstItem="ghV-HF-0tC" firstAttribute="leading" secondItem="Sfh-IS-gXp" secondAttribute="leading" constant="25" id="l7U-Mi-IPW"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry! We are undergoing maintainance" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B66-Cm-Jcr">
+                                        <rect key="frame" x="61" y="263" width="252.5" height="54.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSerif" family="Noto Serif" pointSize="20"/>
+                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fp3-Yz-3TU" customClass="LabelButton" customModule="enrich" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="38.5" width="374" height="19.5"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="customercare@enrichsalon.com">
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" metaFont="system" size="16"/>
-                                                    <integer key="NSUnderline" value="1"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In the mean time you can" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPA-rv-jCj">
+                                        <rect key="frame" x="100" y="337.5" width="174.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
+                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-YQ-vOv">
+                                        <rect key="frame" x="45.5" y="381" width="283" height="93"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Lz0-LI-Lo1">
+                                                <rect key="frame" x="56.5" y="0.0" width="170" height="21"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="call us on" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="716-u3-uyJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="21"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1800 266 5300" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZK-XB-m9I" customClass="LabelButton" customModule="SMA_Dev" customModuleProvider="target">
+                                                        <rect key="frame" x="65" y="0.0" width="105" height="21"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <color key="textColor" red="0.88235294117647056" green="0.45098039215686275" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PbB-FY-lJc">
+                                                <rect key="frame" x="40" y="36" width="203" height="21"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="whatsapp us on" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ee2-JE-ljx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="21"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9339 777 777" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AY-J4-S8z" customClass="LabelButton" customModule="SMA_Dev" customModuleProvider="target">
+                                                        <rect key="frame" x="105" y="0.0" width="98" height="21"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <color key="textColor" red="0.88235294117647056" green="0.45098039215686275" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="x9F-vb-iQF">
+                                                <rect key="frame" x="0.0" y="72" width="283" height="21"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Write to us at" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsL-AJ-tBF">
+                                                        <rect key="frame" x="0.0" y="0.0" width="84.5" height="21"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cutomercare@enrichsalon.com" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="og0-NN-neH" customClass="LabelButton" customModule="SMA_Dev" customModuleProvider="target">
+                                                        <rect key="frame" x="89.5" y="0.0" width="193.5" height="21"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                        <color key="textColor" red="0.88235294117647056" green="0.45098039215686275" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Sfh-IS-gXp" firstAttribute="leading" secondItem="AlU-to-18P" secondAttribute="leading" id="IR5-Qg-65t"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sfh-IS-gXp" secondAttribute="trailing" id="aKS-p8-A55"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ebn-vk-lYu" secondAttribute="trailing" constant="20" id="7kB-Nz-cYp"/>
-                            <constraint firstItem="ebn-vk-lYu" firstAttribute="centerX" secondItem="3j0-bU-gJU" secondAttribute="centerX" id="ZCI-6M-Wce"/>
-                            <constraint firstItem="ebn-vk-lYu" firstAttribute="centerY" secondItem="3j0-bU-gJU" secondAttribute="centerY" id="a0Q-D7-lLu"/>
-                            <constraint firstItem="ebn-vk-lYu" firstAttribute="leading" secondItem="Umq-uq-zj4" secondAttribute="leading" constant="20" id="yVO-Fl-Knt"/>
+                            <constraint firstItem="Zjy-Mk-GBX" firstAttribute="trailing" secondItem="AlU-to-18P" secondAttribute="trailing" constant="20" id="90U-uL-AKH"/>
+                            <constraint firstItem="AlU-to-18P" firstAttribute="centerY" secondItem="aPo-qd-xvK" secondAttribute="centerY" id="i9h-YJ-qgx"/>
+                            <constraint firstItem="AlU-to-18P" firstAttribute="centerX" secondItem="aPo-qd-xvK" secondAttribute="centerX" id="wLb-z0-urI"/>
+                            <constraint firstItem="AlU-to-18P" firstAttribute="leading" secondItem="Zjy-Mk-GBX" secondAttribute="leading" constant="20" id="xwe-86-jBL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Umq-uq-zj4"/>
+                        <viewLayoutGuide key="safeArea" id="Zjy-Mk-GBX"/>
                     </view>
                     <connections>
-                        <outlet property="labelEmail" destination="Fp3-Yz-3TU" id="APJ-0n-MFy"/>
-                        <outlet property="labelMsg" destination="G5Q-6g-jhW" id="Qs5-U6-5nW"/>
+                        <outlet property="lblCallUs" destination="1ZK-XB-m9I" id="nQ4-4v-zJJ"/>
+                        <outlet property="lblEmail" destination="og0-NN-neH" id="T5S-CV-osN"/>
+                        <outlet property="lblHeaderText" destination="B66-Cm-Jcr" id="MTl-AD-eTo"/>
+                        <outlet property="lblWhatsApp" destination="0AY-J4-S8z" id="9Lu-CR-w0h"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UR5-Un-KQf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QMz-gK-THA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3151" y="-474"/>
+            <point key="canvasLocation" x="3689.8550724637685" y="-1278.3482142857142"/>
         </scene>
     </scenes>
     <resources>
@@ -1037,6 +1113,7 @@
         <image name="approvalRequest" width="27" height="28"/>
         <image name="homeTab" width="28" height="28"/>
         <image name="location" width="11" height="15"/>
+        <image name="maintainance" width="286" height="285"/>
         <image name="moreTab" width="21" height="20"/>
         <image name="myCustomerMenu" width="25" height="25"/>
         <image name="myProfileMenu" width="25" height="26"/>

@@ -36,7 +36,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     @IBOutlet weak private var btnSubmitForm: UIButton!
 
     var customerId: Int?
-    
+
     var appointmentDetails: Appointment.GetAppointnents.Data?
 
     var sections = [SectionConfiguration]()
@@ -300,9 +300,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
             let bookingNo = appointmentDetails?.booking_number ?? ""
             let customerName = appointmentDetails?.services?.first?.booked_for ?? ""
-            
+
             let formData = GenericCustomerConsulation.SubmitFormData.FormDataRequest(form_id: id, customer_id: "\(customerId)", booking_number: bookingNo, customer_name: customerName, data: fields)
-            
+
             let request = GenericCustomerConsulation.SubmitFormData.Request(formData: formData, is_custom: true)
             interactor?.doPostGenericFormData(request: request, method: .post)
         }
