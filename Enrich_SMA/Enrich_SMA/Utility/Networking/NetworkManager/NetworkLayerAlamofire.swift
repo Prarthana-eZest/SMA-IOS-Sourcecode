@@ -346,7 +346,7 @@ open class NetworkLayerAlamofire {
     }
 
     private func isServiceUnderMaintainance(_ statusCode: Int) -> Bool {
-        return statusCode == 405 || statusCode == 502 || statusCode == 503
+        return statusCode == 405 || statusCode == 503
     }
 
     private func isSuccessWithErrorCode(_ response: URLResponse?) -> Bool {
