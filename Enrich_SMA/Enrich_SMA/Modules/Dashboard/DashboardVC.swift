@@ -188,8 +188,6 @@ extension DashboardVC {
                 checkForSOSNotification()
                 FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
                 configureSections()
-                ApplicationFactory.shared.moveToMaintenanceScreen(message: "")
-
             }
         }
         else if let model = viewModel as? Dashboard.GetDashboardData.Response {
