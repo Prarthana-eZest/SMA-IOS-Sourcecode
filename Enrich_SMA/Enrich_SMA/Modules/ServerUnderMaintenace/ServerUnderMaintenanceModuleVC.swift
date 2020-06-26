@@ -39,9 +39,41 @@ class ServerUnderMaintenanceModuleVC: UIViewController {
 
     }
     func setLabelData() {
+        lblCallUs.onClick = {
+                   // TODO
+            salonDefaultNumer.makeACall()
+
+               }
+        lblWhatsApp.onClick = {
+            // TODO
+            self.callWhatsUp()
+        }
+        lblEmail.onClick = {
+            // TODO
+            self.sendEmail()
+        }
         lblCallUs.text = salonDefaultNumer
         lblWhatsApp.text = salonDefaultWhatsAppNumber
         lblEmail.text = salonCustomerCareEmail
+    }
+
+    func callWhatsUp() {
+        let urlWhats = "whatsapp://send?text=Hi Enrich,\n"
+
+                   if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+                       if let whatsappURL = NSURL(string: urlString) {
+                           if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                               UIApplication.shared.open(whatsappURL as URL, options: [:], completionHandler: { (_) in
+
+                               })
+
+                           }
+                           else {
+                               salonDefaultWhatsAppNumber.makeACall()
+                           }
+                       }
+                   }
+
     }
 
     /*
@@ -55,22 +87,22 @@ class ServerUnderMaintenanceModuleVC: UIViewController {
      */
 
 }
-//extension ServerUnderMaintenanceModuleVC: MFMailComposeViewControllerDelegate {
-//    func sendEmail() {
-//        if MFMailComposeViewController.canSendMail() {
-//            let mail = MFMailComposeViewController()
-//            mail.mailComposeDelegate = self
-//            mail.setToRecipients([salonCustomerCareEmail])
-//            mail.setMessageBody("<p>Hi Enrich,</p>", isHTML: true)
-//
-//            present(mail, animated: true)
-//        }
-//        else {
-//            // show failure alert
-//        }
-//    }
-//
-//    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-//        controller.dismiss(animated: true)
-//    }
-//}
+extension ServerUnderMaintenanceModuleVC: MFMailComposeViewControllerDelegate {
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([salonCustomerCareEmail])
+            mail.setMessageBody("<p>Hi Enrich,</p>", isHTML: true)
+
+            present(mail, animated: true)
+        }
+        else {
+            // show failure alert
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}
