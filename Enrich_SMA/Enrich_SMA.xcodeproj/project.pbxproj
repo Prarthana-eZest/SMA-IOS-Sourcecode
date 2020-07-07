@@ -231,6 +231,7 @@
 		F838D9072437058300FDA998 /* SOSAlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D9012437058300FDA998 /* SOSAlertModels.swift */; };
 		F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D9032437058300FDA998 /* SOSAlertInteractor.swift */; };
 		F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D90A243705C000FDA998 /* SOSAlertVC.swift */; };
+		F840D18E24B4BAE50065F795 /* AppVersionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840D18D24B4BAE50065F795 /* AppVersionCell.swift */; };
 		F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C4361245AB4270031213F /* DenyReasonVC.swift */; };
 		F84DBEED2462F6DC0036DF42 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */; };
 		F84DBEEE2462F6DC0036DF42 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */; };
@@ -303,7 +304,7 @@
 		C4E64D78277E5B824569BA15 /* Pods_Enrich_SMA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Enrich_SMA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB808E85E64631D3941A1E58 /* Pods-Enrich_SMATests.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMATests.stage.xcconfig"; path = "Target Support Files/Pods-Enrich_SMATests/Pods-Enrich_SMATests.stage.xcconfig"; sourceTree = "<group>"; };
 		CCD8EF698F29EFAB52C7B140 /* Pods-Enrich_SMA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMA.debug.xcconfig"; path = "Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA.debug.xcconfig"; sourceTree = "<group>"; };
-		E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMA_Stage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3033FDE235EDF6400E0BF0A /* Enrich SMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enrich SMA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3033FE1235EDF6400E0BF0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3033FE6235EDF6400E0BF0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3033FE9235EDF6500E0BF0A /* Enrich_SMA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Enrich_SMA.xcdatamodel; sourceTree = "<group>"; };
@@ -534,6 +535,7 @@
 		F838D9012437058300FDA998 /* SOSAlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertModels.swift; sourceTree = "<group>"; };
 		F838D9032437058300FDA998 /* SOSAlertInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertInteractor.swift; sourceTree = "<group>"; };
 		F838D90A243705C000FDA998 /* SOSAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSAlertVC.swift; sourceTree = "<group>"; };
+		F840D18D24B4BAE50065F795 /* AppVersionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionCell.swift; sourceTree = "<group>"; };
 		F84C4361245AB4270031213F /* DenyReasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyReasonVC.swift; sourceTree = "<group>"; };
 		F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
@@ -645,7 +647,7 @@
 		E3033FDF235EDF6400E0BF0A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */,
+				E3033FDE235EDF6400E0BF0A /* Enrich SMA.app */,
 				E3033FF5235EDF6900E0BF0A /* Enrich_SMATests.xctest */,
 				E3034000235EDF6900E0BF0A /* Enrich_SMAUITests.xctest */,
 			);
@@ -727,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				E303402E235EE11B00E0BF0A /* NotificationCell.swift */,
+				F840D18D24B4BAE50065F795 /* AppVersionCell.swift */,
 				E3034024235EE11B00E0BF0A /* My Profile */,
 				E3034030235EE11B00E0BF0A /* Notification */,
 				E3034033235EE11B00E0BF0A /* Employee */,
@@ -1636,7 +1639,7 @@
 			);
 			name = Enrich_SMA;
 			productName = Enrich_SMA;
-			productReference = E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */;
+			productReference = E3033FDE235EDF6400E0BF0A /* Enrich SMA.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E3033FF4235EDF6900E0BF0A /* Enrich_SMATests */ = {
@@ -2180,6 +2183,7 @@
 				E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */,
 				F8784FCD244D722700104BE8 /* ApprovalRequestListVC.swift in Sources */,
 				E30342B4235EE15800E0BF0A /* JSONANYHandling.swift in Sources */,
+				F840D18E24B4BAE50065F795 /* AppVersionCell.swift in Sources */,
 				E30341E1235EE14000E0BF0A /* MyProfileWorker.swift in Sources */,
 				E30341F2235EE14000E0BF0A /* EmployeeListingModels.swift in Sources */,
 				E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */,
@@ -2386,9 +2390,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = "Enrich SMA";
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2411,9 +2415,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EnrichSalon.SMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = "Enrich SMA";
 				PROVISIONING_PROFILE_SPECIFIER = "Enrich Salon SMA";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2585,9 +2589,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = "Enrich SMA";
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
