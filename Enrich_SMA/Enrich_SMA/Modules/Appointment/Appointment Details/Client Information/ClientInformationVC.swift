@@ -527,7 +527,8 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                     return UITableViewCell()
                 }
                 cell.delegate = self
-                let genderType: Gender = gender == 1 ? .male : gender == 2 ? .female : .otherMale
+                let inclined: Gender = appointmentDetails?.inclined_other_gender?.lowercased() == "female" ? .otherFemale : .otherMale
+                let genderType: Gender = gender == 1 ? .male : gender == 2 ? .female : inclined
                 cell.configureCell(isEditable: false, selectedGender: genderType)
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
                 cell.selectionStyle = .none

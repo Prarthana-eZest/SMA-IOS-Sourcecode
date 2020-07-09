@@ -62,6 +62,7 @@ enum Appointment {
             let membership: String?
             let gender_label: String?
             let gender: Int?
+            let inclined_other_gender: String?
             let profile_picture: String?
             let is_customer_rated: Bool?
             let salon_name: String?
