@@ -13,9 +13,7 @@
 import UIKit
 
 protocol MyProfileBusinessLogic {
-    func doGetMyProfileData(employeeId: Int?, accessToken: String, method: HTTPMethod)
-    func doGetRosterData(request: MyProfile.GetRosterDetails.Request, method: HTTPMethod)
-    func doGetServiceListData(accessToken: String, method: HTTPMethod)
+    func doGetMyProfileData(employeeId: String?)
 }
 
 protocol MyProfileDataStore {
@@ -29,22 +27,9 @@ class MyProfileInteractor: MyProfileBusinessLogic, MyProfileDataStore {
     //var name: String = ""
 
     // MARK: Do something
-    func doGetMyProfileData(employeeId: Int?, accessToken: String, method: HTTPMethod) {
+    func doGetMyProfileData(employeeId: String?) {
         worker = MyProfileWorker()
         worker?.presenter = self.presenter
-        worker?.getRequestForUserProfile(employeeId: employeeId, accessToken: accessToken, method: method)
+        worker?.getRequestForUserProfile(employeeId: employeeId)
     }
-
-    func doGetRosterData(request: MyProfile.GetRosterDetails.Request, method: HTTPMethod) {
-        worker = MyProfileWorker()
-        worker?.presenter = self.presenter
-        worker?.postRequestForRosterDetails(request: request, method: method)
-    }
-
-    func doGetServiceListData(accessToken: String, method: HTTPMethod) {
-        worker = MyProfileWorker()
-        worker?.presenter = self.presenter
-        worker?.getRequestForServiceList(accessToken: accessToken, method: method)
-    }
-
 }

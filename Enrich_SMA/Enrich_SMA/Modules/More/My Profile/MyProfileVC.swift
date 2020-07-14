@@ -39,11 +39,7 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
 
     var profileHeader: MyProfileHeaderModel?
 
-    var employeeId: Int?
-    var employeeCode: String?
-
-    var service = [String]()
-    var rosterList = [String]()
+    var employeeId: String?
 
     // MARK: Object lifecycle
 
@@ -109,29 +105,8 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
 
     func getProfileData() {
         EZLoadingActivity.show("Loading...", disableUI: true)
-        interactor?.doGetMyProfileData(employeeId: employeeId, accessToken: GenericClass.sharedInstance.isuserLoggedIn().accessToken, method: HTTPMethod.get)
+        interactor?.doGetMyProfileData(employeeId: employeeId)
 
-    }
-
-    func getServiceList() {
-        EZLoadingActivity.show("Loading...", disableUI: true)
-        interactor?.doGetServiceListData(accessToken: GenericClass.sharedInstance.isuserLoggedIn().accessToken, method: .get)
-    }
-
-    func getRosterDetails() {
-
-        if let startDate = Date().startOfWeek, let endDate = Date().endOfWeek {
-
-            if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-
-                EZLoadingActivity.show("Loading...", disableUI: true)
-
-                let id = (profileType == .selfUser ? (userData.employee_id ?? "0") : "\(employeeId ?? 0)")
-
-                let request = MyProfile.GetRosterDetails.Request(salon_code: userData.base_salon_code ?? "", fromDate: startDate.dayYearMonthDate, toDate: endDate.dayYearMonthDate, employee_id: id)
-                interactor?.doGetRosterData(request: request, method: .post)
-            }
-        }
     }
 
     func displaySuccess<T>(viewModel: T) where T: Decodable {
@@ -140,31 +115,6 @@ class MyProfileVC: UIViewController, MyProfileDisplayLogic {
 
         if let model = viewModel as? MyProfile.GetUserProfile.Response, model.status == true {
             modelMapping(model: model)
-            getRosterDetails()
-        }
-        else if let model = viewModel as? MyProfile.GetServiceList.Response, model.status == true {
-            self.service.removeAll()
-            self.service.append(contentsOf: model.data?.service_list ?? [])
-        }
-        else if let model = viewModel as? MyProfile.GetRosterDetails.Response, model.status == true {
-            self.rosterList.removeAll()
-
-            model.data?.forEach {
-
-                let shift: String
-
-                if let dateString = $0.date,
-                    let date = dateString.getDateFromString() {
-                    if let isLeave = $0.is_leave, isLeave == 1 {
-                        shift = "\(date.dayMonthYear)  |  \($0.leave_type ?? "")"
-                    }
-                    else {
-                        shift = "\(date.dayMonthYear)  |  \($0.shift_name ?? "-")  |  \($0.start_time ?? "-") - \($0.end_time ?? "-")"
-                    }
-
-                    self.rosterList.append(shift)
-                }
-            }
         }
     }
 
@@ -181,21 +131,8 @@ extension MyProfileVC: ProfileCellDelegate {
 
         let vc = ListingVC.instantiate(fromAppStoryboard: .More)
         self.view.alpha = screenPopUpAlpha
-
-        switch type {
-
-        case .services:
-            vc.listing = service
-            vc.listingType = .services
-
-        case .shifts:
-            vc.listing = rosterList
-            vc.listingType = .shifts
-
-        default:
-            break
-        }
-
+        vc.employeeId = employeeId
+        vc.listingType = type
         UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
         vc.viewDismissBlock = { [unowned self] result in
             // Do something
@@ -300,16 +237,12 @@ extension MyProfileVC {
 
         if let data = model.data {
 
-            self.service.removeAll()
-            model.data?.service?.forEach {
-                self.service.append($0.service_name ?? "")
-            }
-
             if profileType == .selfUser {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
                 userDefaults.synchronize()
             }
+            employeeId = data.employee_id
 
             let header = MyProfileHeaderModel(profilePictureURL: data.profile_pic ?? "",
                                               userName: "\(data.firstname ?? "") \(data.lastname ?? "")",

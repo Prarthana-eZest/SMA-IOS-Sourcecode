@@ -16,7 +16,7 @@ class MyProfileWorker {
     let networkLayer = NetworkLayerAlamofire() // Uncomment this in case do request using Alamofire for client request
     var presenter: MyProfilePresentationLogic?
 
-    func getRequestForUserProfile(employeeId: Int?, accessToken: String, method: HTTPMethod) {
+    func getRequestForUserProfile(employeeId: String?) {
 
         let errorHandler: (String) -> Void = { (error) in
             print(error)
@@ -32,39 +32,8 @@ class MyProfileWorker {
             url.append("&employee_id=\(id)")
         }
 
-        self.networkLayer.get(urlString: url, headers: ["Authorization": "Bearer \(accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
+        self.networkLayer.get(urlString: url, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
 
     }
 
-    func postRequestForRosterDetails(request: MyProfile.GetRosterDetails.Request, method: HTTPMethod) {
-
-        let errorHandler: (String) -> Void = { (error) in
-            print(error)
-            self.presenter?.presentGetProfileError(responseError: error)
-        }
-        let successHandler: (MyProfile.GetRosterDetails.Response) -> Void = { (response) in
-            print(response)
-            self.presenter?.presentGetRosterDetailsSuccess(response: response)
-        }
-
-        self.networkLayer.post(urlString: ConstantAPINames.getEmployeeList.rawValue, body: request,
-                               headers: ["X-Request-From": "tma"],
-                               successHandler: successHandler, errorHandler: errorHandler, method: .post)
-
-    }
-
-    func getRequestForServiceList(accessToken: String, method: HTTPMethod) {
-
-        let errorHandler: (String) -> Void = { (error) in
-            print(error)
-            self.presenter?.presentGetProfileError(responseError: error)
-        }
-        let successHandler: (MyProfile.GetServiceList.Response) -> Void = { (response) in
-            print(response)
-            self.presenter?.presentGetProfileSuccess(response: response)
-        }
-
-        self.networkLayer.get(urlString: ConstantAPINames.getServiceList.rawValue, headers: ["Authorization": "Bearer \(accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
-
-    }
 }

@@ -9,9 +9,8 @@
 import UIKit
 
 class AppVersionCell: UITableViewCell {
-    
+
     @IBOutlet weak private var lblVersionNo: UILabel!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

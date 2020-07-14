@@ -6,7 +6,7 @@
 import UIKit
 
 enum ProfileCellIdentifiers: String {
-    
+
     // Dashboard
     case punchIn = "Punch In"
     case punchOut = "Punch Out"
@@ -30,15 +30,15 @@ protocol MoreModuleDisplayLogic: class {
 }
 
 class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
-    
+
     var interactor: MoreModuleBusinessLogic?
-    
+
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var lblPunchInTime: UILabel!
     @IBOutlet weak private var lblPunchOutTime: UILabel!
-    
+
     var userPunchedIn = false
-    
+
     var profileDashboardIdentifiers: [ProfileCellIdentifiers] = [.punchIn,
                                                                  .myProfile,
                                                                  .employees,
@@ -48,20 +48,20 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
                                                                  .notifications,
                                                                  .logout,
                                                                  .version]
-    
+
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
+
     private func setup() {
         let viewController = self
         let interactor = MoreModuleInteractor()
@@ -69,20 +69,20 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController
-        
+
     }
-    
+
     // MARK: View lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //self.doSomething()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
-        
+
         LocationManager.sharedInstance.delegate = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
@@ -92,7 +92,7 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
         getCheckInStatus()
         getCheckInDetails()
     }
-    
+
     func checkForSOSNotification() {
         SOSFactory.shared.getSOSNotification { (SOSAlert) in
             let vc = SOSAlertVC.instantiate(fromAppStoryboard: .Appointment)
@@ -108,27 +108,27 @@ class MoreModuleVC: UIViewController, MoreModuleDisplayLogic {
 }
 
 extension MoreModuleVC: LocationManagerDelegate {
-    
+
     func locationDidFound(_ latitude: Double, longitude: Double) {
         print("Location Latitude:\(latitude) Longitude:\(longitude)")
     }
-    
+
 }
 
 extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return profileDashboardIdentifiers.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let identifier = profileDashboardIdentifiers[indexPath.row]
-        
+
         var cell = UITableViewCell()
         if identifier == .notifications {
             guard let notificationCell: NotificationCell = tableView.dequeueReusableCell(withIdentifier: ProfileCellIdentifiers.notifications.rawValue, for: indexPath) as? NotificationCell else {
@@ -154,7 +154,7 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             }
             versionCell.configureCell(version: Bundle.main.versionNumber)
             cell = versionCell
-            
+
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
         }
@@ -163,28 +163,28 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
         }
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let identifier = profileDashboardIdentifiers[indexPath.row]
         print("Selection: \(identifier.rawValue)")
-        
+
         switch identifier {
-            
+
         case .myProfile:
             let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
             vc.profileType = .selfUser
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .notifications :
             let vc = NotificationsVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .logout:
             let alertController = UIAlertController(title: alertTitle, message: AlertMessagesToAsk.askToLogout, preferredStyle: UIAlertController.Style.alert)
-            
+
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.no, style: UIAlertAction.Style.cancel) { _ -> Void in
                 // Do Nothing
             })
@@ -192,25 +192,25 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
                 UserFactory.shared.signOutUserFromApp()
             })
             self.present(alertController, animated: true, completion: nil)
-            
+
         case .employees:
             let vc = EmployeeListingVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .inventory, .stores, .audits, .punchOut, .version:
             break
-            
+
         case .approval:
             let vc = ApprovalRequestListVC.instantiate(fromAppStoryboard: .More)
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .salonFeedback:
             let vc = AllReviewsVC.instantiate(fromAppStoryboard: .Appointment)
             vc.ratingType = .salon
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         case .punchIn:
-            
+
             let message = userPunchedIn ? AlertMessagesToAsk.askToPunchOut : AlertMessagesToAsk.askToPunchIn
             let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: AlertButtonTitle.yes, style: UIAlertAction.Style.cancel) { _ -> Void in
@@ -224,16 +224,16 @@ extension MoreModuleVC: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
-    
+
 }
 
 // MARK: Call Webservice
 extension MoreModuleVC {
-    
+
     func getCheckInDetails() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
@@ -241,7 +241,7 @@ extension MoreModuleVC {
             interactor?.doPostCheckInOutDetailsRequest(request: request, method: .post)
         }
     }
-    
+
     func getCheckInStatus() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
@@ -249,14 +249,14 @@ extension MoreModuleVC {
             interactor?.doPostGetStatusRequest(request: request, method: .post)
         }
     }
-    
+
     func markCheckInOut() {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
-            
+
             EZLoadingActivity.show("Loading...", disableUI: true)
             let lat = "\(LocationManager.sharedInstance.location().latitude)" // "22.997"
             let long = "\(LocationManager.sharedInstance.location().longitude)" // "72.608"
-            
+
             EZLoadingActivity.show("Loading...", disableUI: true)
             let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "",
                                                             emp_name: userData.username ?? "",
@@ -265,11 +265,11 @@ extension MoreModuleVC {
                                                             checkin: userPunchedIn ? "0" : "1",
                                                             employee_latitude: lat,
                                                             employee_longitude: long, is_custom: true)
-            
+
             interactor?.doPostMarkCheckInOutRequest(request: request, method: .post)
         }
     }
-    
+
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
         if let model = viewModel as? MoreModule.GetCheckInStatus.Response,
@@ -278,7 +278,7 @@ extension MoreModuleVC {
             self.tableView.reloadData()
         }
         else if let model = viewModel as? MoreModule.MarkCheckInOut.Response {
-            
+
             if model.status == true {
                 userPunchedIn = !userPunchedIn
                 self.tableView.reloadData()
@@ -298,7 +298,7 @@ extension MoreModuleVC {
                 else {
                     lblPunchInTime.text = "-"
                 }
-                
+
                 if let checkOut = model.data?.last(where: {$0.checkin == "0"}),
                     let dateTime = checkOut.checkinout_time,
                     let time = dateTime.getCheckInTime(dateString: dateTime, withFormat: "hh:mm aaa") {
@@ -316,8 +316,8 @@ extension MoreModuleVC {
             self.showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "")
         }
     }
-    
+
     func displaySuccess<T: Decodable>(responseSuccess: [T]) {
     }
-    
+
 }

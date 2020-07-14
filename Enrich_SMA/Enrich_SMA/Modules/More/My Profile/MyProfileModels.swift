@@ -53,7 +53,6 @@ enum MyProfile {
             let work_number: String?
             let status: String?
             let customer_count: String?
-            let service: [Service]?
         }
 
         struct Address: Codable {
@@ -62,12 +61,6 @@ enum MyProfile {
             let city: String?
             let state: String?
             let country: String?
-        }
-
-        struct Service: Codable {
-            let service_id: String?
-            let service_name: String?
-            let service_sku: String?
         }
     }
 
@@ -85,7 +78,28 @@ enum MyProfile {
 
         struct Data: Codable {
             var service_count: Int?
-            var service_list: [String]?
+            var service_list: [Service_list]?
+        }
+
+        struct Service_list: Codable {
+            let entity_id: String?
+            let type_id: String?
+            let name: String?
+            let price: Double?
+            let service_id: String?
+            let service_code: String?
+            let store_id: Int64?
+            let min_price: Double?
+            let max_price: Double?
+            let service_category: String?
+            let service_time: String?
+            let parent_item_id: String?
+            let parent_name: String?
+            let parent_sku: String?
+            let product_type: String?
+            let is_consultation_required: String?
+            let bundle_parent_id: String?
+            let configurable_parent_id: String?
         }
     }
 

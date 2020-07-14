@@ -219,7 +219,6 @@
 		E3DB6857238CEE4A00CC569D /* TermsAndConditionsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB6853238CEE4900CC569D /* TermsAndConditionsModels.swift */; };
 		E3DB6858238CEE4A00CC569D /* TermsAndConditionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB6854238CEE4900CC569D /* TermsAndConditionsPresenter.swift */; };
 		E3DB685B238CEF7C00CC569D /* GenericClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685A238CEF7C00CC569D /* GenericClass.swift */; };
-		E3DB685E238CFD3A00CC569D /* ListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685D238CFD3A00CC569D /* ListingVC.swift */; };
 		E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685F238CFE8600CC569D /* ListingCell.swift */; };
 		E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */; };
 		E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */; };
@@ -235,6 +234,11 @@
 		F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C4361245AB4270031213F /* DenyReasonVC.swift */; };
 		F84DBEED2462F6DC0036DF42 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */; };
 		F84DBEEE2462F6DC0036DF42 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */; };
+		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
+		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
+		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
+		F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66D24BDA50E001D9B0F /* ListingVC.swift */; };
+		F85EE67424BDA50E001D9B0F /* ListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66E24BDA50E001D9B0F /* ListingInteractor.swift */; };
 		F8784FBF244D720900104BE8 /* ApprovalRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */; };
 		F8784FC0244D720900104BE8 /* ApprovalRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */; };
 		F8784FC8244D722700104BE8 /* ApprovalRequestListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */; };
@@ -520,7 +524,6 @@
 		E3DB6853238CEE4900CC569D /* TermsAndConditionsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsModels.swift; sourceTree = "<group>"; };
 		E3DB6854238CEE4900CC569D /* TermsAndConditionsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsPresenter.swift; sourceTree = "<group>"; };
 		E3DB685A238CEF7C00CC569D /* GenericClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericClass.swift; sourceTree = "<group>"; };
-		E3DB685D238CFD3A00CC569D /* ListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingVC.swift; sourceTree = "<group>"; };
 		E3DB685F238CFE8600CC569D /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceListingCell.xib; sourceTree = "<group>"; };
 		E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListingCell.swift; sourceTree = "<group>"; };
@@ -539,6 +542,11 @@
 		F84C4361245AB4270031213F /* DenyReasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyReasonVC.swift; sourceTree = "<group>"; };
 		F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
+		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
+		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
+		F85EE66D24BDA50E001D9B0F /* ListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingVC.swift; sourceTree = "<group>"; };
+		F85EE66E24BDA50E001D9B0F /* ListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingInteractor.swift; sourceTree = "<group>"; };
 		F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestCell.swift; sourceTree = "<group>"; };
 		F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApprovalRequestCell.xib; sourceTree = "<group>"; };
 		F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestListWorker.swift; sourceTree = "<group>"; };
@@ -1472,7 +1480,11 @@
 		E3DB685C238CFCFB00CC569D /* Listing */ = {
 			isa = PBXGroup;
 			children = (
-				E3DB685D238CFD3A00CC569D /* ListingVC.swift */,
+				F85EE66D24BDA50E001D9B0F /* ListingVC.swift */,
+				F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */,
+				F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */,
+				F85EE66C24BDA50E001D9B0F /* ListingModels.swift */,
+				F85EE66E24BDA50E001D9B0F /* ListingInteractor.swift */,
 			);
 			path = Listing;
 			sourceTree = "<group>";
@@ -2009,6 +2021,7 @@
 				E30341F4235EE14000E0BF0A /* EmployeeListingInteractor.swift in Sources */,
 				F8CE55ED24616C3000FF9487 /* RequestCategoryCell.swift in Sources */,
 				E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */,
+				F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */,
 				F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
 				E30601CE237EAA7A00988EEC /* AppointmentDetailsWorker.swift in Sources */,
@@ -2106,6 +2119,7 @@
 				E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */,
 				E30342B5235EE15800E0BF0A /* Configurations.swift in Sources */,
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
+				F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */,
 				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
 				E3CEA5C223CC624700DD213F /* UserRatingCell.swift in Sources */,
 				F8B8729B24629FD10031DC97 /* RequestDetailsPresenter.swift in Sources */,
@@ -2121,6 +2135,7 @@
 				E30342CA235EE15800E0BF0A /* ExtensionUITableView.swift in Sources */,
 				E30601D2237EAA7A00988EEC /* ClientInformationPresenter.swift in Sources */,
 				E3CEA5BC23CC57B200DD213F /* AllReviewsModuleModels.swift in Sources */,
+				F85EE67424BDA50E001D9B0F /* ListingInteractor.swift in Sources */,
 				E30342CB235EE15800E0BF0A /* ExtensionString.swift in Sources */,
 				E3034117235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.swift in Sources */,
 				E3DB6856238CEE4A00CC569D /* TermsAndConditionsWorker.swift in Sources */,
@@ -2178,7 +2193,6 @@
 				E30601CC237EAA7A00988EEC /* AppointmentDetailsModels.swift in Sources */,
 				E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */,
 				E30342C0235EE15800E0BF0A /* KeyboardAnimation.swift in Sources */,
-				E3DB685E238CFD3A00CC569D /* ListingVC.swift in Sources */,
 				F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */,
 				E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */,
 				F8784FCD244D722700104BE8 /* ApprovalRequestListVC.swift in Sources */,
@@ -2191,8 +2205,10 @@
 				F8A9733B24A4D16900E9C5CA /* ServerUnderMaintenanceModuleVC.swift in Sources */,
 				F8DACADD24486768006AB417 /* WebViewVC.swift in Sources */,
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
+				F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */,
 				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
+				F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,
 				E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */,

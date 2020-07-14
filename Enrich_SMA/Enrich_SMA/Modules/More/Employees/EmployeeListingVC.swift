@@ -221,7 +221,9 @@ extension EmployeeListingVC: UITableViewDelegate, UITableViewDataSource {
         print("Selection")
         let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
         vc.profileType = .otherUser
-        vc.employeeId = employeeList[indexPath.row].employeeId
+        if let id = employeeList[indexPath.row].employeeId {
+            vc.employeeId = "\(id)"
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
