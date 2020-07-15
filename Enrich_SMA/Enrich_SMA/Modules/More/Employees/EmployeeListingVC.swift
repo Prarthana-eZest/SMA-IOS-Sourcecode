@@ -24,6 +24,7 @@ enum AvailableStatusColor: String {
     case notCheckedIn = "not_checked_in"
     case leave = "leave"
     case checkedIn = "checked_in"
+    case checkedOut = "checked_out"
     case unknown = "unknown"
 
     var status: String {
@@ -35,8 +36,8 @@ enum AvailableStatusColor: String {
             return "Checked In"
         case .delayed:
             return "Delayed"
-        case .notCheckedIn:
-            return "Not Checked In"
+        case .notCheckedIn, .checkedOut:
+            return "Checked Out"
         case .leave:
             return "On Leave"
 
@@ -53,7 +54,7 @@ enum AvailableStatusColor: String {
             return UIColor(red: 70 / 255, green: 196 / 255, blue: 91 / 255, alpha: 1)
         case .delayed:
             return UIColor(red: 238 / 255, green: 91 / 255, blue: 70 / 255, alpha: 1)
-        case .notCheckedIn:
+        case .notCheckedIn, .checkedOut:
             return UIColor(red: 83 / 255, green: 83 / 255, blue: 83 / 255, alpha: 1)
         case .leave:
             return UIColor(red: 83 / 255, green: 83 / 255, blue: 83 / 255, alpha: 1)
