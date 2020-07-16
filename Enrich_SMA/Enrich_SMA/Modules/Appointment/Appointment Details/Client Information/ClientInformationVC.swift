@@ -332,6 +332,9 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
         }
         btnSubmitForm.isEnabled = !consulationData.isEmpty
         tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            self.tableView.reloadData()
+        }
     }
 }
 
