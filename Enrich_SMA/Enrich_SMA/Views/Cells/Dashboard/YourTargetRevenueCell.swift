@@ -39,10 +39,11 @@ class YourTargetRevenueCell: UITableViewCell {
     @IBOutlet weak private var monthlySelectionView: UIView!
 
     // Amount
-    @IBOutlet weak private var lblTotalCash: UILabel!
-    @IBOutlet weak private var lblTotalSales: UILabel!
-    @IBOutlet weak private var lblTotalRevenue: UILabel!
-    @IBOutlet weak private var lblSalesModified: UILabel!
+    @IBOutlet weak private var lblTotalCollection: UILabel!
+    @IBOutlet weak private var lblTotalGrossSales: UILabel!
+    @IBOutlet weak private var lblTotalNetRevenue: UILabel!
+    @IBOutlet weak private var lblTotalGrossRevenue: UILabel!
+    @IBOutlet weak private var lblNetSalesModified: UILabel!
 
     @IBOutlet weak private var lblRunRate: UILabel!
 
@@ -74,12 +75,11 @@ class YourTargetRevenueCell: UITableViewCell {
         lblRunRate.text = "Required Run Rate: \(data?.runrate_percentage?.description.toDouble()?.cleanForPrice ?? "0")%"
 
         // Cash Details
-        lblTotalCash.text = "₹ \(data?.total_collection?.description.toDouble()?.cleanForPrice ?? "0")"
-        lblTotalSales.text = "₹ \(data?.total_gross_sales?.description.toDouble()?.cleanForPrice ?? "0")"
-        lblTotalRevenue.text = "₹ \(data?.total_gross_revenue?.description.toDouble()?.cleanForPrice ?? "0")"
-        lblSalesModified.text = "₹ \(data?.sales_modified?.description.toDouble()?.cleanForPrice ?? "0")"
-
-        lblSalesModified.text = "₹ \(data?.sales_modified?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalCollection.text = "₹ \(data?.total_collection?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalGrossSales.text = "₹ \(data?.total_gross_sales?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalNetRevenue.text = "₹ \(data?.total_net_revenue?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblTotalGrossRevenue.text = "₹ \(data?.total_gross_revenue?.description.toDouble()?.cleanForPrice ?? "0")"
+        lblNetSalesModified.text = "₹ \(data?.sales_modified?.description.toDouble()?.cleanForPrice ?? "0")"
 
         // Service
         let servicePercent = data?.service_revenue_percentage?.description.toDouble() ?? 0

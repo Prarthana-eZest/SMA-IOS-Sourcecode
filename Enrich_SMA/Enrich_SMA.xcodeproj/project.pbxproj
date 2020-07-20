@@ -230,6 +230,7 @@
 		F838D9072437058300FDA998 /* SOSAlertModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D9012437058300FDA998 /* SOSAlertModels.swift */; };
 		F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D9032437058300FDA998 /* SOSAlertInteractor.swift */; };
 		F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D90A243705C000FDA998 /* SOSAlertVC.swift */; };
+		F83CF7DA24C5AEA6007C17C5 /* TeleMarketingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F83CF7D924C5AEA6007C17C5 /* TeleMarketingCell.xib */; };
 		F840D18E24B4BAE50065F795 /* AppVersionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840D18D24B4BAE50065F795 /* AppVersionCell.swift */; };
 		F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C4361245AB4270031213F /* DenyReasonVC.swift */; };
 		F84DBEED2462F6DC0036DF42 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */; };
@@ -274,7 +275,6 @@
 		F8E5D289246E9BB8005876CE /* TeleMarketingCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D285246E9BB8005876CE /* TeleMarketingCompletedCell.swift */; };
 		F8E5D28A246E9BB8005876CE /* TeleMarketingCompletedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */; };
 		F8E5D28B246E9BB8005876CE /* TeleMarketingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */; };
-		F8E5D28C246E9BB8005876CE /* TeleMarketingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8E5D288246E9BB8005876CE /* TeleMarketingCell.xib */; };
 		F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -538,6 +538,7 @@
 		F838D9012437058300FDA998 /* SOSAlertModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertModels.swift; sourceTree = "<group>"; };
 		F838D9032437058300FDA998 /* SOSAlertInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSAlertInteractor.swift; sourceTree = "<group>"; };
 		F838D90A243705C000FDA998 /* SOSAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSAlertVC.swift; sourceTree = "<group>"; };
+		F83CF7D924C5AEA6007C17C5 /* TeleMarketingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeleMarketingCell.xib; sourceTree = "<group>"; };
 		F840D18D24B4BAE50065F795 /* AppVersionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionCell.swift; sourceTree = "<group>"; };
 		F84C4361245AB4270031213F /* DenyReasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyReasonVC.swift; sourceTree = "<group>"; };
 		F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
@@ -582,7 +583,6 @@
 		F8E5D285246E9BB8005876CE /* TeleMarketingCompletedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleMarketingCompletedCell.swift; sourceTree = "<group>"; };
 		F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeleMarketingCompletedCell.xib; sourceTree = "<group>"; };
 		F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleMarketingCell.swift; sourceTree = "<group>"; };
-		F8E5D288246E9BB8005876CE /* TeleMarketingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeleMarketingCell.xib; sourceTree = "<group>"; };
 		F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1621,7 +1621,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */,
-				F8E5D288246E9BB8005876CE /* TeleMarketingCell.xib */,
+				F83CF7D924C5AEA6007C17C5 /* TeleMarketingCell.xib */,
 				F8E5D285246E9BB8005876CE /* TeleMarketingCompletedCell.swift */,
 				F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */,
 			);
@@ -1771,7 +1771,6 @@
 				E30342E7235EE29200E0BF0A /* Dashboard.storyboard in Resources */,
 				F8CE55EA2461696A00FF9487 /* RequestDetailsCell.xib in Resources */,
 				E3034253235EE14700E0BF0A /* FuturaPTCondMedium.otf in Resources */,
-				F8E5D28C246E9BB8005876CE /* TeleMarketingCell.xib in Resources */,
 				E3034256235EE14700E0BF0A /* FuturaPTBold.otf in Resources */,
 				E30340AE235EE11C00E0BF0A /* MyProfileHeaderCell.xib in Resources */,
 				E30342B8235EE15800E0BF0A /* ErrorCustomView.xib in Resources */,
@@ -1783,6 +1782,7 @@
 				E306016A237EA49200988EEC /* TopicCell.xib in Resources */,
 				E30340C1235EE11C00E0BF0A /* YourTargetRevenueCell.xib in Resources */,
 				E3034113235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.xib in Resources */,
+				F83CF7DA24C5AEA6007C17C5 /* TeleMarketingCell.xib in Resources */,
 				E306016F237EA49200988EEC /* MembershipStatusCell.xib in Resources */,
 				E3034259235EE14700E0BF0A /* FuturaPTCondBook.otf in Resources */,
 				E3034114235EE11C00E0BF0A /* HeaderViewWithAdCell.xib in Resources */,

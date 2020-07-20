@@ -21,21 +21,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourTargetRevenueCell" rowHeight="615" id="KGk-i7-Jjw" customClass="YourTargetRevenueCell" customModule="SMA_Stage" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="495" height="719"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourTargetRevenueCell" rowHeight="714" id="KGk-i7-Jjw" customClass="YourTargetRevenueCell" customModule="SMA_Stage" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="527" height="818"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="495" height="719"/>
+                <rect key="frame" x="0.0" y="0.0" width="527" height="818"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="1xI-AL-Qvp">
-                        <rect key="frame" x="0.0" y="10" width="495" height="50"/>
+                        <rect key="frame" x="0.0" y="10" width="527" height="50"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HdO-Op-gaS">
-                                <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="263" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uB6-ZI-Cwl">
-                                        <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="263" height="50"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="16"/>
                                         <state key="normal" title="Daily">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,10 +58,10 @@
                                 <viewLayoutGuide key="safeArea" id="6NH-De-rMC"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pc-X1-w6q">
-                                <rect key="frame" x="248" y="0.0" width="247" height="50"/>
+                                <rect key="frame" x="264" y="0.0" width="263" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Tg-k6-4Nq">
-                                        <rect key="frame" x="0.0" y="0.0" width="247" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="263" height="50"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                         <state key="normal" title="Monthly">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -86,7 +86,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DUm-IV-hGy">
-                        <rect key="frame" x="20" y="80" width="455" height="558"/>
+                        <rect key="frame" x="20" y="80" width="487" height="558"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue and Sales" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scd-0S-7Al">
                                 <rect key="frame" x="0.0" y="0.0" width="162.5" height="26"/>
@@ -95,28 +95,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-QZ-vPi">
-                                <rect key="frame" x="0.0" y="36" width="455" height="180"/>
+                                <rect key="frame" x="0.0" y="36" width="487" height="180"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lgV-Pz-HLs">
-                                        <rect key="frame" x="15" y="15" width="425" height="150"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="lgV-Pz-HLs">
+                                        <rect key="frame" x="15" y="15" width="457" height="150"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9ET-Pq-4u8">
-                                                <rect key="frame" x="0.0" y="0.0" width="425" height="65"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="457" height="33.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gp9-Ba-zpZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="65"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="218.5" height="33.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T8I-ml-4gL">
-                                                                <rect key="frame" x="58" y="12.5" width="86.5" height="40.5"/>
+                                                                <rect key="frame" x="61.5" y="-3.5" width="95.5" height="40.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Cash" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDC-Xy-1eX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDC-Xy-1eX">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="95.5" height="21"/>
                                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="₹ 16,0545500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YnZ-si-ZkK">
-                                                                        <rect key="frame" x="0.0" y="21" width="86.5" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="21" width="95.5" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
                                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -131,19 +131,19 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzS-Xk-zhb">
-                                                        <rect key="frame" x="222.5" y="0.0" width="202.5" height="65"/>
+                                                        <rect key="frame" x="238.5" y="0.0" width="218.5" height="33.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pKH-4i-eJO">
-                                                                <rect key="frame" x="68" y="12.5" width="67" height="40.5"/>
+                                                                <rect key="frame" x="56.5" y="-3.5" width="106" height="40.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLS-qT-WkC">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="66.5" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total Gross Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLS-qT-WkC">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="106" height="21"/>
                                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="₹ 3,60,500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZg-6h-COK">
-                                                                        <rect key="frame" x="0.0" y="21" width="67" height="19.5"/>
+                                                                        <rect key="frame" x="19.5" y="21" width="67" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
                                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -160,22 +160,22 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ojf-f0-Zvx">
-                                                <rect key="frame" x="0.0" y="85" width="425" height="65"/>
+                                                <rect key="frame" x="0.0" y="58.5" width="457" height="33"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEF-68-3kM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="65"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="218.5" height="33"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q1B-0T-F9y">
-                                                                <rect key="frame" x="58" y="12.5" width="86.5" height="40.5"/>
+                                                                <rect key="frame" x="53" y="-3.5" width="112.5" height="40.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Revenue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UG4-mJ-gRw">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="86.5" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Net Revenue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UG4-mJ-gRw">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="21"/>
                                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="₹ 16,0545500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnR-bE-XsH">
-                                                                        <rect key="frame" x="0.0" y="21" width="86.5" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="21" width="112.5" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
                                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -189,20 +189,52 @@
                                                             <constraint firstItem="q1B-0T-F9y" firstAttribute="centerY" secondItem="CEF-68-3kM" secondAttribute="centerY" id="oUQ-AH-BzF"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-Sv-ARg">
+                                                        <rect key="frame" x="238.5" y="0.0" width="218.5" height="33"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Eu-IA-7ik">
+                                                                <rect key="frame" x="46.5" y="-3.5" width="125.5" height="40.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Gross Revenue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUJ-kH-Jcd">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="21"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="₹ 1,60,500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-vZ-uar">
+                                                                        <rect key="frame" x="29.5" y="21" width="67" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
+                                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="1Eu-IA-7ik" firstAttribute="centerY" secondItem="e4j-Sv-ARg" secondAttribute="centerY" id="La8-Qo-4iN"/>
+                                                            <constraint firstItem="1Eu-IA-7ik" firstAttribute="centerX" secondItem="e4j-Sv-ARg" secondAttribute="centerX" id="lvx-0g-w7n"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5MN-2x-EZh">
+                                                <rect key="frame" x="0.0" y="116.5" width="457" height="33.5"/>
+                                                <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQx-Q3-j74">
-                                                        <rect key="frame" x="222.5" y="0.0" width="202.5" height="65"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="457" height="33.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pb6-jB-TmB">
-                                                                <rect key="frame" x="54" y="12.5" width="94.5" height="40.5"/>
+                                                                <rect key="frame" x="151.5" y="-3.5" width="154.5" height="40.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Sales Modified" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myU-qV-wsC">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="94.5" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Total Net Sales Modified" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myU-qV-wsC">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="21"/>
                                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="₹ 1,60,500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wO-IN-MpS">
-                                                                        <rect key="frame" x="14" y="21" width="67" height="19.5"/>
+                                                                        <rect key="frame" x="43.5" y="21" width="67" height="19.5"/>
                                                                         <fontDescription key="fontDescription" name="NotoSerif-Bold" family="Noto Serif" pointSize="14"/>
                                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -239,7 +271,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="kXY-sg-WzF">
-                                <rect key="frame" x="0.0" y="226" width="455" height="36"/>
+                                <rect key="frame" x="0.0" y="226" width="487" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue at Salon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7w-ab-hg2">
                                         <rect key="frame" x="0.0" y="0.0" width="149" height="36"/>
@@ -248,7 +280,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2AL-sQ-Tc3">
-                                        <rect key="frame" x="385" y="0.0" width="70" height="36"/>
+                                        <rect key="frame" x="417" y="0.0" width="70" height="36"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <state key="normal" title="More Info">
                                             <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
@@ -260,31 +292,31 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SH-l6-L1l">
-                                <rect key="frame" x="0.0" y="272" width="455" height="286"/>
+                                <rect key="frame" x="0.0" y="272" width="487" height="286"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Required Run Rate: 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBu-kc-sbw">
-                                        <rect key="frame" x="15" y="10" width="425" height="21"/>
+                                        <rect key="frame" x="15" y="10" width="457" height="21"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Yln-MJ-YbL">
-                                        <rect key="frame" x="15" y="51" width="425" height="220"/>
+                                        <rect key="frame" x="15" y="51" width="457" height="220"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3V7-5G-PmW">
-                                                <rect key="frame" x="0.0" y="0.0" width="425" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="457" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VrT-oS-ezD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="425" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="457" height="21"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Service Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPA-qQ-JSh">
-                                                                <rect key="frame" x="0.0" y="0.0" width="385" height="21"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="417" height="21"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnj-qy-V76">
-                                                                <rect key="frame" x="395" y="0.0" width="30" height="21"/>
+                                                                <rect key="frame" x="427" y="0.0" width="30" height="21"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                 <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -292,7 +324,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="DzK-1H-aJ7">
-                                                        <rect key="frame" x="0.0" y="23" width="425" height="14"/>
+                                                        <rect key="frame" x="0.0" y="23" width="457" height="14"/>
                                                         <color key="tintColor" red="0.51764705882352935" green="0.77254901960784317" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="uMX-Fa-qGI"/>
@@ -304,7 +336,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </progressView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9K/10K" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzd-69-FNY">
-                                                        <rect key="frame" x="0.0" y="39" width="425" height="21"/>
+                                                        <rect key="frame" x="0.0" y="39" width="457" height="21"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                         <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -320,19 +352,19 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nj2-Mp-wyy">
-                                                <rect key="frame" x="0.0" y="80" width="425" height="60"/>
+                                                <rect key="frame" x="0.0" y="80" width="457" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Hh-9n-SJV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="425" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="457" height="21"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Product Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHm-1U-84N">
-                                                                <rect key="frame" x="0.0" y="0.0" width="385" height="21"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="417" height="21"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7El-SM-6Ij">
-                                                                <rect key="frame" x="395" y="0.0" width="30" height="21"/>
+                                                                <rect key="frame" x="427" y="0.0" width="30" height="21"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                 <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -340,7 +372,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="qmp-QM-fLM">
-                                                        <rect key="frame" x="0.0" y="23" width="425" height="14"/>
+                                                        <rect key="frame" x="0.0" y="23" width="457" height="14"/>
                                                         <color key="tintColor" red="0.51764705882352935" green="0.77254901960784317" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="GeK-Sj-DCN"/>
@@ -352,7 +384,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </progressView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4K/10K" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqz-qt-xmf">
-                                                        <rect key="frame" x="0.0" y="39" width="425" height="21"/>
+                                                        <rect key="frame" x="0.0" y="39" width="457" height="21"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -368,19 +400,19 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="FgC-eO-peP">
-                                                <rect key="frame" x="0.0" y="160" width="425" height="60"/>
+                                                <rect key="frame" x="0.0" y="160" width="457" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XeS-ht-GlD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="425" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="457" height="21"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Membership Sold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFy-0n-c52">
-                                                                <rect key="frame" x="0.0" y="0.0" width="385" height="21"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="417" height="21"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtr-K2-B6E">
-                                                                <rect key="frame" x="395" y="0.0" width="30" height="21"/>
+                                                                <rect key="frame" x="427" y="0.0" width="30" height="21"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                                 <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -388,7 +420,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="2Hj-HB-VJm">
-                                                        <rect key="frame" x="0.0" y="23" width="425" height="14"/>
+                                                        <rect key="frame" x="0.0" y="23" width="457" height="14"/>
                                                         <color key="tintColor" red="0.51764705882352935" green="0.77254901960784317" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="DGI-OQ-cgf"/>
@@ -400,7 +432,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </progressView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3K/10K" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQe-E5-TZP">
-                                                        <rect key="frame" x="0.0" y="39" width="425" height="21"/>
+                                                        <rect key="frame" x="0.0" y="39" width="457" height="21"/>
                                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -456,7 +488,7 @@
                         </constraints>
                     </stackView>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xg-Vl-Z93">
-                        <rect key="frame" x="351.5" y="55" width="40" height="5"/>
+                        <rect key="frame" x="375.5" y="55" width="40" height="5"/>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="h8a-ur-dLH"/>
@@ -464,7 +496,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgm-Ij-KVf">
-                        <rect key="frame" x="103.5" y="55" width="40" height="5"/>
+                        <rect key="frame" x="111.5" y="55" width="40" height="5"/>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="5" id="3aK-9V-AdZ"/>
@@ -472,38 +504,48 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxg-ip-iFC">
-                        <rect key="frame" x="247" y="138.5" width="1" height="135"/>
+                        <rect key="frame" x="263" y="131" width="1" height="91.5"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="1" id="sf7-OB-lZM"/>
+                            <constraint firstAttribute="width" constant="1" id="g3b-iX-ekE"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lzb-aE-6Zr">
-                        <rect key="frame" x="77.5" y="205.5" width="340" height="1"/>
+                        <rect key="frame" x="35" y="175" width="457" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="4QJ-Ji-NFx"/>
+                            <constraint firstAttribute="height" constant="1" id="Sgm-pN-cv1"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VbY-mG-OBb">
+                        <rect key="frame" x="35" y="235" width="457" height="1"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="CtM-CG-ypU"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Tgm-Ij-KVf" firstAttribute="bottom" secondItem="HdO-Op-gaS" secondAttribute="bottom" id="1xm-r6-Xfw"/>
-                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="centerY" secondItem="lgV-Pz-HLs" secondAttribute="centerY" id="2w3-WS-DBg"/>
                     <constraint firstItem="DUm-IV-hGy" firstAttribute="top" secondItem="1xI-AL-Qvp" secondAttribute="bottom" constant="20" id="6wN-vw-o19"/>
-                    <constraint firstItem="pxg-ip-iFC" firstAttribute="centerX" secondItem="lgV-Pz-HLs" secondAttribute="centerX" id="9cY-Vp-EjI"/>
+                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="centerY" secondItem="lgV-Pz-HLs" secondAttribute="centerY" multiplier="0.66" id="ChY-M8-vpC"/>
                     <constraint firstItem="6Xg-Vl-Z93" firstAttribute="bottom" secondItem="4pc-X1-w6q" secondAttribute="bottom" id="D2y-Sm-tqF"/>
                     <constraint firstAttribute="trailing" secondItem="1xI-AL-Qvp" secondAttribute="trailing" id="EGV-HA-ELA"/>
                     <constraint firstItem="1xI-AL-Qvp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Flh-k3-Z2D"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DUm-IV-hGy" secondAttribute="bottom" constant="20" id="Id7-P6-2Ve"/>
-                    <constraint firstItem="pxg-ip-iFC" firstAttribute="height" secondItem="lgV-Pz-HLs" secondAttribute="height" multiplier="0.9" id="LKT-fp-J3E"/>
-                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="centerX" secondItem="lgV-Pz-HLs" secondAttribute="centerX" id="MJ8-DS-JY9"/>
-                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="width" secondItem="lgV-Pz-HLs" secondAttribute="width" multiplier="0.8" id="S7i-0x-KJd"/>
+                    <constraint firstItem="pxg-ip-iFC" firstAttribute="bottom" secondItem="Ojf-f0-Zvx" secondAttribute="bottom" id="Jz9-cL-YDI"/>
+                    <constraint firstItem="pxg-ip-iFC" firstAttribute="centerX" secondItem="lgV-Pz-HLs" secondAttribute="centerX" id="PLR-mF-c7h"/>
                     <constraint firstItem="1xI-AL-Qvp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="UZg-wj-YEc"/>
+                    <constraint firstItem="pxg-ip-iFC" firstAttribute="top" secondItem="9ET-Pq-4u8" secondAttribute="top" id="YBw-n5-0Ad"/>
+                    <constraint firstItem="VbY-mG-OBb" firstAttribute="leading" secondItem="lgV-Pz-HLs" secondAttribute="leading" id="adV-3a-LAD"/>
+                    <constraint firstItem="VbY-mG-OBb" firstAttribute="centerY" secondItem="lgV-Pz-HLs" secondAttribute="centerY" multiplier="1.33" id="azo-jz-oec"/>
                     <constraint firstItem="DUm-IV-hGy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="b5O-Kz-yOU"/>
                     <constraint firstItem="6Xg-Vl-Z93" firstAttribute="centerX" secondItem="4pc-X1-w6q" secondAttribute="centerX" id="elS-gt-6VM"/>
-                    <constraint firstItem="pxg-ip-iFC" firstAttribute="centerY" secondItem="lgV-Pz-HLs" secondAttribute="centerY" id="gOo-X9-XoH"/>
                     <constraint firstItem="Tgm-Ij-KVf" firstAttribute="centerX" secondItem="HdO-Op-gaS" secondAttribute="centerX" id="sXG-IP-psf"/>
                     <constraint firstAttribute="trailing" secondItem="DUm-IV-hGy" secondAttribute="trailing" constant="20" id="vAv-W1-UCc"/>
+                    <constraint firstItem="VbY-mG-OBb" firstAttribute="trailing" secondItem="lgV-Pz-HLs" secondAttribute="trailing" id="ws0-3D-TdA"/>
+                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="trailing" secondItem="lgV-Pz-HLs" secondAttribute="trailing" id="xwr-AW-i6c"/>
+                    <constraint firstItem="Lzb-aE-6Zr" firstAttribute="leading" secondItem="lgV-Pz-HLs" secondAttribute="leading" id="yxD-tx-rNC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -513,21 +555,22 @@
                 <outlet property="dailySelectionView" destination="Tgm-Ij-KVf" id="bja-nP-I6O"/>
                 <outlet property="lblMembershipAmount" destination="SQe-E5-TZP" id="f9s-HG-ROC"/>
                 <outlet property="lblMembershipPercent" destination="Gtr-K2-B6E" id="jng-Ye-zYk"/>
+                <outlet property="lblNetSalesModified" destination="3wO-IN-MpS" id="emB-hD-fsa"/>
                 <outlet property="lblProductRevenueAmount" destination="Sqz-qt-xmf" id="CDD-3g-s5u"/>
                 <outlet property="lblProductRevenuePercent" destination="7El-SM-6Ij" id="53S-JS-WS4"/>
                 <outlet property="lblRunRate" destination="LBu-kc-sbw" id="eIi-w7-2TN"/>
-                <outlet property="lblSalesModified" destination="3wO-IN-MpS" id="RSP-mS-NV7"/>
                 <outlet property="lblServiceRevenueAmount" destination="zzd-69-FNY" id="Cd2-6E-Qx7"/>
                 <outlet property="lblServiceRevenuePercent" destination="Xnj-qy-V76" id="UIq-Vs-DGA"/>
-                <outlet property="lblTotalCash" destination="YnZ-si-ZkK" id="ELM-dP-9UI"/>
-                <outlet property="lblTotalRevenue" destination="QnR-bE-XsH" id="aUj-JM-o41"/>
-                <outlet property="lblTotalSales" destination="zZg-6h-COK" id="lXG-fT-zUl"/>
+                <outlet property="lblTotalCollection" destination="YnZ-si-ZkK" id="5x3-aw-7PH"/>
+                <outlet property="lblTotalGrossRevenue" destination="XpQ-vZ-uar" id="3kL-Y7-tEd"/>
+                <outlet property="lblTotalGrossSales" destination="zZg-6h-COK" id="Op7-U4-crD"/>
+                <outlet property="lblTotalNetRevenue" destination="QnR-bE-XsH" id="dXR-5x-fi8"/>
                 <outlet property="membershipProgressBar" destination="2Hj-HB-VJm" id="Hh6-1G-lbl"/>
                 <outlet property="monthlySelectionView" destination="6Xg-Vl-Z93" id="axX-ug-66p"/>
                 <outlet property="productRevenueProgressBar" destination="qmp-QM-fLM" id="Bto-9u-2Bc"/>
                 <outlet property="serviceRevenueProgressBar" destination="DzK-1H-aJ7" id="6b2-st-ge2"/>
             </connections>
-            <point key="canvasLocation" x="290.57971014492756" y="343.19196428571428"/>
+            <point key="canvasLocation" x="313.768115942029" y="376.33928571428572"/>
         </tableViewCell>
     </objects>
 </document>

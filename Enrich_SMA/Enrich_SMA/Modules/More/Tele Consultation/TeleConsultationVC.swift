@@ -99,7 +99,7 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
             btnPast.isSelected = false
         }
         selectedIndex = 0
-        tableView.reloadData()
+        getPendingList()
     }
 
     @IBAction func actionPast(_ sender: Any) {
@@ -115,11 +115,8 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
             btnUpcoming.isSelected = false
         }
         selectedIndex = 1
-        if completedRecords.isEmpty {
-            pageNo = 1
-            getCompletedList()
-        }
-        tableView.reloadData()
+        pageNo = 1
+        getCompletedList()
     }
 
     func getStatusFromLabel(label: String) -> String? {
@@ -243,7 +240,6 @@ extension TeleConsultationVC {
     }
 
     func getStatusList() {
-        EZLoadingActivity.show("Loading...", disableUI: true)
         interactor?.getStatusList()
     }
 
@@ -257,7 +253,7 @@ extension TeleConsultationVC {
     }
 
     func displaySuccess<T: Decodable>(viewModel: T) {
-        EZLoadingActivity.hide()
+
         if let model = viewModel as? TeleConsultation.GetConsultationRecords.PendingResponse,
             model.status == true {
             pendingRecords.removeAll()
@@ -289,6 +285,7 @@ extension TeleConsultationVC {
                     date: $0.created_at ?? "",
                     employee: $0.employee_name ?? "", history: history))
             }
+            EZLoadingActivity.hide()
             tableView.reloadData()
         }
         else if let model = viewModel as? TeleConsultation.GetConsultationRecords.CompletedResponse,
@@ -310,6 +307,7 @@ extension TeleConsultationVC {
                     employee: $0.employee_name ?? "",
                     history: []))
             }
+            EZLoadingActivity.hide()
             tableView.reloadData()
         }
         else if let model = viewModel as? TeleConsultation.GetConsulationStatus.Response,
@@ -319,6 +317,7 @@ extension TeleConsultationVC {
         }
         else if let model = viewModel as? TeleConsultation.SubmitFeedback.Response,
             model.status == true {
+            EZLoadingActivity.hide()
             self.getPendingList()
         }
     }

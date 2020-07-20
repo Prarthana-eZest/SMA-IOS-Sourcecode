@@ -26,6 +26,8 @@ class TeleMarketingCell: UITableViewCell {
     weak var delegate: TeleMarketingDelegate?
     var indexPath: IndexPath?
 
+    var model: TeleMarketingModel?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,6 +38,7 @@ class TeleMarketingCell: UITableViewCell {
     }
 
     func configureCell(model: TeleMarketingModel) {
+        self.model = model
         lblCustomerName.text = model.customerName
         if model.noteText.isEmpty {
             notesTextView.text = AddNewNoteVC.TextViewPlaceHolder
@@ -43,8 +46,9 @@ class TeleMarketingCell: UITableViewCell {
         }
         else {
             notesTextView.text = model.noteText
-            notesTextView.textColor = UIColor.lightGray
+            notesTextView.textColor = UIColor.darkGray
         }
+        btnSave.isEnabled = !model.noteText.isEmpty
         btnSelectAction.setTitle(model.status_label, for: .selected)
         btnSelectAction.isSelected = !model.status_label.isEmpty
     }
@@ -109,7 +113,7 @@ extension TeleMarketingCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.darkGray
         }
     }
 
@@ -118,6 +122,11 @@ extension TeleMarketingCell: UITextViewDelegate {
             textView.text = AddNewNoteVC.TextViewPlaceHolder
             textView.textColor = UIColor.lightGray
         }
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        model?.noteText = textView.text ?? ""
+        btnSave.isEnabled = !textView.text!.isEmpty
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
