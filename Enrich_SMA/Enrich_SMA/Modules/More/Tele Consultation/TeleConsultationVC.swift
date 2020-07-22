@@ -25,7 +25,8 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
     @IBOutlet weak private var btnPast: UIButton!
     @IBOutlet weak private var upcomingSelectionView: UIView!
     @IBOutlet weak private var pastSelectionView: UIView!
-
+    @IBOutlet weak private var lblNoRecords: UILabel!
+    
     var selectedIndex = 0
 
     var pendingRecords = [TeleMarketingModel]()
@@ -70,6 +71,7 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
 
         tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
         self.navigationController?.addCustomBackButton(title: "Telemarketing Consultation")
+        lblNoRecords.isHidden = true
         getStatusList()
         getPendingList()
     }
@@ -88,8 +90,11 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
     }
 
     @IBAction func actionUpcoming(_ sender: Any) {
+        lblNoRecords.isHidden = true
         upcomingSelectionView.isHidden = false
         pastSelectionView.isHidden = true
+        completedRecords.removeAll()
+        tableView.reloadData()
         if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: is_iPAD ? 25.0 : 18.0) {
             btnUpcoming.titleLabel?.font = font
             btnUpcoming.isSelected = true
@@ -103,9 +108,11 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
     }
 
     @IBAction func actionPast(_ sender: Any) {
-
+        lblNoRecords.isHidden = true
         upcomingSelectionView.isHidden = true
         pastSelectionView.isHidden = false
+        pendingRecords.removeAll()
+        tableView.reloadData()
         if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: is_iPAD ? 25.0 : 18.0) {
             btnPast.titleLabel?.font = font
             btnPast.isSelected = true
@@ -269,7 +276,7 @@ extension TeleConsultationVC {
                         isEditable: true,
                         status_label: record.status_label ?? "",
                         call_id: record.entity_id ?? "",
-                        date: record.created_at ?? "",
+                        date: record.called_at ?? "",
                         employee: record.employee_name ?? "",
                         history: []))
                 }
@@ -282,10 +289,11 @@ extension TeleConsultationVC {
                     isEditable: true,
                     status_label: $0.status_label ?? "",
                     call_id: $0.entity_id ?? "",
-                    date: $0.created_at ?? "",
+                    date: $0.called_at ?? "",
                     employee: $0.employee_name ?? "", history: history))
             }
             EZLoadingActivity.hide()
+            lblNoRecords.isHidden = !pendingRecords.isEmpty
             tableView.reloadData()
         }
         else if let model = viewModel as? TeleConsultation.GetConsultationRecords.CompletedResponse,
@@ -303,11 +311,12 @@ extension TeleConsultationVC {
                     isEditable: false,
                     status_label: $0.status_label ?? "",
                     call_id: $0.entity_id ?? "",
-                    date: $0.created_at ?? "",
+                    date: $0.called_at ?? "",
                     employee: $0.employee_name ?? "",
                     history: []))
             }
             EZLoadingActivity.hide()
+            lblNoRecords.isHidden = !completedRecords.isEmpty
             tableView.reloadData()
         }
         else if let model = viewModel as? TeleConsultation.GetConsulationStatus.Response,

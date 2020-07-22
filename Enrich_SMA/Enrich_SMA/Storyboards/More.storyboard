@@ -22,7 +22,7 @@
         <!--Petty CashVC-->
         <scene sceneID="4q6-Vk-LFI">
             <objects>
-                <viewController storyboardIdentifier="PettyCashVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t9m-mH-fUh" customClass="PettyCashVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PettyCashVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t9m-mH-fUh" customClass="PettyCashVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Zs-tc-NAm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
         <!--Add New Petty Cash-->
         <scene sceneID="k34-vj-Qxa">
             <objects>
-                <viewController storyboardIdentifier="AddNewPettyCash" modalPresentationStyle="overFullScreen" id="wWz-ed-F5V" customClass="AddNewPettyCash" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewPettyCash" modalPresentationStyle="overFullScreen" id="wWz-ed-F5V" customClass="AddNewPettyCash" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h1e-eN-K2q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -351,7 +351,7 @@
         <!--My ProfileVC-->
         <scene sceneID="vLa-kR-pph">
             <objects>
-                <viewController storyboardIdentifier="MyProfileVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7mG-JS-89N" customClass="MyProfileVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyProfileVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7mG-JS-89N" customClass="MyProfileVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3KF-hF-Mg3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -412,7 +412,7 @@
         <!--My CustomersVC-->
         <scene sceneID="xm0-w5-Pvq">
             <objects>
-                <viewController storyboardIdentifier="MyCustomersVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yji-f8-z0Z" customClass="MyCustomersVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyCustomersVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yji-f8-z0Z" customClass="MyCustomersVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p3c-Jh-Q1e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -474,7 +474,7 @@
         <!--ListingVC-->
         <scene sceneID="R8B-fL-95U">
             <objects>
-                <viewController storyboardIdentifier="ListingVC" modalPresentationStyle="overFullScreen" id="k0R-mG-j0T" customClass="ListingVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListingVC" modalPresentationStyle="overFullScreen" id="k0R-mG-j0T" customClass="ListingVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BEC-Kq-TrX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -536,7 +536,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListingCell" id="CDC-Db-Pc8" customClass="ListingCell" customModule="SMA_Dev" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListingCell" id="CDC-Db-Pc8" customClass="ListingCell" customModule="SMA_Stage" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="374" height="31.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CDC-Db-Pc8" id="3dX-AD-606">
@@ -615,7 +615,7 @@
         <!--Employee ListingVC-->
         <scene sceneID="UbE-n3-EnX">
             <objects>
-                <viewController storyboardIdentifier="EmployeeListingVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ib6-BU-u3V" customClass="EmployeeListingVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmployeeListingVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ib6-BU-u3V" customClass="EmployeeListingVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c7F-is-X4G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -652,7 +652,7 @@
                                     <outlet property="delegate" destination="Ib6-BU-u3V" id="M1d-9F-Cow"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Records Available" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ib-OQ-KZW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No records available" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ib-OQ-KZW">
                                 <rect key="frame" x="0.0" y="437.5" width="414" height="21"/>
                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                 <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -688,7 +688,7 @@
         <!--NotificationsVC-->
         <scene sceneID="qpf-Gb-9fT">
             <objects>
-                <viewController storyboardIdentifier="NotificationsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="66H-Ab-nve" customClass="NotificationsVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="66H-Ab-nve" customClass="NotificationsVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NFf-XC-D9b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -709,7 +709,7 @@
                                                     <action selector="actionBackButton:" destination="66H-Ab-nve" eventType="touchUpInside" id="fPP-j4-tgz"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J64-BL-3Lp" customClass="LabelButton" customModule="SMA_Dev" customModuleProvider="target">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J64-BL-3Lp" customClass="LabelButton" customModule="SMA_Stage" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="12" width="100" height="26"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="20"/>
                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
@@ -824,7 +824,7 @@
         <!--Approval Request ListVC-->
         <scene sceneID="aMS-UF-2X0">
             <objects>
-                <viewController storyboardIdentifier="ApprovalRequestListVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ym1-zf-4Hm" customClass="ApprovalRequestListVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ApprovalRequestListVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ym1-zf-4Hm" customClass="ApprovalRequestListVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1W4-5o-cmq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -895,7 +895,7 @@
         <!--Deny ReasonVC-->
         <scene sceneID="6FE-vF-PBs">
             <objects>
-                <viewController storyboardIdentifier="DenyReasonVC" modalPresentationStyle="overFullScreen" id="lzx-PA-Rwt" customClass="DenyReasonVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DenyReasonVC" modalPresentationStyle="overFullScreen" id="lzx-PA-Rwt" customClass="DenyReasonVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hnR-9c-U66">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1041,7 +1041,7 @@
         <!--Request DetailsVC-->
         <scene sceneID="8lF-mB-jid">
             <objects>
-                <viewController storyboardIdentifier="RequestDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Anc-80-zYW" customClass="RequestDetailsVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RequestDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Anc-80-zYW" customClass="RequestDetailsVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xT7-Bc-ep5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1167,13 +1167,13 @@
         <!--Tele Consultation VC-->
         <scene sceneID="oqJ-12-4Xr">
             <objects>
-                <viewController storyboardIdentifier="TeleConsultationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aip-yi-BJR" userLabel="Tele Consultation VC" customClass="TeleConsultationVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeleConsultationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aip-yi-BJR" userLabel="Tele Consultation VC" customClass="TeleConsultationVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CDl-W0-x59">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2C-4s-gxe">
-                                <rect key="frame" x="88.5" y="85" width="30" height="5"/>
+                                <rect key="frame" x="88.5" y="84" width="30" height="5"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Boo-ML-B67">
@@ -1183,7 +1183,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PW-P8-P5X">
-                                <rect key="frame" x="295.5" y="86.5" width="30" height="5"/>
+                                <rect key="frame" x="295.5" y="85" width="30" height="5"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Db0-DI-Wv2">
@@ -1193,7 +1193,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jb3-Ii-m90">
-                                <rect key="frame" x="206.5" y="45" width="0.5" height="45"/>
+                                <rect key="frame" x="206.5" y="44" width="0.5" height="45"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="0.5" id="U9n-tC-iIo"/>
@@ -1203,7 +1203,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhJ-NB-sKK">
-                                <rect key="frame" x="0.0" y="90" width="414" height="0.5"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="0.5"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="JOO-Qo-Bz1"/>
@@ -1220,7 +1220,7 @@
                                 <rect key="frame" x="0.0" y="46" width="414" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="9p2-xF-sBu">
-                                        <rect key="frame" x="0.0" y="6" width="207" height="33"/>
+                                        <rect key="frame" x="0.0" y="7" width="207" height="31"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                         <state key="normal" title="Pending">
                                             <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
@@ -1233,7 +1233,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HrA-d3-qfW">
-                                        <rect key="frame" x="207" y="4.5" width="207" height="36"/>
+                                        <rect key="frame" x="207" y="6" width="207" height="33"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                         <state key="normal" title="Completed">
                                             <color key="titleColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
@@ -1260,6 +1260,12 @@
                                     <outlet property="delegate" destination="aip-yi-BJR" id="mh3-wy-11t"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No records available" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnA-2w-aJK">
+                                <rect key="frame" x="134" y="438.5" width="146.5" height="19"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1269,6 +1275,7 @@
                             <constraint firstItem="m0y-fc-nLT" firstAttribute="top" secondItem="560-Wa-35J" secondAttribute="top" id="4W9-nG-0ta"/>
                             <constraint firstItem="560-Wa-35J" firstAttribute="trailing" secondItem="mhJ-NB-sKK" secondAttribute="trailing" id="CDQ-KF-I3c"/>
                             <constraint firstItem="560-Wa-35J" firstAttribute="bottom" secondItem="6Ak-AX-PJD" secondAttribute="bottom" constant="10" id="Cku-jV-ReF"/>
+                            <constraint firstItem="BnA-2w-aJK" firstAttribute="centerX" secondItem="CDl-W0-x59" secondAttribute="centerX" id="D7o-vz-FRs"/>
                             <constraint firstItem="6Ak-AX-PJD" firstAttribute="leading" secondItem="560-Wa-35J" secondAttribute="leading" id="J3o-Qp-of8"/>
                             <constraint firstItem="m0y-fc-nLT" firstAttribute="leading" secondItem="CDl-W0-x59" secondAttribute="leading" id="JPf-ru-PFd"/>
                             <constraint firstItem="560-Wa-35J" firstAttribute="trailing" secondItem="6Ak-AX-PJD" secondAttribute="trailing" id="Lhw-sX-zGb"/>
@@ -1278,6 +1285,7 @@
                             <constraint firstItem="N2C-4s-gxe" firstAttribute="centerX" secondItem="9p2-xF-sBu" secondAttribute="centerX" id="W0f-dB-i65"/>
                             <constraint firstItem="1p4-ok-Ckf" firstAttribute="top" secondItem="560-Wa-35J" secondAttribute="top" constant="2" id="a0p-jz-UL8"/>
                             <constraint firstItem="Jb3-Ii-m90" firstAttribute="bottom" secondItem="9p2-xF-sBu" secondAttribute="bottom" constant="5" id="dAe-SQ-lNo"/>
+                            <constraint firstItem="BnA-2w-aJK" firstAttribute="centerY" secondItem="CDl-W0-x59" secondAttribute="centerY" id="eAK-A1-j4X"/>
                             <constraint firstItem="mhJ-NB-sKK" firstAttribute="top" secondItem="N2C-4s-gxe" secondAttribute="bottom" id="eV9-cq-d8s"/>
                             <constraint firstItem="7PW-P8-P5X" firstAttribute="bottom" secondItem="HrA-d3-qfW" secondAttribute="bottom" constant="5" id="mhD-oZ-Qss"/>
                             <constraint firstItem="560-Wa-35J" firstAttribute="trailing" secondItem="1p4-ok-Ckf" secondAttribute="trailing" id="vpd-WY-4BZ"/>
@@ -1289,6 +1297,7 @@
                     <connections>
                         <outlet property="btnPast" destination="HrA-d3-qfW" id="hjO-Nc-NCI"/>
                         <outlet property="btnUpcoming" destination="9p2-xF-sBu" id="Low-bg-cvB"/>
+                        <outlet property="lblNoRecords" destination="BnA-2w-aJK" id="mtO-JL-toB"/>
                         <outlet property="pastSelectionView" destination="7PW-P8-P5X" id="DXM-cV-EOd"/>
                         <outlet property="tableView" destination="6Ak-AX-PJD" id="I6L-xw-d5i"/>
                         <outlet property="upcomingSelectionView" destination="N2C-4s-gxe" id="g5R-cD-39m"/>
@@ -1301,7 +1310,7 @@
         <!--Customer Tele HistoryVC-->
         <scene sceneID="Ta4-MR-hJY">
             <objects>
-                <viewController storyboardIdentifier="CustomerTeleHistoryVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d4q-n2-4WM" customClass="CustomerTeleHistoryVC" customModule="SMA_Dev" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomerTeleHistoryVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d4q-n2-4WM" customClass="CustomerTeleHistoryVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nkk-SI-zi4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1337,14 +1346,22 @@
                                     <outlet property="delegate" destination="d4q-n2-4WM" id="SOH-jM-vZg"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No records available" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBb-1b-6iZ">
+                                <rect key="frame" x="134" y="438.5" width="146.5" height="19"/>
+                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
+                                <color key="textColor" red="0.1058823529" green="0.098039215690000001" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="60a-ag-GhP" firstAttribute="trailing" secondItem="22c-c1-Mac" secondAttribute="trailing" id="32a-bS-hC5"/>
                             <constraint firstItem="22c-c1-Mac" firstAttribute="bottom" secondItem="60a-ag-GhP" secondAttribute="bottom" id="9ey-YX-YDO"/>
                             <constraint firstItem="h2h-dJ-ee1" firstAttribute="top" secondItem="22c-c1-Mac" secondAttribute="top" id="Im0-0E-gOf"/>
+                            <constraint firstItem="OBb-1b-6iZ" firstAttribute="centerY" secondItem="nkk-SI-zi4" secondAttribute="centerY" id="KRN-qw-6sS"/>
                             <constraint firstItem="60a-ag-GhP" firstAttribute="top" secondItem="h2h-dJ-ee1" secondAttribute="bottom" constant="5" id="QH8-rK-QcU"/>
                             <constraint firstItem="h2h-dJ-ee1" firstAttribute="leading" secondItem="nkk-SI-zi4" secondAttribute="leading" id="QZq-Ew-JC2"/>
+                            <constraint firstItem="OBb-1b-6iZ" firstAttribute="centerX" secondItem="nkk-SI-zi4" secondAttribute="centerX" id="hVI-a1-TkM"/>
                             <constraint firstAttribute="trailing" secondItem="h2h-dJ-ee1" secondAttribute="trailing" id="n0x-lD-9le"/>
                             <constraint firstItem="60a-ag-GhP" firstAttribute="leading" secondItem="22c-c1-Mac" secondAttribute="leading" id="rbG-lH-aqn"/>
                         </constraints>
@@ -1352,6 +1369,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hEi-PF-ueJ"/>
                     <connections>
+                        <outlet property="lblNoRecords" destination="OBb-1b-6iZ" id="lSb-iC-6O9"/>
                         <outlet property="tableView" destination="60a-ag-GhP" id="JKS-oQ-ntY"/>
                     </connections>
                 </viewController>

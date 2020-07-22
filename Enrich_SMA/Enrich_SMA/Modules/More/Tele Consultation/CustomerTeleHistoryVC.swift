@@ -11,7 +11,8 @@ import UIKit
 class CustomerTeleHistoryVC: UIViewController {
 
     @IBOutlet weak private var tableView: UITableView!
-
+    @IBOutlet weak private var lblNoRecords: UILabel!
+    
     var records = [TeleMarketingModel]()
 
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ extension CustomerTeleHistoryVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        lblNoRecords.isHidden = !records.isEmpty
         return records.count
     }
 
