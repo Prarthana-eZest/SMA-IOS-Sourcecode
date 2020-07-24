@@ -16,6 +16,7 @@ enum ModifyRequestCategory: String {
     case add_app = "add_appointment"
     case appointment_timeslot = "change_appointment_timeslot"
     case del_appointment = "delete_appointment"
+    case can_appointment = "cancel_appointment"
     case add_new_service = "add_service"
     case replace = "replace_service"
     case service_timeslot = "change_service_timeslot"
@@ -121,7 +122,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
 
         switch category {
 
-        case .add_app, .del_appointment:
+        case .add_app, .del_appointment, .can_appointment:
 
             if let services = requestDetails.services {
                 services.forEach {

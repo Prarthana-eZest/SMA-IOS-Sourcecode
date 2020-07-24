@@ -97,6 +97,7 @@ enum ApprovalRequestList {
             let requesting_technician_id: Int64?
             let requesting_technician: String?
             let delete_reason: String?
+            let cancel_reason: String?
         }
 
         struct Service: Codable {

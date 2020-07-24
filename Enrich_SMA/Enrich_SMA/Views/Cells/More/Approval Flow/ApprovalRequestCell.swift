@@ -74,8 +74,8 @@ class ApprovalRequestCell: UITableViewCell {
 
         if let category = ModifyRequestCategory(rawValue: model.category ?? "") {
             var deleteReason = ""
-            if category == .del_appointment {
-                deleteReason = model.approval_request_details?.appointment?.delete_reason ?? ""
+            if category == .can_appointment {
+                deleteReason = model.approval_request_details?.appointment?.cancel_reason ?? ""
             }
             if category == .del_service {
                 deleteReason = model.approval_request_details?.service?.first?.delete_reason ?? ""
