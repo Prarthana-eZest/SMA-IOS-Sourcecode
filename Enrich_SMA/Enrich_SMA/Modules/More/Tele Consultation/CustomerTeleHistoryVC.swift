@@ -12,7 +12,7 @@ class CustomerTeleHistoryVC: UIViewController {
 
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var lblNoRecords: UILabel!
-    
+
     var records = [TeleMarketingModel]()
 
     override func viewDidLoad() {

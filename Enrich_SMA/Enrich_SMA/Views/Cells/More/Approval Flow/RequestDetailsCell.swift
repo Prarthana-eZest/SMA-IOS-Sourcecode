@@ -23,6 +23,9 @@ class RequestDetailsCell: UITableViewCell {
     @IBOutlet weak private var lblDeleteReason: UILabel!
     @IBOutlet weak private var lblAppointmentDate: UILabel!
 
+    @IBOutlet weak private var lblDeleteReasonTitle: UILabel!
+    @IBOutlet weak private var deleteLabelWidth: NSLayoutConstraint!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -48,9 +51,13 @@ class RequestDetailsCell: UITableViewCell {
             var deleteReason = ""
             if category == .can_appointment {
                 deleteReason = model.approval_request_details?.appointment?.cancel_reason ?? ""
+                deleteLabelWidth.constant = 158
+                lblDeleteReasonTitle.text = "Cancellation Reason :"
             }
             if category == .del_service {
                 deleteReason = model.approval_request_details?.service?.first?.delete_reason ?? ""
+                deleteLabelWidth.constant = 128
+                lblDeleteReasonTitle.text = "Deletion Reason :"
             }
             lblDeleteReason.text = deleteReason
             deleteReasonStackView.isHidden = deleteReason.isEmpty

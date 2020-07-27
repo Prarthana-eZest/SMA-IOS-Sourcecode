@@ -18,7 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ApprovalRequestCell" rowHeight="405" id="KGk-i7-Jjw" customClass="ApprovalRequestCell" customModule="SMA_Dev" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ApprovalRequestCell" rowHeight="405" id="KGk-i7-Jjw" customClass="ApprovalRequestCell" customModule="SMA_Stage" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="418" height="405"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -204,11 +204,13 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="actionButtonsStackView" destination="EgG-0l-vj0" id="9no-0J-TfI"/>
+                <outlet property="deleteLabelWidth" destination="8lL-nM-5l3" id="z3I-qf-CRd"/>
                 <outlet property="deleteReasonStackView" destination="h2X-IQ-mYE" id="LPR-ka-pxV"/>
                 <outlet property="deniedReasonStackView" destination="yqX-Po-2wI" id="J3o-34-04T"/>
                 <outlet property="lblApprovalStatus" destination="B4U-0B-fkH" id="00i-tk-4hV"/>
                 <outlet property="lblCustomer" destination="iNa-Yt-wI3" id="iyg-Md-LEa"/>
                 <outlet property="lblDeleteReason" destination="Rm1-GV-G4o" id="pVV-Bb-9vs"/>
+                <outlet property="lblDeleteReasonTitle" destination="Fsr-Iw-ITP" id="fEe-Rg-pgT"/>
                 <outlet property="lblDeniedReason" destination="Ifx-Co-kRE" id="KZI-vP-Xkn"/>
                 <outlet property="lblDescription" destination="nbp-sz-EVH" id="SX2-cR-NnX"/>
                 <outlet property="lblModuleName" destination="tPq-WQ-eLa" id="90U-lW-fEx"/>

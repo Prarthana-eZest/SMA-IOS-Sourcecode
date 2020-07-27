@@ -26,7 +26,7 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
     @IBOutlet weak private var upcomingSelectionView: UIView!
     @IBOutlet weak private var pastSelectionView: UIView!
     @IBOutlet weak private var lblNoRecords: UILabel!
-    
+
     var selectedIndex = 0
 
     var pendingRecords = [TeleMarketingModel]()

@@ -43,7 +43,10 @@ class ApprovalRequestCell: UITableViewCell {
     @IBOutlet weak private var deleteReasonStackView: UIStackView!
 
     @IBOutlet weak private var lblDeniedReason: UILabel!
+
+    @IBOutlet weak private var lblDeleteReasonTitle: UILabel!
     @IBOutlet weak private var lblDeleteReason: UILabel!
+    @IBOutlet weak private var deleteLabelWidth: NSLayoutConstraint!
 
     weak var delegate: ApprovalCellDelegate?
 
@@ -76,9 +79,13 @@ class ApprovalRequestCell: UITableViewCell {
             var deleteReason = ""
             if category == .can_appointment {
                 deleteReason = model.approval_request_details?.appointment?.cancel_reason ?? ""
+                deleteLabelWidth.constant = 158
+                lblDeleteReasonTitle.text = "Cancellation Reason :"
             }
             if category == .del_service {
                 deleteReason = model.approval_request_details?.service?.first?.delete_reason ?? ""
+                deleteLabelWidth.constant = 128
+                lblDeleteReasonTitle.text = "Deletion Reason :"
             }
             lblDeleteReason.text = deleteReason
             deleteReasonStackView.isHidden = deleteReason.isEmpty
