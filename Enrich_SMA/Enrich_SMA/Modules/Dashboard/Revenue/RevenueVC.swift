@@ -75,9 +75,11 @@ class RevenueVC: UIViewController, RevenueDisplayLogic {
             RevenueCellModel(title: "Client consultation",
                              subTitle: "From \(data?.client_consultation_customer?.description.toDouble()?.cleanForPrice ?? "0") Customer", value: "\(data?.consultation_percent?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
-            RevenueCellModel(title: "Retail products", subTitle: "", value: "\(data?.retail_products_as_percentage_to_services_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
+            RevenueCellModel(title: "Retail products", subTitle: "", value: "\(data?.product_revenue_percent?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
             RevenueCellModel(title: "Service revenue", subTitle: "", value: "\(data?.service_revenue_percent?.description.toDouble()?.cleanForPrice ?? "0")%"),
+
+            RevenueCellModel(title: "Retail Products - as % to Services Revenue", subTitle: "", value: "\(data?.retail_products_as_percentage_to_services_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
           //  RevenueCellModel(title: "Product revenue", subTitle: "", value: "\(data?.total_products_revenue?.description.toDouble()?.cleanForPrice ?? "0")%"),
 
