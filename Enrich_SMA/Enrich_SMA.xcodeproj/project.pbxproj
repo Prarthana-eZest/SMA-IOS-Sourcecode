@@ -222,6 +222,7 @@
 		E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB685F238CFE8600CC569D /* ListingCell.swift */; };
 		E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */; };
 		E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */; };
+		F808413E24DC118E00713215 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = F808413D24DC118D00713215 /* index.html */; };
 		F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */; };
 		F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F833CC252438C6F0007119AD /* SOSFactory.swift */; };
 		F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */; };
@@ -527,6 +528,7 @@
 		E3DB685F238CFE8600CC569D /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceListingCell.xib; sourceTree = "<group>"; };
 		E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListingCell.swift; sourceTree = "<group>"; };
+		F808413D24DC118D00713215 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
 		F833CC252438C6F0007119AD /* SOSFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSFactory.swift; sourceTree = "<group>"; };
 		F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseTopicFactory.swift; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 		E303422E235EE14700E0BF0A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F808413D24DC118D00713215 /* index.html */,
 				E303422F235EE14700E0BF0A /* Fonts */,
 			);
 			path = Resources;
@@ -1778,6 +1781,7 @@
 				E3060166237EA49200988EEC /* AppointmentTimelineCell.xib in Resources */,
 				E3034269235EE14700E0BF0A /* NotoSerif-Italic.ttf in Resources */,
 				E30340BA235EE11C00E0BF0A /* EmployeeCell.xib in Resources */,
+				F808413E24DC118E00713215 /* index.html in Resources */,
 				E306016E237EA49200988EEC /* SelectGenderCell.xib in Resources */,
 				E306016A237EA49200988EEC /* TopicCell.xib in Resources */,
 				E30340C1235EE11C00E0BF0A /* YourTargetRevenueCell.xib in Resources */,

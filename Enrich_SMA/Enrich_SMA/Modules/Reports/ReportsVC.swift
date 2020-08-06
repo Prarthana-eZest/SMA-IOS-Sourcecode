@@ -128,9 +128,6 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
-//        let vc = WebViewVC.instantiate(fromAppStoryboard: .Reports)
-//        vc.data = reports[indexPath.row]
-//        self.navigationController?.pushViewController(vc, animated: true)
 
         if indexPath.row == 0 {
             let isSelected = reports[indexPath.section].isSelected
@@ -139,6 +136,13 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
         else {
+//            guard let links = reports[indexPath.section].category.links else {
+//                return
+//            }
+//            let vc = WebViewVC.instantiate(fromAppStoryboard: .Reports)
+//            vc.data = links[indexPath.row - 1]
+//            self.navigationController?.pushViewController(vc, animated: true)
+
             guard let links = reports[indexPath.section].category.links,
             let urlString = links[indexPath.row - 1].url,
             let url = URL(string: urlString) else { return }
