@@ -248,6 +248,11 @@
 		F8784FCB244D722700104BE8 /* ApprovalRequestListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FC5244D722700104BE8 /* ApprovalRequestListModels.swift */; };
 		F8784FCC244D722700104BE8 /* ApprovalRequestListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FC6244D722700104BE8 /* ApprovalRequestListInteractor.swift */; };
 		F8784FCD244D722700104BE8 /* ApprovalRequestListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FC7244D722700104BE8 /* ApprovalRequestListVC.swift */; };
+		F87C336E24DD515A00318662 /* PowerBIReportPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C336824DD515A00318662 /* PowerBIReportPresenter.swift */; };
+		F87C336F24DD515A00318662 /* PowerBIReportWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C336924DD515A00318662 /* PowerBIReportWorker.swift */; };
+		F87C337124DD515A00318662 /* PowerBIReportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C336B24DD515A00318662 /* PowerBIReportModels.swift */; };
+		F87C337224DD515A00318662 /* PowerBIReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C336C24DD515A00318662 /* PowerBIReportVC.swift */; };
+		F87C337324DD515A00318662 /* PowerBIReportInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C336D24DD515A00318662 /* PowerBIReportInteractor.swift */; };
 		F8804EBB244817FE00DEAA82 /* SignatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8804EB7244817FD00DEAA82 /* SignatureCell.swift */; };
 		F8804EBC244817FE00DEAA82 /* AddNotesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8804EB8244817FD00DEAA82 /* AddNotesCell.xib */; };
 		F8804EBD244817FE00DEAA82 /* AddNotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8804EB9244817FD00DEAA82 /* AddNotesCell.swift */; };
@@ -266,7 +271,6 @@
 		F8CE55EE24616C3000FF9487 /* RequestCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8CE55EC24616C3000FF9487 /* RequestCategoryCell.xib */; };
 		F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACAD72448620F006AB417 /* ReportCell.swift */; };
 		F8DACADA2448620F006AB417 /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8DACAD82448620F006AB417 /* ReportCell.xib */; };
-		F8DACADD24486768006AB417 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DACADC24486768006AB417 /* WebViewVC.swift */; };
 		F8E5D27E246E9B72005876CE /* TeleConsultationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D278246E9B72005876CE /* TeleConsultationModels.swift */; };
 		F8E5D27F246E9B72005876CE /* CustomerTeleHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D279246E9B72005876CE /* CustomerTeleHistoryVC.swift */; };
 		F8E5D280246E9B72005876CE /* TeleConsultationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D27A246E9B72005876CE /* TeleConsultationVC.swift */; };
@@ -557,6 +561,11 @@
 		F8784FC5244D722700104BE8 /* ApprovalRequestListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestListModels.swift; sourceTree = "<group>"; };
 		F8784FC6244D722700104BE8 /* ApprovalRequestListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestListInteractor.swift; sourceTree = "<group>"; };
 		F8784FC7244D722700104BE8 /* ApprovalRequestListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestListVC.swift; sourceTree = "<group>"; };
+		F87C336824DD515A00318662 /* PowerBIReportPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerBIReportPresenter.swift; sourceTree = "<group>"; };
+		F87C336924DD515A00318662 /* PowerBIReportWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerBIReportWorker.swift; sourceTree = "<group>"; };
+		F87C336B24DD515A00318662 /* PowerBIReportModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerBIReportModels.swift; sourceTree = "<group>"; };
+		F87C336C24DD515A00318662 /* PowerBIReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerBIReportVC.swift; sourceTree = "<group>"; };
+		F87C336D24DD515A00318662 /* PowerBIReportInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerBIReportInteractor.swift; sourceTree = "<group>"; };
 		F8804EB7244817FD00DEAA82 /* SignatureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureCell.swift; sourceTree = "<group>"; };
 		F8804EB8244817FD00DEAA82 /* AddNotesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNotesCell.xib; sourceTree = "<group>"; };
 		F8804EB9244817FD00DEAA82 /* AddNotesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNotesCell.swift; sourceTree = "<group>"; };
@@ -575,7 +584,6 @@
 		F8CE55EC24616C3000FF9487 /* RequestCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestCategoryCell.xib; sourceTree = "<group>"; };
 		F8DACAD72448620F006AB417 /* ReportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		F8DACAD82448620F006AB417 /* ReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportCell.xib; sourceTree = "<group>"; };
-		F8DACADC24486768006AB417 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		F8E5D278246E9B72005876CE /* TeleConsultationModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleConsultationModels.swift; sourceTree = "<group>"; };
 		F8E5D279246E9B72005876CE /* CustomerTeleHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerTeleHistoryVC.swift; sourceTree = "<group>"; };
 		F8E5D27A246E9B72005876CE /* TeleConsultationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleConsultationVC.swift; sourceTree = "<group>"; };
@@ -1249,7 +1257,7 @@
 				E30342FB235EE5D900E0BF0A /* ReportsWorker.swift */,
 				E30342FD235EE5D900E0BF0A /* ReportsModels.swift */,
 				E30342FF235EE5D900E0BF0A /* ReportsInteractor.swift */,
-				F8DACADB24486747006AB417 /* Web View */,
+				F8DACADB24486747006AB417 /* Report WebView */,
 			);
 			path = Reports;
 			sourceTree = "<group>";
@@ -1599,12 +1607,16 @@
 			path = Reports;
 			sourceTree = "<group>";
 		};
-		F8DACADB24486747006AB417 /* Web View */ = {
+		F8DACADB24486747006AB417 /* Report WebView */ = {
 			isa = PBXGroup;
 			children = (
-				F8DACADC24486768006AB417 /* WebViewVC.swift */,
+				F87C336C24DD515A00318662 /* PowerBIReportVC.swift */,
+				F87C336824DD515A00318662 /* PowerBIReportPresenter.swift */,
+				F87C336924DD515A00318662 /* PowerBIReportWorker.swift */,
+				F87C336B24DD515A00318662 /* PowerBIReportModels.swift */,
+				F87C336D24DD515A00318662 /* PowerBIReportInteractor.swift */,
 			);
-			path = "Web View";
+			path = "Report WebView";
 			sourceTree = "<group>";
 		};
 		F8E5D277246E9B3E005876CE /* Tele Consultation */ = {
@@ -2054,8 +2066,10 @@
 				E30342F8235EE58300E0BF0A /* AppointmentVC.swift in Sources */,
 				E30342C6235EE15800E0BF0A /* ExtentionUserDefaults.swift in Sources */,
 				F838D9072437058300FDA998 /* SOSAlertModels.swift in Sources */,
+				F87C336E24DD515A00318662 /* PowerBIReportPresenter.swift in Sources */,
 				E30340BE235EE11C00E0BF0A /* YourTargetRevenueCell.swift in Sources */,
 				F8784FCC244D722700104BE8 /* ApprovalRequestListInteractor.swift in Sources */,
+				F87C337224DD515A00318662 /* PowerBIReportVC.swift in Sources */,
 				F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */,
 				F8E5D281246E9B72005876CE /* TeleConsultationWorker.swift in Sources */,
 				E30341F0235EE14000E0BF0A /* NotificationsVC.swift in Sources */,
@@ -2089,6 +2103,7 @@
 				E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */,
 				E306016C237EA49200988EEC /* SelectGenderCell.swift in Sources */,
 				F8B8729C24629FD10031DC97 /* RequestDetailsModels.swift in Sources */,
+				F87C336F24DD515A00318662 /* PowerBIReportWorker.swift in Sources */,
 				E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */,
 				E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */,
 				E3CD502D23713C3600DE106E /* OTPVerificationModuleInteractor.swift in Sources */,
@@ -2112,6 +2127,7 @@
 				E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */,
 				E3CEA5BE23CC57B200DD213F /* AllReviewsModuleInteractor.swift in Sources */,
 				F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */,
+				F87C337324DD515A00318662 /* PowerBIReportInteractor.swift in Sources */,
 				E30342C1235EE15800E0BF0A /* ImagePicker.swift in Sources */,
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
 				E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */,
@@ -2198,6 +2214,7 @@
 				E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */,
 				E30342C0235EE15800E0BF0A /* KeyboardAnimation.swift in Sources */,
 				F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */,
+				F87C337124DD515A00318662 /* PowerBIReportModels.swift in Sources */,
 				E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */,
 				F8784FCD244D722700104BE8 /* ApprovalRequestListVC.swift in Sources */,
 				E30342B4235EE15800E0BF0A /* JSONANYHandling.swift in Sources */,
@@ -2207,7 +2224,6 @@
 				E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */,
 				E3CD502823713C3600DE106E /* LoginOTPModulePresenter.swift in Sources */,
 				F8A9733B24A4D16900E9C5CA /* ServerUnderMaintenanceModuleVC.swift in Sources */,
-				F8DACADD24486768006AB417 /* WebViewVC.swift in Sources */,
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
 				F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */,
 				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,

@@ -136,17 +136,17 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
         else {
-//            guard let links = reports[indexPath.section].category.links else {
-//                return
-//            }
-//            let vc = WebViewVC.instantiate(fromAppStoryboard: .Reports)
-//            vc.data = links[indexPath.row - 1]
-//            self.navigationController?.pushViewController(vc, animated: true)
+            guard let links = reports[indexPath.section].category.links else {
+                return
+            }
+            let vc = PowerBIReportVC.instantiate(fromAppStoryboard: .Reports)
+            vc.data = links[indexPath.row - 1]
+            self.navigationController?.pushViewController(vc, animated: true)
 
-            guard let links = reports[indexPath.section].category.links,
-            let urlString = links[indexPath.row - 1].url,
-            let url = URL(string: urlString) else { return }
-            UIApplication.shared.open(url)
+//            guard let links = reports[indexPath.section].category.links,
+//            let urlString = links[indexPath.row - 1].url,
+//            let url = URL(string: urlString) else { return }
+//            UIApplication.shared.open(url)
         }
     }
 }

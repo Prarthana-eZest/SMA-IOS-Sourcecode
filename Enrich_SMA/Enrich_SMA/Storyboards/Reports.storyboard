@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Web ViewVC-->
+        <!--PowerBI ReportVC-->
         <scene sceneID="oEw-2B-etU">
             <objects>
-                <viewController storyboardIdentifier="WebViewVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WEM-a7-Q8g" customClass="WebViewVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PowerBIReportVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WEM-a7-Q8g" customClass="PowerBIReportVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8NU-pJ-rRr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
