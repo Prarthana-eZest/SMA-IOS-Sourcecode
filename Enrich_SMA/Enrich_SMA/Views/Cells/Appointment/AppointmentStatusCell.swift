@@ -82,7 +82,14 @@ class AppointmentStatusCell: UITableViewCell {
         btnServiceCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
         stackViewServiceCount.isHidden = ((model.services?.count ?? 1) < 2)
         //lblAppointmentStatus.text = "\(model.status ?? "")"
-        lblLocation.text = model.customer_address ?? ""
+        var address = [String]()
+        if let address1 = model.customer_address {
+            address.append(address1)
+        }
+        if let address2 = model.customer_address2 {
+            address.append(address2)
+        }
+        lblLocation.text = address.joined(separator: ", ")
         locationStackView.isHidden = true
         let rating = model.avg_rating ?? 0
         lblRatings.text = "\(rating.cleanForRating)/5"

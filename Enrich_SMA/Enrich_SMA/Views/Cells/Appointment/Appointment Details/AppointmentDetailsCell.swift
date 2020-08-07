@@ -61,7 +61,15 @@ class AppointmentDetailsCell: UITableViewCell {
         lblAppointmentStatus.text = status.uppercased()
         lblStatus.text = status.uppercased()
 
-        lblLocation.text = model.customer_address ?? ""
+        var address = [String]()
+        if let address1 = model.customer_address {
+            address.append(address1)
+        }
+        if let address2 = model.customer_address2 {
+            address.append(address2)
+        }
+        lblLocation.text = address.joined(separator: ", ")
+
         lblDateTime.text = date.dayNameDateFormat
         lblLastVisit.text = model.last_visit ?? ""
 
