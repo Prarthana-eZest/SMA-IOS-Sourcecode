@@ -253,7 +253,7 @@ extension AppointmentVC: AppointmentDelegate {
     }
 
     func actionRatings(indexPath: IndexPath) {
-        if let id = appointments[indexPath.row].booked_by_id {
+        if let id = appointments[indexPath.row].booked_for_id {
             let vc = AllReviewsVC.instantiate(fromAppStoryboard: .Appointment)
             vc.customerId = id
             vc.ratingType = .customer

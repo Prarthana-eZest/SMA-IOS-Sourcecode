@@ -14,6 +14,8 @@ class AppointmentDetailsCell: UITableViewCell {
     @IBOutlet weak private var lblDateTime: UILabel!
     @IBOutlet weak private var userProfile: UIImageView!
     @IBOutlet weak private var lblUserName: UILabel!
+    @IBOutlet weak private var lblBookedBy: UILabel!
+    @IBOutlet weak private var lblBookedFor: UILabel!
     @IBOutlet weak private var lblAppointmentStatus: UILabel!
     @IBOutlet weak private var lblLastVisit: UILabel!
     @IBOutlet weak private var lblRatings: UILabel!
@@ -36,6 +38,8 @@ class AppointmentDetailsCell: UITableViewCell {
 
     @IBOutlet weak private var stackViewMemAndHighS: UIStackView!
 
+    @IBOutlet private weak var AddOnStackView: UIStackView!
+
     var appointmentDetails: Appointment.GetAppointnents.Data?
 
     override func awakeFromNib() {
@@ -52,7 +56,20 @@ class AppointmentDetailsCell: UITableViewCell {
     func configureCell(model: Appointment.GetAppointnents.Data, date: Date) {
 
         appointmentDetails = model
-        lblUserName.text = model.booked_by ?? ""
+
+        // Add On Flow
+        if model.booked_by_id == model.booked_for_id {
+            lblUserName.isHidden = false
+            AddOnStackView.isHidden = true
+            lblUserName.text = model.booked_by ?? ""
+        }
+        else {
+            lblUserName.isHidden = true
+            AddOnStackView.isHidden = false
+            lblBookedBy.text = model.booked_by ?? ""
+            lblBookedFor.text = model.booked_for ?? ""
+        }
+
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
         lblTotalDuration.text = "\(model.total_duration ?? 0) min"

@@ -35,7 +35,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
 
     @IBOutlet weak private var btnSubmitForm: UIButton!
 
-    var customerId: Int?
+    var customerId: Int64?
 
     var appointmentDetails: Appointment.GetAppointnents.Data?
 

@@ -29,7 +29,7 @@ class AllReviewsVC: UIViewController {
 
     // MARK: Object lifecycle
 
-    var customerId: Int?
+    var customerId: Int64?
 
     var ratingType: RatingType = .customer
 

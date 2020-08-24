@@ -30,7 +30,7 @@ enum Appointment {
         }
 
         struct Data: Codable {
-            let appointment_id: Int?
+            let appointment_id: Int64?
             let appointment_date: String?
             let booking_technician_id: Int?
             let appointment_type: String?
@@ -39,7 +39,7 @@ enum Appointment {
             let customer_address: String?
             let customer_address2: String?
             let booked_by_contact: String?
-            let booked_by_id: Int?
+            let booked_by_id: Int64?
             let booking_technician: String?
             let booking_number: String?
             let payment_status: String?
@@ -70,6 +70,10 @@ enum Appointment {
 
             let generic_form_filled: Bool?
             let generic_form_list: [FormDetails]?
+
+            let booked_for: String?
+            let booked_for_id: Int64?
+            let booked_for_contact: String?
 
         }
 

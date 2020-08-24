@@ -18,21 +18,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServiceHistoryCell" rowHeight="280" id="KGk-i7-Jjw" customClass="ServiceHistoryCell" customModule="SMA_Stage" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ServiceHistoryCell" rowHeight="355" id="KGk-i7-Jjw" customClass="ServiceHistoryCell" customModule="SMA_Stage" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="355"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+                <rect key="frame" x="0.0" y="0.0" width="334" height="355"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yd-Sd-LKn">
-                        <rect key="frame" x="20" y="0.0" width="280" height="214.5"/>
+                        <rect key="frame" x="20" y="0.0" width="294" height="281.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fyT-sE-V9b">
-                                <rect key="frame" x="15" y="15" width="250" height="184.5"/>
+                                <rect key="frame" x="15" y="15" width="264" height="251.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fEi-yW-cEF">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="264" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed, 12 June 2019" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WS-iZ-0y3">
                                                 <rect key="frame" x="0.0" y="7" width="122.5" height="21"/>
@@ -42,7 +42,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9U0-PM-QeX">
-                                                <rect key="frame" x="160" y="0.0" width="90" height="35"/>
+                                                <rect key="frame" x="174" y="0.0" width="90" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="255" text="Completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q7-Xq-fQr">
                                                         <rect key="frame" x="5" y="7" width="80" height="21"/>
@@ -82,8 +82,57 @@
                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-eI-fcj">
+                                        <rect key="frame" x="0.0" y="78.5" width="231" height="57"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="r6A-QR-Dj5">
+                                                <rect key="frame" x="0.0" y="0.0" width="231" height="26"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booked by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJM-FE-p4U">
+                                                        <rect key="frame" x="0.0" y="0.0" width="89" height="26"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
+                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Kalpana Sharma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3d-av-phG">
+                                                        <rect key="frame" x="95" y="0.0" width="136" height="26"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="20"/>
+                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Tag-9C-lFp">
+                                                <rect key="frame" x="0.0" y="31" width="231" height="26"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booked for:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMd-Nk-OYb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="90.5" height="26"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
+                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Kalpana Sharma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Iq-CO-Vj0">
+                                                        <rect key="frame" x="96.5" y="0.0" width="134.5" height="26"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="20"/>
+                                                        <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Tag-9C-lFp" firstAttribute="leading" secondItem="pzK-eI-fcj" secondAttribute="leading" id="5q5-4r-43k"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tag-9C-lFp" secondAttribute="trailing" id="YKW-Ev-DBo"/>
+                                            <constraint firstAttribute="trailing" secondItem="r6A-QR-Dj5" secondAttribute="trailing" id="iZW-Em-7Hf"/>
+                                            <constraint firstItem="r6A-QR-Dj5" firstAttribute="leading" secondItem="pzK-eI-fcj" secondAttribute="leading" id="nR9-z2-lUt"/>
+                                        </constraints>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YC7-Ld-JPY">
-                                        <rect key="frame" x="0.0" y="78.5" width="78.5" height="55"/>
+                                        <rect key="frame" x="0.0" y="145.5" width="78.5" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dz5-zR-LK3">
                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="21"/>
@@ -130,7 +179,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Jw5-5s-EmA">
-                                        <rect key="frame" x="0.0" y="143.5" width="162.5" height="41"/>
+                                        <rect key="frame" x="0.0" y="210.5" width="162.5" height="41"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating given by technician" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrs-13-oDl">
                                                 <rect key="frame" x="0.0" y="0.0" width="162.5" height="21"/>
@@ -207,7 +256,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="AddOnStackView" destination="pzK-eI-fcj" id="rwl-a1-yva"/>
                 <outlet property="btnOtherServicesCount" destination="BH4-AS-grJ" id="fYt-7O-547"/>
+                <outlet property="lblBookedBy" destination="R3d-av-phG" id="bfC-DX-3jS"/>
+                <outlet property="lblBookedFor" destination="0Iq-CO-Vj0" id="vfR-IA-uws"/>
                 <outlet property="lblDateTime" destination="1WS-iZ-0y3" id="24S-hm-KgN"/>
                 <outlet property="lblServiceName" destination="YTC-yY-aIZ" id="ztj-4w-lhd"/>
                 <outlet property="lblServiceStatus" destination="7Q7-Xq-fQr" id="z43-4S-sHI"/>
@@ -215,7 +267,7 @@
                 <outlet property="ratingsView" destination="9pT-6v-LIg" id="w9c-yP-3sZ"/>
                 <outlet property="stackViewServiceCount" destination="9vl-al-fTD" id="Lak-Ar-QDC"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="232.36607142857142"/>
+            <point key="canvasLocation" x="142.02898550724638" y="257.47767857142856"/>
         </tableViewCell>
     </objects>
     <resources>

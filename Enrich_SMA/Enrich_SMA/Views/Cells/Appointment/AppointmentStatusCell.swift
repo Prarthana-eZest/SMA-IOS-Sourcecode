@@ -44,17 +44,22 @@ class AppointmentStatusCell: UITableViewCell {
     @IBOutlet private weak var lblEndTime: UILabel!
     @IBOutlet private weak var lblTotalDuration: UILabel!
     @IBOutlet private weak var lblUserName: UILabel!
+    @IBOutlet private weak var lblBookedBy: UILabel!
+    @IBOutlet private weak var lblBookedFor: UILabel!
+
     @IBOutlet private weak var lblServiceName: UILabel!
     @IBOutlet private weak var btnServiceCount: UIButton!
     @IBOutlet private weak var lblRatings: UILabel!
     @IBOutlet private weak var stackViewServiceCount: UIStackView!
+
+    @IBOutlet private weak var AddOnStackView: UIStackView!
 
     @IBOutlet private weak var lblLocation: UILabel!
     @IBOutlet private weak var locationStackView: UIStackView!
 
     @IBOutlet private weak var lblPaymentStatus: UILabel!
 
-    @IBOutlet weak private var iconHighSpending: UIImageView!
+    @IBOutlet private weak var iconHighSpending: UIImageView!
 
     let salonAppointmentColor = UIColor(red: 238 / 255, green: 91 / 255, blue: 71 / 255, alpha: 1)
     let belitaAppointmentColor = UIColor(red: 135 / 255, green: 197 / 255, blue: 205 / 255, alpha: 1)
@@ -74,7 +79,20 @@ class AppointmentStatusCell: UITableViewCell {
     }
 
     func configureCell(model: Appointment.GetAppointnents.Data) {
-        lblUserName.text = model.booked_by ?? ""
+
+        // Add On Flow
+        if model.booked_by_id == model.booked_for_id {
+            lblUserName.isHidden = false
+            AddOnStackView.isHidden = true
+            lblUserName.text = model.booked_by ?? ""
+        }
+        else {
+            lblUserName.isHidden = true
+            AddOnStackView.isHidden = false
+            lblBookedBy.text = model.booked_by ?? ""
+            lblBookedFor.text = model.booked_for ?? ""
+        }
+
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
         lblTotalDuration.text = "\(model.total_duration ?? 0) min"

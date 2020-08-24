@@ -119,7 +119,7 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic {
 
     @IBAction func actionClientInformation(_ sender: UIButton) {
         let vc = ClientInformationVC.instantiate(fromAppStoryboard: .Appointment)
-        vc.customerId = appointmentDetails?.booked_by_id
+        vc.customerId = appointmentDetails?.booked_for_id
         vc.gender = appointmentDetails?.gender ?? 1
         if let forms = appointmentDetails?.generic_form_list {
             vc.form_id = forms.first?.form_id

@@ -75,6 +75,10 @@ enum ClientInformation {
 
             let is_selfie_uploaded: Bool?
             let selfie_image: String?
+
+            let booked_for: String?
+            let booked_for_id: Int64?
+            let booked_for_contact: String?
         }
 
         struct Services: Codable {

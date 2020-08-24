@@ -18,10 +18,13 @@ class ServiceHistoryCell: UITableViewCell {
     @IBOutlet private weak var lblDateTime: UILabel!
     @IBOutlet private weak var lblServiceStatus: UILabel!
     @IBOutlet private weak var lblUserName: UILabel!
+    @IBOutlet private weak var lblBookedBy: UILabel!
+    @IBOutlet private weak var lblBookedFor: UILabel!
     @IBOutlet private weak var lblServiceName: UILabel!
     @IBOutlet private weak var btnOtherServicesCount: UIButton!
     @IBOutlet private weak var ratingsView: CosmosView!
     @IBOutlet private weak var stackViewServiceCount: UIStackView!
+    @IBOutlet private weak var AddOnStackView: UIStackView!
 
     var indexPath: IndexPath?
     weak var delegate: ClientInformationDelegate?
@@ -49,7 +52,20 @@ class ServiceHistoryCell: UITableViewCell {
         }
 
         lblServiceStatus.text = (model.status ?? "").uppercased()
-        lblUserName.text = model.booked_by ?? ""
+
+        // Add On Flow
+        if model.booked_by_id == model.booked_for_id {
+            lblUserName.isHidden = false
+            AddOnStackView.isHidden = true
+            lblUserName.text = model.booked_by ?? ""
+        }
+        else {
+            lblUserName.isHidden = true
+            AddOnStackView.isHidden = false
+            lblBookedBy.text = model.booked_by ?? ""
+            lblBookedFor.text = model.booked_for ?? ""
+        }
+
         lblServiceName.text = model.services?.first?.service_name ?? "Not available"
         btnOtherServicesCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
         ratingsView.rating = model.avg_rating ?? 0.0
