@@ -26,10 +26,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yd-Sd-LKn">
-                        <rect key="frame" x="20" y="0.0" width="294" height="281.5"/>
+                        <rect key="frame" x="20" y="0.0" width="294" height="276.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fyT-sE-V9b">
-                                <rect key="frame" x="15" y="15" width="264" height="251.5"/>
+                                <rect key="frame" x="15" y="15" width="264" height="246.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fEi-yW-cEF">
                                         <rect key="frame" x="0.0" y="0.0" width="264" height="35"/>
@@ -83,41 +83,41 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-eI-fcj">
-                                        <rect key="frame" x="0.0" y="78.5" width="231" height="57"/>
+                                        <rect key="frame" x="0.0" y="78.5" width="208.5" height="52"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="r6A-QR-Dj5">
-                                                <rect key="frame" x="0.0" y="0.0" width="231" height="26"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="208.5" height="23.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booked by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJM-FE-p4U">
-                                                        <rect key="frame" x="0.0" y="0.0" width="89" height="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="23.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Kalpana Sharma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3d-av-phG">
-                                                        <rect key="frame" x="95" y="0.0" width="136" height="26"/>
+                                                        <rect key="frame" x="86" y="0.0" width="122.5" height="23.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="18"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Tag-9C-lFp">
-                                                <rect key="frame" x="0.0" y="31" width="231" height="26"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="208.5" height="23.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booked for:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMd-Nk-OYb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="90.5" height="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="81.5" height="23.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Kalpana Sharma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Iq-CO-Vj0">
-                                                        <rect key="frame" x="96.5" y="0.0" width="134.5" height="26"/>
+                                                        <rect key="frame" x="87.5" y="0.0" width="121" height="23.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="18"/>
                                                         <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -132,7 +132,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="YC7-Ld-JPY">
-                                        <rect key="frame" x="0.0" y="145.5" width="78.5" height="55"/>
+                                        <rect key="frame" x="0.0" y="140.5" width="78.5" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dz5-zR-LK3">
                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="21"/>
@@ -179,7 +179,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Jw5-5s-EmA">
-                                        <rect key="frame" x="0.0" y="210.5" width="162.5" height="41"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="162.5" height="41"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating given by technician" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrs-13-oDl">
                                                 <rect key="frame" x="0.0" y="0.0" width="162.5" height="21"/>
