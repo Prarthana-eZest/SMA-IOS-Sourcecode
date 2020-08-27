@@ -606,6 +606,17 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if selectedTitleCell == 3 {
+            print("Row index: \(indexPath.row)")
+            if (indexPath.row == appointmentHistory.count - 1) &&
+                appointmentHistory.count < total_records {
+                page_no += 1
+                getAppointmentHistory()
+            }
+        }
+    }
+
 }
 
 // MARK: - UICollectionViewDelegate and UICollectionViewDataSource

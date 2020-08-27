@@ -274,7 +274,7 @@ extension MyProfileVC {
                                                                                      MyProfileModel(title: "Email address", value: data.email ?? "-", isMultiOption: false),
                                                                                      MyProfileModel(title: "Address", value: address, isMultiOption: false)])
 
-            let professionalDetails = MyProfileSection(title: "Professional details", data: [MyProfileModel(title: "Employee ID", value: data.employee_code ?? "-", isMultiOption: false),
+            var professionalDetails = MyProfileSection(title: "Professional details", data: [MyProfileModel(title: "Employee ID", value: data.employee_code ?? "-", isMultiOption: false),
                                                                                              MyProfileModel(title: "Nick Name", value: data.nickname ?? "-", isMultiOption: false),
                                                                                              MyProfileModel(title: "Center", value: data.base_salon_name ?? "-", isMultiOption: false),
                                                                                              MyProfileModel(title: "Category", value: data.category ?? "-", isMultiOption: false),
@@ -283,6 +283,10 @@ extension MyProfileVC {
 
             let shiftDetails = MyProfileSection(title: "Shift details", data: [MyProfileModel(title: "Shift Timing", value: "-", isMultiOption: true),
                                                                                MyProfileModel(title: "Status", value: status == "1" ? "Active" : "Inactive", isMultiOption: false)])
+            
+            if profileType == .selfUser {
+                professionalDetails.data.removeLast()
+            }
 
             let sections = [personalDetails, professionalDetails, shiftDetails]
 
