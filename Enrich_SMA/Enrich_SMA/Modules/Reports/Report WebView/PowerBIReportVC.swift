@@ -106,11 +106,17 @@ extension PowerBIReportVC {
 
         if let model = viewModel as? PowerBIReport.GetReportDetails.Response {
 
-            if model.status == true {
+            if model.status == true,
+                let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+
+                let tableName = data?.table_name ?? ""
+                let columnName = data?.column_name ?? ""
+                let allowExport = data?.visible ?? false
                 let embedUrl = model.data?.embedURL ?? ""
                 let type = model.data?.type ?? ""
                 let accessToken = model.data?.accessToken ?? ""
-                webView?.evaluateJavaScript("powerBiEmbed('\(type)','\(data?.report_id ?? "")','\(embedUrl)','\(accessToken)');", completionHandler: nil)
+                let salon_id = userData.salon_id ?? ""
+                webView?.evaluateJavaScript("powerBiEmbed('\(type)','\(data?.report_id ?? "")','\(embedUrl)','\(accessToken)',\(allowExport),'\(tableName)','\(columnName)','\(salon_id)');", completionHandler: nil)
             }
             else {
                 showAlert(alertTitle: alertTitle, alertMessage: model.message)

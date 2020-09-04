@@ -35,6 +35,9 @@ enum Reports {
             let type: String?
             let url: String?
             let report_id: String?
+            let table_name: String?
+            let column_name: String?
+            let visible: Bool?
         }
     }
 }

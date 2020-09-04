@@ -3,7 +3,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <head>
         <script type="text/javascript">
-            function powerBiEmbed(type,id,embedUrl,accessToken){
+
+            
+            function powerBiEmbed(type,id,embedUrl,accessToken,allowExport,tableName,columnName,salonId){
+                
+                const filter = {
+                    $schema: "http://powerbi.com/product/schema#advanced",
+                    target: {
+                        table: tableName,
+                        column: columnName
+                    },
+                    operator: "eq",
+                    values: [salonId]
+                };
+                
                 var models = window['powerbi-client'].models;
                 var permissions = models.Permissions.All;
                 var embedConfiguration = {
@@ -13,16 +26,23 @@
                     tokenType: models.TokenType.Aad,
                     accessToken: accessToken,
                     permissions: permissions,
+                    filters: [filter],
                     settings: {
-                        panes: {
-                            filters: {
-                                visible: true
-                            }
+                        filterPaneEnabled: true,
+                        navContentPaneEnabled: false,
+                        visualSettings: {
+                            visualHeaders: [
+                                {
+                                    settings: {
+                                        visible: allowExport,
+                                    }
+                                }
+                            ]
                         },
                         layoutType: models.LayoutType.MobilePortrait
                     }
                 };
-                
+                                
                 var $reportContainer = $('#reportContainer');
                 
                 var report = powerbi.embed($reportContainer.get(0), embedConfiguration);
@@ -35,4 +55,4 @@
     
 </html>
 
-
+ 
