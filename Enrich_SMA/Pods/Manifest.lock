@@ -67,9 +67,6 @@ PODS:
   - GoogleDataTransportCCTSupport (1.4.1):
     - GoogleDataTransport (~> 4.0)
     - nanopb (~> 0.3.901)
-  - GoogleMaps/Base (3.0.3)
-  - GooglePlaces (3.0.3):
-    - GoogleMaps/Base (= 3.0.3)
   - GoogleUtilities/AppDelegateSwizzler (6.5.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -105,13 +102,12 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Crashlytics
   - Firebase/Messaging
-  - GooglePlaces (= 3.0.3)
   - Kingfisher (~> 4.0)
   - SwiftLint
   - TagListView (~> 1.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Cosmos
     - Firebase
@@ -127,8 +123,6 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
-    - GoogleMaps
-    - GooglePlaces
     - GoogleUtilities
     - Kingfisher
     - nanopb
@@ -153,8 +147,6 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 39ecba10918b21c83877d392246157f65db351cf
   GoogleDataTransport: 653963cf5be60fb59cf051e070f0836fdc305f81
   GoogleDataTransportCCTSupport: 84e4d4bbab642f2e9d83ee65d78aca2b5527d314
-  GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
-  GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -163,6 +155,6 @@ SPEC CHECKSUMS:
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: df2cb2661e320a1d5dc7cf986d2f9345f49c7c49
+PODFILE CHECKSUM: 76425120287ecb1386024af05cecef5c5588e911
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.3

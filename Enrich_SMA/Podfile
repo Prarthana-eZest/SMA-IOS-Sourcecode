@@ -13,7 +13,6 @@ target 'Enrich_SMA' do
     pod 'Firebase/Messaging'
     pod 'Firebase/Crashlytics'
     pod 'Cosmos'
-    pod 'GooglePlaces', '= 3.0.3'
     pod 'TagListView', '~> 1.0'
     pod 'SwiftLint'
 

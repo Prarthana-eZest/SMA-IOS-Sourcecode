@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -128,7 +128,6 @@
 		E30342DA235EE15800E0BF0A /* ConstantsStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342A9235EE15700E0BF0A /* ConstantsStrings.swift */; };
 		E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342AB235EE15700E0BF0A /* ContactsErrors.swift */; };
 		E30342DC235EE15800E0BF0A /* ContactsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342AC235EE15700E0BF0A /* ContactsHelper.swift */; };
-		E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342B0235EE15700E0BF0A /* GooglePlacesViewController.swift */; };
 		E30342DE235EE15800E0BF0A /* QRCodeGenratorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342B2235EE15700E0BF0A /* QRCodeGenratorHelper.swift */; };
 		E30342DF235EE15800E0BF0A /* QRCodeGeneratorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30342B3235EE15700E0BF0A /* QRCodeGeneratorError.swift */; };
 		E30342E5235EE28900E0BF0A /* HomeLanding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E30342E4235EE28900E0BF0A /* HomeLanding.storyboard */; };
@@ -313,7 +312,7 @@
 		C4E64D78277E5B824569BA15 /* Pods_Enrich_SMA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Enrich_SMA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB808E85E64631D3941A1E58 /* Pods-Enrich_SMATests.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMATests.stage.xcconfig"; path = "Target Support Files/Pods-Enrich_SMATests/Pods-Enrich_SMATests.stage.xcconfig"; sourceTree = "<group>"; };
 		CCD8EF698F29EFAB52C7B140 /* Pods-Enrich_SMA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMA.debug.xcconfig"; path = "Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA.debug.xcconfig"; sourceTree = "<group>"; };
-		E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMA_Stage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3033FDE235EDF6400E0BF0A /* Enrich SMA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enrich SMA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3033FE1235EDF6400E0BF0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3033FE6235EDF6400E0BF0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3033FE9235EDF6500E0BF0A /* Enrich_SMA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Enrich_SMA.xcdatamodel; sourceTree = "<group>"; };
@@ -437,7 +436,6 @@
 		E30342A9235EE15700E0BF0A /* ConstantsStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantsStrings.swift; sourceTree = "<group>"; };
 		E30342AB235EE15700E0BF0A /* ContactsErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsErrors.swift; sourceTree = "<group>"; };
 		E30342AC235EE15700E0BF0A /* ContactsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsHelper.swift; sourceTree = "<group>"; };
-		E30342B0235EE15700E0BF0A /* GooglePlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesViewController.swift; sourceTree = "<group>"; };
 		E30342B2235EE15700E0BF0A /* QRCodeGenratorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeGenratorHelper.swift; sourceTree = "<group>"; };
 		E30342B3235EE15700E0BF0A /* QRCodeGeneratorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorError.swift; sourceTree = "<group>"; };
 		E30342E4235EE28900E0BF0A /* HomeLanding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeLanding.storyboard; sourceTree = "<group>"; };
@@ -665,7 +663,7 @@
 		E3033FDF235EDF6400E0BF0A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */,
+				E3033FDE235EDF6400E0BF0A /* Enrich SMA.app */,
 				E3033FF5235EDF6900E0BF0A /* Enrich_SMATests.xctest */,
 				E3034000235EDF6900E0BF0A /* Enrich_SMAUITests.xctest */,
 			);
@@ -994,7 +992,6 @@
 				E30342A9235EE15700E0BF0A /* ConstantsStrings.swift */,
 				E3DB6859238CEF7C00CC569D /* Generic Class */,
 				E30342AA235EE15700E0BF0A /* ContactsHelper */,
-				E30342AD235EE15700E0BF0A /* Third Party */,
 				E30342B1235EE15700E0BF0A /* QRCode Generator */,
 				F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */,
 				F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */,
@@ -1200,30 +1197,6 @@
 				E30342AC235EE15700E0BF0A /* ContactsHelper.swift */,
 			);
 			path = ContactsHelper;
-			sourceTree = "<group>";
-		};
-		E30342AD235EE15700E0BF0A /* Third Party */ = {
-			isa = PBXGroup;
-			children = (
-				E30342AE235EE15700E0BF0A /* Google Helper */,
-			);
-			path = "Third Party";
-			sourceTree = "<group>";
-		};
-		E30342AE235EE15700E0BF0A /* Google Helper */ = {
-			isa = PBXGroup;
-			children = (
-				E30342AF235EE15700E0BF0A /* Google Places */,
-			);
-			path = "Google Helper";
-			sourceTree = "<group>";
-		};
-		E30342AF235EE15700E0BF0A /* Google Places */ = {
-			isa = PBXGroup;
-			children = (
-				E30342B0235EE15700E0BF0A /* GooglePlacesViewController.swift */,
-			);
-			path = "Google Places";
 			sourceTree = "<group>";
 		};
 		E30342B1235EE15700E0BF0A /* QRCode Generator */ = {
@@ -1656,7 +1629,6 @@
 				E3033FDC235EDF6400E0BF0A /* Resources */,
 				4A8BD3CEF9DE95BDB8A5F58A /* [CP] Embed Pods Frameworks */,
 				F83692952477A77E0080CA8F /* Setup Firebase Environment GoogleService-Info.plist */,
-				7509274F4856061FF7A74BBD /* [CP] Copy Pods Resources */,
 				E33E5B6623E956FD00315BF5 /* Swiftlint Script */,
 				E327E5252416491F003DE450 /* Firebase Crashlytics */,
 			);
@@ -1666,7 +1638,7 @@
 			);
 			name = Enrich_SMA;
 			productName = Enrich_SMA;
-			productReference = E3033FDE235EDF6400E0BF0A /* SMA_Stage.app */;
+			productReference = E3033FDE235EDF6400E0BF0A /* Enrich SMA.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E3033FF4235EDF6900E0BF0A /* Enrich_SMATests */ = {
@@ -1854,30 +1826,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1948,28 +1901,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7509274F4856061FF7A74BBD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA-resources.sh",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E327E5252416491F003DE450 /* Firebase Crashlytics */ = {
@@ -2130,7 +2061,6 @@
 				F87C337324DD515A00318662 /* PowerBIReportInteractor.swift in Sources */,
 				E30342C1235EE15800E0BF0A /* ImagePicker.swift in Sources */,
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
-				E30342DD235EE15800E0BF0A /* GooglePlacesViewController.swift in Sources */,
 				E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */,
 				F8B8729A24629FD10031DC97 /* RequestDetailsInteractor.swift in Sources */,
 				E30601BE237EAA4D00988EEC /* RevenueInteractor.swift in Sources */,
@@ -2426,9 +2356,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.24;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = "Enrich SMA";
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMADev;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2451,9 +2381,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.24;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EnrichSalon.SMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = "Enrich SMA";
 				PROVISIONING_PROFILE_SPECIFIER = "Enrich Salon SMA";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2625,9 +2555,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.24;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
-				PRODUCT_NAME = SMA_Stage;
+				PRODUCT_NAME = "Enrich SMA";
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
