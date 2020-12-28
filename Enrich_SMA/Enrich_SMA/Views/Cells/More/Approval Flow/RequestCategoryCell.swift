@@ -16,7 +16,10 @@ class RequestCategoryCell: UITableViewCell {
     @IBOutlet weak private var lblPrice: UILabel!
     @IBOutlet weak private var lblDuration: UILabel!
     @IBOutlet weak private var priceStackView: UIStackView!
-
+    @IBOutlet weak private var lblCustomerName: UILabel!
+    @IBOutlet weak private var customerStackView: UIStackView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,6 +33,8 @@ class RequestCategoryCell: UITableViewCell {
         lblPrice.text =  "₹\(price)"
         priceStackView.isHidden = model.price == nil
         lblDuration.text = "\(model.duration ?? "0") min"
+        lblCustomerName.text = model.customerName ?? ""
+        customerStackView.isHidden = model.customerName == nil
     }
 }
 
@@ -39,4 +44,5 @@ struct RequestCategoryModel {
     let endTime: String?
     let price: String?
     let duration: String?
+    let customerName: String?
 }
