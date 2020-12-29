@@ -82,7 +82,7 @@ open class NetworkLayerAlamofire {
                     if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
                         //                    if let jsonString = String(data: data, encoding: .utf8) {
                         //                        print(jsonString)
-                        errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+                        errorHandler((responseObject.message ?? "Server not responding.Please try after some time.") + "\n\(responseObject.parameters?.resources ?? "")")
 
                         //                    }
 
@@ -184,7 +184,7 @@ open class NetworkLayerAlamofire {
                     if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
                         //                    if let jsonString = String(data: data, encoding: .utf8) {
                         //                        print(jsonString)
-                        errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+                        errorHandler((responseObject.message ?? "Server not responding.Please try after some time.") + "\n\(responseObject.parameters?.resources ?? "")")
 
                         //                    }
 
@@ -282,7 +282,7 @@ open class NetworkLayerAlamofire {
                     if let responseObject = try? JSONDecoder().decode(CustomError.self, from: data) {
                         //                    if let jsonString = String(data: data, encoding: .utf8) {
                         //                        print(jsonString)
-                        errorHandler(responseObject.message ?? "Server not responding.Please try after some time.")
+                        errorHandler((responseObject.message ?? "Server not responding.Please try after some time.") + "\n\(responseObject.parameters?.resources ?? "")")
 
                         //                    }
 

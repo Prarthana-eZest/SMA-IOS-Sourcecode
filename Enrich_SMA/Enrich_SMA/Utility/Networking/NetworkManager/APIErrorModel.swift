@@ -11,6 +11,11 @@ import Foundation
 struct CustomError: Codable {
     let message: String?
     let status: Bool?
+    let parameters: AccessResources?
+}
+
+struct AccessResources: Codable {
+    let resources: String?
 }
 
 struct RefreshRequest: Codable {
