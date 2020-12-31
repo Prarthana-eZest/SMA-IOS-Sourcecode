@@ -16,6 +16,8 @@ class AppointmentTimelineCell: UITableViewCell {
     @IBOutlet weak private var roundView: UIView!
     @IBOutlet weak private var endView: UIView!
     @IBOutlet weak private var lineView: UIView!
+    @IBOutlet weak private var lblCustomerName: UILabel!
+    @IBOutlet weak private var customerNameStackView: UIStackView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,6 +46,8 @@ class AppointmentTimelineCell: UITableViewCell {
             self.endView.isHidden = false
             self.lineView.backgroundColor = .clear
         }
+        lblCustomerName.text = model.customerName
+        customerNameStackView.isHidden = isEndCell
     }
 
 }
@@ -53,4 +57,5 @@ struct AppointmentTimelineModel {
     let title: String
     let subTitle: String
     let alreadyCovered: Bool
+    let customerName: String
 }

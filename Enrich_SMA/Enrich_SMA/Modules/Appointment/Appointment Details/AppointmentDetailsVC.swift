@@ -131,14 +131,17 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic {
     func configureTimeline() {
         self.appintmentTimeLine.removeAll()
         appointmentDetails?.services?.forEach {
+
+            let customerName = (($0.is_dependant ?? 0) == 1) ? ($0.dependant_name ?? "") : ($0.booked_for ?? "")
+
             self.appintmentTimeLine.append(AppointmentTimelineModel(time: $0.start_time ?? "",
                                                                     title: $0.service_name ?? "",
                                                                     subTitle: $0.servicing_technician ?? "",
-                                                                    alreadyCovered: $0.status == "completed"))
+                                                                    alreadyCovered: $0.status == "completed", customerName: customerName))
         }
         self.appintmentTimeLine.append(AppointmentTimelineModel(time: appointmentDetails?.services?.last?.end_time ?? "",
                                                                 title: "Appointment ends",
-                                                                subTitle: "", alreadyCovered: false))
+                                                                subTitle: "", alreadyCovered: false, customerName: ""))
         self.tableView.reloadData()
     }
 

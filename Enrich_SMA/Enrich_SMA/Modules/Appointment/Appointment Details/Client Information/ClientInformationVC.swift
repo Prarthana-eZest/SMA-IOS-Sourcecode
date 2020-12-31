@@ -438,14 +438,17 @@ extension ClientInformationVC: ClientInformationDelegate {
     func actionOtherServices(indexPath: IndexPath) {
 
         let vc = ListingVC.instantiate(fromAppStoryboard: .More)
-        self.view.alpha = screenPopUpAlpha
+        backView.isHidden = false
+        backView.alpha = screenPopUpAlpha
+        self.view.alpha = 1.0
         vc.services = appointmentHistory[indexPath.row].services?.compactMap { ServiceListingModel(name: $0.service_name ?? "", price: "\($0.price ?? 0)") } ?? []
         vc.screenTitle = "Services"
         vc.listingType = .appointmentServices
         self.present(vc, animated: true, completion: nil)
         vc.viewDismissBlock = { [unowned self] result in
             // Do something
-            self.view.alpha = 1.0
+            self.backView.alpha = 1.0
+            self.backView.isHidden = true
         }
     }
 

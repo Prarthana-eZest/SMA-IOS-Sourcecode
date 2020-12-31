@@ -104,6 +104,18 @@ enum Appointment {
 
             let is_consultation_required: Bool?
             let consultation_form_list: [FormDetails]?
+            
+            let approval_request: String?
+            let approval_status: String?
+            
+            let is_dependant: Int?
+            let dependant_name: String?
+            let dependant_gender: String?
+            let dependant_note: String?
+            let dependant_age: String?
+            let gender: String?
+            let dependant_id: Int?
+            let override: Int?
         }
 
         struct FormDetails: Codable {
