@@ -223,6 +223,13 @@
 		E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */; };
 		F808413E24DC118E00713215 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = F808413D24DC118D00713215 /* index.html */; };
 		F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */; };
+		F8252E7825B01D5600F0E178 /* AppointmentFilterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8252E5D25B01D5600F0E178 /* AppointmentFilterWorker.swift */; };
+		F8252E7925B01D5600F0E178 /* AppointmentFilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8252E5E25B01D5600F0E178 /* AppointmentFilterModels.swift */; };
+		F8252E8C25B01D5600F0E178 /* AppointmentFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8252E7525B01D5600F0E178 /* AppointmentFilterVC.swift */; };
+		F8252E8D25B01D5600F0E178 /* AppointmentFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8252E7625B01D5600F0E178 /* AppointmentFilterPresenter.swift */; };
+		F8252E8E25B01D5600F0E178 /* AppointmentFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8252E7725B01D5600F0E178 /* AppointmentFilterInteractor.swift */; };
+		F8252E9125B01D9B00F0E178 /* CheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8252E8F25B01D9B00F0E178 /* CheckBoxCell.swift */; };
+		F8252E9225B01D9B00F0E178 /* CheckBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8252E9025B01D9B00F0E178 /* CheckBoxCell.xib */; };
 		F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F833CC252438C6F0007119AD /* SOSFactory.swift */; };
 		F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */; };
 		F838D9042437058300FDA998 /* SOSAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838D8FE2437058300FDA998 /* SOSAlertPresenter.swift */; };
@@ -532,6 +539,13 @@
 		E3E0780823ACC21F004927D7 /* ServiceListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListingCell.swift; sourceTree = "<group>"; };
 		F808413D24DC118D00713215 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		F80AD9F1244074EC0041FCA4 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
+		F8252E5D25B01D5600F0E178 /* AppointmentFilterWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentFilterWorker.swift; sourceTree = "<group>"; };
+		F8252E5E25B01D5600F0E178 /* AppointmentFilterModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentFilterModels.swift; sourceTree = "<group>"; };
+		F8252E7525B01D5600F0E178 /* AppointmentFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentFilterVC.swift; sourceTree = "<group>"; };
+		F8252E7625B01D5600F0E178 /* AppointmentFilterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentFilterPresenter.swift; sourceTree = "<group>"; };
+		F8252E7725B01D5600F0E178 /* AppointmentFilterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentFilterInteractor.swift; sourceTree = "<group>"; };
+		F8252E8F25B01D9B00F0E178 /* CheckBoxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxCell.swift; sourceTree = "<group>"; };
+		F8252E9025B01D9B00F0E178 /* CheckBoxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckBoxCell.xib; sourceTree = "<group>"; };
 		F833CC252438C6F0007119AD /* SOSFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSFactory.swift; sourceTree = "<group>"; };
 		F83428DC2436051000B12AD3 /* FirebaseTopicFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseTopicFactory.swift; sourceTree = "<group>"; };
 		F83692922477A74C0080CA8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -736,6 +750,8 @@
 				E3E0780723ACC21F004927D7 /* ServiceListingCell.xib */,
 				E3CEA5C023CC624600DD213F /* UserRatingCell.swift */,
 				E3CEA5C123CC624700DD213F /* UserRatingCell.xib */,
+				F8252E8F25B01D9B00F0E178 /* CheckBoxCell.swift */,
+				F8252E9025B01D9B00F0E178 /* CheckBoxCell.xib */,
 				E3060141237EA49200988EEC /* Appointment Details */,
 			);
 			path = Appointment;
@@ -1216,6 +1232,7 @@
 				E30342EF235EE58300E0BF0A /* AppointmentWorker.swift */,
 				E30342F1235EE58300E0BF0A /* AppointmentModels.swift */,
 				E30342F3235EE58300E0BF0A /* AppointmentInteractor.swift */,
+				F8252E5C25B01D5600F0E178 /* Filter */,
 				E3CEA5B523CC576900DD213F /* Ratings */,
 				E30601C0237EAA7A00988EEC /* Appointment Details */,
 			);
@@ -1471,6 +1488,18 @@
 				F85EE66E24BDA50E001D9B0F /* ListingInteractor.swift */,
 			);
 			path = Listing;
+			sourceTree = "<group>";
+		};
+		F8252E5C25B01D5600F0E178 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				F8252E7525B01D5600F0E178 /* AppointmentFilterVC.swift */,
+				F8252E5D25B01D5600F0E178 /* AppointmentFilterWorker.swift */,
+				F8252E5E25B01D5600F0E178 /* AppointmentFilterModels.swift */,
+				F8252E7625B01D5600F0E178 /* AppointmentFilterPresenter.swift */,
+				F8252E7725B01D5600F0E178 /* AppointmentFilterInteractor.swift */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		F836928E2477A6B10080CA8F /* Firebase */ = {
@@ -1775,6 +1804,7 @@
 				E3034259235EE14700E0BF0A /* FuturaPTCondBook.otf in Resources */,
 				E3034114235EE11C00E0BF0A /* HeaderViewWithAdCell.xib in Resources */,
 				E3034254235EE14700E0BF0A /* FuturaPTHeavyOblique.otf in Resources */,
+				F8252E9225B01D9B00F0E178 /* CheckBoxCell.xib in Resources */,
 				E3CEA5C323CC624700DD213F /* UserRatingCell.xib in Resources */,
 				E3033FEC235EDF6900E0BF0A /* Assets.xcassets in Resources */,
 				E3CD503723713C6500DE106E /* Login.storyboard in Resources */,
@@ -2071,15 +2101,18 @@
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
 				F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */,
 				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
+				F8252E8E25B01D5600F0E178 /* AppointmentFilterInteractor.swift in Sources */,
 				E3CEA5C223CC624700DD213F /* UserRatingCell.swift in Sources */,
 				F8B8729B24629FD10031DC97 /* RequestDetailsPresenter.swift in Sources */,
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
 				E30601BD237EAA4D00988EEC /* RevenuePresenter.swift in Sources */,
+				F8252E9125B01D9B00F0E178 /* CheckBoxCell.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
 				E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */,
 				E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */,
+				F8252E8D25B01D5600F0E178 /* AppointmentFilterPresenter.swift in Sources */,
 				E30342C8235EE15800E0BF0A /* ExtensionUIButton.swift in Sources */,
 				F8E5D280246E9B72005876CE /* TeleConsultationVC.swift in Sources */,
 				E30342CA235EE15800E0BF0A /* ExtensionUITableView.swift in Sources */,
@@ -2113,6 +2146,7 @@
 				E3DB685B238CEF7C00CC569D /* GenericClass.swift in Sources */,
 				E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */,
 				F838D9052437058300FDA998 /* SOSAlertWorker.swift in Sources */,
+				F8252E8C25B01D5600F0E178 /* AppointmentFilterVC.swift in Sources */,
 				F8E5D27E246E9B72005876CE /* TeleConsultationModels.swift in Sources */,
 				E30341F8235EE14000E0BF0A /* DashboardPresenter.swift in Sources */,
 				E30341EC235EE14000E0BF0A /* MoreModulePresenter.swift in Sources */,
@@ -2125,6 +2159,7 @@
 				E30342D5235EE15800E0BF0A /* DatePickerDialog.swift in Sources */,
 				E30601D5237EAA7A00988EEC /* ClientInformationModels.swift in Sources */,
 				E30342D3235EE15800E0BF0A /* CustomTabbarController.swift in Sources */,
+				F8252E7925B01D5600F0E178 /* AppointmentFilterModels.swift in Sources */,
 				F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */,
 				E30341ED235EE14000E0BF0A /* NotificationsModels.swift in Sources */,
 				E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */,
@@ -2158,6 +2193,7 @@
 				F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */,
 				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
+				F8252E7825B01D5600F0E178 /* AppointmentFilterWorker.swift in Sources */,
 				F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,

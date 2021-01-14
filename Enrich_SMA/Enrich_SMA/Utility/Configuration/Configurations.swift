@@ -34,6 +34,7 @@ enum CellIdentifier {
     // Appointment
     static let todaysAppointmentHeaderCell = "TodaysAppointmentHeaderCell"
     static let appointmentStatusCell = "AppointmentStatusCell"
+    static let checkBoxCell = "CheckBoxCell"
 
     // Reports
     static let reportCell = "ReportCell"
