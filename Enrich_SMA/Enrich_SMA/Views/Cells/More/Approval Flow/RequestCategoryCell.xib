@@ -29,10 +29,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjI-Qa-jt9">
-                        <rect key="frame" x="20" y="0.0" width="403" height="180.5"/>
+                        <rect key="frame" x="20" y="0.0" width="403" height="214"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vdy-Dk-Vy5">
-                                <rect key="frame" x="15" y="15" width="373" height="150.5"/>
+                                <rect key="frame" x="15" y="15" width="373" height="184"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70U-Jh-rBa">
                                         <rect key="frame" x="0.0" y="0.0" width="373" height="23.5"/>
@@ -161,6 +161,25 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZGx-P9-CCc">
+                                        <rect key="frame" x="0.0" y="160.5" width="245.5" height="23.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Servicing Technician :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqE-ue-va7">
+                                                <rect key="frame" x="0.0" y="0.0" width="150.5" height="23.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="18"/>
+                                                <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Service Name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3D-ct-5bJ">
+                                                <rect key="frame" x="155.5" y="0.0" width="90" height="23.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="PVg-Ca-ota" firstAttribute="leading" secondItem="Vdy-Dk-Vy5" secondAttribute="leading" id="AIU-D7-Ce9"/>
@@ -236,8 +255,10 @@
                 <outlet property="lblEndTime" destination="cSa-13-n6v" id="Bx5-47-vaF"/>
                 <outlet property="lblPrice" destination="25H-mg-R85" id="ews-1x-3Vt"/>
                 <outlet property="lblStartTime" destination="iVi-Xs-1O7" id="2Yy-YY-nrB"/>
+                <outlet property="lblTechnicianName" destination="U3D-ct-5bJ" id="swm-Dw-sNx"/>
                 <outlet property="lblTitle" destination="70U-Jh-rBa" id="ORi-A6-Rxj"/>
                 <outlet property="priceStackView" destination="PVg-Ca-ota" id="Vfu-oG-Iqh"/>
+                <outlet property="technicianStackView" destination="ZGx-P9-CCc" id="Swz-W8-MbF"/>
             </connections>
             <point key="canvasLocation" x="226.81159420289856" y="190.17857142857142"/>
         </tableViewCell>

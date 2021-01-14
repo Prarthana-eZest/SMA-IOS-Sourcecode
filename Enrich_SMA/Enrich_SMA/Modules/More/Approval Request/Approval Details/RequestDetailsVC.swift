@@ -133,7 +133,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                         endTime: $0.end_time,
                         price: "\($0.price ?? 0)",
                         duration: "\($0.service_duration ?? 0)",
-                        customerName: customerName))
+                        customerName: customerName,
+                        servicing_technician: $0.servicing_technician))
                 }
             }
 
@@ -146,7 +147,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     endTime: original.end_time,
                     price: original.price?.description,
                     duration: original.total_duration?.description,
-                    customerName: nil))
+                    customerName: nil,
+                    servicing_technician: nil))
             }
 
             if let requested = requestDetails.requested {
@@ -156,19 +158,19 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     endTime: requested.end_time,
                     price: requested.price?.description,
                     duration: requested.total_duration?.description,
-                    customerName: nil))
+                    customerName: nil,
+                    servicing_technician: nil))
             }
 
         case .add_new_service, .del_service:
 
             appointmentDate = requestDetails.service?.first?.appointment_date ?? ""
-            
+
             var customerName: String?
-            
             if category == .add_new_service {
                 customerName = ((requestDetails.service?.first?.is_dependant ?? 0) == 1) ? (requestDetails.service?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
             }
-            
+
             if let service = requestDetails.service {
                 categories.append(RequestCategoryModel(
                     title: service.first?.service_name,
@@ -176,7 +178,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     endTime: service.first?.end_time,
                     price: "\(service.first?.price ?? 0)",
                     duration: "\(service.first?.service_duration ?? 0)",
-                    customerName: customerName))
+                    customerName: customerName,
+                    servicing_technician: service.first?.servicing_technician))
             }
 
         case .replace, .service_timeslot:
@@ -188,7 +191,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     endTime: original.end_time,
                     price: original.price?.description,
                     duration: "\(original.service_duration ?? 0)",
-                    customerName: nil))
+                    customerName: nil,
+                    servicing_technician: nil))
             }
 
             if let requested = requestDetails.requested {
@@ -197,7 +201,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     startTime: requested.start_time,
                     endTime: requested.end_time,
                     price: requested.price?.description, duration: requested.service_duration?.description,
-                    customerName: nil))
+                    customerName: nil,
+                    servicing_technician: nil))
             }
         }
         self.tableView.reloadData()

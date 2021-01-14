@@ -17,8 +17,10 @@ class RequestCategoryCell: UITableViewCell {
     @IBOutlet weak private var lblDuration: UILabel!
     @IBOutlet weak private var priceStackView: UIStackView!
     @IBOutlet weak private var lblCustomerName: UILabel!
-    @IBOutlet weak private var customerStackView: UIStackView!
+    @IBOutlet weak private var lblTechnicianName: UILabel!
     
+    @IBOutlet weak private var customerStackView: UIStackView!
+    @IBOutlet weak private var technicianStackView: UIStackView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,6 +37,8 @@ class RequestCategoryCell: UITableViewCell {
         lblDuration.text = "\(model.duration ?? "0") min"
         lblCustomerName.text = model.customerName ?? ""
         customerStackView.isHidden = model.customerName == nil
+        lblTechnicianName.text = model.servicing_technician ?? ""
+        technicianStackView.isHidden = model.servicing_technician == nil
     }
 }
 
@@ -45,4 +49,5 @@ struct RequestCategoryModel {
     let price: String?
     let duration: String?
     let customerName: String?
+    let servicing_technician: String?
 }
