@@ -20,6 +20,7 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
     var interactor: AppointmentFilterBusinessLogic?
 
     @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var collectionView: UICollectionView!
 
     var technicianOptions: [TechnicianFilterModel] =
         [TechnicianFilterModel(name: "test1", id: "1", isSelected: false),

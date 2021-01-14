@@ -121,23 +121,11 @@ class AppointmentDetailsCell: UITableViewCell {
         dividerView.isHidden = true
         stackViewMemAndHighS.isHidden = false
 
-        if let memebrshipType = MembershipType(rawValue: model.membership ?? "") {
-            switch memebrshipType {
-
-            case .general:
-                isMember = false
-
-            case .clubMemberShip:
-                iconMembership.image = UIImage(named: "ClubMembership")
-                isMember = true
-
-            case .eliteMembership:
-                iconMembership.image = UIImage(named: "EliteMembership")
-                isMember = true
-
-            case .premierMembership:
-                iconMembership.image = UIImage(named: "PremierMembership")
-                isMember = true
+        if let membership = model.membership, !membership.isEmpty {
+            isMember = true
+            if let iconImage = model.membership_image, !iconImage.isEmpty,
+                let imageurl = URL(string: iconImage) {
+                iconMembership.kf.setImage(with: imageurl, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
             }
         }
 

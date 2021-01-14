@@ -61,6 +61,9 @@ enum Appointment {
             let customer_ratings: Double?
             let high_expensive: Bool?
             let membership: String?
+            let membership_image: String?
+            let membership_default_image: String?
+            let membership_completed_image: String?
             let gender_label: String?
             let gender: Int?
             let inclined_other_gender: String?
@@ -104,10 +107,10 @@ enum Appointment {
 
             let is_consultation_required: Bool?
             let consultation_form_list: [FormDetails]?
-            
+
             let approval_request: String?
             let approval_status: String?
-            
+
             let is_dependant: Int?
             let dependant_name: String?
             let dependant_gender: String?

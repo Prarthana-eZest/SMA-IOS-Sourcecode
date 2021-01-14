@@ -17,12 +17,12 @@ protocol ClientInformationDisplayLogic: class {
     func displayError(errorMessage: String?)
 }
 
-enum MembershipType: String {
-    case general = "General"
-    case clubMemberShip = "Club Membership"
-    case premierMembership = "Premier Membership"
-    case eliteMembership = "Elite Membership"
-}
+//enum MembershipType: String {
+//    case general = "General"
+//    case clubMemberShip = "Club Membership"
+//    case premierMembership = "Premier Membership"
+//    case eliteMembership = "Elite Membership"
+//}
 
 class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
     var interactor: ClientInformationBusinessLogic?
@@ -362,9 +362,9 @@ extension ClientInformationVC {
             }
         }
         else if let model = viewModel as? ClientInformation.MembershipDetails.Response,
-            model.status == true, let name = model.data?.name, let type = MembershipType(rawValue: name) {
+            model.status == true, let name = model.data?.name {
 
-            memebershipDetails = MembershipStatusModel(type: type, validity: model.data?.end_date ?? "-", rewardPoints: "0")
+            memebershipDetails = MembershipStatusModel(type: name, icon: model.data?.membership_image, validity: model.data?.end_date ?? "-", rewardPoints: "0")
             self.tableView.reloadData()
         }
         else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true {

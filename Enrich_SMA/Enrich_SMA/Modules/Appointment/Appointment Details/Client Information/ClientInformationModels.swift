@@ -134,6 +134,9 @@ enum ClientInformation {
         struct MembershipData: Codable {
             let id: String?
             let name: String?
+            let membership_image: String?
+            let membership_default_image: String?
+            let membership_completed_image: String?
             let start_date: String?
             let end_date: String?
             let no_of_addon: String?
