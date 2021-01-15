@@ -24,7 +24,7 @@ enum Appointment {
             let page_no: Int
             let status_filter: [String]
             let technician_filter: [Int64]
-            let sma_filter_applied: Bool
+            let sma_filter_applied: Int
         }
 
         struct Response: Codable {

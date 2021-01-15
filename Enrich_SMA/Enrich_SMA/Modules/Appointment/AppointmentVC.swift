@@ -146,7 +146,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
                 page_no: pageNumber,
                 status_filter: status.compactMap {$0.status ?? ""},
                 technician_filter: technician.compactMap {$0.id ?? 0},
-                sma_filter_applied: true)
+                sma_filter_applied: 1)
             interactor?.doGetAppointmentList(request: request, method: .post)
         }
     }
