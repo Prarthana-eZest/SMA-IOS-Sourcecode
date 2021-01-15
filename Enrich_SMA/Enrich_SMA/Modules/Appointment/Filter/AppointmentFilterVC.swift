@@ -13,7 +13,8 @@
 import UIKit
 
 protocol AppointmentFilterDisplayLogic: class {
-    func displaySomething(viewModel: AppointmentFilter.Something.ViewModel)
+    func displaySuccess<T: Decodable> (viewModel: T)
+    func displayError(errorMessage: String?)
 }
 
 class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
@@ -22,11 +23,13 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var collectionView: UICollectionView!
 
-    var technicianOptions: [TechnicianFilterModel] =
-        [TechnicianFilterModel(name: "test1", id: "1", isSelected: false),
-         TechnicianFilterModel(name: "test2", id: "2", isSelected: false)]
+    var technicianFilter = [TechnicianFilterModel]()
+    var statusFilter = [StatusFilterModel]()
 
-    var viewDismissBlock: ((Bool) -> Void)?
+    var localTechnicianFilter = [TechnicianFilterModel]()
+    var localStatusFilter = [StatusFilterModel]()
+
+    var viewDismissBlock: ((Bool, [StatusFilterModel], [TechnicianFilterModel]) -> Void)?
 
     // MARK: Object lifecycle
 
@@ -55,37 +58,123 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        if statusFilter.isEmpty {
+            getFilterDetails()
+        }
+        else {
+            localStatusFilter = statusFilter
+            localTechnicianFilter = technicianFilter
+            collectionView.reloadData()
+            tableView.reloadData()
+        }
 
+        collectionView.register(UINib(nibName: CellIdentifier.statusFilterCell, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.statusFilterCell)
         tableView.register(UINib(nibName: CellIdentifier.checkBoxCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.checkBoxCell)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
     }
 
     // MARK: Do something
 
-    func doSomething() {
-        let request = AppointmentFilter.Something.Request()
-        interactor?.doSomething(request: request)
-    }
-
-    func displaySomething(viewModel: AppointmentFilter.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func getFilterDetails() {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = AppointmentFilter.GetFilterDetails.Request(
+                salon_id: userData.salon_id, date: Date().dayYearMonthDate)
+            interactor?.doGetFilterDetails(request: request)
+        }
     }
 
     @IBAction func actionClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        viewDismissBlock?(true)
+        viewDismissBlock?(false, statusFilter, technicianFilter)
     }
 
     @IBAction func actionClearAll(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        viewDismissBlock?(true)
+        for index in localStatusFilter.indices {
+            localStatusFilter[index].isSelected = false
+        }
+        for index in localTechnicianFilter.indices {
+            localTechnicianFilter[index].isSelected = false
+        }
+//        localStatusFilter.forEach {$0.isSelected = false}
+//        localTechnicianFilter.forEach {$0.isSelected = false}
+        statusFilter = localStatusFilter
+        technicianFilter = localTechnicianFilter
+        viewDismissBlock?(true, statusFilter, technicianFilter)
     }
 
     @IBAction func actionApply(_ sender: UIButton) {
+
+        let status = localStatusFilter.filter {$0.isSelected}
+        let technician = localTechnicianFilter.filter {$0.isSelected}
+        if status.isEmpty && technician.isEmpty {
+            self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.filterValidation, seconds: toastMessageDuration)
+            return
+        }
         self.dismiss(animated: true, completion: nil)
-        viewDismissBlock?(true)
+        statusFilter = localStatusFilter
+        technicianFilter = localTechnicianFilter
+        viewDismissBlock?(true, statusFilter, technicianFilter)
     }
 
+}
+
+extension AppointmentFilterVC {
+
+    func displaySuccess<T>(viewModel: T) where T: Decodable {
+        EZLoadingActivity.hide()
+        print("Response: \(viewModel)")
+
+        if let model = viewModel as? AppointmentFilter.GetFilterDetails.Response {
+            print("Model: \(model)")
+
+            self.localStatusFilter.removeAll()
+            model.data?.status_list?.forEach {
+                self.localStatusFilter.append(StatusFilterModel(status: $0, isSelected: false))
+            }
+            self.collectionView.reloadData()
+
+            self.localTechnicianFilter.removeAll()
+            model.data?.technician_list?.forEach {
+                self.localTechnicianFilter.append(TechnicianFilterModel(name: $0.name ?? "", id: $0.id ?? 0, isSelected: false))
+            }
+            self.tableView.reloadData()
+        }
+    }
+
+    func displayError(errorMessage: String?) {
+        EZLoadingActivity.hide()
+        print("Failed: \(errorMessage ?? "")")
+        showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+    }
+}
+
+// MARK: - UICollectionViewDelegate and UICollectionViewDataSource
+extension AppointmentFilterVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return localStatusFilter.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.statusFilterCell, for: indexPath) as? StatusFilterCell else {
+            return UICollectionViewCell()
+        }
+        let status = localStatusFilter[indexPath.row]
+        cell.configureCell(status: status.status ?? "", isSelected: status.isSelected)
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 40)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        localStatusFilter[indexPath.row].isSelected = !localStatusFilter[indexPath.row].isSelected
+        collectionView.reloadData()
+    }
 }
 
 extension AppointmentFilterVC: UITableViewDelegate, UITableViewDataSource {
@@ -95,7 +184,7 @@ extension AppointmentFilterVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return technicianOptions.count
+        return localTechnicianFilter.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,7 +193,7 @@ extension AppointmentFilterVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.configureCell(model: technicianOptions[indexPath.row])
+        cell.configureCell(model: localTechnicianFilter[indexPath.row])
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         cell.selectionStyle = .none
         return cell
@@ -116,7 +205,7 @@ extension AppointmentFilterVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
-        technicianOptions[indexPath.row].isSelected = !technicianOptions[indexPath.row].isSelected
+        localTechnicianFilter[indexPath.row].isSelected = !localTechnicianFilter[indexPath.row].isSelected
         tableView.reloadData()
     }
 }

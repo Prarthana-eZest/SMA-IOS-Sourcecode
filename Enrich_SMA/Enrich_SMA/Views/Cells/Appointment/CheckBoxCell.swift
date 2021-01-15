@@ -26,20 +26,19 @@ class CheckBoxCell: UITableViewCell {
 
     func configureCell(model: TechnicianFilterModel) {
         btnCheckbox.isSelected = model.isSelected
-        lblTitle.text = model.name
+        lblTitle.text = model.name ?? ""
         lblTitle.font = model.isSelected ? UIFont(name: FontName.FuturaPTMedium.rawValue, size: 18) : UIFont(name: FontName.FuturaPTBook.rawValue, size: 18)
     }
 
 }
 
-class TechnicianFilterModel {
-    var name: String = ""
-    var id: String
+struct TechnicianFilterModel {
+    var name: String?
+    var id: Int64?
     var isSelected: Bool
-    
-    init(name: String, id: String, isSelected: Bool) {
-        self.name = name
-        self.id = id
-        self.isSelected = isSelected
-    }
+}
+
+struct StatusFilterModel {
+    var status: String?
+    var isSelected: Bool
 }

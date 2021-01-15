@@ -287,6 +287,8 @@
 		F8E5D28A246E9BB8005876CE /* TeleMarketingCompletedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */; };
 		F8E5D28B246E9BB8005876CE /* TeleMarketingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */; };
 		F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */; };
+		F8F2E5D925B1A4AD00BBF0C8 /* StatusFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F2E5D725B1A4AD00BBF0C8 /* StatusFilterCell.swift */; };
+		F8F2E5DA25B1A4AD00BBF0C8 /* StatusFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8F2E5D825B1A4AD00BBF0C8 /* StatusFilterCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -606,6 +608,8 @@
 		F8E5D286246E9BB8005876CE /* TeleMarketingCompletedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeleMarketingCompletedCell.xib; sourceTree = "<group>"; };
 		F8E5D287246E9BB8005876CE /* TeleMarketingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeleMarketingCell.swift; sourceTree = "<group>"; };
 		F8F0ACC1242DF96A00F0AB61 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		F8F2E5D725B1A4AD00BBF0C8 /* StatusFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusFilterCell.swift; sourceTree = "<group>"; };
+		F8F2E5D825B1A4AD00BBF0C8 /* StatusFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusFilterCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -752,6 +756,8 @@
 				E3CEA5C123CC624700DD213F /* UserRatingCell.xib */,
 				F8252E8F25B01D9B00F0E178 /* CheckBoxCell.swift */,
 				F8252E9025B01D9B00F0E178 /* CheckBoxCell.xib */,
+				F8F2E5D725B1A4AD00BBF0C8 /* StatusFilterCell.swift */,
+				F8F2E5D825B1A4AD00BBF0C8 /* StatusFilterCell.xib */,
 				E3060141237EA49200988EEC /* Appointment Details */,
 			);
 			path = Appointment;
@@ -1494,9 +1500,9 @@
 			isa = PBXGroup;
 			children = (
 				F8252E7525B01D5600F0E178 /* AppointmentFilterVC.swift */,
+				F8252E7625B01D5600F0E178 /* AppointmentFilterPresenter.swift */,
 				F8252E5D25B01D5600F0E178 /* AppointmentFilterWorker.swift */,
 				F8252E5E25B01D5600F0E178 /* AppointmentFilterModels.swift */,
-				F8252E7625B01D5600F0E178 /* AppointmentFilterPresenter.swift */,
 				F8252E7725B01D5600F0E178 /* AppointmentFilterInteractor.swift */,
 			);
 			path = Filter;
@@ -1816,6 +1822,7 @@
 				E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */,
 				E303425E235EE14700E0BF0A /* FuturaPTDemiOblique.otf in Resources */,
 				E3034267235EE14700E0BF0A /* NotoSerif-BoldItalic.ttf in Resources */,
+				F8F2E5DA25B1A4AD00BBF0C8 /* StatusFilterCell.xib in Resources */,
 				E3034252235EE14700E0BF0A /* FuturaPTExtraBold.otf in Resources */,
 				E3034255235EE14700E0BF0A /* FuturaPTCondExtraBold.otf in Resources */,
 				E3034264235EE14700E0BF0A /* FuturaPTCondMediumOblique.otf in Resources */,
@@ -2010,6 +2017,7 @@
 				E30340B0235EE11C00E0BF0A /* MyProfileHeaderCell.swift in Sources */,
 				E30342B9235EE15800E0BF0A /* ErrorCustomView.swift in Sources */,
 				E30341DD235EE14000E0BF0A /* MoreModuleModels.swift in Sources */,
+				F8F2E5D925B1A4AD00BBF0C8 /* StatusFilterCell.swift in Sources */,
 				E3CEA5CC23CC736F00DD213F /* AddNewNoteWorker.swift in Sources */,
 				F8E5D28B246E9BB8005876CE /* TeleMarketingCell.swift in Sources */,
 				F8E5D283246E9B72005876CE /* TeleConsultationInteractor.swift in Sources */,

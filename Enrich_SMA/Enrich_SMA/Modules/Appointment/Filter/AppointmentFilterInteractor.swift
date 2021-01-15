@@ -13,25 +13,23 @@
 import UIKit
 
 protocol AppointmentFilterBusinessLogic {
-  func doSomething(request: AppointmentFilter.Something.Request)
+    func doGetFilterDetails(request: AppointmentFilter.GetFilterDetails.Request)
 }
 
 protocol AppointmentFilterDataStore {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class AppointmentFilterInteractor: AppointmentFilterBusinessLogic, AppointmentFilterDataStore {
-  var presenter: AppointmentFilterPresentationLogic?
-  var worker: AppointmentFilterWorker?
-  //var name: String = ""
+    var presenter: AppointmentFilterPresentationLogic?
+    var worker: AppointmentFilterWorker?
+    //var name: String = ""
 
-  // MARK: Do something
+    // MARK: Do something
 
-  func doSomething(request: AppointmentFilter.Something.Request) {
-    worker = AppointmentFilterWorker()
-    worker?.doSomeWork()
-
-    let response = AppointmentFilter.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    func doGetFilterDetails(request: AppointmentFilter.GetFilterDetails.Request) {
+        worker = AppointmentFilterWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestGetFilterDetails(request: request)
+    }
 }

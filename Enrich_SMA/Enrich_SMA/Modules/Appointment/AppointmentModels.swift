@@ -20,12 +20,18 @@ enum Appointment {
             let status: String
             let salon_code: String
             let date: String
+            let limit: Int
+            let page_no: Int
+            let status_filter: [String]
+            let technician_filter: [Int64]
+            let sma_filter_applied: Bool
         }
 
         struct Response: Codable {
             var status: Bool = false
             var message: String = ""
             let data: [Data]?
+            var total_records: Int?
             let time_stamp: String?
         }
 

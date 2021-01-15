@@ -13,14 +13,29 @@
 import UIKit
 
 enum AppointmentFilter {
-  // MARK: Use cases
+    // MARK: Use cases
 
-  enum Something {
-    struct Request {
+    enum GetFilterDetails {
+        struct Request: Codable {
+            let salon_id: String?
+            let date: String?
+        }
+
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            let data: Data?
+            let time_stamp: String?
+        }
+
+        struct Data: Codable {
+            let status_list: [String]?
+            let technician_list: [TechnicianList]?
+        }
+
+        struct TechnicianList: Codable {
+            let id: Int64?
+            let name: String?
+        }
     }
-    struct Response {
-    }
-    struct ViewModel {
-    }
-  }
 }

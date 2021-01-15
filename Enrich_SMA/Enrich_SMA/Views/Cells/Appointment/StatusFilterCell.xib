@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StatusFilterCell" id="gTV-IL-0wX" customClass="StatusFilterCell" customModule="Enrich_SMA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="197" height="57"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="197" height="57"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azx-EN-3yI">
+                        <rect key="frame" x="0.0" y="0.0" width="197" height="57"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qW-bh-W2U">
+                                <rect key="frame" x="10" y="5" width="177" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1qW-bh-W2U" firstAttribute="top" secondItem="Azx-EN-3yI" secondAttribute="top" constant="5" id="08I-lz-r8l"/>
+                            <constraint firstAttribute="bottom" secondItem="1qW-bh-W2U" secondAttribute="bottom" constant="5" id="Q6P-Bt-Kl4"/>
+                            <constraint firstAttribute="trailing" secondItem="1qW-bh-W2U" secondAttribute="trailing" constant="10" id="ecY-Q4-sQW"/>
+                            <constraint firstItem="1qW-bh-W2U" firstAttribute="leading" secondItem="Azx-EN-3yI" secondAttribute="leading" constant="10" id="iGl-uE-rpB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Azx-EN-3yI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="CZA-FZ-1DL"/>
+                <constraint firstAttribute="trailing" secondItem="Azx-EN-3yI" secondAttribute="trailing" id="IyG-tQ-Ths"/>
+                <constraint firstAttribute="bottom" secondItem="Azx-EN-3yI" secondAttribute="bottom" id="OIw-Y0-Qjf"/>
+                <constraint firstItem="Azx-EN-3yI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qTY-Xg-F7w"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="197" height="57"/>
+            <connections>
+                <outlet property="borderView" destination="Azx-EN-3yI" id="UmC-na-ms7"/>
+                <outlet property="lblStatus" destination="1qW-bh-W2U" id="hAb-Uu-mOV"/>
+            </connections>
+            <point key="canvasLocation" x="244.20289855072465" y="128.90625"/>
+        </collectionViewCell>
+    </objects>
+</document>

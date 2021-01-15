@@ -31,7 +31,6 @@ class MyProfileWorker {
         if let id = employeeId {
             url.append("&employee_id=\(id)")
         }
-
         self.networkLayer.get(urlString: url, headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
 
     }

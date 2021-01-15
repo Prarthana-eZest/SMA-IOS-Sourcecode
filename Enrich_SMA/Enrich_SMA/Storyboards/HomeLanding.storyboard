@@ -11,9 +11,6 @@
         <array key="FuturaPTBook.otf">
             <string>FuturaPT-Book</string>
         </array>
-        <array key="FuturaPTDemi.otf">
-            <string>FuturaPT-Demi</string>
-        </array>
         <array key="FuturaPTMedium.otf">
             <string>FuturaPT-Medium</string>
         </array>
@@ -158,13 +155,13 @@
                                 <rect key="frame" x="20" y="64" width="374" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appointments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo0-ws-Xvd">
-                                        <rect key="frame" x="0.0" y="0.0" width="226.5" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="191.5" height="20"/>
                                         <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="20"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ysz-Ct-ieC">
-                                        <rect key="frame" x="236.5" y="0.0" width="137.5" height="20"/>
+                                        <rect key="frame" x="201.5" y="0.0" width="137.5" height="20"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="0yp-xC-AKB">
                                                 <rect key="frame" x="0.0" y="0.0" width="10" height="20"/>
@@ -181,123 +178,52 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pF-zf-NUb">
+                                        <rect key="frame" x="349" y="0.0" width="25" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="BQm-hk-HHV"/>
+                                        </constraints>
+                                        <state key="normal" image="filterUnSelected"/>
+                                        <state key="selected" image="filterSelected"/>
+                                        <connections>
+                                            <action selector="actionFilter:" destination="AAn-Ch-0Ub" eventType="touchUpInside" id="Mlx-9W-ka3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="0pF-zf-NUb" secondAttribute="trailing" id="IkS-fG-IYU"/>
+                                </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbO-q7-M10" userLabel="View Seprator">
+                                <rect key="frame" x="0.0" y="94" width="414" height="1"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="pwB-gz-hCo"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="1.5" height="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.25098039220000001" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kEf-py-38Y">
-                                <rect key="frame" x="0.0" y="154" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="708"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="AAn-Ch-0Ub" id="E9q-iH-ftu"/>
                                     <outlet property="delegate" destination="AAn-Ch-0Ub" id="cIb-yU-dqg"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="VrN-Jo-bpW">
-                                <rect key="frame" x="0.0" y="94" width="414" height="50"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-Ik-Q65">
-                                        <rect key="frame" x="0.0" y="0.0" width="137.5" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dF2-ii-vDH">
-                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="50"/>
-                                                <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="16"/>
-                                                <state key="normal" title="Completed">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="actionCompleted:" destination="AAn-Ch-0Ub" eventType="touchUpInside" id="jiF-Ta-n6c"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="dF2-ii-vDH" firstAttribute="top" secondItem="ybl-cc-kd5" secondAttribute="top" id="8b5-2u-mN1"/>
-                                            <constraint firstItem="dF2-ii-vDH" firstAttribute="centerX" secondItem="ybl-cc-kd5" secondAttribute="centerX" id="Hck-KO-ueF"/>
-                                            <constraint firstItem="ybl-cc-kd5" firstAttribute="bottom" secondItem="dF2-ii-vDH" secondAttribute="bottom" id="Soy-RL-EDF"/>
-                                            <constraint firstItem="ybl-cc-kd5" firstAttribute="trailing" secondItem="dF2-ii-vDH" secondAttribute="trailing" id="jlq-S6-E8Q"/>
-                                            <constraint firstItem="dF2-ii-vDH" firstAttribute="centerY" secondItem="ybl-cc-kd5" secondAttribute="centerY" id="sZA-js-brp"/>
-                                            <constraint firstAttribute="height" constant="50" id="v6o-dE-zGp"/>
-                                            <constraint firstItem="dF2-ii-vDH" firstAttribute="leading" secondItem="ybl-cc-kd5" secondAttribute="leading" id="x2N-c5-kg4"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="ybl-cc-kd5"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-WU-YLB">
-                                        <rect key="frame" x="138.5" y="0.0" width="137" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lk-GG-v4Q">
-                                                <rect key="frame" x="0.0" y="0.0" width="137" height="50"/>
-                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
-                                                <state key="normal" title="Ongoing">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="actionOnGoing:" destination="AAn-Ch-0Ub" eventType="touchUpInside" id="Vkb-xl-igj"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="3Lk-GG-v4Q" firstAttribute="leading" secondItem="53v-uL-eHz" secondAttribute="leading" id="2dq-eb-1Sn"/>
-                                            <constraint firstItem="3Lk-GG-v4Q" firstAttribute="top" secondItem="53v-uL-eHz" secondAttribute="top" id="9Kt-8V-iF3"/>
-                                            <constraint firstItem="3Lk-GG-v4Q" firstAttribute="centerX" secondItem="53v-uL-eHz" secondAttribute="centerX" id="Hfp-2P-KgL"/>
-                                            <constraint firstAttribute="height" constant="50" id="Jud-bB-3nw"/>
-                                            <constraint firstItem="3Lk-GG-v4Q" firstAttribute="centerY" secondItem="53v-uL-eHz" secondAttribute="centerY" id="XCi-HU-SFw"/>
-                                            <constraint firstItem="53v-uL-eHz" firstAttribute="trailing" secondItem="3Lk-GG-v4Q" secondAttribute="trailing" id="bTw-Dk-G3S"/>
-                                            <constraint firstItem="53v-uL-eHz" firstAttribute="bottom" secondItem="3Lk-GG-v4Q" secondAttribute="bottom" id="lVc-6w-yJv"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="53v-uL-eHz"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h05-iE-c9f">
-                                        <rect key="frame" x="276.5" y="0.0" width="137.5" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ber-0J-ZcK">
-                                                <rect key="frame" x="0.0" y="0.0" width="137.5" height="50"/>
-                                                <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
-                                                <state key="normal" title="Upcoming">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="actionUpComing:" destination="AAn-Ch-0Ub" eventType="touchUpInside" id="rSH-7n-Xl7"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="Ber-0J-ZcK" firstAttribute="leading" secondItem="2Sk-kZ-EZz" secondAttribute="leading" id="0yN-JD-8Na"/>
-                                            <constraint firstItem="Ber-0J-ZcK" firstAttribute="top" secondItem="2Sk-kZ-EZz" secondAttribute="top" id="991-nd-P7f"/>
-                                            <constraint firstItem="2Sk-kZ-EZz" firstAttribute="bottom" secondItem="Ber-0J-ZcK" secondAttribute="bottom" id="Bl8-eg-knN"/>
-                                            <constraint firstItem="Ber-0J-ZcK" firstAttribute="centerY" secondItem="2Sk-kZ-EZz" secondAttribute="centerY" id="DPR-z1-FqC"/>
-                                            <constraint firstItem="Ber-0J-ZcK" firstAttribute="centerX" secondItem="2Sk-kZ-EZz" secondAttribute="centerX" id="V5m-CB-bfr"/>
-                                            <constraint firstAttribute="height" constant="50" id="ZGM-9R-U2Y"/>
-                                            <constraint firstItem="2Sk-kZ-EZz" firstAttribute="trailing" secondItem="Ber-0J-ZcK" secondAttribute="trailing" id="h30-Gw-7ps"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="2Sk-kZ-EZz"/>
-                                    </view>
-                                </subviews>
-                            </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaQ-Hl-WtU">
-                                <rect key="frame" x="48.5" y="139" width="40" height="5"/>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="6Ux-11-Hlr"/>
-                                    <constraint firstAttribute="width" constant="40" id="U9p-hU-maq"/>
-                                </constraints>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DtJ-kf-nU3">
-                                <rect key="frame" x="187" y="139" width="40" height="5"/>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="C8G-As-UjR"/>
-                                    <constraint firstAttribute="width" constant="40" id="WbX-Ng-ky0"/>
-                                </constraints>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5K-eh-v3K">
-                                <rect key="frame" x="325.5" y="139" width="40" height="5"/>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.1333333333" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="ejQ-RX-Ie1"/>
-                                    <constraint firstAttribute="width" constant="40" id="i3p-jx-GUl"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No appointments available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpG-DP-9fT">
                                 <rect key="frame" x="0.0" y="396" width="414" height="21"/>
                                 <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
@@ -307,25 +233,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="VrN-Jo-bpW" firstAttribute="leading" secondItem="GUj-te-B0N" secondAttribute="leading" id="25Z-Dc-tzt"/>
                             <constraint firstItem="GUj-te-B0N" firstAttribute="bottom" secondItem="kEf-py-38Y" secondAttribute="bottom" id="3XE-q1-NQq"/>
-                            <constraint firstAttribute="trailing" secondItem="VrN-Jo-bpW" secondAttribute="trailing" id="57G-Hk-At6"/>
-                            <constraint firstItem="DtJ-kf-nU3" firstAttribute="bottom" secondItem="1xS-WU-YLB" secondAttribute="bottom" id="8gS-m0-NO8"/>
                             <constraint firstItem="ZpG-DP-9fT" firstAttribute="centerY" secondItem="paZ-ku-Pxx" secondAttribute="centerY" id="Ay7-2J-u6h"/>
                             <constraint firstItem="ZpG-DP-9fT" firstAttribute="leading" secondItem="GUj-te-B0N" secondAttribute="leading" id="FKQ-hh-kyL"/>
-                            <constraint firstItem="VrN-Jo-bpW" firstAttribute="top" secondItem="QpA-Wu-rFd" secondAttribute="bottom" constant="10" id="FnS-23-ss8"/>
+                            <constraint firstItem="kbO-q7-M10" firstAttribute="leading" secondItem="paZ-ku-Pxx" secondAttribute="leading" id="ISc-Oc-ec5"/>
                             <constraint firstItem="GUj-te-B0N" firstAttribute="trailing" secondItem="QpA-Wu-rFd" secondAttribute="trailing" constant="20" id="Ijj-wN-z5H"/>
-                            <constraint firstItem="kEf-py-38Y" firstAttribute="top" secondItem="VrN-Jo-bpW" secondAttribute="bottom" constant="10" id="L6w-iJ-vTa"/>
-                            <constraint firstItem="S5K-eh-v3K" firstAttribute="centerX" secondItem="h05-iE-c9f" secondAttribute="centerX" id="O5z-1H-gW2"/>
-                            <constraint firstItem="KaQ-Hl-WtU" firstAttribute="centerX" secondItem="3Sh-Ik-Q65" secondAttribute="centerX" id="XJo-bW-3xu"/>
-                            <constraint firstItem="DtJ-kf-nU3" firstAttribute="centerX" secondItem="1xS-WU-YLB" secondAttribute="centerX" id="XgO-3I-ia4"/>
+                            <constraint firstAttribute="trailing" secondItem="kbO-q7-M10" secondAttribute="trailing" id="Jy2-V0-c27"/>
+                            <constraint firstItem="kEf-py-38Y" firstAttribute="top" secondItem="kbO-q7-M10" secondAttribute="bottom" constant="10" id="N8Z-PF-oER"/>
+                            <constraint firstItem="kbO-q7-M10" firstAttribute="top" secondItem="QpA-Wu-rFd" secondAttribute="bottom" constant="10" id="ZZ4-lt-R6S"/>
                             <constraint firstItem="kEf-py-38Y" firstAttribute="leading" secondItem="GUj-te-B0N" secondAttribute="leading" id="dZa-Kj-nv5"/>
                             <constraint firstItem="ZpG-DP-9fT" firstAttribute="centerX" secondItem="paZ-ku-Pxx" secondAttribute="centerX" id="eCe-ff-e3c"/>
-                            <constraint firstItem="KaQ-Hl-WtU" firstAttribute="bottom" secondItem="3Sh-Ik-Q65" secondAttribute="bottom" id="jkB-EO-gKl"/>
                             <constraint firstItem="GUj-te-B0N" firstAttribute="trailing" secondItem="ZpG-DP-9fT" secondAttribute="trailing" id="m4k-0o-mrB"/>
                             <constraint firstItem="QpA-Wu-rFd" firstAttribute="leading" secondItem="GUj-te-B0N" secondAttribute="leading" constant="20" id="nC9-Vv-4cc"/>
                             <constraint firstItem="QpA-Wu-rFd" firstAttribute="top" secondItem="GUj-te-B0N" secondAttribute="top" constant="20" id="nEu-Js-VpX"/>
-                            <constraint firstItem="S5K-eh-v3K" firstAttribute="bottom" secondItem="h05-iE-c9f" secondAttribute="bottom" id="rCT-ss-Xns"/>
                             <constraint firstItem="GUj-te-B0N" firstAttribute="trailing" secondItem="kEf-py-38Y" secondAttribute="trailing" id="tXW-aH-L6K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GUj-te-B0N"/>
@@ -333,20 +253,15 @@
                     <navigationItem key="navigationItem" id="O3h-V8-g7O"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="btnCompleted" destination="dF2-ii-vDH" id="Ctf-NC-1Tv"/>
-                        <outlet property="btnOnGoing" destination="3Lk-GG-v4Q" id="mbb-0P-vBU"/>
-                        <outlet property="btnUpComing" destination="Ber-0J-ZcK" id="IU7-bz-WDB"/>
-                        <outlet property="completedSelectionView" destination="KaQ-Hl-WtU" id="apJ-0f-9z2"/>
+                        <outlet property="btnFilter" destination="0pF-zf-NUb" id="Oj7-lq-6Ft"/>
                         <outlet property="lblLocation" destination="CxP-l4-1hj" id="Bbm-Vq-cVB"/>
                         <outlet property="lblNoAppointments" destination="ZpG-DP-9fT" id="Sx8-Ia-obn"/>
-                        <outlet property="ongoingSelectionView" destination="DtJ-kf-nU3" id="ToW-Df-xmE"/>
                         <outlet property="tableView" destination="kEf-py-38Y" id="ebN-Tq-eFP"/>
-                        <outlet property="upcomingSelectionView" destination="S5K-eh-v3K" id="McS-Qc-hKs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap7-jJ-N8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="643" y="-1469"/>
+            <point key="canvasLocation" x="642.02898550724638" y="-1469.1964285714284"/>
         </scene>
         <!--Navigation Controller Search-->
         <scene sceneID="9h6-8z-wFy">
@@ -474,19 +389,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9CG-GF-y1m">
-                                <rect key="frame" x="20" y="20" width="535" height="48"/>
+                                <rect key="frame" x="20" y="20" width="535" height="52"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qRg-An-pK4">
-                                        <rect key="frame" x="0.0" y="0.0" width="257.5" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="257.5" height="52"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUNCH IN TIME:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgC-ti-C8y">
-                                                <rect key="frame" x="0.0" y="0.0" width="257.5" height="19"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="257.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPu-fr-6RO">
-                                                <rect key="frame" x="0.0" y="29" width="257.5" height="19"/>
+                                                <rect key="frame" x="0.0" y="31" width="257.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -494,16 +409,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Mt-c0-GKW">
-                                        <rect key="frame" x="277.5" y="0.0" width="257.5" height="48"/>
+                                        <rect key="frame" x="277.5" y="0.0" width="257.5" height="52"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUNCH OUT TIME:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkm-Nf-Cpq">
-                                                <rect key="frame" x="0.0" y="0.0" width="257.5" height="19"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="257.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXP-SD-3SO">
-                                                <rect key="frame" x="0.0" y="29" width="257.5" height="19"/>
+                                                <rect key="frame" x="0.0" y="31" width="257.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                 <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -513,7 +428,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XyZ-K1-LeS">
-                                <rect key="frame" x="0.0" y="88" width="575" height="1241"/>
+                                <rect key="frame" x="0.0" y="92" width="575" height="1237"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -525,7 +440,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUNCH IN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1T-lA-LMn">
-                                                    <rect key="frame" x="20" y="12.5" width="540" height="19"/>
+                                                    <rect key="frame" x="20" y="11.5" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -549,7 +464,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUNCH OUT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rt-Ue-blk">
-                                                    <rect key="frame" x="20" y="12.5" width="540" height="19"/>
+                                                    <rect key="frame" x="20" y="11.5" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -584,7 +499,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqL-Is-c6P">
-                                                    <rect key="frame" x="60" y="12.5" width="94.5" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="80" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -621,7 +536,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMPLOYEES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TE-Wa-uPh">
-                                                    <rect key="frame" x="60" y="12.5" width="95.5" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="80.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -658,7 +573,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVENTORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqR-q4-eEE">
-                                                    <rect key="frame" x="60" y="12.5" width="89" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="82.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -695,7 +610,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STORES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br0-IO-p7i">
-                                                    <rect key="frame" x="60" y="12.5" width="63" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="52" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -732,7 +647,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUDITS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKL-W2-f2F">
-                                                    <rect key="frame" x="60" y="12.5" width="57" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="51" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -769,7 +684,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APPROVAL REQUEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60C-ff-r0F">
-                                                    <rect key="frame" x="60" y="12.5" width="161" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="139" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -806,7 +721,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SALON FEEDBACK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWQ-FL-F9D">
-                                                    <rect key="frame" x="60" y="12.5" width="141.5" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="124.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -843,16 +758,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTIFICATIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdV-oO-ZDQ">
-                                                    <rect key="frame" x="60" y="12.5" width="118.5" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="110.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jo-8d-zAv">
-                                                    <rect key="frame" x="188.5" y="9" width="26" height="26"/>
+                                                    <rect key="frame" x="180.5" y="9" width="26" height="26"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6l-ts-EIl">
-                                                            <rect key="frame" x="4.5" y="4.5" width="17" height="17.5"/>
+                                                            <rect key="frame" x="6" y="3.5" width="14" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -910,7 +825,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TELEMARKETING CONSULTATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5S-Gp-vWZ">
-                                                    <rect key="frame" x="60" y="12.5" width="253.5" height="19"/>
+                                                    <rect key="frame" x="60" y="11.5" width="228.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -936,7 +851,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGOUT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6k-Na-4F2">
-                                                    <rect key="frame" x="20" y="12.5" width="540" height="19"/>
+                                                    <rect key="frame" x="20" y="11.5" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.1529411765" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -951,15 +866,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Version" id="OTX-Rr-SxY" customClass="AppVersionCell" customModule="Enrich_TMA" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="550" width="575" height="39.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Version" id="OTX-Rr-SxY" customClass="AppVersionCell" customModule="Enrich_SMA" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="550" width="575" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OTX-Rr-SxY" id="2Uu-4v-BjG">
-                                            <rect key="frame" x="0.0" y="0.0" width="575" height="39.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="575" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-98-zfg">
-                                                    <rect key="frame" x="20" y="10" width="540" height="19"/>
+                                                    <rect key="frame" x="20" y="10" width="540" height="21"/>
                                                     <fontDescription key="fontDescription" name="FuturaPT-Book" family="Futura PT" pointSize="16"/>
                                                     <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1138,6 +1053,8 @@
         <image name="SalonFeedback" width="36" height="28"/>
         <image name="appointmentTab" width="20" height="20"/>
         <image name="approvalRequest" width="27" height="28"/>
+        <image name="filterSelected" width="27" height="19"/>
+        <image name="filterUnSelected" width="23" height="14"/>
         <image name="homeTab" width="28" height="28"/>
         <image name="location" width="11" height="15"/>
         <image name="maintainance" width="286" height="285"/>

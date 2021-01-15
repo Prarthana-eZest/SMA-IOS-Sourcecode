@@ -22,20 +22,17 @@ enum AppointmentType {
 }
 
 class AppointmentVC: UIViewController, AppointmentDisplayLogic {
+
     var interactor: AppointmentBusinessLogic?
     @IBOutlet weak private var tableView: UITableView!
-    @IBOutlet weak private var completedSelectionView: UIView!
-    @IBOutlet weak private var ongoingSelectionView: UIView!
-    @IBOutlet weak private var upcomingSelectionView: UIView!
-    @IBOutlet weak private var btnCompleted: UIButton!
-    @IBOutlet weak private var btnOnGoing: UIButton!
-    @IBOutlet weak private var btnUpComing: UIButton!
+    @IBOutlet weak private var btnFilter: UIButton!
     @IBOutlet weak private var lblLocation: UILabel!
     @IBOutlet weak private var lblNoAppointments: UILabel!
 
     var appointments = [Appointment.GetAppointnents.Data]()
 
-    var selectedTab: AppointmentType = .ongoing
+    var technicianFilter = [TechnicianFilterModel]()
+    var statusFilter = [StatusFilterModel]()
 
     var totalRecords = 0
     var pageNumber = 1
@@ -79,18 +76,6 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16) {
-            btnOnGoing.titleLabel?.font = font
-        }
-        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
-            btnCompleted.titleLabel?.font = font
-            btnUpComing.titleLabel?.font = font
-        }
-        completedSelectionView.isHidden = true
-        ongoingSelectionView.isHidden = false
-        upcomingSelectionView.isHidden = true
-
         tableView.register(UINib(nibName: CellIdentifier.appointmentStatusCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.appointmentStatusCell)
         lblNoAppointments.isHidden = true
         tableView.separatorColor = .clear
@@ -105,79 +90,65 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
             lblLocation.text = userData.base_salon_name ?? ""
         }
         checkForSOSNotification()
-        resetData(status: selectedTab)
+        getAppointments()
     }
 
-    func resetData(status: AppointmentType) {
+    @IBAction func actionFilter(_ sender: UIButton) {
+        let vc = AppointmentFilterVC.instantiate(fromAppStoryboard: .Appointment)
+        self.view.alpha = screenPopUpAlpha
+        vc.technicianFilter = technicianFilter
+        vc.statusFilter = statusFilter
+        self.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (isChanged, statusData, technicianData) in
+            // Do something
+            self.view.alpha = 1.0
+            let status = statusData.filter {$0.isSelected}
+            let technician = technicianData.filter {$0.isSelected}
+            self.statusFilter = statusData
+            self.technicianFilter = technicianData
+            self.btnFilter.isSelected = false
+            if !status.isEmpty || !technician.isEmpty {
+                self.btnFilter.isSelected = true
+            }
+            if isChanged {
+                self.resetData()
+            }
+        }
+    }
+
+    func resetData() {
         pageNumber = 1
         totalRecords = 0
         appointments.removeAll()
         tableView.reloadData()
         lblNoAppointments.isHidden = true
-        getAppointments(status: status)
+        getAppointments()
     }
 
     // MARK: Do something
 
     //@IBOutlet weak var nameTextField: UITextField!
 
-    func getAppointments(status: AppointmentType) {
+    func getAppointments() {
 
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
 
             EZLoadingActivity.show("Loading...", disableUI: true)
 
-            let request = Appointment.GetAppointnents.Request(status: "\(status)", salon_code: userData.base_salon_code ?? "", date: Date().dayYearMonthDate)
+            let status = statusFilter.filter {$0.isSelected == true}
+            let technician = technicianFilter.filter {$0.isSelected == true}
+
+            let request = Appointment.GetAppointnents.Request(
+                status: "",
+                salon_code: userData.base_salon_code ?? "",
+                date: Date().dayYearMonthDate,
+                limit: limit,
+                page_no: pageNumber,
+                status_filter: status.compactMap {$0.status ?? ""},
+                technician_filter: technician.compactMap {$0.id ?? 0},
+                sma_filter_applied: true)
             interactor?.doGetAppointmentList(request: request, method: .post)
         }
-    }
-
-    @IBAction func actionCompleted(_ sender: UIButton) {
-
-        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16) {
-            btnCompleted.titleLabel?.font = font
-        }
-        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
-            btnOnGoing.titleLabel?.font = font
-            btnUpComing.titleLabel?.font = font
-        }
-        completedSelectionView.isHidden = false
-        ongoingSelectionView.isHidden = true
-        upcomingSelectionView.isHidden = true
-        selectedTab = .completed
-        resetData(status: .completed)
-    }
-
-    @IBAction func actionOnGoing(_ sender: UIButton) {
-
-        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16) {
-            btnOnGoing.titleLabel?.font = font
-        }
-        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
-            btnCompleted.titleLabel?.font = font
-            btnUpComing.titleLabel?.font = font
-        }
-        completedSelectionView.isHidden = true
-        ongoingSelectionView.isHidden = false
-        upcomingSelectionView.isHidden = true
-        selectedTab = .ongoing
-        resetData(status: .ongoing)
-    }
-
-    @IBAction func actionUpComing(_ sender: UIButton) {
-
-        if let font = UIFont(name: FontName.FuturaPTDemi.rawValue, size: 16) {
-            btnUpComing.titleLabel?.font = font
-        }
-        if let font = UIFont(name: FontName.FuturaPTBook.rawValue, size: 16) {
-            btnCompleted.titleLabel?.font = font
-            btnOnGoing.titleLabel?.font = font
-        }
-        completedSelectionView.isHidden = true
-        ongoingSelectionView.isHidden = true
-        upcomingSelectionView.isHidden = false
-        selectedTab = .upcoming
-        resetData(status: .upcoming)
     }
 
     func checkForSOSNotification() {
@@ -221,7 +192,7 @@ extension AppointmentVC {
         self.appointments.removeAll()
         self.lblNoAppointments.isHidden = false
         self.tableView.reloadData()
-        // showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
+         showAlert(alertTitle: alertTitle, alertMessage: errorMessage ?? "Request Failed")
     }
 }
 
@@ -292,13 +263,6 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
 
-        //        let vc = SOSPopUpVC.instantiate(fromAppStoryboard: .Appointment)
-        //        self.view.alpha = screenPopUpAlpha
-        //        vc.viewDismissBlock = { [unowned self] result in
-        //            // Do something
-        //            self.view.alpha = 1.0
-        //        }
-        //        appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
         let appointment = appointments[indexPath.row]
         if let dateString = appointment.appointment_date,
             let date = dateString.getDateFromString() {
@@ -307,14 +271,13 @@ extension AppointmentVC: UITableViewDelegate, UITableViewDataSource {
             vc.selectedDate = date
             self.navigationController?.pushViewController(vc, animated: true)
         }
-
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == (appointments.count - 1) &&
             appointments.count < totalRecords {
             pageNumber += 1
-            self.getAppointments(status: selectedTab)
+            self.getAppointments()
         }
     }
 }

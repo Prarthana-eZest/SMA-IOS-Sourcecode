@@ -13,7 +13,8 @@
 import UIKit
 
 protocol AppointmentFilterPresentationLogic {
-  func presentSomething(response: AppointmentFilter.Something.Response)
+    func presentSuccess<T: Decodable>(response: T)
+    func presentError(responseError: String?)
 }
 
 class AppointmentFilterPresenter: AppointmentFilterPresentationLogic {
@@ -21,8 +22,11 @@ class AppointmentFilterPresenter: AppointmentFilterPresentationLogic {
 
   // MARK: Do something
 
-  func presentSomething(response: AppointmentFilter.Something.Response) {
-    let viewModel = AppointmentFilter.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  func presentSuccess<T>(response: T) where T: Decodable {
+      viewController?.displaySuccess(viewModel: response)
+  }
+
+  func presentError(responseError: String?) {
+      viewController?.displayError(errorMessage: responseError)
   }
 }

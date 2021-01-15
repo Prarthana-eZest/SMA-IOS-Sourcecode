@@ -78,6 +78,7 @@ public enum ConstantAPINames: String {
 
     // Appoitments
     case getAppointments = "rest/V1/appointments/appointment-list?is_custom=true"
+    case getFilterDetails = "esa/appointments/appt-status-list"
 
     // Client Information
     case membershipDetails = "rest/V1/membership?is_custom=true"
