@@ -121,12 +121,11 @@ class AppointmentDetailsCell: UITableViewCell {
         dividerView.isHidden = true
         stackViewMemAndHighS.isHidden = false
 
-        if let membership = model.membership, !membership.isEmpty {
+        if let membership = model.membership, !membership.isEmpty,
+            let iconImage = model.membership_default_image, !iconImage.isEmpty,
+            let imageurl = URL(string: iconImage) {
             isMember = true
-            if let iconImage = model.membership_image, !iconImage.isEmpty,
-                let imageurl = URL(string: iconImage) {
-                iconMembership.kf.setImage(with: imageurl, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
-            }
+            iconMembership.kf.setImage(with: imageurl, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
         }
 
         iconMembership.isHidden = !isMember

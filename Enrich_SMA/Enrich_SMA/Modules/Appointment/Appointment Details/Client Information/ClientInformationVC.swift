@@ -364,7 +364,7 @@ extension ClientInformationVC {
         else if let model = viewModel as? ClientInformation.MembershipDetails.Response,
             model.status == true, let name = model.data?.name {
 
-            memebershipDetails = MembershipStatusModel(type: name, icon: model.data?.membership_image, validity: model.data?.end_date ?? "-", rewardPoints: "0")
+            memebershipDetails = MembershipStatusModel(type: name, icon: model.data?.membership_default_image, validity: model.data?.end_date ?? "-", rewardPoints: "0")
             self.tableView.reloadData()
         }
         else if let model = viewModel as? ClientInformation.Preferences.Response, model.status == true {

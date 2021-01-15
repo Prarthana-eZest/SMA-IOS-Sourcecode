@@ -52,11 +52,10 @@ class MembershipStatusCell: UITableViewCell {
                 lblValidUpTo.isHidden = false
                 membershipIcon.isHidden = false
             }
-            if let membership = model.type, !membership.isEmpty {
-                if let iconImage = model.icon, !iconImage.isEmpty,
-                    let imageurl = URL(string: iconImage) {
-                    membershipIcon.kf.setImage(with: imageurl, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
-                }
+            if let membership = model.type, !membership.isEmpty,
+                let iconImage = model.icon, !iconImage.isEmpty,
+                let imageurl = URL(string: iconImage) {
+                membershipIcon.kf.setImage(with: imageurl, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
             }
             // Rewards Points
             lblRewardPoints.text = "Reward Points: \(model.rewardPoints)"
