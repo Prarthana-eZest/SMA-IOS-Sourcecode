@@ -90,18 +90,18 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
     }
 
     @IBAction func actionClearAll(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-        for index in localStatusFilter.indices {
-            localStatusFilter[index].isSelected = false
+
+        self.dismiss(animated: true) {
+            for index in self.localStatusFilter.indices {
+                self.localStatusFilter[index].isSelected = false
+            }
+            for index in self.localTechnicianFilter.indices {
+                self.localTechnicianFilter[index].isSelected = false
+            }
+            self.statusFilter = self.localStatusFilter
+            self.technicianFilter = self.localTechnicianFilter
+            self.viewDismissBlock?(true, self.statusFilter, self.technicianFilter)
         }
-        for index in localTechnicianFilter.indices {
-            localTechnicianFilter[index].isSelected = false
-        }
-//        localStatusFilter.forEach {$0.isSelected = false}
-//        localTechnicianFilter.forEach {$0.isSelected = false}
-        statusFilter = localStatusFilter
-        technicianFilter = localTechnicianFilter
-        viewDismissBlock?(true, statusFilter, technicianFilter)
     }
 
     @IBAction func actionApply(_ sender: UIButton) {
@@ -112,10 +112,11 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
             self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.filterValidation, seconds: toastMessageDuration)
             return
         }
-        self.dismiss(animated: true, completion: nil)
-        statusFilter = localStatusFilter
-        technicianFilter = localTechnicianFilter
-        viewDismissBlock?(true, statusFilter, technicianFilter)
+        self.dismiss(animated: true) {
+            self.statusFilter = self.localStatusFilter
+            self.technicianFilter = self.localTechnicianFilter
+            self.viewDismissBlock?(true, self.statusFilter, self.technicianFilter)
+        }
     }
 
 }
