@@ -58,7 +58,8 @@ class AppointmentStatusCell: UITableViewCell {
     @IBOutlet private weak var locationStackView: UIStackView!
 
     @IBOutlet private weak var lblPaymentStatus: UILabel!
-
+    @IBOutlet private weak var lblAppointmentStatus: UILabel!
+    
     @IBOutlet private weak var iconHighSpending: UIImageView!
 
     let salonAppointmentColor = UIColor(red: 238 / 255, green: 91 / 255, blue: 71 / 255, alpha: 1)
@@ -93,6 +94,8 @@ class AppointmentStatusCell: UITableViewCell {
             lblBookedFor.text = model.booked_for ?? ""
         }
 
+        let status = model.status ?? ""
+        lblAppointmentStatus.text = status.uppercased()
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
         lblTotalDuration.text = "\(model.total_duration ?? 0) min"

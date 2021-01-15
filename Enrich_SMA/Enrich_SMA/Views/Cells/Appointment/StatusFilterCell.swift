@@ -23,7 +23,7 @@ class StatusFilterCell: UICollectionViewCell {
         borderView.layer.masksToBounds = true
         borderView.layer.borderColor = UIColor.black.cgColor
         borderView.layer.borderWidth = 1
-        lblStatus.text = status
+        lblStatus.text = status.uppercased()
 
         if isSelected {
             if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 16) {

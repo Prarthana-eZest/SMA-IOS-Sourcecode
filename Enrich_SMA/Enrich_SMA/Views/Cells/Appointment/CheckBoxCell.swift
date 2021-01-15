@@ -26,7 +26,7 @@ class CheckBoxCell: UITableViewCell {
 
     func configureCell(model: TechnicianFilterModel) {
         btnCheckbox.isSelected = model.isSelected
-        lblTitle.text = model.name ?? ""
+        lblTitle.text = (model.name ?? "").capitalized
         lblTitle.font = model.isSelected ? UIFont(name: FontName.FuturaPTMedium.rawValue, size: 18) : UIFont(name: FontName.FuturaPTBook.rawValue, size: 18)
     }
 
