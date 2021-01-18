@@ -137,6 +137,7 @@ enum AlertMessagesToAsk {
     static let saveCustomerSignature = "Please save customer signature"
     static let formValidation = "Please fill all required fields"
     static let filterValidation = "Please select at least one filter"
+    static let emptyFilter = "No filters available. Please try again."
 
     // Device Authentication
     static let deviceAuthentication = "Device is not authorised. Do you want to authenticate this device?"

@@ -129,18 +129,23 @@ extension AppointmentFilterVC {
 
         if let model = viewModel as? AppointmentFilter.GetFilterDetails.Response {
             print("Model: \(model)")
-
             self.localStatusFilter.removeAll()
+            self.localTechnicianFilter.removeAll()
+
             model.data?.status_list?.forEach {
                 self.localStatusFilter.append(StatusFilterModel(status: $0, isSelected: false))
             }
             self.collectionView.reloadData()
 
-            self.localTechnicianFilter.removeAll()
             model.data?.technician_list?.forEach {
                 self.localTechnicianFilter.append(TechnicianFilterModel(name: $0.name ?? "", id: $0.id ?? 0, isSelected: false))
             }
             self.tableView.reloadData()
+
+            if self.localStatusFilter.isEmpty && self.localTechnicianFilter.isEmpty {
+                self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.emptyFilter, seconds: toastMessageDuration)
+                return
+            }
         }
     }
 
