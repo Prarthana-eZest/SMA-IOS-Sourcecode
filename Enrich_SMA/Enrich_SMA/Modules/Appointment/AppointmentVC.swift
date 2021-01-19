@@ -177,6 +177,7 @@ extension AppointmentVC {
             if pageNumber == 1 {
                 self.appointments.removeAll()
             }
+            self.totalRecords = model.total_records ?? 0
             self.appointments.append(contentsOf: model.data ?? [])
             self.tableView.reloadData()
             if !appointments.isEmpty, pageNumber == 1 {

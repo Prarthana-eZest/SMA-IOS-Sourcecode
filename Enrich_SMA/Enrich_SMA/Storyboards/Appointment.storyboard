@@ -25,7 +25,7 @@
         <!--AlertVC-->
         <scene sceneID="x34-I4-Wwi">
             <objects>
-                <viewController storyboardIdentifier="SOSAlertVC" id="cNo-yn-GA3" customClass="SOSAlertVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SOSAlertVC" id="cNo-yn-GA3" customClass="SOSAlertVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hdL-5v-1YZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,7 +214,7 @@
         <!--Appointment DetailsVC-->
         <scene sceneID="bpr-M5-g8y">
             <objects>
-                <viewController storyboardIdentifier="AppointmentDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oNo-7O-YU9" customClass="AppointmentDetailsVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentDetailsVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oNo-7O-YU9" customClass="AppointmentDetailsVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rTP-YG-8DB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -346,7 +346,7 @@
         <!--All ReviewsVC-->
         <scene sceneID="fYH-5G-Sy8">
             <objects>
-                <viewController storyboardIdentifier="AllReviewsVC" id="wCR-AH-a0j" customClass="AllReviewsVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllReviewsVC" id="wCR-AH-a0j" customClass="AllReviewsVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GMC-gE-ysQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -377,7 +377,7 @@
                                 <rect key="frame" x="0.0" y="65" width="414" height="797"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="UCj-tg-fps" customClass="ProductsCollectionCell" customModule="Enrich_SMA" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="UCj-tg-fps" customClass="ProductsCollectionCell" customModule="SMA_Stage" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCj-tg-fps" id="Oe3-TH-WwP">
@@ -448,7 +448,7 @@
         <!--Add New NoteVC-->
         <scene sceneID="zCE-aR-Qad">
             <objects>
-                <viewController storyboardIdentifier="AddNewNoteVC" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vrP-c4-Dps" customClass="AddNewNoteVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewNoteVC" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vrP-c4-Dps" customClass="AddNewNoteVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MNV-Dd-gwP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -638,7 +638,7 @@
         <!--Client InformationVC-->
         <scene sceneID="Xn8-eX-Kgc">
             <objects>
-                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Wa-vj-q2W" customClass="ClientInformationVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClientInformationVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Wa-vj-q2W" customClass="ClientInformationVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6be-oe-4Js">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -693,7 +693,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="3c9-S4-4Tt" customClass="ProductsCollectionCell" customModule="Enrich_SMA" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductsCollectionCell" rowHeight="200" id="3c9-S4-4Tt" customClass="ProductsCollectionCell" customModule="SMA_Stage" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3c9-S4-4Tt" id="wzG-F5-mTj">
@@ -725,7 +725,7 @@
                                                     <outlet property="productCollectionView" destination="QXt-Ix-GIY" id="bgH-JK-w4c"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="n7Z-Of-wp9" customClass="PointsCell" customModule="Enrich_SMA" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointsCell" id="n7Z-Of-wp9" customClass="PointsCell" customModule="SMA_Stage" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="228" width="414" height="41.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n7Z-Of-wp9" id="xT2-8v-uEx">
@@ -905,7 +905,7 @@
         <!--Appointment FilterVC-->
         <scene sceneID="48E-R4-n50">
             <objects>
-                <viewController storyboardIdentifier="AppointmentFilterVC" modalPresentationStyle="overFullScreen" id="C48-cH-9fq" customClass="AppointmentFilterVC" customModule="Enrich_SMA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentFilterVC" modalPresentationStyle="overFullScreen" id="C48-cH-9fq" customClass="AppointmentFilterVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ud4-zt-JWQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1108,6 +1108,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="fSZ-1J-cdK" id="lHH-9P-zk5"/>
+                        <outlet property="dataStackView" destination="k8h-xW-3wy" id="Fz3-Jz-XUh"/>
                         <outlet property="tableView" destination="58F-Mg-UyY" id="nfT-TI-F7I"/>
                     </connections>
                 </viewController>

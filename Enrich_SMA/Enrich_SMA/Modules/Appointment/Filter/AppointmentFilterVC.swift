@@ -22,6 +22,7 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
 
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet weak private var dataStackView: UIStackView!
 
     var technicianFilter = [TechnicianFilterModel]()
     var statusFilter = [StatusFilterModel]()
@@ -59,6 +60,7 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         if statusFilter.isEmpty {
+            dataStackView.isHidden = true
             getFilterDetails()
         }
         else {
@@ -79,7 +81,7 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
             let request = AppointmentFilter.GetFilterDetails.Request(
-                salon_id: userData.salon_id, date: Date().dayYearMonthDate)
+                salon_id: userData.salon_id, date: "2021-01-30")//Date().dayYearMonthDate)
             interactor?.doGetFilterDetails(request: request)
         }
     }
@@ -144,7 +146,14 @@ extension AppointmentFilterVC {
 
             if self.localStatusFilter.isEmpty && self.localTechnicianFilter.isEmpty {
                 self.showToast(alertTitle: alertTitle, message: AlertMessagesToAsk.emptyFilter, seconds: toastMessageDuration)
+                DispatchQueue.main.asyncAfter(deadline: .now() + toastMessageDuration) {
+                    self.dismiss(animated: true, completion: nil)
+                    self.viewDismissBlock?(false, self.statusFilter, self.technicianFilter)
+                }
                 return
+            }
+            else {
+                dataStackView.isHidden = false
             }
         }
     }
