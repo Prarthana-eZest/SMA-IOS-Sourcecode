@@ -12,9 +12,7 @@ class MembershipStatusCell: UITableViewCell {
 
     @IBOutlet weak private var membershipIcon: UIImageView!
     @IBOutlet weak private var lblMemberType: UILabel!
-    @IBOutlet weak private var lblMembershipType: UILabel!
     @IBOutlet weak private var lblValidUpTo: UILabel!
-    @IBOutlet weak private var lblRewardPoints: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,8 +29,6 @@ class MembershipStatusCell: UITableViewCell {
         if let model = model {
 
             lblMemberType.text = model.type
-            lblMembershipType.text = model.type
-            lblMembershipType.isHidden = false
             // Validity
 
             let validity: String
@@ -57,18 +53,13 @@ class MembershipStatusCell: UITableViewCell {
                 let imageurl = URL(string: iconImage) {
                 membershipIcon.kf.setImage(with: imageurl, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
             }
-            // Rewards Points
-            lblRewardPoints.text = "Reward Points: \(model.rewardPoints)"
-            lblRewardPoints.isHidden = true
 
         }
         else {
 
             lblMemberType.text = "No active membership"
-            lblMembershipType.isHidden = true
             lblValidUpTo.isHidden = true
             membershipIcon.isHidden = true
-            lblRewardPoints.isHidden = true
         }
     }
 
