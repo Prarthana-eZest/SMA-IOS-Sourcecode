@@ -34,7 +34,7 @@ class MembershipStatusCell: UITableViewCell {
             let validity: String
             let dateString = model.validity
             if let date = dateString.getDateFromShortString() {
-                validity = date.monthYearDate
+                validity = date.monthCommaYearDate
             }
             else {
                 validity = model.validity

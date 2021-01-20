@@ -179,6 +179,11 @@ extension Date {
         let formatter = DateFormatter(); formatter.dateFormat = "dd MMM yyyy"
         return formatter.string(from: self as Date)
     }
+    
+    var monthCommaYearDate: String {
+        let formatter = DateFormatter(); formatter.dateFormat = "dd MMM, yyyy"
+        return formatter.string(from: self as Date)
+    }
 
     var dayNameDateFormat: String {
         let formatter = DateFormatter(); formatter.dateFormat = "EEE, dd MMM yyyy"
