@@ -59,16 +59,24 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if statusFilter.isEmpty {
-            dataStackView.isHidden = true
-            getFilterDetails()
-        }
-        else {
-            localStatusFilter = statusFilter
-            localTechnicianFilter = technicianFilter
-            collectionView.reloadData()
-            tableView.reloadData()
-        }
+        
+        dataStackView.isHidden = true
+        collectionView.reloadData()
+        tableView.reloadData()
+        localStatusFilter = statusFilter
+        localTechnicianFilter = technicianFilter
+        getFilterDetails()
+
+//        if statusFilter.isEmpty {
+//            dataStackView.isHidden = true
+//            getFilterDetails()
+//        }
+//        else {
+//            localStatusFilter = statusFilter
+//            localTechnicianFilter = technicianFilter
+//            collectionView.reloadData()
+//            tableView.reloadData()
+//        }
 
         collectionView.register(UINib(nibName: CellIdentifier.statusFilterCell, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.statusFilterCell)
         tableView.register(UINib(nibName: CellIdentifier.checkBoxCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.checkBoxCell)
@@ -81,7 +89,7 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser) {
             EZLoadingActivity.show("Loading...", disableUI: true)
             let request = AppointmentFilter.GetFilterDetails.Request(
-                salon_id: userData.salon_id, date: "2021-01-30")//Date().dayYearMonthDate)
+                salon_id: userData.salon_id, date: Date().dayYearMonthDate)
             interactor?.doGetFilterDetails(request: request)
         }
     }
@@ -131,17 +139,26 @@ extension AppointmentFilterVC {
 
         if let model = viewModel as? AppointmentFilter.GetFilterDetails.Response {
             print("Model: \(model)")
+
+            var statusArray = [StatusFilterModel]()
+            var technicianArray = [TechnicianFilterModel]()
+
+            model.data?.status_list?.forEach { object in
+                let s = localStatusFilter.filter {($0.status == object && $0.isSelected)}
+                statusArray.append(StatusFilterModel(status: object, isSelected: !s.isEmpty))
+            }
+            model.data?.technician_list?.forEach { object in
+                let t = localTechnicianFilter.filter {($0.id == object.id && $0.isSelected)}
+                technicianArray.append(TechnicianFilterModel(name: object.name ?? "", id: object.id ?? 0, isSelected: !t.isEmpty))
+            }
+
             self.localStatusFilter.removeAll()
             self.localTechnicianFilter.removeAll()
 
-            model.data?.status_list?.forEach {
-                self.localStatusFilter.append(StatusFilterModel(status: $0, isSelected: false))
-            }
-            self.collectionView.reloadData()
+            self.localStatusFilter.append(contentsOf: statusArray)
+            self.localTechnicianFilter.append(contentsOf: technicianArray)
 
-            model.data?.technician_list?.forEach {
-                self.localTechnicianFilter.append(TechnicianFilterModel(name: $0.name ?? "", id: $0.id ?? 0, isSelected: false))
-            }
+            self.collectionView.reloadData()
             self.tableView.reloadData()
 
             if self.localStatusFilter.isEmpty && self.localTechnicianFilter.isEmpty {
