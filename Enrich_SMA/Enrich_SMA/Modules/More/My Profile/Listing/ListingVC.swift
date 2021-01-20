@@ -64,7 +64,7 @@ class ListingVC: UIViewController, ListingDisplayLogic {
 
         // Do any additional setup after loading the view.
         lblTitle.text = listingType.rawValue
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
         tableView.register(UINib(nibName: CellIdentifier.serviceListingCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.serviceListingCell)
         lblNoRecords.isHidden = true
         switch listingType {

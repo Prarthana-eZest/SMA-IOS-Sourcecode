@@ -113,7 +113,7 @@ class EmployeeListingVC: UIViewController, EmployeeListingDisplayLogic {
         super.viewDidLoad()
         getEmployeeList()
         tableView.register(UINib(nibName: CellIdentifier.employeeCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.employeeCell)
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
         lblNoRecords.isHidden = true
     }
 

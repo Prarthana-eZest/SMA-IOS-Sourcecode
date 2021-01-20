@@ -69,7 +69,7 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.teleMarketingCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.teleMarketingCell)
         tableView.register(UINib(nibName: CellIdentifier.teleMarketingCompletedCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.teleMarketingCompletedCell)
 
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
         self.navigationController?.addCustomBackButton(title: "Telemarketing Consultation")
         lblNoRecords.isHidden = true
         getStatusList()

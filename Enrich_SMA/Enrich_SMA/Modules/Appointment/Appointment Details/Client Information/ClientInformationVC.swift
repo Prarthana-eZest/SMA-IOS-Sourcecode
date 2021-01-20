@@ -123,7 +123,7 @@ class ClientInformationVC: UIViewController, ClientInformationDisplayLogic {
         tableView.register(UINib(nibName: CellIdentifier.signatureCell, bundle: nil),
                            forCellReuseIdentifier: CellIdentifier.signatureCell)
 
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
 
         lblNoRecords.isHidden = true
         btnSubmitForm.isEnabled = false
@@ -513,7 +513,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.configureHeader(title: data[indexPath.section].title, hideViewAllButton: true)
                 cell.selectionStyle = .none
-                cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
                 return cell
             }
             else {
@@ -522,7 +522,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.configureCell(title: data[indexPath.section].points[indexPath.row - 1])
                 cell.selectionStyle = .none
-                cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
                 return cell
             }
 
@@ -549,7 +549,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                     }
                     cell.configureCell(model: formData)
                     cell.selectionStyle = .none
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
                     return cell
                 }
                 else if formData.field_type == .signature {
@@ -558,7 +558,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
                     }
                     cell.delegate = self
                     cell.selectionStyle = .none
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
                     return cell
                 }
                 else {
@@ -593,7 +593,7 @@ extension ClientInformationVC: UITableViewDelegate, UITableViewDataSource {
             cell.indexPath = indexPath
             cell.delegate = self
             cell.configureCell(model: appointmentHistory[indexPath.row])
-            cell.separatorInset = UIEdgeInsets(top: 0, left: tableView.frame.size.width, bottom: 0, right: 0)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
             cell.selectionStyle = .none
             return cell
 
