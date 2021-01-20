@@ -59,24 +59,17 @@ class AppointmentFilterVC: UIViewController, AppointmentFilterDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dataStackView.isHidden = true
-        collectionView.reloadData()
-        tableView.reloadData()
-        localStatusFilter = statusFilter
-        localTechnicianFilter = technicianFilter
-        getFilterDetails()
 
-//        if statusFilter.isEmpty {
-//            dataStackView.isHidden = true
-//            getFilterDetails()
-//        }
-//        else {
-//            localStatusFilter = statusFilter
-//            localTechnicianFilter = technicianFilter
-//            collectionView.reloadData()
-//            tableView.reloadData()
-//        }
+        if statusFilter.isEmpty {
+            dataStackView.isHidden = true
+            getFilterDetails()
+        }
+        else {
+            localStatusFilter = statusFilter
+            localTechnicianFilter = technicianFilter
+            collectionView.reloadData()
+            tableView.reloadData()
+        }
 
         collectionView.register(UINib(nibName: CellIdentifier.statusFilterCell, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.statusFilterCell)
         tableView.register(UINib(nibName: CellIdentifier.checkBoxCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.checkBoxCell)
@@ -139,24 +132,15 @@ extension AppointmentFilterVC {
 
         if let model = viewModel as? AppointmentFilter.GetFilterDetails.Response {
             print("Model: \(model)")
-
-            var statusArray = [StatusFilterModel]()
-            var technicianArray = [TechnicianFilterModel]()
-
-            model.data?.status_list?.forEach { object in
-                let s = localStatusFilter.filter {($0.status == object && $0.isSelected)}
-                statusArray.append(StatusFilterModel(status: object, isSelected: !s.isEmpty))
-            }
-            model.data?.technician_list?.forEach { object in
-                let t = localTechnicianFilter.filter {($0.id == object.id && $0.isSelected)}
-                technicianArray.append(TechnicianFilterModel(name: object.name ?? "", id: object.id ?? 0, isSelected: !t.isEmpty))
-            }
-
             self.localStatusFilter.removeAll()
             self.localTechnicianFilter.removeAll()
 
-            self.localStatusFilter.append(contentsOf: statusArray)
-            self.localTechnicianFilter.append(contentsOf: technicianArray)
+            model.data?.status_list?.forEach {
+                localStatusFilter.append(StatusFilterModel(status: $0, isSelected: false))
+            }
+            model.data?.technician_list?.forEach {
+                localTechnicianFilter.append(TechnicianFilterModel(name: $0.name ?? "", id: $0.id ?? 0, isSelected: false))
+            }
 
             self.collectionView.reloadData()
             self.tableView.reloadData()
