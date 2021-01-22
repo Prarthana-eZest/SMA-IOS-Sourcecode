@@ -19,39 +19,39 @@ protocol TeleConsultationDisplayLogic: class {
 
 class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
     var interactor: TeleConsultationBusinessLogic?
-
+    
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var btnUpcoming: UIButton!
     @IBOutlet weak private var btnPast: UIButton!
     @IBOutlet weak private var upcomingSelectionView: UIView!
     @IBOutlet weak private var pastSelectionView: UIView!
     @IBOutlet weak private var lblNoRecords: UILabel!
-
+    
     var selectedIndex = 0
-
+    
     var pendingRecords = [TeleMarketingModel]()
     var completedRecords = [TeleMarketingModel]()
-
+    
     var statusList = [TeleConsultation.GetConsulationStatus.Data]()
-
+    
     var pageNo = 1
     var pageLimit = 10
     var totalRecords = 0
-
+    
     // MARK: Object lifecycle
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-
+    
     // MARK: Setup
-
+    
     private func setup() {
         let viewController = self
         let interactor = TeleConsultationInteractor()
@@ -60,22 +60,22 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-
+    
     // MARK: View lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.register(UINib(nibName: CellIdentifier.teleMarketingCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.teleMarketingCell)
         tableView.register(UINib(nibName: CellIdentifier.teleMarketingCompletedCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.teleMarketingCompletedCell)
-
+        
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
         self.navigationController?.addCustomBackButton(title: "Telemarketing Consultation")
         lblNoRecords.isHidden = true
         getStatusList()
         getPendingList()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -83,12 +83,12 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
         KeyboardAnimation.sharedInstance.beginKeyboardObservation(self.view)
         KeyboardAnimation.sharedInstance.extraBottomSpace = 50
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         KeyboardAnimation.sharedInstance.endKeyboardObservation()
     }
-
+    
     @IBAction func actionUpcoming(_ sender: Any) {
         lblNoRecords.isHidden = true
         upcomingSelectionView.isHidden = false
@@ -106,7 +106,7 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
         selectedIndex = 0
         getPendingList()
     }
-
+    
     @IBAction func actionPast(_ sender: Any) {
         lblNoRecords.isHidden = true
         upcomingSelectionView.isHidden = true
@@ -134,7 +134,8 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
 extension TeleConsultationVC: TeleMarketingDelegate {
 
     func actionCallCustomer(indexPath: IndexPath) {
-        pendingRecords[indexPath.row].contactNo.makeACall()
+        //pendingRecords[indexPath.row].contactNo.makeACall()
+        outbondCall(indexPath: indexPath)
     }
 
     func actionSelectAction(indexPath: IndexPath) {
@@ -154,7 +155,7 @@ extension TeleConsultationVC: TeleMarketingDelegate {
     }
 
     func actionHistory(indexPath: IndexPath) {
-
+        
         let vc = CustomerTeleHistoryVC.instantiate(fromAppStoryboard: .More)
         vc.records = pendingRecords[indexPath.row].history
         self.navigationController?.pushViewController(vc, animated: true)
@@ -180,9 +181,7 @@ extension TeleConsultationVC: UITableViewDelegate, UITableViewDataSource {
             }
             cell.indexPath = indexPath
             cell.delegate = self
-
             cell.configureCell(model: pendingRecords[indexPath.row])
-
             cell.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
             cell.selectionStyle = .none
             return cell
@@ -259,6 +258,22 @@ extension TeleConsultationVC {
         interactor?.doPostFeedbackRequest(request: request, method: .post)
     }
 
+    func outbondCall(indexPath: IndexPath) {
+        if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
+            let number = userData.mobile_number {
+            let record = pendingRecords[indexPath.row]
+            EZLoadingActivity.show("Loading...", disableUI: true)
+            let request = TeleConsultation.OutbondCalling.Request(
+                technician_number: number,
+                customer_number: record.contactNo,
+                is_custom: true)
+            interactor?.doOutbondCallRequest(request: request, method: .post)
+        }
+        else {
+            self.showAlert(alertTitle: alertTitle, alertMessage: "Mobile number is not registered for technician")
+        }
+    }
+
     func displaySuccess<T: Decodable>(viewModel: T) {
 
         if let model = viewModel as? TeleConsultation.GetConsultationRecords.PendingResponse,
@@ -328,6 +343,15 @@ extension TeleConsultationVC {
             model.status == true {
             EZLoadingActivity.hide()
             self.getPendingList()
+        }
+        else if let model = viewModel as? TeleConsultation.OutbondCalling.Response {
+            EZLoadingActivity.hide()
+            if model.status == true, let number = model.caller_id {
+                number.makeACall()
+            }
+            else {
+                self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
+            }
         }
     }
     func displayError(errorMessage: String?) {

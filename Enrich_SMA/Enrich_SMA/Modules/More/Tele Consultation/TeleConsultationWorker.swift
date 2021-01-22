@@ -77,4 +77,20 @@ class TeleConsultationWorker {
                                headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
                                successHandler: successHandler, errorHandler: errorHandler, method: method)
     }
+    
+    func postOutbondCallRequest(request: TeleConsultation.OutbondCalling.Request, method: HTTPMethod) {
+        // *********** NETWORK CONNECTION
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (TeleConsultation.OutbondCalling.Response) -> Void = { (response) in
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        self.networkLayer.post(urlString: ConstantAPINames.outbondCalling.rawValue, body: request,
+                               headers: ["Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: method)
+    }
 }

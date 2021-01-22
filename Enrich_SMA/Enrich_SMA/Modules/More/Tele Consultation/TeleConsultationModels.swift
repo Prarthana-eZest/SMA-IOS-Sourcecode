@@ -98,5 +98,20 @@ enum TeleConsultation {
             var label: String?
         }
     }
+    
+    enum OutbondCalling {
+
+        struct Request: Codable {
+            let technician_number: String?
+            let customer_number: String?
+            let is_custom: Bool?
+        }
+
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            let caller_id: String?
+        }
+    }
 
 }

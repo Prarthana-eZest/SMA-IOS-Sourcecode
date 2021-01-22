@@ -17,6 +17,7 @@ protocol TeleConsultationBusinessLogic {
     func doPostGetCompletedList(request: TeleConsultation.GetConsultationRecords.CompletedRecordRequest, method: HTTPMethod)
     func getStatusList()
     func doPostFeedbackRequest(request: TeleConsultation.SubmitFeedback.Request, method: HTTPMethod)
+    func doOutbondCallRequest(request: TeleConsultation.OutbondCalling.Request, method: HTTPMethod)
 }
 
 protocol TeleConsultationDataStore {
@@ -52,5 +53,11 @@ class TeleConsultationInteractor: TeleConsultationBusinessLogic, TeleConsultatio
         worker = TeleConsultationWorker()
         worker?.presenter = self.presenter
         worker?.postFeedbackRequest(request: request, method: method)
+    }
+    
+    func doOutbondCallRequest(request: TeleConsultation.OutbondCalling.Request, method: HTTPMethod) {
+        worker = TeleConsultationWorker()
+        worker?.presenter = self.presenter
+        worker?.postOutbondCallRequest(request: request, method: method)
     }
 }

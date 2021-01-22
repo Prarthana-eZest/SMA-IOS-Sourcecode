@@ -122,4 +122,5 @@ public enum ConstantAPINames: String {
     case telemarketingCompleted = "rest/V1/telemarketing/completed"
     case submitTeleFeedback = "rest/V1/telemarketing/feedback"
     case getTeleStatusList = "/rest/V1/telemarketing/status-list?is_custom=true"
+    case outbondCalling = "/rest/V1/telemarketing/outboundcalling"
 }
