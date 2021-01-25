@@ -43,7 +43,7 @@ class LocationManager: NSObject {
             if CLLocationManager.locationServicesEnabled() {
                 self.locationManager = CLLocationManager()
                 self.locationManager?.delegate = self
-                self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
                 //self.locationManager?.requestAlwaysAuthorization()
                 self.locationManager?.requestWhenInUseAuthorization()
                 self.locationManager?.startUpdatingLocation()
@@ -136,8 +136,13 @@ extension LocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let latitude = locationManager?.location?.coordinate.latitude, let longitude = locationManager?.location?.coordinate.longitude {
+//            let coordinate₀ = CLLocation(latitude: 20.46502444573954, longitude: 74.99002792586407)
+//            let coordinate₁ = CLLocation(latitude: latitude, longitude: longitude)
+//            let distanceInMeters = coordinate₀.distance(from: coordinate₁)
+//            print("Lat:\(latitude) Long:\(longitude) Distance:\(distanceInMeters)")
+            print("Lat:\(latitude) Long:\(longitude)")
             delegate?.locationDidFound(latitude, longitude: longitude)
         }
-        self.stopUpdatingLocation()
+        //self.stopUpdatingLocation()
     }
 }
