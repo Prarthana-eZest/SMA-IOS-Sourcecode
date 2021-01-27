@@ -264,8 +264,8 @@ extension TeleConsultationVC {
             let record = pendingRecords[indexPath.row]
             EZLoadingActivity.show("Loading...", disableUI: true)
             let request = TeleConsultation.OutbondCalling.Request(
-                technician_number: number,
-                customer_number: record.contactNo,
+                technician_number: "91\(number)",
+                customer_number: "91\(record.contactNo)",
                 is_custom: true)
             interactor?.doOutbondCallRequest(request: request, method: .post)
         }
