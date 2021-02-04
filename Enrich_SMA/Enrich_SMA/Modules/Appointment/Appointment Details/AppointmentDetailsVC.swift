@@ -133,15 +133,15 @@ class AppointmentDetailsVC: UIViewController, AppointmentDetailsDisplayLogic {
         appointmentDetails?.services?.forEach {
 
             let customerName = (($0.is_dependant ?? 0) == 1) ? ($0.dependant_name ?? "") : ($0.booked_for ?? "")
-
+            let isDependent = ($0.is_dependant ?? 0) == 1
             self.appintmentTimeLine.append(AppointmentTimelineModel(time: $0.start_time ?? "",
                                                                     title: $0.service_name ?? "",
                                                                     subTitle: $0.servicing_technician ?? "",
-                                                                    alreadyCovered: $0.status == "completed", customerName: customerName))
+                                                                    alreadyCovered: $0.status == "completed", customerName: customerName, isDepedentService: isDependent))
         }
         self.appintmentTimeLine.append(AppointmentTimelineModel(time: appointmentDetails?.services?.last?.end_time ?? "",
                                                                 title: "Appointment ends",
-                                                                subTitle: "", alreadyCovered: false, customerName: ""))
+                                                                subTitle: "", alreadyCovered: false, customerName: "", isDepedentService: false))
         self.tableView.reloadData()
     }
 

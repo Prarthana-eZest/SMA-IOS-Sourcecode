@@ -127,6 +127,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             if let services = requestDetails.services {
                 services.forEach {
                     let customerName = (($0.is_dependant ?? 0) == 1) ? ($0.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+                    let isDependent = ($0.is_dependant ?? 0) == 1
                     categories.append(RequestCategoryModel(
                         title: $0.service_name,
                         startTime: $0.start_time,
@@ -134,7 +135,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                         price: "\($0.price ?? 0)",
                         duration: "\($0.service_duration ?? 0)",
                         customerName: customerName,
-                        servicing_technician: $0.servicing_technician))
+                        servicing_technician: $0.servicing_technician, isDependentService: isDependent))
                 }
             }
 
@@ -148,7 +149,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: original.price?.description,
                     duration: original.total_duration?.description,
                     customerName: nil,
-                    servicing_technician: nil))
+                    servicing_technician: nil, isDependentService: false))
             }
 
             if let requested = requestDetails.requested {
@@ -159,7 +160,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: requested.price?.description,
                     duration: requested.total_duration?.description,
                     customerName: nil,
-                    servicing_technician: nil))
+                    servicing_technician: nil, isDependentService: false))
             }
 
         case .add_new_service, .del_service:
@@ -167,8 +168,10 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             appointmentDate = requestDetails.service?.first?.appointment_date ?? ""
 
             var customerName: String?
+            var isDependent = false
             if category == .add_new_service {
                 customerName = ((requestDetails.service?.first?.is_dependant ?? 0) == 1) ? (requestDetails.service?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+                isDependent = (requestDetails.service?.first?.is_dependant ?? 0) == 1
             }
 
             if let service = requestDetails.service {
@@ -179,7 +182,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: "\(service.first?.price ?? 0)",
                     duration: "\(service.first?.service_duration ?? 0)",
                     customerName: customerName,
-                    servicing_technician: service.first?.servicing_technician))
+                    servicing_technician: service.first?.servicing_technician,
+                    isDependentService: isDependent))
             }
 
         case .replace, .service_timeslot:
@@ -192,7 +196,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: original.price?.description,
                     duration: "\(original.service_duration ?? 0)",
                     customerName: nil,
-                    servicing_technician: nil))
+                    servicing_technician: nil,
+                    isDependentService: false))
             }
 
             if let requested = requestDetails.requested {
@@ -202,7 +207,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     endTime: requested.end_time,
                     price: requested.price?.description, duration: requested.service_duration?.description,
                     customerName: nil,
-                    servicing_technician: nil))
+                    servicing_technician: nil,
+                    isDependentService: false))
             }
         }
         self.tableView.reloadData()

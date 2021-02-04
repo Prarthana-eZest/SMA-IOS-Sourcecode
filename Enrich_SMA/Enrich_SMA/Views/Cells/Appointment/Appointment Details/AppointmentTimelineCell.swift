@@ -18,6 +18,7 @@ class AppointmentTimelineCell: UITableViewCell {
     @IBOutlet weak private var lineView: UIView!
     @IBOutlet weak private var lblCustomerName: UILabel!
     @IBOutlet weak private var customerNameStackView: UIStackView!
+    @IBOutlet weak private var dependentIcon: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,6 +49,7 @@ class AppointmentTimelineCell: UITableViewCell {
         }
         lblCustomerName.text = model.customerName
         customerNameStackView.isHidden = isEndCell
+        dependentIcon.isHidden = !model.isDepedentService
     }
 
 }
@@ -58,4 +60,5 @@ struct AppointmentTimelineModel {
     let subTitle: String
     let alreadyCovered: Bool
     let customerName: String
+    let isDepedentService: Bool
 }

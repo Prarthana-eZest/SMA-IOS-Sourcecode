@@ -18,9 +18,11 @@ class RequestCategoryCell: UITableViewCell {
     @IBOutlet weak private var priceStackView: UIStackView!
     @IBOutlet weak private var lblCustomerName: UILabel!
     @IBOutlet weak private var lblTechnicianName: UILabel!
-    
+
     @IBOutlet weak private var customerStackView: UIStackView!
     @IBOutlet weak private var technicianStackView: UIStackView!
+    @IBOutlet weak private var dependentIcon: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +41,7 @@ class RequestCategoryCell: UITableViewCell {
         customerStackView.isHidden = model.customerName == nil
         lblTechnicianName.text = model.servicing_technician ?? ""
         technicianStackView.isHidden = model.servicing_technician == nil
+        dependentIcon.isHidden = !model.isDependentService
     }
 }
 
@@ -50,4 +53,5 @@ struct RequestCategoryModel {
     let duration: String?
     let customerName: String?
     let servicing_technician: String?
+    let isDependentService: Bool
 }
