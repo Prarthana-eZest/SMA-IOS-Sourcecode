@@ -169,10 +169,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
 
             var customerName: String?
             var isDependent = false
-            if category == .add_new_service {
-                customerName = ((requestDetails.service?.first?.is_dependant ?? 0) == 1) ? (requestDetails.service?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+            customerName = ((requestDetails.service?.first?.is_dependant ?? 0) == 1) ? (requestDetails.service?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
                 isDependent = (requestDetails.service?.first?.is_dependant ?? 0) == 1
-            }
 
             if let service = requestDetails.service {
                 categories.append(RequestCategoryModel(
