@@ -124,7 +124,6 @@ enum ApprovalRequestList {
             let servicing_technician: String?
             let booking_technician: String?
             let delete_reason: String?
-            
             let is_dependant: Int?
             let dependant_name: String?
             let dependant_gender: String?

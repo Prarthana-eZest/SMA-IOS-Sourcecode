@@ -90,7 +90,7 @@ class AppointmentVC: UIViewController, AppointmentDisplayLogic {
             lblLocation.text = userData.base_salon_name ?? ""
         }
         checkForSOSNotification()
-        getAppointments()
+        resetData()
     }
 
     @IBAction func actionFilter(_ sender: UIButton) {
