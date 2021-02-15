@@ -30,29 +30,29 @@ protocol RequestDetailsDisplayLogic: class {
 
 class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
     var interactor: RequestDetailsBusinessLogic?
-
+    
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var btnView: UIView!
-
+    
     // MARK: Object lifecycle
-
+    
     var approvalRequest: ApprovalRequestList.GetRequestData.Data?
     var categories = [RequestCategoryModel]()
-
+    
     var appointmentDate = ""
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-
+    
     // MARK: Setup
-
+    
     private func setup() {
         let viewController = self
         let interactor = RequestDetailsInteractor()
@@ -61,19 +61,19 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-
+    
     // MARK: View lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.register(UINib(nibName: CellIdentifier.requestDetailsCell, bundle: nil),
-                                  forCellReuseIdentifier: CellIdentifier.requestDetailsCell)
+                           forCellReuseIdentifier: CellIdentifier.requestDetailsCell)
         tableView.register(UINib(nibName: CellIdentifier.requestCategoryCell, bundle: nil),
-        forCellReuseIdentifier: CellIdentifier.requestCategoryCell)
-
+                           forCellReuseIdentifier: CellIdentifier.requestCategoryCell)
+        
         tableView.separatorColor = .clear
-
+        
         if let request = approvalRequest,
             let category = ModifyRequestCategory(rawValue: request.category ?? ""),
             let status = ApprovalStatus(rawValue: request.approval_status ?? "") {
@@ -81,7 +81,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             configureCatagories(category: category)
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -89,13 +89,13 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                                          andRotateTo: UIInterfaceOrientation.portrait)
         self.navigationController?.addCustomBackButton(title: "Request Details")
     }
-
+    
     @IBAction func actionDeny(_ sender: UIButton) {
-
+        
         let vc = DenyReasonVC.instantiate(fromAppStoryboard: .More)
         self.view.alpha = screenPopUpAlpha
         self.present(vc, animated: true, completion: nil)
-
+        
         vc.onDoneBlock = { [unowned self] (result, reason) in
             // Do something
             if result {
@@ -105,25 +105,25 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             self.view.alpha = 1.0
         }
     }
-
+    
     @IBAction func actionApprove(_ sender: UIButton) {
         processRequestAPICall(type: ApprovalStatus.approved.rawValue, reason: nil)
     }
-
+    
     func configureCatagories(category: ModifyRequestCategory) {
-
+        
         self.categories.removeAll()
-
+        
         guard let request = approvalRequest,
             let requestDetails = request.approval_request_details else {
-            return
+                return
         }
         appointmentDate = requestDetails.appointment?.appointment_date ?? ""
-
+        
         switch category {
-
+            
         case .add_app, .del_appointment, .can_appointment:
-
+            
             if let services = requestDetails.services {
                 services.forEach {
                     let customerName = (($0.is_dependant ?? 0) == 1) ? ($0.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
@@ -138,9 +138,9 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                         servicing_technician: $0.servicing_technician, isDependentService: isDependent))
                 }
             }
-
+            
         case .appointment_timeslot:
-
+            
             if let original = requestDetails.original {
                 categories.append(RequestCategoryModel(
                     title: "Original : \(original.date ?? "")",
@@ -151,7 +151,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     customerName: nil,
                     servicing_technician: nil, isDependentService: false))
             }
-
+            
             if let requested = requestDetails.requested {
                 categories.append(RequestCategoryModel(
                     title: "Requested : \(requested.date ?? "")",
@@ -162,16 +162,14 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     customerName: nil,
                     servicing_technician: nil, isDependentService: false))
             }
-
+            
         case .add_new_service, .del_service:
-
+            
             appointmentDate = requestDetails.service?.first?.appointment_date ?? ""
-
-            var customerName: String?
-            var isDependent = false
-            customerName = ((requestDetails.service?.first?.is_dependant ?? 0) == 1) ? (requestDetails.service?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
-                isDependent = (requestDetails.service?.first?.is_dependant ?? 0) == 1
-
+            
+            let customerName = ((requestDetails.service?.first?.is_dependant ?? 0) == 1) ? (requestDetails.service?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+            let isDependent = (requestDetails.service?.first?.is_dependant ?? 0) == 1
+            
             if let service = requestDetails.service {
                 categories.append(RequestCategoryModel(
                     title: service.first?.service_name,
@@ -184,29 +182,66 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     isDependentService: isDependent))
             }
 
-        case .replace, .service_timeslot:
+        case .service_timeslot:
+
+            let customerName = ((requestDetails.services?.first?.is_dependant ?? 0) == 1) ? (requestDetails.services?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+            let isDependent = (requestDetails.services?.first?.is_dependant ?? 0) == 1
 
             if let original = requestDetails.original {
+                categories.append(RequestCategoryModel(
+                    title: "Original : \(requestDetails.services?.first?.service_name ?? "")",
+                    startTime: original.start_time,
+                    endTime: original.end_time,
+                    price: original.price?.description,
+                    duration: "\(original.service_duration ?? 0)",
+                    customerName: customerName,
+                    servicing_technician: requestDetails.services?.first?.servicing_technician ?? "",
+                    isDependentService: isDependent))
+            }
+
+            if let requested = requestDetails.requested {
+                categories.append(RequestCategoryModel(
+                    title: "Requested : \(requestDetails.services?.first?.service_name ?? "")",
+                    startTime: requested.start_time,
+                    endTime: requested.end_time,
+                    price: requested.price?.description, duration: requested.service_duration?.description,
+                    customerName: customerName,
+                    servicing_technician: requestDetails.services?.first?.servicing_technician ?? "",
+                    isDependentService: isDependent))
+            }
+
+
+        case .replace:
+
+            if let original = requestDetails.original {
+                
+                let customerName = ((requestDetails.services?.first?.is_dependant ?? 0) == 1) ? (requestDetails.services?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+                let isDependent = (requestDetails.services?.first?.is_dependant ?? 0) == 1
+                
                 categories.append(RequestCategoryModel(
                     title: "Original : \(original.service_name ?? "")",
                     startTime: original.start_time,
                     endTime: original.end_time,
                     price: original.price?.description,
                     duration: "\(original.service_duration ?? 0)",
-                    customerName: nil,
-                    servicing_technician: nil,
-                    isDependentService: false))
+                    customerName: customerName,
+                    servicing_technician: requestDetails.services?.first?.servicing_technician ?? "",
+                    isDependentService: isDependent))
             }
-
+            
             if let requested = requestDetails.requested {
+                
+                let customerName = ((requestDetails.services?.last?.is_dependant ?? 0) == 1) ? (requestDetails.services?.last?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+                let isDependent = (requestDetails.services?.last?.is_dependant ?? 0) == 1
+                
                 categories.append(RequestCategoryModel(
                     title: "Requested : \(requested.service_name ?? "")",
                     startTime: requested.start_time,
                     endTime: requested.end_time,
                     price: requested.price?.description, duration: requested.service_duration?.description,
-                    customerName: nil,
-                    servicing_technician: nil,
-                    isDependentService: false))
+                    customerName: customerName,
+                    servicing_technician: requestDetails.services?.last?.servicing_technician ?? "",
+                    isDependentService: isDependent))
             }
         }
         self.tableView.reloadData()
@@ -214,17 +249,17 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
 }
 
 extension RequestDetailsVC: UITableViewDelegate, UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 1 : categories.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.requestDetailsCell, for: indexPath) as? RequestDetailsCell else {
                 return UITableViewCell()
@@ -244,10 +279,10 @@ extension RequestDetailsVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -255,13 +290,13 @@ extension RequestDetailsVC: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: Call Webservice
 extension RequestDetailsVC {
-
+    
     func processRequestAPICall(type: String, reason: String?) {
-
+        
         if let userData = UserDefaults.standard.value(MyProfile.GetUserProfile.UserData.self, forKey: UserDefauiltsKeys.k_Key_LoginUser),
             let requestDetails = approvalRequest {
             EZLoadingActivity.show("Loading...", disableUI: true)
-
+            
             let requestData = ApprovalRequestList.ProcessRequest.RequestDetails(
                 status: type, ref_id: requestDetails.ref_id,
                 category: requestDetails.category,
@@ -272,7 +307,7 @@ extension RequestDetailsVC {
             interactor?.doPostProcessApproval(request: request, method: .post)
         }
     }
-
+    
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
         if let model = viewModel as? ApprovalRequestList.ProcessRequest.Response {
