@@ -39,6 +39,8 @@ enum MoreModule {
             let employee_latitude: String
             let employee_longitude: String
             let is_custom: Bool
+            let emp_fname: String
+            let emp_lname: String
         }
 
         struct Response: Codable {

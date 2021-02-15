@@ -258,13 +258,16 @@ extension MoreModuleVC {
             let long = "\(LocationManager.sharedInstance.location().longitude)" // "72.608"
 
             EZLoadingActivity.show("Loading...", disableUI: true)
-            let request = MoreModule.MarkCheckInOut.Request(emp_code: userData.employee_code ?? "",
-                                                            emp_name: userData.username ?? "",
-                                                            branch_code: userData.base_salon_code ?? "",
-                                                            checkinout_time: Date().checkInOutDateTime,
-                                                            checkin: userPunchedIn ? "0" : "1",
-                                                            employee_latitude: lat,
-                                                            employee_longitude: long, is_custom: true)
+            let request = MoreModule.MarkCheckInOut.Request(
+                emp_code: userData.employee_code ?? "",
+                emp_name: userData.username ?? "",
+                branch_code: userData.base_salon_code ?? "",
+                checkinout_time: Date().checkInOutDateTime,
+                checkin: userPunchedIn ? "0" : "1",
+                employee_latitude: lat,
+                employee_longitude: long, is_custom: true,
+                emp_fname: userData.firstname ?? "",
+                emp_lname: userData.lastname ?? "")
 
             interactor?.doPostMarkCheckInOutRequest(request: request, method: .post)
         }
