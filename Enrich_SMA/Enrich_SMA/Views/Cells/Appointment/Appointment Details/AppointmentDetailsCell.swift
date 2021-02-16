@@ -72,7 +72,7 @@ class AppointmentDetailsCell: UITableViewCell {
 
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
-        lblTotalDuration.text = "\(model.total_duration ?? 0) min"
+        lblTotalDuration.text = GenericClass().getDurationTextFromSeconds(minuts: model.total_duration ?? 0)
 
         let status = model.status ?? ""
         lblAppointmentStatus.text = status.uppercased()
@@ -93,7 +93,7 @@ class AppointmentDetailsCell: UITableViewCell {
         let rating = model.avg_rating ?? 0
         lblRatings.text = "\(rating.cleanForRating)/5"
 
-        lblTotalDuration.text = "\(model.total_duration ?? 0) min"
+        lblTotalDuration.text = GenericClass().getDurationTextFromSeconds(minuts: model.total_duration ?? 0)
 
         locationStackView.isHidden = true
         if let typeText = model.appointment_type,

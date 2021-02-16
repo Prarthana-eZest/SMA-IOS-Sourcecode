@@ -98,7 +98,7 @@ class AppointmentStatusCell: UITableViewCell {
         lblAppointmentStatus.text = status.uppercased()
         lblStartTime.text = model.start_time ?? ""
         lblEndTime.text = model.end_time ?? ""
-        lblTotalDuration.text = "\(model.total_duration ?? 0) min"
+        lblTotalDuration.text = GenericClass().getDurationTextFromSeconds(minuts: model.total_duration ?? 0)
         lblServiceName.text = model.services?.first?.service_name ?? "Not available"
         btnServiceCount.setTitle("+\((model.services?.count ?? 1) - 1)", for: .normal)
         stackViewServiceCount.isHidden = ((model.services?.count ?? 1) < 2)

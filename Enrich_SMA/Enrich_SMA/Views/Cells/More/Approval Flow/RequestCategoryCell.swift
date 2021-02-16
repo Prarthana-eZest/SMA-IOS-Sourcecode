@@ -36,7 +36,7 @@ class RequestCategoryCell: UITableViewCell {
         let price = model.price?.toDouble()?.cleanForPrice ?? "0"
         lblPrice.text =  "₹\(price)"
         priceStackView.isHidden = model.price == nil
-        lblDuration.text = "\(model.duration ?? "0") min"
+        lblDuration.text = GenericClass().getDurationTextFromSeconds(minuts: Int(model.duration ?? "0") ?? 0)
         lblCustomerName.text = model.customerName ?? ""
         customerStackView.isHidden = model.customerName == nil
         lblTechnicianName.text = model.servicing_technician ?? ""

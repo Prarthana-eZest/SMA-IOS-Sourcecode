@@ -85,6 +85,25 @@ class GenericClass: NSObject {
         let uuidStringRef: CFString = CFUUIDCreateString(nil, uuidRef)
         return uuidStringRef as String
     }
+    
+    func getDurationTextFromSeconds(minuts: Int) -> String{
+        let values = secondsToHoursMinutesSeconds(seconds: minuts * 60)
+        var labelText = ""
+        if minuts == 0 {
+            return "0 min"
+        }
+        if values.0 > 0{
+            labelText.append("\(values.0) hr ")
+        }
+        if values.1 > 0 {
+            labelText.append("\(values.1) min")
+        }
+        return labelText
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+      return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
 
 }
 
