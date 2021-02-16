@@ -126,7 +126,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             
             if let services = requestDetails.services {
                 services.forEach {
-                    let customerName = (($0.is_dependant ?? 0) == 1) ? ($0.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
+                    let customerName = (($0.is_dependant ?? 0) == 1) ? ($0.dependant_name ?? "") : "\($0.customer_name ?? "") \($0.customer_last_name ?? "")"
                     let isDependent = ($0.is_dependant ?? 0) == 1
                     categories.append(RequestCategoryModel(
                         title: $0.service_name,
@@ -149,7 +149,8 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: original.price?.description,
                     duration: original.total_duration?.description,
                     customerName: nil,
-                    servicing_technician: nil, isDependentService: false))
+                    servicing_technician: nil,
+                    isDependentService: false))
             }
             
             if let requested = requestDetails.requested {
@@ -160,89 +161,98 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                     price: requested.price?.description,
                     duration: requested.total_duration?.description,
                     customerName: nil,
-                    servicing_technician: nil, isDependentService: false))
+                    servicing_technician: nil,
+                    isDependentService: false))
             }
             
         case .add_new_service, .del_service:
             
             appointmentDate = requestDetails.service?.first?.appointment_date ?? ""
             
-            let customerName = ((requestDetails.service?.first?.is_dependant ?? 0) == 1) ? (requestDetails.service?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
-            let isDependent = (requestDetails.service?.first?.is_dependant ?? 0) == 1
-            
-            if let service = requestDetails.service {
-                categories.append(RequestCategoryModel(
-                    title: service.first?.service_name,
-                    startTime: service.first?.start_time,
-                    endTime: service.first?.end_time,
-                    price: "\(service.first?.price ?? 0)",
-                    duration: "\(service.first?.service_duration ?? 0)",
-                    customerName: customerName,
-                    servicing_technician: service.first?.servicing_technician,
-                    isDependentService: isDependent))
+            if let services = requestDetails.service {
+                services.forEach {
+                    let customerName = (($0.is_dependant ?? 0) == 1) ? ($0.dependant_name ?? "") : $0.booked_for ?? ""
+                    let isDependent = ($0.is_dependant ?? 0) == 1
+                    
+                    categories.append(RequestCategoryModel(
+                        title: $0.service_name,
+                        startTime: $0.start_time,
+                        endTime: $0.end_time,
+                        price: "\($0.price ?? 0)",
+                        duration: "\($0.service_duration ?? 0)",
+                        customerName: customerName,
+                        servicing_technician: $0.servicing_technician,
+                        isDependentService: isDependent))
+                }
             }
-
+            
         case .service_timeslot:
-
-            let customerName = ((requestDetails.services?.first?.is_dependant ?? 0) == 1) ? (requestDetails.services?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
-            let isDependent = (requestDetails.services?.first?.is_dependant ?? 0) == 1
-
-            if let original = requestDetails.original {
-                categories.append(RequestCategoryModel(
-                    title: "Original : \(requestDetails.services?.first?.service_name ?? "")",
-                    startTime: original.start_time,
-                    endTime: original.end_time,
-                    price: original.price?.description,
-                    duration: "\(original.service_duration ?? 0)",
-                    customerName: customerName,
-                    servicing_technician: requestDetails.services?.first?.servicing_technician ?? "",
-                    isDependentService: isDependent))
-            }
-
-            if let requested = requestDetails.requested {
-                categories.append(RequestCategoryModel(
-                    title: "Requested : \(requestDetails.services?.first?.service_name ?? "")",
-                    startTime: requested.start_time,
-                    endTime: requested.end_time,
-                    price: requested.price?.description, duration: requested.service_duration?.description,
-                    customerName: customerName,
-                    servicing_technician: requestDetails.services?.first?.servicing_technician ?? "",
-                    isDependentService: isDependent))
-            }
-
-
-        case .replace:
-
-            if let original = requestDetails.original {
+            
+            if let service = requestDetails.services?.first {
                 
-                let customerName = ((requestDetails.services?.first?.is_dependant ?? 0) == 1) ? (requestDetails.services?.first?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
-                let isDependent = (requestDetails.services?.first?.is_dependant ?? 0) == 1
+                let customerName = ((service.is_dependant ?? 0) == 1) ? (service.dependant_name ?? "") : "\(service.customer_name ?? "") \(service.customer_last_name ?? "")"
+                let isDependent = (service.is_dependant ?? 0) == 1
                 
-                categories.append(RequestCategoryModel(
-                    title: "Original : \(original.service_name ?? "")",
-                    startTime: original.start_time,
-                    endTime: original.end_time,
-                    price: original.price?.description,
-                    duration: "\(original.service_duration ?? 0)",
-                    customerName: customerName,
-                    servicing_technician: requestDetails.services?.first?.servicing_technician ?? "",
-                    isDependentService: isDependent))
+                if let original = requestDetails.original {
+                    categories.append(RequestCategoryModel(
+                        title: "Original : \(service.service_name ?? "")",
+                        startTime: original.start_time,
+                        endTime: original.end_time,
+                        price: original.price?.description,
+                        duration: "\(original.service_duration ?? 0)",
+                        customerName: customerName,
+                        servicing_technician: service.servicing_technician ?? "",
+                        isDependentService: isDependent))
+                }
+                
+                if let requested = requestDetails.requested {
+                    categories.append(RequestCategoryModel(
+                        title: "Requested : \(service.service_name ?? "")",
+                        startTime: requested.start_time,
+                        endTime: requested.end_time,
+                        price: requested.price?.description, duration: requested.service_duration?.description,
+                        customerName: customerName,
+                        servicing_technician: service.servicing_technician ?? "",
+                        isDependentService: isDependent))
+                }
             }
             
-            if let requested = requestDetails.requested {
+        case .replace:
+            
+            if let firstService = requestDetails.services?.first, let lastService = requestDetails.services?.last {
                 
-                let customerName = ((requestDetails.services?.last?.is_dependant ?? 0) == 1) ? (requestDetails.services?.last?.dependant_name ?? "") : (requestDetails.appointment?.customer_name ?? "")
-                let isDependent = (requestDetails.services?.last?.is_dependant ?? 0) == 1
+                if let original = requestDetails.original {
+                    
+                    let customerName = ((firstService.is_dependant ?? 0) == 1) ? (firstService.dependant_name ?? "") : "\(firstService.customer_name ?? "") \(firstService.customer_last_name ?? "")"
+                    let isDependent = (firstService.is_dependant ?? 0) == 1
+                    
+                    categories.append(RequestCategoryModel(
+                        title: "Original : \(original.service_name ?? "")",
+                        startTime: original.start_time,
+                        endTime: original.end_time,
+                        price: original.price?.description,
+                        duration: "\(original.service_duration ?? 0)",
+                        customerName: customerName,
+                        servicing_technician: firstService.servicing_technician ?? "",
+                        isDependentService: isDependent))
+                }
                 
-                categories.append(RequestCategoryModel(
-                    title: "Requested : \(requested.service_name ?? "")",
-                    startTime: requested.start_time,
-                    endTime: requested.end_time,
-                    price: requested.price?.description, duration: requested.service_duration?.description,
-                    customerName: customerName,
-                    servicing_technician: requestDetails.services?.last?.servicing_technician ?? "",
-                    isDependentService: isDependent))
+                if let requested = requestDetails.requested {
+                    
+                    let customerName = ((lastService.is_dependant ?? 0) == 1) ? (lastService.dependant_name ?? "") : "\(lastService.customer_name ?? "") \(lastService.customer_last_name ?? "")"
+                    let isDependent = (lastService.is_dependant ?? 0) == 1
+                    
+                    categories.append(RequestCategoryModel(
+                        title: "Requested : \(requested.service_name ?? "")",
+                        startTime: requested.start_time,
+                        endTime: requested.end_time,
+                        price: requested.price?.description, duration: requested.service_duration?.description,
+                        customerName: customerName,
+                        servicing_technician: lastService.servicing_technician ?? "",
+                        isDependentService: isDependent))
+                }
             }
+            
         }
         self.tableView.reloadData()
     }
