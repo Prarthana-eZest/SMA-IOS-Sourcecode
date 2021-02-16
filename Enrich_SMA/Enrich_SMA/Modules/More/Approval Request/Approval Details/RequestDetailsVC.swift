@@ -190,7 +190,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
             
             if let service = requestDetails.services?.first {
                 
-                let customerName = ((service.is_dependant ?? 0) == 1) ? (service.dependant_name ?? "") : "\(service.customer_name ?? "") \(service.customer_last_name ?? "")"
+                let customerName = ((service.is_dependant ?? 0) == 1) ? (service.dependant_name ?? "") : "\(service.booked_for ?? "")"
                 let isDependent = (service.is_dependant ?? 0) == 1
                 
                 if let original = requestDetails.original {
