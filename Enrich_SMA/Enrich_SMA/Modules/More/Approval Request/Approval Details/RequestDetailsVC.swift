@@ -223,7 +223,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                 
                 if let original = requestDetails.original {
                     
-                    let customerName = ((firstService.is_dependant ?? 0) == 1) ? (firstService.dependant_name ?? "") : "\(firstService.customer_name ?? "") \(firstService.customer_last_name ?? "")"
+                    let customerName = ((firstService.is_dependant ?? 0) == 1) ? (firstService.dependant_name ?? "") : firstService.booked_for ?? ""
                     let isDependent = (firstService.is_dependant ?? 0) == 1
                     
                     categories.append(RequestCategoryModel(
@@ -239,7 +239,7 @@ class RequestDetailsVC: UIViewController, RequestDetailsDisplayLogic {
                 
                 if let requested = requestDetails.requested {
                     
-                    let customerName = ((lastService.is_dependant ?? 0) == 1) ? (lastService.dependant_name ?? "") : "\(lastService.customer_name ?? "") \(lastService.customer_last_name ?? "")"
+                    let customerName = ((lastService.is_dependant ?? 0) == 1) ? (lastService.dependant_name ?? "") : lastService.booked_for ?? ""
                     let isDependent = (lastService.is_dependant ?? 0) == 1
                     
                     categories.append(RequestCategoryModel(
