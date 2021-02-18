@@ -276,8 +276,8 @@ extension MoreModuleVC {
     func displaySuccess<T: Decodable>(viewModel: T) {
         EZLoadingActivity.hide()
         if let model = viewModel as? MoreModule.GetCheckInStatus.Response,
-            model.status == true, let count = model.count {
-            userPunchedIn = !(count % 2 == 0)
+            model.status == true, let checkin = model.checkin {
+            userPunchedIn = checkin
             self.tableView.reloadData()
         }
         else if let model = viewModel as? MoreModule.MarkCheckInOut.Response {

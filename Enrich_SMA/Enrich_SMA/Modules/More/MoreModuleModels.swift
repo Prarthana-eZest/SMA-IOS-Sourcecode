@@ -25,6 +25,7 @@ enum MoreModule {
             var status: Bool = false
             var message: String = ""
             var count: Int?
+            let checkin: Bool?
         }
     }
 
