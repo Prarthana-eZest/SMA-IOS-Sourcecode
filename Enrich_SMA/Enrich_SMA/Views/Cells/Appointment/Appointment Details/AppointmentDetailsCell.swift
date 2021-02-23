@@ -79,10 +79,10 @@ class AppointmentDetailsCell: UITableViewCell {
         lblStatus.text = status.uppercased()
 
         var address = [String]()
-        if let address1 = model.customer_address {
+        if let address1 = model.customer_address, !address1.isEmpty {
             address.append(address1)
         }
-        if let address2 = model.customer_address2 {
+        if let address2 = model.customer_address2, !address2.isEmpty {
             address.append(address2)
         }
         lblLocation.text = address.joined(separator: ", ")
