@@ -134,8 +134,8 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
 extension TeleConsultationVC: TeleMarketingDelegate {
 
     func actionCallCustomer(indexPath: IndexPath) {
-        //pendingRecords[indexPath.row].contactNo.makeACall()
-        outbondCall(indexPath: indexPath)
+        pendingRecords[indexPath.row].contactNo.makeACall()
+        //outbondCall(indexPath: indexPath)
     }
 
     func actionSelectAction(indexPath: IndexPath) {
