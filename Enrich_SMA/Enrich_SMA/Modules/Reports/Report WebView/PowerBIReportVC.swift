@@ -61,11 +61,6 @@ class PowerBIReportVC: UIViewController, PowerBIReportDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let frame = CGRect(x: 0, y: 0, width: topView.frame.width, height: topView.frame.height)
-        webView = WKWebView(frame: frame)
-        webView?.navigationDelegate = self
-        webView?.uiDelegate = self
-        topView.addSubview(webView ?? UIView())
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -81,7 +76,11 @@ class PowerBIReportVC: UIViewController, PowerBIReportDisplayLogic {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        let frame = CGRect(x: 0, y: 0, width: topView.frame.width, height: topView.frame.height)
+        webView = WKWebView(frame: frame)
+        webView?.navigationDelegate = self
+        webView?.uiDelegate = self
+        topView.addSubview(webView ?? UIView())
         if let url = Bundle.main.url(forResource: "index", withExtension: "html") {
             webView?.loadFileURL(url, allowingReadAccessTo: url)
         }
