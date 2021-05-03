@@ -18,6 +18,10 @@ protocol PowerBIReportDisplayLogic: class {
     func displayError(errorMessage: String?)
 }
 
+enum PowerBIReportType {
+    case bmtDashboard, reports
+}
+
 class PowerBIReportVC: UIViewController, PowerBIReportDisplayLogic {
 
     @IBOutlet weak private var topView: UIView!
@@ -26,6 +30,9 @@ class PowerBIReportVC: UIViewController, PowerBIReportDisplayLogic {
 
     var data: Reports.GetReports.Data?
     var webView: WKWebView?
+    
+    
+    var reportType:PowerBIReportType = .reports
 
     // MARK: Object lifecycle
 
@@ -64,7 +71,12 @@ class PowerBIReportVC: UIViewController, PowerBIReportDisplayLogic {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: data?.type ?? "")
+        if reportType == .reports {
+            self.navigationController?.addCustomBackButton(title: data?.type ?? "")
+        }
+        else {
+            self.navigationController?.addCustomBackButton(title: "BMT Dashboard")
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

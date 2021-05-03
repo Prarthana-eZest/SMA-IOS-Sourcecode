@@ -53,6 +53,7 @@ enum MyProfile {
             let work_number: String?
             let status: String?
             let customer_count: String?
+            let bmt_incentive_dashboard_enabled: Bool?
         }
 
         struct Address: Codable {

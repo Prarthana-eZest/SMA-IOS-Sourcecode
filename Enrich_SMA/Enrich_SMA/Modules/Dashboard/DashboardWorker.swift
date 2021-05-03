@@ -63,4 +63,21 @@ class DashboardWorker {
                               errorHandler: errorHandler)
 
     }
+    
+    func postRequestGetBMTDashboard(request: Dashboard.GetBMTDashboard.Request) {
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (Dashboard.GetBMTDashboard.Response) -> Void = { (response) in
+            print(response)
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        let url = ConstantAPINames.getBMTDashboard.rawValue
+
+        self.networkLayer.post(urlString: url, body: request, headers: ["X-Request-From": "sma", "Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
+                               successHandler: successHandler, errorHandler: errorHandler, method: .post)
+    }
 }

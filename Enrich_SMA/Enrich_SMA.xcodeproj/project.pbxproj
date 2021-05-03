@@ -242,6 +242,9 @@
 		F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C4361245AB4270031213F /* DenyReasonVC.swift */; };
 		F84DBEED2462F6DC0036DF42 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */; };
 		F84DBEEE2462F6DC0036DF42 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */; };
+		F858F0F7263BD2B500761A42 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858F0F4263BD2B500761A42 /* GradientLayer.swift */; };
+		F858F0F8263BD2B500761A42 /* UIGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858F0F5263BD2B500761A42 /* UIGradientExtension.swift */; };
+		F858F0F9263BD2B500761A42 /* UIGradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858F0F6263BD2B500761A42 /* UIGradientHelper.swift */; };
 		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
 		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
@@ -563,6 +566,9 @@
 		F84C4361245AB4270031213F /* DenyReasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyReasonVC.swift; sourceTree = "<group>"; };
 		F84DBEEB2462F6DB0036DF42 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		F84DBEEC2462F6DC0036DF42 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		F858F0F4263BD2B500761A42 /* GradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
+		F858F0F5263BD2B500761A42 /* UIGradientExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientExtension.swift; sourceTree = "<group>"; };
+		F858F0F6263BD2B500761A42 /* UIGradientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientHelper.swift; sourceTree = "<group>"; };
 		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
 		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
@@ -995,6 +1001,7 @@
 		E303426B235EE15700E0BF0A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				F858F0F3263BD29000761A42 /* Gradient */,
 				F84DBEEA2462F6C70036DF42 /* KeyChain */,
 				E361182923F6BEC800E0AF02 /* Factory Class */,
 				E303426C235EE15700E0BF0A /* JSONANY */,
@@ -1559,6 +1566,16 @@
 			path = KeyChain;
 			sourceTree = "<group>";
 		};
+		F858F0F3263BD29000761A42 /* Gradient */ = {
+			isa = PBXGroup;
+			children = (
+				F858F0F4263BD2B500761A42 /* GradientLayer.swift */,
+				F858F0F5263BD2B500761A42 /* UIGradientExtension.swift */,
+				F858F0F6263BD2B500761A42 /* UIGradientHelper.swift */,
+			);
+			path = Gradient;
+			sourceTree = "<group>";
+		};
 		F8784FBC244D71ED00104BE8 /* Approval Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -2008,6 +2025,7 @@
 				F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */,
 				F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
+				F858F0F9263BD2B500761A42 /* UIGradientHelper.swift in Sources */,
 				E30601CE237EAA7A00988EEC /* AppointmentDetailsWorker.swift in Sources */,
 				E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */,
 				E30341FB235EE14000E0BF0A /* DashboardVC.swift in Sources */,
@@ -2138,6 +2156,7 @@
 				E30342D9235EE15800E0BF0A /* CacheFolderNameKeys.swift in Sources */,
 				E30342DE235EE15800E0BF0A /* QRCodeGenratorHelper.swift in Sources */,
 				E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */,
+				F858F0F7263BD2B500761A42 /* GradientLayer.swift in Sources */,
 				E3034301235EE5D900E0BF0A /* ReportsWorker.swift in Sources */,
 				E30341E6235EE14000E0BF0A /* MoreModuleInteractor.swift in Sources */,
 				E30601D4237EAA7A00988EEC /* ClientInformationWorker.swift in Sources */,
@@ -2153,6 +2172,7 @@
 				E3CD503523713C3600DE106E /* TermsAndConditionsVC.swift in Sources */,
 				E3DB685B238CEF7C00CC569D /* GenericClass.swift in Sources */,
 				E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */,
+				F858F0F8263BD2B500761A42 /* UIGradientExtension.swift in Sources */,
 				F838D9052437058300FDA998 /* SOSAlertWorker.swift in Sources */,
 				F8252E8C25B01D5600F0E178 /* AppointmentFilterVC.swift in Sources */,
 				F8E5D27E246E9B72005876CE /* TeleConsultationModels.swift in Sources */,
@@ -2400,7 +2420,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.38;
+				MARKETING_VERSION = 1.41;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMADev;
@@ -2425,7 +2445,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.38;
+				MARKETING_VERSION = 1.41;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EnrichSalon.SMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = "Enrich Salon SMA";
@@ -2599,7 +2619,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.38;
+				MARKETING_VERSION = 1.41;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;

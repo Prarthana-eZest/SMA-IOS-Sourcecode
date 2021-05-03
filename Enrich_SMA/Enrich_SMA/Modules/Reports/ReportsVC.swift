@@ -141,6 +141,7 @@ extension ReportsVC: UITableViewDelegate, UITableViewDataSource {
             }
             let vc = PowerBIReportVC.instantiate(fromAppStoryboard: .Reports)
             vc.data = links[indexPath.row - 1]
+            vc.reportType = .reports
             self.navigationController?.pushViewController(vc, animated: true)
 
 //            guard let links = reports[indexPath.section].category.links,

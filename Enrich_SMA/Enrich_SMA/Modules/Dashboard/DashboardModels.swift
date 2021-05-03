@@ -78,4 +78,21 @@ enum Dashboard {
             let app_link: String?
         }
     }
+    
+    enum GetBMTDashboard {
+        
+        struct Request: Codable {
+            let is_custom: Bool
+        }
+
+        struct Response: Codable {
+            var status: Bool = false
+            var message: String = ""
+            var data: [Data]?
+        }
+
+        struct Data: Codable {
+            let bmt_incentive_dashboard: Reports.GetReports.Data?
+        }
+    }
 }

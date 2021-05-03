@@ -85,7 +85,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
     func configureSections() {
         sections.removeAll()
         sections.append(configureSection(idetifier: .dashboardProfile, items: 1, data: []))
-        sections.append(configureSection(idetifier: .targetRevenue, items: 1, data: []))
+        //sections.append(configureSection(idetifier: .targetRevenue, items: 1, data: []))
         tableView.reloadData()
         print("Reload tableview")
     }
@@ -183,8 +183,8 @@ extension DashboardVC {
                 let userDefaults = UserDefaults.standard
                 userDefaults.set(encodable: data, forKey: UserDefauiltsKeys.k_Key_LoginUser)
                 userDefaults.synchronize()
-                getForceUpadateInfo()
-                getDashboardData()
+                //getForceUpadateInfo()
+                //getDashboardData()
                 checkForSOSNotification()
                 FirebaseTopicFactory.shared.firebaseTopicSubscribe(employeeId: data.employee_id ?? "", salonId: data.salon_id ?? "")
                 configureSections()
@@ -204,6 +204,19 @@ extension DashboardVC {
             if model.status == true {
                 self.forceUpdateData = model
                 showAppUpdateAlert()
+            }
+            else {
+                showAlert(alertTitle: alertTitle, alertMessage: model.message)
+            }
+        }
+        else if let model = viewModel as? Dashboard.GetBMTDashboard.Response {
+            EZLoadingActivity.hide()
+            
+            if model.status, let details = model.data?.first?.bmt_incentive_dashboard {
+                let vc = PowerBIReportVC.instantiate(fromAppStoryboard: .Reports)
+                vc.data = details
+                vc.reportType = .bmtDashboard
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             else {
                 showAlert(alertTitle: alertTitle, alertMessage: model.message)
@@ -262,6 +275,27 @@ extension DashboardVC: TargetRevenueDelegate {
 
 }
 
+extension DashboardVC: DashboardHeaderCellDelegate {
+    
+    func locationUpdateAction() {
+    }
+    
+    func locationDetailViewUpdate() {
+    }
+    
+    func actionMyProfile() {
+        let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
+        vc.profileType = .selfUser
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func actionBMTDashboard() {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        let request = Dashboard.GetBMTDashboard.Request(is_custom: true)
+        interactor?.getBMTDashboard(request: request)
+    }
+}
+
 extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -282,6 +316,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.dashboardProfileCell, for: indexPath) as? DashboardProfileCell else {
                 return UITableViewCell()
             }
+            cell.delegate = self
             cell.configureCell()
             cell.selectionStyle = .none
             return cell
@@ -306,17 +341,6 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
-        let data = sections[indexPath.section]
-
-        switch data.identifier {
-        case .dashboardProfile:
-            let vc = MyProfileVC.instantiate(fromAppStoryboard: .More)
-            vc.profileType = .selfUser
-            self.navigationController?.pushViewController(vc, animated: true)
-
-        default:
-            break
-        }
     }
 }
 

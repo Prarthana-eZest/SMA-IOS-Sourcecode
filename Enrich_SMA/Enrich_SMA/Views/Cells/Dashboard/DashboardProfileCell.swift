@@ -11,6 +11,8 @@ import UIKit
 protocol DashboardHeaderCellDelegate: class {
     func locationUpdateAction()
     func locationDetailViewUpdate()
+    func actionMyProfile()
+    func actionBMTDashboard()
 }
 
 class DashboardProfileCell: UITableViewCell {
@@ -21,6 +23,7 @@ class DashboardProfileCell: UITableViewCell {
     @IBOutlet weak private var lblDesignation: UILabel!
     @IBOutlet weak private var profilePicture: UIImageView!
     @IBOutlet weak private var lblRating: UILabel!
+    @IBOutlet private weak var incentiveBtnView: UIView!
 
     weak var delegate: DashboardHeaderCellDelegate?
 
@@ -34,6 +37,16 @@ class DashboardProfileCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func actionBMTDashboard(_ sender: UIButton) {
+        self.delegate?.actionBMTDashboard()
+    }
+    
+    @IBAction func actionMyProfile(_ sender: UIButton) {
+        self.delegate?.actionMyProfile()
+    }
+    
+    
 
     //    func configureCell(model:DashboardProfileCellModel) {
     //        lblUserName.text = model.userName
@@ -49,6 +62,10 @@ class DashboardProfileCell: UITableViewCell {
 
             profilePicture.layer.cornerRadius = profilePicture.frame.size.height * 0.5
             profilePicture.kf.indicatorType = .activity
+            
+            incentiveBtnView.isHidden = userData.bmt_incentive_dashboard_enabled == false
+            
+            incentiveBtnView.backgroundColor = UIColor.fromGradientWithDirection(.purple, frame: incentiveBtnView.frame, cornerRadius: 6, direction: .leftToRight)
 
             let defaultImage = UIImage(named: "defaultProfile")
             if let url = userData.profile_pic,

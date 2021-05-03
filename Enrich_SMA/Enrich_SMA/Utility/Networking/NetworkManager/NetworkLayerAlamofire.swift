@@ -371,8 +371,8 @@ open class NetworkLayerAlamofire {
 
         #elseif STAGE
         print("STAGE")
-        BaseUrl = "https://stage.enrichsalon.co.in/"
-       // BaseUrl = "https://preprod.enrichsalon.co.in/"
+       // BaseUrl = "https://stage.enrichsalon.co.in/"
+        BaseUrl = "https://preprod.enrichsalon.co.in/"
 
         #elseif RELEASE
         print("RELEASE")
