@@ -134,8 +134,8 @@ class TeleConsultationVC: UIViewController, TeleConsultationDisplayLogic {
 extension TeleConsultationVC: TeleMarketingDelegate {
 
     func actionCallCustomer(indexPath: IndexPath) {
-        pendingRecords[indexPath.row].contactNo.makeACall()
-        //outbondCall(indexPath: indexPath)
+        //pendingRecords[indexPath.row].contactNo.makeACall()
+        outbondCall(indexPath: indexPath)
     }
 
     func actionSelectAction(indexPath: IndexPath) {
@@ -339,10 +339,14 @@ extension TeleConsultationVC {
             statusList.removeAll()
             statusList.append(contentsOf: model.data ?? [])
         }
-        else if let model = viewModel as? TeleConsultation.SubmitFeedback.Response,
-            model.status == true {
+        else if let model = viewModel as? TeleConsultation.SubmitFeedback.Response {
             EZLoadingActivity.hide()
-            self.getPendingList()
+            if model.status == true {
+                self.getPendingList()
+            }
+            else {
+                self.showAlert(alertTitle: alertTitle, alertMessage: model.message)
+            }
         }
         else if let model = viewModel as? TeleConsultation.OutbondCalling.Response {
             EZLoadingActivity.hide()
