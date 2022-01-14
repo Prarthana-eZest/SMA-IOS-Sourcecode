@@ -913,6 +913,9 @@
 			isa = PBXGroup;
 			children = (
 				E3CD500B23713C3600DE106E /* LoginModule */,
+				442A94A827918B6E00C31DDC /* Earnings */,
+				44FBC62727904A430068B3C6 /* DashboardListVC */,
+				E30601B5237EAA4D00988EEC /* Revenue */,
 				E303416B235EE14000E0BF0A /* Dashboard */,
 				E30342E0235EE1D000E0BF0A /* Appointment */,
 				E30342E1235EE1D900E0BF0A /* Reports */,
@@ -985,9 +988,6 @@
 				E303416D235EE14000E0BF0A /* DashboardPresenter.swift */,
 				E303416E235EE14000E0BF0A /* DashboardModels.swift */,
 				E303416F235EE14000E0BF0A /* DashboardWorker.swift */,
-				442A94A827918B6E00C31DDC /* Earnings */,
-				44FBC62727904A430068B3C6 /* DashboardListVC */,
-				E30601B5237EAA4D00988EEC /* Revenue */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
