@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		03ECD1B30034DC4CF3D1574C /* Pods_Enrich_SMATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7353AB2E52BA94B6F85E8173 /* Pods_Enrich_SMATests.framework */; };
 		1041158CA4059DEC32A4F4CC /* Pods_Enrich_SMA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E64D78277E5B824569BA15 /* Pods_Enrich_SMA.framework */; };
+		442A949C279156D900C31DDC /* DashboardGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A949B279156D900C31DDC /* DashboardGridVC.swift */; };
+		442A94A12791589600C31DDC /* DashboardGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A949F2791589600C31DDC /* DashboardGridCollectionViewCell.swift */; };
+		442A94A22791589600C31DDC /* DashboardGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442A94A02791589600C31DDC /* DashboardGridCollectionViewCell.xib */; };
+		442A94AA27918B9700C31DDC /* EarningsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94A927918B9700C31DDC /* EarningsListViewController.swift */; };
+		442A94AC27918BB100C31DDC /* Earnings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442A94AB27918BB100C31DDC /* Earnings.storyboard */; };
+		442A94AE27918F8600C31DDC /* EarningsGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94AD27918F8600C31DDC /* EarningsGridViewController.swift */; };
+		442A94B12791937500C31DDC /* ViewCTCDeatilsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94AF2791937500C31DDC /* ViewCTCDeatilsCell.swift */; };
+		442A94B22791937500C31DDC /* ViewCTCDeatilsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442A94B02791937500C31DDC /* ViewCTCDeatilsCell.xib */; };
+		442A94B52791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94B32791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift */; };
+		442A94B62791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442A94B42791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib */; };
+		44FBC62927904A8F0068B3C6 /* DashboardListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC62827904A8F0068B3C6 /* DashboardListVC.swift */; };
+		44FBC62D27904E530068B3C6 /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC62B27904E530068B3C6 /* DashboardTableViewCell.swift */; };
+		44FBC62E27904E530068B3C6 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FBC62C27904E530068B3C6 /* DashboardTableViewCell.xib */; };
 		7638FFB04E41EA6605C069E4 /* Pods_Enrich_SMAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909D39A5541FB3A728B0EF45 /* Pods_Enrich_SMAUITests.framework */; };
 		E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3033FE1235EDF6400E0BF0A /* AppDelegate.swift */; };
 		E3033FE7235EDF6500E0BF0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3033FE5235EDF6400E0BF0A /* Main.storyboard */; };
@@ -316,6 +329,19 @@
 		0FE9ED099B4C6BF281DC64F1 /* Pods-Enrich_SMA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMA.release.xcconfig"; path = "Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA.release.xcconfig"; sourceTree = "<group>"; };
 		26BFA423362D0D33821A9DC6 /* Pods-Enrich_SMA.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMA.stage.xcconfig"; path = "Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA.stage.xcconfig"; sourceTree = "<group>"; };
 		433EE62A9D75B52EDEBF448A /* Pods-Enrich_SMAUITests.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMAUITests.stage.xcconfig"; path = "Target Support Files/Pods-Enrich_SMAUITests/Pods-Enrich_SMAUITests.stage.xcconfig"; sourceTree = "<group>"; };
+		442A949B279156D900C31DDC /* DashboardGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGridVC.swift; sourceTree = "<group>"; };
+		442A949F2791589600C31DDC /* DashboardGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGridCollectionViewCell.swift; sourceTree = "<group>"; };
+		442A94A02791589600C31DDC /* DashboardGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardGridCollectionViewCell.xib; sourceTree = "<group>"; };
+		442A94A927918B9700C31DDC /* EarningsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsListViewController.swift; sourceTree = "<group>"; };
+		442A94AB27918BB100C31DDC /* Earnings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Earnings.storyboard; sourceTree = "<group>"; };
+		442A94AD27918F8600C31DDC /* EarningsGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningsGridViewController.swift; sourceTree = "<group>"; };
+		442A94AF2791937500C31DDC /* ViewCTCDeatilsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCTCDeatilsCell.swift; sourceTree = "<group>"; };
+		442A94B02791937500C31DDC /* ViewCTCDeatilsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewCTCDeatilsCell.xib; sourceTree = "<group>"; };
+		442A94B32791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTCDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		442A94B42791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CTCDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
+		44FBC62827904A8F0068B3C6 /* DashboardListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardListVC.swift; sourceTree = "<group>"; };
+		44FBC62B27904E530068B3C6 /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
+		44FBC62C27904E530068B3C6 /* DashboardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardTableViewCell.xib; sourceTree = "<group>"; };
 		552767BD01425E39FAB8E75C /* Pods-Enrich_SMAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMAUITests.release.xcconfig"; path = "Target Support Files/Pods-Enrich_SMAUITests/Pods-Enrich_SMAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6D687E1C8E50E5D8022CB110 /* Pods-Enrich_SMATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMATests.release.xcconfig"; path = "Target Support Files/Pods-Enrich_SMATests/Pods-Enrich_SMATests.release.xcconfig"; sourceTree = "<group>"; };
 		7353AB2E52BA94B6F85E8173 /* Pods_Enrich_SMATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Enrich_SMATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -672,6 +698,39 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		442A94A827918B6E00C31DDC /* Earnings */ = {
+			isa = PBXGroup;
+			children = (
+				442A94A927918B9700C31DDC /* EarningsListViewController.swift */,
+				442A94AD27918F8600C31DDC /* EarningsGridViewController.swift */,
+			);
+			path = Earnings;
+			sourceTree = "<group>";
+		};
+		44FBC62727904A430068B3C6 /* DashboardListVC */ = {
+			isa = PBXGroup;
+			children = (
+				44FBC62827904A8F0068B3C6 /* DashboardListVC.swift */,
+				442A949B279156D900C31DDC /* DashboardGridVC.swift */,
+			);
+			path = DashboardListVC;
+			sourceTree = "<group>";
+		};
+		44FBC62A27904E1B0068B3C6 /* DashboardList */ = {
+			isa = PBXGroup;
+			children = (
+				44FBC62B27904E530068B3C6 /* DashboardTableViewCell.swift */,
+				44FBC62C27904E530068B3C6 /* DashboardTableViewCell.xib */,
+				442A949F2791589600C31DDC /* DashboardGridCollectionViewCell.swift */,
+				442A94A02791589600C31DDC /* DashboardGridCollectionViewCell.xib */,
+				442A94AF2791937500C31DDC /* ViewCTCDeatilsCell.swift */,
+				442A94B02791937500C31DDC /* ViewCTCDeatilsCell.xib */,
+				442A94B32791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift */,
+				442A94B42791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib */,
+			);
+			path = DashboardList;
+			sourceTree = "<group>";
+		};
 		E3033FD5235EDF6400E0BF0A = {
 			isa = PBXGroup;
 			children = (
@@ -818,6 +877,7 @@
 		E3034036235EE11B00E0BF0A /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				44FBC62A27904E1B0068B3C6 /* DashboardList */,
 				E3034038235EE11B00E0BF0A /* DashboardProfileCell.swift */,
 				E303403A235EE11B00E0BF0A /* DashboardProfileCell.xib */,
 				E3034039235EE11B00E0BF0A /* YourTargetRevenueCell.swift */,
@@ -925,6 +985,8 @@
 				E303416D235EE14000E0BF0A /* DashboardPresenter.swift */,
 				E303416E235EE14000E0BF0A /* DashboardModels.swift */,
 				E303416F235EE14000E0BF0A /* DashboardWorker.swift */,
+				442A94A827918B6E00C31DDC /* Earnings */,
+				44FBC62727904A430068B3C6 /* DashboardListVC */,
 				E30601B5237EAA4D00988EEC /* Revenue */,
 			);
 			path = Dashboard;
@@ -1275,6 +1337,7 @@
 				E30342EA235EE3C100E0BF0A /* Appointment.storyboard */,
 				E30342EC235EE3DA00E0BF0A /* Reports.storyboard */,
 				E30342E8235EE29800E0BF0A /* More.storyboard */,
+				442A94AB27918BB100C31DDC /* Earnings.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1788,7 +1851,9 @@
 				E303425C235EE14700E0BF0A /* FuturaPTLight.otf in Resources */,
 				E30340A5235EE11C00E0BF0A /* AppointmentStatusCell.xib in Resources */,
 				E30340BF235EE11C00E0BF0A /* DashboardProfileCell.xib in Resources */,
+				442A94B62791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib in Resources */,
 				E3034268235EE14700E0BF0A /* NotoSerif-Regular.ttf in Resources */,
+				442A94AC27918BB100C31DDC /* Earnings.storyboard in Resources */,
 				E31F816823840E8E00089572 /* MyProfileMultiOptionCell.xib in Resources */,
 				E303426A235EE14700E0BF0A /* NotoSerif-Bold.ttf in Resources */,
 				F8E5D28A246E9BB8005876CE /* TeleMarketingCompletedCell.xib in Resources */,
@@ -1801,6 +1866,7 @@
 				E30342E9235EE29800E0BF0A /* More.storyboard in Resources */,
 				E3034265235EE14700E0BF0A /* FuturaPTMedium.otf in Resources */,
 				F8804EBE244817FE00DEAA82 /* SignatureCell.xib in Resources */,
+				44FBC62E27904E530068B3C6 /* DashboardTableViewCell.xib in Resources */,
 				E3033FEF235EDF6900E0BF0A /* LaunchScreen.storyboard in Resources */,
 				E3034263235EE14700E0BF0A /* FuturaPTCondBoldOblique.otf in Resources */,
 				E30342EB235EE3C100E0BF0A /* Appointment.storyboard in Resources */,
@@ -1816,6 +1882,7 @@
 				E3060165237EA49200988EEC /* AppointmentDetailsCell.xib in Resources */,
 				E3060166237EA49200988EEC /* AppointmentTimelineCell.xib in Resources */,
 				E3034269235EE14700E0BF0A /* NotoSerif-Italic.ttf in Resources */,
+				442A94A22791589600C31DDC /* DashboardGridCollectionViewCell.xib in Resources */,
 				E30340BA235EE11C00E0BF0A /* EmployeeCell.xib in Resources */,
 				F808413E24DC118E00713215 /* index.html in Resources */,
 				E306016E237EA49200988EEC /* SelectGenderCell.xib in Resources */,
@@ -1837,6 +1904,7 @@
 				E3033FE7235EDF6500E0BF0A /* Main.storyboard in Resources */,
 				E3034260235EE14700E0BF0A /* FuturaPTCondBookOblique.otf in Resources */,
 				E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */,
+				442A94B22791937500C31DDC /* ViewCTCDeatilsCell.xib in Resources */,
 				E303425E235EE14700E0BF0A /* FuturaPTDemiOblique.otf in Resources */,
 				E3034267235EE14700E0BF0A /* NotoSerif-BoldItalic.ttf in Resources */,
 				F8F2E5DA25B1A4AD00BBF0C8 /* StatusFilterCell.xib in Resources */,
@@ -2020,8 +2088,11 @@
 			files = (
 				E3CD503323713C3600DE106E /* LoginModulePresenter.swift in Sources */,
 				E30341F4235EE14000E0BF0A /* EmployeeListingInteractor.swift in Sources */,
+				442A94B52791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift in Sources */,
+				442A94B12791937500C31DDC /* ViewCTCDeatilsCell.swift in Sources */,
 				F8CE55ED24616C3000FF9487 /* RequestCategoryCell.swift in Sources */,
 				E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */,
+				442A94AE27918F8600C31DDC /* EarningsGridViewController.swift in Sources */,
 				F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */,
 				F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
@@ -2071,6 +2142,7 @@
 				E30342BF235EE15800E0BF0A /* ErrorCodeHandlerClass.swift in Sources */,
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E3CEA5BF23CC57B200DD213F /* AllReviewsModuleWorker.swift in Sources */,
+				442A94A12791589600C31DDC /* DashboardGridCollectionViewCell.swift in Sources */,
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
 				F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */,
 				E30341F6235EE14000E0BF0A /* EmployeeListingVC.swift in Sources */,
@@ -2100,6 +2172,7 @@
 				E3CEA5D023CC736F00DD213F /* AddNewNoteInteractor.swift in Sources */,
 				F8784FCB244D722700104BE8 /* ApprovalRequestListModels.swift in Sources */,
 				E3CEA5CB23CC736F00DD213F /* AddNewNotePresenter.swift in Sources */,
+				44FBC62D27904E530068B3C6 /* DashboardTableViewCell.swift in Sources */,
 				E3DB6855238CEE4A00CC569D /* TermsAndConditionsInteractor.swift in Sources */,
 				E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */,
 				E30342D4235EE15800E0BF0A /* ListPickerDialog.swift in Sources */,
@@ -2153,9 +2226,11 @@
 				E30342C4235EE15800E0BF0A /* AnyEncodable.swift in Sources */,
 				E3CD503423713C3600DE106E /* LoginModuleInteractor.swift in Sources */,
 				F84DBEED2462F6DC0036DF42 /* KeychainWrapper.swift in Sources */,
+				442A94AA27918B9700C31DDC /* EarningsListViewController.swift in Sources */,
 				E30342D9235EE15800E0BF0A /* CacheFolderNameKeys.swift in Sources */,
 				E30342DE235EE15800E0BF0A /* QRCodeGenratorHelper.swift in Sources */,
 				E30340BD235EE11C00E0BF0A /* DashboardProfileCell.swift in Sources */,
+				442A949C279156D900C31DDC /* DashboardGridVC.swift in Sources */,
 				F858F0F7263BD2B500761A42 /* GradientLayer.swift in Sources */,
 				E3034301235EE5D900E0BF0A /* ReportsWorker.swift in Sources */,
 				E30341E6235EE14000E0BF0A /* MoreModuleInteractor.swift in Sources */,
@@ -2220,6 +2295,7 @@
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
 				F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */,
 				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,
+				44FBC62927904A8F0068B3C6 /* DashboardListVC.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
 				F8252E7825B01D5600F0E178 /* AppointmentFilterWorker.swift in Sources */,
 				F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */,
@@ -2446,6 +2522,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.41;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EnrichSalon.SMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = "Enrich Salon SMA";

@@ -8,7 +8,7 @@ import UIKit
 
 enum AppStoryboard: String {
 
-    case Main, Login, HomeLanding, Dashboard, Appointment, Reports, More
+    case Main, Login, HomeLanding, Dashboard, Appointment, Reports, More, Filter, Earnings
 
     var instance: UIStoryboard {
 

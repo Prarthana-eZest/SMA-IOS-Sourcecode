@@ -31,6 +31,12 @@ enum CellIdentifier {
     static let yourTargetRevenueCell = "YourTargetRevenueCell"
     static let revenueCell = "RevenueCell"
 
+    static let ctcDetailsCollectionViewCell = "CTCDetailsCollectionViewCell"
+    static let viewCTCDeatilsCell = "ViewCTCDeatilsCell"
+    static let dashboardTableViewCell = "DashboardTableViewCell"
+    static let dashboardGridCollectionViewCell = "DashboardGridCollectionViewCell"
+    
+    
     // Appointment
     static let todaysAppointmentHeaderCell = "TodaysAppointmentHeaderCell"
     static let appointmentStatusCell = "AppointmentStatusCell"
