@@ -75,6 +75,94 @@
             </objects>
             <point key="canvasLocation" x="600" y="-842"/>
         </scene>
+        <!--Dashboard Total RevenueVC-->
+        <scene sceneID="a1S-Fp-aud">
+            <objects>
+                <viewController storyboardIdentifier="DashboardTotalRevenueVC" hidesBottomBarWhenPushed="YES" id="P3v-EJ-ZXI" customClass="DashboardTotalRevenueVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HST-kg-K3P">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5uk-Al-9cX" userLabel="View Seprator">
+                                <rect key="frame" x="0.0" y="44" width="414" height="1"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="JFu-Pa-0ns"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="1.5" height="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.25098039220000001" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEl-eL-jnF">
+                                <rect key="frame" x="0.0" y="45" width="414" height="134"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Revenue" translatesAutoresizingMaskIntoConstraints="NO" id="8fz-br-m8N">
+                                        <rect key="frame" x="294" y="17" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="8Ff-YX-o84"/>
+                                            <constraint firstAttribute="height" constant="100" id="9I7-Ih-c07"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="134" id="2uh-UE-rV5"/>
+                                    <constraint firstItem="8fz-br-m8N" firstAttribute="centerY" secondItem="yEl-eL-jnF" secondAttribute="centerY" id="QU9-eR-SNQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="8fz-br-m8N" secondAttribute="trailing" constant="20" id="jmw-OP-21q"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.56470588239999997" green="0.83921568629999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.20392156859999999" green="0.59215686270000001" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zy4-36-Laz">
+                                <rect key="frame" x="20" y="189" width="374" height="673"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mPd-Yi-Fha" id="hrT-GP-snd"/>
+                                    <outlet property="delegate" destination="mPd-Yi-Fha" id="PLJ-y1-9qW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HR7-N6-Jl9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5uk-Al-9cX" firstAttribute="top" secondItem="HR7-N6-Jl9" secondAttribute="top" id="A9A-QH-3Dk"/>
+                            <constraint firstItem="HR7-N6-Jl9" firstAttribute="trailing" secondItem="Zy4-36-Laz" secondAttribute="trailing" constant="20" id="EBq-RZ-CQW"/>
+                            <constraint firstItem="Zy4-36-Laz" firstAttribute="top" secondItem="yEl-eL-jnF" secondAttribute="bottom" constant="10" id="J2I-Sg-m2p"/>
+                            <constraint firstItem="5uk-Al-9cX" firstAttribute="leading" secondItem="HST-kg-K3P" secondAttribute="leading" id="Kwt-kk-E97"/>
+                            <constraint firstAttribute="trailing" secondItem="5uk-Al-9cX" secondAttribute="trailing" id="VuF-DT-Rud"/>
+                            <constraint firstItem="Zy4-36-Laz" firstAttribute="leading" secondItem="HR7-N6-Jl9" secondAttribute="leading" constant="20" id="kec-hY-QFB"/>
+                            <constraint firstItem="yEl-eL-jnF" firstAttribute="trailing" secondItem="HR7-N6-Jl9" secondAttribute="trailing" id="kxO-A3-Y37"/>
+                            <constraint firstItem="yEl-eL-jnF" firstAttribute="top" secondItem="5uk-Al-9cX" secondAttribute="bottom" id="m6i-hd-mDs"/>
+                            <constraint firstItem="yEl-eL-jnF" firstAttribute="leading" secondItem="HR7-N6-Jl9" secondAttribute="leading" id="n6B-1O-4T3"/>
+                            <constraint firstItem="Zy4-36-Laz" firstAttribute="bottom" secondItem="HR7-N6-Jl9" secondAttribute="bottom" id="r7a-dh-FmT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="parentView" destination="yEl-eL-jnF" id="eFu-Mo-JqV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XzE-2X-yR2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="599" y="-189"/>
+        </scene>
         <!--Dashboard ListVC-->
         <scene sceneID="zlJ-Z7-ROg">
             <objects>
@@ -257,6 +345,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Revenue" width="132" height="132"/>
         <image name="dashboard" width="68" height="67"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

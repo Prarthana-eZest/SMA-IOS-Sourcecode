@@ -136,6 +136,11 @@ extension Date {
         return formatter.string(from: self as Date)
     }
 
+    var monthNameYearDate: String {
+        let formatter = DateFormatter(); formatter.dateFormat = "dd MMMM yyyy"
+        return formatter.string(from: self as Date)
+    }
+    
     var weekdayNameFull: String {
         let formatter = DateFormatter(); formatter.dateFormat = "EEEE"
         return formatter.string(from: self as Date)

@@ -22,6 +22,12 @@ enum SectionIdentifier: String {
     case dashboardProfile = "Dashboard Profile"
     case targetRevenue = "Your Target Revenue"
 
+    case fixedPay = "Fixed Pay"
+    case totalCTC = "Total CTC"
+    case deductions = "Deductions"
+    case takeHome = "Take Home"
+    case otherBenefits = "Other Benefits"
+    
 }
 
 enum CellIdentifier {
@@ -31,6 +37,13 @@ enum CellIdentifier {
     static let yourTargetRevenueCell = "YourTargetRevenueCell"
     static let revenueCell = "RevenueCell"
 
+    static let earningCategoryFilterCell = "EarningCategoryFilterCell"
+    static let packageFilterCell = "PackageFilterCell"
+    static let selectFilterDateRangeCell = "SelectFilterDateRangeCell"
+    
+    static let ctcBreakUpTableViewCell = "CTCBreakUpTableViewCell"
+    static let ctcBreakUpDetailsTableViewCell = "CTCBreakUpDetailsTableViewCell"
+    
     static let ctcDetailsCollectionViewCell = "CTCDetailsCollectionViewCell"
     static let viewCTCDeatilsCell = "ViewCTCDeatilsCell"
     static let dashboardTableViewCell = "DashboardTableViewCell"

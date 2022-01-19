@@ -19,6 +19,32 @@
 		442A94B22791937500C31DDC /* ViewCTCDeatilsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442A94B02791937500C31DDC /* ViewCTCDeatilsCell.xib */; };
 		442A94B52791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94B32791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift */; };
 		442A94B62791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442A94B42791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib */; };
+		442A94CA2791C53000C31DDC /* CTCBreakupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94C92791C53000C31DDC /* CTCBreakupViewController.swift */; };
+		442A94CD2791EB8600C31DDC /* CTCBreakUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94CB2791EB8500C31DDC /* CTCBreakUpTableViewCell.swift */; };
+		442A94CE2791EB8600C31DDC /* CTCBreakUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442A94CC2791EB8600C31DDC /* CTCBreakUpTableViewCell.xib */; };
+		442A94D12791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94CF2791EBAB00C31DDC /* CTCBreakUpDetailsTableViewCell.swift */; };
+		442A94D22791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442A94D02791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.xib */; };
+		442A94D42791EC3500C31DDC /* ViewCTCModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94D32791EC3500C31DDC /* ViewCTCModels.swift */; };
+		442A94D62791EE5D00C31DDC /* ExtensionsInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94D52791EE5D00C31DDC /* ExtensionsInt.swift */; };
+		442A94D92791F1AD00C31DDC /* DashboardTotalRevenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94D82791F1AD00C31DDC /* DashboardTotalRevenueVC.swift */; };
+		44E10BA12797C91700F88DA2 /* EarningsFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BA02797C91600F88DA2 /* EarningsFilterVC.swift */; };
+		44E10BA32797C98100F88DA2 /* EarningsFilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BA22797C98100F88DA2 /* EarningsFilterModels.swift */; };
+		44E10BA52797C9AC00F88DA2 /* EarningsFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BA42797C9AC00F88DA2 /* EarningsFilterInteractor.swift */; };
+		44E10BA92797C9EB00F88DA2 /* EarningCategoryFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E10BA72797C9EB00F88DA2 /* EarningCategoryFilterCell.xib */; };
+		44E10BAA2797C9EB00F88DA2 /* EarningCategoryFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BA82797C9EB00F88DA2 /* EarningCategoryFilterCell.swift */; };
+		44E10BAC2797CA1500F88DA2 /* EarningsFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BAB2797CA1500F88DA2 /* EarningsFilterPresenter.swift */; };
+		44E10BAF2797CB1400F88DA2 /* PackageFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BAD2797CB1400F88DA2 /* PackageFilterCell.swift */; };
+		44E10BB02797CB1400F88DA2 /* PackageFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E10BAE2797CB1400F88DA2 /* PackageFilterCell.xib */; };
+		44E10BB22797CF9F00F88DA2 /* EarningsFilterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BB12797CF9F00F88DA2 /* EarningsFilterWorker.swift */; };
+		44E10BB92797D19600F88DA2 /* DateFilterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BB42797D19500F88DA2 /* DateFilterWorker.swift */; };
+		44E10BBA2797D19600F88DA2 /* DateFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BB52797D19500F88DA2 /* DateFilterPresenter.swift */; };
+		44E10BBB2797D19600F88DA2 /* DateFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BB62797D19500F88DA2 /* DateFilterInteractor.swift */; };
+		44E10BBC2797D19600F88DA2 /* DateFilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BB72797D19500F88DA2 /* DateFilterModels.swift */; };
+		44E10BBD2797D19600F88DA2 /* DateFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BB82797D19600F88DA2 /* DateFilterVC.swift */; };
+		44E10BBF2797D38700F88DA2 /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BBE2797D38700F88DA2 /* ExtensionDate.swift */; };
+		44E10BC32797D43900F88DA2 /* SelectFilterDateRangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E10BC12797D43900F88DA2 /* SelectFilterDateRangeCell.xib */; };
+		44E10BC42797D43900F88DA2 /* SelectFilterDateRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BC22797D43900F88DA2 /* SelectFilterDateRangeCell.swift */; };
+		44E10BC72797DC7F00F88DA2 /* FormatterUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BC62797DC7F00F88DA2 /* FormatterUtils.swift */; };
 		44FBC62927904A8F0068B3C6 /* DashboardListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC62827904A8F0068B3C6 /* DashboardListVC.swift */; };
 		44FBC62D27904E530068B3C6 /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FBC62B27904E530068B3C6 /* DashboardTableViewCell.swift */; };
 		44FBC62E27904E530068B3C6 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FBC62C27904E530068B3C6 /* DashboardTableViewCell.xib */; };
@@ -339,6 +365,32 @@
 		442A94B02791937500C31DDC /* ViewCTCDeatilsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewCTCDeatilsCell.xib; sourceTree = "<group>"; };
 		442A94B32791AF1300C31DDC /* CTCDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTCDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		442A94B42791AF1300C31DDC /* CTCDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CTCDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
+		442A94C92791C53000C31DDC /* CTCBreakupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTCBreakupViewController.swift; sourceTree = "<group>"; };
+		442A94CB2791EB8500C31DDC /* CTCBreakUpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTCBreakUpTableViewCell.swift; sourceTree = "<group>"; };
+		442A94CC2791EB8600C31DDC /* CTCBreakUpTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCBreakUpTableViewCell.xib; sourceTree = "<group>"; };
+		442A94CF2791EBAB00C31DDC /* CTCBreakUpDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTCBreakUpDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		442A94D02791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTCBreakUpDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		442A94D32791EC3500C31DDC /* ViewCTCModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCTCModels.swift; sourceTree = "<group>"; };
+		442A94D52791EE5D00C31DDC /* ExtensionsInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsInt.swift; sourceTree = "<group>"; };
+		442A94D82791F1AD00C31DDC /* DashboardTotalRevenueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTotalRevenueVC.swift; sourceTree = "<group>"; };
+		44E10BA02797C91600F88DA2 /* EarningsFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterVC.swift; sourceTree = "<group>"; };
+		44E10BA22797C98100F88DA2 /* EarningsFilterModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterModels.swift; sourceTree = "<group>"; };
+		44E10BA42797C9AC00F88DA2 /* EarningsFilterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterInteractor.swift; sourceTree = "<group>"; };
+		44E10BA72797C9EB00F88DA2 /* EarningCategoryFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EarningCategoryFilterCell.xib; sourceTree = "<group>"; };
+		44E10BA82797C9EB00F88DA2 /* EarningCategoryFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningCategoryFilterCell.swift; sourceTree = "<group>"; };
+		44E10BAB2797CA1500F88DA2 /* EarningsFilterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterPresenter.swift; sourceTree = "<group>"; };
+		44E10BAD2797CB1400F88DA2 /* PackageFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageFilterCell.swift; sourceTree = "<group>"; };
+		44E10BAE2797CB1400F88DA2 /* PackageFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PackageFilterCell.xib; sourceTree = "<group>"; };
+		44E10BB12797CF9F00F88DA2 /* EarningsFilterWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterWorker.swift; sourceTree = "<group>"; };
+		44E10BB42797D19500F88DA2 /* DateFilterWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterWorker.swift; sourceTree = "<group>"; };
+		44E10BB52797D19500F88DA2 /* DateFilterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterPresenter.swift; sourceTree = "<group>"; };
+		44E10BB62797D19500F88DA2 /* DateFilterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterInteractor.swift; sourceTree = "<group>"; };
+		44E10BB72797D19500F88DA2 /* DateFilterModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterModels.swift; sourceTree = "<group>"; };
+		44E10BB82797D19600F88DA2 /* DateFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterVC.swift; sourceTree = "<group>"; };
+		44E10BBE2797D38700F88DA2 /* ExtensionDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
+		44E10BC12797D43900F88DA2 /* SelectFilterDateRangeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectFilterDateRangeCell.xib; sourceTree = "<group>"; };
+		44E10BC22797D43900F88DA2 /* SelectFilterDateRangeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFilterDateRangeCell.swift; sourceTree = "<group>"; };
+		44E10BC62797DC7F00F88DA2 /* FormatterUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterUtils.swift; sourceTree = "<group>"; };
 		44FBC62827904A8F0068B3C6 /* DashboardListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardListVC.swift; sourceTree = "<group>"; };
 		44FBC62B27904E530068B3C6 /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
 		44FBC62C27904E530068B3C6 /* DashboardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardTableViewCell.xib; sourceTree = "<group>"; };
@@ -707,6 +759,86 @@
 			path = Earnings;
 			sourceTree = "<group>";
 		};
+		442A94C72791C50300C31DDC /* CTCBreak-up */ = {
+			isa = PBXGroup;
+			children = (
+				442A94CF2791EBAB00C31DDC /* CTCBreakUpDetailsTableViewCell.swift */,
+				442A94D02791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.xib */,
+				442A94CB2791EB8500C31DDC /* CTCBreakUpTableViewCell.swift */,
+				442A94CC2791EB8600C31DDC /* CTCBreakUpTableViewCell.xib */,
+			);
+			path = "CTCBreak-up";
+			sourceTree = "<group>";
+		};
+		442A94C82791C51900C31DDC /* CTCBreak-up */ = {
+			isa = PBXGroup;
+			children = (
+				442A94D32791EC3500C31DDC /* ViewCTCModels.swift */,
+				442A94C92791C53000C31DDC /* CTCBreakupViewController.swift */,
+			);
+			path = "CTCBreak-up";
+			sourceTree = "<group>";
+		};
+		442A94D72791F16700C31DDC /* DashboardTotalRevenue */ = {
+			isa = PBXGroup;
+			children = (
+				442A94D82791F1AD00C31DDC /* DashboardTotalRevenueVC.swift */,
+			);
+			path = DashboardTotalRevenue;
+			sourceTree = "<group>";
+		};
+		44E10B9F2797C90B00F88DA2 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				44E10BB12797CF9F00F88DA2 /* EarningsFilterWorker.swift */,
+				44E10BAB2797CA1500F88DA2 /* EarningsFilterPresenter.swift */,
+				44E10BA42797C9AC00F88DA2 /* EarningsFilterInteractor.swift */,
+				44E10BA22797C98100F88DA2 /* EarningsFilterModels.swift */,
+				44E10BA02797C91600F88DA2 /* EarningsFilterVC.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		44E10BA62797C9CB00F88DA2 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				44E10BAD2797CB1400F88DA2 /* PackageFilterCell.swift */,
+				44E10BAE2797CB1400F88DA2 /* PackageFilterCell.xib */,
+				44E10BA82797C9EB00F88DA2 /* EarningCategoryFilterCell.swift */,
+				44E10BA72797C9EB00F88DA2 /* EarningCategoryFilterCell.xib */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		44E10BB32797D16000F88DA2 /* DateFilter */ = {
+			isa = PBXGroup;
+			children = (
+				44E10BB62797D19500F88DA2 /* DateFilterInteractor.swift */,
+				44E10BB72797D19500F88DA2 /* DateFilterModels.swift */,
+				44E10BB52797D19500F88DA2 /* DateFilterPresenter.swift */,
+				44E10BB82797D19600F88DA2 /* DateFilterVC.swift */,
+				44E10BB42797D19500F88DA2 /* DateFilterWorker.swift */,
+			);
+			path = DateFilter;
+			sourceTree = "<group>";
+		};
+		44E10BC02797D42800F88DA2 /* DateFilter */ = {
+			isa = PBXGroup;
+			children = (
+				44E10BC22797D43900F88DA2 /* SelectFilterDateRangeCell.swift */,
+				44E10BC12797D43900F88DA2 /* SelectFilterDateRangeCell.xib */,
+			);
+			path = DateFilter;
+			sourceTree = "<group>";
+		};
+		44E10BC52797DC7400F88DA2 /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				44E10BC62797DC7F00F88DA2 /* FormatterUtils.swift */,
+			);
+			path = Formatter;
+			sourceTree = "<group>";
+		};
 		44FBC62727904A430068B3C6 /* DashboardListVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +934,9 @@
 		E3034013235EE11B00E0BF0A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				44E10BC02797D42800F88DA2 /* DateFilter */,
+				44E10BA62797C9CB00F88DA2 /* Filter */,
+				442A94C72791C50300C31DDC /* CTCBreak-up */,
 				E3034036235EE11B00E0BF0A /* Dashboard */,
 				E3034014235EE11B00E0BF0A /* Appointment */,
 				F8DACAD624486201006AB417 /* Reports */,
@@ -912,6 +1047,10 @@
 		E3034118235EE14000E0BF0A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				44E10BB32797D16000F88DA2 /* DateFilter */,
+				44E10B9F2797C90B00F88DA2 /* Filter */,
+				442A94D72791F16700C31DDC /* DashboardTotalRevenue */,
+				442A94C82791C51900C31DDC /* CTCBreak-up */,
 				E3CD500B23713C3600DE106E /* LoginModule */,
 				442A94A827918B6E00C31DDC /* Earnings */,
 				44FBC62727904A430068B3C6 /* DashboardListVC */,
@@ -1063,6 +1202,7 @@
 		E303426B235EE15700E0BF0A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				44E10BC52797DC7400F88DA2 /* Formatter */,
 				F858F0F3263BD29000761A42 /* Gradient */,
 				F84DBEEA2462F6C70036DF42 /* KeyChain */,
 				E361182923F6BEC800E0AF02 /* Factory Class */,
@@ -1205,10 +1345,12 @@
 		E303428B235EE15700E0BF0A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				44E10BBE2797D38700F88DA2 /* ExtensionDate.swift */,
 				E303428C235EE15700E0BF0A /* UserDefaults */,
 				E303428F235EE15700E0BF0A /* UIBarButtonItem+Badge.swift */,
 				E3034290235EE15700E0BF0A /* ExtensionUIButton.swift */,
 				E3034291235EE15700E0BF0A /* ExtensionUIView.swift */,
+				442A94D52791EE5D00C31DDC /* ExtensionsInt.swift */,
 				E3034292235EE15700E0BF0A /* ExtensionUITableView.swift */,
 				E3034293235EE15700E0BF0A /* ExtensionString.swift */,
 				E3034294235EE15700E0BF0A /* ExtensionTextField.swift */,
@@ -1855,6 +1997,7 @@
 				E3034268235EE14700E0BF0A /* NotoSerif-Regular.ttf in Resources */,
 				442A94AC27918BB100C31DDC /* Earnings.storyboard in Resources */,
 				E31F816823840E8E00089572 /* MyProfileMultiOptionCell.xib in Resources */,
+				44E10BB02797CB1400F88DA2 /* PackageFilterCell.xib in Resources */,
 				E303426A235EE14700E0BF0A /* NotoSerif-Bold.ttf in Resources */,
 				F8E5D28A246E9BB8005876CE /* TeleMarketingCompletedCell.xib in Resources */,
 				E3034262235EE14700E0BF0A /* FuturaPTExtraBoldOblique.otf in Resources */,
@@ -1889,6 +2032,7 @@
 				E306016A237EA49200988EEC /* TopicCell.xib in Resources */,
 				E30340C1235EE11C00E0BF0A /* YourTargetRevenueCell.xib in Resources */,
 				E3034113235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.xib in Resources */,
+				44E10BA92797C9EB00F88DA2 /* EarningCategoryFilterCell.xib in Resources */,
 				F83CF7DA24C5AEA6007C17C5 /* TeleMarketingCell.xib in Resources */,
 				E306016F237EA49200988EEC /* MembershipStatusCell.xib in Resources */,
 				E3034259235EE14700E0BF0A /* FuturaPTCondBook.otf in Resources */,
@@ -1907,9 +2051,12 @@
 				442A94B22791937500C31DDC /* ViewCTCDeatilsCell.xib in Resources */,
 				E303425E235EE14700E0BF0A /* FuturaPTDemiOblique.otf in Resources */,
 				E3034267235EE14700E0BF0A /* NotoSerif-BoldItalic.ttf in Resources */,
+				442A94D22791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.xib in Resources */,
+				44E10BC32797D43900F88DA2 /* SelectFilterDateRangeCell.xib in Resources */,
 				F8F2E5DA25B1A4AD00BBF0C8 /* StatusFilterCell.xib in Resources */,
 				E3034252235EE14700E0BF0A /* FuturaPTExtraBold.otf in Resources */,
 				E3034255235EE14700E0BF0A /* FuturaPTCondExtraBold.otf in Resources */,
+				442A94CE2791EB8600C31DDC /* CTCBreakUpTableViewCell.xib in Resources */,
 				E3034264235EE14700E0BF0A /* FuturaPTCondMediumOblique.otf in Resources */,
 				E3034258235EE14700E0BF0A /* FuturaPTLightOblique.otf in Resources */,
 				E3060140237E9C8800988EEC /* RevenueCell.xib in Resources */,
@@ -2102,6 +2249,7 @@
 				E30341FB235EE14000E0BF0A /* DashboardVC.swift in Sources */,
 				E30341E0235EE14000E0BF0A /* MyProfileModels.swift in Sources */,
 				E30342BB235EE15800E0BF0A /* APIErrorModel.swift in Sources */,
+				44E10BAF2797CB1400F88DA2 /* PackageFilterCell.swift in Sources */,
 				F8784FBF244D720900104BE8 /* ApprovalRequestCell.swift in Sources */,
 				E30340B0235EE11C00E0BF0A /* MyProfileHeaderCell.swift in Sources */,
 				E30342B9235EE15800E0BF0A /* ErrorCustomView.swift in Sources */,
@@ -2132,6 +2280,7 @@
 				F8E5D281246E9B72005876CE /* TeleConsultationWorker.swift in Sources */,
 				E30341F0235EE14000E0BF0A /* NotificationsVC.swift in Sources */,
 				F8E5D282246E9B72005876CE /* TeleConsultationPresenter.swift in Sources */,
+				44E10BB92797D19600F88DA2 /* DateFilterWorker.swift in Sources */,
 				E30341F9235EE14000E0BF0A /* DashboardModels.swift in Sources */,
 				E3034303235EE5D900E0BF0A /* ReportsModels.swift in Sources */,
 				E3CD503023713C3600DE106E /* LoginModuleModels.swift in Sources */,
@@ -2142,6 +2291,7 @@
 				E30342BF235EE15800E0BF0A /* ErrorCodeHandlerClass.swift in Sources */,
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E3CEA5BF23CC57B200DD213F /* AllReviewsModuleWorker.swift in Sources */,
+				44E10BBA2797D19600F88DA2 /* DateFilterPresenter.swift in Sources */,
 				442A94A12791589600C31DDC /* DashboardGridCollectionViewCell.swift in Sources */,
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
 				F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */,
@@ -2149,6 +2299,7 @@
 				E30341EF235EE14000E0BF0A /* NotificationsWorker.swift in Sources */,
 				E30601CF237EAA7A00988EEC /* AppointmentDetailsInteractor.swift in Sources */,
 				F8804EBB244817FE00DEAA82 /* SignatureCell.swift in Sources */,
+				44E10BC72797DC7F00F88DA2 /* FormatterUtils.swift in Sources */,
 				E30341E4235EE14000E0BF0A /* MyProfileInteractor.swift in Sources */,
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
 				F8E5D27F246E9B72005876CE /* CustomerTeleHistoryVC.swift in Sources */,
@@ -2158,13 +2309,16 @@
 				E3DB6857238CEE4A00CC569D /* TermsAndConditionsModels.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
 				E361182D23F6BEC800E0AF02 /* UIFactory.swift in Sources */,
+				442A94CA2791C53000C31DDC /* CTCBreakupViewController.swift in Sources */,
 				F8784FC8244D722700104BE8 /* ApprovalRequestListWorker.swift in Sources */,
+				44E10BA12797C91700F88DA2 /* EarningsFilterVC.swift in Sources */,
 				E3CD502923713C3600DE106E /* OTPVerificationModulePresenter.swift in Sources */,
 				E306016C237EA49200988EEC /* SelectGenderCell.swift in Sources */,
 				F8B8729C24629FD10031DC97 /* RequestDetailsModels.swift in Sources */,
 				F87C336F24DD515A00318662 /* PowerBIReportWorker.swift in Sources */,
 				E3034305235EE5D900E0BF0A /* ReportsInteractor.swift in Sources */,
 				E3034304235EE5D900E0BF0A /* ReportsVC.swift in Sources */,
+				44E10BBB2797D19600F88DA2 /* DateFilterInteractor.swift in Sources */,
 				E3CD502D23713C3600DE106E /* OTPVerificationModuleInteractor.swift in Sources */,
 				E30340A3235EE11C00E0BF0A /* AppointmentStatusCell.swift in Sources */,
 				E30341F7235EE14000E0BF0A /* DashboardInteractor.swift in Sources */,
@@ -2180,14 +2334,20 @@
 				E30601B3237EA88200988EEC /* PointsCell.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
 				E30342CF235EE15800E0BF0A /* ExtensionNavigationController.swift in Sources */,
+				44E10BBF2797D38700F88DA2 /* ExtensionDate.swift in Sources */,
+				44E10BB22797CF9F00F88DA2 /* EarningsFilterWorker.swift in Sources */,
 				F8804EBD244817FE00DEAA82 /* AddNotesCell.swift in Sources */,
+				44E10BBD2797D19600F88DA2 /* DateFilterVC.swift in Sources */,
 				E3CD502723713C3600DE106E /* LoginOTPModuleInteractor.swift in Sources */,
 				E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */,
 				E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */,
+				44E10BC42797D43900F88DA2 /* SelectFilterDateRangeCell.swift in Sources */,
 				E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */,
 				E3CEA5BE23CC57B200DD213F /* AllReviewsModuleInteractor.swift in Sources */,
+				442A94D62791EE5D00C31DDC /* ExtensionsInt.swift in Sources */,
 				F84C4362245AB4270031213F /* DenyReasonVC.swift in Sources */,
 				F87C337324DD515A00318662 /* PowerBIReportInteractor.swift in Sources */,
+				442A94D42791EC3500C31DDC /* ViewCTCModels.swift in Sources */,
 				E30342C1235EE15800E0BF0A /* ImagePicker.swift in Sources */,
 				E30342D6235EE15800E0BF0A /* LocalJSONStore.swift in Sources */,
 				E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */,
@@ -2200,6 +2360,7 @@
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
 				F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */,
 				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
+				44E10BAA2797C9EB00F88DA2 /* EarningCategoryFilterCell.swift in Sources */,
 				F8252E8E25B01D5600F0E178 /* AppointmentFilterInteractor.swift in Sources */,
 				E3CEA5C223CC624700DD213F /* UserRatingCell.swift in Sources */,
 				F8B8729B24629FD10031DC97 /* RequestDetailsPresenter.swift in Sources */,
@@ -2208,6 +2369,7 @@
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
 				E30601BD237EAA4D00988EEC /* RevenuePresenter.swift in Sources */,
 				F8252E9125B01D9B00F0E178 /* CheckBoxCell.swift in Sources */,
+				44E10BAC2797CA1500F88DA2 /* EarningsFilterPresenter.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
 				E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */,
 				E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */,
@@ -2218,8 +2380,10 @@
 				E30601D2237EAA7A00988EEC /* ClientInformationPresenter.swift in Sources */,
 				E3CEA5BC23CC57B200DD213F /* AllReviewsModuleModels.swift in Sources */,
 				F85EE67424BDA50E001D9B0F /* ListingInteractor.swift in Sources */,
+				44E10BA32797C98100F88DA2 /* EarningsFilterModels.swift in Sources */,
 				E30342CB235EE15800E0BF0A /* ExtensionString.swift in Sources */,
 				E3034117235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.swift in Sources */,
+				44E10BA52797C9AC00F88DA2 /* EarningsFilterInteractor.swift in Sources */,
 				E3DB6856238CEE4A00CC569D /* TermsAndConditionsWorker.swift in Sources */,
 				F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */,
 				E30342C9235EE15800E0BF0A /* ExtensionUIView.swift in Sources */,
@@ -2237,6 +2401,8 @@
 				E30601D4237EAA7A00988EEC /* ClientInformationWorker.swift in Sources */,
 				E3034300235EE5D900E0BF0A /* ReportsPresenter.swift in Sources */,
 				E30342F7235EE58300E0BF0A /* AppointmentModels.swift in Sources */,
+				44E10BBC2797D19600F88DA2 /* DateFilterModels.swift in Sources */,
+				442A94D12791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.swift in Sources */,
 				F8B8729D24629FD10031DC97 /* RequestDetailsWorker.swift in Sources */,
 				E30601D3237EAA7A00988EEC /* ClientInformationVC.swift in Sources */,
 				E3CEA5CF23CC736F00DD213F /* AddNewNoteVC.swift in Sources */,
@@ -2264,6 +2430,8 @@
 				E30342D3235EE15800E0BF0A /* CustomTabbarController.swift in Sources */,
 				F8252E7925B01D5600F0E178 /* AppointmentFilterModels.swift in Sources */,
 				F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */,
+				442A94CD2791EB8600C31DDC /* CTCBreakUpTableViewCell.swift in Sources */,
+				442A94D92791F1AD00C31DDC /* DashboardTotalRevenueVC.swift in Sources */,
 				E30341ED235EE14000E0BF0A /* NotificationsModels.swift in Sources */,
 				E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */,
 				E33BA97D23FD4CE400AABFE2 /* NotificationDetailsCell.swift in Sources */,
