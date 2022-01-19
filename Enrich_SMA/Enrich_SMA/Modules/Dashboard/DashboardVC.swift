@@ -20,7 +20,7 @@ protocol DashboardDisplayLogic: class {
 class DashboardVC: UIViewController, DashboardDisplayLogic {
     var interactor: DashboardBusinessLogic?
     @IBOutlet weak private var tableView: UITableView!
-
+    
     var sections = [SectionConfiguration]()
 
     var dailyData: Dashboard.GetDashboardData.revenueData?

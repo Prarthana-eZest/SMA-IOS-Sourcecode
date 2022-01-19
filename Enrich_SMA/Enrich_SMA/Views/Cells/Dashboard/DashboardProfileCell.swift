@@ -25,6 +25,8 @@ class DashboardProfileCell: UITableViewCell {
     @IBOutlet weak private var lblRating: UILabel!
     @IBOutlet private weak var incentiveBtnView: UIView!
 
+    @IBOutlet weak var parentView: UIView!
+    
     weak var delegate: DashboardHeaderCellDelegate?
 
     override func awakeFromNib() {
