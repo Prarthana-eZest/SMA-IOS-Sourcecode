@@ -9,7 +9,7 @@
 import UIKit
 
 class RevenueCell: UITableViewCell {
-
+  
     @IBOutlet weak private var lblTitle: UILabel!
     @IBOutlet weak private var lblSubTitle: UILabel!
     @IBOutlet weak private var lblValue: UILabel!
