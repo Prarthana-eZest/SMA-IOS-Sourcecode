@@ -80,4 +80,21 @@ class DashboardWorker {
         self.networkLayer.post(urlString: url, body: request, headers: ["X-Request-From": "sma", "Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"],
                                successHandler: successHandler, errorHandler: errorHandler, method: .post)
     }
+    
+    //get revenue response
+    func postRequestGetRevenueDashboard(request: Dashboard.GetRevenueDashboard.Request) {
+
+        let errorHandler: (String) -> Void = { (error) in
+            print(error)
+            self.presenter?.presentError(responseError: error)
+        }
+        let successHandler: (Dashboard.GetRevenueDashboard.Response) -> Void = { (response) in
+           // print(response)
+            self.presenter?.presentSuccess(response: response)
+        }
+
+        let url = ConstantAPINames.getRevenueDashboard.rawValue
+
+        self.networkLayer.get(urlString: url, headers: ["X-Request-From": "tma", "Authorization": "Bearer \(GenericClass.sharedInstance.isuserLoggedIn().accessToken)"], successHandler: successHandler, errorHandler: errorHandler)
+    }
 }

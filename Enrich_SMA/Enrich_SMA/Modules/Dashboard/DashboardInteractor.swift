@@ -17,6 +17,7 @@ protocol DashboardBusinessLogic {
     func doGetDashboardData(request: Dashboard.GetDashboardData.Request, method: HTTPMethod)
     func doGetForceUpdateInfo()
     func getBMTDashboard(request: Dashboard.GetBMTDashboard.Request)
+    func getRevenueDashboard(request: Dashboard.GetRevenueDashboard.Request)
 }
 
 class DashboardInteractor: DashboardBusinessLogic {
@@ -50,4 +51,9 @@ class DashboardInteractor: DashboardBusinessLogic {
         worker?.postRequestGetBMTDashboard(request: request)
     }
 
+    func getRevenueDashboard(request: Dashboard.GetRevenueDashboard.Request) {
+        worker = DashboardWorker()
+        worker?.presenter = self.presenter
+        worker?.postRequestGetRevenueDashboard(request: request)
+    }
 }

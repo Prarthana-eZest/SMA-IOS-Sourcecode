@@ -36,4 +36,17 @@ enum UserDefauiltsKeys {
 
     static let k_key_ForceUpdateNotNow = "k_key_ForceUpdateNotNow"
 
+    static let k_key_RevenueDashboard = "k_key_RevenueDashboard"
+    static let k_key_RevenueTotal = "k_key_RevenueTotal"
+    static let k_key_SalesToatal = "k_key_SalesToatal"
+    static let k_key_FreeServicesToatal = "k_key_FreeServicesToatal"
+    static let k_key_FootfallToatal = "k_key_FootfallToatal"
+    
+    //Earnings data : Dashboard
+    static let k_key_EarningsDashboard = "k_key_EarningsDashboard"
+    
+    //key for from and To date for date filter
+    static let k_key_FromDate = "k_key_FromDate"
+    static let k_key_ToDate = "k_key_ToDate"
+    static let k_key_CustomDateRangeSelected = "k_key_CustomDateRangeSelected"
 }

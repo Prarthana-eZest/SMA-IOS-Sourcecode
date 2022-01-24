@@ -28,12 +28,26 @@ enum SectionIdentifier: String {
     case takeHome = "Take Home"
     case otherBenefits = "Other Benefits"
     
+    // Incentive Dashboard
+    case technicianDashboard = "Dashboard"
+    case incentiveEarnings = "Earnings"
+    case revenueTrend = "Revenue Trend"
+    case productivity = "Productivity"
+    case customerServed = "Customer Served"
+    case myDetails = "My Details"
+    case ctcDetails = "CTC Details"
+    case attendanceDetails = "Attendance Details"
+    case achievement = "Achievement"
+    
 }
 
 enum CellIdentifier {
 
     // Dashboard
     static let dashboardProfileCell = "DashboardProfileCell"
+    // Dashboard
+    static let incentiveDashboardCell = "IncentiveDashboardCell"
+//    static let dashboardProfileCell = "DashboardProfileCell"
     static let yourTargetRevenueCell = "YourTargetRevenueCell"
     static let revenueCell = "RevenueCell"
 

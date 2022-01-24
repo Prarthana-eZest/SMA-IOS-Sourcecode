@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FuturaPTMedium.otf">
+            <string>FuturaPT-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IncentiveDashboardCell" rowHeight="302" id="NvU-yb-GTr" customClass="IncentiveDashboardCell" customModule="SMA_Stage" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="302"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NvU-yb-GTr" id="uf2-yN-aTK">
+                <rect key="frame" x="0.0" y="0.0" width="330" height="302"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wR9-nO-90u">
+                        <rect key="frame" x="15" y="20" width="300" height="210"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6i-2p-4X1">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="120"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBh-rZ-kuM" userLabel="Incentive View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="142.5" height="120"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4j-BN-TGF">
+                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="120"/>
+                                                <connections>
+                                                    <action selector="actionIncentiveNext:" destination="NvU-yb-GTr" eventType="touchUpInside" id="b2B-Te-2ih"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="techncian_dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="0GB-0E-Q8r">
+                                                <rect key="frame" x="67.5" y="10" width="65" height="65"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="65" id="ME3-eV-qNN"/>
+                                                    <constraint firstAttribute="width" constant="65" id="zI4-kO-8lN"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDe-WQ-M7h">
+                                                <rect key="frame" x="10" y="89" width="92.5" height="21"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8i-Qc-5hE">
+                                                <rect key="frame" x="112.5" y="90" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="7IK-AW-by8"/>
+                                                    <constraint firstAttribute="width" constant="20" id="97V-B1-SJd"/>
+                                                </constraints>
+                                                <state key="normal" image="nextRound"/>
+                                                <connections>
+                                                    <action selector="actionIncentiveNext:" destination="NvU-yb-GTr" eventType="touchUpInside" id="OVc-ny-3Sk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="bDe-WQ-M7h" firstAttribute="leading" secondItem="dBh-rZ-kuM" secondAttribute="leading" constant="10" id="AdN-fy-FED"/>
+                                            <constraint firstItem="M8i-Qc-5hE" firstAttribute="leading" secondItem="bDe-WQ-M7h" secondAttribute="trailing" constant="10" id="DmA-6B-yPq"/>
+                                            <constraint firstItem="m4j-BN-TGF" firstAttribute="leading" secondItem="dBh-rZ-kuM" secondAttribute="leading" id="EPL-or-q3f"/>
+                                            <constraint firstItem="m4j-BN-TGF" firstAttribute="top" secondItem="dBh-rZ-kuM" secondAttribute="top" id="QLG-3O-l18"/>
+                                            <constraint firstAttribute="trailing" secondItem="0GB-0E-Q8r" secondAttribute="trailing" constant="10" id="TdZ-Xg-Nef"/>
+                                            <constraint firstAttribute="trailing" secondItem="m4j-BN-TGF" secondAttribute="trailing" id="ZDd-fU-MtG"/>
+                                            <constraint firstAttribute="bottom" secondItem="bDe-WQ-M7h" secondAttribute="bottom" constant="10" id="bZ0-0A-2mw"/>
+                                            <constraint firstAttribute="trailing" secondItem="M8i-Qc-5hE" secondAttribute="trailing" constant="10" id="bio-3E-VaQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="m4j-BN-TGF" secondAttribute="bottom" id="frJ-Hh-4Oc"/>
+                                            <constraint firstAttribute="bottom" secondItem="M8i-Qc-5hE" secondAttribute="bottom" constant="10" id="oPx-aB-Zga"/>
+                                            <constraint firstItem="0GB-0E-Q8r" firstAttribute="top" secondItem="dBh-rZ-kuM" secondAttribute="top" constant="10" id="ygY-U0-uuX"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="VCornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="0.89019607840000003" green="0.31764705879999999" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" red="0.26274509800000001" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="crossMode" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-Dj-lDB" userLabel="Earnings View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                        <rect key="frame" x="157.5" y="0.0" width="142.5" height="120"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhJ-U5-nGh">
+                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="120"/>
+                                                <connections>
+                                                    <action selector="actionEarningsNext:" destination="NvU-yb-GTr" eventType="touchUpInside" id="WTS-PV-Cq4"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earnings_dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="pBS-xW-i5j">
+                                                <rect key="frame" x="67.5" y="10" width="65" height="65"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="65" id="aI7-JL-eSa"/>
+                                                    <constraint firstAttribute="height" constant="65" id="bO2-aD-oRx"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earnings" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGI-Iy-tCR">
+                                                <rect key="frame" x="10" y="89" width="92.5" height="21"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFB-cx-y8m">
+                                                <rect key="frame" x="112.5" y="90" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="3f6-yg-xhY"/>
+                                                    <constraint firstAttribute="height" constant="20" id="oFL-iG-Gh8"/>
+                                                </constraints>
+                                                <state key="normal" image="nextRound"/>
+                                                <connections>
+                                                    <action selector="actionEarningsNext:" destination="NvU-yb-GTr" eventType="touchUpInside" id="lbP-Gb-t4m"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="hhJ-U5-nGh" firstAttribute="leading" secondItem="4pd-Dj-lDB" secondAttribute="leading" id="BBb-mF-Fdc"/>
+                                            <constraint firstAttribute="bottom" secondItem="hhJ-U5-nGh" secondAttribute="bottom" id="EDO-AG-RUw"/>
+                                            <constraint firstAttribute="trailing" secondItem="pBS-xW-i5j" secondAttribute="trailing" constant="10" id="GVT-HX-MPr"/>
+                                            <constraint firstItem="dGI-Iy-tCR" firstAttribute="leading" secondItem="4pd-Dj-lDB" secondAttribute="leading" constant="10" id="Rsl-VR-yks"/>
+                                            <constraint firstAttribute="bottom" secondItem="dFB-cx-y8m" secondAttribute="bottom" constant="10" id="WEW-bj-aG1"/>
+                                            <constraint firstAttribute="trailing" secondItem="hhJ-U5-nGh" secondAttribute="trailing" id="Wvz-YM-0V8"/>
+                                            <constraint firstAttribute="bottom" secondItem="dGI-Iy-tCR" secondAttribute="bottom" constant="10" id="ci0-ei-aID"/>
+                                            <constraint firstItem="pBS-xW-i5j" firstAttribute="top" secondItem="4pd-Dj-lDB" secondAttribute="top" constant="10" id="gGD-cZ-K5a"/>
+                                            <constraint firstItem="dFB-cx-y8m" firstAttribute="leading" secondItem="dGI-Iy-tCR" secondAttribute="trailing" constant="10" id="kzl-J6-lFG"/>
+                                            <constraint firstAttribute="trailing" secondItem="dFB-cx-y8m" secondAttribute="trailing" constant="10" id="rcE-UP-4pj"/>
+                                            <constraint firstItem="hhJ-U5-nGh" firstAttribute="top" secondItem="4pd-Dj-lDB" secondAttribute="top" id="uFg-5R-fui"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="VCornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="0.2274509804" green="0.8862745098" blue="0.76470588240000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" red="0.035294117649999998" green="0.43529411759999997" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="crossMode" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="6HG-Dz-Nym"/>
+                                    <constraint firstAttribute="width" constant="300" id="Cs8-x3-rxB"/>
+                                    <constraint firstItem="4pd-Dj-lDB" firstAttribute="leading" secondItem="dBh-rZ-kuM" secondAttribute="trailing" constant="15" id="qH7-O0-kVx"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="0Ce-9Q-Uf2">
+                                <rect key="frame" x="0.0" y="135" width="300" height="75"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wa6-2l-Eod" userLabel="Incentive View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfM-6h-Xgn">
+                                                <rect key="frame" x="65" y="22" width="195" height="31"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXO-0F-AKH">
+                                                <rect key="frame" x="270" y="27.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="zXO-0F-AKH" secondAttribute="height" multiplier="1:1" id="81x-Px-7am"/>
+                                                    <constraint firstAttribute="height" constant="20" id="azq-d8-VvO"/>
+                                                </constraints>
+                                                <state key="normal" image="nextRound"/>
+                                                <connections>
+                                                    <action selector="actionIncentiveNext:" destination="NvU-yb-GTr" eventType="touchUpInside" id="5if-GW-zRQ"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="techncian_dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="JC9-aq-9C1">
+                                                <rect key="frame" x="10" y="15" width="45" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="JC9-aq-9C1" secondAttribute="height" multiplier="1:1" id="pKa-35-sjS"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="TfM-6h-Xgn" firstAttribute="leading" secondItem="JC9-aq-9C1" secondAttribute="trailing" constant="10" id="22w-m8-zrt"/>
+                                            <constraint firstItem="zXO-0F-AKH" firstAttribute="centerY" secondItem="TfM-6h-Xgn" secondAttribute="centerY" id="4E0-6P-OVk"/>
+                                            <constraint firstAttribute="bottom" secondItem="JC9-aq-9C1" secondAttribute="bottom" constant="15" id="7BI-dj-v4C"/>
+                                            <constraint firstAttribute="trailing" secondItem="zXO-0F-AKH" secondAttribute="trailing" constant="10" id="BIl-IN-UsE"/>
+                                            <constraint firstItem="JC9-aq-9C1" firstAttribute="top" secondItem="wa6-2l-Eod" secondAttribute="top" constant="15" id="GX8-UJ-qpk"/>
+                                            <constraint firstAttribute="height" constant="75" id="O5f-3C-wOI"/>
+                                            <constraint firstItem="TfM-6h-Xgn" firstAttribute="centerY" secondItem="wa6-2l-Eod" secondAttribute="centerY" id="U9B-Ld-vNI"/>
+                                            <constraint firstItem="zXO-0F-AKH" firstAttribute="leading" secondItem="TfM-6h-Xgn" secondAttribute="trailing" constant="10" id="iZ0-IN-8tC"/>
+                                            <constraint firstItem="JC9-aq-9C1" firstAttribute="leading" secondItem="wa6-2l-Eod" secondAttribute="leading" constant="10" id="rHh-Rb-LTE"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="VCornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="0.89019607840000003" green="0.31764705879999999" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" red="0.26274509800000001" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="crossMode" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1y5-WP-i7g" userLabel="Earnings View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="75" width="300" height="65"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earnings Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXT-1u-4aw">
+                                                <rect key="frame" x="55" y="22" width="205" height="21"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ay-aL-06i">
+                                                <rect key="frame" x="270" y="22.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="7H9-k2-mBR"/>
+                                                    <constraint firstAttribute="width" secondItem="8Ay-aL-06i" secondAttribute="height" multiplier="1:1" id="aWv-NI-Sm3"/>
+                                                </constraints>
+                                                <state key="normal" image="nextRound"/>
+                                                <connections>
+                                                    <action selector="actionEarningsNext:" destination="NvU-yb-GTr" eventType="touchUpInside" id="Fqe-1O-DoB"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earnings_dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="V12-fz-BW2">
+                                                <rect key="frame" x="10" y="15" width="35" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="V12-fz-BW2" secondAttribute="height" multiplier="1:1" id="JJ7-9V-Fwm"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="V12-fz-BW2" firstAttribute="top" secondItem="1y5-WP-i7g" secondAttribute="top" constant="15" id="8JR-fA-uIj"/>
+                                            <constraint firstItem="8Ay-aL-06i" firstAttribute="leading" secondItem="kXT-1u-4aw" secondAttribute="trailing" constant="10" id="8ga-cI-TnF"/>
+                                            <constraint firstAttribute="height" constant="65" id="EFb-BZ-r4X"/>
+                                            <constraint firstItem="kXT-1u-4aw" firstAttribute="centerY" secondItem="1y5-WP-i7g" secondAttribute="centerY" id="KIb-3X-yHs"/>
+                                            <constraint firstAttribute="trailing" secondItem="8Ay-aL-06i" secondAttribute="trailing" constant="10" id="X0A-oy-Ovb"/>
+                                            <constraint firstItem="8Ay-aL-06i" firstAttribute="centerY" secondItem="kXT-1u-4aw" secondAttribute="centerY" id="bFy-d3-Lgd"/>
+                                            <constraint firstItem="V12-fz-BW2" firstAttribute="leading" secondItem="1y5-WP-i7g" secondAttribute="leading" constant="10" id="hdE-K8-1x5"/>
+                                            <constraint firstItem="kXT-1u-4aw" firstAttribute="leading" secondItem="V12-fz-BW2" secondAttribute="trailing" constant="10" id="p8L-SN-YMu"/>
+                                            <constraint firstAttribute="bottom" secondItem="V12-fz-BW2" secondAttribute="bottom" constant="15" id="qB8-mO-NgH"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="VCornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="0.2274509804" green="0.8862745098" blue="0.76470588240000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" red="0.035294117649999998" green="0.43529411759999997" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="crossMode" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="wR9-nO-90u" firstAttribute="leading" secondItem="uf2-yN-aTK" secondAttribute="leading" constant="15" id="2z0-L3-euX"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wR9-nO-90u" secondAttribute="bottom" constant="20" id="3Au-15-x5d"/>
+                    <constraint firstAttribute="trailing" secondItem="wR9-nO-90u" secondAttribute="trailing" constant="15" id="Bit-wZ-WV3"/>
+                    <constraint firstItem="wR9-nO-90u" firstAttribute="top" secondItem="uf2-yN-aTK" secondAttribute="top" constant="20" id="Cjf-eA-qiO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="OIm-pB-K6v"/>
+            <connections>
+                <outlet property="gridStackView" destination="S6i-2p-4X1" id="8je-Gb-mu0"/>
+                <outlet property="listStackView" destination="0Ce-9Q-Uf2" id="Ipn-Al-f6V"/>
+            </connections>
+            <point key="canvasLocation" x="40.579710144927539" y="176.11607142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="earnings_dashboard" width="74" height="68"/>
+        <image name="nextRound" width="6" height="10"/>
+        <image name="techncian_dashboard" width="68" height="67"/>
+    </resources>
+</document>

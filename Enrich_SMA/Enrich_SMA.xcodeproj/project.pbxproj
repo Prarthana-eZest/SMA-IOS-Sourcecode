@@ -284,6 +284,57 @@
 		F858F0F7263BD2B500761A42 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858F0F4263BD2B500761A42 /* GradientLayer.swift */; };
 		F858F0F8263BD2B500761A42 /* UIGradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858F0F5263BD2B500761A42 /* UIGradientExtension.swift */; };
 		F858F0F9263BD2B500761A42 /* UIGradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858F0F6263BD2B500761A42 /* UIGradientHelper.swift */; };
+		F85925D5279A9D0200EBEF55 /* SalesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925CF279A9D0200EBEF55 /* SalesPresenter.swift */; };
+		F85925D6279A9D0200EBEF55 /* SalesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925D0279A9D0200EBEF55 /* SalesWorker.swift */; };
+		F85925D7279A9D0200EBEF55 /* SalesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925D1279A9D0200EBEF55 /* SalesRouter.swift */; };
+		F85925D8279A9D0200EBEF55 /* SalesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925D2279A9D0200EBEF55 /* SalesModels.swift */; };
+		F85925D9279A9D0200EBEF55 /* SalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925D3279A9D0200EBEF55 /* SalesViewController.swift */; };
+		F85925DA279A9D0200EBEF55 /* SalesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925D4279A9D0200EBEF55 /* SalesInteractor.swift */; };
+		F85925E7279A9D1900EBEF55 /* FreeServicesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925E1279A9D1900EBEF55 /* FreeServicesPresenter.swift */; };
+		F85925E8279A9D1900EBEF55 /* FreeServicesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925E2279A9D1900EBEF55 /* FreeServicesWorker.swift */; };
+		F85925E9279A9D1900EBEF55 /* FreeServicesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925E3279A9D1900EBEF55 /* FreeServicesRouter.swift */; };
+		F85925EA279A9D1900EBEF55 /* FreeServicesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925E4279A9D1900EBEF55 /* FreeServicesModels.swift */; };
+		F85925EB279A9D1900EBEF55 /* FreeServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925E5279A9D1900EBEF55 /* FreeServicesViewController.swift */; };
+		F85925EC279A9D1900EBEF55 /* FreeServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925E6279A9D1900EBEF55 /* FreeServicesInteractor.swift */; };
+		F85925F6279A9D2F00EBEF55 /* FootfallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925F0279A9D2F00EBEF55 /* FootfallPresenter.swift */; };
+		F85925F7279A9D2F00EBEF55 /* FootfallWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925F1279A9D2F00EBEF55 /* FootfallWorker.swift */; };
+		F85925F8279A9D2F00EBEF55 /* FootfallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925F2279A9D2F00EBEF55 /* FootfallRouter.swift */; };
+		F85925F9279A9D2F00EBEF55 /* FootfallModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925F3279A9D2F00EBEF55 /* FootfallModels.swift */; };
+		F85925FA279A9D2F00EBEF55 /* FootfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925F4279A9D2F00EBEF55 /* FootfallViewController.swift */; };
+		F85925FB279A9D2F00EBEF55 /* FootfallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925F5279A9D2F00EBEF55 /* FootfallInteractor.swift */; };
+		F8592605279A9D4F00EBEF55 /* CustomerEngagementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85925FF279A9D4F00EBEF55 /* CustomerEngagementPresenter.swift */; };
+		F8592606279A9D4F00EBEF55 /* CustomerEngagementWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592600279A9D4F00EBEF55 /* CustomerEngagementWorker.swift */; };
+		F8592607279A9D4F00EBEF55 /* CustomerEngagementRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592601279A9D4F00EBEF55 /* CustomerEngagementRouter.swift */; };
+		F8592608279A9D4F00EBEF55 /* CustomerEngagementModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592602279A9D4F00EBEF55 /* CustomerEngagementModels.swift */; };
+		F8592609279A9D4F00EBEF55 /* CustomerEngagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592603279A9D4F00EBEF55 /* CustomerEngagementViewController.swift */; };
+		F859260A279A9D4F00EBEF55 /* CustomerEngagementInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592604279A9D4F00EBEF55 /* CustomerEngagementInteractor.swift */; };
+		F8592614279A9D6600EBEF55 /* ProductivityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859260E279A9D6600EBEF55 /* ProductivityPresenter.swift */; };
+		F8592615279A9D6600EBEF55 /* ProductivityWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859260F279A9D6600EBEF55 /* ProductivityWorker.swift */; };
+		F8592616279A9D6600EBEF55 /* ProductivityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592610279A9D6600EBEF55 /* ProductivityRouter.swift */; };
+		F8592617279A9D6600EBEF55 /* ProductivityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592611279A9D6600EBEF55 /* ProductivityModels.swift */; };
+		F8592618279A9D6600EBEF55 /* ProductivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592612279A9D6600EBEF55 /* ProductivityViewController.swift */; };
+		F8592619279A9D6600EBEF55 /* ProductivityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592613279A9D6600EBEF55 /* ProductivityInteractor.swift */; };
+		F8592623279A9D7700EBEF55 /* PenetrationRatiosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859261D279A9D7700EBEF55 /* PenetrationRatiosPresenter.swift */; };
+		F8592624279A9D7700EBEF55 /* PenetrationRatiosWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859261E279A9D7700EBEF55 /* PenetrationRatiosWorker.swift */; };
+		F8592625279A9D7700EBEF55 /* PenetrationRatiosRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859261F279A9D7700EBEF55 /* PenetrationRatiosRouter.swift */; };
+		F8592626279A9D7700EBEF55 /* PenetrationRatiosModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592620279A9D7700EBEF55 /* PenetrationRatiosModels.swift */; };
+		F8592627279A9D7700EBEF55 /* PenetrationRatiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592621279A9D7700EBEF55 /* PenetrationRatiosViewController.swift */; };
+		F8592628279A9D7700EBEF55 /* PenetrationRatiosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592622279A9D7700EBEF55 /* PenetrationRatiosInteractor.swift */; };
+		F8592632279A9D9100EBEF55 /* ResourceUtilisationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859262C279A9D9100EBEF55 /* ResourceUtilisationPresenter.swift */; };
+		F8592633279A9D9100EBEF55 /* ResourceUtilisationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859262D279A9D9100EBEF55 /* ResourceUtilisationWorker.swift */; };
+		F8592634279A9D9100EBEF55 /* ResourceUtilisationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859262E279A9D9100EBEF55 /* ResourceUtilisationRouter.swift */; };
+		F8592635279A9D9100EBEF55 /* ResourceUtilisationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859262F279A9D9100EBEF55 /* ResourceUtilisationModels.swift */; };
+		F8592636279A9D9100EBEF55 /* ResourceUtilisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592630279A9D9100EBEF55 /* ResourceUtilisationViewController.swift */; };
+		F8592637279A9D9100EBEF55 /* ResourceUtilisationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592631279A9D9100EBEF55 /* ResourceUtilisationInteractor.swift */; };
+		F859263C279A9DD500EBEF55 /* Incentives.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F859263B279A9DD500EBEF55 /* Incentives.storyboard */; };
+		F8592642279D5D1C00EBEF55 /* IncentiveDashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592640279D5D1C00EBEF55 /* IncentiveDashboardCell.swift */; };
+		F8592643279D5D1C00EBEF55 /* IncentiveDashboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8592641279D5D1C00EBEF55 /* IncentiveDashboardCell.xib */; };
+		F859264D279E75B100EBEF55 /* TechnicianDashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592647279E75B100EBEF55 /* TechnicianDashboardPresenter.swift */; };
+		F859264E279E75B100EBEF55 /* TechnicianDashboardWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592648279E75B100EBEF55 /* TechnicianDashboardWorker.swift */; };
+		F859264F279E75B100EBEF55 /* TechnicianDashboardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592649279E75B100EBEF55 /* TechnicianDashboardRouter.swift */; };
+		F8592650279E75B100EBEF55 /* TechnicianDashboardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264A279E75B100EBEF55 /* TechnicianDashboardModels.swift */; };
+		F8592651279E75B100EBEF55 /* TechnicianDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264B279E75B100EBEF55 /* TechnicianDashboardViewController.swift */; };
+		F8592652279E75B100EBEF55 /* TechnicianDashboardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */; };
 		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
 		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
@@ -647,6 +698,57 @@
 		F858F0F4263BD2B500761A42 /* GradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		F858F0F5263BD2B500761A42 /* UIGradientExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientExtension.swift; sourceTree = "<group>"; };
 		F858F0F6263BD2B500761A42 /* UIGradientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGradientHelper.swift; sourceTree = "<group>"; };
+		F85925CF279A9D0200EBEF55 /* SalesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesPresenter.swift; sourceTree = "<group>"; };
+		F85925D0279A9D0200EBEF55 /* SalesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesWorker.swift; sourceTree = "<group>"; };
+		F85925D1279A9D0200EBEF55 /* SalesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesRouter.swift; sourceTree = "<group>"; };
+		F85925D2279A9D0200EBEF55 /* SalesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesModels.swift; sourceTree = "<group>"; };
+		F85925D3279A9D0200EBEF55 /* SalesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewController.swift; sourceTree = "<group>"; };
+		F85925D4279A9D0200EBEF55 /* SalesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesInteractor.swift; sourceTree = "<group>"; };
+		F85925E1279A9D1900EBEF55 /* FreeServicesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeServicesPresenter.swift; sourceTree = "<group>"; };
+		F85925E2279A9D1900EBEF55 /* FreeServicesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeServicesWorker.swift; sourceTree = "<group>"; };
+		F85925E3279A9D1900EBEF55 /* FreeServicesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeServicesRouter.swift; sourceTree = "<group>"; };
+		F85925E4279A9D1900EBEF55 /* FreeServicesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeServicesModels.swift; sourceTree = "<group>"; };
+		F85925E5279A9D1900EBEF55 /* FreeServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeServicesViewController.swift; sourceTree = "<group>"; };
+		F85925E6279A9D1900EBEF55 /* FreeServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeServicesInteractor.swift; sourceTree = "<group>"; };
+		F85925F0279A9D2F00EBEF55 /* FootfallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootfallPresenter.swift; sourceTree = "<group>"; };
+		F85925F1279A9D2F00EBEF55 /* FootfallWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootfallWorker.swift; sourceTree = "<group>"; };
+		F85925F2279A9D2F00EBEF55 /* FootfallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootfallRouter.swift; sourceTree = "<group>"; };
+		F85925F3279A9D2F00EBEF55 /* FootfallModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootfallModels.swift; sourceTree = "<group>"; };
+		F85925F4279A9D2F00EBEF55 /* FootfallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootfallViewController.swift; sourceTree = "<group>"; };
+		F85925F5279A9D2F00EBEF55 /* FootfallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootfallInteractor.swift; sourceTree = "<group>"; };
+		F85925FF279A9D4F00EBEF55 /* CustomerEngagementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEngagementPresenter.swift; sourceTree = "<group>"; };
+		F8592600279A9D4F00EBEF55 /* CustomerEngagementWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEngagementWorker.swift; sourceTree = "<group>"; };
+		F8592601279A9D4F00EBEF55 /* CustomerEngagementRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEngagementRouter.swift; sourceTree = "<group>"; };
+		F8592602279A9D4F00EBEF55 /* CustomerEngagementModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEngagementModels.swift; sourceTree = "<group>"; };
+		F8592603279A9D4F00EBEF55 /* CustomerEngagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEngagementViewController.swift; sourceTree = "<group>"; };
+		F8592604279A9D4F00EBEF55 /* CustomerEngagementInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEngagementInteractor.swift; sourceTree = "<group>"; };
+		F859260E279A9D6600EBEF55 /* ProductivityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityPresenter.swift; sourceTree = "<group>"; };
+		F859260F279A9D6600EBEF55 /* ProductivityWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityWorker.swift; sourceTree = "<group>"; };
+		F8592610279A9D6600EBEF55 /* ProductivityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityRouter.swift; sourceTree = "<group>"; };
+		F8592611279A9D6600EBEF55 /* ProductivityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityModels.swift; sourceTree = "<group>"; };
+		F8592612279A9D6600EBEF55 /* ProductivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityViewController.swift; sourceTree = "<group>"; };
+		F8592613279A9D6600EBEF55 /* ProductivityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityInteractor.swift; sourceTree = "<group>"; };
+		F859261D279A9D7700EBEF55 /* PenetrationRatiosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenetrationRatiosPresenter.swift; sourceTree = "<group>"; };
+		F859261E279A9D7700EBEF55 /* PenetrationRatiosWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenetrationRatiosWorker.swift; sourceTree = "<group>"; };
+		F859261F279A9D7700EBEF55 /* PenetrationRatiosRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenetrationRatiosRouter.swift; sourceTree = "<group>"; };
+		F8592620279A9D7700EBEF55 /* PenetrationRatiosModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenetrationRatiosModels.swift; sourceTree = "<group>"; };
+		F8592621279A9D7700EBEF55 /* PenetrationRatiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenetrationRatiosViewController.swift; sourceTree = "<group>"; };
+		F8592622279A9D7700EBEF55 /* PenetrationRatiosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenetrationRatiosInteractor.swift; sourceTree = "<group>"; };
+		F859262C279A9D9100EBEF55 /* ResourceUtilisationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtilisationPresenter.swift; sourceTree = "<group>"; };
+		F859262D279A9D9100EBEF55 /* ResourceUtilisationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtilisationWorker.swift; sourceTree = "<group>"; };
+		F859262E279A9D9100EBEF55 /* ResourceUtilisationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtilisationRouter.swift; sourceTree = "<group>"; };
+		F859262F279A9D9100EBEF55 /* ResourceUtilisationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtilisationModels.swift; sourceTree = "<group>"; };
+		F8592630279A9D9100EBEF55 /* ResourceUtilisationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtilisationViewController.swift; sourceTree = "<group>"; };
+		F8592631279A9D9100EBEF55 /* ResourceUtilisationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceUtilisationInteractor.swift; sourceTree = "<group>"; };
+		F859263B279A9DD500EBEF55 /* Incentives.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Incentives.storyboard; sourceTree = "<group>"; };
+		F8592640279D5D1C00EBEF55 /* IncentiveDashboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncentiveDashboardCell.swift; sourceTree = "<group>"; };
+		F8592641279D5D1C00EBEF55 /* IncentiveDashboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncentiveDashboardCell.xib; sourceTree = "<group>"; };
+		F8592647279E75B100EBEF55 /* TechnicianDashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardPresenter.swift; sourceTree = "<group>"; };
+		F8592648279E75B100EBEF55 /* TechnicianDashboardWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardWorker.swift; sourceTree = "<group>"; };
+		F8592649279E75B100EBEF55 /* TechnicianDashboardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardRouter.swift; sourceTree = "<group>"; };
+		F859264A279E75B100EBEF55 /* TechnicianDashboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardModels.swift; sourceTree = "<group>"; };
+		F859264B279E75B100EBEF55 /* TechnicianDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardViewController.swift; sourceTree = "<group>"; };
+		F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardInteractor.swift; sourceTree = "<group>"; };
 		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
 		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
@@ -1019,6 +1121,8 @@
 				E303403C235EE11B00E0BF0A /* YourTargetRevenueCell.xib */,
 				E306013D237E9C8800988EEC /* RevenueCell.swift */,
 				E306013E237E9C8800988EEC /* RevenueCell.xib */,
+				F8592640279D5D1C00EBEF55 /* IncentiveDashboardCell.swift */,
+				F8592641279D5D1C00EBEF55 /* IncentiveDashboardCell.xib */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1127,6 +1231,7 @@
 				E303416D235EE14000E0BF0A /* DashboardPresenter.swift */,
 				E303416E235EE14000E0BF0A /* DashboardModels.swift */,
 				E303416F235EE14000E0BF0A /* DashboardWorker.swift */,
+				F85925C7279A9B6400EBEF55 /* Incentive */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1480,6 +1585,7 @@
 				E30342EC235EE3DA00E0BF0A /* Reports.storyboard */,
 				E30342E8235EE29800E0BF0A /* More.storyboard */,
 				442A94AB27918BB100C31DDC /* Earnings.storyboard */,
+				F859263B279A9DD500EBEF55 /* Incentives.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1781,6 +1887,117 @@
 			path = Gradient;
 			sourceTree = "<group>";
 		};
+		F85925C7279A9B6400EBEF55 /* Incentive */ = {
+			isa = PBXGroup;
+			children = (
+				F859264B279E75B100EBEF55 /* TechnicianDashboardViewController.swift */,
+				F8592647279E75B100EBEF55 /* TechnicianDashboardPresenter.swift */,
+				F8592648279E75B100EBEF55 /* TechnicianDashboardWorker.swift */,
+				F8592649279E75B100EBEF55 /* TechnicianDashboardRouter.swift */,
+				F859264A279E75B100EBEF55 /* TechnicianDashboardModels.swift */,
+				F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */,
+				F85925C8279A9B7B00EBEF55 /* Sales */,
+				F85925C9279A9BBC00EBEF55 /* Free Services */,
+				F85925CA279A9BFD00EBEF55 /* Footfall */,
+				F85925CB279A9C2200EBEF55 /* Customer Engagement */,
+				F85925CC279A9C5000EBEF55 /* Productivity */,
+				F85925CD279A9C6B00EBEF55 /* Penetration Ratios */,
+				F85925CE279A9C7C00EBEF55 /* Resource Utilisation */,
+			);
+			path = Incentive;
+			sourceTree = "<group>";
+		};
+		F85925C8279A9B7B00EBEF55 /* Sales */ = {
+			isa = PBXGroup;
+			children = (
+				F85925CF279A9D0200EBEF55 /* SalesPresenter.swift */,
+				F85925D0279A9D0200EBEF55 /* SalesWorker.swift */,
+				F85925D1279A9D0200EBEF55 /* SalesRouter.swift */,
+				F85925D2279A9D0200EBEF55 /* SalesModels.swift */,
+				F85925D3279A9D0200EBEF55 /* SalesViewController.swift */,
+				F85925D4279A9D0200EBEF55 /* SalesInteractor.swift */,
+			);
+			path = Sales;
+			sourceTree = "<group>";
+		};
+		F85925C9279A9BBC00EBEF55 /* Free Services */ = {
+			isa = PBXGroup;
+			children = (
+				F85925E1279A9D1900EBEF55 /* FreeServicesPresenter.swift */,
+				F85925E2279A9D1900EBEF55 /* FreeServicesWorker.swift */,
+				F85925E3279A9D1900EBEF55 /* FreeServicesRouter.swift */,
+				F85925E4279A9D1900EBEF55 /* FreeServicesModels.swift */,
+				F85925E5279A9D1900EBEF55 /* FreeServicesViewController.swift */,
+				F85925E6279A9D1900EBEF55 /* FreeServicesInteractor.swift */,
+			);
+			path = "Free Services";
+			sourceTree = "<group>";
+		};
+		F85925CA279A9BFD00EBEF55 /* Footfall */ = {
+			isa = PBXGroup;
+			children = (
+				F85925F0279A9D2F00EBEF55 /* FootfallPresenter.swift */,
+				F85925F1279A9D2F00EBEF55 /* FootfallWorker.swift */,
+				F85925F2279A9D2F00EBEF55 /* FootfallRouter.swift */,
+				F85925F3279A9D2F00EBEF55 /* FootfallModels.swift */,
+				F85925F4279A9D2F00EBEF55 /* FootfallViewController.swift */,
+				F85925F5279A9D2F00EBEF55 /* FootfallInteractor.swift */,
+			);
+			path = Footfall;
+			sourceTree = "<group>";
+		};
+		F85925CB279A9C2200EBEF55 /* Customer Engagement */ = {
+			isa = PBXGroup;
+			children = (
+				F85925FF279A9D4F00EBEF55 /* CustomerEngagementPresenter.swift */,
+				F8592600279A9D4F00EBEF55 /* CustomerEngagementWorker.swift */,
+				F8592601279A9D4F00EBEF55 /* CustomerEngagementRouter.swift */,
+				F8592602279A9D4F00EBEF55 /* CustomerEngagementModels.swift */,
+				F8592603279A9D4F00EBEF55 /* CustomerEngagementViewController.swift */,
+				F8592604279A9D4F00EBEF55 /* CustomerEngagementInteractor.swift */,
+			);
+			path = "Customer Engagement";
+			sourceTree = "<group>";
+		};
+		F85925CC279A9C5000EBEF55 /* Productivity */ = {
+			isa = PBXGroup;
+			children = (
+				F859260E279A9D6600EBEF55 /* ProductivityPresenter.swift */,
+				F859260F279A9D6600EBEF55 /* ProductivityWorker.swift */,
+				F8592610279A9D6600EBEF55 /* ProductivityRouter.swift */,
+				F8592611279A9D6600EBEF55 /* ProductivityModels.swift */,
+				F8592612279A9D6600EBEF55 /* ProductivityViewController.swift */,
+				F8592613279A9D6600EBEF55 /* ProductivityInteractor.swift */,
+			);
+			path = Productivity;
+			sourceTree = "<group>";
+		};
+		F85925CD279A9C6B00EBEF55 /* Penetration Ratios */ = {
+			isa = PBXGroup;
+			children = (
+				F859261D279A9D7700EBEF55 /* PenetrationRatiosPresenter.swift */,
+				F859261E279A9D7700EBEF55 /* PenetrationRatiosWorker.swift */,
+				F859261F279A9D7700EBEF55 /* PenetrationRatiosRouter.swift */,
+				F8592620279A9D7700EBEF55 /* PenetrationRatiosModels.swift */,
+				F8592621279A9D7700EBEF55 /* PenetrationRatiosViewController.swift */,
+				F8592622279A9D7700EBEF55 /* PenetrationRatiosInteractor.swift */,
+			);
+			path = "Penetration Ratios";
+			sourceTree = "<group>";
+		};
+		F85925CE279A9C7C00EBEF55 /* Resource Utilisation */ = {
+			isa = PBXGroup;
+			children = (
+				F859262C279A9D9100EBEF55 /* ResourceUtilisationPresenter.swift */,
+				F859262D279A9D9100EBEF55 /* ResourceUtilisationWorker.swift */,
+				F859262E279A9D9100EBEF55 /* ResourceUtilisationRouter.swift */,
+				F859262F279A9D9100EBEF55 /* ResourceUtilisationModels.swift */,
+				F8592630279A9D9100EBEF55 /* ResourceUtilisationViewController.swift */,
+				F8592631279A9D9100EBEF55 /* ResourceUtilisationInteractor.swift */,
+			);
+			path = "Resource Utilisation";
+			sourceTree = "<group>";
+		};
 		F8784FBC244D71ED00104BE8 /* Approval Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -2049,7 +2266,9 @@
 				E3034260235EE14700E0BF0A /* FuturaPTCondBookOblique.otf in Resources */,
 				E3E0780923ACC21F004927D7 /* ServiceListingCell.xib in Resources */,
 				442A94B22791937500C31DDC /* ViewCTCDeatilsCell.xib in Resources */,
+				F8592643279D5D1C00EBEF55 /* IncentiveDashboardCell.xib in Resources */,
 				E303425E235EE14700E0BF0A /* FuturaPTDemiOblique.otf in Resources */,
+				F859263C279A9DD500EBEF55 /* Incentives.storyboard in Resources */,
 				E3034267235EE14700E0BF0A /* NotoSerif-BoldItalic.ttf in Resources */,
 				442A94D22791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.xib in Resources */,
 				44E10BC32797D43900F88DA2 /* SelectFilterDateRangeCell.xib in Resources */,
@@ -2239,11 +2458,14 @@
 				442A94B12791937500C31DDC /* ViewCTCDeatilsCell.swift in Sources */,
 				F8CE55ED24616C3000FF9487 /* RequestCategoryCell.swift in Sources */,
 				E3CD502B23713C3600DE106E /* OTPVerificationModuleVC.swift in Sources */,
+				F8592627279A9D7700EBEF55 /* PenetrationRatiosViewController.swift in Sources */,
+				F85925EB279A9D1900EBEF55 /* FreeServicesViewController.swift in Sources */,
 				442A94AE27918F8600C31DDC /* EarningsGridViewController.swift in Sources */,
 				F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */,
 				F838D9092437058300FDA998 /* SOSAlertInteractor.swift in Sources */,
 				E30341FA235EE14000E0BF0A /* DashboardWorker.swift in Sources */,
 				F858F0F9263BD2B500761A42 /* UIGradientHelper.swift in Sources */,
+				F8592626279A9D7700EBEF55 /* PenetrationRatiosModels.swift in Sources */,
 				E30601CE237EAA7A00988EEC /* AppointmentDetailsWorker.swift in Sources */,
 				E3CD502423713C3600DE106E /* LoginOTPModuleWorker.swift in Sources */,
 				E30341FB235EE14000E0BF0A /* DashboardVC.swift in Sources */,
@@ -2260,35 +2482,43 @@
 				F8E5D283246E9B72005876CE /* TeleConsultationInteractor.swift in Sources */,
 				E31F816723840E8E00089572 /* MyProfileMultiOptionCell.swift in Sources */,
 				E3060170237EA49200988EEC /* MembershipStatusCell.swift in Sources */,
+				F8592642279D5D1C00EBEF55 /* IncentiveDashboardCell.swift in Sources */,
 				E30601D0237EAA7A00988EEC /* AppointmentDetailsPresenter.swift in Sources */,
 				F8CE55E52461690100FF9487 /* RequestDetailsVC.swift in Sources */,
 				E30342D7235EE15800E0BF0A /* StorageType.swift in Sources */,
 				E30342BC235EE15800E0BF0A /* HTTPMethod.swift in Sources */,
+				F85925D5279A9D0200EBEF55 /* SalesPresenter.swift in Sources */,
 				E30342C3235EE15800E0BF0A /* AnyCodable.swift in Sources */,
 				E361182F23F6BEC800E0AF02 /* UserFactory.swift in Sources */,
 				E3CEA5CE23CC736F00DD213F /* AddNewNoteModels.swift in Sources */,
+				F8592635279A9D9100EBEF55 /* ResourceUtilisationModels.swift in Sources */,
 				F8784FCA244D722700104BE8 /* ApprovalRequestListPresenter.swift in Sources */,
 				E30341DC235EE14000E0BF0A /* MoreModuleWorker.swift in Sources */,
 				E30342F8235EE58300E0BF0A /* AppointmentVC.swift in Sources */,
 				E30342C6235EE15800E0BF0A /* ExtentionUserDefaults.swift in Sources */,
 				F838D9072437058300FDA998 /* SOSAlertModels.swift in Sources */,
+				F85925F8279A9D2F00EBEF55 /* FootfallRouter.swift in Sources */,
 				F87C336E24DD515A00318662 /* PowerBIReportPresenter.swift in Sources */,
 				E30340BE235EE11C00E0BF0A /* YourTargetRevenueCell.swift in Sources */,
+				F85925E9279A9D1900EBEF55 /* FreeServicesRouter.swift in Sources */,
 				F8784FCC244D722700104BE8 /* ApprovalRequestListInteractor.swift in Sources */,
 				F87C337224DD515A00318662 /* PowerBIReportVC.swift in Sources */,
 				F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */,
 				F8E5D281246E9B72005876CE /* TeleConsultationWorker.swift in Sources */,
 				E30341F0235EE14000E0BF0A /* NotificationsVC.swift in Sources */,
+				F8592616279A9D6600EBEF55 /* ProductivityRouter.swift in Sources */,
 				F8E5D282246E9B72005876CE /* TeleConsultationPresenter.swift in Sources */,
 				44E10BB92797D19600F88DA2 /* DateFilterWorker.swift in Sources */,
 				E30341F9235EE14000E0BF0A /* DashboardModels.swift in Sources */,
 				E3034303235EE5D900E0BF0A /* ReportsModels.swift in Sources */,
 				E3CD503023713C3600DE106E /* LoginModuleModels.swift in Sources */,
+				F8592617279A9D6600EBEF55 /* ProductivityModels.swift in Sources */,
 				E30342DF235EE15800E0BF0A /* QRCodeGeneratorError.swift in Sources */,
 				E30342C7235EE15800E0BF0A /* UIBarButtonItem+Badge.swift in Sources */,
 				E30601BF237EAA4D00988EEC /* RevenueVC.swift in Sources */,
 				E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */,
 				E30342BF235EE15800E0BF0A /* ErrorCodeHandlerClass.swift in Sources */,
+				F8592633279A9D9100EBEF55 /* ResourceUtilisationWorker.swift in Sources */,
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E3CEA5BF23CC57B200DD213F /* AllReviewsModuleWorker.swift in Sources */,
 				44E10BBA2797D19600F88DA2 /* DateFilterPresenter.swift in Sources */,
@@ -2296,6 +2526,7 @@
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
 				F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */,
 				E30341F6235EE14000E0BF0A /* EmployeeListingVC.swift in Sources */,
+				F8592606279A9D4F00EBEF55 /* CustomerEngagementWorker.swift in Sources */,
 				E30341EF235EE14000E0BF0A /* NotificationsWorker.swift in Sources */,
 				E30601CF237EAA7A00988EEC /* AppointmentDetailsInteractor.swift in Sources */,
 				F8804EBB244817FE00DEAA82 /* SignatureCell.swift in Sources */,
@@ -2305,7 +2536,9 @@
 				F8E5D27F246E9B72005876CE /* CustomerTeleHistoryVC.swift in Sources */,
 				E30342F4235EE58300E0BF0A /* AppointmentPresenter.swift in Sources */,
 				F84DBEEE2462F6DC0036DF42 /* KeychainItemAccessibility.swift in Sources */,
+				F85925EC279A9D1900EBEF55 /* FreeServicesInteractor.swift in Sources */,
 				F833CC262438C6F0007119AD /* SOSFactory.swift in Sources */,
+				F8592607279A9D4F00EBEF55 /* CustomerEngagementRouter.swift in Sources */,
 				E3DB6857238CEE4A00CC569D /* TermsAndConditionsModels.swift in Sources */,
 				E30342BA235EE15800E0BF0A /* NetworkLayerAlamofire.swift in Sources */,
 				E361182D23F6BEC800E0AF02 /* UIFactory.swift in Sources */,
@@ -2326,17 +2559,23 @@
 				E3CEA5D023CC736F00DD213F /* AddNewNoteInteractor.swift in Sources */,
 				F8784FCB244D722700104BE8 /* ApprovalRequestListModels.swift in Sources */,
 				E3CEA5CB23CC736F00DD213F /* AddNewNotePresenter.swift in Sources */,
+				F85925D6279A9D0200EBEF55 /* SalesWorker.swift in Sources */,
+				F859264F279E75B100EBEF55 /* TechnicianDashboardRouter.swift in Sources */,
 				44FBC62D27904E530068B3C6 /* DashboardTableViewCell.swift in Sources */,
+				F85925D8279A9D0200EBEF55 /* SalesModels.swift in Sources */,
 				E3DB6855238CEE4A00CC569D /* TermsAndConditionsInteractor.swift in Sources */,
 				E3CD502523713C3600DE106E /* LoginOTPModuleModels.swift in Sources */,
 				E30342D4235EE15800E0BF0A /* ListPickerDialog.swift in Sources */,
 				E361182E23F6BEC800E0AF02 /* ApplicationFactory.swift in Sources */,
+				F8592624279A9D7700EBEF55 /* PenetrationRatiosWorker.swift in Sources */,
 				E30601B3237EA88200988EEC /* PointsCell.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
 				E30342CF235EE15800E0BF0A /* ExtensionNavigationController.swift in Sources */,
 				44E10BBF2797D38700F88DA2 /* ExtensionDate.swift in Sources */,
+				F85925FA279A9D2F00EBEF55 /* FootfallViewController.swift in Sources */,
 				44E10BB22797CF9F00F88DA2 /* EarningsFilterWorker.swift in Sources */,
 				F8804EBD244817FE00DEAA82 /* AddNotesCell.swift in Sources */,
+				F8592618279A9D6600EBEF55 /* ProductivityViewController.swift in Sources */,
 				44E10BBD2797D19600F88DA2 /* DateFilterVC.swift in Sources */,
 				E3CD502723713C3600DE106E /* LoginOTPModuleInteractor.swift in Sources */,
 				E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */,
@@ -2360,21 +2599,27 @@
 				E30342F9235EE58300E0BF0A /* AppointmentInteractor.swift in Sources */,
 				F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */,
 				E3CD503223713C3600DE106E /* LoginModuleVC.swift in Sources */,
+				F85925E8279A9D1900EBEF55 /* FreeServicesWorker.swift in Sources */,
 				44E10BAA2797C9EB00F88DA2 /* EarningCategoryFilterCell.swift in Sources */,
 				F8252E8E25B01D5600F0E178 /* AppointmentFilterInteractor.swift in Sources */,
 				E3CEA5C223CC624700DD213F /* UserRatingCell.swift in Sources */,
 				F8B8729B24629FD10031DC97 /* RequestDetailsPresenter.swift in Sources */,
+				F85925EA279A9D1900EBEF55 /* FreeServicesModels.swift in Sources */,
 				E30342D2235EE15800E0BF0A /* EZLoadingActivity.swift in Sources */,
 				E30341F1235EE14000E0BF0A /* NotificationsInteractor.swift in Sources */,
 				E3034115235EE11C00E0BF0A /* HeaderViewWithTitleCell.swift in Sources */,
 				E30601BD237EAA4D00988EEC /* RevenuePresenter.swift in Sources */,
+				F85925DA279A9D0200EBEF55 /* SalesInteractor.swift in Sources */,
 				F8252E9125B01D9B00F0E178 /* CheckBoxCell.swift in Sources */,
 				44E10BAC2797CA1500F88DA2 /* EarningsFilterPresenter.swift in Sources */,
+				F85925F9279A9D2F00EBEF55 /* FootfallModels.swift in Sources */,
+				F859260A279A9D4F00EBEF55 /* CustomerEngagementInteractor.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
 				E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */,
 				E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */,
 				F8252E8D25B01D5600F0E178 /* AppointmentFilterPresenter.swift in Sources */,
 				E30342C8235EE15800E0BF0A /* ExtensionUIButton.swift in Sources */,
+				F8592628279A9D7700EBEF55 /* PenetrationRatiosInteractor.swift in Sources */,
 				F8E5D280246E9B72005876CE /* TeleConsultationVC.swift in Sources */,
 				E30342CA235EE15800E0BF0A /* ExtensionUITableView.swift in Sources */,
 				E30601D2237EAA7A00988EEC /* ClientInformationPresenter.swift in Sources */,
@@ -2382,9 +2627,16 @@
 				F85EE67424BDA50E001D9B0F /* ListingInteractor.swift in Sources */,
 				44E10BA32797C98100F88DA2 /* EarningsFilterModels.swift in Sources */,
 				E30342CB235EE15800E0BF0A /* ExtensionString.swift in Sources */,
+				F8592652279E75B100EBEF55 /* TechnicianDashboardInteractor.swift in Sources */,
 				E3034117235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.swift in Sources */,
+				F8592636279A9D9100EBEF55 /* ResourceUtilisationViewController.swift in Sources */,
+				F8592615279A9D6600EBEF55 /* ProductivityWorker.swift in Sources */,
+				F8592650279E75B100EBEF55 /* TechnicianDashboardModels.swift in Sources */,
+				F8592619279A9D6600EBEF55 /* ProductivityInteractor.swift in Sources */,
 				44E10BA52797C9AC00F88DA2 /* EarningsFilterInteractor.swift in Sources */,
 				E3DB6856238CEE4A00CC569D /* TermsAndConditionsWorker.swift in Sources */,
+				F85925F6279A9D2F00EBEF55 /* FootfallPresenter.swift in Sources */,
+				F8592605279A9D4F00EBEF55 /* CustomerEngagementPresenter.swift in Sources */,
 				F8F0ACC2242DF96A00F0AB61 /* LocationManager.swift in Sources */,
 				E30342C9235EE15800E0BF0A /* ExtensionUIView.swift in Sources */,
 				E30342C4235EE15800E0BF0A /* AnyEncodable.swift in Sources */,
@@ -2404,19 +2656,23 @@
 				44E10BBC2797D19600F88DA2 /* DateFilterModels.swift in Sources */,
 				442A94D12791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.swift in Sources */,
 				F8B8729D24629FD10031DC97 /* RequestDetailsWorker.swift in Sources */,
+				F8592634279A9D9100EBEF55 /* ResourceUtilisationRouter.swift in Sources */,
 				E30601D3237EAA7A00988EEC /* ClientInformationVC.swift in Sources */,
 				E3CEA5CF23CC736F00DD213F /* AddNewNoteVC.swift in Sources */,
+				F8592625279A9D7700EBEF55 /* PenetrationRatiosRouter.swift in Sources */,
 				E3CEA5BB23CC57B200DD213F /* AllReviewsVC.swift in Sources */,
 				E30341F3235EE14000E0BF0A /* EmployeeListingWorker.swift in Sources */,
 				E30342F5235EE58300E0BF0A /* AppointmentWorker.swift in Sources */,
 				E30601BB237EAA4D00988EEC /* RevenueModels.swift in Sources */,
 				E3CD503523713C3600DE106E /* TermsAndConditionsVC.swift in Sources */,
 				E3DB685B238CEF7C00CC569D /* GenericClass.swift in Sources */,
+				F85925D7279A9D0200EBEF55 /* SalesRouter.swift in Sources */,
 				E30340B6235EE11C00E0BF0A /* NotificationCell.swift in Sources */,
 				F858F0F8263BD2B500761A42 /* UIGradientExtension.swift in Sources */,
 				F838D9052437058300FDA998 /* SOSAlertWorker.swift in Sources */,
 				F8252E8C25B01D5600F0E178 /* AppointmentFilterVC.swift in Sources */,
 				F8E5D27E246E9B72005876CE /* TeleConsultationModels.swift in Sources */,
+				F85925F7279A9D2F00EBEF55 /* FootfallWorker.swift in Sources */,
 				E30341F8235EE14000E0BF0A /* DashboardPresenter.swift in Sources */,
 				E30341EC235EE14000E0BF0A /* MoreModulePresenter.swift in Sources */,
 				E30342DC235EE15800E0BF0A /* ContactsHelper.swift in Sources */,
@@ -2432,16 +2688,22 @@
 				F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */,
 				442A94CD2791EB8600C31DDC /* CTCBreakUpTableViewCell.swift in Sources */,
 				442A94D92791F1AD00C31DDC /* DashboardTotalRevenueVC.swift in Sources */,
+				F85925D9279A9D0200EBEF55 /* SalesViewController.swift in Sources */,
 				E30341ED235EE14000E0BF0A /* NotificationsModels.swift in Sources */,
 				E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */,
 				E33BA97D23FD4CE400AABFE2 /* NotificationDetailsCell.swift in Sources */,
 				E30341EE235EE14000E0BF0A /* NotificationsPresenter.swift in Sources */,
 				E30342C5235EE15800E0BF0A /* UserDefaultKeys.swift in Sources */,
+				F85925E7279A9D1900EBEF55 /* FreeServicesPresenter.swift in Sources */,
 				E3CEA5BD23CC57B200DD213F /* AllReviewsModulePresenter.swift in Sources */,
 				E30342CC235EE15800E0BF0A /* ExtensionTextField.swift in Sources */,
 				E30340B1235EE11C00E0BF0A /* MyProfileCell.swift in Sources */,
 				E3034112235EE11C00E0BF0A /* HeaderViewWithAdCell.swift in Sources */,
+				F8592637279A9D9100EBEF55 /* ResourceUtilisationInteractor.swift in Sources */,
+				F8592623279A9D7700EBEF55 /* PenetrationRatiosPresenter.swift in Sources */,
+				F8592651279E75B100EBEF55 /* TechnicianDashboardViewController.swift in Sources */,
 				F8804EC624481BA300DEAA82 /* TagViewCell.swift in Sources */,
+				F8592608279A9D4F00EBEF55 /* CustomerEngagementModels.swift in Sources */,
 				F8CE55E92461696A00FF9487 /* RequestDetailsCell.swift in Sources */,
 				E30601D1237EAA7A00988EEC /* ClientInformationInteractor.swift in Sources */,
 				E30342CE235EE15800E0BF0A /* ExtensionGeneric.swift in Sources */,
@@ -2449,12 +2711,14 @@
 				E30601CC237EAA7A00988EEC /* AppointmentDetailsModels.swift in Sources */,
 				E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */,
 				E30342C0235EE15800E0BF0A /* KeyboardAnimation.swift in Sources */,
+				F85925FB279A9D2F00EBEF55 /* FootfallInteractor.swift in Sources */,
 				F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */,
 				F87C337124DD515A00318662 /* PowerBIReportModels.swift in Sources */,
 				E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */,
 				F8784FCD244D722700104BE8 /* ApprovalRequestListVC.swift in Sources */,
 				E30342B4235EE15800E0BF0A /* JSONANYHandling.swift in Sources */,
 				F840D18E24B4BAE50065F795 /* AppVersionCell.swift in Sources */,
+				F859264E279E75B100EBEF55 /* TechnicianDashboardWorker.swift in Sources */,
 				E30341E1235EE14000E0BF0A /* MyProfileWorker.swift in Sources */,
 				E30341F2235EE14000E0BF0A /* EmployeeListingModels.swift in Sources */,
 				E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */,
@@ -2462,11 +2726,15 @@
 				F8A9733B24A4D16900E9C5CA /* ServerUnderMaintenanceModuleVC.swift in Sources */,
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
 				F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */,
+				F8592614279A9D6600EBEF55 /* ProductivityPresenter.swift in Sources */,
 				E3060168237EA49200988EEC /* ServiceHistoryCell.swift in Sources */,
 				44FBC62927904A8F0068B3C6 /* DashboardListVC.swift in Sources */,
 				E3CD502623713C3600DE106E /* LoginOTPModuleVC.swift in Sources */,
 				F8252E7825B01D5600F0E178 /* AppointmentFilterWorker.swift in Sources */,
+				F8592609279A9D4F00EBEF55 /* CustomerEngagementViewController.swift in Sources */,
+				F859264D279E75B100EBEF55 /* TechnicianDashboardPresenter.swift in Sources */,
 				F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */,
+				F8592632279A9D9100EBEF55 /* ResourceUtilisationPresenter.swift in Sources */,
 				E30342D0235EE15800E0BF0A /* ExtentionViewcontroller.swift in Sources */,
 				E30341E2235EE14000E0BF0A /* MyProfileVC.swift in Sources */,
 				E306013F237E9C8800988EEC /* RevenueCell.swift in Sources */,
@@ -2658,6 +2926,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = DYKT5CBF5Z;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2683,6 +2952,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3B26WTCHRP;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2858,6 +3128,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = DYKT5CBF5Z;
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

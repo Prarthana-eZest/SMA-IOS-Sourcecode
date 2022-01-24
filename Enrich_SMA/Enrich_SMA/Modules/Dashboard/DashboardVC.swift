@@ -70,7 +70,8 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
         super.viewDidLoad()
         tableView.register(UINib(nibName: CellIdentifier.dashboardProfileCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.dashboardProfileCell)
         tableView.register(UINib(nibName: CellIdentifier.yourTargetRevenueCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.yourTargetRevenueCell)
-
+        tableView.register(UINib(nibName: CellIdentifier.incentiveDashboardCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.incentiveDashboardCell)
+        
         tableView.contentInset = UIEdgeInsets(top: -44, left: 0, bottom: 0, right: 0)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.width, bottom: 0, right: 0)
     }
@@ -85,7 +86,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
     func configureSections() {
         sections.removeAll()
         sections.append(configureSection(idetifier: .dashboardProfile, items: 1, data: []))
-        //sections.append(configureSection(idetifier: .targetRevenue, items: 1, data: []))
+        sections.append(configureSection(idetifier: .technicianDashboard, items: 1, data: []))
         tableView.reloadData()
         print("Reload tableview")
     }
@@ -150,6 +151,24 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
             }
         }
 
+    }
+    
+    //Get reveneue dashboard data
+    func getRevenueDashboard() {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        let request = Dashboard.GetRevenueDashboard.Request()
+        interactor?.getRevenueDashboard(request: request)
+    }
+}
+
+extension DashboardVC: IncentiveDashboardDelegate {
+    
+    func actionTechnicianNext() {
+        getRevenueDashboard()
+    }
+    
+    func actionEarningsNext() {
+       // getEarningsDashboard()
     }
 }
 
@@ -222,8 +241,18 @@ extension DashboardVC {
                 showAlert(alertTitle: alertTitle, alertMessage: model.message)
             }
         }
+        else if let model = viewModel as? Dashboard.GetRevenueDashboard.Response {
+            EZLoadingActivity.hide()
+            print("Revenue : \(model)")
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(encodable: model, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            userDefaults.synchronize()
+            
+            let vc = TechnicianDashboardViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-
+    
     func displayError(errorMessage: String?) {
         EZLoadingActivity.hide()
         print("Failed: \(errorMessage ?? "")")
@@ -303,6 +332,13 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let data = sections[section]
+        if data.identifier == .revenueTrend {
+            return data.items
+        }
+        else if data.identifier == .productivity {
+            return data.items
+        }
         return 1
     }
 
@@ -329,6 +365,18 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
             cell.configureCell(selectedIndex: selectedRevenueIndex, data: selectedRevenueIndex == 0 ? dailyData : monthlyData)
             cell.selectionStyle = .none
             return cell
+            
+        case .technicianDashboard:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.incentiveDashboardCell, for: indexPath) as? IncentiveDashboardCell else {
+                return UITableViewCell()
+            }
+            cell.delegate = self
+            //changing from .lsitView to .gridView to show two buttons for dashboards
+            cell.viewType = .gridView
+            cell.configureCell()
+            cell.selectionStyle = .none
+            return cell
+            
         default:
             return UITableViewCell()
         }
@@ -336,7 +384,16 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        let data = sections[indexPath.section]
+
+        switch data.identifier {
+        case .technicianDashboard:
+            return 150
+       
+        default:
+            return UITableView.automaticDimension
+        }
+       
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -364,6 +421,13 @@ extension DashboardVC {
 
         case .targetRevenue:
 
+            return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth,
+                                        showHeader: false, showFooter: false, headerHeight: 0, footerHeight: 0,
+                                        leftMargin: 0, rightMarging: 0, isPagingEnabled: false,
+                                        textFont: nil, textColor: .black, items: items, identifier: idetifier, data: data)
+            
+        case .technicianDashboard:
+            
             return SectionConfiguration(title: idetifier.rawValue, subTitle: "", cellHeight: cellHeight, cellWidth: cellWidth,
                                         showHeader: false, showFooter: false, headerHeight: 0, footerHeight: 0,
                                         leftMargin: 0, rightMarging: 0, isPagingEnabled: false,
