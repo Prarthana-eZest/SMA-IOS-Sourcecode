@@ -39,7 +39,14 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
         } else {
             self.stackViewsubTitleContainer.isHidden = false
             self.lblSubTitle.isHidden = false
-            self.lblSubTitle.text = "\(income)"
+            if(income == 0.0)
+            {
+                self.stackViewsubTitleContainer.isHidden = true
+            }
+            else {
+                self.stackViewsubTitleContainer.isHidden = false
+            self.lblSubTitle.text = income.roundedStringValue()
+            }
         }
         gradientLayer.colors = [UIColor(hexString: firstColorCodeArray[currentIndex]).cgColor, UIColor(hexString: secondColorCodeArray[currentIndex]).cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)

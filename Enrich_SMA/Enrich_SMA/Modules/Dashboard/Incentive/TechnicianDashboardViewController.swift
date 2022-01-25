@@ -28,6 +28,9 @@ enum platform {
     static let CMA = "CMA"
     
 }
+enum EarningViewType {
+    case list, grid, earnings
+}
 
 protocol TechnicianDashboardDisplayLogic: class
 {
@@ -38,7 +41,7 @@ class TechnicianDashboardViewController: UIViewController, TechnicianDashboardDi
 {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    var viewType : EarningViewType = .grid
     var interactor: TechnicianDashboardBusinessLogic?
     var router: (NSObjectProtocol & TechnicianDashboardRoutingLogic & TechnicianDashboardDataPassing)?
     
@@ -330,6 +333,14 @@ extension TechnicianDashboardViewController : UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        switch indexPath.row {
+        case 0:
+            let vc = RevenuesViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            let vc = RevenuesViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

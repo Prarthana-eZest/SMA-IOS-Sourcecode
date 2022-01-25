@@ -336,6 +336,18 @@
 		F8592651279E75B100EBEF55 /* TechnicianDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264B279E75B100EBEF55 /* TechnicianDashboardViewController.swift */; };
 		F8592652279E75B100EBEF55 /* TechnicianDashboardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */; };
 		F85926B1279FB77E00EBEF55 /* ExtensionDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926B0279FB77D00EBEF55 /* ExtensionDouble.swift */; };
+		F85926D7279FE18100EBEF55 /* IncentiveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926D6279FE18100EBEF55 /* IncentiveHelper.swift */; };
+		F85926E5279FE20100EBEF55 /* RevenuesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926DF279FE20100EBEF55 /* RevenuesPresenter.swift */; };
+		F85926E6279FE20100EBEF55 /* RevenuesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926E0279FE20100EBEF55 /* RevenuesWorker.swift */; };
+		F85926E7279FE20100EBEF55 /* RevenuesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926E1279FE20100EBEF55 /* RevenuesRouter.swift */; };
+		F85926E8279FE20100EBEF55 /* RevenuesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926E2279FE20100EBEF55 /* RevenuesModels.swift */; };
+		F85926E9279FE20100EBEF55 /* RevenuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926E3279FE20100EBEF55 /* RevenuesViewController.swift */; };
+		F85926EA279FE20100EBEF55 /* RevenuesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926E4279FE20100EBEF55 /* RevenuesInteractor.swift */; };
+		F85926F4279FE46D00EBEF55 /* EarningDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926F2279FE46D00EBEF55 /* EarningDetailsCell.swift */; };
+		F85926F5279FE46D00EBEF55 /* EarningDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F85926F3279FE46D00EBEF55 /* EarningDetailsCell.xib */; };
+		F85926FB279FE65100EBEF55 /* EarningDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926F9279FE65100EBEF55 /* EarningDetailsHeaderCell.swift */; };
+		F85926FC279FE65100EBEF55 /* EarningDetailsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */; };
+		F8592701279FE71A00EBEF55 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592700279FE71A00EBEF55 /* DateValueFormatter.swift */; };
 		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
 		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
@@ -751,6 +763,18 @@
 		F859264B279E75B100EBEF55 /* TechnicianDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardViewController.swift; sourceTree = "<group>"; };
 		F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardInteractor.swift; sourceTree = "<group>"; };
 		F85926B0279FB77D00EBEF55 /* ExtensionDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDouble.swift; sourceTree = "<group>"; };
+		F85926D6279FE18100EBEF55 /* IncentiveHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncentiveHelper.swift; sourceTree = "<group>"; };
+		F85926DF279FE20100EBEF55 /* RevenuesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenuesPresenter.swift; sourceTree = "<group>"; };
+		F85926E0279FE20100EBEF55 /* RevenuesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenuesWorker.swift; sourceTree = "<group>"; };
+		F85926E1279FE20100EBEF55 /* RevenuesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenuesRouter.swift; sourceTree = "<group>"; };
+		F85926E2279FE20100EBEF55 /* RevenuesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenuesModels.swift; sourceTree = "<group>"; };
+		F85926E3279FE20100EBEF55 /* RevenuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenuesViewController.swift; sourceTree = "<group>"; };
+		F85926E4279FE20100EBEF55 /* RevenuesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenuesInteractor.swift; sourceTree = "<group>"; };
+		F85926F2279FE46D00EBEF55 /* EarningDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningDetailsCell.swift; sourceTree = "<group>"; };
+		F85926F3279FE46D00EBEF55 /* EarningDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarningDetailsCell.xib; sourceTree = "<group>"; };
+		F85926F9279FE65100EBEF55 /* EarningDetailsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningDetailsHeaderCell.swift; sourceTree = "<group>"; };
+		F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarningDetailsHeaderCell.xib; sourceTree = "<group>"; };
+		F8592700279FE71A00EBEF55 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
 		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
@@ -939,6 +963,7 @@
 			isa = PBXGroup;
 			children = (
 				44E10BC62797DC7F00F88DA2 /* FormatterUtils.swift */,
+				F8592700279FE71A00EBEF55 /* DateValueFormatter.swift */,
 			);
 			path = Formatter;
 			sourceTree = "<group>";
@@ -1116,6 +1141,7 @@
 		E3034036235EE11B00E0BF0A /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				F85926F1279FE44B00EBEF55 /* Dashboard cells */,
 				44FBC62A27904E1B0068B3C6 /* DashboardList */,
 				E3034038235EE11B00E0BF0A /* DashboardProfileCell.swift */,
 				E303403A235EE11B00E0BF0A /* DashboardProfileCell.xib */,
@@ -1309,6 +1335,7 @@
 		E303426B235EE15700E0BF0A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				F85926D2279FE15A00EBEF55 /* Incentive Helper */,
 				44E10BC52797DC7400F88DA2 /* Formatter */,
 				F858F0F3263BD29000761A42 /* Gradient */,
 				F84DBEEA2462F6C70036DF42 /* KeyChain */,
@@ -1899,6 +1926,7 @@
 				F8592649279E75B100EBEF55 /* TechnicianDashboardRouter.swift */,
 				F859264A279E75B100EBEF55 /* TechnicianDashboardModels.swift */,
 				F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */,
+				F85926DB279FE1E000EBEF55 /* Revenues */,
 				F85925C8279A9B7B00EBEF55 /* Sales */,
 				F85925C9279A9BBC00EBEF55 /* Free Services */,
 				F85925CA279A9BFD00EBEF55 /* Footfall */,
@@ -1999,6 +2027,38 @@
 				F8592631279A9D9100EBEF55 /* ResourceUtilisationInteractor.swift */,
 			);
 			path = "Resource Utilisation";
+			sourceTree = "<group>";
+		};
+		F85926D2279FE15A00EBEF55 /* Incentive Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F85926D6279FE18100EBEF55 /* IncentiveHelper.swift */,
+			);
+			path = "Incentive Helper";
+			sourceTree = "<group>";
+		};
+		F85926DB279FE1E000EBEF55 /* Revenues */ = {
+			isa = PBXGroup;
+			children = (
+				F85926E3279FE20100EBEF55 /* RevenuesViewController.swift */,
+				F85926DF279FE20100EBEF55 /* RevenuesPresenter.swift */,
+				F85926E0279FE20100EBEF55 /* RevenuesWorker.swift */,
+				F85926E1279FE20100EBEF55 /* RevenuesRouter.swift */,
+				F85926E2279FE20100EBEF55 /* RevenuesModels.swift */,
+				F85926E4279FE20100EBEF55 /* RevenuesInteractor.swift */,
+			);
+			path = Revenues;
+			sourceTree = "<group>";
+		};
+		F85926F1279FE44B00EBEF55 /* Dashboard cells */ = {
+			isa = PBXGroup;
+			children = (
+				F85926F2279FE46D00EBEF55 /* EarningDetailsCell.swift */,
+				F85926F3279FE46D00EBEF55 /* EarningDetailsCell.xib */,
+				F85926F9279FE65100EBEF55 /* EarningDetailsHeaderCell.swift */,
+				F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */,
+			);
+			path = "Dashboard cells";
 			sourceTree = "<group>";
 		};
 		F8784FBC244D71ED00104BE8 /* Approval Flow */ = {
@@ -2233,6 +2293,7 @@
 				E3033FEF235EDF6900E0BF0A /* LaunchScreen.storyboard in Resources */,
 				E3034263235EE14700E0BF0A /* FuturaPTCondBoldOblique.otf in Resources */,
 				E30342EB235EE3C100E0BF0A /* Appointment.storyboard in Resources */,
+				F85926FC279FE65100EBEF55 /* EarningDetailsHeaderCell.xib in Resources */,
 				F8804EBC244817FE00DEAA82 /* AddNotesCell.xib in Resources */,
 				E3034261235EE14700E0BF0A /* FuturaPTHeavy.otf in Resources */,
 				E33BA97C23FD4CE400AABFE2 /* NotificationDetailsCell.xib in Resources */,
@@ -2274,6 +2335,7 @@
 				F859263C279A9DD500EBEF55 /* Incentives.storyboard in Resources */,
 				E3034267235EE14700E0BF0A /* NotoSerif-BoldItalic.ttf in Resources */,
 				442A94D22791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.xib in Resources */,
+				F85926F5279FE46D00EBEF55 /* EarningDetailsCell.xib in Resources */,
 				44E10BC32797D43900F88DA2 /* SelectFilterDateRangeCell.xib in Resources */,
 				F8F2E5DA25B1A4AD00BBF0C8 /* StatusFilterCell.xib in Resources */,
 				E3034252235EE14700E0BF0A /* FuturaPTExtraBold.otf in Resources */,
@@ -2474,6 +2536,7 @@
 				E30341FB235EE14000E0BF0A /* DashboardVC.swift in Sources */,
 				E30341E0235EE14000E0BF0A /* MyProfileModels.swift in Sources */,
 				E30342BB235EE15800E0BF0A /* APIErrorModel.swift in Sources */,
+				F85926EA279FE20100EBEF55 /* RevenuesInteractor.swift in Sources */,
 				44E10BAF2797CB1400F88DA2 /* PackageFilterCell.swift in Sources */,
 				F8784FBF244D720900104BE8 /* ApprovalRequestCell.swift in Sources */,
 				E30340B0235EE11C00E0BF0A /* MyProfileHeaderCell.swift in Sources */,
@@ -2522,6 +2585,7 @@
 				E38B0FB5237D7764004E2C82 /* ExtensionAppDelegate.swift in Sources */,
 				E30342BF235EE15800E0BF0A /* ErrorCodeHandlerClass.swift in Sources */,
 				F8592633279A9D9100EBEF55 /* ResourceUtilisationWorker.swift in Sources */,
+				F85926FB279FE65100EBEF55 /* EarningDetailsHeaderCell.swift in Sources */,
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E3CEA5BF23CC57B200DD213F /* AllReviewsModuleWorker.swift in Sources */,
 				44E10BBA2797D19600F88DA2 /* DateFilterPresenter.swift in Sources */,
@@ -2529,11 +2593,13 @@
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
 				F80AD9F2244074EC0041FCA4 /* YPDrawSignatureView.swift in Sources */,
 				E30341F6235EE14000E0BF0A /* EmployeeListingVC.swift in Sources */,
+				F85926E6279FE20100EBEF55 /* RevenuesWorker.swift in Sources */,
 				F8592606279A9D4F00EBEF55 /* CustomerEngagementWorker.swift in Sources */,
 				E30341EF235EE14000E0BF0A /* NotificationsWorker.swift in Sources */,
 				E30601CF237EAA7A00988EEC /* AppointmentDetailsInteractor.swift in Sources */,
 				F8804EBB244817FE00DEAA82 /* SignatureCell.swift in Sources */,
 				44E10BC72797DC7F00F88DA2 /* FormatterUtils.swift in Sources */,
+				F85926D7279FE18100EBEF55 /* IncentiveHelper.swift in Sources */,
 				E30341E4235EE14000E0BF0A /* MyProfileInteractor.swift in Sources */,
 				E30342BE235EE15800E0BF0A /* EndPoints.swift in Sources */,
 				F8E5D27F246E9B72005876CE /* CustomerTeleHistoryVC.swift in Sources */,
@@ -2573,7 +2639,9 @@
 				F8592624279A9D7700EBEF55 /* PenetrationRatiosWorker.swift in Sources */,
 				E30601B3237EA88200988EEC /* PointsCell.swift in Sources */,
 				E30342B7235EE15800E0BF0A /* AppConfiguration.swift in Sources */,
+				F85926E9279FE20100EBEF55 /* RevenuesViewController.swift in Sources */,
 				E30342CF235EE15800E0BF0A /* ExtensionNavigationController.swift in Sources */,
+				F85926F4279FE46D00EBEF55 /* EarningDetailsCell.swift in Sources */,
 				44E10BBF2797D38700F88DA2 /* ExtensionDate.swift in Sources */,
 				F85925FA279A9D2F00EBEF55 /* FootfallViewController.swift in Sources */,
 				44E10BB22797CF9F00F88DA2 /* EarningsFilterWorker.swift in Sources */,
@@ -2584,6 +2652,7 @@
 				E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */,
 				E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */,
 				44E10BC42797D43900F88DA2 /* SelectFilterDateRangeCell.swift in Sources */,
+				F85926E5279FE20100EBEF55 /* RevenuesPresenter.swift in Sources */,
 				E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */,
 				E3CEA5BE23CC57B200DD213F /* AllReviewsModuleInteractor.swift in Sources */,
 				442A94D62791EE5D00C31DDC /* ExtensionsInt.swift in Sources */,
@@ -2659,6 +2728,7 @@
 				E30342F7235EE58300E0BF0A /* AppointmentModels.swift in Sources */,
 				44E10BBC2797D19600F88DA2 /* DateFilterModels.swift in Sources */,
 				442A94D12791EBAC00C31DDC /* CTCBreakUpDetailsTableViewCell.swift in Sources */,
+				F8592701279FE71A00EBEF55 /* DateValueFormatter.swift in Sources */,
 				F8B8729D24629FD10031DC97 /* RequestDetailsWorker.swift in Sources */,
 				F8592634279A9D9100EBEF55 /* ResourceUtilisationRouter.swift in Sources */,
 				E30601D3237EAA7A00988EEC /* ClientInformationVC.swift in Sources */,
@@ -2715,6 +2785,7 @@
 				E30601CC237EAA7A00988EEC /* AppointmentDetailsModels.swift in Sources */,
 				E30340BB235EE11C00E0BF0A /* EmployeeCell.swift in Sources */,
 				E30342C0235EE15800E0BF0A /* KeyboardAnimation.swift in Sources */,
+				F85926E7279FE20100EBEF55 /* RevenuesRouter.swift in Sources */,
 				F85925FB279A9D2F00EBEF55 /* FootfallInteractor.swift in Sources */,
 				F838D90B243705C000FDA998 /* SOSAlertVC.swift in Sources */,
 				F87C337124DD515A00318662 /* PowerBIReportModels.swift in Sources */,
@@ -2727,6 +2798,7 @@
 				E30341F2235EE14000E0BF0A /* EmployeeListingModels.swift in Sources */,
 				E3033FE2235EDF6400E0BF0A /* AppDelegate.swift in Sources */,
 				E3CD502823713C3600DE106E /* LoginOTPModulePresenter.swift in Sources */,
+				F85926E8279FE20100EBEF55 /* RevenuesModels.swift in Sources */,
 				F8A9733B24A4D16900E9C5CA /* ServerUnderMaintenanceModuleVC.swift in Sources */,
 				E30342CD235EE15800E0BF0A /* ExtensionUILabel.swift in Sources */,
 				F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */,

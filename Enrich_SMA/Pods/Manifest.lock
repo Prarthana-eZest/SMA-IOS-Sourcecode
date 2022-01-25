@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.8.2)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - Cosmos (19.0.3)
   - Firebase/Core (6.18.0):
     - Firebase/CoreOnly
@@ -98,6 +101,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Charts
   - Cosmos
   - Firebase/Core
   - Firebase/Crashlytics
@@ -107,8 +111,9 @@ DEPENDENCIES:
   - TagListView (~> 1.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
+    - Charts
     - Cosmos
     - Firebase
     - FirebaseAnalytics
@@ -133,6 +138,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
   FirebaseAnalytics: 058d71e714a1a6804d9e0f25e3bb18e377a51579
@@ -155,6 +161,6 @@ SPEC CHECKSUMS:
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
 
-PODFILE CHECKSUM: 76425120287ecb1386024af05cecef5c5588e911
+PODFILE CHECKSUM: 400273790753f8519c1d7c13cf2424e374842b6f
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

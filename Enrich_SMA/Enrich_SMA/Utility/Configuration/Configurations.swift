@@ -63,6 +63,10 @@ enum CellIdentifier {
     static let dashboardTableViewCell = "DashboardTableViewCell"
     static let dashboardGridCollectionViewCell = "DashboardGridCollectionViewCell"
     
+    //Dashboard - Revenue Native screen
+    static let earningDetailsCell = "EarningDetailsCell"
+    static let earningDetailsHeaderCell = "EarningDetailsHeaderCell"
+    
     
     // Appointment
     static let todaysAppointmentHeaderCell = "TodaysAppointmentHeaderCell"

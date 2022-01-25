@@ -174,3 +174,61 @@ extension UIViewController {
     }
 
 }
+
+//MARK:- Graph Common Functions
+extension UIViewController {
+    
+    func xAxisUnits(forDateRange dateRange:DateRange, rangeType: DateRangeType) -> [String] {
+        switch rangeType
+        {
+        case .yesterday, .today, .mtd:
+            return dateRange.end.endOfMonth.dayDates(from: dateRange.start.startOfMonth, withFormat: "d")
+            
+        case .week:
+            return dateRange.end.dayDates(from: dateRange.start, withFormat: "d")
+            
+        case .qtd, .ytd:
+            return dateRange.end.monthNames(from: dateRange.start,withFormat: "MMM yy")
+            
+        case .cutome:
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                return dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            }
+            else {
+                return dateRange.end.dayDates(from: dateRange.start, withFormat: "d")
+            }
+        }
+    }
+    
+    func xAxisUnitsEarnings(forDateRange dateRange:DateRange, rangeType: DateRangeType) -> [String] {
+        switch rangeType
+        {
+        case .yesterday, .today, .mtd:
+            return dateRange.end.monthNames(from: dateRange.start,withFormat: "MMM yy")
+            
+        case .week:
+            return dateRange.end.dayDates(from: dateRange.start, withFormat: "d")
+            
+        case .qtd:
+            if(dateRange.start.monthName == dateRange.end.monthName){
+                var dateRangeUpdate = DateRange(dateRange.start, dateRange.end)
+                dateRangeUpdate.end = Date.today.nextQuarter()
+                return dateRangeUpdate.end.monthNames(from: dateRangeUpdate.start,withFormat: "MMM yy")
+            }
+            return dateRange.end.monthNames(from: dateRange.start,withFormat: "MMM yy")
+        
+        case .ytd:
+                return dateRange.end.monthNames(from: dateRange.start,withFormat: "MMM yy")
+            
+        case .cutome:
+           // if dateRange.end.days(from: dateRange.start) > 31
+//            {
+                return dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+//            }
+//            else {
+//                return dateRange.end.dayDates(from: dateRange.start, withFormat: "d")
+//            }
+        }
+    }
+}

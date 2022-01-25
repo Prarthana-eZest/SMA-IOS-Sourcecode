@@ -61,7 +61,7 @@ extension UIViewController {
     }
     
     @objc func gotoFilterPage(){
-        
+        print("list grid view changed")
     }
     
 }

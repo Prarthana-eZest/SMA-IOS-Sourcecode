@@ -622,6 +622,85 @@
             </objects>
             <point key="canvasLocation" x="3190" y="-597"/>
         </scene>
+        <!--Revenues View Controller-->
+        <scene sceneID="afn-ht-wep">
+            <objects>
+                <viewController storyboardIdentifier="RevenuesViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DsJ-gP-xFI" customClass="RevenuesViewController" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AZQ-0w-CEA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="Syx-fU-SEv">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6FX-iJ-Bdf" userLabel="View Seprator">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="1"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="SNV-wS-wzK"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="1.5" height="1.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.25098039220000001" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-99-hG9">
+                                        <rect key="frame" x="0.0" y="46" width="414" height="850"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nNP-Xk-WUt">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="830"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="DsJ-gP-xFI" id="kht-rq-stf"/>
+                                                    <outlet property="delegate" destination="DsJ-gP-xFI" id="cSi-Pq-lpd"/>
+                                                </connections>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="nNP-Xk-WUt" secondAttribute="bottom" constant="20" id="8hg-MG-hkr"/>
+                                            <constraint firstAttribute="trailing" secondItem="nNP-Xk-WUt" secondAttribute="trailing" id="i1y-N7-Dtq"/>
+                                            <constraint firstItem="nNP-Xk-WUt" firstAttribute="leading" secondItem="ug1-99-hG9" secondAttribute="leading" id="ifT-qj-uCl"/>
+                                            <constraint firstItem="nNP-Xk-WUt" firstAttribute="top" secondItem="ug1-99-hG9" secondAttribute="top" id="wpH-ud-OU8"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="STH-Lt-yK0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6FX-iJ-Bdf" firstAttribute="top" secondItem="STH-Lt-yK0" secondAttribute="top" id="1P7-19-VaY"/>
+                                    <constraint firstAttribute="trailing" secondItem="6FX-iJ-Bdf" secondAttribute="trailing" id="5TP-If-uCM"/>
+                                    <constraint firstAttribute="bottom" secondItem="ug1-99-hG9" secondAttribute="bottom" id="7ti-v3-GPZ"/>
+                                    <constraint firstItem="ug1-99-hG9" firstAttribute="trailing" secondItem="STH-Lt-yK0" secondAttribute="trailing" id="AyL-Up-1hQ"/>
+                                    <constraint firstItem="6FX-iJ-Bdf" firstAttribute="leading" secondItem="Syx-fU-SEv" secondAttribute="leading" id="JCI-AK-7eP"/>
+                                    <constraint firstItem="ug1-99-hG9" firstAttribute="top" secondItem="6FX-iJ-Bdf" secondAttribute="bottom" constant="1" id="VLX-qH-xft"/>
+                                    <constraint firstItem="ug1-99-hG9" firstAttribute="leading" secondItem="STH-Lt-yK0" secondAttribute="leading" id="pNh-H1-qal"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w9q-fc-wZj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="nNP-Xk-WUt" id="Vn1-14-4Ze"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s5v-W4-s1R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-283" y="721"/>
+        </scene>
     </scenes>
     <resources>
         <image name="RevenueDashboard_Black" width="68" height="67"/>
