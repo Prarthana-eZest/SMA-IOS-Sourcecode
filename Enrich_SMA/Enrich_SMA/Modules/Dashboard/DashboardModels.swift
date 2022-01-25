@@ -103,14 +103,14 @@ enum Dashboard {
         struct Response : Codable {
             let status : Bool?
             let message : String?
-            let data : Data?
+            let data : DataClass?
         }
         
-        struct Data : Codable {
+        struct DataClass : Codable {
             let configuration : Configuration?
             let filters : Filters?
             let total_revenue_transactions : Double?
-            let revenue_transactions : [Revenue_transactions]?
+            let revenue_transactions : [Revenue_transaction]?
             let total_rm_consumption_count : Double?
             let rm_consumption : [Rm_consumption]?
             let total_quality_score_count : Double?
@@ -143,13 +143,13 @@ enum Dashboard {
             let penetration_ratios : [Penetration_ratios]?
         }
         
-        struct Revenue_transactions : Codable {
+        struct Revenue_transaction : Codable {
             let salon_code : String?
             let salon_name : String?
             let date : String?
-            let employee_id : Double?
+            let employee_id : Int?
             let employee_code : String?
-            let customer_id : Double?
+            let customer_id : Int?
             let customer_name : String?
             let order_number : String?
             let invoice_number : String?
@@ -188,6 +188,10 @@ enum Dashboard {
             let service_package_count : Double?
             let service_package_revenue : Double?
             let free_service_revenue : Double?
+            
+            lazy var formmatedDate: String = {
+                return String()
+            }()
         }
         
         struct Rm_consumption : Codable {
@@ -197,7 +201,7 @@ enum Dashboard {
         }
         
         struct Quality_score_data : Codable {
-            let id : Double?
+            let id : Int?
             let audit_number : String?
             let score : Double?
             let category_code : String?
@@ -207,7 +211,7 @@ enum Dashboard {
         }
         
         struct Attendance_data : Codable {
-            let id : Double?
+            let id : Int?
             let employee_code : String?
             let salon_code : String?
             let attendance : String?

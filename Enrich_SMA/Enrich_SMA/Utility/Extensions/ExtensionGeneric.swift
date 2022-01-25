@@ -418,3 +418,13 @@ extension Bundle {
     }
 
 }
+
+extension String
+{
+    func date(format: String = "yyyy-MM-dd") -> Date?
+    {
+        let formatter = Utils.dateFormatter
+        formatter.dateFormat = format
+        return formatter.date(from: self)
+    }
+}

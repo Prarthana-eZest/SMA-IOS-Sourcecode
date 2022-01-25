@@ -29,12 +29,18 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func configureSection(currentIndex:Int, income:Float){
+    func configureSection(currentIndex:Int, income:Double){
         
         self.dashViewImageView.image = UIImage(named: self.dashViewImageArray[currentIndex])
         self.lblTitle.text = self.titleArray[currentIndex]
-        self.lblSubTitle.text = "\(income)"
-        
+        if(currentIndex == 4 || currentIndex == 5 || currentIndex == 6 || currentIndex == 7)
+        {
+            self.lblSubTitle.isHidden = true
+        }
+        else {
+            self.lblSubTitle.isHidden = false
+        self.lblSubTitle.text = "\u{20B9}"+"\(income)"
+        }
         gradientLayer.colors = [UIColor(hexString: firstColorCodeArray[currentIndex]).cgColor, UIColor(hexString: secondColorCodeArray[currentIndex]).cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
