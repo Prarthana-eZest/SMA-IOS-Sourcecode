@@ -14,6 +14,7 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dashViewImageView: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
+    @IBOutlet private weak var stackViewsubTitleContainer: UIStackView!
     
     let gradientLayer = CAGradientLayer()
     
@@ -33,13 +34,12 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
         
         self.dashViewImageView.image = UIImage(named: self.dashViewImageArray[currentIndex])
         self.lblTitle.text = self.titleArray[currentIndex]
-        if(currentIndex == 4 || currentIndex == 5 || currentIndex == 6 || currentIndex == 7)
-        {
-            self.lblSubTitle.isHidden = true
-        }
-        else {
+        if 4...7 ~= currentIndex {
+            self.stackViewsubTitleContainer.isHidden = true
+        } else {
+            self.stackViewsubTitleContainer.isHidden = false
             self.lblSubTitle.isHidden = false
-        self.lblSubTitle.text = "\u{20B9}"+"\(income)"
+            self.lblSubTitle.text = "\(income)"
         }
         gradientLayer.colors = [UIColor(hexString: firstColorCodeArray[currentIndex]).cgColor, UIColor(hexString: secondColorCodeArray[currentIndex]).cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
