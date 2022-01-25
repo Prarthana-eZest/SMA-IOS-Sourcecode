@@ -335,6 +335,7 @@
 		F8592650279E75B100EBEF55 /* TechnicianDashboardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264A279E75B100EBEF55 /* TechnicianDashboardModels.swift */; };
 		F8592651279E75B100EBEF55 /* TechnicianDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264B279E75B100EBEF55 /* TechnicianDashboardViewController.swift */; };
 		F8592652279E75B100EBEF55 /* TechnicianDashboardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */; };
+		F85926B1279FB77E00EBEF55 /* ExtensionDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926B0279FB77D00EBEF55 /* ExtensionDouble.swift */; };
 		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
 		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
@@ -749,6 +750,7 @@
 		F859264A279E75B100EBEF55 /* TechnicianDashboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardModels.swift; sourceTree = "<group>"; };
 		F859264B279E75B100EBEF55 /* TechnicianDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardViewController.swift; sourceTree = "<group>"; };
 		F859264C279E75B100EBEF55 /* TechnicianDashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardInteractor.swift; sourceTree = "<group>"; };
+		F85926B0279FB77D00EBEF55 /* ExtensionDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDouble.swift; sourceTree = "<group>"; };
 		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
 		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
@@ -1464,6 +1466,7 @@
 				E3034297235EE15700E0BF0A /* ExtensionNavigationController.swift */,
 				E3034298235EE15700E0BF0A /* ExtentionViewcontroller.swift */,
 				E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */,
+				F85926B0279FB77D00EBEF55 /* ExtensionDouble.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2614,6 +2617,7 @@
 				44E10BAC2797CA1500F88DA2 /* EarningsFilterPresenter.swift in Sources */,
 				F85925F9279A9D2F00EBEF55 /* FootfallModels.swift in Sources */,
 				F859260A279A9D4F00EBEF55 /* CustomerEngagementInteractor.swift in Sources */,
+				F85926B1279FB77E00EBEF55 /* ExtensionDouble.swift in Sources */,
 				E30341F5235EE14000E0BF0A /* EmployeeListingPresenter.swift in Sources */,
 				E30601CD237EAA7A00988EEC /* AppointmentDetailsVC.swift in Sources */,
 				E3E0780A23ACC21F004927D7 /* ServiceListingCell.swift in Sources */,
