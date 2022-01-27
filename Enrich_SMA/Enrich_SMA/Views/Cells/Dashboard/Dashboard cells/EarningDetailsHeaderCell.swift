@@ -59,6 +59,8 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         chartParentView.clipsToBounds = true
         chartParentView.layer.cornerRadius = 8
         chartParentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        gradientView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
     
     @IBAction func actionViewTrendline(_ sender: UIButton) {

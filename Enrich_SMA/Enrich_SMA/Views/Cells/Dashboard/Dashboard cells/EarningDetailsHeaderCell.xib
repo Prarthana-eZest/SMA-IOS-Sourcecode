@@ -26,38 +26,49 @@
                 <rect key="frame" x="0.0" y="0.0" width="389" height="507"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-Kl-hY0" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
-                        <rect key="frame" x="15" y="0.0" width="359" height="383"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-Kl-hY0" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="389" height="383"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-cR-aQs">
-                                <rect key="frame" x="0.0" y="0.0" width="359" height="383"/>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-cR-aQs">
+                                <rect key="frame" x="0.0" y="0.0" width="389" height="383"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2we-3C-4rS">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="126"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="389" height="126"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RevenueWhite" translatesAutoresizingMaskIntoConstraints="NO" id="Hdw-i5-d8Y">
-                                                <rect key="frame" x="276" y="15" width="68" height="68"/>
+                                                <rect key="frame" x="306" y="15" width="68" height="68"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="68" id="B5J-6j-YoS"/>
                                                     <constraint firstAttribute="width" constant="68" id="K9N-2A-hZG"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nf4-tb-Meb">
-                                                <rect key="frame" x="15" y="22" width="246" height="82.5"/>
+                                                <rect key="frame" x="15" y="22" width="276" height="82.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iGe-Pn-03L">
                                                         <rect key="frame" x="0.0" y="0.0" width="108" height="54.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFd-ou-9Zh">
-                                                                <rect key="frame" x="0.0" y="0.0" width="76.5" height="31"/>
-                                                                <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="24"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="tMY-BJ-8sh">
+                                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="31"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTi-8H-F9Q">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="15" height="31"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFd-ou-9Zh">
+                                                                        <rect key="frame" x="17" y="0.0" width="68.5" height="31"/>
+                                                                        <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="24"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCa-Vy-7bd">
                                                                 <rect key="frame" x="0.0" y="31" width="108" height="23.5"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="18"/>
-                                                                <color key="textColor" red="0.16862745100000001" green="0.1647058824" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -67,6 +78,7 @@
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewTreandline" translatesAutoresizingMaskIntoConstraints="NO" id="Tyl-mJ-E1M">
                                                                 <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="18" id="Jdw-nD-stz"/>
                                                                     <constraint firstAttribute="height" constant="18" id="SRb-6b-eZA"/>
@@ -85,7 +97,7 @@
                                                                                 </constraints>
                                                                                 <fontDescription key="fontDescription" name="FuturaPT-Medium" family="Futura PT" pointSize="14"/>
                                                                                 <state key="normal" title="View Trendline">
-                                                                                    <color key="titleColor" red="0.16862745100000001" green="0.1647058824" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </state>
                                                                                 <connections>
                                                                                     <action selector="actionViewTrendline:" destination="Jtm-8O-6cH" eventType="touchUpInside" id="MNs-K0-xZh"/>
@@ -93,7 +105,7 @@
                                                                             </button>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uni-Cu-5Qv">
                                                                                 <rect key="frame" x="0.0" y="17" width="92" height="1"/>
-                                                                                <color key="backgroundColor" red="0.87450980389999999" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="5Yr-La-TC7"/>
                                                                                 </constraints>
@@ -106,6 +118,7 @@
                                                                     </stackView>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow" translatesAutoresizingMaskIntoConstraints="NO" id="Rap-5y-VhJ">
                                                                         <rect key="frame" x="94" y="5" width="8" height="8"/>
+                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="8" id="UXQ-hG-aIR"/>
                                                                             <constraint firstAttribute="height" constant="8" id="kL6-ko-ATj"/>
@@ -128,11 +141,11 @@
                                             <constraint firstItem="Hdw-i5-d8Y" firstAttribute="leading" secondItem="nf4-tb-Meb" secondAttribute="trailing" constant="15" id="h9w-QB-UJh"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NO-QT-EaA">
-                                        <rect key="frame" x="0.0" y="126" width="359" height="257"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NO-QT-EaA">
+                                        <rect key="frame" x="0.0" y="126" width="389" height="257"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-Eg-unv" customClass="CombinedChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="10" width="359" height="247"/>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-Eg-unv" customClass="CombinedChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="10" width="389" height="247"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U70-77-htd">
@@ -217,9 +230,9 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Ay7-Kl-hY0" secondAttribute="trailing" constant="15" id="Hee-Xv-zNf"/>
+                    <constraint firstAttribute="trailing" secondItem="Ay7-Kl-hY0" secondAttribute="trailing" id="Hee-Xv-zNf"/>
                     <constraint firstItem="Ay7-Kl-hY0" firstAttribute="top" secondItem="3Wc-dD-f2O" secondAttribute="top" id="J0K-VR-Fyw"/>
-                    <constraint firstItem="Ay7-Kl-hY0" firstAttribute="leading" secondItem="3Wc-dD-f2O" secondAttribute="leading" constant="15" id="UFw-Go-vG1"/>
+                    <constraint firstItem="Ay7-Kl-hY0" firstAttribute="leading" secondItem="3Wc-dD-f2O" secondAttribute="leading" id="UFw-Go-vG1"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ay7-Kl-hY0" secondAttribute="bottom" constant="10" id="p0E-it-7HK"/>
                 </constraints>
             </tableViewCellContentView>
