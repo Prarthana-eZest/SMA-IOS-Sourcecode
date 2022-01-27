@@ -18,7 +18,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak private var parentView: UIView!
     @IBOutlet weak private var parentViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak private var valueViewWidthConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak private var lblRupee: UILabel!
     
     @IBOutlet weak private var imageDropDown: UIImageView!
     
@@ -96,6 +96,12 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         case .SingleValue:
             singleValueView.backgroundColor = model.earningsType.singleValueTileColor
             lblSingleValueView.text = model.value[0]
+            if(model.earningsType == .FreeServices || model.earningsType == .Footfall){
+                lblRupee.isHidden = true
+            }
+            else {
+                lblRupee.isHidden = false
+            }
         case .DoubleValue:
            break
         case .PackageType:

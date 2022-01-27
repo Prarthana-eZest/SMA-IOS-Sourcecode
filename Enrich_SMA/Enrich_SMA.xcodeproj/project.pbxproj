@@ -356,6 +356,8 @@
 		F859275B27A2A0A100EBEF55 /* PackageFilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275527A2A0A100EBEF55 /* PackageFilterModels.swift */; };
 		F859275C27A2A0A100EBEF55 /* PackageFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275627A2A0A100EBEF55 /* PackageFilterViewController.swift */; };
 		F859275D27A2A0A100EBEF55 /* PackageFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275727A2A0A100EBEF55 /* PackageFilterInteractor.swift */; };
+		F859278927A2C31B00EBEF55 /* EarningDetailsFooterFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859278727A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.swift */; };
+		F859278A27A2C31B00EBEF55 /* EarningDetailsFooterFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F859278827A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.xib */; };
 		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
 		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
@@ -791,6 +793,8 @@
 		F859275527A2A0A100EBEF55 /* PackageFilterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterModels.swift; sourceTree = "<group>"; };
 		F859275627A2A0A100EBEF55 /* PackageFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterViewController.swift; sourceTree = "<group>"; };
 		F859275727A2A0A100EBEF55 /* PackageFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterInteractor.swift; sourceTree = "<group>"; };
+		F859278727A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningDetailsFooterFilterCell.swift; sourceTree = "<group>"; };
+		F859278827A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarningDetailsFooterFilterCell.xib; sourceTree = "<group>"; };
 		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
 		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
@@ -1973,11 +1977,11 @@
 		F85925C9279A9BBC00EBEF55 /* Free Services */ = {
 			isa = PBXGroup;
 			children = (
+				F85925E5279A9D1900EBEF55 /* FreeServicesViewController.swift */,
 				F85925E1279A9D1900EBEF55 /* FreeServicesPresenter.swift */,
 				F85925E2279A9D1900EBEF55 /* FreeServicesWorker.swift */,
 				F85925E3279A9D1900EBEF55 /* FreeServicesRouter.swift */,
 				F85925E4279A9D1900EBEF55 /* FreeServicesModels.swift */,
-				F85925E5279A9D1900EBEF55 /* FreeServicesViewController.swift */,
 				F85925E6279A9D1900EBEF55 /* FreeServicesInteractor.swift */,
 			);
 			path = "Free Services";
@@ -1986,11 +1990,11 @@
 		F85925CA279A9BFD00EBEF55 /* Footfall */ = {
 			isa = PBXGroup;
 			children = (
+				F85925F4279A9D2F00EBEF55 /* FootfallViewController.swift */,
 				F85925F0279A9D2F00EBEF55 /* FootfallPresenter.swift */,
 				F85925F1279A9D2F00EBEF55 /* FootfallWorker.swift */,
 				F85925F2279A9D2F00EBEF55 /* FootfallRouter.swift */,
 				F85925F3279A9D2F00EBEF55 /* FootfallModels.swift */,
-				F85925F4279A9D2F00EBEF55 /* FootfallViewController.swift */,
 				F85925F5279A9D2F00EBEF55 /* FootfallInteractor.swift */,
 			);
 			path = Footfall;
@@ -2076,6 +2080,8 @@
 				F85926F3279FE46D00EBEF55 /* EarningDetailsCell.xib */,
 				F85926F9279FE65100EBEF55 /* EarningDetailsHeaderCell.swift */,
 				F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */,
+				F859278727A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.swift */,
+				F859278827A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.xib */,
 			);
 			path = "Dashboard cells";
 			sourceTree = "<group>";
@@ -2347,6 +2353,7 @@
 				E30340C1235EE11C00E0BF0A /* YourTargetRevenueCell.xib in Resources */,
 				E3034113235EE11C00E0BF0A /* HeaderViewWithSubTitleCell.xib in Resources */,
 				44E10BA92797C9EB00F88DA2 /* EarningCategoryFilterCell.xib in Resources */,
+				F859278A27A2C31B00EBEF55 /* EarningDetailsFooterFilterCell.xib in Resources */,
 				F83CF7DA24C5AEA6007C17C5 /* TeleMarketingCell.xib in Resources */,
 				E306016F237EA49200988EEC /* MembershipStatusCell.xib in Resources */,
 				E3034259235EE14700E0BF0A /* FuturaPTCondBook.otf in Resources */,
@@ -2833,6 +2840,7 @@
 				F8784FCD244D722700104BE8 /* ApprovalRequestListVC.swift in Sources */,
 				E30342B4235EE15800E0BF0A /* JSONANYHandling.swift in Sources */,
 				F840D18E24B4BAE50065F795 /* AppVersionCell.swift in Sources */,
+				F859278927A2C31B00EBEF55 /* EarningDetailsFooterFilterCell.swift in Sources */,
 				F859264E279E75B100EBEF55 /* TechnicianDashboardWorker.swift in Sources */,
 				E30341E1235EE14000E0BF0A /* MyProfileWorker.swift in Sources */,
 				E30341F2235EE14000E0BF0A /* EmployeeListingModels.swift in Sources */,

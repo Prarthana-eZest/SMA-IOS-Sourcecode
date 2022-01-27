@@ -19,71 +19,683 @@ protocol FreeServicesDisplayLogic: class
 
 class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
 {
-  var interactor: FreeServicesBusinessLogic?
-  var router: (NSObjectProtocol & FreeServicesRoutingLogic & FreeServicesDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = FreeServicesInteractor()
-    let presenter = FreeServicesPresenter()
-    let router = FreeServicesRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    var interactor: FreeServicesBusinessLogic?
+    
+    // MARK: Object lifecycle
+    
+    @IBOutlet private weak var tableView: UITableView!
+    
+    var headerModel: EarningsHeaderDataModel?
+    var headerGraphData: GraphDataEntry?
+    
+    var dataModel = [EarningsCellDataModel]()
+    var graphData = [GraphDataEntry]()
+    
+    var dateSelectedTitle = ""
+    var fromFilters : Bool = false
+    
+    var fromChartFilter : Bool = false
+    
+    var dateRangeType : DateRangeType = .mtd
+    var freeServicesCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = FreeServices.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: FreeServices.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup()
+    {
+        let viewController = self
+        let interactor = FreeServicesInteractor()
+        let presenter = FreeServicesPresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+    
+    
+    // MARK: View lifecycle
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        doSomething()
+        tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
+        tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
+        fromChartFilter = false
+        
+        dateRangeType = .mtd
+        updateFreeServiceScreenData(startDate: Date.today.startOfMonth)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.addCustomBackButton(title: "Free Services")
+    }
+    
+    // MARK: Do something
+    
+    //@IBOutlet weak var nameTextField: UITextField!
+    func updateFreeServiceScreenData(startDate: Date?, endDate: Date = Date().startOfDay) {
+        
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        //        DispatchQueue.main.async { [unowned self] () in
+        freeServicesData(startDate:  startDate ?? Date.today, endDate: endDate)
+        //            tableView.reloadData()
+        //            EZLoadingActivity.hide()
+        //        }
+    }
+    
+    func updateFreeServiceScreenData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
+        let selectedIndex = indexPath.row - 1
+        let dateRange = DateRange(startDate!, endDate)
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        
+        //Date filter applied
+        let dateFilteredFreeService = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            if let date = revenue.date?.date()?.startOfDay {
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        })
+        
+        if(selectedIndex >= 0){
+            let model = dataModel[selectedIndex]
+            model.dateRangeType = rangeType
+            if model.dateRangeType == .cutome {
+                model.customeDateRange = dateRange
+            }
+            
+            update(modeData: model, withData: dateFilteredFreeService, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            graphData[selectedIndex] = getGraphEntry(model.title,forData: dateFilteredFreeService, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+        }
+        else if let _ = headerModel {
+            headerModel?.dateRangeType = rangeType
+            if headerModel?.dateRangeType == .cutome {
+                headerModel?.customeDateRange = dateRange
+            }
+            
+            updateHeaderModel(withData: dateFilteredFreeService, dateRange: dateRange, dateRangeType: rangeType)
+            headerGraphData = getTotalFreeServiceGraphEntry(forData: dateFilteredFreeService, dateRange: dateRange, dateRangeType: rangeType)
+        }
+        
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
+        
+        var filteredFreeServices = data
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            //Date filter applied
+            filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+                if let date = revenue.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        var value : Double = 0.0
+        for freeService in filteredFreeServices ?? [] {
+            switch index {
+            case 0:
+                // Reward points
+                if let fsRevenue = freeService.free_service_revenue, fsRevenue > 0 {
+                    value += fsRevenue
+                }
+                
+            case 1:
+                // complimentary_giftcard
+                if let cGiftCard = freeService.complimentary_giftcard, cGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                    value += cGiftCard
+                }
+                
+            case 2:
+                // grooming_giftcard
+                if let gGiftCard = freeService.grooming_giftcard, gGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                    value += gGiftCard
+                }
+                
+            default:
+                continue
+            }
+        }
+        
+        dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [value.rounded().abbrevationString], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+    }
+    
+    
+    func updateHeaderModel(withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) {
+        
+        var filteredFreeServices = data
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            //Date filter applied
+            filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+                if let date = revenue.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        var freeServiceRevenueCount : Double = 0.0
+        var complimentaryGiftcardCount : Double = 0.0
+        var groomingGiftcardCount : Double = 0.0
+        
+        for freeService in filteredFreeServices ?? [] {
+            // Reward points
+            if let fsRevenue = freeService.free_service_revenue, fsRevenue > 0 {
+                freeServiceRevenueCount += fsRevenue
+            }
+            
+            // complimentary_giftcard
+            if let cGiftCard = freeService.complimentary_giftcard, cGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                complimentaryGiftcardCount += cGiftCard
+            }
+            
+            // grooming_giftcard
+            if let gGiftCard = freeService.grooming_giftcard, gGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                groomingGiftcardCount += gGiftCard
+            }
+        }
+        
+        headerModel?.value = (freeServiceRevenueCount + complimentaryGiftcardCount + groomingGiftcardCount) * 0.8
+    }
+    
+    
+    func freeServicesData(startDate : Date, endDate : Date = Date().startOfDay) {
+        //Handled Wrong function calling to avoid data mismatch
+        guard fromChartFilter == false else {
+            print("******* Wrong Function Called **********")
+            return
+        }
+        
+        dataModel.removeAll()
+        graphData.removeAll()
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        
+        
+        let filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
+            if let date = freeServices.date?.date()?.startOfDay {
+                
+                return date >= startDate && date <= endDate
+            }
+            return false
+        })
+        
+        //Handle Graph Scenarios
+        let dateRange = DateRange(startDate, endDate)
+        var graphRangeType = dateRangeType
+        var graphDateRange = dateRange
+        var filteredFreeServiceForGraph = filteredFreeServices
+        if (dateRangeType == .yesterday || dateRangeType == .today) {
+            filteredFreeServiceForGraph = nil
+            graphRangeType = .mtd
+            graphDateRange = DateRange(graphRangeType.date!, Date().startOfDay)
+        }
+        
+        var freeServiceRevenueCount : Double = 0.0
+        var complimentaryGiftcardCount : Double = 0.0
+        var groomingGiftcardCount : Double = 0.0
+        
+        for freeService in filteredFreeServices ?? [] {
+            // Reward points
+            if let fsRevenue = freeService.free_service_revenue, fsRevenue > 0 {
+                freeServiceRevenueCount += fsRevenue
+            }
+            
+            // complimentary_giftcard
+            if let cGiftCard = freeService.complimentary_giftcard, cGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                complimentaryGiftcardCount += cGiftCard
+            }
+            
+            // grooming_giftcard
+            if let gGiftCard = freeService.grooming_giftcard, gGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                groomingGiftcardCount += gGiftCard
+            }
+        }
+        
+        print("reward points \(freeServiceRevenueCount)")
+        print("complimentaryGiftcardCount \(complimentaryGiftcardCount)")
+        print("groomingGiftcardCount \(groomingGiftcardCount)")
+        
+        //Reward points
+        //Data Model
+        let rewardPointsModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Reward Points", value: [freeServiceRevenueCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        dataModel.append(rewardPointsModel)
+        //Graph Data
+        graphData.append(getGraphEntry(rewardPointsModel.title, forData: filteredFreeServiceForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        //complimentary_giftcard
+        //Data Model
+        let cGiftVoucherModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Complimentary Gift Voucher", value: [complimentaryGiftcardCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        dataModel.append(cGiftVoucherModel)
+        //Graph Data
+        graphData.append(getGraphEntry(cGiftVoucherModel.title, forData: filteredFreeServiceForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+//        //grooming_giftcard
+//        //Data Model
+//        let gGiftCardModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Grooming Gift Card", value: [groomingGiftcardCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+//        dataModel.append(gGiftCardModel)
+//        //Graph Data
+//        graphData.append(getGraphEntry(gGiftCardModel.title, forData: filteredFreeServiceForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+//        var freeServicesCount = Double(freeServiceRevenueCount + groomingGiftcardCount + complimentaryGiftcardCount)
+        var freeServicesCount = Double(freeServiceRevenueCount + complimentaryGiftcardCount)
+        freeServicesCount = 0.8 * freeServicesCount
+        headerModel?.value = freeServicesCount
+        headerModel?.dateRangeType = graphRangeType
+        //Total Free services for Header data
+        headerModel =  EarningsHeaderDataModel(earningsType: .FreeServices, value: freeServicesCount, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        
+        headerGraphData = getTotalFreeServiceGraphEntry(forData: filteredFreeServiceForGraph, dateRange: graphDateRange, dateRangeType: graphRangeType)
+        
+        tableView.reloadData()
+        EZLoadingActivity.hide()
+    }
+    
+    func getGraphEntry(_ title:String, forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> GraphDataEntry
+    {
+        let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
+        let values = graphData(forData: data, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType)
+        let graphColor = EarningDetails.FreeServices.graphBarColor
+        
+        return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor.first!)
+    }
+    
+    func getTotalFreeServiceGraphEntry(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) -> GraphDataEntry
+    {
+        let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
+        let values = totalFreeServiceGraphData(forData: data, dateRange: dateRange, dateRangeType: dateRangeType)
+        let graphColor = EarningDetails.FreeServices.graphBarColor
+        
+        return GraphDataEntry(graphType: .barGraph, dataTitle: "Total Free Service", units: units, values: values, barColor: graphColor.first!)
+    }
+    
+    func graphData(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double] {
+        
+        var filteredFreeServices = data
+        
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            
+            filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
+                if let date = freeServices.date?.date()?.startOfDay {
+                    
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        
+        //reward points
+        if(index == 0){
+            return calculateRewardPoints(filterArray: filteredFreeServices ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+        else if(index == 1){//complimentory gidt vouchers
+            return calculateComplimentoryGiftVouchers(filterArray: filteredFreeServices ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+        else{ // Grooming gift cards
+            return calculateGroomingGiftCards(filterArray: filteredFreeServices ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+    }
+    
+    func totalFreeServiceGraphData(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]
+    {
+        var totalFreeService = [Double]()
+        var filteredFreeService = data
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            //Date filter applied
+            filteredFreeService = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
+                if let date = freeService.date?.date()?.startOfDay {
+                    return  (date >= dateRange.start && date <= dateRange.end) &&
+                        ((freeService.free_service_revenue ?? 0 > 0) ||
+                            (freeService.complimentary_giftcard ?? 0 > 0 &&
+                                (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) ||
+                            (freeService.grooming_giftcard ?? 0 > 0 &&
+                                (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)))
+                }
+                return false
+            })
+        }
+        else {
+            filteredFreeService = filteredFreeService?.filter({($0.free_service_revenue ?? 0 > 0) || ($0.complimentary_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) || ($0.grooming_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services))})
+        }
+        
+        let rewardPointsData = graphData(forData: filteredFreeService, atIndex: 0, dateRange: dateRange, dateRangeType: dateRangeType)
+        
+        let complimentoryGiftVouchersData = graphData(forData: filteredFreeService, atIndex: 1, dateRange: dateRange, dateRangeType: dateRangeType)
+        
+        let groomingGiftCardsData = graphData(forData: filteredFreeService, atIndex: 2, dateRange: dateRange, dateRangeType: dateRangeType)
+        
+        if rewardPointsData.count == complimentoryGiftVouchersData.count, complimentoryGiftVouchersData.count == groomingGiftCardsData.count {
+            for (index, rewardPoint) in rewardPointsData.enumerated() {
+                let totalValue = rewardPoint + complimentoryGiftVouchersData[index] + groomingGiftCardsData[index]
+                totalFreeService.append(totalValue * 0.8)
+            }
+        }
+        
+        return totalFreeService
+    }
+    
+    
+    
+    //Calculate rewards points
+    func calculateRewardPoints(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var freeServicesValues = [Double]()
+        let rewardPoints = filterArray.filter({$0.free_service_revenue ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                let data = rewardPoints.filter({$0.date == objDt})
+                let value = data.compactMap({$0.free_service_revenue}).reduce(0){$0 + $1}
+                freeServicesValues.append(value)
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+            for month in months {
+                let data = rewardPoints.filter({($0.date?.contains(month)) ?? false})
+                let value = data.compactMap({$0.free_service_revenue}).reduce(0){$0 + $1}
+                freeServicesValues.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+                for month in months {
+                    let data = rewardPoints.filter({($0.date?.contains(month)) ?? false})
+                    let value = data.compactMap({$0.free_service_revenue}).reduce(0){$0 + $1}
+                    freeServicesValues.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    let data = rewardPoints.filter({$0.date == objDt})
+                    let value = data.compactMap({$0.free_service_revenue}).reduce(0){$0 + $1}
+                    freeServicesValues.append(value)
+                }
+            }
+        }
+        return freeServicesValues
+    }
+    
+    //complimentory gift voucher
+    func calculateComplimentoryGiftVouchers(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var freeServicesValues = [Double]()
+        
+        let complimentoryGiftVoucher = filterArray.filter({$0.complimentary_giftcard ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                let data = complimentoryGiftVoucher.filter({$0.date == objDt})
+                let value = data.compactMap({$0.complimentary_giftcard}).reduce(0){$0 + $1}
+                freeServicesValues.append(value)
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+            for month in months {
+                let data = complimentoryGiftVoucher.filter({($0.date?.contains(month)) ?? false})
+                let value = data.compactMap({$0.complimentary_giftcard}).reduce(0){$0 + $1}
+                freeServicesValues.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+                for month in months {
+                    let data = complimentoryGiftVoucher.filter({($0.date?.contains(month)) ?? false})
+                    let value = data.compactMap({$0.complimentary_giftcard}).reduce(0){$0 + $1}
+                    freeServicesValues.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    let data = complimentoryGiftVoucher.filter({$0.date == objDt})
+                    let value = data.compactMap({$0.complimentary_giftcard}).reduce(0){$0 + $1}
+                    freeServicesValues.append(value)
+                }
+            }
+        }
+        return freeServicesValues
+    }
+    
+    func calculateGroomingGiftCards(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var freeServicesValues = [Double]()
+        
+        let groomingGiftCards = filterArray.filter({$0.grooming_giftcard ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                let data = groomingGiftCards.filter({$0.date == objDt})
+                let value = data.compactMap({$0.grooming_giftcard}).reduce(0){$0 + $1}
+                freeServicesValues.append(value)
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+            for month in months {
+                let data = groomingGiftCards.filter({($0.date?.contains(month)) ?? false})
+                let value = data.compactMap({$0.grooming_giftcard}).reduce(0){$0 + $1}
+                freeServicesValues.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+                for month in months {
+                    let data = groomingGiftCards.filter({($0.date?.contains(month)) ?? false})
+                    let value = data.compactMap({$0.grooming_giftcard}).reduce(0){$0 + $1}
+                    freeServicesValues.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    let data = groomingGiftCards.filter({$0.date == objDt})
+                    let value = data.compactMap({$0.grooming_giftcard}).reduce(0){$0 + $1}
+                    freeServicesValues.append(value)
+                }
+            }
+        }
+        return freeServicesValues
+    }
+    
+    func doSomething()
+    {
+        let request = FreeServices.Something.Request()
+        interactor?.doSomething(request: request)
+    }
+    
+    func displaySomething(viewModel: FreeServices.Something.ViewModel)
+    {
+        //nameTextField.text = viewModel.name
+    }
+}
+
+//extension FreeServicesViewController: EarningsFilterDelegate {
+//
+//    func actionDateFilter() {
+//        print("Date Filter")
+//        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Incentive)
+//        self.view.alpha = screenPopUpAlpha
+//        vc.fromChartFilter = false
+//        vc.selectedRangeTypeString = dateRangeType.rawValue
+//        vc.cutomRange = freeServicesCutomeDateRange
+//        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+//        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+//            // Do something
+//            self.view.alpha = 1.0
+//            if(result){
+//                fromChartFilter = false
+//                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+//
+//                if(dateRangeType == .cutome), let start = startDate, let end = endDate
+//                {
+//                    freeServicesCutomeDateRange = DateRange(start,end)
+//                }
+//                updateFreeServiceScreenData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
+//            }
+//        }
+//    }
+//
+//    func actionNormalFilter() {
+//        print("Normal Filter")
+//    }
+//}
+
+extension FreeServicesViewController: EarningDetailsDelegate {
+    
+    func reloadData() {
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
+    
+    func actionDurationFilter(forCell cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell), dataModel.count >= indexPath.row else { return }
+        
+        let selectedIndex = indexPath.row - 1
+        
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        vc.isFromProductivity = false
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = true
+        if(selectedIndex >= 0){
+            let model = dataModel[selectedIndex]
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        else if let model = headerModel {
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if result == true, startDate != nil, endDate != nil {
+                fromFilters = false
+                fromChartFilter = true
+                
+                let rangeType  = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                updateFreeServiceScreenData(atIndex: indexPath, withStartDate: startDate, endDate: endDate!, rangeType: rangeType)
+                
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
+                self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
+            }
+        }
+    }
+}
+
+
+extension FreeServicesViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataModel.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsHeaderCell, for: indexPath) as? EarningDetailsHeaderCell else {
+                return UITableViewCell()
+            }
+            if let model = headerModel {
+                var data:[GraphDataEntry] = []
+                if let hgraphData = headerGraphData {
+                    data = [hgraphData]
+                }
+                cell.configureCell(model: model, data: data)
+            }
+            cell.delegate = self
+            cell.parentVC = self
+            cell.selectionStyle = .none
+            return cell
+        }
+        else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsCell, for: indexPath) as? EarningDetailsCell else {
+                return UITableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.delegate = self
+            cell.parentVC = self
+            
+            let index = indexPath.row - 1
+            let model = dataModel[index]
+            let barGraph = graphData[index]
+            
+            cell.configureCell(model: model, data: [barGraph])
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selection")
+    }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsHeaderFilterCell) as? EarningDetailsHeaderFilterCell else {
+//            return UITableViewCell()
+//        }
+//        cell.delegate = self
+//        cell.configureCell(showDateFilter: true, showNormalFilter: false, titleForDateSelection: dateRangeType.rawValue)
+//        cell.selectionStyle = .none
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 60
+//    }
 }

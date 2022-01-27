@@ -24,7 +24,7 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var gradientView: Gradient!
     @IBOutlet weak private var gradientViewWidthConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak private var lblRupee: UILabel!
     
     @IBOutlet weak var graphRangeBtn: UIButton!
     @IBOutlet weak private var chartView: CombinedChartView!
@@ -87,6 +87,12 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         graphRangeBtn.setTitle(model.dateRangeType.rawValue, for: .normal)
         tileHeightConstraint.constant = model.earningsType.headerTileHeight
         chartParentView.isHidden = !model.isExpanded
+        if(model.earningsType == .FreeServices || model.earningsType == .Footfall){
+            lblRupee.isHidden = true
+        }
+        else {
+            lblRupee.isHidden = false
+        }
         lblValue.text = model.value?.roundedStringValue() ?? ""
         self.drawGraph(graphData: data, showRightAxix: false)
     }

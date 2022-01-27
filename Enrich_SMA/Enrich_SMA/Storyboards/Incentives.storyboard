@@ -93,7 +93,7 @@
         <!--Free Services View Controller-->
         <scene sceneID="zIx-md-1hm">
             <objects>
-                <viewController storyboardIdentifier="FreeServicesVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6iV-A0-hWT" customClass="FreeServicesViewController" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FreeServicesViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6iV-A0-hWT" customClass="FreeServicesViewController" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pfZ-fb-JfL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,7 +165,7 @@
         <!--Footfall View Controller-->
         <scene sceneID="Vb1-ur-1Ob">
             <objects>
-                <viewController storyboardIdentifier="FootfallVC" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Caw-cy-skk" customClass="FootfallViewController" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FootfallViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Caw-cy-skk" customClass="FootfallViewController" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vW5-Gi-ckW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -382,11 +382,17 @@ extension TechnicianDashboardViewController : UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch indexPath.row {
-        case 0:
+        case 0://Revenue
             let vc = RevenuesViewController.instantiate(fromAppStoryboard: .Incentives)
             self.navigationController?.pushViewController(vc, animated: true)
-        case 1:
+        case 1://Sales
             let vc = SalesViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 2://Free services
+            let vc = FreeServicesViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 3://Footfall
+            let vc = FootfallViewController.instantiate(fromAppStoryboard: .Incentives)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             let vc = RevenuesViewController.instantiate(fromAppStoryboard: .Incentives)

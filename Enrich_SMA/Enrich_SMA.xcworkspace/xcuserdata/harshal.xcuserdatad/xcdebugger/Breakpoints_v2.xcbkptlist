@@ -112,8 +112,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
             endingLineNumber = "132"
-            landmarkName = "calculateDataForTiles(startDate:endDate:)"
-            landmarkType = "7">
+            landmarkName = "TechnicianDashboardViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "F0A166FC-3CD5-4160-881C-54065B09B13E - 4aad1af9513855c0"
@@ -176,7 +176,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
             endingLineNumber = "69"
-            landmarkName = "configureCell(model:data:)"
+            landmarkName = "actionViewTrendline(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

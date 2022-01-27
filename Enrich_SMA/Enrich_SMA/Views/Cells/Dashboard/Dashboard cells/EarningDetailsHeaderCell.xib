@@ -246,6 +246,7 @@
                 <outlet property="graphRangeBtn" destination="oiC-1N-zGG" id="ozf-Ma-U2b"/>
                 <outlet property="iconImage" destination="Hdw-i5-d8Y" id="exU-oI-Mei"/>
                 <outlet property="imageDropDown" destination="Rap-5y-VhJ" id="OQj-09-BWI"/>
+                <outlet property="lblRupee" destination="lTi-8H-F9Q" id="8hN-TZ-qmC"/>
                 <outlet property="lblTitle" destination="QCa-Vy-7bd" id="d6F-1H-l1J"/>
                 <outlet property="lblValue" destination="xFd-ou-9Zh" id="0da-dC-ryI"/>
                 <outlet property="tileHeightConstraint" destination="Qsa-oR-Dsf" id="jWS-4J-mq5"/>

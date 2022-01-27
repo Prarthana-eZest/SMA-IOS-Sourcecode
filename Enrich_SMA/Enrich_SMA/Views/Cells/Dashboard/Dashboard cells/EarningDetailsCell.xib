@@ -42,6 +42,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="122"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="16" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99E-6V-soM">
+                                                                <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                                 <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="18"/>
                                                                 <color key="textColor" red="0.16862745100000001" green="0.1647058824" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -290,6 +291,7 @@
                 <outlet property="imageDropDown" destination="C1h-bI-HXS" id="l7U-qs-ep3"/>
                 <outlet property="lblLeftAxis" destination="fyW-zf-3UD" id="gcG-lG-erG"/>
                 <outlet property="lblRightAxis" destination="xkf-Se-eMR" id="RV8-bc-Sb6"/>
+                <outlet property="lblRupee" destination="fXJ-pg-5PP" id="9KD-Fd-LuZ"/>
                 <outlet property="lblSingleValueView" destination="gBC-Mj-AgA" id="SeD-88-dnN"/>
                 <outlet property="lblSubTitle" destination="HpB-Jq-9tp" id="wc4-Tm-CIj"/>
                 <outlet property="lblTitle" destination="99E-6V-soM" id="lbB-Qg-aKQ"/>
