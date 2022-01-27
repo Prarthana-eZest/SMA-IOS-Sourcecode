@@ -29,20 +29,6 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var singleValueView: UIView!
     @IBOutlet weak var lblSingleValueView: UILabel!
     
-    // Double View
-    @IBOutlet weak var doubleValueFirstView: UIView!
-    @IBOutlet weak var doubleValueSecondView: UIView!
-    @IBOutlet weak var lblDoubleViewFirstTitle: UILabel!
-    @IBOutlet weak var lblDoubleViewFirstSubTitle: UILabel!
-    @IBOutlet weak var lblDoubleViewSecondTitle: UILabel!
-    @IBOutlet weak var lblDoubleViewSecondSubTitle: UILabel!
-        
-    // Package View
-    @IBOutlet weak var packageView: UIView!
-    @IBOutlet weak var lblPackageValue: UILabel!
-    @IBOutlet weak var btnPakageType: UIButton!
-    
-    
     var model: EarningsCellDataModel!
 //    var model : Dashboard.GetRevenueDashboard.Response
         
@@ -96,32 +82,19 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
             lblRightAxis.isHidden = true
         }
         graphDtFilter.setTitle(model.dateRangeType.rawValue, for: .normal)
-//        if chartView.data == nil, !model.isExpanded {
-        //if !model.isExpanded {
+
             drawGraph(graphData: data, showRightAxix: (model.earningsType == .CustomerEngagement || model.earningsType == .ResourceUtilisation))
-        //}
-        
         
         singleValueView.isHidden = model.cellType != .SingleValue
-        doubleValueFirstView.isHidden = model.cellType != .DoubleValue
-        doubleValueSecondView.isHidden = model.cellType != .DoubleValue
-        packageView.isHidden = model.cellType != .PackageType
         
         switch model.cellType {
         case .SingleValue:
             singleValueView.backgroundColor = model.earningsType.singleValueTileColor
             lblSingleValueView.text = model.value[0]
         case .DoubleValue:
-            doubleValueFirstView.backgroundColor = model.earningsType.doubleValueTileColors?.first
-            lblDoubleViewFirstTitle.text = model.value[1]
-            lblDoubleViewFirstSubTitle.text = model.subTitle[1]
-            doubleValueSecondView.backgroundColor = model.earningsType.doubleValueTileColors?.last
-            lblDoubleViewSecondTitle.text = model.value[2]
-            lblDoubleViewSecondSubTitle.text = model.subTitle[2]
+           break
         case .PackageType:
-            packageView.backgroundColor = model.earningsType.packageValueTileColor
-            let valuePackage = model.value[0]
-            lblPackageValue.text = valuePackage
+           break
         case .TripleValue: break
     
         }
@@ -245,11 +218,7 @@ extension EarningDetailsCell {
             l.font = font
         }
         l.yOffset = -48
-        
-//        let marker:BalloonMarker = BalloonMarker(color: UIColor.white, font: UIFont(name: FontName.FuturaPTBook.rawValue, size: 10)!, textColor: UIColor.black, insets: UIEdgeInsets(top: 7.0, left: 7.0, bottom: 7.0, right: 7.0))
-//        marker.minimumSize = CGSize(width: 75.0, height: 35.0)
-//        chartView.marker = marker
-        
+
         chartView.extraBottomOffset = 10
         chartView.extraTopOffset = 50
         chartView.doubleTapToZoomEnabled = false

@@ -85,7 +85,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
     doSomething()
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
-    revenueData(startDate: Date.today.startOfMonth , endDate: Date.today.startOfMonth, otherFilters: filterArray, completion: nil)
+    revenueData(startDate: Date.today.startOfMonth , endDate: Date.today, otherFilters: filterArray, completion: nil)
   }
   
     override func viewWillAppear(_ animated: Bool) {
@@ -182,7 +182,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
         
         // Salon Service Revenue
         //Model Data
-        let salonServiceRevenueModel = EarningsCellDataModel(earningsType: .Revenue, title: "Salon Service Revenue", value: [salonServiceToatal.rounded().abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: revenueCutomeDateRange)
+        let salonServiceRevenueModel = EarningsCellDataModel(earningsType: .Revenue, title: "Salon Service Revenue", value: [salonServiceToatal.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: revenueCutomeDateRange)
         dataModels.append(salonServiceRevenueModel)
         //GraphDate
         let salonServiceGraphEntries = getBarLineGraphEntry(salonServiceRevenueModel.title, forData: filteredRevenueForGraph, otherFilters: otherFilters, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType)
@@ -191,7 +191,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
         
         
         // Home Service Revenue Data
-        let homeServiceRevenueModel = EarningsCellDataModel(earningsType: .Revenue, title: "Home Service Revenue", value: [homeServiceTotal.rounded().abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: revenueCutomeDateRange)
+        let homeServiceRevenueModel = EarningsCellDataModel(earningsType: .Revenue, title: "Home Service Revenue", value: [homeServiceTotal.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: revenueCutomeDateRange)
         dataModels.append(homeServiceRevenueModel)
         //GraphDate
         let homeServiceGraphEntries = getBarLineGraphEntry(homeServiceRevenueModel.title, forData: filteredRevenueForGraph, otherFilters: otherFilters, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType)
@@ -200,7 +200,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
         
         
         // Retail Products Revenue Data
-        let retailProductsRevenueModel = EarningsCellDataModel(earningsType: .Revenue, title: "Retail Products Revenue", value: [retailTotal.rounded().abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: revenueCutomeDateRange)
+        let retailProductsRevenueModel = EarningsCellDataModel(earningsType: .Revenue, title: "Retail Products Revenue", value: [retailTotal.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: revenueCutomeDateRange)
         dataModels.append(retailProductsRevenueModel)
         //GraphDate
         let retailServiceGraphEntries = getBarLineGraphEntry(retailProductsRevenueModel.title, forData: filteredRevenueForGraph, otherFilters: otherFilters, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType)
