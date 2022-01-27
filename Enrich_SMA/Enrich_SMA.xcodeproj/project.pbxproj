@@ -348,6 +348,12 @@
 		F85926FB279FE65100EBEF55 /* EarningDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85926F9279FE65100EBEF55 /* EarningDetailsHeaderCell.swift */; };
 		F85926FC279FE65100EBEF55 /* EarningDetailsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */; };
 		F8592701279FE71A00EBEF55 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8592700279FE71A00EBEF55 /* DateValueFormatter.swift */; };
+		F859275827A2A0A100EBEF55 /* PackageFilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275227A2A0A100EBEF55 /* PackageFilterPresenter.swift */; };
+		F859275927A2A0A100EBEF55 /* PackageFilterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275327A2A0A100EBEF55 /* PackageFilterWorker.swift */; };
+		F859275A27A2A0A100EBEF55 /* PackageFilterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275427A2A0A100EBEF55 /* PackageFilterRouter.swift */; };
+		F859275B27A2A0A100EBEF55 /* PackageFilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275527A2A0A100EBEF55 /* PackageFilterModels.swift */; };
+		F859275C27A2A0A100EBEF55 /* PackageFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275627A2A0A100EBEF55 /* PackageFilterViewController.swift */; };
+		F859275D27A2A0A100EBEF55 /* PackageFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275727A2A0A100EBEF55 /* PackageFilterInteractor.swift */; };
 		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
 		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
@@ -775,6 +781,12 @@
 		F85926F9279FE65100EBEF55 /* EarningDetailsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningDetailsHeaderCell.swift; sourceTree = "<group>"; };
 		F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarningDetailsHeaderCell.xib; sourceTree = "<group>"; };
 		F8592700279FE71A00EBEF55 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		F859275227A2A0A100EBEF55 /* PackageFilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterPresenter.swift; sourceTree = "<group>"; };
+		F859275327A2A0A100EBEF55 /* PackageFilterWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterWorker.swift; sourceTree = "<group>"; };
+		F859275427A2A0A100EBEF55 /* PackageFilterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterRouter.swift; sourceTree = "<group>"; };
+		F859275527A2A0A100EBEF55 /* PackageFilterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterModels.swift; sourceTree = "<group>"; };
+		F859275627A2A0A100EBEF55 /* PackageFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterViewController.swift; sourceTree = "<group>"; };
+		F859275727A2A0A100EBEF55 /* PackageFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterInteractor.swift; sourceTree = "<group>"; };
 		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
 		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
@@ -918,6 +930,7 @@
 		44E10B9F2797C90B00F88DA2 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				F859273F27A29F1300EBEF55 /* Package Filter */,
 				44E10BB12797CF9F00F88DA2 /* EarningsFilterWorker.swift */,
 				44E10BAB2797CA1500F88DA2 /* EarningsFilterPresenter.swift */,
 				44E10BA42797C9AC00F88DA2 /* EarningsFilterInteractor.swift */,
@@ -1941,11 +1954,11 @@
 		F85925C8279A9B7B00EBEF55 /* Sales */ = {
 			isa = PBXGroup;
 			children = (
+				F85925D3279A9D0200EBEF55 /* SalesViewController.swift */,
 				F85925CF279A9D0200EBEF55 /* SalesPresenter.swift */,
 				F85925D0279A9D0200EBEF55 /* SalesWorker.swift */,
 				F85925D1279A9D0200EBEF55 /* SalesRouter.swift */,
 				F85925D2279A9D0200EBEF55 /* SalesModels.swift */,
-				F85925D3279A9D0200EBEF55 /* SalesViewController.swift */,
 				F85925D4279A9D0200EBEF55 /* SalesInteractor.swift */,
 			);
 			path = Sales;
@@ -2059,6 +2072,19 @@
 				F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */,
 			);
 			path = "Dashboard cells";
+			sourceTree = "<group>";
+		};
+		F859273F27A29F1300EBEF55 /* Package Filter */ = {
+			isa = PBXGroup;
+			children = (
+				F859275627A2A0A100EBEF55 /* PackageFilterViewController.swift */,
+				F859275227A2A0A100EBEF55 /* PackageFilterPresenter.swift */,
+				F859275327A2A0A100EBEF55 /* PackageFilterWorker.swift */,
+				F859275427A2A0A100EBEF55 /* PackageFilterRouter.swift */,
+				F859275527A2A0A100EBEF55 /* PackageFilterModels.swift */,
+				F859275727A2A0A100EBEF55 /* PackageFilterInteractor.swift */,
+			);
+			path = "Package Filter";
 			sourceTree = "<group>";
 		};
 		F8784FBC244D71ED00104BE8 /* Approval Flow */ = {
@@ -2562,6 +2588,7 @@
 				E30341DC235EE14000E0BF0A /* MoreModuleWorker.swift in Sources */,
 				E30342F8235EE58300E0BF0A /* AppointmentVC.swift in Sources */,
 				E30342C6235EE15800E0BF0A /* ExtentionUserDefaults.swift in Sources */,
+				F859275827A2A0A100EBEF55 /* PackageFilterPresenter.swift in Sources */,
 				F838D9072437058300FDA998 /* SOSAlertModels.swift in Sources */,
 				F85925F8279A9D2F00EBEF55 /* FootfallRouter.swift in Sources */,
 				F87C336E24DD515A00318662 /* PowerBIReportPresenter.swift in Sources */,
@@ -2571,6 +2598,7 @@
 				F87C337224DD515A00318662 /* PowerBIReportVC.swift in Sources */,
 				F83428DD2436051000B12AD3 /* FirebaseTopicFactory.swift in Sources */,
 				F8E5D281246E9B72005876CE /* TeleConsultationWorker.swift in Sources */,
+				F859275C27A2A0A100EBEF55 /* PackageFilterViewController.swift in Sources */,
 				E30341F0235EE14000E0BF0A /* NotificationsVC.swift in Sources */,
 				F8592616279A9D6600EBEF55 /* ProductivityRouter.swift in Sources */,
 				F8E5D282246E9B72005876CE /* TeleConsultationPresenter.swift in Sources */,
@@ -2629,6 +2657,7 @@
 				F8784FCB244D722700104BE8 /* ApprovalRequestListModels.swift in Sources */,
 				E3CEA5CB23CC736F00DD213F /* AddNewNotePresenter.swift in Sources */,
 				F85925D6279A9D0200EBEF55 /* SalesWorker.swift in Sources */,
+				F859275A27A2A0A100EBEF55 /* PackageFilterRouter.swift in Sources */,
 				F859264F279E75B100EBEF55 /* TechnicianDashboardRouter.swift in Sources */,
 				44FBC62D27904E530068B3C6 /* DashboardTableViewCell.swift in Sources */,
 				F85925D8279A9D0200EBEF55 /* SalesModels.swift in Sources */,
@@ -2649,9 +2678,11 @@
 				F8592618279A9D6600EBEF55 /* ProductivityViewController.swift in Sources */,
 				44E10BBD2797D19600F88DA2 /* DateFilterVC.swift in Sources */,
 				E3CD502723713C3600DE106E /* LoginOTPModuleInteractor.swift in Sources */,
+				F859275927A2A0A100EBEF55 /* PackageFilterWorker.swift in Sources */,
 				E30342DB235EE15800E0BF0A /* ContactsErrors.swift in Sources */,
 				E3DB6860238CFE8700CC569D /* ListingCell.swift in Sources */,
 				44E10BC42797D43900F88DA2 /* SelectFilterDateRangeCell.swift in Sources */,
+				F859275B27A2A0A100EBEF55 /* PackageFilterModels.swift in Sources */,
 				F85926E5279FE20100EBEF55 /* RevenuesPresenter.swift in Sources */,
 				E3CD502C23713C3600DE106E /* OTPVerificationModuleModels.swift in Sources */,
 				E3CEA5BE23CC57B200DD213F /* AllReviewsModuleInteractor.swift in Sources */,
@@ -2764,6 +2795,7 @@
 				442A94D92791F1AD00C31DDC /* DashboardTotalRevenueVC.swift in Sources */,
 				F85925D9279A9D0200EBEF55 /* SalesViewController.swift in Sources */,
 				E30341ED235EE14000E0BF0A /* NotificationsModels.swift in Sources */,
+				F859275D27A2A0A100EBEF55 /* PackageFilterInteractor.swift in Sources */,
 				E3060171237EA49200988EEC /* AppointmentTimelineCell.swift in Sources */,
 				E33BA97D23FD4CE400AABFE2 /* NotificationDetailsCell.swift in Sources */,
 				E30341EE235EE14000E0BF0A /* NotificationsPresenter.swift in Sources */,

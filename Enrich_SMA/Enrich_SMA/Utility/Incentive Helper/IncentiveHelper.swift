@@ -71,7 +71,7 @@ enum EarningDetails : String {
     var valueColor: UIColor {
         switch self {
         case .Revenue: return UIColor(red: 0.08, green: 0.70, blue: 0.55, alpha: 1.00)
-        case .Sales: return UIColor(red: 0.36, green: 0.53, blue: 0.90, alpha: 1.00)
+        case .Sales: return UIColor(red: 0.47, green: 0.79, blue: 0.91, alpha: 0.3)//rgba(119, 202, 231, 1) 30%
         case .FreeServices: return UIColor(red: 1.00, green: 0.38, blue: 0.53, alpha: 1.00)
         case .Footfall: return UIColor(red: 1.00, green: 0.69, blue: 0.48, alpha: 1.00)
         case .CustomerFeedback: return UIColor(red: 0.25, green: 0.61, blue: 0.92, alpha: 1.00)
@@ -92,7 +92,7 @@ enum EarningDetails : String {
         
         switch self {
         case .Revenue: return [UIColor(red: 0.56, green: 0.84, blue: 0.71, alpha: 1.00), UIColor(red: 0.20, green: 0.59, blue: 0.56, alpha: 1.00)]
-        case .Sales: return [UIColor(red: 0.41, green: 0.67, blue: 0.96, alpha: 1.00), UIColor(red: 0.47, green: 0.39, blue: 0.93, alpha: 1.00)]
+        case .Sales: return [UIColor(red: 0.56, green: 0.89, blue: 0.95, alpha: 1.00), UIColor(red: 0.16, green: 0.46, blue: 0.77, alpha: 1.00)]
         case .FreeServices: return [UIColor(red: 0.95, green: 0.44, blue: 0.61, alpha: 1.00), UIColor(red: 1.00, green: 0.58, blue: 0.45, alpha: 1.00)]
         case .Footfall: return [UIColor(red: 1.00, green: 0.78, blue: 0.64, alpha: 1.00), UIColor(red: 0.99, green: 0.57, blue: 0.30, alpha: 1.00)]
         case .CustomerFeedback: return [UIColor(red: 0.57, green: 0.93, blue: 0.96, alpha: 1.00), UIColor(red: 0.25, green: 0.61, blue: 0.92, alpha: 1.00)]
@@ -112,14 +112,14 @@ enum EarningDetails : String {
     var headerIcon: UIImage? {
         switch self {
         case .Revenue: return UIImage(named: "RevenueWhiteNew")
-        case .Sales: return UIImage(named: "SalesWhite")
-        case .FreeServices: return UIImage(named: "FreeServicesWhite")
-        case .Footfall: return UIImage(named: "FootfallWhite")
+        case .Sales: return UIImage(named: "SalesWhiteNew")
+        case .FreeServices: return UIImage(named: "FreeServicesWhiteNew")
+        case .Footfall: return UIImage(named: "FootfallWhiteNew")
         case .CustomerFeedback: return UIImage(named: "CustomerFeedbackWhite")
-        case .Productivity: return UIImage(named: "ProductivityWhite")
-        case .PenetrationRatios: return UIImage(named: "PenetrationWhite")
-        case .CustomerEngagement: return UIImage(named: "EngagementWhite")
-        case .ResourceUtilisation: return UIImage(named: "UtilisationWhite")
+        case .Productivity: return UIImage(named: "ProductivityWhiteNew")
+        case .PenetrationRatios: return UIImage(named: "PenetrationWhiteNew")
+        case .CustomerEngagement: return UIImage(named: "EngagementWhiteNew")
+        case .ResourceUtilisation: return UIImage(named: "UtilisationWhiteNew")
         case .Fixed_Earning: return UIImage(named: "FixedEarningsHeader")
         case .Incentive: return UIImage(named: "IncentiveHeader")
         case.Bonus: return UIImage(named: "BonusHeader")
@@ -166,7 +166,7 @@ enum EarningDetails : String {
     var graphBarColor: [UIColor] {
         switch self {
         case .Revenue: return [UIColor(red: 0.08, green: 0.70, blue: 0.55, alpha: 1.00), UIColor(red: 0.90, green: 0.25, blue: 0.45, alpha: 1.00)]
-        case .Sales: return [UIColor(red: 0.32, green: 0.87, blue: 0.62, alpha: 1.00), UIColor(red: 0.38, green: 0.79, blue: 1.00, alpha: 1.00)]
+        case .Sales: return [UIColor(red: 0.40, green: 0.73, blue: 0.88, alpha: 1.00)]//rgba(103, 185, 224, 1)
         case .FreeServices: return [UIColor(red: 1.00, green: 0.38, blue: 0.53, alpha: 1.00)]
         case .Footfall: return [UIColor(red: 1.00, green: 0.69, blue: 0.48, alpha: 1.00)]
         case .CustomerFeedback: return [UIColor(red: 0.50, green: 0.79, blue: 1.00, alpha: 1.00)]
@@ -186,6 +186,7 @@ enum EarningDetails : String {
     var singleValueTileColor: UIColor? {
         switch self {
         case .Revenue: return UIColor(red: 0.75, green: 0.89, blue: 0.85, alpha: 1.00)
+        case .Sales: return UIColor(red: 0.47, green: 0.79, blue: 0.91, alpha: 0.3)
         case .FreeServices: return UIColor(red: 0.96, green: 0.76, blue: 0.81, alpha: 1.00)
         case .Footfall: return UIColor(red: 1.00, green: 0.78, blue: 0.64, alpha: 1.00)
         case .CustomerFeedback: return UIColor(red: 0.50, green: 0.79, blue: 1.00, alpha: 1.00)
@@ -204,7 +205,7 @@ enum EarningDetails : String {
     
     var packageValueTileColor: UIColor? {
         switch self {
-        case .Sales: return UIColor(red: 0.81, green: 0.85, blue: 0.96, alpha: 1.00)
+        case .Sales: return UIColor(red: 0.47, green: 0.79, blue: 0.91, alpha: 1.0)
         default: return nil
         }
     }
