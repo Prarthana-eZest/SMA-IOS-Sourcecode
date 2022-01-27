@@ -69,7 +69,7 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     @IBAction func actionViewTrendline(_ sender: UIButton) {
         model.isExpanded = !model.isExpanded
         chartParentView.isHidden = !model.isExpanded
-        imageDropDown.image = chartParentView.isHidden ? UIImage(named: "downArrow") : UIImage(named: "upArrow")
+        imageDropDown.transform =  model.isExpanded ? CGAffineTransform(rotationAngle: .pi) : CGAffineTransform.identity
         delegate?.reloadData()
     }
     
@@ -88,7 +88,6 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         tileHeightConstraint.constant = model.earningsType.headerTileHeight
         chartParentView.isHidden = !model.isExpanded
         lblValue.text = model.value?.roundedStringValue() ?? ""
-        
         self.drawGraph(graphData: data, showRightAxix: false)
     }
     
