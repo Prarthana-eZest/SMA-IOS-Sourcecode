@@ -111,7 +111,7 @@ enum EarningDetails : String {
     
     var headerIcon: UIImage? {
         switch self {
-        case .Revenue: return UIImage(named: "RevenueWhite")
+        case .Revenue: return UIImage(named: "RevenueWhiteNew")
         case .Sales: return UIImage(named: "SalesWhite")
         case .FreeServices: return UIImage(named: "FreeServicesWhite")
         case .Footfall: return UIImage(named: "FootfallWhite")
