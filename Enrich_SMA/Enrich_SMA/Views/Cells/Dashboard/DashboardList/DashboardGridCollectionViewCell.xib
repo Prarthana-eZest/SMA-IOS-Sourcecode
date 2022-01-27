@@ -92,6 +92,7 @@
             <size key="customSize" width="188" height="149"/>
             <connections>
                 <outlet property="dashViewImageView" destination="4c1-ht-Eef" id="z3r-rV-Z2S"/>
+                <outlet property="lblRupeeSymbol" destination="34m-ud-mtW" id="BtF-Bi-eXF"/>
                 <outlet property="lblSubTitle" destination="oES-DB-g93" id="QY1-oC-0OG"/>
                 <outlet property="lblTitle" destination="FuT-fe-oif" id="RGy-FE-m1z"/>
                 <outlet property="parentView" destination="VHf-CU-mPY" id="7Sl-fN-Haf"/>

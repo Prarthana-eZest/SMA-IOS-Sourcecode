@@ -14,6 +14,7 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dashViewImageView: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
+    @IBOutlet weak var lblRupeeSymbol: UILabel!
     @IBOutlet private weak var stackViewsubTitleContainer: UIStackView!
     
     let gradientLayer = CAGradientLayer()
@@ -45,6 +46,13 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
             }
             else {
                 self.stackViewsubTitleContainer.isHidden = false
+                if(currentIndex == 2 || currentIndex == 3)
+                {
+                    lblRupeeSymbol.isHidden = true
+                }
+                else {
+                    lblRupeeSymbol.isHidden = false
+                }
             self.lblSubTitle.text = income.roundedStringValue()
             }
         }
