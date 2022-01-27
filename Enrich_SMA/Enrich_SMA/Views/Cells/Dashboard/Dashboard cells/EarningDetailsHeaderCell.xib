@@ -27,23 +27,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-Kl-hY0" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="389" height="383"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="383"/>
                         <subviews>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-cR-aQs">
-                                <rect key="frame" x="0.0" y="0.0" width="389" height="383"/>
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="383"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2we-3C-4rS">
-                                        <rect key="frame" x="0.0" y="0.0" width="389" height="126"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="126"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RevenueWhite" translatesAutoresizingMaskIntoConstraints="NO" id="Hdw-i5-d8Y">
-                                                <rect key="frame" x="306" y="15" width="68" height="68"/>
+                                                <rect key="frame" x="217" y="15" width="68" height="68"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="68" id="B5J-6j-YoS"/>
                                                     <constraint firstAttribute="width" constant="68" id="K9N-2A-hZG"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nf4-tb-Meb">
-                                                <rect key="frame" x="15" y="22" width="276" height="82.5"/>
+                                                <rect key="frame" x="15" y="22" width="187" height="82.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iGe-Pn-03L">
                                                         <rect key="frame" x="0.0" y="0.0" width="108" height="54.5"/>
@@ -142,10 +142,10 @@
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NO-QT-EaA">
-                                        <rect key="frame" x="0.0" y="126" width="389" height="257"/>
+                                        <rect key="frame" x="0.0" y="126" width="300" height="257"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-Eg-unv" customClass="CombinedChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="10" width="389" height="247"/>
+                                                <rect key="frame" x="0.0" y="10" width="300" height="247"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U70-77-htd">
@@ -220,6 +220,7 @@
                             <constraint firstItem="2vf-cR-aQs" firstAttribute="top" secondItem="Ay7-Kl-hY0" secondAttribute="top" id="EWC-cd-nlC"/>
                             <constraint firstItem="2vf-cR-aQs" firstAttribute="leading" secondItem="Ay7-Kl-hY0" secondAttribute="leading" id="J5C-GI-P7n"/>
                             <constraint firstAttribute="trailing" secondItem="2vf-cR-aQs" secondAttribute="trailing" id="abZ-ax-uNS"/>
+                            <constraint firstAttribute="width" constant="300" id="nin-Yx-yEC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="VCornerRadius">
@@ -230,7 +231,6 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Ay7-Kl-hY0" secondAttribute="trailing" id="Hee-Xv-zNf"/>
                     <constraint firstItem="Ay7-Kl-hY0" firstAttribute="top" secondItem="3Wc-dD-f2O" secondAttribute="top" id="J0K-VR-Fyw"/>
                     <constraint firstItem="Ay7-Kl-hY0" firstAttribute="leading" secondItem="3Wc-dD-f2O" secondAttribute="leading" id="UFw-Go-vG1"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ay7-Kl-hY0" secondAttribute="bottom" constant="10" id="p0E-it-7HK"/>
@@ -242,6 +242,7 @@
                 <outlet property="chartParentView" destination="1NO-QT-EaA" id="azs-OJ-UZi"/>
                 <outlet property="chartView" destination="Avj-Eg-unv" id="LHq-Nn-h6S"/>
                 <outlet property="gradientView" destination="Ay7-Kl-hY0" id="2uZ-Id-2PV"/>
+                <outlet property="gradientViewWidthConstraint" destination="nin-Yx-yEC" id="WCM-gH-awA"/>
                 <outlet property="graphRangeBtn" destination="oiC-1N-zGG" id="ozf-Ma-U2b"/>
                 <outlet property="iconImage" destination="Hdw-i5-d8Y" id="exU-oI-Mei"/>
                 <outlet property="imageDropDown" destination="Rap-5y-VhJ" id="OQj-09-BWI"/>
@@ -254,7 +255,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="RevenueWhite" width="72" height="68"/>
+        <image name="RevenueWhite" width="160" height="160"/>
         <image name="downArrow" width="9" height="5"/>
         <image name="viewTreandline" width="19" height="19"/>
         <systemColor name="systemBackgroundColor">
