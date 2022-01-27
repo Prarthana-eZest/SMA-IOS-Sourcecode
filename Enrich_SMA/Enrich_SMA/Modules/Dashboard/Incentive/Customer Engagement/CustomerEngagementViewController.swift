@@ -19,71 +19,1101 @@ protocol CustomerEngagementDisplayLogic: class
 
 class CustomerEngagementViewController: UIViewController, CustomerEngagementDisplayLogic
 {
-  var interactor: CustomerEngagementBusinessLogic?
-  var router: (NSObjectProtocol & CustomerEngagementRoutingLogic & CustomerEngagementDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = CustomerEngagementInteractor()
-    let presenter = CustomerEngagementPresenter()
-    let router = CustomerEngagementRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    var interactor: CustomerEngagementBusinessLogic?
+    
+    // MARK: Object lifecycle
+    
+    @IBOutlet private weak var tableView: UITableView!
+    
+    var headerModel: EarningsHeaderDataModel?
+    var headerGraphData: GraphDataEntry?
+    
+    var dataModel = [EarningsCellDataModel]()
+    var graphData = [GraphDataEntry]()
+    var dateRangeType : DateRangeType = .mtd
+    var customerEngagementCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
+    
+    var fromFilters : Bool = false
+    
+    var fromChartFilter : Bool = false
+    var serviceLevelTileData : Double = 0
+    var serviceLevelShowCount : Double = 0.0
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = CustomerEngagement.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: CustomerEngagement.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup()
+    {
+        let viewController = self
+        let interactor = CustomerEngagementInteractor()
+        let presenter = CustomerEngagementPresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+    
+    // MARK: View lifecycle
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        doSomething()
+        tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
+        tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
+        fromChartFilter = false
+        dateRangeType = .mtd
+        headerModel?.value = Double("")
+        updateCustomerEngagementData(startDate: Date.today.startOfMonth)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.addCustomBackButton(title: "Customer Engagement")
+    }
+    
+    // MARK: Do something
+    
+    //@IBOutlet weak var nameTextField: UITextField!
+    
+    func updateCustomerEngagementData(startDate: Date?, endDate: Date = Date().startOfDay) {
+        
+        EZLoadingActivity.show("Loading...", disableUI: true)
+//        DispatchQueue.main.async { [unowned self] () in
+            customerEngagementData(startDate:  startDate ?? Date.today, endDate: endDate)
+//            tableView.reloadData()
+//            EZLoadingActivity.hide()
+//        }
+    }
+    
+    func updateCustomerEngagementData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
+        let selectedIndex = indexPath.row - 1
+        let dateRange = DateRange(startDate!, endDate)
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        
+        //Date filter applied
+        let dateFilteredCustomerEngagement = technicianDataJSON?.data?.technician_feedbacks?.filter({ (revenue) -> Bool in
+            if let date = revenue.date?.date()?.startOfDay {
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        })
+        
+        if(selectedIndex >= 0){
+            let model = dataModel[selectedIndex]
+            model.dateRangeType = rangeType
+            if model.dateRangeType == .cutome {
+                model.customeDateRange = dateRange
+            }
+            
+            update(modeData: model, withData: dateFilteredCustomerEngagement, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            
+            graphData[selectedIndex] = getGraphEntry(model.title, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+        }
+        //        else if let _ = headerModel {
+        //            headerModel?.dateRangeType = rangeType
+        //            if headerModel?.dateRangeType == .cutome {
+        //                headerModel?.customeDateRange = dateRange
+        //            }
+        //
+        //            headerGraphData = getTotalFreeServiceGraphEntry(dateRange: dateRange, dateRangeType: rangeType)
+        //        }
+        
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    
+    func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.TechnicianFeedback]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
+        
+        var filteredCustomerEngagement = data
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            
+            
+            //Date filter applied
+            filteredCustomerEngagement = technicianDataJSON?.data?.technician_feedbacks?.filter({ (revenue) -> Bool in
+                if let date = revenue.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        var value1 : Double = 0.0
+        var value2 : Double = 0.0
+        for customer in filteredCustomerEngagement ?? [] {
+            
+            switch index {
+            case 0:
+                // Service Level
+                if let serviceLevel = customer.service_avg_ratings, serviceLevel > 0 {
+                    value1 += serviceLevel
+                }
+                
+            //value1 = value1 / Double(filteredCustomerEngagement?.count ?? 0)
+            
+            case 1:
+                // Customer interaction
+                if let serviceLevel = customer.technician_avg_ratings, serviceLevel > 0 {
+                    value1 += serviceLevel
+                }
+                
+            // value1 = value1 / Double(filteredCustomerEngagement?.count ?? 0)
+            
+            case 2:
+                // Customer Repeat
+                
+                let filteredcustomerRepeat = technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
+                    if let date = customerEngagement.date?.date()?.startOfDay {
+                        
+                        return date >= dateRange.start && date <= dateRange.end
+                    }
+                    return false
+                })
+                if(filteredcustomerRepeat != nil){
+                    
+                    for objCustomerRepeat in filteredcustomerRepeat! {
+                        value1 += objCustomerRepeat.service_revenue ?? 0.0
+                    }
+                }
+                else {
+                    value1 = 0
+                }
+                value2 = Double(filteredcustomerRepeat?.count ?? 0)
+                
+                //                let values = index == 0 ?
+                //                                        ["",value1.abbrevationString, value2.abbrevationString] :
+                //                                        [value1.rounded().abbrevationString]
+                
+                dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: ["",String(filteredcustomerRepeat?.count ?? 0), value1.rounded().abbrevationString], subTitle: ["","Count", "Revenue"], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+                return
+                
+            case 3://Customer Feedback Received
+                if let customerFeedback = customer.no_of_feedbacks, customerFeedback > 0 {
+                    value1 += Double(customerFeedback)
+                }
+                
+            case 4://Customer Served
+                if let customerServed = customer.no_of_services, customerServed > 0 {
+                    value1 += Double(customerServed)
+                }
+            case 5://Feedback Count
+                
+                if let customerFeedback = customer.no_of_feedbacks, customerFeedback > 0 {
+                    value1 += Double(customerFeedback)
+                }
+                
+                if let customerServed = customer.no_of_services, customerServed > 0 {
+                    value2 += Double(customerServed)
+                }
+                
+                
+            default:
+                continue
+            }
+        }
+        
+        let values = index == 0 ?
+            ["",value1.roundedStringValue(toFractionDigits: 2), value2.roundedStringValue(toFractionDigits: 2)] :
+            [value1.roundedStringValue(toFractionDigits: 2)]
+        if(index == 5){ //Feedback Count
+            
+            dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [(value1 / value2).percent], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+        }
+        else if(index == 0 || index == 1){
+            dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: [((value1 / Double(filteredCustomerEngagement?.count ?? 0))).roundedStringValue(toFractionDigits: 2)],subTitle: [""], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+            
+            //            dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [(value1 / Double(filteredCustomerEngagement?.count ?? 0)).rounded().abbrevationString], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+        }
+        else {
+            dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: values, subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+            
+        }
+    }
+    
+    
+    func customerEngagementData(startDate : Date, endDate : Date = Date().startOfDay){
+        //Handled Wrong function calling to avoid data mismatch
+        guard fromChartFilter == false else {
+            print("******* Wrong Function Called **********")
+            return
+        }
+        
+        dataModel.removeAll()
+        graphData.removeAll()
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        
+        let filteredCustomerEngagement = technicianDataJSON?.data?.technician_feedbacks?.filter({ (customerEngagement) -> Bool in
+            if let date = customerEngagement.date?.date()?.startOfDay {
+                
+                return date >= startDate && date <= endDate
+            }
+            return false
+        })
+        
+        //Handle Graph Scenarios
+        let dateRange = DateRange(startDate, endDate)
+        var graphRangeType = dateRangeType
+        var graphDateRange = dateRange
+        var filteredFreeServiceForGraph = filteredCustomerEngagement
+        if (dateRangeType == .yesterday || dateRangeType == .today) {
+            filteredFreeServiceForGraph = nil
+            graphRangeType = .mtd
+            graphDateRange = DateRange(graphRangeType.date!, Date().startOfDay)
+        }
+        
+        //service level
+        let serviceLevelData = filteredCustomerEngagement?.filter({$0.service_avg_ratings ?? 0 > 0}) ?? []
+        var serviceLevelCount : Double = 0.0
+        for objServiceLevel in serviceLevelData {
+            serviceLevelCount = serviceLevelCount + (objServiceLevel.service_avg_ratings ?? 0)
+        }
+        if let feedbackCount = filteredCustomerEngagement?.count, feedbackCount > 0 {
+            serviceLevelShowCount = serviceLevelCount / Double(feedbackCount)
+        }
+        else {
+            serviceLevelShowCount = 0.0
+        }
+        print("Service level \(serviceLevelShowCount)")
+        //Service lwvel
+        //Data Model
+        let serviceLevelModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Service Level", value: [serviceLevelShowCount.roundedStringValue(toFractionDigits: 2)],subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(serviceLevelModel)
+        //Graph Data
+        graphData.append(getGraphEntry(serviceLevelModel.title, forData: filteredFreeServiceForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        //customer interaction
+        let customerInteraction = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
+        var customerInteractionCount : Double = 0.0
+        for objCustomerInteraction in customerInteraction {
+            customerInteractionCount = customerInteractionCount + (objCustomerInteraction.technician_avg_ratings ?? 0)
+        }
+        var customerInteractionShowData = customerInteractionCount / Double(filteredCustomerEngagement?.count ?? 0)
+        
+        print("Customer Interaction \(customerInteractionShowData)")
+        //customer interaction
+        //Data Model
+        let customerInteractionModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Interaction", value: [customerInteractionShowData.roundedStringValue(toFractionDigits: 2)], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(customerInteractionModel)
+        //Graph Data
+        graphData.append(getGraphEntry(customerInteractionModel.title, forData: filteredFreeServiceForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        
+        //Ease Of Billing (BMT)
+        let easeOfBilling = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
+        var easeOfBillingCount : Double = 0.0
+        for objeaseOfBilling in easeOfBilling {
+            easeOfBillingCount = easeOfBillingCount + (objeaseOfBilling.technician_avg_ratings ?? 0)
+        }
+        let easeOfBillingShowData = easeOfBillingCount / Double(filteredCustomerEngagement?.count ?? 0)
+
+        //Data Model
+        let easeOfBillingModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Ease Of Billing (BMT)", value: [easeOfBillingShowData.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(easeOfBillingModel)
+        //Graph Data
+        graphData.append(getGraphEntry(easeOfBillingModel.title, forData: filteredFreeServiceForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        //Customer Interaction (BMT)
+        let customerInteractionBMT = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
+        var customerInteractionCountBMT : Double = 0.0
+        for objCustomerInteractionBMT in customerInteractionBMT {
+            customerInteractionCountBMT = customerInteractionCountBMT + (objCustomerInteractionBMT.technician_avg_ratings ?? 0)
+        }
+        let customerInteractionShowDataBMT = customerInteractionCountBMT / Double(filteredCustomerEngagement?.count ?? 0)
+        
+        //Data Model
+        let customerInteractionBMTModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Interaction (BMT)", value: [customerInteractionShowDataBMT.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(customerInteractionBMTModel)
+        //Graph Data
+        graphData.append(getGraphEntry(customerInteractionBMTModel.title, forData: filteredFreeServiceForGraph, atIndex: 3, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        //Hygiene & Safety Standards = 4
+        let hygineSafetyStand = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
+        var hygineSafetyStandCount : Double = 0.0
+        for objhygineSafetyStand in hygineSafetyStand {
+            hygineSafetyStandCount = hygineSafetyStandCount + (objhygineSafetyStand.technician_avg_ratings ?? 0)
+        }
+        let hygineSafetyStandShowData = hygineSafetyStandCount / Double(filteredCustomerEngagement?.count ?? 0)
+        
+        //Data Model
+        let hygineSafetyStandModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Hygiene & Safety Standards", value: [hygineSafetyStandShowData.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(hygineSafetyStandModel)
+        //Graph Data
+        graphData.append(getGraphEntry(hygineSafetyStandModel.title, forData: filteredFreeServiceForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        //Offered Tea / Coffee = 5
+        let offeredTeaCoffee = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
+        var offeredTeaCoffeeCount : Double = 0.0
+        for objofferedTeaCoffee in offeredTeaCoffee {
+            offeredTeaCoffeeCount = offeredTeaCoffeeCount + (objofferedTeaCoffee.technician_avg_ratings ?? 0)
+        }
+        let offeredTeaCoffeeShowData = offeredTeaCoffeeCount / Double(filteredCustomerEngagement?.count ?? 0)
+        
+        //Data Model
+        let offeredTeaCoffeeModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Offered Tea / Coffee", value: [offeredTeaCoffeeShowData.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(offeredTeaCoffeeModel)
+        //Graph Data
+        graphData.append(getGraphEntry(offeredTeaCoffeeModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+      /*  //customer feedback received
+        let customerFeedbackReceived = filteredCustomerEngagement?.filter({$0.no_of_feedbacks ?? 0 > 0}) ?? []
+        var customerFeedbackReceivedCount : Double = 0.0
+        for objcustomerFeedbackReceived in customerFeedbackReceived {
+            customerFeedbackReceivedCount = customerFeedbackReceivedCount +  Double(objcustomerFeedbackReceived.no_of_feedbacks ?? 0)
+        }
+        
+        print("Customer Feedback \(customerFeedbackReceivedCount)")
+        
+        //customers served
+        let customersServed = filteredCustomerEngagement?.filter({$0.no_of_services ?? 0 > 0}) ?? []
+        var customersServedCount : Double = 0.0
+        for objCustomersServed in customersServed {
+            customersServedCount = customersServedCount + Double(objCustomersServed.no_of_services ?? 0)
+        }
+        
+        print("Customers Served \(customersServedCount)")
+        
+        
+        //feedback count
+        var feedbackCount = (customerFeedbackReceivedCount / customersServedCount)
+        if(customerFeedbackReceivedCount == 0 || customersServedCount == 0){
+            feedbackCount = 0
+        }
+        if(customerInteractionShowData < 0 || customerInteractionShowData.abbrevationString == "NaN")
+        {
+            customerInteractionShowData = 0
+        }
+       */
+        
+        //Customer repeat = 6
+        
+        let filteredcustomerRepeat = technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
+            if let date = customerEngagement.date?.date()?.startOfDay {
+                
+                return date >= startDate && date <= endDate
+            }
+            return false
+        })
+        if(filteredcustomerRepeat != nil){
+            
+            var customerRepeatCount : Double = 0.0
+            for objCustomerRepeat in filteredcustomerRepeat! {
+                customerRepeatCount += objCustomerRepeat.service_revenue ?? 0.0
+            }
+            
+            //customer repeat
+            //Data Model
+            let customerRepeatModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Repeat", value: [String(filteredcustomerRepeat?.count ?? 0)], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+            dataModel.append(customerRepeatModel)
+            //Graph Data
+            graphData.append(getGraphEntry(customerRepeatModel.title, forData: filteredFreeServiceForGraph, atIndex: 6, dateRange: graphDateRange, dateRangeType: graphRangeType))
+            
+        }
+        else {
+            //customer repeat
+            //Data Model
+            let customerRepeatModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Repeat", value: ["0"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+            dataModel.append(customerRepeatModel)
+            //Graph Data
+            graphData.append(getGraphEntry(customerRepeatModel.title, forData: filteredFreeServiceForGraph, atIndex: 6, dateRange: graphDateRange, dateRangeType: graphRangeType))
+            
+        }
+       
+        /*
+        //customer feedback received
+        //Data Model
+        let customerFeedbackReceivedModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Feedbacks Received", value: [customerFeedbackReceivedCount.roundedStringValue(toFractionDigits: 2)],subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(customerFeedbackReceivedModel)
+        //Graph Data
+        graphData.append(getGraphEntry(customerFeedbackReceivedModel.title, forData: filteredFreeServiceForGraph, atIndex: 3, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        
+        //customer served
+        //Data Model
+        let customerServedModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customers Served", value: [customersServedCount.roundedStringValue(toFractionDigits: 2)],subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(customerServedModel)
+        //Graph Data
+        graphData.append(getGraphEntry(customerServedModel.title, forData: filteredFreeServiceForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        
+        //feedback count
+        //Data Model
+        let feedbackCountModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Feedback Count", value: [feedbackCount.percent],subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        dataModel.append(feedbackCountModel)
+        //Graph Data
+        graphData.append(getGraphEntry(feedbackCountModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType)) */
+        
+        headerModel =  EarningsHeaderDataModel(earningsType: .CustomerEngagement, value: 0.0, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+        headerModel?.value = Double("")
+        
+        tableView.reloadData()
+        EZLoadingActivity.hide()
+        
+        
+    }
+    
+    func getGraphEntry(_ title:String, forData data:[Dashboard.GetRevenueDashboard.TechnicianFeedback]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> GraphDataEntry
+    {
+        let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
+        let values = graphData(forData: data, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType)
+        let graphColor = EarningDetails.CustomerEngagement.graphBarColor
+        
+        return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor.first!)
+    }
+    
+    func graphData(forData data:[Dashboard.GetRevenueDashboard.TechnicianFeedback]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double] {
+        
+        var filteredCustomerEngagement = data
+        
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            
+            filteredCustomerEngagement = technicianDataJSON?.data?.technician_feedbacks?.filter({ (customerEngagement) -> Bool in
+                if let date = customerEngagement.date?.date()?.startOfDay {
+                    
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            }) ?? []
+        }
+        
+        
+        //service level
+        if(index == 0){
+            return calculateServiceLevele(filterArray: filteredCustomerEngagement ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+        else if(index == 1){//customer interaction
+            return calculateCustomerInteraction(filterArray: filteredCustomerEngagement ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+        else if(index == 2 ){ // customer repeat
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            let filteredcustomerRepeat = technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
+                if let date = customerEngagement.date?.date()?.startOfDay {
+                    
+                    return date >= dateRange.start  && date <= dateRange.end
+                }
+                return false
+            })
+            return calculateCustomerRepeat(filterArray: filteredcustomerRepeat ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+        else if(index == 3){//customer feedback received
+            return calculateCustomerFeedbackReceived(filterArray: filteredCustomerEngagement!, dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+        else if(index == 4){ //customer served
+            return calculateCustomersServed(filterArray: filteredCustomerEngagement!, dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+        else { //feedback count
+            return calculateCustomersFeedbakCount(filterArray: filteredCustomerEngagement!, dateRange: dateRange, dateRangeType: dateRangeType)
+        }
+    }
+    
+    func calculateServiceLevele(filterArray : [Dashboard.GetRevenueDashboard.TechnicianFeedback], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var graphValues = [Double]()
+        let serviceLevelData = filterArray.filter({$0.service_avg_ratings ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                let data = serviceLevelData.filter({$0.date == objDt})
+                let ratings = data.map({$0.service_avg_ratings})
+                let ratingSum = ratings.reduce(0){$0 + ($1 ?? 0.0)}
+                
+                if ratings.count > 0
+                {
+                    let value = ratingSum/Double(ratings.count)
+                    graphValues.append(value)
+                }
+                else {
+                    graphValues.append(0.0)
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+            for month in months {
+                let data = serviceLevelData.filter({($0.date?.contains(month)) ?? false})
+                let ratings = data.map({$0.service_avg_ratings})
+                let ratingSum = ratings.reduce(0){$0 + ($1 ?? 0.0)}
+                
+                if ratings.count > 0
+                {
+                    let value = ratingSum/Double(ratings.count)
+                    graphValues.append(value)
+                }
+                else {
+                    graphValues.append(0.0)
+                }
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+                for month in months {
+                    let data = serviceLevelData.filter({($0.date?.contains(month)) ?? false})
+                    let ratings = data.map({$0.service_avg_ratings})
+                    let ratingSum = ratings.reduce(0){$0 + ($1 ?? 0.0)}
+                    
+                    if ratings.count > 0
+                    {
+                        let value = ratingSum/Double(ratings.count)
+                        graphValues.append(value)
+                    }
+                    else {
+                        graphValues.append(0.0)
+                    }
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    let data = serviceLevelData.filter({$0.date == objDt})
+                    let ratings = data.map({$0.service_avg_ratings})
+                    let ratingSum = ratings.reduce(0){$0 + ($1 ?? 0.0)}
+                    
+                    if ratings.count > 0
+                    {
+                        let value = ratingSum/Double(ratings.count)
+                        graphValues.append(value)
+                    }
+                    else {
+                        graphValues.append(0.0)
+                    }
+                }
+            }
+        }
+        
+        return graphValues
+    }
+    
+    func calculateCustomerInteraction(filterArray : [Dashboard.GetRevenueDashboard.TechnicianFeedback], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var graphValues = [Double]()
+        let customerInteractionArray = filterArray.filter({$0.technician_avg_ratings ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                if let data = customerInteractionArray.filter({$0.date == objDt}).first
+                {
+                    graphValues.append(Double(data.technician_avg_ratings ?? 0))
+                }
+                else {
+                    graphValues.append(Double(0.0))
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            for qMonth in months {
+                let value = customerInteractionArray.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        return Double(revenue.technician_avg_ratings ?? 0)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
+                graphValues.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+                for qMonth in months {
+                    let value = customerInteractionArray.map ({ (rewards) -> Double in
+                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(rewards.technician_avg_ratings ?? 0)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    graphValues.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    if let data = customerInteractionArray.filter({$0.date == objDt}).first
+                    {
+                        graphValues.append(Double(data.technician_avg_ratings ?? 0))
+                    }
+                    else {
+                        graphValues.append(Double(0.0))
+                    }
+                }
+            }
+        }
+        
+        return graphValues
+    }
+    
+    func calculateCustomerRepeat(filterArray : [Dashboard.GetRevenueDashboard.Client_repeat_transactions], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        
+        var graphValues = [Double]()
+        
+        let filteredcustomerRepeat = filterArray.filter({ (customerEngagement) -> Bool in
+            if let date = customerEngagement.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        })
+        
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                if let data = filteredcustomerRepeat.filter({$0.date == objDt}).first
+                {
+                    graphValues.append(Double(data.service_revenue ?? 0))
+                }
+                else {
+                    graphValues.append(Double(0.0))
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            for qMonth in months {
+                let value = filteredcustomerRepeat.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        return Double(revenue.service_revenue ?? 0)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
+                graphValues.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+                for qMonth in months {
+                    let value = filteredcustomerRepeat.map ({ (rewards) -> Double in
+                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(rewards.service_revenue ?? 0)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    graphValues.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    if let data = filteredcustomerRepeat.filter({$0.date == objDt}).first
+                    {
+                        graphValues.append(Double(data.service_revenue ?? 0))
+                    }
+                    else {
+                        graphValues.append(Double(0.0))
+                    }
+                }
+            }
+        }
+        return graphValues
+    }
+    
+    func calculateCustomerFeedbackReceived(filterArray : [Dashboard.GetRevenueDashboard.TechnicianFeedback], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var graphValues = [Double]()
+        
+        let customerFeedbackReceivedArray = filterArray.filter({$0.no_of_feedbacks ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                if let data = customerFeedbackReceivedArray.filter({$0.date == objDt}).first
+                {
+                    graphValues.append(Double(data.no_of_feedbacks ?? 0))
+                }
+                else {
+                    graphValues.append(Double(0.0))
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            for qMonth in months {
+                let value = customerFeedbackReceivedArray.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        return Double(revenue.no_of_feedbacks ?? 0)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
+                graphValues.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+                for qMonth in months {
+                    let value = customerFeedbackReceivedArray.map ({ (rewards) -> Double in
+                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(rewards.no_of_feedbacks ?? 0)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    graphValues.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    if let data = customerFeedbackReceivedArray.filter({$0.date == objDt}).first
+                    {
+                        graphValues.append(Double(data.no_of_feedbacks ?? 0))
+                    }
+                    else {
+                        graphValues.append(Double(0.0))
+                    }
+                }
+            }
+        }
+        
+        return graphValues
+    }
+    
+    func calculateCustomersServed(filterArray : [Dashboard.GetRevenueDashboard.TechnicianFeedback], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var graphValues = [Double]()
+        
+        let customersServedArray = filterArray.filter({$0.no_of_services ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                if let data = customersServedArray.filter({$0.date == objDt}).first
+                {
+                    graphValues.append(Double(data.no_of_services ?? 0))
+                }
+                else {
+                    graphValues.append(Double(0.0))
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            for qMonth in months {
+                let value = customersServedArray.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        return Double(revenue.no_of_services ?? 0)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
+                graphValues.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+                for qMonth in months {
+                    let value = customersServedArray.map ({ (rewards) -> Double in
+                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(rewards.no_of_services ?? 0)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    graphValues.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    if let data = customersServedArray.filter({$0.date == objDt}).first
+                    {
+                        graphValues.append(Double(data.no_of_services ?? 0))
+                    }
+                    else {
+                        graphValues.append(Double(0.0))
+                    }
+                }
+            }
+        }
+        
+        return graphValues
+    }
+    
+    func calculateCustomersFeedbakCount(filterArray : [Dashboard.GetRevenueDashboard.TechnicianFeedback], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var graphValues = [Double]()
+        
+        let customersServedArray = filterArray//.filter({$0.no_of_services ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                let data = customersServedArray.filter({$0.date == objDt})
+                let feedback = data.compactMap({$0.no_of_feedbacks}).reduce(0) {$0 + $1}
+                let services = data.compactMap({$0.no_of_services}).reduce(0) {$0 + $1}
+                if services > 0
+                {
+                    let value = Double(feedback)/Double(services) * 100
+                    graphValues.append(value)
+                }
+                else {
+                    graphValues.append(0.0)
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+            for month in months {
+                let data = customersServedArray.filter({($0.date?.contains(month)) ?? false})
+                let feedback = data.compactMap({$0.no_of_feedbacks}).reduce(0) {$0 + $1}
+                let services = data.compactMap({$0.no_of_services}).reduce(0) {$0 + $1}
+                if services > 0
+                {
+                    let value = Double(feedback)/Double(services) * 100
+                    graphValues.append(value)
+                }
+                else {
+                    graphValues.append(0.0)
+                }
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+                for month in months {
+                    let data = customersServedArray.filter({($0.date?.contains(month)) ?? false})
+                    let feedback = data.compactMap({$0.no_of_feedbacks}).reduce(0) {$0 + $1}
+                    let services = data.compactMap({$0.no_of_services}).reduce(0) {$0 + $1}
+                    if services > 0
+                    {
+                        let value = Double(feedback)/Double(services) * 100
+                        graphValues.append(value)
+                    }
+                    else {
+                        graphValues.append(0.0)
+                    }
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    let data = customersServedArray.filter({$0.date == objDt})
+                    let feedback = data.compactMap({$0.no_of_feedbacks}).reduce(0) {$0 + $1}
+                    let services = data.compactMap({$0.no_of_services}).reduce(0) {$0 + $1}
+                    if services > 0
+                    {
+                        let value = Double(feedback)/Double(services) * 100
+                        graphValues.append(value)
+                    }
+                    else {
+                        graphValues.append(0.0)
+                    }
+                }
+            }
+        }
+        
+        return graphValues
+    }
+    
+    func doSomething()
+    {
+        let request = CustomerEngagement.Something.Request()
+        interactor?.doSomething(request: request)
+    }
+    
+    func displaySomething(viewModel: CustomerEngagement.Something.ViewModel)
+    {
+        //nameTextField.text = viewModel.name
+    }
+}
+
+extension CustomerEngagementViewController: EarningsFilterDelegate {
+    
+    func actionDateFilter() {
+        print("Date Filter")
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = false
+        vc.selectedRangeTypeString = dateRangeType.rawValue
+        vc.cutomRange = customerEngagementCutomeDateRange
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if(result){
+                fromChartFilter = false
+                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                
+                if(dateRangeType == .cutome), let start = startDate, let end = endDate
+                {
+                    customerEngagementCutomeDateRange = DateRange(start,end)
+                }
+                updateCustomerEngagementData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
+            }
+        }
+    }
+    
+    func actionNormalFilter() {
+        print("Normal Filter")
+    }
+}
+
+extension CustomerEngagementViewController: EarningDetailsDelegate {
+    
+    func reloadData() {
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
+    
+    func actionDurationFilter(forCell cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell), dataModel.count >= indexPath.row else { return }
+        
+        let selectedIndex = indexPath.row - 1
+        
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        vc.isFromProductivity = false
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = true
+        if(selectedIndex >= 0){
+            let model = dataModel[selectedIndex]
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        else if let model = headerModel {
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if result == true, startDate != nil, endDate != nil {
+                fromFilters = false
+                fromChartFilter = true
+                
+                let rangeType  = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                updateCustomerEngagementData(atIndex: indexPath, withStartDate: startDate, endDate: endDate!, rangeType: rangeType)
+                
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
+                self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
+            }
+        }
+    }
+}
+
+extension CustomerEngagementViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataModel.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsHeaderCell, for: indexPath) as? EarningDetailsHeaderCell else {
+                return UITableViewCell()
+            }
+            if let model = headerModel {
+                var data:[GraphDataEntry] = []
+                if let hgraphData = headerGraphData {
+                    data = [hgraphData]
+                }
+                cell.configureCell(model: model, data: data)
+            }
+            cell.delegate = self
+            cell.parentVC = self
+            cell.selectionStyle = .none
+            return cell
+        }
+        else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsCell, for: indexPath) as? EarningDetailsCell else {
+                return UITableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.delegate = self
+            cell.parentVC = self
+            
+            let index = indexPath.row - 1
+            let model = dataModel[index]
+            let barGraph = graphData[index]
+            
+            cell.configureCell(model: model, data: [barGraph])
+            return cell
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selection")
+    }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsHeaderFilterCell) as? EarningDetailsHeaderFilterCell else {
+//            return UITableViewCell()
+//        }
+//        cell.delegate = self
+//        cell.configureCell(showDateFilter: true, showNormalFilter: false, titleForDateSelection: dateRangeType.rawValue)
+//        cell.selectionStyle = .none
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 60
+//    }
 }

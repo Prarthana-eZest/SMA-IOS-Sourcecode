@@ -96,7 +96,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         case .SingleValue:
             singleValueView.backgroundColor = model.earningsType.singleValueTileColor
             lblSingleValueView.text = model.value[0]
-            if(model.earningsType == .FreeServices || model.earningsType == .Footfall){
+            if(model.earningsType == .FreeServices || model.earningsType == .Footfall || model.earningsType == .CustomerEngagement || model.earningsType == .Productivity || model.earningsType == .PenetrationRatios || model.earningsType == .ResourceUtilisation){
                 lblRupee.isHidden = true
             }
             else {
