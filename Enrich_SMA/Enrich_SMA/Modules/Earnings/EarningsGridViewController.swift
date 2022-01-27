@@ -25,9 +25,7 @@ class EarningsGridViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
-        self.navigationController?.addCustomBackButton(title: "Back")
-        addFilterButtonOnRight(imageName: "filterGrid")
-        
+        self.navigationController?.addCustomBackButton(title: "Back")        
     }
     
 }
