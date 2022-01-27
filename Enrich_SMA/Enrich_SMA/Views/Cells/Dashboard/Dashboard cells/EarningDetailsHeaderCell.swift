@@ -23,6 +23,8 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak private var trendlineView: UIStackView!
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var gradientView: Gradient!
+    @IBOutlet weak private var gradientViewWidthConstraint: NSLayoutConstraint!
+
     
     @IBOutlet weak var graphRangeBtn: UIButton!
     @IBOutlet weak private var chartView: CombinedChartView!
@@ -42,6 +44,7 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        gradientViewWidthConstraint.constant = UIScreen.main.bounds.width
         // Initialization code
     }
     
@@ -59,6 +62,8 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         chartParentView.clipsToBounds = true
         chartParentView.layer.cornerRadius = 8
         chartParentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        gradientView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     }
     
     @IBAction func actionViewTrendline(_ sender: UIButton) {
