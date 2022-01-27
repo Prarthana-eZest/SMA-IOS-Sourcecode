@@ -1,15 +1,15 @@
 //
-//  DashboardGridCollectionViewCell.swift
+//  DashboardListCollectionViewCell.swift
 //  Enrich_SMA
 //
-//  Created by Suraj Kumar on 14/01/22.
+//  Created by Suraj Kumar on 27/01/22.
 //  Copyright © 2022 e-zest. All rights reserved.
 //
 
 import UIKit
 
-class DashboardGridCollectionViewCell: UICollectionViewCell {
-    
+class DashboardListCollectionViewCell: UICollectionViewCell {
+
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var dashViewImageView: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
@@ -24,7 +24,6 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
     
     var dashViewImageArray = ["Revenue", "Sales", "FreeServices", "Footfall", "CustomerEngagement", "Productivity", "PenetrationRatios", "ResourceUtilisation"]
     var titleArray = ["Revenue", "Sales", "Free Services", "Footfall", "Customer Engagement", "Productivity", "Penetration Ratios", "Resource Utilisation"]
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,6 +67,5 @@ class DashboardGridCollectionViewCell: UICollectionViewCell {
         self.parentView.layer.insertSublayer(gradientLayer, at: 0)
         
     }
-    
     
 }

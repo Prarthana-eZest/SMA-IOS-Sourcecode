@@ -48,20 +48,4 @@ extension UINavigationController {
 
     }
 }
-extension UIViewController {
-    func addFilterButtonOnRight(imageName:String){
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: imageName), for: .normal)
-        button.contentHorizontalAlignment = .center
-        button.contentVerticalAlignment = .center
-        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        button.addTarget(self, action: #selector(gotoFilterPage), for: .touchUpInside)
-        let barButton = UIBarButtonItem(customView: button)
-        self.navigationItem.setRightBarButton(barButton, animated: true)
-    }
-    
-    @objc func gotoFilterPage(){
-        print("list grid view changed")
-    }
-    
-}
+

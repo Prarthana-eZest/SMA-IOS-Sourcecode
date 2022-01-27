@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FuturaPTDemi.otf">
+            <string>FuturaPT-Demi</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="DashboardListCollectionViewCell" customModule="SMA_Stage" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="113"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="113"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dD0-6y-oFX">
+                        <rect key="frame" x="8" y="0.0" width="369" height="108"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-j0-zDS">
+                                <rect key="frame" x="5" y="0.0" width="344" height="108"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PenetrationRatios" translatesAutoresizingMaskIntoConstraints="NO" id="4BK-BH-MD6">
+                                        <rect key="frame" x="0.0" y="9" width="72" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="cDb-a0-lTY"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="WPq-gj-vwJ">
+                                        <rect key="frame" x="77" y="28" width="252" height="52"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOw-sn-caW">
+                                                <rect key="frame" x="0.0" y="0.0" width="37.5" height="21"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RJ7-k2-eH5">
+                                                <rect key="frame" x="0.0" y="21" width="73.5" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cA-8o-sD8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="15.5" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DU-eQ-prc">
+                                                        <rect key="frame" x="17.5" y="0.0" width="56" height="31"/>
+                                                        <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="24"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="FGg-cQ-NsE">
+                                        <rect key="frame" x="334" y="49" width="10" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="10" id="mO1-uX-gi2"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xlo-j0-zDS" secondAttribute="trailing" constant="20" id="3Z4-Ip-km4"/>
+                            <constraint firstItem="xlo-j0-zDS" firstAttribute="top" secondItem="dD0-6y-oFX" secondAttribute="top" id="AQ4-nY-Xfi"/>
+                            <constraint firstItem="xlo-j0-zDS" firstAttribute="leading" secondItem="dD0-6y-oFX" secondAttribute="leading" constant="5" id="EPK-fE-ZpJ"/>
+                            <constraint firstAttribute="bottom" secondItem="xlo-j0-zDS" secondAttribute="bottom" id="FSW-WO-iQO"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dD0-6y-oFX" secondAttribute="trailing" constant="8" id="0yW-5T-pTD"/>
+                <constraint firstItem="dD0-6y-oFX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2SG-38-WrV"/>
+                <constraint firstAttribute="bottom" secondItem="dD0-6y-oFX" secondAttribute="bottom" constant="5" id="7xf-5a-3Vd"/>
+                <constraint firstItem="dD0-6y-oFX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="i21-69-nnm"/>
+            </constraints>
+            <size key="customSize" width="385" height="113"/>
+            <connections>
+                <outlet property="dashViewImageView" destination="4BK-BH-MD6" id="cZI-dX-b98"/>
+                <outlet property="lblRupeeSymbol" destination="9cA-8o-sD8" id="SL6-Q7-5GR"/>
+                <outlet property="lblSubTitle" destination="2DU-eQ-prc" id="fRU-Xj-Oy2"/>
+                <outlet property="lblTitle" destination="WOw-sn-caW" id="uvL-3R-pUp"/>
+                <outlet property="parentView" destination="dD0-6y-oFX" id="GAb-lj-ymB"/>
+                <outlet property="stackViewsubTitleContainer" destination="RJ7-k2-eH5" id="E4g-Bd-eKY"/>
+            </connections>
+            <point key="canvasLocation" x="380.43478260869568" y="104.79910714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="PenetrationRatios" width="90" height="90"/>
+        <image name="next" width="6" height="10"/>
+    </resources>
+</document>
