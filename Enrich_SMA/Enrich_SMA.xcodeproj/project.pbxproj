@@ -27,6 +27,8 @@
 		442A94D42791EC3500C31DDC /* ViewCTCModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94D32791EC3500C31DDC /* ViewCTCModels.swift */; };
 		442A94D62791EE5D00C31DDC /* ExtensionsInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94D52791EE5D00C31DDC /* ExtensionsInt.swift */; };
 		442A94D92791F1AD00C31DDC /* DashboardTotalRevenueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A94D82791F1AD00C31DDC /* DashboardTotalRevenueVC.swift */; };
+		4435E82B27A292B60012788B /* DashboardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435E82927A292B60012788B /* DashboardListCollectionViewCell.swift */; };
+		4435E82C27A292B60012788B /* DashboardListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435E82A27A292B60012788B /* DashboardListCollectionViewCell.xib */; };
 		44E10BA12797C91700F88DA2 /* EarningsFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BA02797C91600F88DA2 /* EarningsFilterVC.swift */; };
 		44E10BA32797C98100F88DA2 /* EarningsFilterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BA22797C98100F88DA2 /* EarningsFilterModels.swift */; };
 		44E10BA52797C9AC00F88DA2 /* EarningsFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E10BA42797C9AC00F88DA2 /* EarningsFilterInteractor.swift */; };
@@ -443,6 +445,8 @@
 		442A94D32791EC3500C31DDC /* ViewCTCModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCTCModels.swift; sourceTree = "<group>"; };
 		442A94D52791EE5D00C31DDC /* ExtensionsInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsInt.swift; sourceTree = "<group>"; };
 		442A94D82791F1AD00C31DDC /* DashboardTotalRevenueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTotalRevenueVC.swift; sourceTree = "<group>"; };
+		4435E82927A292B60012788B /* DashboardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardListCollectionViewCell.swift; sourceTree = "<group>"; };
+		4435E82A27A292B60012788B /* DashboardListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardListCollectionViewCell.xib; sourceTree = "<group>"; };
 		44E10BA02797C91600F88DA2 /* EarningsFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterVC.swift; sourceTree = "<group>"; };
 		44E10BA22797C98100F88DA2 /* EarningsFilterModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterModels.swift; sourceTree = "<group>"; };
 		44E10BA42797C9AC00F88DA2 /* EarningsFilterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarningsFilterInteractor.swift; sourceTree = "<group>"; };
@@ -996,6 +1000,8 @@
 				44FBC62B27904E530068B3C6 /* DashboardTableViewCell.swift */,
 				44FBC62C27904E530068B3C6 /* DashboardTableViewCell.xib */,
 				442A949F2791589600C31DDC /* DashboardGridCollectionViewCell.swift */,
+				4435E82927A292B60012788B /* DashboardListCollectionViewCell.swift */,
+				4435E82A27A292B60012788B /* DashboardListCollectionViewCell.xib */,
 				442A94A02791589600C31DDC /* DashboardGridCollectionViewCell.xib */,
 				442A94AF2791937500C31DDC /* ViewCTCDeatilsCell.swift */,
 				442A94B02791937500C31DDC /* ViewCTCDeatilsCell.xib */,
@@ -2313,6 +2319,7 @@
 				E3034266235EE14700E0BF0A /* FuturaPTMediumOblique.otf in Resources */,
 				E303425B235EE14700E0BF0A /* FuturaPTBookOblique.otf in Resources */,
 				E30342E9235EE29800E0BF0A /* More.storyboard in Resources */,
+				4435E82C27A292B60012788B /* DashboardListCollectionViewCell.xib in Resources */,
 				E3034265235EE14700E0BF0A /* FuturaPTMedium.otf in Resources */,
 				F8804EBE244817FE00DEAA82 /* SignatureCell.xib in Resources */,
 				44FBC62E27904E530068B3C6 /* DashboardTableViewCell.xib in Resources */,
@@ -2695,6 +2702,7 @@
 				E3CD502A23713C3600DE106E /* OTPVerificationModuleWorker.swift in Sources */,
 				F8B8729A24629FD10031DC97 /* RequestDetailsInteractor.swift in Sources */,
 				E30601BE237EAA4D00988EEC /* RevenueInteractor.swift in Sources */,
+				4435E82B27A292B60012788B /* DashboardListCollectionViewCell.swift in Sources */,
 				E30341E3235EE14000E0BF0A /* MyProfilePresenter.swift in Sources */,
 				F8E5D289246E9BB8005876CE /* TeleMarketingCompletedCell.swift in Sources */,
 				E30601BC237EAA4D00988EEC /* RevenueWorker.swift in Sources */,

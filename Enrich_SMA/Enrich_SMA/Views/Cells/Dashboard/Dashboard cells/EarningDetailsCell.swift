@@ -16,6 +16,9 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak private var trendlineView: UIStackView!
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var parentView: UIView!
+    @IBOutlet weak private var parentViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var valueViewWidthConstraint: NSLayoutConstraint!
+
     
     @IBOutlet weak private var imageDropDown: UIImageView!
     
@@ -40,6 +43,8 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        parentViewWidthConstraint.constant = UIScreen.main.bounds.width - 30
+        valueViewWidthConstraint.constant = UIScreen.main.bounds.width - 60
         // Initialization code
     }
 
