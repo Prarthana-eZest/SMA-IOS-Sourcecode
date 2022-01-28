@@ -108,7 +108,7 @@ class TechnicianDashboardViewController: UIViewController, TechnicianDashboardDi
     }
     
     let button = UIButton(type: .custom)
-    var isGridView:Bool = false
+    var isGridView:Bool = true
     func addFilterButtonOnRight(){
         button.setImage(UIImage(named: "filterList"), for: .normal)
         button.contentHorizontalAlignment = .center
@@ -122,10 +122,10 @@ class TechnicianDashboardViewController: UIViewController, TechnicianDashboardDi
     @objc func gotoFilterPage(){
         if isGridView == false{
             isGridView = true
-            button.setImage(UIImage(named: "filterGrid"), for: .normal)
+            button.setImage(UIImage(named: "filterList"), for: .normal)
         }else{
             isGridView = false
-            button.setImage(UIImage(named: "filterList"), for: .normal)
+            button.setImage(UIImage(named: "filterGrid"), for: .normal)
         }
         self.collectionView.reloadData()
     }
@@ -393,6 +393,9 @@ extension TechnicianDashboardViewController : UICollectionViewDelegate, UICollec
             self.navigationController?.pushViewController(vc, animated: true)
         case 3://Footfall
             let vc = FootfallViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 4://Customer engagement
+            let vc = CustomerEngagementViewController.instantiate(fromAppStoryboard: .Incentives)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             let vc = RevenuesViewController.instantiate(fromAppStoryboard: .Incentives)

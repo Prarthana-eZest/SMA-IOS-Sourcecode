@@ -159,7 +159,7 @@ enum EarningDetails : String {
     var headerTileHeight: CGFloat {
         switch self {
         case .Revenue,.Sales, .FreeServices, .Footfall, .Fixed_Earning, .Incentive, .Bonus, .Other_Earnings, .Awards, .Deductions: return 126
-        case .CustomerEngagement,.ResourceUtilisation, .CustomerFeedback, .Productivity, .PenetrationRatios: return 96
+        case .CustomerEngagement,.ResourceUtilisation, .CustomerFeedback, .Productivity, .PenetrationRatios: return 126
         }
     }
     
