@@ -66,6 +66,7 @@ enum CellIdentifier {
     //Dashboard - Revenue Native screen
     static let earningDetailsCell = "EarningDetailsCell"
     static let earningDetailsHeaderCell = "EarningDetailsHeaderCell"
+    static let earningDetailsThreeValueCell = "EarningDetailsThreeValueCell" 
     
     
     // Appointment

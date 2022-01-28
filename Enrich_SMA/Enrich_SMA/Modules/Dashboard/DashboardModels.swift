@@ -120,6 +120,9 @@ enum Dashboard {
             let technician_feedbacks : [TechnicianFeedback]?
             let total_client_repeat_transactions : Int?
             let client_repeat_transactions : [Client_repeat_transactions]?
+            let cross_sell_transactions : [Cross_sell_transactions]?
+            let total_resource_utilization_transactions : Int?
+            let resource_utilization : [ResourceUtilization]?
         }
         
         struct Configuration : Codable {
@@ -284,6 +287,32 @@ enum Dashboard {
             let service_revenue : Double?
             let date : String?
             let for_appointment_date : String?
+        }
+        //MARK: - Cross sell transacrtion
+        struct Cross_sell_transactions : Codable {
+            let employee_id : Int?
+            let employee_code : String?
+            let date : String?
+            let book_for_employee_id : Int?
+            let book_for_employee_code : String?
+            let book_for_employee_catagory : String?
+            let paid_service_revenue : Double?
+            let free_service_revenue : Double?
+            
+        }
+        
+        // MARK: - ResourceUtilization
+        struct ResourceUtilization :Codable{
+            let employee_id : Int?
+            let date : String?
+            let shift_start_time : String?
+            let shift_end_time : String?
+            let total_shift_time : Int?
+            let total_woring_time : Int?
+            let services_time : Int?
+            let travel_time : Int?
+            let break_time : Int?
+            let tranning_time : Int?
         }
     }
 }
