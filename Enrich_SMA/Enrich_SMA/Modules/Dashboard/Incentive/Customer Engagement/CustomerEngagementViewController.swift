@@ -357,19 +357,19 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         //Graph Data
         graphData.append(getGraphEntry(hygineSafetyStandModel.title, forData: filteredFreeServiceForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
-        //Offered Tea / Coffee = 5
-        let offeredTeaCoffee = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
-        var offeredTeaCoffeeCount : Double = 0.0
-        for objofferedTeaCoffee in offeredTeaCoffee {
-            offeredTeaCoffeeCount = offeredTeaCoffeeCount + (objofferedTeaCoffee.technician_avg_ratings ?? 0)
-        }
-        let offeredTeaCoffeeShowData = offeredTeaCoffeeCount / Double(filteredCustomerEngagement?.count ?? 0)
-        
-        //Data Model
-        let offeredTeaCoffeeModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Offered Tea / Coffee", value: [offeredTeaCoffeeShowData.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
-        dataModel.append(offeredTeaCoffeeModel)
-        //Graph Data
-        graphData.append(getGraphEntry(offeredTeaCoffeeModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
+////        //Offered Tea / Coffee = 5
+////        let offeredTeaCoffee = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
+////        var offeredTeaCoffeeCount : Double = 0.0
+////        for objofferedTeaCoffee in offeredTeaCoffee {
+////            offeredTeaCoffeeCount = offeredTeaCoffeeCount + (objofferedTeaCoffee.technician_avg_ratings ?? 0)
+////        }
+////        let offeredTeaCoffeeShowData = offeredTeaCoffeeCount / Double(filteredCustomerEngagement?.count ?? 0)
+//
+//        //Data Model
+//        let offeredTeaCoffeeModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Offered Tea / Coffee", value: [offeredTeaCoffeeShowData.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+//        dataModel.append(offeredTeaCoffeeModel)
+//        //Graph Data
+//        graphData.append(getGraphEntry(offeredTeaCoffeeModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
       /*  //customer feedback received
         let customerFeedbackReceived = filteredCustomerEngagement?.filter({$0.no_of_feedbacks ?? 0 > 0}) ?? []
@@ -401,7 +401,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         }
        */
         
-        //Customer repeat = 6
+        //Customer repeat = 5
         
         let filteredcustomerRepeat = technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
             if let date = customerEngagement.date?.date()?.startOfDay {
@@ -422,7 +422,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             let customerRepeatModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Repeat", value: [String(filteredcustomerRepeat?.count ?? 0)], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
             dataModel.append(customerRepeatModel)
             //Graph Data
-            graphData.append(getGraphEntry(customerRepeatModel.title, forData: filteredFreeServiceForGraph, atIndex: 6, dateRange: graphDateRange, dateRangeType: graphRangeType))
+            graphData.append(getGraphEntry(customerRepeatModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
             
         }
         else {
@@ -431,7 +431,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             let customerRepeatModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Repeat", value: ["0"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
             dataModel.append(customerRepeatModel)
             //Graph Data
-            graphData.append(getGraphEntry(customerRepeatModel.title, forData: filteredFreeServiceForGraph, atIndex: 6, dateRange: graphDateRange, dateRangeType: graphRangeType))
+            graphData.append(getGraphEntry(customerRepeatModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
             
         }
        
