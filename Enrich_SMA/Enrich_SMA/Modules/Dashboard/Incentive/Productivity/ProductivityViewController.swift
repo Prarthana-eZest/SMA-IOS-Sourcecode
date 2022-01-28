@@ -81,7 +81,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Productivity")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
     
     // MARK: Do something

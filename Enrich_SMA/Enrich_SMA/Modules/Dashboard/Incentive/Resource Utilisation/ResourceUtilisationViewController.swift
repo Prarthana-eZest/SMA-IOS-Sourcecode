@@ -81,7 +81,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Resource Utilisation")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
     
     // MARK: Do something

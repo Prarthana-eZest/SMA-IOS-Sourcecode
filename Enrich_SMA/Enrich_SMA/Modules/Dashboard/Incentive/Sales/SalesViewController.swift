@@ -95,7 +95,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Sales")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
   
   // MARK: Do something
@@ -158,12 +158,12 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         for sales in filteredSales ?? [] {
             // membership revenue
-            if let membershipRevenue = sales.membership_new_revenue, membershipRevenue > 0 {
+            if let membershipRevenue = sales.membership_revenue, membershipRevenue > 0 {
                 membershipRevenueCount += membershipRevenue
             }
-            if let membershipRevenue = sales.membership_renew_revenue, membershipRevenue > 0 {
-                membershipRenewRevenueCount += membershipRevenue
-            }
+//            if let membershipRevenue = sales.membership_renew_revenue, membershipRevenue > 0 {
+//                membershipRenewRevenueCount += membershipRevenue
+//            }
             
             // value package revenue
             if let valuePackageRebenue = sales.value_package_revenue, valuePackageRebenue > 0 {
@@ -183,7 +183,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         //membership revenue
         //Data Model
-        let membershipSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Membership", value: [(membershipRevenueCount + membershipRenewRevenueCount).roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
+        let membershipSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Membership", value: [membershipRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
         dataModels.append(membershipSalesModel)
         //Graph Data
         graphData.append(getGraphEntry(membershipSalesModel.title, forData: filteredSalesForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))

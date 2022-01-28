@@ -80,7 +80,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Customer Engagement")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
     
     // MARK: Do something

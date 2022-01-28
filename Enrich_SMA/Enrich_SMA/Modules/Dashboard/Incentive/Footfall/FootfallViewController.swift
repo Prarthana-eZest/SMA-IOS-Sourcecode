@@ -81,7 +81,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Footfall")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
     
     

@@ -82,7 +82,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Penetration Rations")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
     
     // MARK: Do something

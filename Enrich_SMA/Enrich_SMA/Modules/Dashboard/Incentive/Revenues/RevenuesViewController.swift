@@ -94,7 +94,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Revenue")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
   // MARK: Do something
   
