@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		03ECD1B30034DC4CF3D1574C /* Pods_Enrich_SMATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7353AB2E52BA94B6F85E8173 /* Pods_Enrich_SMATests.framework */; };
+		0E4E015827A2CFB50033445F /* BottomFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4E015627A2CFB50033445F /* BottomFilterView.xib */; };
+		0E4E015927A2CFB50033445F /* BottomFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E015727A2CFB50033445F /* BottomFilterView.swift */; };
 		1041158CA4059DEC32A4F4CC /* Pods_Enrich_SMA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E64D78277E5B824569BA15 /* Pods_Enrich_SMA.framework */; };
 		442A949C279156D900C31DDC /* DashboardGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A949B279156D900C31DDC /* DashboardGridVC.swift */; };
 		442A94A12791589600C31DDC /* DashboardGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A949F2791589600C31DDC /* DashboardGridCollectionViewCell.swift */; };
@@ -426,6 +428,8 @@
 
 /* Begin PBXFileReference section */
 		07C08F50CB473F90D7CB8DFA /* Pods-Enrich_SMATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMATests.debug.xcconfig"; path = "Target Support Files/Pods-Enrich_SMATests/Pods-Enrich_SMATests.debug.xcconfig"; sourceTree = "<group>"; };
+		0E4E015627A2CFB50033445F /* BottomFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomFilterView.xib; sourceTree = "<group>"; };
+		0E4E015727A2CFB50033445F /* BottomFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomFilterView.swift; sourceTree = "<group>"; };
 		0FE9ED099B4C6BF281DC64F1 /* Pods-Enrich_SMA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMA.release.xcconfig"; path = "Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA.release.xcconfig"; sourceTree = "<group>"; };
 		26BFA423362D0D33821A9DC6 /* Pods-Enrich_SMA.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMA.stage.xcconfig"; path = "Target Support Files/Pods-Enrich_SMA/Pods-Enrich_SMA.stage.xcconfig"; sourceTree = "<group>"; };
 		433EE62A9D75B52EDEBF448A /* Pods-Enrich_SMAUITests.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Enrich_SMAUITests.stage.xcconfig"; path = "Target Support Files/Pods-Enrich_SMAUITests/Pods-Enrich_SMAUITests.stage.xcconfig"; sourceTree = "<group>"; };
@@ -872,6 +876,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E4E015527A2CFB50033445F /* BottomFilterView */ = {
+			isa = PBXGroup;
+			children = (
+				0E4E015627A2CFB50033445F /* BottomFilterView.xib */,
+				0E4E015727A2CFB50033445F /* BottomFilterView.swift */,
+			);
+			path = BottomFilterView;
+			sourceTree = "<group>";
+		};
 		104828021C4EB62F58A720C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1181,6 +1194,7 @@
 		E303408B235EE11C00E0BF0A /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				0E4E015527A2CFB50033445F /* BottomFilterView */,
 				E303409B235EE11C00E0BF0A /* Header Cells */,
 			);
 			path = Reusables;
@@ -2388,6 +2402,7 @@
 				E3060169237EA49200988EEC /* ServiceHistoryCell.xib in Resources */,
 				E303425D235EE14700E0BF0A /* FuturaPTCondExtraBoldOblique.otf in Resources */,
 				E303425F235EE14700E0BF0A /* FuturaPTBoldOblique.otf in Resources */,
+				0E4E015827A2CFB50033445F /* BottomFilterView.xib in Resources */,
 				E3034250235EE14700E0BF0A /* NotoSans-SemiBold.ttf in Resources */,
 				E30340AF235EE11C00E0BF0A /* MyProfileCell.xib in Resources */,
 				E3034116235EE11C00E0BF0A /* HeaderViewWithTitleCell.xib in Resources */,
@@ -2804,6 +2819,7 @@
 				E30342D5235EE15800E0BF0A /* DatePickerDialog.swift in Sources */,
 				E30601D5237EAA7A00988EEC /* ClientInformationModels.swift in Sources */,
 				E30342D3235EE15800E0BF0A /* CustomTabbarController.swift in Sources */,
+				0E4E015927A2CFB50033445F /* BottomFilterView.swift in Sources */,
 				F8252E7925B01D5600F0E178 /* AppointmentFilterModels.swift in Sources */,
 				F8DACAD92448620F006AB417 /* ReportCell.swift in Sources */,
 				442A94CD2791EB8600C31DDC /* CTCBreakUpTableViewCell.swift in Sources */,
