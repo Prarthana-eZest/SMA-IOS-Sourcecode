@@ -24,6 +24,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
     // MARK: Object lifecycle
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var bottomFilterView: BottomFilterView!
     
     var headerModel: EarningsHeaderDataModel?
     var headerGraphData: GraphDataEntry?
@@ -69,6 +70,8 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        bottomFilterView.delegate = self
+        bottomFilterView.setup(.basic)
         doSomething()
         tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
         tableView.register(UINib(nibName: CellIdentifier.earningDetailsThreeValueCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsThreeValueCell)
