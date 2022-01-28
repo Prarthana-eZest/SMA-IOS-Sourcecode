@@ -14,6 +14,9 @@ class BottomFilterView: UIView {
 
     @IBOutlet weak private var contentView: UIView!
     @IBOutlet weak private var containerView: UIView!
+    @IBOutlet weak private var containerViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var separatorView: UIView!
+    @IBOutlet weak private var normalFilterView: UIView!
     
     weak var delegate: EarningsFilterDelegate?
     
@@ -46,6 +49,16 @@ class BottomFilterView: UIView {
         addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.layoutAttachAll(to: self)
+    }
+    
+    func setup(_ filterType: FilterType) {
+        switch filterType {
+        case .basic:
+            separatorView.isHidden = true
+            normalFilterView.isHidden = true
+            containerViewWidthConstraint.constant = 114.0
+        case .advanced: break
+        }
     }
 
     @IBAction func actionDateFilter(_ sender: UIButton) {
