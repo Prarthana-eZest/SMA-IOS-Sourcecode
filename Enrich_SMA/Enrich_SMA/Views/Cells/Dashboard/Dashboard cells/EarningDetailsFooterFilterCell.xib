@@ -78,15 +78,15 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="704-xm-oZy">
                                         <rect key="frame" x="10" y="0.0" width="64" height="28"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="earningsFilter" translatesAutoresizingMaskIntoConstraints="NO" id="kzl-NU-jXw">
-                                                <rect key="frame" x="0.0" y="8" width="12" height="12"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter" translatesAutoresizingMaskIntoConstraints="NO" id="kzl-NU-jXw">
+                                                <rect key="frame" x="0.0" y="7.5" width="13" height="13"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="12" id="ZuJ-Sf-qMH"/>
-                                                    <constraint firstAttribute="height" constant="12" id="zka-Ag-LEb"/>
+                                                    <constraint firstAttribute="width" constant="13" id="ZuJ-Sf-qMH"/>
+                                                    <constraint firstAttribute="height" constant="13" id="zka-Ag-LEb"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fez-C4-QZk">
-                                                <rect key="frame" x="17" y="0.0" width="35" height="28"/>
+                                                <rect key="frame" x="18" y="0.0" width="34" height="28"/>
                                                 <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="12"/>
                                                 <state key="normal" title="FILTER">
                                                     <color key="titleColor" red="0.16862745100000001" green="0.1647058824" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -147,7 +147,7 @@
     </objects>
     <resources>
         <image name="downArrow" width="9" height="5"/>
-        <image name="earningsFilter" width="13" height="13"/>
+        <image name="filter" width="13" height="13"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

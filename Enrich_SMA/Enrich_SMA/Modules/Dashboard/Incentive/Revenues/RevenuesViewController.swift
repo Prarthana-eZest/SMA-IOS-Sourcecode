@@ -27,6 +27,8 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
   var router: (NSObjectProtocol & RevenuesRoutingLogic & RevenuesDataPassing)?
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var bottomFilterView: BottomFilterView!
+
     var dataModels = [EarningsCellDataModel]()
     var dateRangeType : DateRangeType = .mtd
     var revenueCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
@@ -82,6 +84,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    bottomFilterView.delegate = self
     doSomething()
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
@@ -534,4 +537,14 @@ extension RevenuesViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 60
 //    }
+}
+
+extension RevenuesViewController: EarningsFilterDelegate {
+    func actionDateFilter() {
+        
+    }
+    
+    func actionNormalFilter() {
+        
+    }
 }

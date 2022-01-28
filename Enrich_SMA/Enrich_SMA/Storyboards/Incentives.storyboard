@@ -655,7 +655,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nNP-Xk-WUt">
-                                <rect key="frame" x="0.0" y="45" width="414" height="817"/>
+                                <rect key="frame" x="0.0" y="45" width="414" height="757"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -663,20 +663,31 @@
                                     <outlet property="delegate" destination="DsJ-gP-xFI" id="cSi-Pq-lpd"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wr2-d3-dxp" customClass="BottomFilterView" customModule="SMA_Stage" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="VK5-PV-jSa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w9q-fc-wZj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="nNP-Xk-WUt" firstAttribute="top" secondItem="6FX-iJ-Bdf" secondAttribute="bottom" id="20f-g5-ErX"/>
+                            <constraint firstItem="w9q-fc-wZj" firstAttribute="bottom" secondItem="wr2-d3-dxp" secondAttribute="bottom" id="8kD-Y7-w7v"/>
                             <constraint firstItem="nNP-Xk-WUt" firstAttribute="leading" secondItem="w9q-fc-wZj" secondAttribute="leading" id="9m9-Du-qtH"/>
+                            <constraint firstItem="w9q-fc-wZj" firstAttribute="trailing" secondItem="wr2-d3-dxp" secondAttribute="trailing" id="FCN-B5-FB4"/>
+                            <constraint firstItem="wr2-d3-dxp" firstAttribute="top" secondItem="nNP-Xk-WUt" secondAttribute="bottom" id="Ms9-8U-Qwk"/>
                             <constraint firstItem="6FX-iJ-Bdf" firstAttribute="leading" secondItem="AZQ-0w-CEA" secondAttribute="leading" id="Na0-8w-5rB"/>
-                            <constraint firstItem="w9q-fc-wZj" firstAttribute="bottom" secondItem="nNP-Xk-WUt" secondAttribute="bottom" id="UUW-Ti-N1e"/>
+                            <constraint firstItem="wr2-d3-dxp" firstAttribute="leading" secondItem="w9q-fc-wZj" secondAttribute="leading" id="gZe-Pl-nnH"/>
                             <constraint firstAttribute="trailing" secondItem="6FX-iJ-Bdf" secondAttribute="trailing" id="iOb-Te-cvk"/>
                             <constraint firstItem="nNP-Xk-WUt" firstAttribute="trailing" secondItem="w9q-fc-wZj" secondAttribute="trailing" id="kW3-Vg-K4f"/>
                             <constraint firstItem="6FX-iJ-Bdf" firstAttribute="top" secondItem="w9q-fc-wZj" secondAttribute="top" id="vpo-ND-TMf"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomFilterView" destination="wr2-d3-dxp" id="KDG-1J-ibU"/>
                         <outlet property="tableView" destination="nNP-Xk-WUt" id="Vn1-14-4Ze"/>
                     </connections>
                 </viewController>
