@@ -360,6 +360,8 @@
 		F859275D27A2A0A100EBEF55 /* PackageFilterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859275727A2A0A100EBEF55 /* PackageFilterInteractor.swift */; };
 		F859278927A2C31B00EBEF55 /* EarningDetailsFooterFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F859278727A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.swift */; };
 		F859278A27A2C31B00EBEF55 /* EarningDetailsFooterFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F859278827A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.xib */; };
+		F85927B627A3D47E00EBEF55 /* EarningDetailsThreeValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85927B427A3D47D00EBEF55 /* EarningDetailsThreeValueCell.swift */; };
+		F85927B727A3D47E00EBEF55 /* EarningDetailsThreeValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F85927B527A3D47D00EBEF55 /* EarningDetailsThreeValueCell.xib */; };
 		F85EE66F24BDA50E001D9B0F /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */; };
 		F85EE67024BDA50E001D9B0F /* ListingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */; };
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
@@ -799,6 +801,8 @@
 		F859275727A2A0A100EBEF55 /* PackageFilterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFilterInteractor.swift; sourceTree = "<group>"; };
 		F859278727A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningDetailsFooterFilterCell.swift; sourceTree = "<group>"; };
 		F859278827A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarningDetailsFooterFilterCell.xib; sourceTree = "<group>"; };
+		F85927B427A3D47D00EBEF55 /* EarningDetailsThreeValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarningDetailsThreeValueCell.swift; sourceTree = "<group>"; };
+		F85927B527A3D47D00EBEF55 /* EarningDetailsThreeValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarningDetailsThreeValueCell.xib; sourceTree = "<group>"; };
 		F85EE66924BDA50E001D9B0F /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
 		F85EE66A24BDA50E001D9B0F /* ListingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingWorker.swift; sourceTree = "<group>"; };
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
@@ -2030,11 +2034,11 @@
 		F85925CC279A9C5000EBEF55 /* Productivity */ = {
 			isa = PBXGroup;
 			children = (
+				F8592612279A9D6600EBEF55 /* ProductivityViewController.swift */,
 				F859260E279A9D6600EBEF55 /* ProductivityPresenter.swift */,
 				F859260F279A9D6600EBEF55 /* ProductivityWorker.swift */,
 				F8592610279A9D6600EBEF55 /* ProductivityRouter.swift */,
 				F8592611279A9D6600EBEF55 /* ProductivityModels.swift */,
-				F8592612279A9D6600EBEF55 /* ProductivityViewController.swift */,
 				F8592613279A9D6600EBEF55 /* ProductivityInteractor.swift */,
 			);
 			path = Productivity;
@@ -2043,11 +2047,11 @@
 		F85925CD279A9C6B00EBEF55 /* Penetration Ratios */ = {
 			isa = PBXGroup;
 			children = (
+				F8592621279A9D7700EBEF55 /* PenetrationRatiosViewController.swift */,
 				F859261D279A9D7700EBEF55 /* PenetrationRatiosPresenter.swift */,
 				F859261E279A9D7700EBEF55 /* PenetrationRatiosWorker.swift */,
 				F859261F279A9D7700EBEF55 /* PenetrationRatiosRouter.swift */,
 				F8592620279A9D7700EBEF55 /* PenetrationRatiosModels.swift */,
-				F8592621279A9D7700EBEF55 /* PenetrationRatiosViewController.swift */,
 				F8592622279A9D7700EBEF55 /* PenetrationRatiosInteractor.swift */,
 			);
 			path = "Penetration Ratios";
@@ -2056,11 +2060,11 @@
 		F85925CE279A9C7C00EBEF55 /* Resource Utilisation */ = {
 			isa = PBXGroup;
 			children = (
+				F8592630279A9D9100EBEF55 /* ResourceUtilisationViewController.swift */,
 				F859262C279A9D9100EBEF55 /* ResourceUtilisationPresenter.swift */,
 				F859262D279A9D9100EBEF55 /* ResourceUtilisationWorker.swift */,
 				F859262E279A9D9100EBEF55 /* ResourceUtilisationRouter.swift */,
 				F859262F279A9D9100EBEF55 /* ResourceUtilisationModels.swift */,
-				F8592630279A9D9100EBEF55 /* ResourceUtilisationViewController.swift */,
 				F8592631279A9D9100EBEF55 /* ResourceUtilisationInteractor.swift */,
 			);
 			path = "Resource Utilisation";
@@ -2096,6 +2100,8 @@
 				F85926FA279FE65100EBEF55 /* EarningDetailsHeaderCell.xib */,
 				F859278727A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.swift */,
 				F859278827A2C31A00EBEF55 /* EarningDetailsFooterFilterCell.xib */,
+				F85927B427A3D47D00EBEF55 /* EarningDetailsThreeValueCell.swift */,
+				F85927B527A3D47D00EBEF55 /* EarningDetailsThreeValueCell.xib */,
 			);
 			path = "Dashboard cells";
 			sourceTree = "<group>";
@@ -2337,6 +2343,7 @@
 				E30342ED235EE3DA00E0BF0A /* Reports.storyboard in Resources */,
 				E303424F235EE14700E0BF0A /* NotoSans-Regular.ttf in Resources */,
 				E3034266235EE14700E0BF0A /* FuturaPTMediumOblique.otf in Resources */,
+				F85927B727A3D47E00EBEF55 /* EarningDetailsThreeValueCell.xib in Resources */,
 				E303425B235EE14700E0BF0A /* FuturaPTBookOblique.otf in Resources */,
 				E30342E9235EE29800E0BF0A /* More.storyboard in Resources */,
 				4435E82C27A292B60012788B /* DashboardListCollectionViewCell.xib in Resources */,
@@ -2645,6 +2652,7 @@
 				F85926FB279FE65100EBEF55 /* EarningDetailsHeaderCell.swift in Sources */,
 				E3CD503123713C3600DE106E /* LoginModuleWorker.swift in Sources */,
 				E3CEA5BF23CC57B200DD213F /* AllReviewsModuleWorker.swift in Sources */,
+				F85927B627A3D47E00EBEF55 /* EarningDetailsThreeValueCell.swift in Sources */,
 				44E10BBA2797D19600F88DA2 /* DateFilterPresenter.swift in Sources */,
 				442A94A12791589600C31DDC /* DashboardGridCollectionViewCell.swift in Sources */,
 				E30342D1235EE15800E0BF0A /* StoryBoardHandler.swift in Sources */,
