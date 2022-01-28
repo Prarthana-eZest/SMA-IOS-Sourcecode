@@ -24,6 +24,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
     // MARK: Object lifecycle
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var bottomFilterView: BottomFilterView!
     
     var headerModel: EarningsHeaderDataModel?
     var headerGraphData: GraphDataEntry?
@@ -68,6 +69,8 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        bottomFilterView.delegate = self
+        bottomFilterView.setup(.basic)
         doSomething()
         tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
         tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)

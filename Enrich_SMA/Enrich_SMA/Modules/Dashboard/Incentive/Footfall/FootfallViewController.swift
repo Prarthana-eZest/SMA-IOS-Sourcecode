@@ -24,6 +24,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
     // MARK: Object lifecycle
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var bottomFilterView: BottomFilterView!
     
     var headerModel: EarningsHeaderDataModel?
     var headerGraphData: GraphDataEntry?
@@ -68,6 +69,8 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        bottomFilterView.delegate = self
+        bottomFilterView.setup(.basic)
         doSomething()
         tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
     
@@ -664,4 +667,14 @@ extension FootfallViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 60
 //    }
+}
+
+extension FootfallViewController: EarningsFilterDelegate {
+    func actionDateFilter() {
+        //Use this only
+    }
+    
+    func actionNormalFilter() {
+        
+    }
 }

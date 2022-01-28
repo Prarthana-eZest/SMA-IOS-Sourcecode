@@ -23,6 +23,8 @@ class SalesViewController: UIViewController, SalesDisplayLogic
   var router: (NSObjectProtocol & SalesRoutingLogic & SalesDataPassing)?
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var bottomFilterView: BottomFilterView!
+
     var headerModel: EarningsHeaderDataModel?
     var headerGraphData: GraphDataEntry?
     
@@ -85,6 +87,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    bottomFilterView.delegate = self
     doSomething()
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
@@ -715,4 +718,14 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 60
 //    }
+}
+
+extension SalesViewController: EarningsFilterDelegate {
+    func actionDateFilter() {
+        
+    }
+    
+    func actionNormalFilter() {
+        
+    }
 }
