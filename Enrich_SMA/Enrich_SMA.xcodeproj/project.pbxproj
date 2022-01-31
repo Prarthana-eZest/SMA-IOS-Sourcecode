@@ -979,10 +979,10 @@
 		44E10BB32797D16000F88DA2 /* DateFilter */ = {
 			isa = PBXGroup;
 			children = (
+				44E10BB82797D19600F88DA2 /* DateFilterVC.swift */,
 				44E10BB62797D19500F88DA2 /* DateFilterInteractor.swift */,
 				44E10BB72797D19500F88DA2 /* DateFilterModels.swift */,
 				44E10BB52797D19500F88DA2 /* DateFilterPresenter.swift */,
-				44E10BB82797D19600F88DA2 /* DateFilterVC.swift */,
 				44E10BB42797D19500F88DA2 /* DateFilterWorker.swift */,
 			);
 			path = DateFilter;

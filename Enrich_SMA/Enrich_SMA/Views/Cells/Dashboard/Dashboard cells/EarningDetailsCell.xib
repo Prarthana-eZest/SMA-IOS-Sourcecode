@@ -284,6 +284,7 @@
             <viewLayoutGuide key="safeArea" id="RsS-0X-2A7"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="btnTreandline" destination="EIj-Sk-BNY" id="PCg-rs-j2L"/>
                 <outlet property="chartParentView" destination="dpR-lD-b8Y" id="MeP-1l-cI9"/>
                 <outlet property="chartView" destination="xUd-UV-sJP" id="Vv7-Cu-ntO"/>
                 <outlet property="graphDtFilter" destination="Ev5-Pa-M79" id="hHw-Sm-sDt"/>

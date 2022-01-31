@@ -657,6 +657,7 @@ extension ProductivityViewController: EarningsFilterDelegate {
         let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
         self.view.alpha = screenPopUpAlpha
         vc.fromChartFilter = false
+        vc.isFromProductivity = true
         vc.selectedRangeTypeString = dateRangeType.rawValue
         vc.cutomRange = productivityCutomeDateRange
         UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
