@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -409,7 +409,7 @@
         <!--Earnings FilterVC-->
         <scene sceneID="lKh-rC-XGk">
             <objects>
-                <viewController storyboardIdentifier="EarningsFilterVC" modalPresentationStyle="overFullScreen" id="zs7-mQ-2Od" customClass="EarningsFilterVC" customModule="TMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EarningsFilterVC" modalPresentationStyle="overFullScreen" id="zs7-mQ-2Od" customClass="EarningsFilterVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h96-TB-VzD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -574,7 +574,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b88-aW-uTe"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="b88-aW-uTe" firstAttribute="trailing" secondItem="rOP-g9-tzv" secondAttribute="trailing" id="KxK-B8-wVe"/>
                             <constraint firstItem="b88-aW-uTe" firstAttribute="bottom" secondItem="rOP-g9-tzv" secondAttribute="bottom" id="hqT-KE-h8C"/>
@@ -594,7 +594,7 @@
         <!--Date FilterVC-->
         <scene sceneID="Nn5-Bc-EAD">
             <objects>
-                <viewController storyboardIdentifier="DateFilterVC" modalPresentationStyle="overFullScreen" id="XGx-nN-VQ2" customClass="DateFilterVC" customModule="TMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DateFilterVC" modalPresentationStyle="overFullScreen" id="XGx-nN-VQ2" customClass="DateFilterVC" customModule="SMA_Stage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pnE-fZ-0zN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -720,7 +720,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lya-qu-Vso"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="lya-qu-Vso" firstAttribute="trailing" secondItem="Kh8-Py-Jm2" secondAttribute="trailing" id="MIW-pV-MnW"/>
                             <constraint firstItem="Kh8-Py-Jm2" firstAttribute="leading" secondItem="lya-qu-Vso" secondAttribute="leading" id="QdI-kh-A2M"/>

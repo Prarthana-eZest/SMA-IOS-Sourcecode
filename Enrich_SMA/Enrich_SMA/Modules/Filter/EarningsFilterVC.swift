@@ -86,6 +86,18 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
         subCategoryTableView.separatorColor = .clear
         categoryTableView.tag = 0
         subCategoryTableView.tag = 1
+        /*
+        let sub1 = [EarningsSubCatgoryFilterModel(subCategory: "Male", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Female", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Other", isSelected: false)]
+        data.append(EarningsCatgoryFilterModel(category: "Gender", isSelected: true, subCategories: sub1))
+        
+        let sub2 = [EarningsSubCatgoryFilterModel(subCategory: "Service", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Product", isSelected: false)]
+        data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: false, subCategories: sub2))
+        
+        let sub3 = [EarningsSubCatgoryFilterModel(subCategory: "All Categories", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Hair Cut", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Hair Styling", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Hair Colour", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Hair Wash", isSelected: false)]
+        data.append(EarningsCatgoryFilterModel(category: "Sub-category", isSelected: false, subCategories: sub3))
+        
+        let sub4 = [EarningsSubCatgoryFilterModel(subCategory: "General", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Gold", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Silver", isSelected: false), EarningsSubCatgoryFilterModel(subCategory: "Platinum", isSelected: false)]
+        data.append(EarningsCatgoryFilterModel(category: "Membership", isSelected: false, subCategories: sub4))*/
         
         createFilters()
         
@@ -97,7 +109,7 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
     // MARK: Do something
     
     func createFilters(){
-        //let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         
 //        let gender = technicianDataJSON?.data?.filters?.service_gender
 //
@@ -113,7 +125,7 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
         data.append(EarningsCatgoryFilterModel(category: "Gender", isSelected: true, subCategories: sub1))
         
         
-        //let category = technicianDataJSON?.data?.filters?.category_tree
+        let category = technicianDataJSON?.data?.filters?.category_tree
         
         var categoryData = [EarningsSubCatgoryFilterModel]()
         var subCategoryData = [EarningsSubCatgoryFilterModel]()
@@ -124,14 +136,14 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
         let selectedSubCategory = filterValueArray[2]
         subCategoryData.append(contentsOf: ( [EarningsSubCatgoryFilterModel(subCategory: "All Categories", isSelected: (selectedSubCategory == "All Categories"))]))
         
-        /*for objCategory in category! {
+        for objCategory in category! {
             categoryData.append(contentsOf: [EarningsSubCatgoryFilterModel(subCategory: objCategory.main_category_label ?? "", isSelected: (selectedCategory == objCategory.main_category_label))])
             
             for objSubCategoryArr in objCategory.sub_categories!{
                 subCategoryData.append(contentsOf:[EarningsSubCatgoryFilterModel(subCategory: objSubCategoryArr.sub_category_name ?? "", isSelected: (selectedSubCategory == objSubCategoryArr.sub_category_name))])
             }
             
-        }*/
+        }
         
         data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: false, subCategories: categoryData))
         

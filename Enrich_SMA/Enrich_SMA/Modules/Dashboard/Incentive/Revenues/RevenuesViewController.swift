@@ -21,97 +21,280 @@ protocol RevenuesDisplayLogic: class
 
 typealias BarLineGraphEntry = (barGraph:GraphDataEntry, lineGraph:GraphDataEntry)
 
-class RevenuesViewController: UIViewController, RevenuesDisplayLogic
+class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDisplayLogic
 {
-  var interactor: RevenuesBusinessLogic?
-  var router: (NSObjectProtocol & RevenuesRoutingLogic & RevenuesDataPassing)?
+    func displaySomething(viewModel: Revenues.Something.ViewModel) {
+        
+    }
+    
+    func displaySuccess<T>(viewModel: T) where T : Decodable {
+        
+    }
+    
+    func displayError(errorMessage: String?) {
+        
+    }
+    
+    var interactor: RevenueBusinessLogic?
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var bottomFilterView: BottomFilterView!
-
-    var dataModels = [EarningsCellDataModel]()
-    var dateRangeType : DateRangeType = .mtd
-    var revenueCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
-    var barGraphData = [GraphDataEntry]()
-    var lineGraphData = [GraphDataEntry]()
+    
     var headerModel: EarningsHeaderDataModel?
     var headerGraphDataGraphEntries:BarLineGraphEntry?
+    
     var filterArray:[String]?
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = RevenuesInteractor()
-    let presenter = RevenuesPresenter()
-    let router = RevenuesRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    
+    var dataModels = [EarningsCellDataModel]()
+    
+    var barGraphData = [GraphDataEntry]()
+    var lineGraphData = [GraphDataEntry]()
+    
+    var fromFilters : Bool = false
+    
+    var fromChartFilter : Bool = false
+    
+    var dateRangeType : DateRangeType = .mtd
+    var revenueCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
+    
+    // MARK: Object lifecycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    bottomFilterView.delegate = self
-    doSomething()
-    tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
-    tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
-    revenueData(startDate: Date.today.startOfMonth , endDate: Date.today, otherFilters: filterArray, completion: nil)
-  }
-  
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup()
+    {
+        let viewController = self
+        let interactor = RevenueInteractor()
+        let presenter = RevenuePresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+    
+    // MARK: View lifecycle
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        bottomFilterView.delegate = self
+        //doSomething()
+        tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
+    
+        tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(false, forKey: UserDefauiltsKeys.k_key_CustomDateRangeSelected)
+        userDefaults.synchronize()
+        fromFilters = false
+        fromChartFilter = false
+        dateRangeType = .mtd
+        updateRevenueScreenData(startDate: Date.today.startOfMonth)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.addCustomBackButton(title: "Back")
     }
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Revenues.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Revenues.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
     
-    func revenueData(startDate : Date, endDate : Date = Date().startOfDay, otherFilters : [String]?, completion: (() -> Void)? ){
+    // MARK: Do something
+
+    
+    func updateRevenueScreenData(startDate: Date?, endDate: Date = Date().startOfDay) {
+        
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        //        DispatchQueue.main.async { [unowned self] () in
+        revenueData(startDate: startDate ?? Date.today, endDate: endDate, otherFilters: filterArray, completion: nil)
+        //        }
+    }
+    
+    
+    func updateRevenueScreenData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
+        let selectedIndex = indexPath.row - 1
+        let dateRange = DateRange(startDate!, endDate)
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        
+        //Date filter applied
+        let dateFilteredRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            if let date = revenue.date?.date()?.startOfDay {
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        })
+        
+        
+        //Update Data for Index
+        if(selectedIndex >= 0){
+            let model = dataModels[selectedIndex]
+            model.dateRangeType = rangeType
+            if model.dateRangeType == .cutome {
+                model.customeDateRange = dateRange
+            }
+            
+            update(modeData: model, withData: dateFilteredRevenue, otherFilters: filterArray, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            let graphData = getBarLineGraphEntry(model.title, forData: dateFilteredRevenue, otherFilters: filterArray, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            barGraphData[selectedIndex] = graphData.barGraph
+            lineGraphData[selectedIndex] = graphData.lineGraph
+        }
+        else if let _ = headerModel {
+            headerModel?.dateRangeType = rangeType
+            if headerModel?.dateRangeType == .cutome {
+                headerModel?.customeDateRange = dateRange
+            }
+            
+            updateHeaderModel(withData: dateFilteredRevenue, otherFilters: filterArray, dateRange: dateRange, dateRangeType: rangeType)
+            headerGraphDataGraphEntries = getTotalRevenueBarLineGraphEntry(forData: dateFilteredRevenue, dateRange: dateRange, dateRangeType: rangeType)
+        }
+        
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String]?, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
+        
+        var filteredRevenue = data
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            //Date filter applied
+            filteredRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+                if let date = revenue.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        //Other Filters Applied
+        //Gender
+        if let gender = otherFilters?[0], gender != "All Genders"
+        {
+            filteredRevenue = filteredRevenue?.filter({ $0.service_gender == gender })
+        }
+        
+        //Category
+        if let category = otherFilters?[1], category != "All Categories"
+        {
+            filteredRevenue = filteredRevenue?.filter({ $0.category == category })
+        }
+        
+        //Sub-Category
+        if let subCategory = otherFilters?[2], subCategory != "All Categories"
+        {
+            filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
+        }
+        
+        var value : Double = 0.0
+        for revenue in filteredRevenue ?? [] {
+            
+            switch index {
+            case 0:
+                // Salon Service Revenue Data
+                if (revenue.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon) {
+                    value += Double(revenue.total ?? 0.0)
+                }
+                
+            case 1:
+                // Home Service Revenue Data
+                if (revenue.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home) {
+                    value += Double(revenue.total ?? 0.0)
+                }
+                
+            case 2:
+                // Retail Products Revenue Data
+                if (revenue.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail) {
+                    value += Double(revenue.total ?? 0.0)
+                }
+            default:
+                continue
+            }
+        }
+        dataModels[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [value.roundedStringValue()], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+    }
+    
+    
+    func updateHeaderModel(withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String]?, dateRange:DateRange, dateRangeType: DateRangeType) {
+        
+        var filteredRevenue = data
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            //Date filter applied
+            filteredRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+                if let date = revenue.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        //Other Filters Applied
+        //Gender
+        if let gender = otherFilters?[0], gender != "All Genders"
+        {
+            filteredRevenue = filteredRevenue?.filter({ $0.service_gender == gender })
+        }
+        
+        //Category
+        if let category = otherFilters?[1], category != "All Categories"
+        {
+            filteredRevenue = filteredRevenue?.filter({ $0.category == category })
+        }
+        
+        //Sub-Category
+        if let subCategory = otherFilters?[2], subCategory != "All Categories"
+        {
+            filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
+        }
+        
+        var salonServiceToatal:Double = 0.0
+        var homeServiceTotal:Double = 0.0
+        var retailTotal:Double = 0.0
+        
+        for revenue in filteredRevenue ?? [] {
+            
+            // Retail Products Revenue Data
+            if (revenue.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail) {
+                retailTotal += Double(revenue.total ?? 0.0)
+            }
+            
+            // Salon Service Revenue Data
+            if (revenue.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon) {
+                salonServiceToatal += Double(revenue.total ?? 0.0)
+            }
+            
+            // Home Service Revenue Data
+            if (revenue.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home) {
+                homeServiceTotal += Double(revenue.total ?? 0.0)
+            }
+        }
+        
+        headerModel?.value = salonServiceToatal + homeServiceTotal + retailTotal
+    }
+    
+    func revenueData(startDate : Date, endDate : Date = Date().startOfDay, otherFilters : [String]?, completion: (() -> Void)? ) {
+        
+        //Handled Wrong function calling to avoid data mismatch
+        guard fromChartFilter == false else {
+            print("******* Wrong Function Called **********")
+            completion?()
+            return
+        }
         
         dataModels.removeAll()
         barGraphData.removeAll()
@@ -210,13 +393,15 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
         barGraphData.append(retailServiceGraphEntries.barGraph)
         lineGraphData.append(retailServiceGraphEntries.lineGraph)
         
+       
         //Total Revenue for Header data
         headerModel =  EarningsHeaderDataModel(earningsType: .Revenue, value: (salonServiceToatal + homeServiceTotal + retailTotal), isExpanded: false, dateRangeType: graphRangeType, customeDateRange: revenueCutomeDateRange)
-        
-//        headerModel?.value = salonServiceToatal + homeServiceTotal + retailTotal
-//        headerModel?.dateRangeType = graphRangeType
-//        headerModel?.isExpanded = false
+    
+        headerModel?.dateRangeType = graphRangeType
         headerGraphDataGraphEntries = getTotalRevenueBarLineGraphEntry(forData: filteredRevenueForGraph, dateRange: graphDateRange, dateRangeType: graphRangeType)
+        
+        
+        completion?()
         
         tableView.reloadData()
         EZLoadingActivity.hide()
@@ -232,6 +417,20 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
         
         
         let lineGraphEntry = GraphDataEntry(graphType: .linedGraph, dataTitle: "Target Value", units: units, values: graphData(forData: [], otherFilters: otherFilters, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType), barColor: graphColor.last!)
+        
+        return BarLineGraphEntry(barGraphEntry, lineGraphEntry)
+    }
+    
+    func getTotalRevenueBarLineGraphEntry(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) -> BarLineGraphEntry
+    {
+        let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
+        let values = totalRevenueGraphData(forData: data, dateRange: dateRange, dateRangeType: dateRangeType)
+        let graphColor = EarningDetails.Revenue.graphBarColor
+        
+        let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "Achieved Value", units: units, values: values, barColor: graphColor.first!)
+        
+        
+        let lineGraphEntry = GraphDataEntry(graphType: .linedGraph, dataTitle: "Target Value", units: units, values: totalRevenueGraphData(forData: [], dateRange: dateRange, dateRangeType: dateRangeType), barColor: graphColor.last!)
         
         return BarLineGraphEntry(barGraphEntry, lineGraphEntry)
     }
@@ -325,21 +524,6 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
         return dataForBar
     }
     
-    //functions for total graphs of header
-    func getTotalRevenueBarLineGraphEntry(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) -> BarLineGraphEntry
-    {
-        let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
-        let values = totalRevenueGraphData(forData: data, dateRange: dateRange, dateRangeType: dateRangeType)
-        let graphColor = EarningDetails.Revenue.graphBarColor
-        
-        let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "Achieved Value", units: units, values: values, barColor: graphColor.first!)
-        
-        
-        let lineGraphEntry = GraphDataEntry(graphType: .linedGraph, dataTitle: "Target Value", units: units, values: totalRevenueGraphData(forData: [], dateRange: dateRange, dateRangeType: dateRangeType), barColor: graphColor.last!)
-        
-        return BarLineGraphEntry(barGraphEntry, lineGraphEntry)
-    }
-    
     func totalRevenueGraphData(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]
     {
         var totalRevenue = [Double]()
@@ -427,6 +611,62 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic
     }
 }
 
+extension RevenuesViewController: EarningsFilterDelegate {
+    //This function called from "Show Result for..." date filter button
+    func actionDateFilter() {
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = false
+        vc.selectedRangeTypeString = dateRangeType.rawValue
+        vc.cutomRange = revenueCutomeDateRange
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if(result){
+                fromFilters = false
+                fromChartFilter = false
+                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                if(dateRangeType == .cutome), let start = startDate, let end = endDate
+                {
+                    revenueCutomeDateRange = DateRange(start,end)
+                }
+                updateRevenueScreenData(startDate: startDate, endDate: endDate ?? Date().startOfDay)
+                EZLoadingActivity.hide()
+            }
+        }
+    }
+    
+    func actionNormalFilter() {
+        print("Normal Filter")
+        let vc = EarningsFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        self.view.alpha = screenPopUpAlpha
+        if(filterArray?.count == 3) {
+            vc.filterValueArray = filterArray!
+        }
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        self.view.alpha = 1.0
+        vc.viewDismissBlock = { [unowned self] (result, filterValue) in
+            
+            if(result){
+                
+                filterArray = filterValue
+                fromFilters = true
+                
+                if(dateRangeType == .cutome) {
+                    //handle cutome range here
+                    let cStartDate = revenueCutomeDateRange.start
+                    let cEndDate = revenueCutomeDateRange.end
+                    updateRevenueScreenData(startDate: cStartDate, endDate: cEndDate)
+                }
+                else {
+                    updateRevenueScreenData(startDate: dateRangeType.date!)
+                }
+            }
+        }
+    }
+}
+
 extension RevenuesViewController: EarningDetailsDelegate {
     
     func reloadData() {
@@ -436,40 +676,41 @@ extension RevenuesViewController: EarningDetailsDelegate {
     
     //This function called from cell-> Graph-> date filter button
     func actionDurationFilter(forCell cell: UITableViewCell) {
-//        guard let indexPath = tableView.indexPath(for: cell), dataModels.count >= indexPath.row else { return }
-//
-//        let selectedIndex = indexPath.row - 1
-//
-//        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Incentive)
-//        self.view.alpha = screenPopUpAlpha
-//        vc.isFromProductivity = false
-//        vc.fromChartFilter = true
-//        if(selectedIndex >= 0){
-//            let model = dataModels[selectedIndex]
-//            vc.selectedRangeTypeString = model.dateRangeType.rawValue
-//            vc.cutomRange = model.customeDateRange
-//        }
-//        else if let model = headerModel {
-//            vc.selectedRangeTypeString = model.dateRangeType.rawValue
-//            vc.cutomRange = model.customeDateRange
-//        }
-//        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
-//        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
-//            // Do something
-//            self.view.alpha = 1.0
-//            if result == true, startDate != nil, endDate != nil {
-//                fromFilters = false
-//                fromChartFilter = true
-//
-//                let rangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-//                updateRevenueScreenData(atIndex: indexPath, withStartDate: startDate!, endDate: endDate!, rangeType:rangeType)
-//
-//                let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
-//                self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
-//            }
-//        }
+        guard let indexPath = tableView.indexPath(for: cell), dataModels.count >= indexPath.row else { return }
+        
+        let selectedIndex = indexPath.row - 1
+        
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        self.view.alpha = screenPopUpAlpha
+        vc.isFromProductivity = false
+        vc.fromChartFilter = true
+        if(selectedIndex >= 0){
+            let model = dataModels[selectedIndex]
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        else if let model = headerModel {
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if result == true, startDate != nil, endDate != nil {
+                fromFilters = false
+                fromChartFilter = true
+                
+                let rangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                updateRevenueScreenData(atIndex: indexPath, withStartDate: startDate!, endDate: endDate!, rangeType:rangeType)
+                
+                let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
+                self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
+            }
+        }
     }
 }
+
 extension RevenuesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -495,7 +736,7 @@ extension RevenuesViewController: UITableViewDelegate, UITableViewDataSource {
                 if let graphEntries = headerGraphDataGraphEntries {
                     data = [graphEntries.lineGraph, graphEntries.barGraph]
                 }
-                    cell.configureCell(model: headerModel!, data: data)
+                cell.configureCell(model: model, data: data)
             }
             return cell
         }
@@ -525,26 +766,16 @@ extension RevenuesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-////        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsHeaderFilterCell) as? EarningDetailsHeaderFilterCell else {
-////            return UITableViewCell()
-////        }
-////        cell.delegate = self
-////        cell.configureCell(showDateFilter: true, showNormalFilter: true, titleForDateSelection: dateRangeType.rawValue)
-////        cell.selectionStyle = .none
-////        return cell
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsHeaderFilterCell) as? EarningDetailsHeaderFilterCell else {
+//            return UITableViewCell()
+//        }
+//        cell.delegate = self
+//        cell.configureCell(showDateFilter: true, showNormalFilter: true, titleForDateSelection: dateRangeType.rawValue)
+//        cell.selectionStyle = .none
+//        return cell
 //    }
-    
+//
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 60
 //    }
-}
-
-extension RevenuesViewController: EarningsFilterDelegate {
-    func actionDateFilter() {
-        
-    }
-    
-    func actionNormalFilter() {
-        
-    }
 }

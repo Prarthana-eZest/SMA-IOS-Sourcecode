@@ -28,7 +28,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6i-2p-4X1">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="120"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBh-rZ-kuM" userLabel="Incentive View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBh-rZ-kuM" userLabel="Incentive View" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="142.5" height="120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4j-BN-TGF">
@@ -94,7 +94,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="crossMode" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-Dj-lDB" userLabel="Earnings View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-Dj-lDB" userLabel="Earnings View" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
                                         <rect key="frame" x="157.5" y="0.0" width="142.5" height="120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhJ-U5-nGh">
@@ -170,7 +170,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="0Ce-9Q-Uf2">
                                 <rect key="frame" x="0.0" y="135" width="300" height="75"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wa6-2l-Eod" userLabel="Incentive View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wa6-2l-Eod" userLabel="Incentive View" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfM-6h-Xgn">
@@ -227,7 +227,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="crossMode" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1y5-WP-i7g" userLabel="Earnings View" customClass="Gradient" customModule="TMA_Stage" customModuleProvider="target">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1y5-WP-i7g" userLabel="Earnings View" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="75" width="300" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earnings Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXT-1u-4aw">

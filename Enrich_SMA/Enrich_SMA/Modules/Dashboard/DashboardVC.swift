@@ -371,8 +371,8 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.delegate = self
-            //changing from .lsitView to .gridView to show two buttons for dashboards
-            cell.viewType = .gridView
+            //changing from .gridView to .listView to show two buttons for dashboards
+            cell.viewType = .listView
             cell.configureCell()
             cell.selectionStyle = .none
             return cell
@@ -398,6 +398,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
+        getRevenueDashboard()
     }
 }
 
