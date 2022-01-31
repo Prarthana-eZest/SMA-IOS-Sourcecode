@@ -79,7 +79,7 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         gradientView.endColor = model.earningsType.headerGradientColors.last ?? .white
         gradientView.startLocation = 0.0
         gradientView.endLocation = 1.0
-        gradientView.horizontalMode = true
+        gradientView.horizontalMode = false
         iconImage.image = model.earningsType.headerIcon
         lblTitle.text = model.earningsType.headerTitle
         trendlineView.isHidden = !model.earningsType.isGraphAvailable
