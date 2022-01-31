@@ -91,22 +91,19 @@ enum EarningDetails : String {
     var headerGradientColors: [UIColor] {
         
         switch self {
-        case .Revenue: return [UIColor(red: 0.56, green: 0.84, blue: 0.71, alpha: 1.00), UIColor(red: 0.20, green: 0.59, blue: 0.56, alpha: 1.00)]
-        case .Sales: return [UIColor(red: 0.56, green: 0.89, blue: 0.95, alpha: 1.00), UIColor(red: 0.16, green: 0.46, blue: 0.77, alpha: 1.00)]
-        case .FreeServices: return [UIColor(red: 0.95, green: 0.44, blue: 0.61, alpha: 1.00), UIColor(red: 1.00, green: 0.58, blue: 0.45, alpha: 1.00)]
-        case .Footfall: return [UIColor(red: 1.00, green: 0.78, blue: 0.64, alpha: 1.00), UIColor(red: 0.99, green: 0.57, blue: 0.30, alpha: 1.00)]
+        case .Revenue, .Fixed_Earning: return [UIColor(red: 144/255.0, green: 214/255.0, blue: 181/255.0, alpha: 1.00), UIColor(red: 52/255.0, green: 151/255.0, blue: 144/255.0, alpha: 1.00)]
+        case .Sales, .Incentive: return [UIColor(red: 143/255.0, green: 228/255.0, blue: 242/255.0, alpha: 1.00), UIColor(red: 41/255.0, green: 118/255.0, blue: 196/255.0, alpha: 1.00)]
+        case .FreeServices: return [UIColor(red: 255/255.0, green: 224/255.0, blue: 177/255.0, alpha: 1.00), UIColor(red: 232/255.0, green: 59/255.0, blue: 112/255.0, alpha: 1.00)]
+        case .Footfall: return [UIColor(red: 1.00, green: 220/255.0, blue: 197/255.0, alpha: 1.00), UIColor(red: 255/255.0, green: 140/255.0, blue: 39/255.0, alpha: 1.00)]
         case .CustomerFeedback: return [UIColor(red: 0.57, green: 0.93, blue: 0.96, alpha: 1.00), UIColor(red: 0.25, green: 0.61, blue: 0.92, alpha: 1.00)]
-        case .Productivity: return [UIColor(red: 0.78, green: 0.88, blue: 0.44, alpha: 1.00), UIColor(red: 0.34, green: 0.69, blue: 0.08, alpha: 1.00)]
-        case .PenetrationRatios: return [UIColor(red: 0.95, green: 0.72, blue: 0.71, alpha: 1.00), UIColor(red: 0.73, green: 0.34, blue: 0.84, alpha: 1.00)]
-        case .CustomerEngagement: return [UIColor(red: 0.75, green: 0.68, blue: 1.00, alpha: 1.00), UIColor(red: 0.12, green: 0.39, blue: 0.80, alpha: 1.00)]
-        case .ResourceUtilisation: return [UIColor(red: 0.83, green: 0.94, blue: 0.99, alpha: 1.00), UIColor(red: 0.29, green: 0.40, blue: 0.42, alpha: 1.00)]
-        case .Fixed_Earning: return [UIColor(red: 0.56, green: 0.84, blue: 0.71, alpha: 1.00), UIColor(red: 0.20, green: 0.59, blue: 0.56, alpha: 1.00)]
-        case .Incentive: return [UIColor(red: 0.41, green: 0.67, blue: 0.96, alpha: 1.00), UIColor(red: 0.47, green: 0.39, blue: 0.93, alpha: 1.00)]
-        case .Bonus: return [UIColor(red: 0.78, green: 0.88, blue: 0.44, alpha: 1.00), UIColor(red: 0.34, green: 0.69, blue: 0.08, alpha: 1.00)]
-        case .Other_Earnings: return [UIColor(red: 0.83, green: 0.94, blue: 0.99, alpha: 1.00), UIColor(red: 0.29, green: 0.40, blue: 0.42, alpha: 1.00)]
-        case .Awards: return [UIColor(red: 0.95, green: 0.72, blue: 0.71, alpha: 1.00), UIColor(red: 0.73, green: 0.34, blue: 0.84, alpha: 1.00)]
-        case .Deductions: return [UIColor(red: 0.95, green: 0.44, blue: 0.61, alpha: 1.00), UIColor(red: 1.0, green: 0.58, blue: 0.45, alpha: 1.00)]
-        }//rgba(242, 112, 156, 1) rgba(255, 148, 114, 1)
+        case .Productivity, .Bonus: return [UIColor(red: 163/255.0, green: 211/255.0, blue: 70/255.0, alpha: 1.00), UIColor(red: 68/255.0, green: 139/255.0, blue: 9/255.0, alpha: 1.00)]
+        case .PenetrationRatios: return [UIColor(red: 1.0, green: 119/255.0, blue: 166/255.0, alpha: 1.00), UIColor(red: 176/255.0, green: 84/255.0, blue: 187/255.0, alpha: 1.00)]
+        case .CustomerEngagement: return [UIColor(red: 175/255.0, green: 165/255.0, blue: 1.0, alpha: 1.00), UIColor(red: 138/255.0, green: 42/255.0, blue: 222/255.0, alpha: 1.00)]
+        case .ResourceUtilisation: return [UIColor(red: 203/255.0, green: 240/255.0, blue: 1.0, alpha: 1.00), UIColor(red: 56/255.0, green: 91/255.0, blue: 100/255.0, alpha: 1.00)]
+        case .Other_Earnings: return [UIColor(red: 212/255.0, green: 240/255.0, blue: 252/255.0, alpha: 1.00), UIColor(red: 73/255.0, green: 101/255.0, blue: 107/255.0, alpha: 1.00)]
+        case .Awards: return [UIColor(red: 247/255.0, green: 156/255.0, blue: 177/255.0, alpha: 1.00), UIColor(red: 190/255.0, green: 91/255.0, blue: 205/255.0, alpha: 1.00)]
+        case .Deductions: return [UIColor(red: 242/255.0, green: 112/255.0, blue: 156/255.0, alpha: 1.00), UIColor(red: 1.0, green: 148/255.0, blue: 114/255.0, alpha: 1.00)]
+        }
     }
     
     var headerIcon: UIImage? {
