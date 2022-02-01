@@ -22,7 +22,8 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak private var lblTitle: UILabel!
     @IBOutlet weak private var trendlineView: UIStackView!
     @IBOutlet weak private var chartParentView: UIView!
-    @IBOutlet weak private var gradientView: Gradient!
+    @IBOutlet weak private var gradientView: UIView!
+    @IBOutlet weak private var topGradientView: Gradient!
     @IBOutlet weak private var gradientViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak private var lblRupee: UILabel!
     
@@ -54,16 +55,23 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         gradientView.clipsToBounds = true
         gradientView.layer.cornerRadius = 8
         gradientView.layer.masksToBounds = false
+        
+        topGradientView.clipsToBounds = true
+        topGradientView.layer.cornerRadius = 8
+        topGradientView.layer.masksToBounds = false
+        
         gradientView.layer.shadowRadius = 8
         gradientView.layer.shadowOpacity = 0.20
         gradientView.layer.shadowOffset = CGSize(width: 0, height: 10)
-        gradientView.layer.shadowColor = UIColor.gray.cgColor
+        gradientView.layer.shadowColor = model.isExpanded ? UIColor.gray.cgColor : UIColor.clear.cgColor
         
         chartParentView.clipsToBounds = true
         chartParentView.layer.cornerRadius = 8
         chartParentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         gradientView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        topGradientView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+
     }
     
     @IBAction func actionViewTrendline(_ sender: UIButton) {
@@ -75,11 +83,11 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     
     func configureCell(model: EarningsHeaderDataModel, data: [GraphDataEntry]) {
         self.model = model
-        gradientView.startColor = model.earningsType.headerGradientColors.first ?? .white
-        gradientView.endColor = model.earningsType.headerGradientColors.last ?? .white
-        gradientView.startLocation = 0.0
-        gradientView.endLocation = 1.0
-        gradientView.horizontalMode = false
+        topGradientView.startColor = model.earningsType.headerGradientColors.first ?? .white
+        topGradientView.endColor = model.earningsType.headerGradientColors.last ?? .white
+        topGradientView.startLocation = 0.0
+        topGradientView.endLocation = 1.0
+        topGradientView.horizontalMode = false
         iconImage.image = model.earningsType.headerIcon
         lblTitle.text = model.earningsType.headerTitle
         trendlineView.isHidden = !model.earningsType.isGraphAvailable

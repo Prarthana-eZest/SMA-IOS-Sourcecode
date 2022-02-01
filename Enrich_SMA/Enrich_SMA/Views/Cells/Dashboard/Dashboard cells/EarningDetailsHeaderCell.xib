@@ -26,13 +26,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="389" height="507"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-Kl-hY0" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="383"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-Kl-hY0">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="384"/>
                         <subviews>
-                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-cR-aQs">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="383"/>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="2vf-cR-aQs">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="384"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2we-3C-4rS">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2we-3C-4rS" customClass="Gradient" customModule="SMA_Stage" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="126"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RevenueWhiteNew" translatesAutoresizingMaskIntoConstraints="NO" id="Hdw-i5-d8Y">
@@ -142,7 +142,7 @@
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NO-QT-EaA">
-                                        <rect key="frame" x="0.0" y="126" width="300" height="257"/>
+                                        <rect key="frame" x="0.0" y="127" width="300" height="257"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-Eg-unv" customClass="CombinedChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="10" width="300" height="247"/>
@@ -241,7 +241,7 @@
             <connections>
                 <outlet property="chartParentView" destination="1NO-QT-EaA" id="azs-OJ-UZi"/>
                 <outlet property="chartView" destination="Avj-Eg-unv" id="LHq-Nn-h6S"/>
-                <outlet property="gradientView" destination="Ay7-Kl-hY0" id="2uZ-Id-2PV"/>
+                <outlet property="gradientView" destination="Ay7-Kl-hY0" id="zhB-QY-FAM"/>
                 <outlet property="gradientViewWidthConstraint" destination="nin-Yx-yEC" id="WCM-gH-awA"/>
                 <outlet property="graphRangeBtn" destination="oiC-1N-zGG" id="ozf-Ma-U2b"/>
                 <outlet property="iconImage" destination="Hdw-i5-d8Y" id="exU-oI-Mei"/>
@@ -250,6 +250,7 @@
                 <outlet property="lblTitle" destination="QCa-Vy-7bd" id="d6F-1H-l1J"/>
                 <outlet property="lblValue" destination="xFd-ou-9Zh" id="0da-dC-ryI"/>
                 <outlet property="tileHeightConstraint" destination="Qsa-oR-Dsf" id="jWS-4J-mq5"/>
+                <outlet property="topGradientView" destination="2we-3C-4rS" id="OGg-SM-lMz"/>
                 <outlet property="trendlineView" destination="VeP-9D-lVp" id="ZJV-6L-yoJ"/>
             </connections>
             <point key="canvasLocation" x="77.536231884057983" y="244.75446428571428"/>
