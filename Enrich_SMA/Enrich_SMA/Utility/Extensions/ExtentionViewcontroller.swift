@@ -193,6 +193,11 @@ extension UIViewController {
                 dateRangeUpdate.end = Date.today.nextQuarter()
                 return dateRangeUpdate.end.monthNames(from: dateRangeUpdate.start,withFormat: "MMM yy")
             }
+            else if(dateRange.end.monthNumber(from: dateRange.start)[0] < 3){
+                var dateRangeUpdate = DateRange(dateRange.start, dateRange.end)
+                dateRangeUpdate.end = Date.today.showQuarterWithThreeMonths()
+                return dateRangeUpdate.end.monthNames(from: dateRangeUpdate.start,withFormat: "MMM yy")
+            }
             return dateRange.end.monthNames(from: dateRange.start,withFormat: "MMM yy")
             
         case .ytd:
@@ -222,6 +227,11 @@ extension UIViewController {
             if(dateRange.start.monthName == dateRange.end.monthName){
                 var dateRangeUpdate = DateRange(dateRange.start, dateRange.end)
                 dateRangeUpdate.end = Date.today.nextQuarter()
+                return dateRangeUpdate.end.monthNames(from: dateRangeUpdate.start,withFormat: "MMM yy")
+            }
+            else if(dateRange.end.monthNumber(from: dateRange.start)[0] < 3){
+                var dateRangeUpdate = DateRange(dateRange.start, dateRange.end)
+                dateRangeUpdate.end = Date.today.showQuarterWithThreeMonths()
                 return dateRangeUpdate.end.monthNames(from: dateRangeUpdate.start,withFormat: "MMM yy")
             }
             return dateRange.end.monthNames(from: dateRange.start,withFormat: "MMM yy")

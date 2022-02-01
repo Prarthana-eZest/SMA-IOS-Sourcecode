@@ -122,6 +122,140 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         salesData(startDate:  startDate ?? Date.today, endDate: endDate)
     }
     
+    func updateSalesScreenData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
+        let selectedIndex = indexPath.row - 1
+        let dateRange = DateRange(startDate!, endDate)
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        
+        //Date filter applied
+        let dateFilteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            if let date = revenue.date?.date()?.startOfDay {
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        })
+        
+        //Update Data for Index
+        if(selectedIndex >= 0){
+            let model = dataModels[selectedIndex]
+            model.dateRangeType = rangeType
+            if model.dateRangeType == .cutome {
+                model.customeDateRange = dateRange
+            }
+            
+            update(modeData: model, withData: dateFilteredSales, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            graphData[selectedIndex] = getGraphEntry(model.title, forData: dateFilteredSales, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+        }
+        else if let _ = headerModel {
+            headerModel?.dateRangeType = rangeType
+            if headerModel?.dateRangeType == .cutome {
+                headerModel?.customeDateRange = dateRange
+            }
+            
+            updateHeaderModel(withData: dateFilteredSales, dateRange: dateRange, dateRangeType: rangeType)
+            headerGraphData = getTotalSalesGraphEntry(forData: dateFilteredSales, dateRange: dateRange, dateRangeType: rangeType)
+        }
+        
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
+        
+        var filteredSales = data
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            //Date filter applied
+            filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+                if let date = revenue.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        var value1 : Double = 0.0
+        var value2 : Double = 0.0
+        for sales in filteredSales ?? [] {
+            
+            switch index {
+            case 0:
+                // membership revenue
+                if let membershipRevenue = sales.membership_new_revenue, membershipRevenue > 0 {
+                    value1 += membershipRevenue
+                }
+                
+                if let membershipRevenue = sales.membership_renew_revenue, membershipRevenue > 0 {
+                    value2 += membershipRevenue
+                }
+                
+            case 1:
+                // value package revenue
+                if let valuePackageRebenue = sales.value_package_revenue, valuePackageRebenue > 0 {
+                    value1 += valuePackageRebenue
+                }
+                
+            case 2:
+                // service_package_revenue
+                if let servicePackageRevenue = sales.service_package_revenue, servicePackageRevenue > 0 {
+                    value1 += servicePackageRevenue
+                }
+            default:
+                continue
+            }
+        }
+        
+        let values = index == 0 ?
+            ["",value1.abbrevationString, value2.abbrevationString] :
+            [value1.rounded().abbrevationString]
+        
+        dataModels[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: values, subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+    }
+    
+    func updateHeaderModel(withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) {
+        
+        var filteredSales = data
+        
+        //Fetch Data incase not having filtered already
+        if data == nil, (data?.count ?? 0 <= 0) {
+            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+            
+            //Date filter applied
+            filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+                if let date = revenue.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+        }
+        
+        var membershipRevenueCount : Double = 0.0
+        var valuePackageRevenueCount : Double = 0.0
+        var servicePackageRevenueCount : Double = 0.0
+        
+        for sales in filteredSales ?? [] {
+            // membership revenue
+            if let membershipRevenue = sales.membership_new_revenue, membershipRevenue > 0 {
+                membershipRevenueCount += membershipRevenue
+            }
+            
+            // value package revenue
+            if let valuePackageRebenue = sales.value_package_revenue, valuePackageRebenue > 0 {
+                valuePackageRevenueCount += valuePackageRebenue
+            }
+            
+            // service_package_revenue
+            if let servicePackageRevenue = sales.service_package_revenue, servicePackageRevenue > 0 {
+                servicePackageRevenueCount += servicePackageRevenue
+            }
+        }
+        
+        headerModel?.value = membershipRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount
+    }
+    
     func salesData(startDate : Date, endDate : Date = Date().startOfDay) {
         
         //Handled Wrong function calling to avoid data mismatch
@@ -497,35 +631,35 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     }
 }
 
-//extension SalesViewController: EarningsFilterDelegate {
-//    
-//    func actionDateFilter() {
-//        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
-//        self.view.alpha = screenPopUpAlpha
-//        vc.fromChartFilter = false
-//        vc.selectedRangeTypeString = dateRangeType.rawValue
-//        vc.cutomRange = salesCutomeDateRange
-//        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
-//        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
-//            // Do something
-//            self.view.alpha = 1.0
-//            if(result){
-//                fromChartFilter = false
-//                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-//                
-//                if(dateRangeType == .cutome), let start = startDate, let end = endDate
-//                {
-//                    salesCutomeDateRange = DateRange(start,end)
-//                }
-//                updateSalesScreenData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
-//            }
-//        }
-//    }
-//    
-//    func actionNormalFilter() {
-//        print("Normal Filter")
-//    }
-//}
+extension SalesViewController: EarningsFilterDelegate {
+    
+    func actionDateFilter() {
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = false
+        vc.selectedRangeTypeString = dateRangeType.rawValue
+        vc.cutomRange = salesCutomeDateRange
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if(result){
+                fromChartFilter = false
+                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                
+                if(dateRangeType == .cutome), let start = startDate, let end = endDate
+                {
+                    salesCutomeDateRange = DateRange(start,end)
+                }
+                updateSalesScreenData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
+            }
+        }
+    }
+    
+    func actionNormalFilter() {
+        print("Normal Filter")
+    }
+}
 
 extension SalesViewController: EarningDetailsDelegate {
     
@@ -535,39 +669,39 @@ extension SalesViewController: EarningDetailsDelegate {
     }
     
     func actionDurationFilter(forCell cell: UITableViewCell) {
-//        guard let indexPath = tableView.indexPath(for: cell), dataModels.count >= indexPath.row else { return }
-//
-//        let selectedIndex = indexPath.row - 1
-//
-//        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Incentives)
-//        vc.isFromProductivity = false
-//        self.view.alpha = screenPopUpAlpha
-//        vc.fromChartFilter = true
-//        if(selectedIndex >= 0){
-//            let model = dataModels[selectedIndex]
-//            vc.selectedRangeTypeString = model.dateRangeType.rawValue
-//            vc.cutomRange = model.customeDateRange
-//        }
-//        else if let model = headerModel {
-//            vc.selectedRangeTypeString = model.dateRangeType.rawValue
-//            vc.cutomRange = model.customeDateRange
-//        }
-//        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
-//        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
-//            // Do something
-//            self.view.alpha = 1.0
-//            if result == true, startDate != nil, endDate != nil {
-//                fromFilters = false
-//                fromChartFilter = true
-//
-//                let rangeType  = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-//                updateSalesScreenData(atIndex: indexPath, withStartDate: startDate, endDate: endDate!, rangeType: rangeType)
-//
-//                tableView.reloadRows(at: [indexPath], with: .automatic)
-//                let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
-//                self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
-//            }
-//        }
+        guard let indexPath = tableView.indexPath(for: cell), dataModels.count >= indexPath.row else { return }
+
+        let selectedIndex = indexPath.row - 1
+
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        vc.isFromProductivity = false
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = true
+        if(selectedIndex >= 0){
+            let model = dataModels[selectedIndex]
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        else if let model = headerModel {
+            vc.selectedRangeTypeString = model.dateRangeType.rawValue
+            vc.cutomRange = model.customeDateRange
+        }
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if result == true, startDate != nil, endDate != nil {
+                fromFilters = false
+                fromChartFilter = true
+
+                let rangeType  = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                updateSalesScreenData(atIndex: indexPath, withStartDate: startDate, endDate: endDate!, rangeType: rangeType)
+
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
+                self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
+            }
+        }
     }
     
     func actionPackageFilter(forCell cell: UITableViewCell) {
@@ -720,12 +854,3 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
 //    }
 }
 
-extension SalesViewController: EarningsFilterDelegate {
-    func actionDateFilter() {
-        
-    }
-    
-    func actionNormalFilter() {
-        
-    }
-}
