@@ -84,7 +84,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Back")
+        self.navigationController?.addCustomBackButton(title: "Free Services")
     }
     
     // MARK: Do something
@@ -297,21 +297,14 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         //Graph Data
         graphData.append(getGraphEntry(cGiftVoucherModel.title, forData: filteredFreeServiceForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
-//        //grooming_giftcard
-//        //Data Model
-//        let gGiftCardModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Grooming Gift Card", value: [groomingGiftcardCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
-//        dataModel.append(gGiftCardModel)
-//        //Graph Data
-//        graphData.append(getGraphEntry(gGiftCardModel.title, forData: filteredFreeServiceForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
-        
-//        var freeServicesCount = Double(freeServiceRevenueCount + groomingGiftcardCount + complimentaryGiftcardCount)
+    
         var freeServicesCount = Double(freeServiceRevenueCount + complimentaryGiftcardCount)
         freeServicesCount = 0.8 * freeServicesCount
-        headerModel?.value = freeServicesCount
-        headerModel?.dateRangeType = graphRangeType
-        //Total Free services for Header data
-        headerModel =  EarningsHeaderDataModel(earningsType: .FreeServices, value: freeServicesCount, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
         
+        //Total free services for Header data
+        headerModel =  EarningsHeaderDataModel(earningsType: .FreeServices, value: (freeServicesCount), isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        
+        headerModel?.dateRangeType = graphRangeType
         headerGraphData = getTotalFreeServiceGraphEntry(forData: filteredFreeServiceForGraph, dateRange: graphDateRange, dateRangeType: graphRangeType)
         
         tableView.reloadData()
@@ -559,36 +552,36 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     }
 }
 
-//extension FreeServicesViewController: EarningsFilterDelegate {
-//
-//    func actionDateFilter() {
-//        print("Date Filter")
-//        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Incentive)
-//        self.view.alpha = screenPopUpAlpha
-//        vc.fromChartFilter = false
-//        vc.selectedRangeTypeString = dateRangeType.rawValue
-//        vc.cutomRange = freeServicesCutomeDateRange
-//        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
-//        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
-//            // Do something
-//            self.view.alpha = 1.0
-//            if(result){
-//                fromChartFilter = false
-//                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-//
-//                if(dateRangeType == .cutome), let start = startDate, let end = endDate
-//                {
-//                    freeServicesCutomeDateRange = DateRange(start,end)
-//                }
-//                updateFreeServiceScreenData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
-//            }
-//        }
-//    }
-//
-//    func actionNormalFilter() {
-//        print("Normal Filter")
-//    }
-//}
+extension FreeServicesViewController: EarningsFilterDelegate {
+    
+    func actionDateFilter() {
+        print("Date Filter")
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = false
+        vc.selectedRangeTypeString = dateRangeType.rawValue
+        vc.cutomRange = freeServicesCutomeDateRange
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if(result){
+                fromChartFilter = false
+                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                
+                if(dateRangeType == .cutome), let start = startDate, let end = endDate
+                {
+                    freeServicesCutomeDateRange = DateRange(start,end)
+                }
+                updateFreeServiceScreenData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
+            }
+        }
+    }
+    
+    func actionNormalFilter() {
+        print("Normal Filter")
+    }
+}
 
 extension FreeServicesViewController: EarningDetailsDelegate {
     
@@ -686,29 +679,5 @@ extension FreeServicesViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selection")
-    }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.earningDetailsHeaderFilterCell) as? EarningDetailsHeaderFilterCell else {
-//            return UITableViewCell()
-//        }
-//        cell.delegate = self
-//        cell.configureCell(showDateFilter: true, showNormalFilter: false, titleForDateSelection: dateRangeType.rawValue)
-//        cell.selectionStyle = .none
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 60
-//    }
-}
-
-extension FreeServicesViewController: EarningsFilterDelegate {
-    func actionDateFilter() {
-        //Use this only
-    }
-    
-    func actionNormalFilter() {
-        
     }
 }

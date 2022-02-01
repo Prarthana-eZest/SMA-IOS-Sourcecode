@@ -20,6 +20,7 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak private var iconImage: UIImageView!
     @IBOutlet weak private var lblValue: UILabel!
     @IBOutlet weak private var lblTitle: UILabel!
+    @IBOutlet weak private var btnTreandline: UIButton!
     @IBOutlet weak private var trendlineView: UIStackView!
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var gradientView: UIView!
@@ -78,6 +79,7 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         model.isExpanded = !model.isExpanded
         chartParentView.isHidden = !model.isExpanded
         imageDropDown.transform =  model.isExpanded ? CGAffineTransform(rotationAngle: .pi) : CGAffineTransform.identity
+        btnTreandline.setTitle(model.isExpanded ? "Hide Trendline" : "View Trendline", for: .normal)
         delegate?.reloadData()
     }
     

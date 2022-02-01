@@ -57,6 +57,11 @@ extension Date
         return Utils.calendar.date(byAdding: .month, value: +2, to: self)!
     }
     
+    func showQuarterWithThreeMonths() -> Date
+    {
+        return Utils.calendar.date(byAdding: .month, value: +1, to: self)!
+    }
+    
     func lastYear() -> Date
     {
         return Utils.calendar.date(byAdding: .year, value: -1, to: self)!

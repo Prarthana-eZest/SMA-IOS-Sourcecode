@@ -13,6 +13,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     
     @IBOutlet weak private var lblTitle: UILabel!
     @IBOutlet weak private var lblSubTitle: UILabel!
+    @IBOutlet weak private var btnTreandline: UIButton!
     @IBOutlet weak private var trendlineView: UIStackView!
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var parentView: UIView!
@@ -67,7 +68,8 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     @IBAction func actionViewTrendline(_ sender: UIButton) {
         model.isExpanded = !model.isExpanded
         chartParentView.isHidden = !model.isExpanded
-        imageDropDown.image = chartParentView.isHidden ? UIImage(named: "downArrow") : UIImage(named: "upArrow")
+        imageDropDown.transform =  model.isExpanded ? CGAffineTransform(rotationAngle: .pi) : CGAffineTransform.identity
+        btnTreandline.setTitle(model.isExpanded ? "Hide Trendline" : "View Trendline", for: .normal)
         delegate?.reloadData()
     }
     

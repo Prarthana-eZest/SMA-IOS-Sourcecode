@@ -525,36 +525,36 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
 
 }
 
-//extension FootfallViewController: EarningsFilterDelegate {
-//
-//    func actionDateFilter() {
-//        print("Date Filter")
-//        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
-//        self.view.alpha = screenPopUpAlpha
-//        vc.fromChartFilter = false
-//        vc.selectedRangeTypeString = dateRangeType.rawValue
-//        vc.cutomRange = footfallCutomeDateRange
-//        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
-//        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
-//            // Do something
-//            self.view.alpha = 1.0
-//            if(result){
-//                fromChartFilter = false
-//                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-//
-//                if(dateRangeType == .cutome), let start = startDate, let end = endDate
-//                {
-//                    footfallCutomeDateRange = DateRange(start,end)
-//                }
-//                updateFootfallData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
-//            }
-//        }
-//    }
-//
-//    func actionNormalFilter() {
-//        print("Normal Filter")
-//    }
-//}
+extension FootfallViewController: EarningsFilterDelegate {
+
+    func actionDateFilter() {
+        print("Date Filter")
+        let vc = DateFilterVC.instantiate(fromAppStoryboard: .Earnings)
+        self.view.alpha = screenPopUpAlpha
+        vc.fromChartFilter = false
+        vc.selectedRangeTypeString = dateRangeType.rawValue
+        vc.cutomRange = footfallCutomeDateRange
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
+            // Do something
+            self.view.alpha = 1.0
+            if(result){
+                fromChartFilter = false
+                dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+
+                if(dateRangeType == .cutome), let start = startDate, let end = endDate
+                {
+                    footfallCutomeDateRange = DateRange(start,end)
+                }
+                updateFootfallData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
+            }
+        }
+    }
+
+    func actionNormalFilter() {
+        print("Normal Filter")
+    }
+}
 
 extension FootfallViewController: EarningDetailsDelegate {
 
@@ -667,14 +667,4 @@ extension FootfallViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 60
 //    }
-}
-
-extension FootfallViewController: EarningsFilterDelegate {
-    func actionDateFilter() {
-        //Use this only
-    }
-    
-    func actionNormalFilter() {
-        
-    }
 }

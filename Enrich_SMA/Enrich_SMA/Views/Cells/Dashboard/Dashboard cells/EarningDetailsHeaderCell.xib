@@ -239,6 +239,7 @@
             <viewLayoutGuide key="safeArea" id="D7o-uG-z0m"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="btnTreandline" destination="lED-kp-1ML" id="2De-Ak-oZU"/>
                 <outlet property="chartParentView" destination="1NO-QT-EaA" id="azs-OJ-UZi"/>
                 <outlet property="chartView" destination="Avj-Eg-unv" id="LHq-Nn-h6S"/>
                 <outlet property="gradientView" destination="Ay7-Kl-hY0" id="zhB-QY-FAM"/>
