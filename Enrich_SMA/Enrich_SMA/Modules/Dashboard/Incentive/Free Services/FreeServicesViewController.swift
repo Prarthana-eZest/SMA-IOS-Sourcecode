@@ -587,6 +587,7 @@ extension FreeServicesViewController: EarningDetailsDelegate {
     
     func reloadData() {
         self.tableView.beginUpdates()
+        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
         self.tableView.endUpdates()
     }
     
