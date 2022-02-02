@@ -33,6 +33,11 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var singleValueView: UIView!
     @IBOutlet weak var lblSingleValueView: UILabel!
     
+    // New IBOutlets
+    @IBOutlet weak private var titleContainerView: UIView!
+    @IBOutlet weak private var allPackageStackView: UIStackView!
+
+    
     var model: EarningsCellDataModel!
 //    var model : Dashboard.GetRevenueDashboard.Response
         
@@ -73,9 +78,23 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         delegate?.reloadData()
     }
     
+    @IBAction func actionAllPackages(_ sender: UIButton) {
+        print("All Package Button Clicked...")
+    }
+    
+    private func shouldAllPackageButtonVisible() -> Bool {
+        switch self.model.title {
+        case "Value Package", "Service Package", "Product Package": return true
+        default: return false
+        }
+    }
+    
     func configureCell(model: EarningsCellDataModel, data: [GraphDataEntry]) {
         self.model = model
         self.lblTitle.text = model.title
+        allPackageStackView.isHidden = !shouldAllPackageButtonVisible()
+        titleContainerView.isHidden = model.title.isEmpty && !shouldAllPackageButtonVisible()
+        
         self.lblSubTitle.text = model.subTitle[0]
         trendlineView.isHidden = !model.showGraph
         chartParentView.isHidden = !model.isExpanded
