@@ -18,8 +18,6 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var parentView: UIView!
     @IBOutlet weak private var parentViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var valueViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var lblRupee: UILabel!
     
     @IBOutlet weak private var imageDropDown: UIImageView!
     
@@ -29,9 +27,27 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet var lblRightAxis: UILabel!
     
     @IBOutlet weak var graphDtFilter: UIButton!
-    // Single View
-    @IBOutlet weak var singleValueView: UIView!
-    @IBOutlet weak var lblSingleValueView: UILabel!
+
+    // First View
+    @IBOutlet weak private var firstValueView: UIView!
+    @IBOutlet weak private var firstValueTitleView: UIView!
+    @IBOutlet weak private var firstValueSubTitleView: UIView!
+    @IBOutlet weak private var lblFirstValueViewRupee: UILabel!
+    @IBOutlet weak private var lblFirstValueViewTitle: UILabel!
+    @IBOutlet weak private var lblFirstValueViewSubTitle: UILabel!
+
+    // Second View
+    @IBOutlet weak private var secondValueView: UIView!
+    @IBOutlet weak private var secondValueTitleView: UIView!
+    @IBOutlet weak private var secondValueSubTitleView: UIView!
+    @IBOutlet weak private var lblSecondValueViewRupee: UILabel!
+    @IBOutlet weak private var lblSecondValueViewTitle: UILabel!
+    @IBOutlet weak private var lblSecondValueViewSubTitle: UILabel!
+    
+    @IBOutlet weak private var dataViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var firstValueTitleStackViewVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var secondValueTitleStackViewVerticalConstraint: NSLayoutConstraint!
+
     
     // New IBOutlets
     @IBOutlet weak private var titleContainerView: UIView!
@@ -50,7 +66,6 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         parentViewWidthConstraint.constant = UIScreen.main.bounds.width - 30
-        valueViewWidthConstraint.constant = UIScreen.main.bounds.width - 60
         // Initialization code
     }
 
@@ -89,7 +104,27 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         }
     }
     
+    private func resetDataView() {
+        dataViewHeightConstraint.constant = 60
+        firstValueTitleStackViewVerticalConstraint.constant = 0
+        firstValueSubTitleView.isHidden = true
+        secondValueView.isHidden = true
+    }
+    
+    private func setDataForMembership() {
+        guard model.title == "Membership" else { return }
+        dataViewHeightConstraint.constant = 77
+        firstValueTitleStackViewVerticalConstraint.constant = 10
+        firstValueSubTitleView.isHidden = false
+        //TODO:: Please set data here from API
+        
+        secondValueView.isHidden = false
+        firstValueView.backgroundColor = UIColor(red: 82/255.0, green: 223/255.0, blue: 157/255.0, alpha: 0.6)
+        secondValueView.backgroundColor = UIColor(red: 96/255.0, green: 201/255.0, blue: 255/255.0, alpha: 0.59)
+    }
+    
     func configureCell(model: EarningsCellDataModel, data: [GraphDataEntry]) {
+        resetDataView()
         self.model = model
         self.lblTitle.text = model.title
         allPackageStackView.isHidden = !shouldAllPackageButtonVisible()
@@ -111,17 +146,17 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
 
             drawGraph(graphData: data, showRightAxix: (model.earningsType == .CustomerEngagement || model.earningsType == .ResourceUtilisation))
         
-        singleValueView.isHidden = model.cellType != .SingleValue
+        firstValueView.isHidden = model.cellType != .SingleValue
         
         switch model.cellType {
         case .SingleValue:
-            singleValueView.backgroundColor = model.earningsType.singleValueTileColor
-            lblSingleValueView.text = model.value[0]
+            firstValueView.backgroundColor = model.earningsType.singleValueTileColor
+            lblFirstValueViewTitle.text = model.value[0]
             if(model.earningsType == .FreeServices || model.earningsType == .Footfall || model.earningsType == .CustomerEngagement || model.earningsType == .Productivity || model.earningsType == .PenetrationRatios || model.earningsType == .ResourceUtilisation){
-                lblRupee.isHidden = true
+                lblFirstValueViewRupee.isHidden = true
             }
             else {
-                lblRupee.isHidden = false
+                lblFirstValueViewRupee.isHidden = false
             }
         case .DoubleValue:
            break
@@ -130,7 +165,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         case .TripleValue: break
     
         }
-        
+        setDataForMembership()
     }
     
     @IBAction func actionDurationFilter(_ sender: UIButton) {
