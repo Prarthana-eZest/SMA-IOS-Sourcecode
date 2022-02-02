@@ -94,7 +94,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         EZLoadingActivity.show("Loading...", disableUI: true)
         //        DispatchQueue.main.async { [unowned self] () in
-        freeServicesData(startDate:  startDate ?? Date.today, endDate: endDate)
+        freeServicesScreen(startDate:  startDate ?? Date.today, endDate: endDate)
         //            tableView.reloadData()
         //            EZLoadingActivity.hide()
         //        }
@@ -226,7 +226,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     }
     
     
-    func freeServicesData(startDate : Date, endDate : Date = Date().startOfDay) {
+    func freeServicesScreen(startDate : Date, endDate : Date = Date().startOfDay) {
         //Handled Wrong function calling to avoid data mismatch
         guard fromChartFilter == false else {
             print("******* Wrong Function Called **********")
@@ -297,12 +297,18 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         //Graph Data
         graphData.append(getGraphEntry(cGiftVoucherModel.title, forData: filteredFreeServiceForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
-    
-        var freeServicesCount = Double(freeServiceRevenueCount + complimentaryGiftcardCount)
+        //grooming_giftcard
+        //Data Model
+        let gGiftCardModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Grooming Gift Card", value: [groomingGiftcardCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        dataModel.append(gGiftCardModel)
+        //Graph Data
+        graphData.append(getGraphEntry(gGiftCardModel.title, forData: filteredFreeServiceForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        var freeServicesCount = Double(freeServiceRevenueCount + groomingGiftcardCount + complimentaryGiftcardCount)
         freeServicesCount = 0.8 * freeServicesCount
         
-        //Total free services for Header data
         headerModel =  EarningsHeaderDataModel(earningsType: .FreeServices, value: (freeServicesCount), isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+    
         
         headerModel?.dateRangeType = graphRangeType
         headerGraphData = getTotalFreeServiceGraphEntry(forData: filteredFreeServiceForGraph, dateRange: graphDateRange, dateRangeType: graphRangeType)
