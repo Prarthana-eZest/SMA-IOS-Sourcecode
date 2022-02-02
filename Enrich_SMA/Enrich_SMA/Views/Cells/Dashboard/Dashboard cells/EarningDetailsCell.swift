@@ -125,11 +125,16 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print("Selected")
         guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else {
             return
         }
-        let entryIndex = dataSet.entryIndex(entry: entry)
+        var entryIndex = dataSet.entryIndex(entry: entry)
+        if entryIndex == -1 { // Temp code to fix click issue
+            entryIndex = Int(entry.x) - 1
+            if entryIndex < 0 {
+                entryIndex = 0
+            }
+        }//--- Temp code end
         if let data = dataModel, entryIndex >= 0  {
             var text = ""
             data.forEach {
@@ -138,6 +143,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
             }
             self.parentVC?.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
         }
+        chartView.highlightValue(nil) // Temp code to fix click issue
     }
 }
 
