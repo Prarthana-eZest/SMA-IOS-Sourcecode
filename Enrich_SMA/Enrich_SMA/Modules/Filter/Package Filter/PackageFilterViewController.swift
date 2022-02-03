@@ -20,6 +20,7 @@ protocol PackageFilterDisplayLogic: class
 enum PackageType {
     static let value = "Value"
     static let service = "Service"
+    static let product = "Product"
 }
 
 class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic

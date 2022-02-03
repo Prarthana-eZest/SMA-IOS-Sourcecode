@@ -388,7 +388,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         else if(index == 1){ //value package
             return calculateValuePackageSales(filterArray: filteredSales ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
-        else {//service package sales
+        else {//service package
             return calculateServicePackageSales(filterArray: filteredSales ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
     }
@@ -440,7 +440,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         return salesValue
     }
     
-    func calculateValuePackageSales(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction],  dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{ //value package sales
+    func calculateValuePackageSales(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction],  dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{ //value package
         var salesValue = [Double]()
         
         let valuePackageRevenue = filterArray.filter({$0.value_package_revenue ?? 0 > 0})
@@ -718,6 +718,9 @@ extension SalesViewController: EarningDetailsDelegate {
         else  if(dataModels[seletcedIndex].title == "Service Package"){
             vc.filterType = "Service"
         }
+        else if(dataModels[seletcedIndex].title == "Product Package"){
+            vc.filterType = "Product"
+        }
         
         UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
         vc.viewDismissBlock = { [unowned self] (result, sku) in
@@ -725,7 +728,16 @@ extension SalesViewController: EarningDetailsDelegate {
             self.view.alpha = 1.0
             if(result){
                 print("SKU \(sku)")
+                if(dataModels[seletcedIndex].title == "Value Package"){
                 updateDataUsingPackageFilters(forCell: cell, withSKU: sku, packageType: PackageType.value)
+            }
+            else if(dataModels[seletcedIndex].title == "Service Package")
+            {
+                updateDataUsingPackageFilters(forCell: cell, withSKU: sku, packageType: PackageType.service)
+            }
+            else if(dataModels[seletcedIndex].title == "Product Package"){
+                updateDataUsingPackageFilters(forCell: cell, withSKU: sku, packageType: PackageType.product)
+            }
             }
         }
     }
@@ -743,7 +755,7 @@ extension SalesViewController: EarningDetailsDelegate {
         var servicePackageRevenueCount : Double = 0.0
         var valuePackageRevenueCount : Double = 0.0
         
-        if(earningsCell.model.title  == "Value Package Sales"){
+        if(earningsCell.model.title  == "Value Package"){
             
             //service_package_revenue
             let valuePackageRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({$0.value_package_revenue ?? 0 > 0})
@@ -755,11 +767,11 @@ extension SalesViewController: EarningDetailsDelegate {
             }
             print("value PackageRevenueCountafter filter \(valuePackageRevenueCount)")
             
-            let valuePackageSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Value Package Sales", value: [valuePackageRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .PackageType, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: salesCutomeDateRange)
+            let valuePackageSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Value Package", value: [valuePackageRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: salesCutomeDateRange)
             
             dataModels[seletcedIndex] = valuePackageSalesModel
         }
-        else if(earningsCell.model.title  == "Service Package Sales"){
+        else if(earningsCell.model.title  == "Service Package"){
             
             //service_package_revenue
             let servicePackageRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({$0.service_package_revenue ?? 0 > 0})
@@ -771,7 +783,7 @@ extension SalesViewController: EarningDetailsDelegate {
             }
             print("servicePackageRevenueCountafter filter \(servicePackageRevenueCount)")
             
-            let servicePackageSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Service Package Sales", value: [servicePackageRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .PackageType, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: salesCutomeDateRange)
+            let servicePackageSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Service Package", value: [servicePackageRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: salesCutomeDateRange)
             
             dataModels[seletcedIndex] = servicePackageSalesModel
             
