@@ -60,7 +60,7 @@
                                                                                     <color key="titleColor" red="0.16862745098039217" green="0.16470588235294117" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </state>
                                                                                 <connections>
-                                                                                    <action selector="actionAllPackages:" destination="mME-i3-nCG" eventType="touchUpInside" id="KeU-ul-7xC"/>
+                                                                                    <action selector="actionPackageFilter:" destination="mME-i3-nCG" eventType="touchUpInside" id="Pqs-KG-X6O"/>
                                                                                 </connections>
                                                                             </button>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow" translatesAutoresizingMaskIntoConstraints="NO" id="VCE-Q7-8ac">

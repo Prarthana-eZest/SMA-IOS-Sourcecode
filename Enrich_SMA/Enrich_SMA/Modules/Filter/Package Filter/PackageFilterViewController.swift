@@ -105,10 +105,10 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
         //service package
             lblFilterTitle.text = "SELECT SERVICE PACKAGE"
             
-        let filterServicePackgeData = technicianDataJSON?.data?.filters?.packages?.service?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.service)})
+        let filterServicePackgeData = technicianDataJSON?.data?.filters?.packages?.Service?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.service)}) ?? []
 
         
-        for objServicePackage in filterServicePackgeData! {
+        for objServicePackage in filterServicePackgeData {
             data.append(PackageFilterModel(title: objServicePackage.name ?? "", isSelected: false, fromDate: nil, toDate: nil, sku: objServicePackage.sku))
         }
         }
@@ -117,10 +117,10 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
             
             lblFilterTitle.text = "SELECT VALUE PACKAGE"
             
-            let filterValuePackageData = technicianDataJSON?.data?.filters?.packages?.value?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.value)})
+            let filterValuePackageData = technicianDataJSON?.data?.filters?.packages?.Value?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.value)}) ?? []
            
             
-            for objPackage in filterValuePackageData! {
+            for objPackage in filterValuePackageData {
                 data.append(PackageFilterModel(title: objPackage.name ?? "", isSelected: false, fromDate: nil, toDate: nil, sku: objPackage.sku))
         }
         }

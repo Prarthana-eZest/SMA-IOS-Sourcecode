@@ -189,7 +189,7 @@ enum EarningDetails : String {
         case .CustomerFeedback: return UIColor(red: 0.50, green: 0.79, blue: 1.00, alpha: 1.00)
         case .Productivity: return UIColor(red: 0.79, green: 0.90, blue: 0.45, alpha: 1.00)
         case .CustomerEngagement: return UIColor(red: 0.77, green: 0.80, blue: 1.00, alpha: 1.00)
-        case .ResourceUtilisation: return UIColor(red: 0.85, green: 0.93, blue: 0.97, alpha: 1.00)
+        case .ResourceUtilisation: return UIColor(red: 0.49, green: 0.65, blue: 0.71, alpha: 0.3)//rgba(125, 167, 181, 1)
         case .Fixed_Earning: return UIColor(red: 0.75, green: 0.89, blue: 0.85, alpha: 1.00)
         case .Incentive: return UIColor(red: 0.36, green: 0.53, blue: 0.90, alpha: 0.3)//rgba(91, 134, 229, 1)
         case .Bonus: return UIColor(red: 0.79, green: 0.90, blue: 0.45, alpha: 1.00)

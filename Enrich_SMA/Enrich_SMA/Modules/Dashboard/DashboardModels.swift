@@ -234,9 +234,26 @@ enum Dashboard {
             let target : Double?
         }
         
-        struct Packages : Codable {
-            let value : [Value]?
-            let service : [Service]?
+        // MARK: - Packages
+        struct Packages: Codable {
+            let Value : [Value]?
+            let Service : [Service]?
+        }
+        
+        // MARK: - Value
+        struct Value : Codable {
+            let id : String?
+            let sku : String?
+            let name : String?
+            let package_type : String?
+        }
+
+        // MARK: - Service
+        struct Service : Codable {
+            let id : String?
+            let sku : String?
+            let name : String?
+            let package_type : String?
         }
         
         struct Category_tree : Codable {
@@ -250,20 +267,6 @@ enum Dashboard {
             let compare_label : String?
             let to_compare_categories : [String]?
             let to_compare_label : String?
-        }
-        
-        struct Value : Codable {
-            let id : String?
-            let sku : String?
-            let name : String?
-            let package_type : String?
-        }
-        
-        struct Service : Codable {
-            let id : String?
-            let sku : String?
-            let name : String?
-            let package_type : String?
         }
         
         struct Sub_categories : Codable {

@@ -117,6 +117,8 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         firstValueTitleStackViewVerticalConstraint.constant = 10
         firstValueSubTitleView.isHidden = false
         //TODO:: Please set data here from API
+        lblFirstValueViewTitle.text = model.value[0] 
+        lblSecondValueViewTitle.text = model.value[1] 
         
         secondValueView.isHidden = false
         firstValueView.backgroundColor = UIColor(red: 82/255.0, green: 223/255.0, blue: 157/255.0, alpha: 0.6)

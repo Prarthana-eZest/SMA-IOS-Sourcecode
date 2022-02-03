@@ -88,6 +88,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
   {
     super.viewDidLoad()
     bottomFilterView.delegate = self
+    bottomFilterView.setup(.basic)
     doSomething()
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsCell)
@@ -295,12 +296,12 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         for sales in filteredSales ?? [] {
             // membership revenue
-            if let membershipRevenue = sales.membership_revenue, membershipRevenue > 0 {
+            if let membershipRevenue = sales.membership_new_revenue, membershipRevenue > 0 {
                 membershipRevenueCount += membershipRevenue
             }
-//            if let membershipRevenue = sales.membership_renew_revenue, membershipRevenue > 0 {
-//                membershipRenewRevenueCount += membershipRevenue
-//            }
+            if let membershipRevenue = sales.membership_renew_revenue, membershipRevenue > 0 {
+                membershipRenewRevenueCount += membershipRevenue
+            }
             
             // value package revenue
             if let valuePackageRebenue = sales.value_package_revenue, valuePackageRebenue > 0 {
@@ -320,7 +321,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         //membership revenue
         //Data Model
-        let membershipSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Membership", value: [membershipRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
+        let membershipSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Membership", value: [membershipRevenueCount.roundedStringValue(), membershipRenewRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
         dataModels.append(membershipSalesModel)
         //Graph Data
         graphData.append(getGraphEntry(membershipSalesModel.title, forData: filteredSalesForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
@@ -339,9 +340,8 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         //Graph Data
         graphData.append(getGraphEntry(servicePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
-        //Total Revenue for Header data
         headerModel =  EarningsHeaderDataModel(earningsType: .Sales, value: (membershipRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount), isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
-    
+        
         headerModel?.dateRangeType = graphRangeType
         headerGraphData = getTotalSalesGraphEntry(forData: filteredSalesForGraph, dateRange: graphDateRange, dateRangeType: graphRangeType)
         
@@ -713,11 +713,11 @@ extension SalesViewController: EarningDetailsDelegate {
         }
         let seletcedIndex = index - 1
         
-        if(dataModels[seletcedIndex].title == "Value Package Sales")
+        if(dataModels[seletcedIndex].title == "Value Package")
         {
             vc.filterType = "Value"
         }
-        else  if(dataModels[seletcedIndex].title == "Service Package Sales"){
+        else  if(dataModels[seletcedIndex].title == "Service Package"){
             vc.filterType = "Service"
         }
         
