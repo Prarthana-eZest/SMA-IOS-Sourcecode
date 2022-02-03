@@ -1011,8 +1011,7 @@ extension CustomerEngagementViewController: EarningsFilterDelegate {
 extension CustomerEngagementViewController: EarningDetailsDelegate {
     
     func reloadData() {
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
+        self.tableView.reloadData()
     }
     
     func actionDurationFilter(forCell cell: UITableViewCell) {

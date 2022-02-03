@@ -1071,8 +1071,7 @@ extension ResourceUtilisationViewController: EarningsFilterDelegate {
 extension ResourceUtilisationViewController: EarningDetailsDelegate {
     
     func reloadData() {
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
+        self.tableView.reloadData()
     }
     
     func actionDurationFilter(forCell cell: UITableViewCell) {

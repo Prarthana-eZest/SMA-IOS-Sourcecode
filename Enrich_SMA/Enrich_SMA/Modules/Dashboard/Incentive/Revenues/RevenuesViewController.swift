@@ -670,9 +670,7 @@ extension RevenuesViewController: EarningsFilterDelegate {
 extension RevenuesViewController: EarningDetailsDelegate {
     
     func reloadData() {
-        self.tableView.beginUpdates()
-        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
-        self.tableView.endUpdates()
+        self.tableView.reloadData()
     }
     
     //This function called from cell-> Graph-> date filter button
