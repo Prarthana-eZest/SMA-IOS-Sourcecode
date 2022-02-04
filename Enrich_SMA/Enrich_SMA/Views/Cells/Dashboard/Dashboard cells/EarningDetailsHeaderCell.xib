@@ -42,7 +42,13 @@
                                                     <constraint firstAttribute="width" constant="68" id="K9N-2A-hZG"/>
                                                 </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nf4-tb-Meb">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9V-9h-kGo">
+                                                <rect key="frame" x="15" y="37.5" width="108" height="23.5"/>
+                                                <fontDescription key="fontDescription" name="FuturaPT-Demi" family="Futura PT" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nf4-tb-Meb">
                                                 <rect key="frame" x="15" y="22" width="187" height="82.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iGe-Pn-03L">
@@ -137,6 +143,8 @@
                                             <constraint firstAttribute="trailing" secondItem="Hdw-i5-d8Y" secondAttribute="trailing" constant="15" id="Dkt-y0-J22"/>
                                             <constraint firstAttribute="height" constant="126" id="Qsa-oR-Dsf"/>
                                             <constraint firstItem="nf4-tb-Meb" firstAttribute="leading" secondItem="2we-3C-4rS" secondAttribute="leading" constant="15" id="UPr-uK-Tt9"/>
+                                            <constraint firstItem="g9V-9h-kGo" firstAttribute="centerY" secondItem="Hdw-i5-d8Y" secondAttribute="centerY" id="Wli-vj-NRq"/>
+                                            <constraint firstItem="g9V-9h-kGo" firstAttribute="leading" secondItem="2we-3C-4rS" secondAttribute="leading" constant="15" id="YW5-hq-dd2"/>
                                             <constraint firstItem="nf4-tb-Meb" firstAttribute="centerY" secondItem="2we-3C-4rS" secondAttribute="centerY" id="ahG-KS-sHi"/>
                                             <constraint firstItem="Hdw-i5-d8Y" firstAttribute="leading" secondItem="nf4-tb-Meb" secondAttribute="trailing" constant="15" id="h9w-QB-UJh"/>
                                         </constraints>
@@ -242,11 +250,13 @@
                 <outlet property="btnTreandline" destination="lED-kp-1ML" id="2De-Ak-oZU"/>
                 <outlet property="chartParentView" destination="1NO-QT-EaA" id="azs-OJ-UZi"/>
                 <outlet property="chartView" destination="Avj-Eg-unv" id="LHq-Nn-h6S"/>
+                <outlet property="dataStackView" destination="nf4-tb-Meb" id="tby-NR-H6x"/>
                 <outlet property="gradientView" destination="Ay7-Kl-hY0" id="zhB-QY-FAM"/>
                 <outlet property="gradientViewWidthConstraint" destination="nin-Yx-yEC" id="WCM-gH-awA"/>
                 <outlet property="graphRangeBtn" destination="oiC-1N-zGG" id="ozf-Ma-U2b"/>
                 <outlet property="iconImage" destination="Hdw-i5-d8Y" id="exU-oI-Mei"/>
                 <outlet property="imageDropDown" destination="Rap-5y-VhJ" id="OQj-09-BWI"/>
+                <outlet property="lblCenterValue" destination="g9V-9h-kGo" id="evl-kG-gtV"/>
                 <outlet property="lblRupee" destination="lTi-8H-F9Q" id="8hN-TZ-qmC"/>
                 <outlet property="lblTitle" destination="QCa-Vy-7bd" id="d6F-1H-l1J"/>
                 <outlet property="lblValue" destination="xFd-ou-9Zh" id="0da-dC-ryI"/>

@@ -19,9 +19,11 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
     
     @IBOutlet weak private var iconImage: UIImageView!
     @IBOutlet weak private var lblValue: UILabel!
+    @IBOutlet weak private var lblCenterValue: UILabel!
     @IBOutlet weak private var lblTitle: UILabel!
     @IBOutlet weak private var btnTreandline: UIButton!
     @IBOutlet weak private var trendlineView: UIStackView!
+    @IBOutlet weak private var dataStackView: UIStackView!
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var gradientView: UIView!
     @IBOutlet weak private var topGradientView: Gradient!
@@ -103,7 +105,11 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         else {
             lblRupee.isHidden = false
         }
-        lblValue.text = model.value?.roundedStringValue() ?? ""
+        let lblValueText = model.value?.roundedStringValue() ?? ""
+        lblValue.text = lblValueText
+        lblCenterValue.text = lblTitle.text
+        self.dataStackView.isHidden = lblValueText.isEmpty
+        lblCenterValue.isHidden = !self.dataStackView.isHidden
         self.drawGraph(graphData: data, showRightAxix: false)
     }
     
