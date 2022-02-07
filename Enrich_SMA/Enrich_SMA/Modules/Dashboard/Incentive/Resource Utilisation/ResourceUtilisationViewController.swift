@@ -862,6 +862,18 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             let breakTimeGraphEntries = getBarLineGraphEntry(attendanceModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 3, dateRange: graphDateRange, dateRangeType: graphRangeType)
             barGraphData.append(breakTimeGraphEntries.barGraph)
             lineGraphData.append(breakTimeGraphEntries.lineGraph)
+            
+            //---------Store Occupancy
+            //Data Model
+            //TODO::
+            let storeOccupancyModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Store Occupancy", value: ["100%"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+            dataModel.append(storeOccupancyModel)
+            
+            //GraphDate
+            //TODO::
+            let occupancyGraphEntries = getBarLineGraphEntry(storeOccupancyModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType)
+            barGraphData.append(occupancyGraphEntries.barGraph)
+            lineGraphData.append(occupancyGraphEntries.lineGraph)
         }
         
         headerModel =  EarningsHeaderDataModel(earningsType: .ResourceUtilisation, value: 0.0, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
@@ -875,6 +887,20 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
     {
         let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
         let values = graphData(forData: data, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType)
+        
+        if(index == 4){ //------- Store Occupancy
+            //TODO::
+            let graphColor = EarningDetails.Revenue.graphBarColor
+            
+            // 2 tile : Buy
+            let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "Store Occupancy", units: units, values: values, barColor: graphColor.first!)
+            
+            //3 tile : prodctutivity i.e. ratio
+            let lineGraphEntry = GraphDataEntry(graphType: .linedGraph, dataTitle: "Productive", units: units, values: values, barColor: graphColor.last!)
+            
+            
+            return BarLineGraphEntry(barGraphEntry, lineGraphEntry)
+        }
         
         if(index == 3){ // attendance
             let graphColor = EarningDetails.Revenue.graphBarColor
