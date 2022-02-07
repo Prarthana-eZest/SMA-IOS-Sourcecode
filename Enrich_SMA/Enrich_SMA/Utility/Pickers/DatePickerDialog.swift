@@ -189,6 +189,11 @@ open class DatePickerDialog: UIView {
         dialogContainer.addSubview(self.titleLabel)
 
         self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: 70, width: 0, height: 0))
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
+        } else {
+            // Fallback on earlier versions
+        }
         self.datePicker.autoresizingMask = .flexibleRightMargin
         self.datePicker.frame.size.width = screenSize.width
         self.datePicker.frame.size.height = 216
