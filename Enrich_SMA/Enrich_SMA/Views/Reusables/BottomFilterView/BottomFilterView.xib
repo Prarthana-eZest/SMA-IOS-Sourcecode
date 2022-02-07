@@ -19,6 +19,7 @@
                 <outlet property="containerView" destination="3Vs-xv-7WJ" id="BsR-aJ-skt"/>
                 <outlet property="containerViewWidthConstraint" destination="kLb-DF-CJr" id="8PL-MK-Igk"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="aY8-Vn-sG8"/>
+                <outlet property="dateFilterButton" destination="Phw-Lc-JPl" id="cau-RA-SrX"/>
                 <outlet property="normalFilterView" destination="baJ-zt-AHZ" id="YHc-Nm-Ngc"/>
                 <outlet property="separatorView" destination="LH6-hH-X8V" id="Zgz-vs-n1n"/>
             </connections>

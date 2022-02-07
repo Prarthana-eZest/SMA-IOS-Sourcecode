@@ -16,6 +16,7 @@ class BottomFilterView: UIView {
     @IBOutlet weak private var containerView: UIView!
     @IBOutlet weak private var containerViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak private var separatorView: UIView!
+    @IBOutlet weak private var dateFilterButton: UIButton!
     @IBOutlet weak private var normalFilterView: UIView!
     
     weak var delegate: EarningsFilterDelegate?
@@ -59,6 +60,10 @@ class BottomFilterView: UIView {
             containerViewWidthConstraint.constant = 114.0
         case .advanced: break
         }
+    }
+
+    func updateText(_ dateFilterType: DateRangeType) {
+        dateFilterButton.setTitle(dateFilterType.value, for: .normal)
     }
 
     @IBAction func actionDateFilter(_ sender: UIButton) {
