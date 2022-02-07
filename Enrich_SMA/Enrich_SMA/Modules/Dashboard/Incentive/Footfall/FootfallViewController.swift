@@ -541,7 +541,7 @@ extension FootfallViewController: EarningsFilterDelegate {
             if(result){
                 fromChartFilter = false
                 dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-
+                bottomFilterView.updateText(dateRangeType)
                 if(dateRangeType == .cutome), let start = startDate, let end = endDate
                 {
                     footfallCutomeDateRange = DateRange(start,end)

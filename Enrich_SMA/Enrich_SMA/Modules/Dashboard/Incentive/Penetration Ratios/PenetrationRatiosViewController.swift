@@ -1056,7 +1056,7 @@ extension PenetrationRatiosViewController: EarningsFilterDelegate {
                 self.view.alpha = 1.0
                 if(result){
                     dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-                    
+                    bottomFilterView.updateText(dateRangeType)
                     if(dateRangeType == .cutome), let start = startDate, let end = endDate
                     {
                         penetrationCutomeDateRange = DateRange(start,end)

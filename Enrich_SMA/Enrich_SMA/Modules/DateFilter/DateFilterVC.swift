@@ -45,6 +45,15 @@ enum DateRangeType : String {
         }
     }
     
+    var value: String {
+        switch self {
+        case .yesterday, .today, .week,.mtd, .qtd, .ytd:
+            return self.rawValue
+        case .cutome:
+            return "Custom"
+        }
+    }
+    
 }
 
 enum MonthNames : Int {

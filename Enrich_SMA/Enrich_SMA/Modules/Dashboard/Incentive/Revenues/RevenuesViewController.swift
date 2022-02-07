@@ -627,6 +627,7 @@ extension RevenuesViewController: EarningsFilterDelegate {
                 fromFilters = false
                 fromChartFilter = false
                 dateRangeType = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
+                bottomFilterView.updateText(dateRangeType)
                 if(dateRangeType == .cutome), let start = startDate, let end = endDate
                 {
                     revenueCutomeDateRange = DateRange(start,end)
