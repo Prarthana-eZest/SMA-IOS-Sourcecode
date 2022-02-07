@@ -169,7 +169,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         else if(index == 2){ // App Booking
             
             //customers served
-            let filteredCustomerEngagement = technicianDataJSON?.data?.technician_feedbacks?.filter({ (customerEngagement) -> Bool in
+            let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
                 if let date = customerEngagement.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -427,7 +427,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         return values
     }
     
-    func calculateAppBooking(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction], customerServedArray: [Dashboard.GetRevenueDashboard.TechnicianFeedback] ,invoiceNumbers : [String], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+    func calculateAppBooking(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction], customerServedArray: [Dashboard.GetRevenueDashboard.Salon_feedbacks] ,invoiceNumbers : [String], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
         var values = [Double]()
         
         //app booking
@@ -460,20 +460,6 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 }
             }
         case .qtd, .ytd:
-//            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
-//            for qMonth in months {
-//                let value = customerServedArray.map ({ (services) -> Double in
-//                    if let rMonth = services.date?.date()?.string(format: "MMM yy"),
-//                       rMonth == qMonth
-//                    {
-//                        appBookingRatio = Double((Double(services.no_of_services ?? 0)) / Double(appBooking.count))
-//                        return (appBookingRatio)
-//                    }
-//                    return 0.0
-//                }).reduce(0) {$0 + $1}
-//
-//                values.append(value)
-//            }
             let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
             for month in months {
                 let appbooking = appBooking.filter({($0.date?.contains(month)) ?? false}).map({$0.paid_service_revenue})
@@ -794,7 +780,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         var appBookingRatio : Double = 0.0
         
         //customers served
-        let filteredCustomerEngagement = technicianDataJSON?.data?.technician_feedbacks?.filter({ (customerEngagement) -> Bool in
+        let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
             if let date = customerEngagement.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -959,7 +945,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 ratio =  Double(count) / Double(uniqueInvoices!.count)
             }
             //customers served
-            let filteredCustomerEngagement = technicianDataJSON?.data?.technician_feedbacks?.filter({ (customerEngagement) -> Bool in
+            let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
                 if let date = customerEngagement.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end

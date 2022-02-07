@@ -219,33 +219,32 @@ class TechnicianDashboardViewController: UIViewController, TechnicianDashboardDi
         //print("Sales count \(intValSales)")
         
         //Free services
-        //free_service_revenue
-        let freeServiceRevenue = filteredRevenue?.filter({$0.free_service_revenue ?? 0 > 0}) ?? []
-        
         var freeServiceRevenueCount : Double = 0.0
-        for objfreeServiceRevenue in freeServiceRevenue {
-            freeServiceRevenueCount = freeServiceRevenueCount + objfreeServiceRevenue.free_service_revenue!
-        }
-        
-        //grooming_giftcard
-        let groomingGiftcard = filteredRevenue?.filter({$0.grooming_giftcard ?? 0 > 0}) ?? []
-        
+        var complimentaryGiftcardCount : Double = 0.0
         var groomingGiftcardCount : Double = 0.0
-        for objGroomingGiftcard in groomingGiftcard {
-            groomingGiftcardCount = groomingGiftcardCount + objGroomingGiftcard.grooming_giftcard!
+        
+        for freeService in filteredRevenue ?? [] {
+            // Reward points
+            if let fsRevenue = freeService.free_service_revenue, fsRevenue > 0 {
+                freeServiceRevenueCount += fsRevenue
+            }
+            
+            // complimentary_giftcard
+            if let cGiftCard = freeService.complimentary_giftcard, cGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                complimentaryGiftcardCount += cGiftCard
+            }
+            
+            // grooming_giftcard
+            if let gGiftCard = freeService.grooming_giftcard, gGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
+                groomingGiftcardCount += gGiftCard
+            }
         }
+        
+        print("reward points \(freeServiceRevenueCount)")
+        print("complimentaryGiftcardCount \(complimentaryGiftcardCount)")
         print("groomingGiftcardCount \(groomingGiftcardCount)")
         
-        //complimentary_giftcard
-        let complimentaryGiftcard = filteredRevenue?.filter({$0.complimentary_giftcard ?? 0 > 0}) ?? []
-        
-        var complimentaryGiftcardCount : Double = 0.0
-        for objComplimentaryGiftcard in complimentaryGiftcard {
-            complimentaryGiftcardCount = complimentaryGiftcardCount + objComplimentaryGiftcard.complimentary_giftcard!
-        }
-        print("complimentaryGiftcardCount \(complimentaryGiftcardCount)")
-        
-        var freeServicesCount = freeServiceRevenueCount + groomingGiftcardCount + complimentaryGiftcardCount
+        var freeServicesCount = Double(freeServiceRevenueCount + groomingGiftcardCount + complimentaryGiftcardCount)
         freeServicesCount = 0.8 * freeServicesCount
         
         //let intValFreeServices : Int = (Int(freeServicesCount))

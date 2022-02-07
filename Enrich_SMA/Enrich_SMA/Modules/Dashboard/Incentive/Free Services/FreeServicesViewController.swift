@@ -84,7 +84,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.addCustomBackButton(title: "Free Services")
+        self.navigationController?.addCustomBackButton(title: "Back")
     }
     
     // MARK: Do something
@@ -285,21 +285,21 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         //Reward points
         //Data Model
-        let rewardPointsModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Reward Points", value: [freeServiceRevenueCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        let rewardPointsModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Reward Points", value: [freeServiceRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
         dataModel.append(rewardPointsModel)
         //Graph Data
         graphData.append(getGraphEntry(rewardPointsModel.title, forData: filteredFreeServiceForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
         //complimentary_giftcard
         //Data Model
-        let cGiftVoucherModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Complimentary Gift Voucher", value: [complimentaryGiftcardCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        let cGiftVoucherModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Complimentary Gift Voucher", value: [complimentaryGiftcardCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
         dataModel.append(cGiftVoucherModel)
         //Graph Data
         graphData.append(getGraphEntry(cGiftVoucherModel.title, forData: filteredFreeServiceForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
         //grooming_giftcard
         //Data Model
-        let gGiftCardModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Grooming Gift Card", value: [groomingGiftcardCount.abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
+        let gGiftCardModel = EarningsCellDataModel(earningsType: .FreeServices, title: "Grooming Gift Card", value: [groomingGiftcardCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: freeServicesCutomeDateRange)
         dataModel.append(gGiftCardModel)
         //Graph Data
         graphData.append(getGraphEntry(gGiftCardModel.title, forData: filteredFreeServiceForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))

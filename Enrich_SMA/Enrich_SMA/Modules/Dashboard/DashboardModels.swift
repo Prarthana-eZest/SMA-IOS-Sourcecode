@@ -117,7 +117,7 @@ enum Dashboard {
             let quality_score_data : [Quality_score_data]?
             let total_attendance_count : Double?
             let attendance_data : [Attendance_data]?
-            let technician_feedbacks : [TechnicianFeedback]?
+            let salon_feedbacks : [Salon_feedbacks]?
             let total_client_repeat_transactions : Int?
             let client_repeat_transactions : [Client_repeat_transactions]?
             let cross_sell_transactions : [Cross_sell_transactions]?
@@ -273,14 +273,18 @@ enum Dashboard {
             let sub_category_name : String?
         }
         
-        // MARK: - TechnicianFeedback
-        struct TechnicianFeedback : Codable{
-            let employee_id : Int?
+        //MARK: - Salon feedbacks
+        struct Salon_feedbacks : Codable {
+            let salon_id : Int?
             let date : String?
-            let no_of_services : Int?
+            let no_of_appointments : Int?
             let no_of_feedbacks : Int?
+            let front_desk_avg_ratings : Double?
+            let over_all_avg_ratings : Double?
+            let additional_rating_avg_ratings : Double?
             let technician_avg_ratings : Double?
             let service_avg_ratings : Double?
+            let no_of_services : Int?
         }
         
         //MARK: - Client repeat transactions

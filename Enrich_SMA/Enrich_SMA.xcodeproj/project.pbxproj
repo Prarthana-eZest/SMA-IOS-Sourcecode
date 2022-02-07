@@ -3081,7 +3081,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.41;
+				MARKETING_VERSION = 1.48;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMADev;
@@ -3107,7 +3107,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.41;
+				MARKETING_VERSION = 1.48;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EnrichSalon.SMA;
 				PRODUCT_NAME = SMA_Stage;
@@ -3283,7 +3283,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.41;
+				MARKETING_VERSION = 1.48;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;
