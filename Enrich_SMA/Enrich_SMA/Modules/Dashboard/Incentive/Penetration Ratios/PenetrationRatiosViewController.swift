@@ -779,27 +779,28 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         var appBookingRatio : Double = 0.0
         
-        //customers served
-        let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
-            if let date = customerEngagement.date?.date()?.startOfDay {
-                
-                return date >= startDate && date <= endDate
-            }
-            return false
-        })
-        let customersServed = filteredCustomerEngagement?.filter({$0.no_of_services ?? 0 > 0}) ?? []
-        var customersServedCount : Double = 0.0
-        for objCustomersServed in customersServed {
-            customersServedCount = customersServedCount + Double(objCustomersServed.no_of_services ?? 0)
-        }
+        //customers served - those are customer_id which are served
+        let filterCustomerServed = filteredPenetrationRatio.unique(map: {$0.customer_id})
+//        let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+//            if let date = customerEngagement.date?.date()?.startOfDay {
+//
+//                return date >= startDate && date <= endDate
+//            }
+//            return false
+//        })
+//        let customersServed = filteredCustomerEngagement?.filter({$0.no_of_services ?? 0 > 0}) ?? []
+//        var customersServedCount : Double = 0.0
+//        for objCustomersServed in customersServed {
+//            customersServedCount = customersServedCount + Double(objCustomersServed.no_of_services ?? 0)
+//        }
         
-        if(customersServedCount > 0) {
-            appBookingRatio =  Double(appBooking.count) / Double(customersServedCount)
+        if(filterCustomerServed.count > 0) {
+            appBookingRatio =  Double(appBooking.count) / Double(filterCustomerServed.count)
         }
         
         //"App Booking"
         //Data Model
-        let appBookingModel = EarningsCellDataModel(earningsType: .PenetrationRatios, title: "App Booking", value: [String(appBooking.count ),String(customersServedCount),appBookingRatio.roundedStringValue(toFractionDigits: 2)], subTitle: ["Appointments" ,"Total Served", "Ratio"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: penetrationCutomeDateRange)
+        let appBookingModel = EarningsCellDataModel(earningsType: .PenetrationRatios, title: "App Booking", value: [String(appBooking.count ),String(filterCustomerServed.count),appBookingRatio.roundedStringValue(toFractionDigits: 2)], subTitle: ["Appointments" ,"Total Served", "Ratio"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: penetrationCutomeDateRange)
         dataModel.append(appBookingModel)
         //Graph Data
         graphData.append(getGraphEntry(appBookingModel.title, forData: filteredPenetrationForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))

@@ -163,6 +163,11 @@ extension PackageFilterViewController: UITableViewDelegate, UITableViewDataSourc
         tableView.reloadData()
         let objData = data[indexPath.row]
         self.dismiss(animated: true, completion: nil)
-        viewDismissBlock?(true,objData.sku)
+        if(data[indexPath.row].title == "All Packages"){
+            viewDismissBlock?(true,"")
+        }
+        else {
+            viewDismissBlock?(true,objData.sku)
+        }
     }
 }

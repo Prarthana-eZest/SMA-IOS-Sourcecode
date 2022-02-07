@@ -750,20 +750,46 @@ extension SalesViewController: EarningDetailsDelegate {
         }
         let seletcedIndex = index - 1
         
+        if(dateRangeType == .mtd){
+            salesCutomeDateRange = DateRange(Date.today.startOfMonth, Date.today)
+        }
+        else if(dateRangeType == .qtd){
+            salesCutomeDateRange = DateRange(Date.today.lastQuarter(), Date.today)
+        }
+        else if(dateRangeType == .ytd){
+            salesCutomeDateRange = DateRange(Date.today.lastYear(), Date.today)
+        }
+        
         let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         
         var servicePackageRevenueCount : Double = 0.0
         var valuePackageRevenueCount : Double = 0.0
         
+        let filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
+            if let date = sales.date?.date()?.startOfDay {
+                
+                return date >= salesCutomeDateRange.start && date <= salesCutomeDateRange.end
+            }
+            return false
+        })
+        
         if(earningsCell.model.title  == "Value Package"){
             
-            //service_package_revenue
-            let valuePackageRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({$0.value_package_revenue ?? 0 > 0})
+            let valuePackageRevenue = filteredSales?.filter({$0.value_package_revenue ?? 0 > 0})
             
             for objvaluePackageRevenue in valuePackageRevenue! {
+                if(sku != ""){
                 if(objvaluePackageRevenue.sku == sku){
                     valuePackageRevenueCount = valuePackageRevenueCount + objvaluePackageRevenue.value_package_revenue!
                 }
+            }
+            
+            else {
+                // value package revenue
+                if let valuePackageRebenue = objvaluePackageRevenue.value_package_revenue, valuePackageRebenue > 0 {
+                    valuePackageRevenueCount += valuePackageRebenue
+                }
+            }
             }
             print("value PackageRevenueCountafter filter \(valuePackageRevenueCount)")
             
@@ -774,11 +800,18 @@ extension SalesViewController: EarningDetailsDelegate {
         else if(earningsCell.model.title  == "Service Package"){
             
             //service_package_revenue
-            let servicePackageRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({$0.service_package_revenue ?? 0 > 0})
+            let servicePackageRevenue = filteredSales?.filter({$0.service_package_revenue ?? 0 > 0})
             
             for objServicePackageRevenue in servicePackageRevenue! {
+                if(sku != ""){
                 if(objServicePackageRevenue.sku == sku){
                     servicePackageRevenueCount = servicePackageRevenueCount + objServicePackageRevenue.service_package_revenue!
+                }
+                }
+                else{
+                    if let servicePackageRevenue = objServicePackageRevenue.service_package_revenue, servicePackageRevenue > 0 {
+                        servicePackageRevenueCount += servicePackageRevenue
+                    }
                 }
             }
             print("servicePackageRevenueCountafter filter \(servicePackageRevenueCount)")
