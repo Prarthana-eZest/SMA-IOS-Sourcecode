@@ -127,6 +127,8 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
     
     //var dateRange : (start:Date, end:Date) = (Date.today, Date.today)
     
+    let selectCustomDateRangeTitle = "Select Custom Date Range"
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -179,12 +181,13 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
         data.append(PackageFilterModel(title: DateRangeType.mtd.rawValue, isSelected: isSelected(dateRangeType: .mtd), fromDate: DateRangeType.mtd.date, toDate: Date.today, sku: nil))
         data.append(PackageFilterModel(title: DateRangeType.qtd.rawValue, isSelected: isSelected(dateRangeType: .qtd), fromDate: DateRangeType.qtd.date, toDate: Date.today, sku: nil))
         data.append(PackageFilterModel(title: DateRangeType.ytd.rawValue, isSelected: isSelected(dateRangeType: .ytd), fromDate: DateRangeType.ytd.date, toDate: Date.today, sku: nil))
-        data.append(PackageFilterModel(title: "Select Custom Date Range", isSelected: isSelected(dateRangeType: .cutome), fromDate: cutomRange.start, toDate: cutomRange.end, sku: nil))
+        data.append(PackageFilterModel(title: selectCustomDateRangeTitle, isSelected: isSelected(dateRangeType: .cutome), fromDate: cutomRange.start, toDate: cutomRange.end, sku: nil))
         }
         else {
             data.append(PackageFilterModel(title: DateRangeType.mtd.rawValue, isSelected: isSelected(dateRangeType: .mtd), fromDate: DateRangeType.mtd.date, toDate: Date.today, sku: nil))
             data.append(PackageFilterModel(title: DateRangeType.qtd.rawValue, isSelected: isSelected(dateRangeType: .qtd), fromDate: DateRangeType.qtd.date, toDate: Date.today, sku: nil))
             data.append(PackageFilterModel(title: DateRangeType.ytd.rawValue, isSelected: isSelected(dateRangeType: .ytd), fromDate: DateRangeType.ytd.date, toDate: Date.today, sku: nil))
+            data.append(PackageFilterModel(title: selectCustomDateRangeTitle, isSelected: isSelected(dateRangeType: .cutome), fromDate: cutomRange.start, toDate: cutomRange.end, sku: nil))
         }
         containerViewHeightSetup()
         tableView.reloadData()
@@ -206,7 +209,7 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
         let tableHeight: CGFloat = CGFloat(data.count) * oneRowHeight
         var containerHeight = firstViewHeight + tableHeight + secondViewHeight + extraBottomSpace
         let hasCustomDateFilter = data.firstIndex { (package) -> Bool in
-            package.title == "Select Custom Date Range"
+            package.title == selectCustomDateRangeTitle
         }
         if hasCustomDateFilter != nil {
             containerHeight -= oneRowHeight
@@ -256,8 +259,44 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
 }
 
 extension DateFilterVC: SelectDateRangeDelegate {
+
+    private func addPickerView(isFrom: Bool) {
+         let pickerView = PickerView.instantiateFromNib()
+        pickerView?.setTitle(isFrom ? "From Month" : "To Month")
+        if (!isFrom){
+            if let fromDate = self.data.last?.fromDate{
+                pickerView?.setMinimumDate(fromDate)
+                
+            }
+        }
+         pickerView?.selectedMonthYear = { [weak self] (selectedDate, monthYear) in
+            guard let self = self else { return }
+            if(isFrom == true){//from date
+                self.data.last?.fromDate = selectedDate
+            }
+            else {//to date
+                self.data.last?.toDate = selectedDate
+            }
+            self.tableView.reloadData()
+         }
+         pickerView?.addMeOn(onView: self.view)
+        if(isFrom){
+            if let fromDate = self.data.last?.fromDate {
+                pickerView?.setSelectedDate(fromDate)
+            }
+        }
+        else {
+            if let toDate = self.data.last?.toDate {
+                pickerView?.setSelectedDate(toDate)
+            }
+        }
+     }
     
     func actionFromDate() {
+        guard !isFromProductivity else {
+            addPickerView(isFrom: true)
+            return
+        }
         let model = data.last
         DatePickerDialog().show("From Date", doneButtonTitle: "SELECT", cancelButtonTitle: "CANCEL", defaultDate: model?.fromDate ?? Date.today.lastYear(), minimumDate: Date.today.lastYear(), maximumDate: Date.today, datePickerMode: .date) { (selectedDate) in
             if(selectedDate != nil){
@@ -270,6 +309,10 @@ extension DateFilterVC: SelectDateRangeDelegate {
     }
     
     func actionToDate() {
+        guard !isFromProductivity else {
+            addPickerView(isFrom: false)
+            return
+        }
         let model = data.last
         DatePickerDialog().show("To Date", doneButtonTitle: "SELECT", cancelButtonTitle: "CANCEL", defaultDate: model?.toDate ?? Date.today, minimumDate: model?.fromDate!, maximumDate: Date.today, datePickerMode: .date) { (selectedDate) in
             if(selectedDate != nil){
@@ -294,13 +337,11 @@ extension DateFilterVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if (indexPath.row == data.count - 1 && isFromProductivity == false
-            ) {
+        if isCustomDateOrMonthRangeFilter(indexPath.row) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.selectFilterDateRangeCell, for: indexPath) as? SelectFilterDateRangeCell else {
                 return UITableViewCell()
             }
-            cell.configureCell(model: data[indexPath.row])
+            cell.configureCell(model: data[indexPath.row], isFromProductivity: isFromProductivity)
             cell.delegate = self
             cell.selectionStyle = .none
             return cell
@@ -316,7 +357,17 @@ extension DateFilterVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == data.count - 1 ? UITableView.automaticDimension : 40
+        
+        return isCustomDateOrMonthRangeFilter(indexPath.row) ? UITableView.automaticDimension : 40
+    }
+    
+    private func isCustomDateOrMonthRangeFilter(_ row: Int) -> Bool {
+        var isCustomRangeFilter = false //custom range- month or date
+        if row < data.count {
+            let package = data[row]
+            isCustomRangeFilter = package.title == selectCustomDateRangeTitle
+        }
+        return isCustomRangeFilter
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
