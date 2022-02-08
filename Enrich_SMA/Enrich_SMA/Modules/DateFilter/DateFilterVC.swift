@@ -117,6 +117,8 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
     
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var parentView: UIView!
+    @IBOutlet weak private var containerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var containerViewBottomConstraint: NSLayoutConstraint!
     
     var selectedData:PackageFilterModel?
     var data = [PackageFilterModel]()
@@ -184,9 +186,40 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
             data.append(PackageFilterModel(title: DateRangeType.qtd.rawValue, isSelected: isSelected(dateRangeType: .qtd), fromDate: DateRangeType.qtd.date, toDate: Date.today, sku: nil))
             data.append(PackageFilterModel(title: DateRangeType.ytd.rawValue, isSelected: isSelected(dateRangeType: .ytd), fromDate: DateRangeType.ytd.date, toDate: Date.today, sku: nil))
         }
+        containerViewHeightSetup()
         tableView.reloadData()
         
         selectedData = data.filter({ $0.title == selectedRangeTypeString }).first
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
+                self.containerViewBottomConstraint.constant = 0
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+        }
+    }
+    
+    private func containerViewHeightSetup() {
+        let firstViewHeight: CGFloat = 70.0
+        let secondViewHeight: CGFloat = 70.0
+        let oneRowHeight: CGFloat = 40
+        let extraBottomSpace: CGFloat = 10.0
+        let tableHeight: CGFloat = CGFloat(data.count) * oneRowHeight
+        var containerHeight = firstViewHeight + tableHeight + secondViewHeight + extraBottomSpace
+        let hasCustomDateFilter = data.firstIndex { (package) -> Bool in
+            package.title == "Select Custom Date Range"
+        }
+        if hasCustomDateFilter != nil {
+            containerHeight -= oneRowHeight
+            let selectCustomDateRangeHeight: CGFloat = 117.0
+            containerHeight += selectCustomDateRangeHeight
+        }
+        if containerHeight > UIScreen.main.bounds.height * 0.75 {
+            containerHeight = UIScreen.main.bounds.height * 0.75
+            tableView.isScrollEnabled = true
+        } else {
+            tableView.isScrollEnabled = false
+        }
+        containerViewHeightConstraint.constant = containerHeight
     }
     
     // MARK: Do something
