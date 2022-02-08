@@ -23,7 +23,7 @@ class SelectFilterDateRangeCell: UITableViewCell {
     @IBOutlet var btnToDate: UIButton!
     weak var delegate: SelectDateRangeDelegate?
     
-    func configureCell(model: PackageFilterModel) {
+    func configureCell(model: PackageFilterModel, isFromProductivity: Bool = false) {
         radioView.isHidden = !model.isSelected
         lblTitle.text = model.title
         
@@ -37,9 +37,13 @@ class SelectFilterDateRangeCell: UITableViewCell {
             btnFromDate.isUserInteractionEnabled = false
             btnToDate.isUserInteractionEnabled = false
         }
-        
-        lblFromDate.text = model.fromDate?.monthNameYearDate
-        lblToDate.text = model.toDate?.monthNameYearDate
+        if isFromProductivity {
+            lblFromDate.text = model.fromDate?.monthNameAndYear
+            lblToDate.text = model.toDate?.monthNameAndYear
+        } else {
+            lblFromDate.text = model.fromDate?.monthNameYearDate
+            lblToDate.text = model.toDate?.monthNameYearDate
+        }
     }
     
     @IBAction func actionFrom(_ sender: UIButton) {
