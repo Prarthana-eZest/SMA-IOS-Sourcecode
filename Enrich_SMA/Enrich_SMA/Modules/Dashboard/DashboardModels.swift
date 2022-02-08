@@ -139,6 +139,7 @@ enum Dashboard {
             let minimum_rm_consumption : String?
             let minimum_quality_score : String?
             let salon_targets : [Salon_targets]?
+            let salon_active_technicians : Int?
         }
         
         struct Filters : Codable {

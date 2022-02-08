@@ -33,6 +33,7 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
     @IBOutlet var lblFilterTitle: UILabel!
     var data = [PackageFilterModel]()
     var filterType : String = ""
+    var selectedPackage : String = ""
     var viewDismissBlock: ((Bool, String) -> Void)?
 
     // MARK: Object lifecycle
@@ -99,7 +100,7 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
     func getFilterData(filterType : String){
         let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
     
-        data.append(PackageFilterModel(title: "All Packages", isSelected: true, fromDate: nil, toDate: nil, sku: ""))
+        data.append(PackageFilterModel(title: "All Packages", isSelected: (selectedPackage == ""), fromDate: nil, toDate: nil, sku: ""))
         
         
         if(filterType == "Service"){
@@ -110,7 +111,7 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
 
         
         for objServicePackage in filterServicePackgeData {
-            data.append(PackageFilterModel(title: objServicePackage.name ?? "", isSelected: false, fromDate: nil, toDate: nil, sku: objServicePackage.sku))
+            data.append(PackageFilterModel(title: objServicePackage.name ?? "", isSelected: (selectedPackage == objServicePackage.sku), fromDate: nil, toDate: nil, sku: objServicePackage.sku))
         }
         }
         
@@ -122,7 +123,7 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
            
             
             for objPackage in filterValuePackageData {
-                data.append(PackageFilterModel(title: objPackage.name ?? "", isSelected: false, fromDate: nil, toDate: nil, sku: objPackage.sku))
+                data.append(PackageFilterModel(title: objPackage.name ?? "", isSelected: (selectedPackage == objPackage.sku), fromDate: nil, toDate: nil, sku: objPackage.sku))
         }
         }
         

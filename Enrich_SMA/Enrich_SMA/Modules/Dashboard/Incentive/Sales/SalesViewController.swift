@@ -40,6 +40,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     var dateRangeType : DateRangeType = .mtd
     var salesCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
     
+    var selectedPackage : String = ""
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -340,7 +341,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         //Graph Data
         graphData.append(getGraphEntry(servicePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
-        headerModel =  EarningsHeaderDataModel(earningsType: .Sales, value: (membershipRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount), isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
+        headerModel =  EarningsHeaderDataModel(earningsType: .Sales, value: (membershipRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount + membershipRenewRevenueCount), isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
         
         headerModel?.dateRangeType = graphRangeType
         headerGraphData = getTotalSalesGraphEntry(forData: filteredSalesForGraph, dateRange: graphDateRange, dateRangeType: graphRangeType)
@@ -706,6 +707,7 @@ extension SalesViewController: EarningDetailsDelegate {
     func actionPackageFilter(forCell cell: UITableViewCell) {
         let vc = PackageFilterViewController.instantiate(fromAppStoryboard: .Incentives)
         self.view.alpha = screenPopUpAlpha
+        vc.selectedPackage = selectedPackage
         guard let earningsCell = cell as? EarningDetailsCell, let index = tableView.indexPath(for: cell)?.row, dataModels.count >= index else {
             return
         }
@@ -728,6 +730,7 @@ extension SalesViewController: EarningDetailsDelegate {
             self.view.alpha = 1.0
             if(result){
                 print("SKU \(sku)")
+                selectedPackage = sku
                 if(dataModels[seletcedIndex].title == "Value Package"){
                 updateDataUsingPackageFilters(forCell: cell, withSKU: sku, packageType: PackageType.value)
             }

@@ -201,3 +201,30 @@ extension String {
         return Date()
     }
 }
+
+//MARK: - Expression Conversions
+extension String {
+    var expression: NSExpression {
+        return NSExpression(format: self)
+    }
+    
+    func expressionComponants() -> [String] {
+        if let exps = self.expression.arguments {
+            return keyPath(expressions: exps)
+        }
+        return []
+    }
+    
+    private func keyPath(expressions:[NSExpression]) -> [String] {
+        var result = [String]()
+        for eachExp in expressions {
+            if let args = eachExp.arguments, args.count > 1 {
+                result.append(contentsOf: keyPath(expressions: args))
+            }
+            else {
+                result.append(eachExp.keyPath)
+            }
+        }
+        return result
+    }
+}

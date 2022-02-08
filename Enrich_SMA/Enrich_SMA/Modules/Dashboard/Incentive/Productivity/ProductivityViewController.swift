@@ -280,13 +280,93 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         //Graph Data
         graphData.append(getGraphEntry(revenueMultiplierModel.title, forData: filteredProductivityForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
+        //get total revenue
+        let totalRevenue = calculateRevenue(dateRange: dateRange)
+        
         //Revenue Per Team Member
+        //Data Model
+        let salonActiveTech = technicianDataJSON?.data?.configuration?.salon_active_technicians ?? 0
+        let revPerTeamMem = (totalRevenue / Double(salonActiveTech))
+        let revPerTeamMemModel = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Team Member", value: [revPerTeamMem.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
+        dataModel.append(revPerTeamMemModel)
+        //Graph Data
+        graphData.append(getGraphEntry(revPerTeamMemModel.title, forData: filteredProductivityForGraph, atIndex: 3, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        //Revenue Per Workstation
+        //Data Model
+        let salonStation = technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+        let revPerWorkStation = (totalRevenue / Double(salonStation))
+        let revPerWorkStationModel = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Workstation", value: [revPerWorkStation.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
+        dataModel.append(revPerWorkStationModel)
+        //Graph Data
+        graphData.append(getGraphEntry(revPerWorkStationModel.title, forData: filteredProductivityForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType))
        
+        
+        //Revenue Per Square Feet
+        //Data Model
+        let salonArea = technicianDataJSON?.data?.configuration?.salon_area ?? 0.0
+        var revPerSqrFeet = 0.0
+        if(salonArea > 0){
+            revPerSqrFeet = (totalRevenue / salonArea)
+        }
+        else {
+            revPerSqrFeet = 0.0
+        }
+        let revPerSqrFeetModel = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Square Feet", value: [revPerSqrFeet.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
+        dataModel.append(revPerSqrFeetModel)
+        //Graph Data
+        graphData.append(getGraphEntry(revPerSqrFeetModel.title, forData: filteredProductivityForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
         headerModel =  EarningsHeaderDataModel(earningsType: .Productivity, value: 0.0, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         headerModel?.value = Double("")
         
         tableView.reloadData()
         EZLoadingActivity.hide()
+    }
+    
+    //calculate total revenue
+    func calculateRevenue(dateRange : DateRange) -> Double{
+        var totalRev = 0.0
+        
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+
+        
+        let filteredRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            if let date = revenue.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        })
+        // Revenue Screen
+        let serviceData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon)}) ?? []
+        var serviceToatal : Double = 0.0
+        
+        let homeServiceRevenueData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home)}) ?? []
+        var homeServiceTotal : Double = 0.0
+        
+        let retailData = filteredRevenue?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)}) ?? []
+        var retailTotal : Double = 0.0
+        
+        
+        for objService in serviceData {
+            serviceToatal = serviceToatal + objService.total!
+        }
+        print("serviceToatal conunt : \(serviceToatal)")
+        
+        for objService in homeServiceRevenueData {
+            homeServiceTotal = homeServiceTotal + objService.total!
+        }
+        print("homeServiceTotal conunt : \(homeServiceTotal)")
+        
+        
+        for objRetail in retailData {
+            retailTotal = retailTotal + objRetail.total!
+        }
+        print("retail conunt : \(retailTotal)")
+        totalRev = serviceToatal + homeServiceTotal + retailTotal
+        
+        return totalRev
     }
     
     func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Quality_score_data]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
@@ -494,6 +574,13 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
 //        return formula!.expression.expressionValue(with: revenueMultiExpressionData, context: nil) as? Double ?? 0.0
         
         return 0.0
+    }
+    
+    func targetAchievement(dateRange : DateRange) -> Double{
+        var targetAchieved = 0.0
+        
+        
+        return targetAchieved
     }
     
     //calculate RMOptimization

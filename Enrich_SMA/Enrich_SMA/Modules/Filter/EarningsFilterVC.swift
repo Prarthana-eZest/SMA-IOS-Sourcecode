@@ -119,13 +119,7 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
 //        }
 //        data.append(EarningsCatgoryFilterModel(category: "Gender", isSelected: false, subCategories: genderData))
         
-        let selectedGender = filterValueArray[0]
-
-        let sub1 = [EarningsSubCatgoryFilterModel(subCategory: "All Genders", isSelected: (selectedGender == "All Genders")), EarningsSubCatgoryFilterModel(subCategory: "Male", isSelected: (selectedGender == "Male")), EarningsSubCatgoryFilterModel(subCategory: "Female", isSelected: (selectedGender == "Female")), EarningsSubCatgoryFilterModel(subCategory: "Others", isSelected: (selectedGender == "Others"))]
-        data.append(EarningsCatgoryFilterModel(category: "Gender", isSelected: true, subCategories: sub1))
-        
-        
-        let category = technicianDataJSON?.data?.filters?.category_tree
+         let category = technicianDataJSON?.data?.filters?.category_tree
         
         var categoryData = [EarningsSubCatgoryFilterModel]()
         var subCategoryData = [EarningsSubCatgoryFilterModel]()
@@ -145,9 +139,14 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
             
         }
         
-        data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: false, subCategories: categoryData))
+        data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: true, subCategories: categoryData))
         
         data.append(EarningsCatgoryFilterModel(category: "Sub-category", isSelected: false, subCategories: subCategoryData))
+        
+        let selectedGender = filterValueArray[0]
+
+        let sub1 = [EarningsSubCatgoryFilterModel(subCategory: "All Genders", isSelected: (selectedGender == "All Genders")), EarningsSubCatgoryFilterModel(subCategory: "Male", isSelected: (selectedGender == "Male")), EarningsSubCatgoryFilterModel(subCategory: "Female", isSelected: (selectedGender == "Female")), EarningsSubCatgoryFilterModel(subCategory: "Others", isSelected: (selectedGender == "Others"))]
+        data.append(EarningsCatgoryFilterModel(category: "Gender", isSelected: false, subCategories: sub1))
     }
     
     func doSomething()

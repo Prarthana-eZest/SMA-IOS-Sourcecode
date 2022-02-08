@@ -367,6 +367,7 @@
 		F85EE67224BDA50E001D9B0F /* ListingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66C24BDA50E001D9B0F /* ListingModels.swift */; };
 		F85EE67324BDA50E001D9B0F /* ListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66D24BDA50E001D9B0F /* ListingVC.swift */; };
 		F85EE67424BDA50E001D9B0F /* ListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EE66E24BDA50E001D9B0F /* ListingInteractor.swift */; };
+		F874BC0D27B2A37600C3E75E /* ExtensionEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F874BC0C27B2A37600C3E75E /* ExtensionEncodable.swift */; };
 		F8784FBF244D720900104BE8 /* ApprovalRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */; };
 		F8784FC0244D720900104BE8 /* ApprovalRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */; };
 		F8784FC8244D722700104BE8 /* ApprovalRequestListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */; };
@@ -808,6 +809,7 @@
 		F85EE66C24BDA50E001D9B0F /* ListingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingModels.swift; sourceTree = "<group>"; };
 		F85EE66D24BDA50E001D9B0F /* ListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingVC.swift; sourceTree = "<group>"; };
 		F85EE66E24BDA50E001D9B0F /* ListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingInteractor.swift; sourceTree = "<group>"; };
+		F874BC0C27B2A37600C3E75E /* ExtensionEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionEncodable.swift; sourceTree = "<group>"; };
 		F8784FBD244D720900104BE8 /* ApprovalRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestCell.swift; sourceTree = "<group>"; };
 		F8784FBE244D720900104BE8 /* ApprovalRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApprovalRequestCell.xib; sourceTree = "<group>"; };
 		F8784FC2244D722700104BE8 /* ApprovalRequestListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalRequestListWorker.swift; sourceTree = "<group>"; };
@@ -1535,6 +1537,7 @@
 				E3034298235EE15700E0BF0A /* ExtentionViewcontroller.swift */,
 				E38B0FB4237D7763004E2C82 /* ExtensionAppDelegate.swift */,
 				F85926B0279FB77D00EBEF55 /* ExtensionDouble.swift */,
+				F874BC0C27B2A37600C3E75E /* ExtensionEncodable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2862,6 +2865,7 @@
 				F87C337124DD515A00318662 /* PowerBIReportModels.swift in Sources */,
 				E3060172237EA49200988EEC /* AppointmentDetailsCell.swift in Sources */,
 				F8784FCD244D722700104BE8 /* ApprovalRequestListVC.swift in Sources */,
+				F874BC0D27B2A37600C3E75E /* ExtensionEncodable.swift in Sources */,
 				E30342B4235EE15800E0BF0A /* JSONANYHandling.swift in Sources */,
 				F840D18E24B4BAE50065F795 /* AppVersionCell.swift in Sources */,
 				F859278927A2C31B00EBEF55 /* EarningDetailsFooterFilterCell.swift in Sources */,
@@ -3081,7 +3085,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.48;
+				MARKETING_VERSION = 1.49;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMADev;
@@ -3107,7 +3111,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.48;
+				MARKETING_VERSION = 1.49;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EnrichSalon.SMA;
 				PRODUCT_NAME = SMA_Stage;
@@ -3283,7 +3287,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.48;
+				MARKETING_VERSION = 1.49;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;

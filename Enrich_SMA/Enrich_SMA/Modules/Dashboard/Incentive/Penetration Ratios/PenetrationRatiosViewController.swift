@@ -482,21 +482,6 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             
             if dateRange.end.days(from: dateRange.start) > 31
             {
-//                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
-//                for qMonth in months {
-//                    let value = customerServedArray.map ({ (services) -> Double in
-//                        if let rMonth = services.date?.date()?.string(format: "MMM yy"),
-//                           rMonth == qMonth
-//                        {
-//                            appBookingRatio = Double((Double(services.no_of_services ?? 0)) / Double(appBooking.count))
-//                            return (appBookingRatio)
-//                        }
-//                        return 0.0
-//                    }).reduce(0) {$0 + $1}
-//
-//                    values.append(value)
-//                }
-                
                 let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
                 for month in months {
                     let appbooking = appBooking.filter({($0.date?.contains(month)) ?? false}).map({$0.paid_service_revenue})
@@ -1001,7 +986,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             var subCategoryCount : Int = 0
             var ratio : Int = 0
             //var index = 4 // to set the index for graphs
-            if(penerationRatioFromFilters.count ?? 0 > 0){
+            if(penerationRatioFromFilters.count > 0){
                 for objPenetration in penerationRatioFromFilters {
                     
                     for objTransaction in filteredPenetrationRatio! {
