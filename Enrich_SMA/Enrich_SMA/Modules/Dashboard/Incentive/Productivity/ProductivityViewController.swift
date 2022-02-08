@@ -275,10 +275,12 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         //Revenue Multiplier
         //Data Model
         let revenueMulti = revenueMultiplier(dateRange: dateRange)
-        let revenueMultiplierModel = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Multiplier", value: [revenueMulti.roundedStringValue(toFractionDigits: 2)], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
+        let revenueMultiplierModel = EarningsCellDataModel(earningsType: .Productivity, title: "Target Achivement", value: [revenueMulti.roundedStringValue(toFractionDigits: 2)], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(revenueMultiplierModel)
         //Graph Data
         graphData.append(getGraphEntry(revenueMultiplierModel.title, forData: filteredProductivityForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        //Revenue Per Team Member
        
         headerModel =  EarningsHeaderDataModel(earningsType: .Productivity, value: 0.0, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         headerModel?.value = Double("")

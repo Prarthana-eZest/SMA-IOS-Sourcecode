@@ -284,7 +284,6 @@ enum Dashboard {
             let additional_rating_avg_ratings : Double?
             let technician_avg_ratings : Double?
             let service_avg_ratings : Double?
-            let no_of_services : Int?
         }
         
         //MARK: - Client repeat transactions
