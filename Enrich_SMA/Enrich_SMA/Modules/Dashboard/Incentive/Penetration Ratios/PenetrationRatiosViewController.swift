@@ -438,10 +438,11 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             appBookingRatio =  Double(appBooking.count / invoiceNumbers.count)
         }
         
-        let customersServed = customerServedArray.filter({$0.no_of_services ?? 0 > 0})
+        //customers served - those are customer_id which are served
+        let filterCustomerServed = filterArray.unique(map: {$0.customer_id})
         var customersServedCount : Double = 0.0
-        for objCustomersServed in customersServed {
-            customersServedCount = customersServedCount + Double(objCustomersServed.no_of_services ?? 0)
+        for objCustomersServed in filterCustomerServed {
+            customersServedCount += 1
         }
         
         switch dateRangeType
@@ -466,8 +467,9 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 let appbookingvalue = appbooking.reduce(0) {$0 + ($1 ?? 0.0)}
                 
         
-                let customer = customerServedArray.filter({($0.date?.contains(month)) ?? false}).map({$0.no_of_services})
-                let customergvalue = customer.reduce(0) {$0 + ($1 ?? Int(0.0))}
+                //customers served - those are customer_id which are served
+                let customer = filterArray.unique(map: {$0.customer_id})
+                let customergvalue = customer.count //customer.reduce(0) {$0 + $1}
                 if(appbookingvalue > 0 || customergvalue > 0){
                 let value = Double(appbookingvalue) / Double(customergvalue)
                 values.append(value)
@@ -501,8 +503,8 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                     let appbookingvalue = appbooking.reduce(0) {$0 + ($1 ?? 0.0)}
                     
             
-                    let customer = customerServedArray.filter({($0.date?.contains(month)) ?? false}).map({$0.no_of_services})
-                    let customergvalue = customer.reduce(0) {$0 + ($1 ?? Int(0.0))}
+                    let customer = filterArray.unique(map: {$0.customer_id})
+                    let customergvalue = customer.count //reduce(0) {$0 + ($1 ?? Int(0.0))}
                     if(appbookingvalue > 0 || customergvalue > 0){
                     let value = Double(appbookingvalue) / Double(customergvalue)
                     values.append(value)
@@ -945,18 +947,19 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             if(uniqueInvoices!.count > 0) {
                 ratio =  Double(count) / Double(uniqueInvoices!.count)
             }
-            //customers served
-            let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
-                if let date = customerEngagement.date?.date()?.startOfDay {
-                    
-                    return date >= dateRange.start && date <= dateRange.end
-                }
-                return false
-            })
-            let customersServed = filteredCustomerEngagement?.filter({$0.no_of_services ?? 0 > 0})
-            for customers in customersServed ?? []{
-                invoceCount += customers.no_of_services ?? 0
-            }
+//            //customers served
+//            let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+//                if let date = customerEngagement.date?.date()?.startOfDay {
+//
+//                    return date >= dateRange.start && date <= dateRange.end
+//                }
+//                return false
+//            })
+            let customersServed = filteredPenetrationRatio?.unique(map: {$0.customer_id})
+            invoceCount = customersServed?.count ?? 0
+//            for customers in customersServed ?? []{
+//                invoceCount += customers.no_of_services ?? 0
+//            }
             
         case 3:
             //cross sell
