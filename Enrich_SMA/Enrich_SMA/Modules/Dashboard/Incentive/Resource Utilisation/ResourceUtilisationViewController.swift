@@ -1072,7 +1072,7 @@ extension ResourceUtilisationViewController: EarningsFilterDelegate {
         vc.fromChartFilter = false
         vc.selectedRangeTypeString = dateRangeType.rawValue
         vc.cutomRange = resourceUtilizationCutomeDateRange
-        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: false, completion: nil)
         vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
             // Do something
             self.view.alpha = 1.0
@@ -1118,7 +1118,7 @@ extension ResourceUtilisationViewController: EarningDetailsDelegate {
             vc.selectedRangeTypeString = model.dateRangeType.rawValue
             vc.cutomRange = model.customeDateRange
         }
-        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: false, completion: nil)
         vc.viewDismissBlock = { [unowned self] (result, startDate, endDate, rangeTypeString) in
             // Do something
             self.view.alpha = 1.0
