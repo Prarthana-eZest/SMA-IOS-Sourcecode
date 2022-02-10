@@ -224,6 +224,27 @@ extension Date
         return array
     }
     
+    func year(withFormat format: String = "yyyy") -> Int {
+        let year = Int(self.string(format: format)) ?? 0
+        return year
+    }
+    
+    func monthNo(withFormat format: String = "M") -> Int {
+        let month = Int(self.string(format: format)) ?? 0
+        return month
+    }
+    
+    func day(withFormat format: String = "d") -> Int {
+        let day = Int(self.string(format: format)) ?? 0
+        return day
+    }
+    
+    func isCurrentMonth(withFormat format: String = "M") -> Bool {
+        let month = Int(self.string(format: format)) ?? 0
+        let currentMonth = Int(Date().string(format: format)) ?? 0
+        return month == currentMonth
+    }
+    
     
     func inSameMonth(asDate date: Date) -> Bool
     {

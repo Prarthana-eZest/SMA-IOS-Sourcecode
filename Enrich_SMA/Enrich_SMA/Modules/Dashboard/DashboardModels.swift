@@ -195,7 +195,9 @@ enum Dashboard {
             let service_package_count : Double?
             let service_package_revenue : Double?
             let free_service_revenue : Double?
-            
+            let package_revenue : Double?
+            let giftcard_revenue : Double?
+
             lazy var formmatedDate: String = {
                 return String()
             }()
