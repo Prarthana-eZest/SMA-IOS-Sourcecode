@@ -762,12 +762,12 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         
         //app booking
-        let appBooking = filteredPenetrationRatio.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && (($0.platform ?? "").containsIgnoringCase(find:platform.CMA))})
+        let appBooking = filteredPenetrationRatio.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) && (($0.platform ?? "").containsIgnoringCase(find:platform.CMA))})
         
         var appBookingRatio : Double = 0.0
         
         //customers served - those are customer_id which are served
-        let filterCustomerServed = filteredPenetrationRatio.unique(map: {$0.customer_id})
+        let filterCustomerServed = filteredPenetrationRatio.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services))}).unique(map: {$0.customer_id})
 //        let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
 //            if let date = customerEngagement.date?.date()?.startOfDay {
 //
