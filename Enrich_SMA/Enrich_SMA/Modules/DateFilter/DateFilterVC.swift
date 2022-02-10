@@ -172,7 +172,7 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
         parentView.layer.cornerRadius = 8
         parentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        if fromChartFilter == false{
+        if fromChartFilter == false && !isFromProductivity {
             data.append(PackageFilterModel(title: DateRangeType.yesterday.rawValue, isSelected: isSelected(dateRangeType: .yesterday), fromDate: DateRangeType.yesterday.date, toDate: DateRangeType.yesterday.date, sku: nil))
             data.append(PackageFilterModel(title: DateRangeType.today.rawValue, isSelected: isSelected(dateRangeType: .today), fromDate: DateRangeType.today.date, toDate: Date.today, sku: nil))
         }
