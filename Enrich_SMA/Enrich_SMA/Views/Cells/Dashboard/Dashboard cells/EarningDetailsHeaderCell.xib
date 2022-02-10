@@ -96,7 +96,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="yVh-70-v1Y">
                                                                         <rect key="frame" x="0.0" y="0.0" width="92" height="18"/>
                                                                         <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lED-kp-1ML">
+                                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lED-kp-1ML">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="92" height="15"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="15" id="zVN-60-ope"/>
