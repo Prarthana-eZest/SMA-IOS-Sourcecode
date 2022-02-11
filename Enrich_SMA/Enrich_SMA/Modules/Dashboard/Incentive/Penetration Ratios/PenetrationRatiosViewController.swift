@@ -840,10 +840,12 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                     
                     if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
                         categotyCount = categotyCount + 1
+                        print("Category \(objTransaction.category) ######## Date : \(objTransaction.date)")
                     }
                     
                     if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
                         subCategoryCount = subCategoryCount + 1
+                        print("********** Sub category \(objTransaction.sub_category) Date : \(objTransaction.date)")
                     }
                     
                     

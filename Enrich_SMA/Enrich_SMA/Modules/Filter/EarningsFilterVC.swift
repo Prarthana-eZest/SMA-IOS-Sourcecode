@@ -139,7 +139,7 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
             
         }
         
-        data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: true, subCategories: categoryData))
+        data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: false, subCategories: categoryData))
         
         data.append(EarningsCatgoryFilterModel(category: "Sub-category", isSelected: false, subCategories: subCategoryData))
         

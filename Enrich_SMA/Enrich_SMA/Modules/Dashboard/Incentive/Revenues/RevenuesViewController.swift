@@ -318,15 +318,29 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         }
         
         //Category
-        if let category = otherFilters?[1], category != "All Categories"
+        if(otherFilters?.count ?? 0 < 3){
+        if let category = otherFilters?[0], category != "All Categories"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.category == category })
         }
         
         //Sub-Category
-        if let subCategory = otherFilters?[2], subCategory != "All Categories"
+        if let subCategory = otherFilters?[1], subCategory != "All Categories"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
+        }
+        }
+        else {
+            if let category = otherFilters?[1], category != "All Categories"
+            {
+                filteredRevenue = filteredRevenue?.filter({ $0.category == category })
+            }
+            
+            //Sub-Category
+            if let subCategory = otherFilters?[2], subCategory != "All Categories"
+            {
+                filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
+            }
         }
         
         //Handle Graph Scenarios
