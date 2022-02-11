@@ -275,7 +275,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         //Revenue Multiplier
         //Data Model
         let revenueMulti = revenueMultiplier(dateRange: dateRange)
-        let revenueMultiplierModel = EarningsCellDataModel(earningsType: .Productivity, title: "Target Achivement", value: [revenueMulti.roundedStringValue(toFractionDigits: 2)], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
+        let revenueMultiplierModel = EarningsCellDataModel(earningsType: .Productivity, title: "Target Achivement", value: [revenueMulti.roundedStringValue(toFractionDigits: 2) + "%"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(revenueMultiplierModel)
         //Graph Data
         graphData.append(getGraphEntry(revenueMultiplierModel.title, forData: filteredProductivityForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
@@ -534,46 +534,76 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     
     func revenueMultiplier(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange) -> Double {
         
-//        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-//        let formula = technicianDataJSON?.data?.configuration?.target_achievement_formula
-//        let configuration = technicianDataJSON?.data?.configuration?.dictionary
-//
-//        var filteredRevenueTransactions:[[String:Any]]? = data?.compactMap({$0.dictionary})
-//        if data == nil, (data?.count ?? 0 <= 0) {
-//            filteredRevenueTransactions = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenueTransactions) -> Bool in
-//                if let date = revenueTransactions.date?.date()?.startOfDay {
-//                    return date >= dateRange.start && date <= dateRange.end
-//                }
-//                return false
-//            }).map({$0.dictionary}) as? [[String:Any]]
-//        }
-//
-//
-//        guard let _ = formula, filteredRevenueTransactions?.count ?? 0 > 0
-//        else { return 0.0 }
-//
-//        var revenueMultiExpressionData = [String:Double]()
-//        let revenueTransactionsKeys = filteredRevenueTransactions?.first?.keys
-//        for comp in formula!.expressionComponants() {
-//            if revenueTransactionsKeys != nil, revenueTransactionsKeys!.contains(comp) {
-//                let sum = filteredRevenueTransactions?.map({(($0[comp] as? Double) ?? 0.0)}).reduce(0) {$0 + $1}
-//                revenueMultiExpressionData[comp] = sum
-//            }
-//            else if let keys = configuration?.keys, keys.contains(comp), var value = configuration?[comp] as? Double {
-//                if  comp.lowercased() == "ctc" ||
-//                        comp.lowercased() == "fix_pay" ||
-//                        comp.lowercased() == "take_home_salary"
-//                {
-//                    let perDay = value/Double(dateRange.end.daysInMonth())
-//                    value = perDay * Double(dateRange.end.days(from: dateRange.start) + 1) //Considering days till today
-//                }
-//                revenueMultiExpressionData[comp] = value
-//            }
-//        }
-//
-//        return formula!.expression.expressionValue(with: revenueMultiExpressionData, context: nil) as? Double ?? 0.0
-        
-        return 0.0
+        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+        let strFormula = technicianDataJSON?.data?.configuration?.target_achievement_formula?.replacingOccurrences(of: "target", with: "salon_targets")
+        let configuration = technicianDataJSON?.data?.configuration?.dictionary
+
+        var filteredRevenueTransactions:[[String:Any]]? = data?.compactMap({$0.dictionary})
+        if data == nil, (data?.count ?? 0 <= 0) {
+            filteredRevenueTransactions = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenueTransactions) -> Bool in
+                if let date = revenueTransactions.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            }).map({$0.dictionary}) as? [[String:Any]]
+        }
+
+
+        guard let formula = strFormula, filteredRevenueTransactions?.count ?? 0 > 0
+        else { return 0.0 }
+
+        var revenueMultiExpressionData = [String:Double]()
+        let revenueTransactionsKeys = filteredRevenueTransactions?.first?.keys
+        for comp in formula.expressionComponants() {
+            if revenueTransactionsKeys != nil, revenueTransactionsKeys!.contains(comp) {
+                let sum = filteredRevenueTransactions?.map({(($0[comp] as? Double) ?? 0.0)}).reduce(0) {$0 + $1}
+                revenueMultiExpressionData[comp] = sum
+            }
+            else if let keys = configuration?.keys, keys.contains(comp), comp == "salon_targets" {
+                let salonTargets = technicianDataJSON?.data?.configuration?.salon_targets ?? []
+                let monthsBetweenDates = dateRange.end.monthNumber(from: dateRange.start)
+                let min = monthsBetweenDates.min() ?? 0
+                let max = monthsBetweenDates.max() ?? 0
+                let monthRange = min...max
+                var totalTargets: Double = 0.0
+                let currentMonthNo = Date().monthNo()
+                let fromYear = dateRange.start.year()
+                var isLeapYear = (( fromYear%100 != 0) && (fromYear%4 == 0)) || fromYear%400 == 0
+                if !isLeapYear {
+                    let toYear = dateRange.end.year()
+                    isLeapYear = (( toYear%100 != 0) && (toYear%4 == 0)) || toYear%400 == 0
+                }
+            
+                for val in salonTargets {
+                    if let month = val.month {
+                        if monthRange.contains(month) {
+                            if month == currentMonthNo {
+                                let tillTodayDays = Date().day()
+                                let targetVal = (val.target ?? 0.0) * Double( tillTodayDays) / Double(getMonthDays(month: month, isLeapYear: isLeapYear))
+                                totalTargets += targetVal
+                            } else {
+                                let targetVal = (val.target ?? 0.0) / Double( getMonthDays(month: month, isLeapYear: isLeapYear))
+                                totalTargets += targetVal
+                            }
+                        }
+                    }
+                }
+                revenueMultiExpressionData[comp] = totalTargets
+            }
+            else {
+                revenueMultiExpressionData[comp] = 0
+            }
+        }
+
+        return formula.expression.expressionValue(with: revenueMultiExpressionData, context: nil) as? Double ?? 0.0
+    }
+    
+    private func getMonthDays(month: Int, isLeapYear: Bool) -> Int {
+        switch month {
+        case 1, 3, 5, 7, 8, 10, 12: return 31
+        case 2: return isLeapYear ? 29 : 28
+        default: return 30
+        }
     }
     
     func targetAchievement(dateRange : DateRange) -> Double{
