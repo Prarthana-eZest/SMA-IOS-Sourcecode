@@ -831,32 +831,49 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         var categotyCount : Int = 0
         var subCategoryCount : Int = 0
-        var ratio : Int = 0
+        var ratio : Double = 0.0
         var index = 4 // to set the index for graphs
         if(penerationRatioFromFilters?.count ?? 0 > 0){
             for objPenetration in penerationRatioFromFilters! {
                 
                 for objTransaction in filteredPenetrationRatio {
                     
-                    if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
-                        categotyCount = categotyCount + 1
-                        print("Category \(objTransaction.category) ######## Date : \(objTransaction.date)")
-                    }
+//                    let filteredStrings = objPenetration.compare_categories?.filter({(category: String) -> Bool in
+//
+//                        let cnt = category.range(of: objTransaction.category ?? "")
+//                         return cnt != nil ? true : false
+//                    })
+//
+//                    categotyCount = filteredStrings?.count ?? 0
+                    print("############### \(objPenetration.compare_categories)")
+                    print("******************* \(objTransaction.category)")
                     
-                    if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
-                        subCategoryCount = subCategoryCount + 1
-                        print("********** Sub category \(objTransaction.sub_category) Date : \(objTransaction.date)")
-                    }
+                    let filter = objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.category ?? "")) || ($0.containsIgnoringCase(find: objTransaction.sub_category ?? ""))})
+                    categotyCount += filter?.count ?? 0
+                    
+                    let catfilter = objPenetration.to_compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.sub_category ?? "")) || ($0.containsIgnoringCase(find: objTransaction.category ?? ""))})
+                    subCategoryCount += catfilter?.count ?? 0
+        
+                    
+//                    if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
+//                        categotyCount = categotyCount + 1
+//                        print("Category \(objTransaction.category) ######## Date : \(objTransaction.date)")
+//                    }
+//
+//                    if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
+//                        subCategoryCount = subCategoryCount + 1
+//                        print("********** Sub category \(objTransaction.sub_category) Date : \(objTransaction.date)")
+//                    }
                     
                     
                 }
-                if(categotyCount > 0){
-                    ratio = subCategoryCount / categotyCount
+                if(subCategoryCount > 0){
+                    ratio = Double(categotyCount) / Double(subCategoryCount)
                 }
                 
                 //"penetrationModel"
                 //Data Model
-                let penetrationModel = EarningsCellDataModel(earningsType: .PenetrationRatios, title: objPenetration.heading ?? "", value: [String(subCategoryCount),String(categotyCount),String(ratio)], subTitle: [objPenetration.compare_label ?? "" ,objPenetration.to_compare_label ?? "", "Ratio"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: penetrationCutomeDateRange)
+                let penetrationModel = EarningsCellDataModel(earningsType: .PenetrationRatios, title: objPenetration.heading ?? "", value: [String(categotyCount),String(subCategoryCount),ratio.roundedStringValue(toFractionDigits: 2)], subTitle: [objPenetration.compare_label ?? "" ,objPenetration.to_compare_label ?? "", "Ratio"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: penetrationCutomeDateRange)
                 dataModel.append(penetrationModel)
                 //Graph Data
                 graphData.append(getGraphEntry(penetrationModel.title, forData: filteredPenetrationForGraph, atIndex: index, dateRange: graphDateRange, dateRangeType: graphRangeType))
@@ -865,6 +882,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 
                 categotyCount = 0
                 subCategoryCount = 0
+                ratio = 0.0
                 index += 1
             }
         }
