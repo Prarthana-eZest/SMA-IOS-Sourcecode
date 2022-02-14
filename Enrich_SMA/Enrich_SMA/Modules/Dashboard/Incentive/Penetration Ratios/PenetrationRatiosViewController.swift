@@ -848,10 +848,10 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                     print("############### \(objPenetration.compare_categories)")
                     print("******************* \(objTransaction.category)")
                     
-                    let filter = objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.category ?? "")) || ($0.containsIgnoringCase(find: objTransaction.sub_category ?? ""))})
+                    let filter = objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.sub_category ?? ""))})
                     categotyCount += filter?.count ?? 0
                     
-                    let catfilter = objPenetration.to_compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.sub_category ?? "")) || ($0.containsIgnoringCase(find: objTransaction.category ?? ""))})
+                    let catfilter = objPenetration.to_compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.sub_category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.category ?? ""))})
                     subCategoryCount += catfilter?.count ?? 0
         
                     
