@@ -36,13 +36,13 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
     @IBOutlet weak private var subCategoryTableView: UITableView!
     @IBOutlet weak private var parentView: UIView!
 
-    var viewDismissBlock: ((_ status: Bool, _ filteredArray: [String]) -> Void)?
+    var viewDismissBlock: ((_ status: Bool, _ filterToApply: [String: String]) -> Void)?
     
     var data = [EarningsCatgoryFilterModel]()
     
     var selectedCategoryIndex = 0
 
-    var filterValueArray = ["All Genders", "All Categories", "All Categories"]
+    var selectedFilters = ["gender": "All Genders", "category": "All Categories", "subCategory": "All Categories"]
     
     // MARK: Object lifecycle
     
@@ -100,53 +100,57 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
         data.append(EarningsCatgoryFilterModel(category: "Membership", isSelected: false, subCategories: sub4))*/
         
         createFilters()
-        
-        categoryTableView.reloadData()
-        subCategoryTableView.reloadData()
-    
     }
     
     // MARK: Do something
     
     func createFilters(){
+        data.removeAll()
         let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
-//        let gender = technicianDataJSON?.data?.filters?.service_gender
-//
-//        var genderData = [EarningsSubCatgoryFilterModel]()
-//        for objGender in gender! {
-//            genderData = [EarningsSubCatgoryFilterModel(subCategory: objGender.service_gender ?? "", isSelected: false)]
-//        }
-//        data.append(EarningsCatgoryFilterModel(category: "Gender", isSelected: false, subCategories: genderData))
-        
+
          let category = technicianDataJSON?.data?.filters?.category_tree
         
         var categoryData = [EarningsSubCatgoryFilterModel]()
         var subCategoryData = [EarningsSubCatgoryFilterModel]()
         
-        let selectedCategory = filterValueArray[1]
+        let selectedCategory = selectedFilters["category"]
         categoryData.append(contentsOf: ( [EarningsSubCatgoryFilterModel(subCategory: "All Categories", isSelected: (selectedCategory == "All Categories"))]))
         
-        let selectedSubCategory = filterValueArray[2]
+        let selectedSubCategory = selectedFilters["subCategory"]
         subCategoryData.append(contentsOf: ( [EarningsSubCatgoryFilterModel(subCategory: "All Categories", isSelected: (selectedSubCategory == "All Categories"))]))
         
         for objCategory in category! {
             categoryData.append(contentsOf: [EarningsSubCatgoryFilterModel(subCategory: objCategory.main_category_label ?? "", isSelected: (selectedCategory == objCategory.main_category_label))])
             
             for objSubCategoryArr in objCategory.sub_categories!{
-                subCategoryData.append(contentsOf:[EarningsSubCatgoryFilterModel(subCategory: objSubCategoryArr.sub_category_name ?? "", isSelected: (selectedSubCategory == objSubCategoryArr.sub_category_name))])
+                if isCategoryAlreadySelected() {
+                    if objCategory.main_category_label == selectedCategory {
+                        subCategoryData.append(contentsOf:[EarningsSubCatgoryFilterModel(subCategory: objSubCategoryArr.sub_category_name ?? "", isSelected: (selectedSubCategory == objSubCategoryArr.sub_category_name))])
+                    }
+                } else {
+                    subCategoryData.append(contentsOf:[EarningsSubCatgoryFilterModel(subCategory: objSubCategoryArr.sub_category_name ?? "", isSelected: (selectedSubCategory == objSubCategoryArr.sub_category_name))])
+                }
             }
-            
         }
         
-        data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: false, subCategories: categoryData))
+        data.append(EarningsCatgoryFilterModel(category: "Category", isSelected: true, subCategories: categoryData))
         
         data.append(EarningsCatgoryFilterModel(category: "Sub-category", isSelected: false, subCategories: subCategoryData))
         
-        let selectedGender = filterValueArray[0]
+        let selectedGender = selectedFilters["gender"]
 
         let sub1 = [EarningsSubCatgoryFilterModel(subCategory: "All Genders", isSelected: (selectedGender == "All Genders")), EarningsSubCatgoryFilterModel(subCategory: "Male", isSelected: (selectedGender == "Male")), EarningsSubCatgoryFilterModel(subCategory: "Female", isSelected: (selectedGender == "Female")), EarningsSubCatgoryFilterModel(subCategory: "Others", isSelected: (selectedGender == "Others"))]
         data.append(EarningsCatgoryFilterModel(category: "Gender", isSelected: false, subCategories: sub1))
+        
+        categoryTableView.reloadData()
+        subCategoryTableView.reloadData()
+    }
+    
+    private func isCategoryAlreadySelected() -> Bool {
+        if let selCategory = selectedFilters["category"], !selCategory.isEmpty && selCategory != "All Categories" {
+            return true
+        }
+        return false
     }
     
     func doSomething()
@@ -162,17 +166,16 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
     
     @IBAction func actionClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        viewDismissBlock?(false,[])
+        viewDismissBlock?(false,[:])
     }
     @IBAction func actionApplyFilter(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        filterValueArray.removeAll()
-        for objSelected in data{
+        for objSelected in data {
             if(objSelected.category == "Gender"){
                 for objGender in objSelected.subCategories! {
                     if(objGender.isSelected == true){
                                 print("Selected Gender \(objGender.subCategory)")
-                        filterValueArray.append(objGender.subCategory)
+                        selectedFilters["gender"] = objGender.subCategory
                 }
                 }
                 
@@ -182,7 +185,7 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
                 for objCategory in objSelected.subCategories! {
                     if(objCategory.isSelected == true){
                                 print("Selected Category \(objCategory.subCategory)")
-                        filterValueArray.append(objCategory.subCategory)
+                        selectedFilters["category"] = objCategory.subCategory
                 }
                 }
             }
@@ -191,7 +194,7 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
                 for objSubCategory in objSelected.subCategories! {
                     if(objSubCategory.isSelected == true){
                                 print("Selected Category \(objSubCategory.subCategory)")
-                        filterValueArray.append(objSubCategory.subCategory)
+                        selectedFilters["subCategory"] = objSubCategory.subCategory
                 }
                 }
             }
@@ -200,17 +203,13 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
         }
         
         
-        viewDismissBlock?(true,filterValueArray)
+        viewDismissBlock?(true,selectedFilters)
     }
     
     @IBAction func actionClearFilters(_ sender: UIButton) {
-        data.forEach {
-            $0.subCategories?.forEach { subCat in
-                subCat.isSelected = false
-            }
-        }
-        categoryTableView.reloadData()
-        subCategoryTableView.reloadData()
+        selectedFilters = ["gender": "All Genders", "category": "All Categories", "subCategory": "All Categories"]
+        selectedCategoryIndex = 0
+        createFilters()
     }
 }
 
