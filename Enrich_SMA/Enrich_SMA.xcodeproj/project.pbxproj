@@ -3098,14 +3098,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = DYKT5CBF5Z;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.51;
+				MARKETING_VERSION = 1.52;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMADev;
@@ -3124,14 +3124,14 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3B26WTCHRP;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.51;
+				MARKETING_VERSION = 1.52;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EnrichSalon.SMA;
 				PRODUCT_NAME = SMA_Stage;
@@ -3300,14 +3300,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = DYKT5CBF5Z;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Enrich_SMA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.51;
+				MARKETING_VERSION = 1.52;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezest.EnrichSMA;
 				PRODUCT_NAME = SMA_Stage;
 				PROVISIONING_PROFILE_SPECIFIER = EnrichSMA;

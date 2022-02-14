@@ -848,23 +848,27 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                     print("############### \(objPenetration.compare_categories)")
                     print("******************* \(objTransaction.category)")
                     
-                    let filter = objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.sub_category ?? ""))})
+//                    if((objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: "Haircut")) || ($0.containsIgnoringCase(find: "HairColor")) || ($0.containsIgnoringCase(find: "Treatment")) || ($0.containsIgnoringCase(find: "Texture"))})) != nil){
+//
+//                        let filter = objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.sub_category ?? ""))})
+//                        categotyCount += filter?.count ?? 0
+//
+//                        let catfilter = objPenetration.to_compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.sub_category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.category ?? ""))})
+//                        subCategoryCount += catfilter?.count ?? 0
+//
+//
+//                    }
+//                    else {
+                    let filter = objPenetration.compare_categories?.filter({($0 == objTransaction.category ?? "") || ($0 == objTransaction.sub_category ?? "")})
                     categotyCount += filter?.count ?? 0
                     
-                    let catfilter = objPenetration.to_compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.sub_category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.category ?? ""))})
+                    if(objPenetration.to_compare_categories?.contains("All") == true){
+                        subCategoryCount = serviceCount.count
+                    }
+                    else {
+                    let catfilter = objPenetration.to_compare_categories?.filter({($0 == objTransaction.sub_category ?? "") || ($0 == objTransaction.category ?? "")})
                     subCategoryCount += catfilter?.count ?? 0
-        
-                    
-//                    if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
-//                        categotyCount = categotyCount + 1
-//                        print("Category \(objTransaction.category) ######## Date : \(objTransaction.date)")
-//                    }
-//
-//                    if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
-//                        subCategoryCount = subCategoryCount + 1
-//                        print("********** Sub category \(objTransaction.sub_category) Date : \(objTransaction.date)")
-//                    }
-                    
+                    }
                     
                 }
                 if(subCategoryCount > 0){
