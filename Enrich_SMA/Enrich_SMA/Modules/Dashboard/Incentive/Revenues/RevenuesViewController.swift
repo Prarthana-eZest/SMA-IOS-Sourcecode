@@ -43,7 +43,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
     var headerModel: EarningsHeaderDataModel?
     var headerGraphDataGraphEntries:BarLineGraphEntry?
     
-    var filterArray:[String]?
+    var selectedFilters:[String: String]?
     
     var dataModels = [EarningsCellDataModel]()
     
@@ -115,7 +115,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         
         EZLoadingActivity.show("Loading...", disableUI: true)
         //        DispatchQueue.main.async { [unowned self] () in
-        revenueData(startDate: startDate ?? Date.today, endDate: endDate, otherFilters: filterArray, completion: nil)
+        revenueData(startDate: startDate ?? Date.today, endDate: endDate, otherFilters: selectedFilters, completion: nil)
         //        }
     }
     
@@ -143,8 +143,8 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
                 model.customeDateRange = dateRange
             }
             
-            update(modeData: model, withData: dateFilteredRevenue, otherFilters: filterArray, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
-            let graphData = getBarLineGraphEntry(model.title, forData: dateFilteredRevenue, otherFilters: filterArray, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            update(modeData: model, withData: dateFilteredRevenue, otherFilters: selectedFilters, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            let graphData = getBarLineGraphEntry(model.title, forData: dateFilteredRevenue, otherFilters: selectedFilters, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
             barGraphData[selectedIndex] = graphData.barGraph
             lineGraphData[selectedIndex] = graphData.lineGraph
         }
@@ -154,14 +154,14 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
                 headerModel?.customeDateRange = dateRange
             }
             
-            updateHeaderModel(withData: dateFilteredRevenue, otherFilters: filterArray, dateRange: dateRange, dateRangeType: rangeType)
+            updateHeaderModel(withData: dateFilteredRevenue, otherFilters: selectedFilters, dateRange: dateRange, dateRangeType: rangeType)
             headerGraphDataGraphEntries = getTotalRevenueBarLineGraphEntry(forData: dateFilteredRevenue, dateRange: dateRange, dateRangeType: rangeType)
         }
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
-    func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String]?, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
+    func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String: String]?, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
         
         var filteredRevenue = data
         
@@ -180,19 +180,19 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         
         //Other Filters Applied
         //Gender
-        if let gender = otherFilters?[0], gender != "All Genders"
+        if let gender = otherFilters?["gender"], gender != "All Genders"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.service_gender == gender })
         }
         
         //Category
-        if let category = otherFilters?[1], category != "All Categories"
+        if let category = otherFilters?["category"], category != "All Categories"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.category == category })
         }
         
         //Sub-Category
-        if let subCategory = otherFilters?[2], subCategory != "All Categories"
+        if let subCategory = otherFilters?["subCategory"], subCategory != "All Categories"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
         }
@@ -226,7 +226,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
     }
     
     
-    func updateHeaderModel(withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String]?, dateRange:DateRange, dateRangeType: DateRangeType) {
+    func updateHeaderModel(withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String: String]?, dateRange:DateRange, dateRangeType: DateRangeType) {
         
         var filteredRevenue = data
         
@@ -245,19 +245,19 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         
         //Other Filters Applied
         //Gender
-        if let gender = otherFilters?[0], gender != "All Genders"
+        if let gender = otherFilters?["gender"], gender != "All Genders"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.service_gender == gender })
         }
         
         //Category
-        if let category = otherFilters?[1], category != "All Categories"
+        if let category = otherFilters?["category"], category != "All Categories"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.category == category })
         }
         
         //Sub-Category
-        if let subCategory = otherFilters?[2], subCategory != "All Categories"
+        if let subCategory = otherFilters?["subCategory"], subCategory != "All Categories"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
         }
@@ -287,7 +287,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         headerModel?.value = salonServiceToatal + homeServiceTotal + retailTotal
     }
     
-    func revenueData(startDate : Date, endDate : Date = Date().startOfDay, otherFilters : [String]?, completion: (() -> Void)? ) {
+    func revenueData(startDate : Date, endDate : Date = Date().startOfDay, otherFilters : [String: String]?, completion: (() -> Void)? ) {
         
         //Handled Wrong function calling to avoid data mismatch
         guard fromChartFilter == false else {
@@ -312,35 +312,19 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         
         //Other Filters Applied
         //Gender
-        if let gender = otherFilters?[0], gender != "All Genders"
+        if let gender = otherFilters?["gender"], gender != "All Genders"
         {
             filteredRevenue = filteredRevenue?.filter({ $0.service_gender == gender })
         }
         
         //Category
-        if(otherFilters?.count ?? 0 < 3){
-        if let category = otherFilters?[0], category != "All Categories"
-        {
+        if let category = otherFilters?["category"], category != "All Categories" {
             filteredRevenue = filteredRevenue?.filter({ $0.category == category })
         }
         
         //Sub-Category
-        if let subCategory = otherFilters?[1], subCategory != "All Categories"
-        {
+        if let subCategory = otherFilters?["subCategory"], subCategory != "All Categories" {
             filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
-        }
-        }
-        else {
-            if let category = otherFilters?[1], category != "All Categories"
-            {
-                filteredRevenue = filteredRevenue?.filter({ $0.category == category })
-            }
-            
-            //Sub-Category
-            if let subCategory = otherFilters?[2], subCategory != "All Categories"
-            {
-                filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
-            }
         }
         
         //Handle Graph Scenarios
@@ -421,7 +405,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         EZLoadingActivity.hide()
     }
     
-    func getBarLineGraphEntry(_ title:String, forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String]?, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> BarLineGraphEntry
+    func getBarLineGraphEntry(_ title:String, forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String: String]?, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> BarLineGraphEntry
     {
         let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
         let values = graphData(forData: data, otherFilters: otherFilters, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType)
@@ -449,7 +433,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         return BarLineGraphEntry(barGraphEntry, lineGraphEntry)
     }
     
-    func graphData(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String]?, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double] {
+    func graphData(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, otherFilters : [String: String]?, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double] {
         
         var dataForBar = [Double]()
         var filteredRevenue = data
@@ -467,19 +451,19 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
             })
             
             //Gender
-            if let gender = otherFilters?[0], gender != "All Genders"
+            if let gender = otherFilters?["gender"], gender != "All Genders"
             {
                 filteredRevenue = filteredRevenue?.filter({ $0.service_gender == gender })
             }
             
             //Category
-            if let category = otherFilters?[1], category != "All Categories"
+            if let category = otherFilters?["category"], category != "All Categories"
             {
                 filteredRevenue = filteredRevenue?.filter({ $0.category == category })
             }
             
             //Sub-Category
-            if let subCategory = otherFilters?[2], subCategory != "All Categories"
+            if let subCategory = otherFilters?["subCategory"], subCategory != "All Categories"
             {
                 filteredRevenue = filteredRevenue?.filter({ $0.sub_category == subCategory })
             }
@@ -656,8 +640,8 @@ extension RevenuesViewController: EarningsFilterDelegate {
         print("Normal Filter")
         let vc = EarningsFilterVC.instantiate(fromAppStoryboard: .Earnings)
         self.view.alpha = screenPopUpAlpha
-        if(filterArray?.count == 3) {
-            vc.filterValueArray = filterArray!
+        if let alreadySelectedFilter = selectedFilters {
+            vc.selectedFilters = alreadySelectedFilter
         }
         UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
         self.view.alpha = 1.0
@@ -665,7 +649,7 @@ extension RevenuesViewController: EarningsFilterDelegate {
             
             if(result){
                 
-                filterArray = filterValue
+                selectedFilters = filterValue
                 fromFilters = true
                 
                 if(dateRangeType == .cutome) {
