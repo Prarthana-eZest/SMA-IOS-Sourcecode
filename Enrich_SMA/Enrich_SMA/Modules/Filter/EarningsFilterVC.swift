@@ -268,8 +268,20 @@ extension EarningsFilterVC: UITableViewDelegate, UITableViewDataSource {
         else {
             data[selectedCategoryIndex].subCategories?.forEach{$0.isSelected = false}
             data[selectedCategoryIndex].subCategories?[indexPath.row].isSelected = true
-            
-            
+            if selectedCategoryIndex == 0 {
+                let selectedCategory = data[selectedCategoryIndex].subCategories?[indexPath.row].subCategory
+                if selectedCategory != selectedFilters["category"] { // refreshing sub-category, if category changed
+                    selectedFilters["category"] = data[selectedCategoryIndex].subCategories?[indexPath.row].subCategory
+                    //reset sub-category
+                    selectedFilters["subCategory"] = "All Categories"
+                    createFilters()
+                }
+                return
+            } else if selectedCategoryIndex == 1 {
+                selectedFilters["subCategory"] = data[selectedCategoryIndex].subCategories?[indexPath.row].subCategory
+            } else if selectedCategoryIndex == 2 {
+                selectedFilters["gender"] = data[selectedCategoryIndex].subCategories?[indexPath.row].subCategory
+            }
         }
         categoryTableView.reloadData()
         subCategoryTableView.reloadData()
