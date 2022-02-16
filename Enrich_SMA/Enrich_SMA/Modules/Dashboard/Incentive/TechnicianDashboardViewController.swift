@@ -397,16 +397,14 @@ extension TechnicianDashboardViewController : UICollectionViewDelegate, UICollec
             let vc = CustomerEngagementViewController.instantiate(fromAppStoryboard: .Incentives)
             self.navigationController?.pushViewController(vc, animated: true)
         case 5://Productivity
-            break
-//            let vc = ProductivityViewController.instantiate(fromAppStoryboard: .Incentives)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = ProductivityViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
         case 6://Penetration ratio
             let vc = PenetrationRatiosViewController.instantiate(fromAppStoryboard: .Incentives)
             self.navigationController?.pushViewController(vc, animated: true)
         case 7://Resource utilization
-            break
-//            let vc = ResourceUtilisationViewController.instantiate(fromAppStoryboard: .Incentives)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = ResourceUtilisationViewController.instantiate(fromAppStoryboard: .Incentives)
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         
