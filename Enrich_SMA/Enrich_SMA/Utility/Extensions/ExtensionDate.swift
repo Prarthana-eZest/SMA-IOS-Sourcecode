@@ -250,6 +250,12 @@ extension Date
     {
         return Utils.calendar.isDate(self, equalTo: date, toGranularity: .month)
     }
+    
+    func numberOfDaysFromDates(startDate : Date, fromDate : Date) -> Int{
+        let diffInDays = Calendar.current.dateComponents([.day], from: startDate, to: fromDate).day ?? 0
+        
+        return diffInDays
+    }
 }
 
 extension Formatter {

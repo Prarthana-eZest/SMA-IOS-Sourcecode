@@ -689,6 +689,21 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             return false
         })
         
+        let filteredAvailabilityBusyDays =  technicianDataJSON?.data?.availability_on_busy_days?.filter({ (resourceUtilisation) -> Bool in
+            if let date = resourceUtilisation.date?.date()?.startOfDay {
+                
+                return date >= startDate && date <= endDate
+            }
+            return false
+        })
+        
+        //Store occupancy denominator value
+        var storeOccupancyDenominatorValue : Double = 0.0
+        let salonStations = technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+        var totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1
+        let salonWorkingTime = technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
+        storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
+        
         
         //Handle Graph Scenarios
         let dateRange = DateRange(startDate, endDate)
@@ -700,147 +715,125 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             graphRangeType = .mtd
             graphDateRange = DateRange(graphRangeType.date!, Date().startOfDay)
         }
-        
-        let resourceUtilizationCount = technicianDataJSON?.data?.total_resource_utilization_transactions ?? 0
-        
+      
         //Productive time
+        //(servicetime + training time) / total shift time
+        let serviceTime = filteredResourceUtilisation?.filter({$0.services_time ?? 0 > 0}) ?? []
+        let trainingTime = filteredResourceUtilisation?.filter({$0.tranning_time ?? 0 > 0}) ?? []
         let totalShiftTime = filteredResourceUtilisation?.filter({$0.total_shift_time ?? 0 > 0}) ?? []
         
+        
+        //get service time
+        var serviceTimeTotal : Double = 0.0
+        for objServiceTime in serviceTime{
+            serviceTimeTotal += Double(objServiceTime.services_time ?? 0)
+        }
+        
+        //get training time
+        var trainingTimeTotal : Double = 0.0
+        for objTrainingTime in trainingTime{
+            trainingTimeTotal += Double(objTrainingTime.tranning_time ?? 0)
+        }
+        
+        //get total shift time
         var totalShiftTimeCount : Double = 0.0
         for objtotalShiftTime in totalShiftTime {
-            totalShiftTimeCount = totalShiftTimeCount + Double(objtotalShiftTime.total_shift_time!)
+            totalShiftTimeCount += Double(objtotalShiftTime.total_shift_time ?? 0)
         }
         
-        var productivityAvailableTime : Double = 0.0
+        var productiveAvailable = serviceTimeTotal + trainingTimeTotal
+        var productiveBusy = totalShiftTimeCount
+        let productiveProductivity = (productiveAvailable / productiveBusy)
+        var strproductivityAvailableTime, strproductivityBusyeTime : String
         
-        if(totalShiftTime.count > 0){
-            productivityAvailableTime = Double(totalShiftTimeCount)
-        }
-        
-        //Busy time
-        let totalServiceTime = filteredResourceUtilisation?.filter({$0.services_time ?? 0 > 0}) ?? []
-        
-        var totalServiceTimeCount : Double = 0.0
-        for objtotalServiceTime in totalServiceTime {
-            totalServiceTimeCount = totalServiceTimeCount + Double(objtotalServiceTime.services_time!)
-        }
-        
-        var productivityBusyeTime = totalServiceTimeCount
-        
-        var productivity : Double = 0.0
-        
-        if(productivityAvailableTime > 0){
-            productivity = Double(totalServiceTimeCount / totalShiftTimeCount )
-        }
-        
-        //training time
-        let totalTranningTime = filteredResourceUtilisation?.filter({$0.tranning_time ?? 0 > 0}) ?? []
-        
-        var totalTranningTimeCount : Double = 0.0
-        for objtotalTranningTime in totalTranningTime {
-            totalTranningTimeCount = totalTranningTimeCount + Double(objtotalTranningTime.tranning_time!)
-        }
-        
-        var trainingBusyTime : Double = 0.0
-        if(resourceUtilizationCount ?? 0 > 0){
-            trainingBusyTime =  totalTranningTimeCount
-        }
-        var productivityTraining : Double = 0.0
-        if(productivityAvailableTime > 0){
-            productivityTraining = ( trainingBusyTime / productivityAvailableTime )
-        }
-        //Break Time
-        let breakTime = filteredResourceUtilisation?.filter({$0.break_time ?? 0 > 0}) ?? []
-        
-        var breakTimeCount : Double = 0.0
-        for objbreakTime in breakTime {
-            breakTimeCount = breakTimeCount + Double(objbreakTime.break_time!)
-        }
-        
-        var breakTimeBusy: Double = 0.0
-        if(resourceUtilizationCount > 0){
-            breakTimeBusy = breakTimeCount
-        }
-        var breakTimeProductivity = 0.0
-        if(breakTimeCount != 0)
-        {
-            breakTimeProductivity = (totalServiceTimeCount / breakTimeCount)
+        if(productiveAvailable >= 60){
+            productiveAvailable = productiveAvailable / 60
+            strproductivityAvailableTime = "\(productiveAvailable.roundedStringValue(toFractionDigits: 2)) Hrs"
         }
         else {
-            breakTimeProductivity = 0.0
+            strproductivityAvailableTime = "\(productiveAvailable.roundedStringValue(toFractionDigits: 2)) Mins"
         }
-        var strproductivityAvailableTime, strproductivityBusyeTime, strproductivity, strtrainingBusyTime, strproductivityTraining, strbreakTimeBusy, strbreakTimeProductivity : String
-        ;
-        if(productivityAvailableTime >= 60){
-            productivityAvailableTime = productivityAvailableTime / 60
-            strproductivityAvailableTime = "\(productivityAvailableTime.roundedStringValue(toFractionDigits: 2)) Hrs"
+        
+        if(productiveBusy >= 60){
+            productiveBusy = productiveBusy / 60
+            strproductivityBusyeTime = "\(productiveBusy.roundedStringValue(toFractionDigits: 2)) Hrs"
         }
         else {
-            strproductivityAvailableTime = "\(productivityAvailableTime.roundedStringValue(toFractionDigits: 2)) Mins"
+            strproductivityBusyeTime = "\(productiveBusy.roundedStringValue(toFractionDigits: 2)) Mins"
         }
-        
-        if(productivityBusyeTime >= 60){
-            productivityBusyeTime = productivityBusyeTime / 60
-            strproductivityBusyeTime = "\(productivityBusyeTime.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strproductivityBusyeTime = "\(productivityBusyeTime.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
-        strproductivity = "\(productivity.percent)"
-        
-        if(trainingBusyTime >= 60){
-            trainingBusyTime = trainingBusyTime / 60
-            strtrainingBusyTime = "\(trainingBusyTime.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strtrainingBusyTime = "\(trainingBusyTime.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
-        
-        strproductivityTraining = "\(productivityTraining.percent)"
-        
-        
-        if(breakTimeBusy >= 60){
-            breakTimeBusy = breakTimeBusy / 60
-            strbreakTimeBusy = "\(breakTimeBusy.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strbreakTimeBusy = "\(breakTimeBusy.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
-        //        print("********************** breaktime busy : \(breakTimeBusy.abbrevationString)")
-        
-        
-        strbreakTimeProductivity = "\(Double(breakTimeBusy / productivityAvailableTime).percent)"
-        //
-        //        print("********************** breaktime busy : \(breakTimeBusy.abbrevationString)")
+        print("######## Productive Time : \(strproductivityAvailableTime, strproductivityBusyeTime, productiveProductivity.percent)")
         //"Productive Time"
         //Data Model
-        let productiveTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Productive Time", value: [strproductivityAvailableTime,strproductivityBusyeTime,strproductivity], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+        let productiveTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Productive Time", value: [strproductivityAvailableTime,strproductivityBusyeTime,productiveProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
         dataModel.append(productiveTimeModel)
         //GraphDate
         let productiveTimeGraphEntries = getBarLineGraphEntry(productiveTimeModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType)
         barGraphData.append(productiveTimeGraphEntries.barGraph)
         lineGraphData.append(productiveTimeGraphEntries.lineGraph)
         
+       ////////////////////////////////////////////////////////////////////////////
         
+        //Training Time
+        let trainingProductivity = (trainingTimeTotal / totalShiftTimeCount)
+        var strTrainingAvailableTime, strTrainingBusyeTime : String
+        if(trainingTimeTotal >= 60){
+            trainingTimeTotal = trainingTimeTotal / 60
+            strTrainingAvailableTime = "\(trainingTimeTotal.roundedStringValue(toFractionDigits: 2)) Hrs"
+        }
+        else {
+            strTrainingAvailableTime = "\(trainingTimeTotal.roundedStringValue(toFractionDigits: 2)) Mins"
+        }
+        
+        if(totalShiftTimeCount >= 60){
+            totalShiftTimeCount = totalShiftTimeCount / 60
+            strTrainingBusyeTime = "\(totalShiftTimeCount.roundedStringValue(toFractionDigits: 2)) Hrs"
+        }
+        else {
+            strTrainingBusyeTime = "\(totalShiftTimeCount.roundedStringValue(toFractionDigits: 2)) Mins"
+        }
+        
+        print("************** Training Time : \(strTrainingAvailableTime, strTrainingBusyeTime, trainingProductivity.percent)")
         //"Training Time"
         //Data Model
-        let trainingTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Training Time", value: [strproductivityAvailableTime,strtrainingBusyTime,strproductivityTraining], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+        let trainingTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Training Time", value: [strTrainingAvailableTime,strTrainingBusyeTime,trainingProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
         dataModel.append(trainingTimeModel)
         //GraphDate
         let tainingTimeGraphEntries = getBarLineGraphEntry(trainingTimeModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType)
         barGraphData.append(tainingTimeGraphEntries.barGraph)
         lineGraphData.append(tainingTimeGraphEntries.lineGraph)
         
+        ////////////////////////////////////////////////////////////////////////////
         
-        //"Break Time"
+        //Availability on busy days
+        //filteredAvailabilityBusyDays
+        let totalShiftTimeAvailableDays = filteredAvailabilityBusyDays?.filter({$0.total_shift_time ?? 0 > 0}) ?? []
+        
+        let totalWorkingTimeAvailableDays = filteredAvailabilityBusyDays?.filter({$0.total_working_time ?? 0 > 0}) ?? []
+        
+        var totalShiftTimeAvailableDaysCount : Double = 0.0
+        var totalWorkingTimeAvailableDaysCount : Double = 0.0
+        
+        for objTotalShiftTime in totalShiftTimeAvailableDays {
+            totalShiftTimeAvailableDaysCount += Double(objTotalShiftTime.total_shift_time ?? 0)
+        }
+        
+        for objTotalWorkingTime in totalWorkingTimeAvailableDays {
+            totalWorkingTimeAvailableDaysCount += Double(objTotalWorkingTime.total_working_time ?? 0)
+        }
+        ("^^^^^^^^^^^^ Print Avialability on Busy days : \((totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount).percent)")
+        //---------Availability On Busy Days
         //Data Model
-        let breakTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Break Time", value: [strproductivityAvailableTime,strbreakTimeBusy,strbreakTimeProductivity], subTitle: ["Available","Break Taken","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
-        dataModel.append(breakTimeModel)
-        //GraphDate
-        let breakTimeGraphEntries = getBarLineGraphEntry(breakTimeModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType)
-        barGraphData.append(breakTimeGraphEntries.barGraph)
-        lineGraphData.append(breakTimeGraphEntries.lineGraph)
+        //TODO::
+        let avaialbilityOnBusyDaysModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Availability On Busy Days", value: [(totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount).percent], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+        dataModel.append(avaialbilityOnBusyDaysModel)
         
+        //GraphDate
+        //TODO::
+        let avaialbalityOnBusyDaysGraphEntries = getBarLineGraphEntry(avaialbilityOnBusyDaysModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType)
+        barGraphData.append(avaialbalityOnBusyDaysGraphEntries.barGraph)
+        lineGraphData.append(avaialbalityOnBusyDaysGraphEntries.lineGraph)
+        
+        ///////////////////////////////////////////////////////////////////////
         
         let attendanceDate = calculateAttendanceForMonth()
         var attendanceCount : Int = 0
@@ -863,10 +856,14 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             barGraphData.append(breakTimeGraphEntries.barGraph)
             lineGraphData.append(breakTimeGraphEntries.lineGraph)
             
+            ///////////////////////////////////////////////////////////////////////
+            var storeOccupancy : Double = 0.0
+            storeOccupancy = serviceTimeTotal / storeOccupancyDenominatorValue
+          //  storeOccupancy = (serviceTimeTotal / )
             //---------Store Occupancy
             //Data Model
-            //TODO::
-            let storeOccupancyModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Store Occupancy", value: ["100%"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+    
+            let storeOccupancyModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Store Occupancy", value: ["\(storeOccupancy.roundedStringValue(toFractionDigits: 2))%"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
             dataModel.append(storeOccupancyModel)
             
             //GraphDate

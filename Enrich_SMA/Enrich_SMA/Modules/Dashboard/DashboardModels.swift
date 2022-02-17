@@ -123,6 +123,8 @@ enum Dashboard {
             let cross_sell_transactions : [Cross_sell_transactions]?
             let total_resource_utilization_transactions : Int?
             let resource_utilization : [ResourceUtilization]?
+            let total_availability_on_busy_days_transactions : Int?
+            let availability_on_busy_days : [Availability_on_busy_days]?
         }
         
         struct Configuration : Codable {
@@ -131,15 +133,18 @@ enum Dashboard {
             let past_data_limit : Double?
             let free_services_percentage : Double?
             let salon_area : Double?
-            let salon_stations : Double?
+            let salon_stations : Int?
+            let salon_active_technicians : Int?
             let target_achievement_formula : String?
             let ctc : Double?
             let fix_pay : Double?
             let take_home_salary : Double?
             let minimum_rm_consumption : String?
             let minimum_quality_score : String?
+            let salon_opening_time : String?
+            let salon_closing_time : String?
+            let salon_working_time : Int?
             let salon_targets : [Salon_targets]?
-            let salon_active_technicians : Int?
         }
         
         struct Filters : Codable {
@@ -323,5 +328,14 @@ enum Dashboard {
             let break_time : Int?
             let tranning_time : Int?
         }
+    
+    //MARK: - Availability On Busy Days
+    struct Availability_on_busy_days : Codable {
+        let date : String?
+        let shift_start_time : String?
+        let shift_end_time : String?
+        let total_shift_time : Int?
+        let total_working_time : Int?
+    }
     }
 }
