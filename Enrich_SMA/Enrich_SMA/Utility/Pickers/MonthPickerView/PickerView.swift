@@ -46,15 +46,15 @@ final class PickerView: UIView {
     }
     
     private func pickerSetup() {
+        pickerView.calendar = Calendar(identifier: .iso8601)
+        pickerView.locale = .init(identifier: "en_US_POSIX")
         pickerView.minimumDate = Calendar.current.date(byAdding: .month, value: -12, to: Date())
         pickerView.maximumDate = Date()//Calendar.current.date(byAdding: .month, value: , to: Date())
-        
-        pickerView.locale = .init(identifier: "en_US_POSIX")
-
     }
     
     func setSelectedDate(_ date: Date) {
-        self.pickerView.setDate(date, animated: true)
+        //self.pickerView.setDate(date, animated: true)
+        self.pickerView.date = date
     }
     
     func setMinimumDate(_ date: Date) {
