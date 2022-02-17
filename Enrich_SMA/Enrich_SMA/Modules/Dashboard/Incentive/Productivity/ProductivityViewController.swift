@@ -222,8 +222,8 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         //RM Optimization
         //let rmOptimization = technicianDataJSON?.data?.rm_consumption
-        var rmOptimizationCount = 0
-        var rmOptimizationRemaning = 0
+        var rmOptimizationCount: Double = 0
+        var rmOptimizationRemaning: Double = 0
         
         
         let filteredrmOptimization = technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
@@ -239,10 +239,10 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             
             for objData in filteredrmOptimization!
             {
-                rmOptimizationCount += Int(objData.rm_consumption ?? 0)
+                rmOptimizationCount += objData.rm_consumption ?? 0
             }
             
-            rmOptimizationCount /= count
+            rmOptimizationCount /= Double(count)
             
             if(rmOptimizationCount <= 100){
                 rmOptimizationRemaning = 100 - rmOptimizationCount
@@ -255,8 +255,8 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         //RM Optimization
         //Data Model
-        let rmOptimizationCountString = (filteredrmOptimization != nil && filteredrmOptimization?.count ?? 0 > 0) ? String(rmOptimizationCount) : "NA"
-        let rmOptimizationRemaningString = (filteredrmOptimization != nil && filteredrmOptimization?.count ?? 0 > 0) ? String(rmOptimizationRemaning) : "NA"
+        let rmOptimizationCountString = (filteredrmOptimization != nil && filteredrmOptimization?.count ?? 0 > 0) ? String(format: "%.2f", rmOptimizationCount) : "NA"
+        let rmOptimizationRemaningString = (filteredrmOptimization != nil && filteredrmOptimization?.count ?? 0 > 0) ? String(format: "%.2f", rmOptimizationRemaning) : "NA"
         let RMOptimizationModel = EarningsCellDataModel(earningsType: .Productivity, title: "RM Optimization", value: [rmOptimizationCountString], subTitle: ["RM Optimization Deviation Is \(rmOptimizationRemaningString)"], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(RMOptimizationModel)
         //Graph Data
@@ -582,7 +582,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                                 let targetVal = (val.target ?? 0.0) * Double( tillTodayDays) / Double(getMonthDays(month: month, isLeapYear: isLeapYear))
                                 totalTargets += targetVal
                             } else {
-                                let targetVal = (val.target ?? 0.0) / Double( getMonthDays(month: month, isLeapYear: isLeapYear))
+                                let targetVal = (val.target ?? 0.0) // / Double( getMonthDays(month: month, isLeapYear: isLeapYear))
                                 totalTargets += targetVal
                             }
                         }

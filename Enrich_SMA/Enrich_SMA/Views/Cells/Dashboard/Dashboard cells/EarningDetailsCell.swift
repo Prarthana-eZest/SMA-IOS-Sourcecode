@@ -154,12 +154,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         case .SingleValue:
             firstValueView.backgroundColor = model.earningsType.singleValueTileColor
             lblFirstValueViewTitle.text = model.value[0]
-            if(model.earningsType == .FreeServices || model.earningsType == .Footfall || model.earningsType == .CustomerEngagement || model.earningsType == .Productivity || model.earningsType == .PenetrationRatios || model.earningsType == .ResourceUtilisation){
-                lblFirstValueViewRupee.isHidden = true
-            }
-            else {
-                lblFirstValueViewRupee.isHidden = false
-            }
+            lblFirstValueViewRupee.isHidden = shouldHideRupeeSymbol()
         case .DoubleValue:
            break
         case .PackageType:
@@ -168,6 +163,17 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
     
         }
         setDataForMembership()
+    }
+    
+    private func shouldHideRupeeSymbol() -> Bool {
+        if model.earningsType == .Productivity {
+            let arr = ["Revenue Per Team Member", "Revenue Per Workstation", "Revenue Per Square Feet"]
+            return !arr.contains(self.model.title)
+        } else if(model.earningsType == .FreeServices || model.earningsType == .Footfall || model.earningsType == .CustomerEngagement || model.earningsType == .PenetrationRatios || model.earningsType == .ResourceUtilisation){
+            return true
+        } else {
+            return false
+        }
     }
     
     @IBAction func actionDurationFilter(_ sender: UIButton) {
