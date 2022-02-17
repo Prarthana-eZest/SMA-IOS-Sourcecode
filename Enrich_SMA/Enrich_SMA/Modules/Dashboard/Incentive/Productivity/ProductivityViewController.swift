@@ -562,9 +562,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             else if let keys = configuration?.keys, keys.contains(comp), comp == "salon_targets" {
                 let salonTargets = technicianDataJSON?.data?.configuration?.salon_targets ?? []
                 let monthsBetweenDates = dateRange.end.monthNumber(from: dateRange.start)
-                let min = monthsBetweenDates.min() ?? 0
-                let max = monthsBetweenDates.max() ?? 0
-                let monthRange = min...max
                 var totalTargets: Double = 0.0
                 let currentMonthNo = Date().monthNo()
                 let fromYear = dateRange.start.year()
@@ -576,7 +573,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             
                 for val in salonTargets {
                     if let month = val.month {
-                        if monthRange.contains(month) {
+                        if monthsBetweenDates.contains(month) {
                             if month == currentMonthNo {
                                 let tillTodayDays = Date().day()
                                 let targetVal = (val.target ?? 0.0) * Double( tillTodayDays) / Double(getMonthDays(month: month, isLeapYear: isLeapYear))

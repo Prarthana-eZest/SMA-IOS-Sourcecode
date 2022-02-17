@@ -263,6 +263,16 @@ extension DateFilterVC: SelectDateRangeDelegate {
     private func addPickerView(isFrom: Bool) {
          let pickerView = PickerView.instantiateFromNib()
         pickerView?.setTitle(isFrom ? "From Month" : "To Month")
+        if(isFrom){
+            if let fromDate = self.data.last?.fromDate?.startOfMonth {
+                pickerView?.setSelectedDate(fromDate)
+            }
+        }
+        else {
+            if let toDate = self.data.last?.toDate?.endOfMonth {
+                pickerView?.setSelectedDate(toDate)
+            }
+        }
         if (!isFrom){
             if let fromDate = self.data.last?.fromDate{
                 pickerView?.setMinimumDate(fromDate)
@@ -275,21 +285,11 @@ extension DateFilterVC: SelectDateRangeDelegate {
                 self.data.last?.fromDate = selectedDate
             }
             else {//to date
-                self.data.last?.toDate = selectedDate
+                self.data.last?.toDate = selectedDate.endOfMonth
             }
             self.tableView.reloadData()
          }
          pickerView?.addMeOn(onView: self.view)
-        if(isFrom){
-            if let fromDate = self.data.last?.fromDate {
-                pickerView?.setSelectedDate(fromDate)
-            }
-        }
-        else {
-            if let toDate = self.data.last?.toDate {
-                pickerView?.setSelectedDate(toDate)
-            }
-        }
      }
     
     func actionFromDate() {
