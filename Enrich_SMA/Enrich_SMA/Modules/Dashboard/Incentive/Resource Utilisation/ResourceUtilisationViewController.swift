@@ -763,9 +763,12 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             totalShiftTimeCount += Double(objtotalShiftTime.total_shift_time ?? 0)
         }
         
-        var productiveAvailable = serviceTimeTotal + trainingTimeTotal
-        var productiveBusy = totalShiftTimeCount
-        let productiveProductivity = (productiveAvailable / productiveBusy)
+        let productiveAvailable = serviceTimeTotal + trainingTimeTotal
+        let productiveBusy = totalShiftTimeCount
+        var productiveProductivity = (productiveAvailable / productiveBusy)
+        if(productiveProductivity.isNaN){
+            productiveProductivity = 0
+        }
         let strproductivityAvailableTime = formattedData(productiveAvailable)
         let strproductivityBusyTime = formattedData(productiveBusy)
         
@@ -782,7 +785,10 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
        ////////////////////////////////////////////////////////////////////////////
         
         //Training Time
-        let trainingProductivity = (trainingTimeTotal / totalShiftTimeCount)
+        var trainingProductivity = (trainingTimeTotal / totalShiftTimeCount)
+        if(trainingProductivity.isNaN){
+            trainingProductivity = 0
+        }
         let strTrainingAvailableTime = formattedData(trainingTimeTotal)
         let strTrainingBusyTime = formattedData(totalShiftTimeCount)
         
@@ -814,11 +820,14 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         for objTotalWorkingTime in totalWorkingTimeAvailableDays {
             totalWorkingTimeAvailableDaysCount += Double(objTotalWorkingTime.total_working_time ?? 0)
         }
-        ("^^^^^^^^^^^^ Print Avialability on Busy days : \((totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount).percent)")
+        print("Avialability on Busy days : \((totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount).percent)")
         //---------Availability On Busy Days
         //Data Model
-        //TODO::
-        let avaialbilityOnBusyDaysModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Availability On Busy Days", value: [(totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount).percent], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+        var availabilityRatio = (totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount)
+        if(availabilityRatio.isNaN){
+            availabilityRatio = 0
+        }
+        let avaialbilityOnBusyDaysModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Availability On Busy Days", value: [availabilityRatio.percent], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
         dataModel.append(avaialbilityOnBusyDaysModel)
         
         //GraphDate
@@ -853,11 +862,14 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             ///////////////////////////////////////////////////////////////////////
             var storeOccupancy : Double = 0.0
             storeOccupancy = serviceTimeTotal / storeOccupancyDenominatorValue
+            if(storeOccupancy.isNaN){
+                storeOccupancy = 0
+            }
           //  storeOccupancy = (serviceTimeTotal / )
             //---------Store Occupancy
             //Data Model
     
-            let storeOccupancyModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Store Occupancy", value: ["\(storeOccupancy.roundedStringValue(toFractionDigits: 2))%"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+            let storeOccupancyModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Store Occupancy", value: [storeOccupancy.percent], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
             dataModel.append(storeOccupancyModel)
             
             //GraphDate

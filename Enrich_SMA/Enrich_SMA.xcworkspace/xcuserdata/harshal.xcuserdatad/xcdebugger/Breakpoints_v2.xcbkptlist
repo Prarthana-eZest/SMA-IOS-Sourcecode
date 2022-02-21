@@ -272,7 +272,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "786"
             endingLineNumber = "786"
-            landmarkName = "actionDateFilter()"
+            landmarkName = "calculateQualityAndSafetyAudit(filterArray:dateRange:dateRangeType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -290,6 +290,38 @@
             endingLineNumber = "745"
             landmarkName = "calculateQualityAndSafetyAudit(filterArray:dateRange:dateRangeType:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E6D04D7E-0163-4975-B6FD-C2AEA8257175 - 1620abc38a09536e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SMA_Stage.ProductivityViewController.calculateQualityAndSafetyAudit(filterArray: Swift.Array&lt;SMA_Stage.Dashboard.GetRevenueDashboard.Quality_score_data&gt;, dateRange: (start: Foundation.Date, end: Foundation.Date), dateRangeType: SMA_Stage.DateRangeType) -&gt; Swift.Array&lt;Swift.Double&gt;"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Productivity/ProductivityViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "745"
+                  endingLineNumber = "745"
+                  offsetFromSymbolStart = "1318">
+               </Location>
+               <Location
+                  uuid = "E6D04D7E-0163-4975-B6FD-C2AEA8257175 - 2c1c73a94056b16b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (SMA_Stage.Dashboard.GetRevenueDashboard.Quality_score_data) -&gt; Swift.Bool in SMA_Stage.ProductivityViewController.calculateQualityAndSafetyAudit(filterArray: Swift.Array&lt;SMA_Stage.Dashboard.GetRevenueDashboard.Quality_score_data&gt;, dateRange: (start: Foundation.Date, end: Foundation.Date), dateRangeType: SMA_Stage.DateRangeType) -&gt; Swift.Array&lt;Swift.Double&gt;"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Productivity/ProductivityViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "745"
+                  endingLineNumber = "745"
+                  offsetFromSymbolStart = "38">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -872,7 +904,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1C713D36-44B2-426E-BB62-E3CD310BF18F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Resource Utilisation/ResourceUtilisationViewController.swift"
@@ -903,15 +935,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "57C41E18-2940-4084-B134-B45D25359E85"
+            uuid = "D5221CAC-C0E7-4FAA-8845-B049926AC64D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Resource Utilisation/ResourceUtilisationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "676"
+            endingLineNumber = "676"
+            landmarkName = "formattedData(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "760B9D49-6FDF-4A5B-8599-DFEDB4755E38"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Resource Utilisation/ResourceUtilisationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
+            landmarkName = "resourceUtilizationData(startDate:endDate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8063C587-CAE6-489A-A922-F6202732A3ED"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Resource Utilisation/ResourceUtilisationViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "866"
-            endingLineNumber = "866"
+            startingLineNumber = "830"
+            endingLineNumber = "830"
             landmarkName = "resourceUtilizationData(startDate:endDate:)"
             landmarkType = "7">
          </BreakpointContent>
