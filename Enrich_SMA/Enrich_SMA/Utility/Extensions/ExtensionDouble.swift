@@ -29,6 +29,16 @@ extension Double {
         return  result != nil ? "\(result!)%" : ""
     }
     
+    var percentValue:String {//without multiply by 100
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 1
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        formatter.locale = Locale(identifier: "en_IN")
+        let result = formatter.string(from: NSNumber(value: self))
+        return  result != nil ? "\(result!)%" : ""
+    }
+    
     var abbrevationString: String
     {
         let formatter = NumberFormatter()

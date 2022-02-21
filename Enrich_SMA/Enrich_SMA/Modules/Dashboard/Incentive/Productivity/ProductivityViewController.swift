@@ -255,7 +255,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         //RM Optimization
         //Data Model
-        let rmOptimizationCountString = (filteredrmOptimization != nil && filteredrmOptimization?.count ?? 0 > 0) ? String(format: "%.2f", rmOptimizationCount) : "NA"
+        let rmOptimizationCountString = (filteredrmOptimization != nil && filteredrmOptimization?.count ?? 0 > 0) ? rmOptimizationCount.percentValue : "NA"
         let rmOptimizationRemaningString = (filteredrmOptimization != nil && filteredrmOptimization?.count ?? 0 > 0) ? String(format: "%.2f", rmOptimizationRemaning) : "NA"
         let RMOptimizationModel = EarningsCellDataModel(earningsType: .Productivity, title: "RM Optimization", value: [rmOptimizationCountString], subTitle: ["RM Optimization Deviation Is \(rmOptimizationRemaningString)"], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(RMOptimizationModel)

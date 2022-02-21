@@ -133,7 +133,7 @@ enum EarningDetails : String {
         case .FreeServices: return "Free Services"
         case .Footfall: return "Total Footfall"
         case .CustomerFeedback: return "Feedback Score"
-        case .Productivity: return "Productivity Score"
+        case .Productivity: return "Productivity"
         case .PenetrationRatios: return "Penetration Ratio"
         case .CustomerEngagement: return "Customer Engagement"
         case .ResourceUtilisation: return "Resource Utilisation"

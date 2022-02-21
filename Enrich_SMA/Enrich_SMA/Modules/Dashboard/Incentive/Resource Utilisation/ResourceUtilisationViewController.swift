@@ -673,6 +673,28 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         //nameTextField.text = viewModel.name
     }
     
+    private func formattedData(_ minuteValue: Double) -> String {
+        // In Day---
+        let inDay: Double = 1440//60*24
+        if minuteValue >= inDay {
+            let value = minuteValue / inDay
+            let postFixText = value == 1 ? "Day" : "Days"
+            return "\(value.roundedStringValue(toFractionDigits: 2)) \(postFixText)"
+        }
+        
+        // In Hour ---
+        let inHour: Double = 60
+        if minuteValue >= inHour {
+            let value = minuteValue / inHour
+            let postFixText = value == 1 ? "Hr" : "Hrs"
+            return "\(value.roundedStringValue(toFractionDigits: 2)) \(postFixText)"
+        }
+        
+        //In min
+        let postFixText = minuteValue <= 1 ? "Min" : "Mins"
+        return "\(minuteValue.roundedStringValue(toFractionDigits: 2)) \(postFixText)"
+    }
+    
     func resourceUtilizationData(startDate : Date, endDate : Date = Date().startOfDay){
         
         dataModel.removeAll()
@@ -700,7 +722,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         //Store occupancy denominator value
         var storeOccupancyDenominatorValue : Double = 0.0
         let salonStations = technicianDataJSON?.data?.configuration?.salon_stations ?? 0
-        var totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1
+        var totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1 //TODO::
         let salonWorkingTime = technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
         storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
         
@@ -744,27 +766,13 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         var productiveAvailable = serviceTimeTotal + trainingTimeTotal
         var productiveBusy = totalShiftTimeCount
         let productiveProductivity = (productiveAvailable / productiveBusy)
-        var strproductivityAvailableTime, strproductivityBusyeTime : String
+        let strproductivityAvailableTime = formattedData(productiveAvailable)
+        let strproductivityBusyTime = formattedData(productiveBusy)
         
-        if(productiveAvailable >= 60){
-            productiveAvailable = productiveAvailable / 60
-            strproductivityAvailableTime = "\(productiveAvailable.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strproductivityAvailableTime = "\(productiveAvailable.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
-        
-        if(productiveBusy >= 60){
-            productiveBusy = productiveBusy / 60
-            strproductivityBusyeTime = "\(productiveBusy.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strproductivityBusyeTime = "\(productiveBusy.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
-        print("######## Productive Time : \(strproductivityAvailableTime, strproductivityBusyeTime, productiveProductivity.percent)")
+        print("######## Productive Time : \(strproductivityAvailableTime, strproductivityBusyTime, productiveProductivity.percent)")
         //"Productive Time"
         //Data Model
-        let productiveTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Productive Time", value: [strproductivityAvailableTime,strproductivityBusyeTime,productiveProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+        let productiveTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Productive Time", value: [strproductivityAvailableTime,strproductivityBusyTime,productiveProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
         dataModel.append(productiveTimeModel)
         //GraphDate
         let productiveTimeGraphEntries = getBarLineGraphEntry(productiveTimeModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType)
@@ -775,27 +783,13 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         
         //Training Time
         let trainingProductivity = (trainingTimeTotal / totalShiftTimeCount)
-        var strTrainingAvailableTime, strTrainingBusyeTime : String
-        if(trainingTimeTotal >= 60){
-            trainingTimeTotal = trainingTimeTotal / 60
-            strTrainingAvailableTime = "\(trainingTimeTotal.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strTrainingAvailableTime = "\(trainingTimeTotal.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
+        let strTrainingAvailableTime = formattedData(trainingTimeTotal)
+        let strTrainingBusyTime = formattedData(totalShiftTimeCount)
         
-        if(totalShiftTimeCount >= 60){
-            totalShiftTimeCount = totalShiftTimeCount / 60
-            strTrainingBusyeTime = "\(totalShiftTimeCount.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strTrainingBusyeTime = "\(totalShiftTimeCount.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
-        
-        print("************** Training Time : \(strTrainingAvailableTime, strTrainingBusyeTime, trainingProductivity.percent)")
+        print("************** Training Time : \(strTrainingAvailableTime, strTrainingBusyTime, trainingProductivity.percent)")
         //"Training Time"
         //Data Model
-        let trainingTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Training Time", value: [strTrainingAvailableTime,strTrainingBusyeTime,trainingProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+        let trainingTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Training Time", value: [strTrainingAvailableTime,strTrainingBusyTime,trainingProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
         dataModel.append(trainingTimeModel)
         //GraphDate
         let tainingTimeGraphEntries = getBarLineGraphEntry(trainingTimeModel.title, forData: filteredResourceUtilizationForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType)
