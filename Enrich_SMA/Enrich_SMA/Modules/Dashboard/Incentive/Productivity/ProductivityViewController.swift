@@ -274,8 +274,8 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         //Revenue Multiplier
         //Data Model
-        let revenueMulti = revenueMultiplier(dateRange: dateRange)
-        let revenueMultiplierModel = EarningsCellDataModel(earningsType: .Productivity, title: "Target Achivement", value: [revenueMulti.roundedStringValue(toFractionDigits: 2) + "%"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
+        let revenueMulti = revenueMultiplier(dateRange: dateRange, dateRangeType: graphRangeType)
+        let revenueMultiplierModel = EarningsCellDataModel(earningsType: .Productivity, title: "Target Achivement", value: [revenueMulti.percent], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(revenueMultiplierModel)
         //Graph Data
         graphData.append(getGraphEntry(revenueMultiplierModel.title, forData: filteredProductivityForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
@@ -444,7 +444,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             
         case 2:
             // Revenue multiplier
-            let revenueMulti = revenueMultiplier(dateRange: dateRange)
+            let revenueMulti = revenueMultiplier(dateRange: dateRange, dateRangeType: dateRangeType)
             dataModel[index] = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Multiplier", value: [revenueMulti.roundedStringValue(toFractionDigits: 2)], subTitle: [""], showGraph: modeData.showGraph, cellType: .SingleValue, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
             
         default:
@@ -478,7 +478,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             for objDt in dates {
                 if let transactions = filteredRevenueTransactions?.filter({$0.date == objDt}), let date = objDt.date()
                 {
-                    let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date))
+                    let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date), dateRangeType: dateRangeType)
                     revenueMultipliers.append(result)
                 }
                 else {
@@ -493,7 +493,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                     let mStartDate = (index == 0) ? date : date.startOfMonth
                     let mEndDate = (index == (monthlyDates.count - 1)) ? date : date.endOfMonth
                     let monthDateRange = DateRange(mStartDate, mEndDate)
-                    result = revenueMultiplier(dateRange: monthDateRange)
+                    result = revenueMultiplier(dateRange: monthDateRange, dateRangeType: dateRangeType)
                 }
                 revenueMultipliers.append(result)
             }
@@ -509,7 +509,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                         let mStartDate = (index == 0) ? date : date.startOfMonth
                         let mEndDate = (index == (monthlyDates.count - 1)) ? date : date.endOfMonth
                         let monthDateRange = DateRange(mStartDate, mEndDate)
-                        result = revenueMultiplier(dateRange: monthDateRange)
+                        result = revenueMultiplier(dateRange: monthDateRange, dateRangeType: dateRangeType)
                     }
                     revenueMultipliers.append(result)
                 }
@@ -519,7 +519,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                 for objDt in dates {
                     if let transactions = filteredRevenueTransactions?.filter({$0.date == objDt}), let date = objDt.date()
                     {
-                        let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date))
+                        let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date), dateRangeType: dateRangeType)
                         revenueMultipliers.append(result)
                     }
                     else {
@@ -532,7 +532,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         return revenueMultipliers
     }
     
-    func revenueMultiplier(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange) -> Double {
+    func revenueMultiplier(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType:DateRangeType) -> Double {
         
         let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         let strFormula = technicianDataJSON?.data?.configuration?.target_achievement_formula?.replacingOccurrences(of: "target", with: "salon_targets")
@@ -561,9 +561,15 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             }
             else if let keys = configuration?.keys, keys.contains(comp), comp == "salon_targets" {
                 let salonTargets = technicianDataJSON?.data?.configuration?.salon_targets ?? []
-                let monthsBetweenDates = dateRange.end.monthNumber(from: dateRange.start)
-                var totalTargets: Double = 0.0
                 let currentMonthNo = Date().monthNo()
+                var monthsBetweenDates = dateRange.end.monthNumber(from: dateRange.start)
+                switch dateRangeType {
+                case .qtd, .ytd:
+                    monthsBetweenDates = months(currentMonthNo: currentMonthNo, dateRangeType: dateRangeType)
+                default: break
+                }
+                var totalTargets: Double = 0.0
+                var totalDays: Double = 0
                 let fromYear = dateRange.start.year()
                 var isLeapYear = (( fromYear%100 != 0) && (fromYear%4 == 0)) || fromYear%400 == 0
                 if !isLeapYear {
@@ -575,17 +581,34 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                     if let month = val.month {
                         if monthsBetweenDates.contains(month) {
                             if month == currentMonthNo {
-                                let tillTodayDays = Date().day()
-                                let targetVal = (val.target ?? 0.0) * Double( tillTodayDays) / Double(getMonthDays(month: month, isLeapYear: isLeapYear))
+                                let targetVal = (val.target ?? 0.0)// * Double( tillTodayDays) / Double(getMonthDays(month: month, isLeapYear: isLeapYear))
                                 totalTargets += targetVal
+                                totalDays += Double(getMonthDays(month: month, isLeapYear: isLeapYear))
                             } else {
                                 let targetVal = (val.target ?? 0.0) // / Double( getMonthDays(month: month, isLeapYear: isLeapYear))
                                 totalTargets += targetVal
+                                totalDays += Double(getMonthDays(month: month, isLeapYear: isLeapYear))
                             }
                         }
                     }
                 }
-                revenueMultiExpressionData[comp] = totalTargets
+                switch dateRangeType {
+                case .mtd:
+                    let tillTodayDays = Double(Date().day())
+                    totalDays = tillTodayDays / totalDays
+                case .qtd:
+                    let noOfdays = Date.today.numberOfDaysFromDates(startDate: Date.today.startOfQuarter, fromDate: Date()) + 1
+                    totalDays = Double(noOfdays) / totalDays
+                case .ytd:
+                    let noOfdays = Date.today.numberOfDaysFromDates(startDate: Date.today.startOfYear, fromDate: Date()) + 1
+                    totalDays = Double(noOfdays) / totalDays
+                case .cutome:
+                    let noOfdays = Date.today.numberOfDaysFromDates(startDate: dateRange.start.startOfMonth, fromDate: dateRange.end.endOfMonth) + 1
+                    print(noOfdays)
+                    totalDays = Double(noOfdays) / totalDays
+                default: break
+                }
+                revenueMultiExpressionData[comp] = totalDays * totalTargets
             }
             else {
                 revenueMultiExpressionData[comp] = 0
@@ -600,6 +623,24 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         case 1, 3, 5, 7, 8, 10, 12: return 31
         case 2: return isLeapYear ? 29 : 28
         default: return 30
+        }
+    }
+    
+    private func months(currentMonthNo: Int, dateRangeType: DateRangeType) -> [Int] {
+        switch dateRangeType {
+        case .qtd:
+            if currentMonthNo >= 1 && currentMonthNo <= 3 {
+                return [1,2,3]
+            } else if currentMonthNo >= 4 && currentMonthNo <= 6 {
+                return [4,5,6]
+            } else if currentMonthNo >= 7 && currentMonthNo <= 9 {
+                return [7,8,9]
+            } else {
+                return [10,11,12]
+            }
+        case .ytd:
+            return [1,2,3,4,5,6,7,8,9,10,11,12]
+        default : return []
         }
     }
     

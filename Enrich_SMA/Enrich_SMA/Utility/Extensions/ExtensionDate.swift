@@ -98,6 +98,22 @@ extension Date
         return Calendar.current.startOfDay(for: quarterStartDate)
     }
     
+    var endOfQuarter: Date {
+        var components = Calendar.current.dateComponents([.month, .year], from: self)
+
+        let quarterMonth: Int
+        switch components.month! {
+            case 1,2,3: quarterMonth = 3 //first Quarter
+            case 4,5,6: quarterMonth = 6 //second Quarter
+            case 7,8,9: quarterMonth = 9 //third Quarter
+            case 10,11,12: quarterMonth = 12 //last Quarter
+            default: quarterMonth = 1
+        }
+        components.month = quarterMonth
+        let quarterStartDate = Calendar.current.date(from: components)!
+        return Calendar.current.startOfDay(for: quarterStartDate)
+    }
+    
     var startOfYear: Date {
         var components = Calendar.current.dateComponents([.month, .year], from: self)
         
