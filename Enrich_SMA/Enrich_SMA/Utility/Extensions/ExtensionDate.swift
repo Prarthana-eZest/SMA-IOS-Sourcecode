@@ -255,13 +255,12 @@ extension Date
         return day
     }
     
-    func isCurrentMonth(withFormat format: String = "M") -> Bool {
-        let month = Int(self.string(format: format)) ?? 0
-        let currentMonth = Int(Date().string(format: format)) ?? 0
-        return month == currentMonth
+    func isCurrentMonth() -> Bool {
+        let dateComponents = self.dateComponents([.month, .year])
+        let currentDateComponents = Date().dateComponents([.month, .year])
+        return dateComponents.month == currentDateComponents.month && dateComponents.year == currentDateComponents.year
     }
-    
-    
+
     func inSameMonth(asDate date: Date) -> Bool
     {
         return Utils.calendar.isDate(self, equalTo: date, toGranularity: .month)

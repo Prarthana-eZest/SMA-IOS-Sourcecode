@@ -603,7 +603,8 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                     let noOfdays = Date.today.numberOfDaysFromDates(startDate: Date.today.startOfYear, fromDate: Date()) + 1
                     totalDays = Double(noOfdays) / totalDays
                 case .cutome:
-                    let noOfdays = Date.today.numberOfDaysFromDates(startDate: dateRange.start.startOfMonth, fromDate: dateRange.end.endOfMonth) + 1
+                    let endDate = dateRange.end.isCurrentMonth() ? Date() : dateRange.end
+                    let noOfdays = Date.today.numberOfDaysFromDates(startDate: dateRange.start.startOfMonth, fromDate: endDate) + 1
                     print(noOfdays)
                     totalDays = Double(noOfdays) / totalDays
                 default: break
