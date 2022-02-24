@@ -344,6 +344,7 @@ class RevenuesViewController: UIViewController, RevenuesDisplayLogic, RevenueDis
         
         for revenue in filteredRevenue ?? [] {
             
+            
             // Retail Products Revenue Data
             if (revenue.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail) {
                 retailTotal += Double(revenue.total ?? 0.0)

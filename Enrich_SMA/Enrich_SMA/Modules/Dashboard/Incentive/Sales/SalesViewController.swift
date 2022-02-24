@@ -290,30 +290,15 @@ class SalesViewController: UIViewController, SalesDisplayLogic
             graphDateRange = DateRange(graphRangeType.date!, Date().startOfDay)
         }
         
-        var membershipRevenueCount : Double = 0.0
-        var membershipRenewRevenueCount : Double = 0.0
-        var valuePackageRevenueCount : Double = 0.0
-        var servicePackageRevenueCount : Double = 0.0
+        // membership revenue
+        let membershipRevenueCount = Double(filteredSales?.reduce(0) { $0 + ($1.membership_new_revenue ?? 0)} ?? 0)
+        let membershipRenewRevenueCount = Double(filteredSales?.reduce(0) { $0 + ($1.membership_renew_revenue ?? 0)} ?? 0)
         
-        for sales in filteredSales ?? [] {
-            // membership revenue
-            if let membershipRevenue = sales.membership_new_revenue, membershipRevenue > 0 {
-                membershipRevenueCount += membershipRevenue
-            }
-            if let membershipRevenue = sales.membership_renew_revenue, membershipRevenue > 0 {
-                membershipRenewRevenueCount += membershipRevenue
-            }
-            
-            // value package revenue
-            if let valuePackageRebenue = sales.value_package_revenue, valuePackageRebenue > 0 {
-                valuePackageRevenueCount += valuePackageRebenue
-            }
-            
-            // service_package_revenue
-            if let servicePackageRevenue = sales.service_package_revenue, servicePackageRevenue > 0 {
-                servicePackageRevenueCount += servicePackageRevenue
-            }
-        }
+        // value package revenue
+        let valuePackageRevenueCount = Double(filteredSales?.reduce(0) { $0 + ($1.value_package_revenue ?? 0)} ?? 0)
+        
+        // service_package_revenue
+        let servicePackageRevenueCount = Double(filteredSales?.reduce(0) { $0 + ($1.service_package_revenue ?? 0)} ?? 0)
         
         print("membershipRevenueCount \(membershipRevenueCount)")
         print("membershipRenewRevenueCount \(membershipRenewRevenueCount)")

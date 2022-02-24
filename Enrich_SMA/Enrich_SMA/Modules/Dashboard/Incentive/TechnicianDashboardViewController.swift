@@ -157,30 +157,18 @@ class TechnicianDashboardViewController: UIViewController, TechnicianDashboardDi
         })
         // Revenue Screen
         let serviceData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon)}) ?? []
-        var serviceToatal : Double = 0.0
+        let serviceToatal = Double(serviceData.reduce(0) { $0 + ($1.total ?? 0)})
         
         let homeServiceRevenueData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home)}) ?? []
-        var homeServiceTotal : Double = 0.0
+       let homeServiceTotal = Double(homeServiceRevenueData.reduce(0) { $0 + ($1.total ?? 0)})
         
         let retailData = filteredRevenue?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)}) ?? []
-        var retailTotal : Double = 0.0
+        let retailTotal = Double(retailData.reduce(0) { $0 + ($1.total ?? 0)})
         
-        
-        for objService in serviceData {
-            serviceToatal = serviceToatal + objService.total!
-        }
         print("serviceToatal conunt : \(serviceToatal)")
-        
-        for objService in homeServiceRevenueData {
-            homeServiceTotal = homeServiceTotal + objService.total!
-        }
         print("homeServiceTotal conunt : \(homeServiceTotal)")
-        
-        
-        for objRetail in retailData {
-            retailTotal = retailTotal + objRetail.total!
-        }
         print("retail conunt : \(retailTotal)")
+        
         let revenueTotal = serviceToatal + homeServiceTotal + retailTotal
         UserDefaults.standard.set(revenueTotal, forKey: UserDefauiltsKeys.k_key_RevenueTotal)
         
@@ -188,28 +176,20 @@ class TechnicianDashboardViewController: UIViewController, TechnicianDashboardDi
         
         //membership revenue
         let membershipRevenue = filteredRevenue?.filter({$0.membership_revenue ?? 0 > 0}) ?? []
-        var membershipRevenueCount : Double = 0.0
-        for objMembershipRevenueCount in membershipRevenue {
-            membershipRevenueCount = membershipRevenueCount + objMembershipRevenueCount.membership_revenue!
-        }
+        let membershipRevenueCount = Double(membershipRevenue.reduce(0) { $0 + ($1.membership_revenue ?? 0)})
+    
         print("membershipRevenueCount \(membershipRevenueCount)")
         
         
         //value package revenue
         let valuePackageRevenue = filteredRevenue?.filter({$0.value_package_revenue ?? 0 > 0}) ?? []
-        var valuePackageRevenueCount : Double = 0.0
-        for objValuePackageRevenueCount in valuePackageRevenue {
-            valuePackageRevenueCount = valuePackageRevenueCount + objValuePackageRevenueCount.value_package_revenue!
-        }
+        let valuePackageRevenueCount = Double(valuePackageRevenue.reduce(0) { $0 + ($1.value_package_revenue ?? 0)})
+        
         print("valuePackageRevenueCount \(valuePackageRevenueCount)")
         
         //service_package_revenue
         let servicePackageRevenue = filteredRevenue?.filter({$0.service_package_revenue ?? 0 > 0}) ?? []
-        
-        var servicePackageRevenueCount : Double = 0.0
-        for objServicePackageRevenue in servicePackageRevenue {
-            servicePackageRevenueCount = servicePackageRevenueCount + objServicePackageRevenue.service_package_revenue!
-        }
+        let servicePackageRevenueCount = Double(servicePackageRevenue.reduce(0) { $0 + ($1.service_package_revenue ?? 0)})
         print("servicePackageRevenueCount \(servicePackageRevenueCount)")
         
         let salesCount = membershipRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount
