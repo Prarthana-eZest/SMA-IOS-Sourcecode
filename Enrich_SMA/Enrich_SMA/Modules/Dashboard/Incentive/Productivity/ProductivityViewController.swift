@@ -39,6 +39,8 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     var dateRangeType : DateRangeType = .mtd
     var productivityCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
     
+    var technicianDataJSON: Dashboard.GetRevenueDashboard.Response?
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
@@ -69,6 +71,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         bottomFilterView.delegate = self
         bottomFilterView.setup(.basic)
         doSomething()
@@ -106,8 +109,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Date filter applied
         let dateFilteredProductivity = technicianDataJSON?.data?.quality_score_data?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
@@ -141,12 +142,10 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     }
     
     func graphData(forData data:[Dashboard.GetRevenueDashboard.Quality_score_data]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double] {
-        
+
         var filteredProductivity = data
         
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
             
             filteredProductivity = technicianDataJSON?.data?.quality_score_data?.filter({ (freeServices) -> Bool in
                 if let date = freeServices.date?.date()?.startOfDay {
@@ -163,7 +162,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             return calculateRMOptimization(dateRange: dateRange, dateRangeType: dateRangeType)
         }
         else if(index == 1){ // quality and safety audit
-            return calculateQualityAndSafetyAudit(filterArray: filteredProductivity!, dateRange: dateRange, dateRangeType: dateRangeType)
+            return calculateQualityAndSafetyAudit(filterArray: filteredProductivity ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
         // TODO: check with Firoz
         else{ // Revnue multiplier
@@ -185,7 +184,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     func productivityData(startDate : Date, endDate : Date = Date().startOfDay){
         dataModel.removeAll()
         graphData.removeAll()
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         
         let filteredProductivity = technicianDataJSON?.data?.quality_score_data?.filter({ (productivity) -> Bool in
             if let date = productivity.date?.date()?.startOfDay {
@@ -209,23 +207,16 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         //quality and safety
         let qualityScoreData = filteredProductivity?.filter({$0.score ?? 0 > 0})
         
-        var qualityScoreDataCount : Double = 0.0
-        for objqualityScoreData in qualityScoreData! {
-            qualityScoreDataCount = qualityScoreDataCount + Double(objqualityScoreData.score!)
-        }
-        var showCount = (qualityScoreDataCount / Double(qualityScoreData!.count)) / 100
-        if(qualityScoreDataCount == 0 || qualityScoreData?.count == 0)
-        {
+        let qualityScoreDataCount = qualityScoreData?.reduce(0) { $0 + ($1.score ?? 0)} ?? 0
+
+        var showCount: Double = 0
+        if(qualityScoreDataCount == 0 || qualityScoreData?.count == 0) {
             showCount = 0
+        } else {
+            showCount = (qualityScoreDataCount / Double(qualityScoreData!.count)) / 100
         }
-        
         
         //RM Optimization
-        //let rmOptimization = technicianDataJSON?.data?.rm_consumption
-        var rmOptimizationCount: Double = 0
-        var rmOptimizationRemaning: Double = 0
-        
-        
         let filteredrmOptimization = technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
             if let date = productivity.consumption_date?.date()?.startOfDay {
                 
@@ -234,13 +225,11 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             return false
         })
         
+        var rmOptimizationCount: Double = 0
+        var rmOptimizationRemaning: Double = 0
         
         if let count = filteredrmOptimization?.count, count > 0 {
-            
-            for objData in filteredrmOptimization!
-            {
-                rmOptimizationCount += objData.rm_consumption ?? 0
-            }
+            rmOptimizationCount = filteredrmOptimization?.reduce(0) { $0 + ($1.rm_consumption ?? 0)} ?? 0
             
             rmOptimizationCount /= Double(count)
             
@@ -326,10 +315,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     
     //calculate total revenue
     func calculateRevenue(dateRange : DateRange) -> Double{
-        var totalRev = 0.0
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-
         
         let filteredRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
@@ -339,41 +324,30 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             return false
         })
         // Revenue Screen
-        let serviceData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon)}) ?? []
-        var serviceToatal : Double = 0.0
+//        let serviceData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon)}) ?? []
+//
+//        let homeServiceRevenueData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home)}) ?? []
+//
+//        let retailData = filteredRevenue?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)}) ?? []
         
-        let homeServiceRevenueData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home)}) ?? []
-        var homeServiceTotal : Double = 0.0
+        let serviceData = filteredRevenue?.filter({ $0.appointment_type  == AppointmentTypes.salon }) ?? []
         
-        let retailData = filteredRevenue?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)}) ?? []
-        var retailTotal : Double = 0.0
+        let homeServiceRevenueData = filteredRevenue?.filter({ $0.appointment_type  == AppointmentTypes.home }) ?? []
         
+        let retailData = filteredRevenue?.filter({$0.product_category_type  == CategoryTypes.retail }) ?? []
         
-        for objService in serviceData {
-            serviceToatal = serviceToatal + objService.total!
-        }
-        print("serviceToatal conunt : \(serviceToatal)")
+        let serviceTotal = serviceData.reduce(0) { $0 + ($1.total ?? 0)}
         
-        for objService in homeServiceRevenueData {
-            homeServiceTotal = homeServiceTotal + objService.total!
-        }
-        print("homeServiceTotal conunt : \(homeServiceTotal)")
+        let homeServiceTotal = homeServiceRevenueData.reduce(0) { $0 + ($1.total ?? 0)}
         
-        
-        for objRetail in retailData {
-            retailTotal = retailTotal + objRetail.total!
-        }
-        print("retail conunt : \(retailTotal)")
-        totalRev = serviceToatal + homeServiceTotal + retailTotal
-        
-        return totalRev
+        let retailTotal = retailData.reduce(0) { $0 + ($1.total ?? 0)}
+
+        return serviceTotal + homeServiceTotal + retailTotal
     }
     
     func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Quality_score_data]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
         
         var filteredProductivity = data
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
@@ -430,10 +404,8 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             //quality and safety
             let qualityScoreData = filteredProductivity?.filter({$0.score ?? 0 > 0})
             
-            var qualityScoreDataCount : Double = 0.0
-            for objqualityScoreData in qualityScoreData! {
-                qualityScoreDataCount = qualityScoreDataCount + Double(objqualityScoreData.score!)
-            }
+            let qualityScoreDataCount = qualityScoreData?.reduce(0) { $0 + ($1.score ?? 0)} ?? 0
+        
             var showCount = (qualityScoreDataCount / Double(qualityScoreData!.count)) / 100
             if(qualityScoreDataCount == 0 || qualityScoreData?.count == 0)
             {
@@ -459,9 +431,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         var revenueMultipliers = [Double]()
         var filteredRevenueTransactions = data
         if data == nil, (data?.count ?? 0 <= 0) {
-            
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
             filteredRevenueTransactions = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenueTransactions) -> Bool in
                 if let date = revenueTransactions.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
@@ -533,8 +502,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     }
     
     func revenueMultiplier(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType:DateRangeType) -> Double {
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         let strFormula = technicianDataJSON?.data?.configuration?.target_achievement_formula?.replacingOccurrences(of: "target", with: "salon_targets")
         let configuration = technicianDataJSON?.data?.configuration?.dictionary
 
@@ -655,9 +622,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     //calculate RMOptimization
     func calculateRMOptimization(dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
         var rmOptimizationValues = [Double]()
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
+
         let filteredrmOptimization = technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
             if let date = productivity.consumption_date?.date()?.startOfDay {
                 
