@@ -361,6 +361,14 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
             return calculateComplimentoryGiftVouchers(filterArray: filteredFreeServices ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
         else{ // Grooming gift cards
+            // grooming_giftcard
+            var groomingGiftCards = filteredFreeServices
+            groomingGiftCards = nil
+            for freeService in filteredFreeServices ?? [] {
+                if let gGiftCard = freeService.grooming_giftcard, gGiftCard > 0, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services){
+                    
+                }
+            }
             return calculateGroomingGiftCards(filterArray: filteredFreeServices ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
     }

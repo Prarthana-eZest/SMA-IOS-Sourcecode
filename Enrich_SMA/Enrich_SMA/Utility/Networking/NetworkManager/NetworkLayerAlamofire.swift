@@ -164,7 +164,7 @@ open class NetworkLayerAlamofire {
                     do {
                         let responseObject = try JSONDecoder().decode(T.self, from: data)
                         if let jsonString = String(data: data, encoding: .utf8) {
-                            print(jsonString)
+                           // print(jsonString)
                         }
                         successHandler(responseObject)
                     }
