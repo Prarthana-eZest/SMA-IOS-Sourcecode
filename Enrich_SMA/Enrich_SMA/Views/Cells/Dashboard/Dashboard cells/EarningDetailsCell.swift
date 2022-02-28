@@ -246,10 +246,25 @@ extension EarningDetailsCell {
         xAxis.drawGridLinesEnabled = false
         xAxis.axisLineWidth = 0.5
         xAxis.gridLineDashLengths = [(5.0)]
-        xAxis.axisMinimum = 0.5
-        xAxis.axisMaximum = Double(graphData.first?.units.count ?? 0) + 1
-        xAxis.spaceMin = 0.3
-        xAxis.spaceMax = 0.3
+        if graphData.count == 1 {
+            xAxis.axisMinimum = 0.5
+            xAxis.axisMaximum = Double(graphData.first?.units.count ?? 0) + 1
+            xAxis.spaceMin = 0.3
+            xAxis.spaceMax = 0.3
+        } else if graphData.count == 2 {
+            //xAxis.centerAxisLabelsEnabled = true
+            let groupSpace = 0.3
+            let barSpace = 0.0
+            let barWidth = 0.3
+            // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
+
+            let groupCount = Double(graphData.first?.units.count ?? 0) + 1
+            let startYear = 0.0
+
+            xAxis.axisMinimum = Double(startYear)
+            let gg = data.barData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+            xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
+        }
         
         
         // Left Axis
@@ -311,25 +326,66 @@ extension EarningDetailsCell {
         
         let barChartData = BarChartData()
         
-        graphData.forEach { data in
-            var dataEntries: [BarChartDataEntry] = []
-            
-            for i in 0..<data.values.count {
-                let dataEntry = BarChartDataEntry(x: Double(i+1), y: data.values[i])
-                dataEntries.append(dataEntry)
+        if graphData.count == 1 {
+            graphData.forEach { data in
+                var dataEntries: [BarChartDataEntry] = []
+                
+                for i in 0..<data.values.count {
+                    let dataEntry = BarChartDataEntry(x: Double(i+1), y: data.values[i])
+                    dataEntries.append(dataEntry)
+                }
+                let chartDataSet = BarChartDataSet(entries: dataEntries, label: data.dataTitle)
+                chartDataSet.drawValuesEnabled = false
+                chartDataSet.colors = [data.barColor]
+                chartDataSet.highlightColor = UIColor.clear
+                barChartData.addDataSet(chartDataSet)
             }
-            let chartDataSet = BarChartDataSet(entries: dataEntries, label: data.dataTitle)
+            var barWidth = 0.3
+            let barSpace = 0.0
+            let groupSpace = (1 - (barWidth * Double(graphData.count)))
+            
+            if let barCount = barChartData.dataSets.first?.entryCount, barCount <= 5 { barWidth = 0.05 * Double(barCount) }
+            barChartData.barWidth = barWidth
+        } else if graphData.count == 2 {// Sales : Membership
+            
+            var dataEntries: [BarChartDataEntry] = []
+            var dataEntries1: [BarChartDataEntry] = []
+            for i in 0..<graphData[0].values.count {
+                let dataEntry = BarChartDataEntry(x: Double(i+1), y: graphData[0].values[i])
+                dataEntries.append(dataEntry)
+                
+                let dataEntry1 = BarChartDataEntry(x: Double(i+1), y: graphData[1].values[i])
+                dataEntries1.append(dataEntry1)
+            }
+            
+            let chartDataSet = BarChartDataSet(entries: dataEntries, label: graphData[0].dataTitle)
             chartDataSet.drawValuesEnabled = false
-            chartDataSet.colors = [data.barColor]
+            chartDataSet.colors = [graphData[0].barColor]
             chartDataSet.highlightColor = UIColor.clear
             barChartData.addDataSet(chartDataSet)
+            
+            let chartDataSet1 = BarChartDataSet(entries: dataEntries1, label: graphData[1].dataTitle)
+            chartDataSet1.drawValuesEnabled = false
+            chartDataSet1.colors = [graphData[1].barColor]
+            chartDataSet1.highlightColor = UIColor.clear
+            barChartData.addDataSet(chartDataSet1)
+            
+            let groupSpace = 0.3
+            let barSpace = 0.0
+            let barWidth = 0.3
+            // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
+
+            let groupCount = graphData[0].values.count
+            let startYear = 0
+
+            barChartData.barWidth = barWidth
+            //barChartData.xAxis.axisMinimum = Double(startYear)
+            let gg = barChartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+            //barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
+
+            barChartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
+
         }
-        var barWidth = 0.3
-        let barSpace = 0.0
-        let groupSpace = (1 - (barWidth * Double(graphData.count)))
-        
-        if let barCount = barChartData.dataSets.first?.entryCount, barCount <= 5 { barWidth = 0.05 * Double(barCount) }
-        barChartData.barWidth = barWidth
         return barChartData
     }
     

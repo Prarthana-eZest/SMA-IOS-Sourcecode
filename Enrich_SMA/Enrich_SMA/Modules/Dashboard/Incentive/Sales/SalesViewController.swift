@@ -930,9 +930,12 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
             let index = indexPath.row - 1
             let model = dataModels[index]
             let barGraph = graphData[index]
-            let renewBarGraph = graphDateRenew[index]
-            
-            cell.configureCell(model: model, data: [barGraph, renewBarGraph])
+            if dataModels[index].title == "Membership" {
+                let renewBarGraph = graphDateRenew[index]
+                cell.configureCell(model: model, data: [barGraph, renewBarGraph])
+            } else {
+                cell.configureCell(model: model, data: [barGraph])
+            }
             return cell
         }
         
