@@ -41,6 +41,8 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     var salesCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
     
     var selectedPackage : String = ""
+    
+    var technicianDataJSON: Dashboard.GetRevenueDashboard.Response?
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -89,6 +91,8 @@ class SalesViewController: UIViewController, SalesDisplayLogic
   {
     super.viewDidLoad()
     bottomFilterView.delegate = self
+    technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
+    
     bottomFilterView.setup(.basic)
     doSomething()
     tableView.register(UINib(nibName: CellIdentifier.earningDetailsHeaderCell, bundle: nil), forCellReuseIdentifier: CellIdentifier.earningDetailsHeaderCell)
@@ -127,9 +131,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     func updateSalesScreenData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
+       
         //Date filter applied
         let dateFilteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
@@ -168,8 +170,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
+    
             //Date filter applied
             filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
@@ -223,8 +224,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
+        
             //Date filter applied
             filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
@@ -268,9 +268,6 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         dataModels.removeAll()
         graphData.removeAll()
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         
         let filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
             if let date = sales.date?.date()?.startOfDay {
@@ -358,7 +355,6 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         var filteredSales = data
         
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
             filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
                 if let date = sales.date?.date()?.startOfDay {
                     
@@ -534,8 +530,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
+        
             //Date filter applied
             filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
                 if let date = freeService.date?.date()?.startOfDay {
@@ -747,8 +742,6 @@ extension SalesViewController: EarningDetailsDelegate {
         else if(dateRangeType == .ytd){
             salesCutomeDateRange = DateRange(Date.today.lastYear(), Date.today)
         }
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         
         var servicePackageRevenueCount : Double = 0.0
         var valuePackageRevenueCount : Double = 0.0

@@ -113,7 +113,7 @@ enum EarningDetails : String {
         case .FreeServices: return UIImage(named: "FreeServicesWhiteNew")
         case .Footfall: return UIImage(named: "FootfallWhiteNew")
         case .CustomerFeedback: return UIImage(named: "CustomerFeedbackWhite")
-        case .Productivity: return UIImage(named: "ProductivityWhiteNew")
+        case .Productivity: return UIImage(named: "ProductivityWhite_New")
         case .PenetrationRatios: return UIImage(named: "PenetrationWhiteNew")
         case .CustomerEngagement: return UIImage(named: "EngagementWhiteNew")
         case .ResourceUtilisation: return UIImage(named: "UtilisationWhiteNew")
