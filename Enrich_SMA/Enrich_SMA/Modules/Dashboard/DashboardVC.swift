@@ -78,6 +78,7 @@ class DashboardVC: UIViewController, DashboardDisplayLogic {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        GlobalVariables.technicianDataJSON = nil
         self.navigationController?.navigationBar.isHidden = true
         AppDelegate.OrientationLock.lock(to: UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         getProfileData()
