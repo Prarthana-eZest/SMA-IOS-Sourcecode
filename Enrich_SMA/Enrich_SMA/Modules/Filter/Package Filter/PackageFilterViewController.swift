@@ -98,7 +98,6 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
     }
     
     func getFilterData(filterType : String){
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
     
         data.append(PackageFilterModel(title: "All Packages", isSelected: (selectedPackage == ""), fromDate: nil, toDate: nil, sku: ""))
         
@@ -107,7 +106,7 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
         //service package
             lblFilterTitle.text = "SELECT SERVICE PACKAGE"
             
-        let filterServicePackgeData = technicianDataJSON?.data?.filters?.packages?.Service?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.service)}) ?? []
+        let filterServicePackgeData = GlobalVariables.technicianDataJSON?.data?.filters?.packages?.Service?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.service)}) ?? []
 
         
         for objServicePackage in filterServicePackgeData {
@@ -119,7 +118,7 @@ class PackageFilterViewController: UIViewController, PackageFilterDisplayLogic
             
             lblFilterTitle.text = "SELECT VALUE PACKAGE"
             
-            let filterValuePackageData = technicianDataJSON?.data?.filters?.packages?.Value?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.value)}) ?? []
+            let filterValuePackageData = GlobalVariables.technicianDataJSON?.data?.filters?.packages?.Value?.filter({($0.package_type ?? "").containsIgnoringCase(find: PackageType.value)}) ?? []
            
             
             for objPackage in filterValuePackageData {

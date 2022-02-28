@@ -104,10 +104,8 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Date filter applied
-        let dateFilteredFootfall = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+        let dateFilteredFootfall = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -143,10 +141,9 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
             
             //Date filter applied
-            filteredFootfall = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            filteredFootfall = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -182,12 +179,11 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
     func updateHeaderModel(withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType: DateRangeType) {
         
         var filteredFootfall = data
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
+
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
             //Date filter applied
-            filteredFootfall = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            filteredFootfall = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -239,10 +235,8 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         var filteredFootfall = data
         
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
-            
-            filteredFootfall = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
+
+            filteredFootfall = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
                 if let date = freeServices.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -280,10 +274,8 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
             //Date filter applied
-            filteredFootfall = technicianDataJSON?.data?.revenue_transactions?.filter({ (footFall) -> Bool in
+            filteredFootfall = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (footFall) -> Bool in
                 if let date = footFall.date?.date()?.startOfDay {
                     return  (date >= dateRange.start && date <= dateRange.end) &&
                             (((footFall.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && ((footFall.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon) || (footFall.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home))) || (footFall.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail))
@@ -315,9 +307,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         dataModel.removeAll()
         graphData.removeAll()
 
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-
-        let filteredFootfall = technicianDataJSON?.data?.revenue_transactions?.filter({ (footfall) -> Bool in
+        let filteredFootfall = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (footfall) -> Bool in
             if let date = footfall.date?.date()?.startOfDay {
 
                 return date >= startDate && date <= endDate
