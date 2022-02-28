@@ -55,7 +55,6 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
 
     
     var model: EarningsCellDataModel!
-//    var model : Dashboard.GetRevenueDashboard.Response
         
     var dataModel: [GraphDataEntry]?
     

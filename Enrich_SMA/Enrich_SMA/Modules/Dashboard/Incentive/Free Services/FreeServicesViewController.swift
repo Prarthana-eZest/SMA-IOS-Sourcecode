@@ -39,7 +39,6 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     
     var dateRangeType : DateRangeType = .mtd
     var freeServicesCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
-    var technicianDataJSON: Dashboard.GetRevenueDashboard.Response?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
@@ -71,7 +70,6 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         bottomFilterView.delegate = self
         bottomFilterView.setup(.basic)
         doSomething()
@@ -107,7 +105,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         let dateRange = DateRange(startDate!, endDate)
         
         //Date filter applied
-        let dateFilteredFreeService = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+        let dateFilteredFreeService = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -145,7 +143,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         if data == nil, (data?.count ?? 0 <= 0) {
           
             //Date filter applied
-            filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            filteredFreeServices = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -191,7 +189,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         if data == nil, (data?.count ?? 0 <= 0) {
            
             //Date filter applied
-            filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            filteredFreeServices = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -234,7 +232,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         dataModel.removeAll()
         graphData.removeAll()
        
-        let filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
+        let filteredFreeServices = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
             if let date = freeServices.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -336,7 +334,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         if data == nil, (data?.count ?? 0 <= 0) {
            
-            filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
+            filteredFreeServices = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
                 if let date = freeServices.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -375,7 +373,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         if data == nil, (data?.count ?? 0 <= 0) {
            
             //Date filter applied
-            filteredFreeService = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
+            filteredFreeService = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
                 if let date = freeService.date?.date()?.startOfDay {
                     return  (date >= dateRange.start && date <= dateRange.end) &&
                         ((freeService.free_service_revenue ?? 0 > 0) ||

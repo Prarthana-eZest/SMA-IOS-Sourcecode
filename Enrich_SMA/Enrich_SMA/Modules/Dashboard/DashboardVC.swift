@@ -244,9 +244,9 @@ extension DashboardVC {
         else if let model = viewModel as? Dashboard.GetRevenueDashboard.Response {
             EZLoadingActivity.hide()
            // print("Revenue : \(model)")
-            let userDefaults = UserDefaults.standard
+            /*let userDefaults = UserDefaults.standard
             userDefaults.set(encodable: model, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            userDefaults.synchronize()
+            userDefaults.synchronize()*/
             GlobalVariables.technicianDataJSON = model
 
             let vc = TechnicianDashboardViewController.instantiate(fromAppStoryboard: .Incentives)

@@ -42,7 +42,6 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     
     var selectedPackage : String = ""
     
-    var technicianDataJSON: Dashboard.GetRevenueDashboard.Response?
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -91,7 +90,6 @@ class SalesViewController: UIViewController, SalesDisplayLogic
   {
     super.viewDidLoad()
     bottomFilterView.delegate = self
-    technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
     
     bottomFilterView.setup(.basic)
     doSomething()
@@ -133,7 +131,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         let dateRange = DateRange(startDate!, endDate)
        
         //Date filter applied
-        let dateFilteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+        let dateFilteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -172,7 +170,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         if data == nil, (data?.count ?? 0 <= 0) {
     
             //Date filter applied
-            filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -226,7 +224,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         if data == nil, (data?.count ?? 0 <= 0) {
         
             //Date filter applied
-            filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -269,7 +267,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         dataModels.removeAll()
         graphData.removeAll()
         
-        let filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
+        let filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
             if let date = sales.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -355,7 +353,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         var filteredSales = data
         
         if data == nil, (data?.count ?? 0 <= 0) {
-            filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
+            filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
                 if let date = sales.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -532,7 +530,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         if data == nil, (data?.count ?? 0 <= 0) {
         
             //Date filter applied
-            filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
+            filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
                 if let date = freeService.date?.date()?.startOfDay {
                     return  (date >= dateRange.start && date <= dateRange.end) &&
                         ((freeService.membership_new_revenue ?? 0 > 0) ||
@@ -746,7 +744,7 @@ extension SalesViewController: EarningDetailsDelegate {
         var servicePackageRevenueCount : Double = 0.0
         var valuePackageRevenueCount : Double = 0.0
         
-        let filteredSales = technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
+        let filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
             if let date = sales.date?.date()?.startOfDay {
                 
                 return date >= salesCutomeDateRange.start && date <= salesCutomeDateRange.end

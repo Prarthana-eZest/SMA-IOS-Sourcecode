@@ -106,9 +106,8 @@ class EarningsFilterVC: UIViewController, EarningsFilterDisplayLogic
     
     func createFilters(){
         data.removeAll()
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
 
-         let category = technicianDataJSON?.data?.filters?.category_tree
+         let category = GlobalVariables.technicianDataJSON?.data?.filters?.category_tree
         
         var categoryData = [EarningsSubCatgoryFilterModel]()
         var subCategoryData = [EarningsSubCatgoryFilterModel]()

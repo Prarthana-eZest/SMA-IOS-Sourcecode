@@ -146,9 +146,8 @@ class TechnicianDashboardViewController: UIViewController, TechnicianDashboardDi
     }
     
     func calculateDataForTiles(startDate : Date, endDate : Date = Date().startOfDay) {
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         
-        let filteredRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+        let filteredRevenue = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate

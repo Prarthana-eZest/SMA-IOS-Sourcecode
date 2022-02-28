@@ -104,10 +104,8 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Date filter applied
-        let dateFilteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (revenue) -> Bool in
+        let dateFilteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -142,14 +140,12 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         
         var filteredCustomerEngagement = data
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
             
             
             //Date filter applied
-            filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (revenue) -> Bool in
+            filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -181,7 +177,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             case 2:
                 // Customer Repeat
                 
-                let filteredcustomerRepeat = technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
+                let filteredcustomerRepeat = GlobalVariables.technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
                     if let date = customerEngagement.date?.date()?.startOfDay {
                         
                         return date >= dateRange.start && date <= dateRange.end
@@ -255,9 +251,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         dataModel.removeAll()
         graphData.removeAll()
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
-        let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+        let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
             if let date = customerEngagement.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -425,7 +419,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         
         //Customer repeat = 5
         
-        let filteredcustomerRepeat = technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
+        let filteredcustomerRepeat = GlobalVariables.technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
             if let date = customerEngagement.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -504,10 +498,8 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         var filteredCustomerEngagement = data
         
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
-            
-            filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+
+            filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
                 if let date = customerEngagement.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end

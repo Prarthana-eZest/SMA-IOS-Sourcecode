@@ -106,10 +106,8 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Date filter applied
-        let dateFilteredPenetration = technicianDataJSON?.data?.revenue_transactions?.filter({ (resourceUtilization) -> Bool in
+        let dateFilteredPenetration = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (resourceUtilization) -> Bool in
             if let date = resourceUtilization.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -145,11 +143,10 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         var filteredPenetrationRatio = data
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         if data == nil, (data?.count ?? 0 <= 0) {
             
             
-            filteredPenetrationRatio = technicianDataJSON?.data?.revenue_transactions?.filter({ (penetrationRatio) -> Bool in
+            filteredPenetrationRatio = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (penetrationRatio) -> Bool in
                 if let date = penetrationRatio.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -169,7 +166,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         else if(index == 2){ // App Booking
             
             //customers served
-            let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+            let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
                 if let date = customerEngagement.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -182,7 +179,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         else if(index == 3) {// cross sell
           
             
-            let crossSell = technicianDataJSON?.data?.cross_sell_transactions?.filter({ (crossSell) -> Bool in
+            let crossSell = GlobalVariables.technicianDataJSON?.data?.cross_sell_transactions?.filter({ (crossSell) -> Bool in
                 if let date = crossSell.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -194,7 +191,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             
         }
         else {
-            let penerationRatioFromFilters = technicianDataJSON?.data?.filters?.penetration_ratios
+            let penerationRatioFromFilters = GlobalVariables.technicianDataJSON?.data?.filters?.penetration_ratios
             return calculatePenetrationRatioForDyanmicData(penetrationRatioFromServer: penerationRatioFromFilters ?? [], penetrationRatio: filteredPenetrationRatio ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
     }
@@ -703,9 +700,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         dataModel.removeAll()
         graphData.removeAll()
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
-        let filteredPenetrationRatio = technicianDataJSON?.data?.revenue_transactions?.filter({ (penetrationRatio) -> Bool in
+        let filteredPenetrationRatio = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (penetrationRatio) -> Bool in
             if let date = penetrationRatio.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -768,7 +763,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         //customers served - those are customer_id which are served
         let filterCustomerServed = filteredPenetrationRatio.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services))}).unique(map: {$0.customer_id})
-//        let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+//        let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
 //            if let date = customerEngagement.date?.date()?.startOfDay {
 //
 //                return date >= startDate && date <= endDate
@@ -794,9 +789,9 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         
         //cross sell
-       // let crossSell = technicianDataJSON?.data?.cross_sell_transactions
+       // let crossSell = GlobalVariables.technicianDataJSON?.data?.cross_sell_transactions
         
-        let filteredCrossSell = technicianDataJSON?.data?.cross_sell_transactions?.filter({ (crossSell) -> Bool in
+        let filteredCrossSell = GlobalVariables.technicianDataJSON?.data?.cross_sell_transactions?.filter({ (crossSell) -> Bool in
             if let date = crossSell.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -827,7 +822,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         }
         
         
-        let penerationRatioFromFilters = technicianDataJSON?.data?.filters?.penetration_ratios
+        let penerationRatioFromFilters = GlobalVariables.technicianDataJSON?.data?.filters?.penetration_ratios
         
         var categotyCount : Int = 0
         var subCategoryCount : Int = 0
@@ -902,10 +897,8 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         var filteredPenetrationRatio = data
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Date filter applied
-        filteredPenetrationRatio = technicianDataJSON?.data?.revenue_transactions?.filter({ (penetration) -> Bool in
+        filteredPenetrationRatio = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (penetration) -> Bool in
             if let date = penetration.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -957,7 +950,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 ratio =  Double(count) / Double(uniqueInvoices!.count)
             }
 //            //customers served
-//            let filteredCustomerEngagement = technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+//            let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
 //                if let date = customerEngagement.date?.date()?.startOfDay {
 //
 //                    return date >= dateRange.start && date <= dateRange.end
@@ -972,9 +965,9 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             
         case 3:
             //cross sell
-//            let crossSell = technicianDataJSON?.data?.cross_sell_transactions
+//            let crossSell = GlobalVariables.technicianDataJSON?.data?.cross_sell_transactions
             
-            let filteredCrossSell = technicianDataJSON?.data?.cross_sell_transactions?.filter({ (crossSell) -> Bool in
+            let filteredCrossSell = GlobalVariables.technicianDataJSON?.data?.cross_sell_transactions?.filter({ (crossSell) -> Bool in
                 if let date = crossSell.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -1004,7 +997,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             
         default:
             //Penetration ratio dynamic data
-            let penerationRatioFromFilters = technicianDataJSON?.data?.filters?.penetration_ratios ?? []
+            let penerationRatioFromFilters = GlobalVariables.technicianDataJSON?.data?.filters?.penetration_ratios ?? []
             
             var categotyCount : Int = 0
             var subCategoryCount : Int = 0

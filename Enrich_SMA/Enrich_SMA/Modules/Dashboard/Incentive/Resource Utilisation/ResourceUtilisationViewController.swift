@@ -104,11 +104,8 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
     func updateResourceUtilizationData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Date filter applied
-        let dateFilteredResourceUtilization = technicianDataJSON?.data?.resource_utilization?.filter({ (resourceUtilization) -> Bool in
+        let dateFilteredResourceUtilization = GlobalVariables.technicianDataJSON?.data?.resource_utilization?.filter({ (resourceUtilization) -> Bool in
             if let date = resourceUtilization.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -154,10 +151,8 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         var filteredResourceUtilization = data
         
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
             
-            
-            filteredResourceUtilization = technicianDataJSON?.data?.resource_utilization?.filter({ (customerEngagement) -> Bool in
+            filteredResourceUtilization = GlobalVariables.technicianDataJSON?.data?.resource_utilization?.filter({ (customerEngagement) -> Bool in
                 if let date = customerEngagement.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -178,8 +173,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             return calculateBreakTime(filterArray: filteredResourceUtilization ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
         else if(index == 3){//Attendance
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            let attendanceData =  technicianDataJSON?.data?.attendance_data
+            let attendanceData =  GlobalVariables.technicianDataJSON?.data?.attendance_data
             return calculateAttendance(filterArray: attendanceData ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
         
@@ -701,9 +695,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         barGraphData.removeAll()
         lineGraphData.removeAll()
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
-        let filteredResourceUtilisation = technicianDataJSON?.data?.resource_utilization?.filter({ (resourceUtilisation) -> Bool in
+        let filteredResourceUtilisation = GlobalVariables.technicianDataJSON?.data?.resource_utilization?.filter({ (resourceUtilisation) -> Bool in
             if let date = resourceUtilisation.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -711,7 +703,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             return false
         })
         
-        let filteredAvailabilityBusyDays =  technicianDataJSON?.data?.availability_on_busy_days?.filter({ (resourceUtilisation) -> Bool in
+        let filteredAvailabilityBusyDays =  GlobalVariables.technicianDataJSON?.data?.availability_on_busy_days?.filter({ (resourceUtilisation) -> Bool in
             if let date = resourceUtilisation.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -721,9 +713,9 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         
         //Store occupancy denominator value
         var storeOccupancyDenominatorValue : Double = 0.0
-        let salonStations = technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+        let salonStations = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
         var totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1 //TODO::
-        let salonWorkingTime = technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
+        let salonWorkingTime = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
         storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
         
         
@@ -841,7 +833,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         let attendanceDate = calculateAttendanceForMonth()
         var attendanceCount : Int = 0
         
-        let attendanceData =  technicianDataJSON?.data?.attendance_data
+        let attendanceData =  GlobalVariables.technicianDataJSON?.data?.attendance_data
         if(attendanceData != nil) {
             for objAttendance in attendanceData! {
                 if(objAttendance.date!.contains(attendanceDate)){
@@ -976,10 +968,8 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         
         var filteredResourceUtilization = data
         
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
         //Date filter applied
-        filteredResourceUtilization = technicianDataJSON?.data?.resource_utilization?.filter({ (resourceUtilization) -> Bool in
+        filteredResourceUtilization = GlobalVariables.technicianDataJSON?.data?.resource_utilization?.filter({ (resourceUtilization) -> Bool in
             if let date = resourceUtilization.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -1047,7 +1037,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         }
         //        if(index == 3){//attendance
         //            //Date filter applied
-        //            let filteredAttendanceData = technicianDataJSON?.data?.attendance_data?.filter({ (resourceUtilization) -> Bool in
+        //            let filteredAttendanceData = GlobalVariables.technicianDataJSON?.data?.attendance_data?.filter({ (resourceUtilization) -> Bool in
         //                if let date = resourceUtilization.date?.date()?.startOfDay {
         //                    return date >= dateRange.start && date <= dateRange.end
         //                }
