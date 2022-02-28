@@ -163,7 +163,7 @@ enum EarningDetails : String {
     var graphBarColor: [UIColor] {
         switch self {
         case .Revenue: return [UIColor(red: 0.08, green: 0.70, blue: 0.55, alpha: 1.00), UIColor(red: 0.90, green: 0.25, blue: 0.45, alpha: 1.00)]
-        case .Sales: return [UIColor(red: 0.40, green: 0.73, blue: 0.88, alpha: 1.00)]//rgba(103, 185, 224, 1)
+        case .Sales: return [UIColor(red: 0.67, green: 0.91, blue: 0.78, alpha: 1.00), UIColor(red: 0.68, green: 0.87, blue: 0.99, alpha: 1.00)]//rgba(103, 185, 224, 1)
         case .FreeServices: return [UIColor(red: 1.00, green: 0.38, blue: 0.53, alpha: 1.00)]
         case .Footfall: return [UIColor(red: 1.00, green: 0.69, blue: 0.48, alpha: 1.00)]
         case .CustomerFeedback: return [UIColor(red: 0.50, green: 0.79, blue: 1.00, alpha: 1.00)]

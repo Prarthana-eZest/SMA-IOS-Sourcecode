@@ -17,6 +17,8 @@ protocol SalesDisplayLogic: class
   func displaySomething(viewModel: Sales.Something.ViewModel)
 }
 
+typealias DoubleBarGraphEntry = (barGraph:GraphDataEntry, barGraphRenew:GraphDataEntry)
+
 class SalesViewController: UIViewController, SalesDisplayLogic
 {
   var interactor: SalesBusinessLogic?
@@ -30,7 +32,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     
     var dataModels = [EarningsCellDataModel]()
     var graphData = [GraphDataEntry]()
-    
+    var graphDateRenew = [GraphDataEntry]()
     var dateSelectedTitle : String = ""
     
     var fromFilters : Bool = false
@@ -149,7 +151,14 @@ class SalesViewController: UIViewController, SalesDisplayLogic
             }
             
             update(modeData: model, withData: dateFilteredSales, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
-            graphData[selectedIndex] = getGraphEntry(model.title, forData: dateFilteredSales, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+//            graphData[selectedIndex] = getGraphEntry(model.title, forData: dateFilteredSales, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+//            graphData[selectedIndex] = graphData.barGraph
+//            graphDateRenew[selectedIndex] = graphData.lineGraph
+            
+            let graphDataa = getGraphEntry(model.title, forData: dateFilteredSales, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
+            graphData[selectedIndex] = graphDataa.barGraph
+            graphDateRenew[selectedIndex] = graphDataa.barGraphRenew
+            
         }
         else if let _ = headerModel {
             headerModel?.dateRangeType = rangeType
@@ -306,22 +315,35 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         //Data Model
         let membershipSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Membership", value: [membershipRevenueCount.roundedStringValue(), membershipRenewRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
         dataModels.append(membershipSalesModel)
-        //Graph Data
-        graphData.append(getGraphEntry(membershipSalesModel.title, forData: filteredSalesForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        //GraphDate
+        let membershipSalesGraphEntries = getGraphEntry(membershipSalesModel.title, forData: filteredSalesForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType)
+        graphData.append(membershipSalesGraphEntries.barGraph)
+        graphDateRenew.append(membershipSalesGraphEntries.barGraphRenew)
+      
+        
+//        graphData.append(getGraphEntry("New", forData: membershipSalesModel.gra, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
+//        graphDateRenew.append(getGraphEntry("Renew", forData: filteredSalesForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
         //value package revenue
         //Data Model
         let valuePackageSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Value Package", value: [valuePackageRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
         dataModels.append(valuePackageSalesModel)
         //Graph Data
-        graphData.append(getGraphEntry(valuePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
+//        graphData.append(getGraphEntry(valuePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        let valuePackageGraphEntries = getGraphEntry(valuePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType)
+        graphData.append(valuePackageGraphEntries.barGraph)
+        graphDateRenew.append(valuePackageGraphEntries.barGraphRenew)
         
         //service_package_revenue
         //Data Model
         let servicePackageSalesModel = EarningsCellDataModel(earningsType: .Sales, title: "Service Package", value: [servicePackageRevenueCount.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
         dataModels.append(servicePackageSalesModel)
         //Graph Data
-        graphData.append(getGraphEntry(servicePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
+//        graphData.append(getGraphEntry(servicePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        
+        let servicePackageGraphEntries = getGraphEntry(servicePackageSalesModel.title, forData: filteredSalesForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType)
+        graphData.append(servicePackageGraphEntries.barGraph)
+        graphDateRenew.append(servicePackageGraphEntries.barGraphRenew)
         
         headerModel =  EarningsHeaderDataModel(earningsType: .Sales, value: (membershipRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount + membershipRenewRevenueCount), isExpanded: false, dateRangeType: graphRangeType, customeDateRange: salesCutomeDateRange)
         
@@ -333,20 +355,34 @@ class SalesViewController: UIViewController, SalesDisplayLogic
     }
     
     //Graph functions
-    func getGraphEntry(_ title:String, forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> GraphDataEntry
+    func getGraphEntry(_ title:String, forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> DoubleBarGraphEntry
     {
         let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
         let values = graphData(forData: data, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType)
+        
         if(index == 0){//for New and Renewal
             let graphColor = EarningDetails.Sales.graphBarColor
             
-            return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor.first!)
+            let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "New", units: units, values: values, barColor: graphColor.first!)
+            
+            
+            let lineGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "Renewal", units: units, values:calculateMembershipRenewRevenue(filterArray: data ?? [], dateRange: dateRange, dateRangeType: dateRangeType) , barColor: graphColor.last!)
+            
+            return DoubleBarGraphEntry(barGraphEntry, lineGraphEntry)
+           // return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor.first!)
         }
         else {
             //singleValueTileColor
             let graphColor = EarningDetails.Sales.packageValueTileColor!
             
-            return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor)
+            let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor)
+            
+            
+            let lineGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "", units: units, values:calculateMembershipRenewRevenue(filterArray: [], dateRange: dateRange, dateRangeType: dateRangeType) , barColor: UIColor.clear)
+            
+            return DoubleBarGraphEntry(barGraphEntry, lineGraphEntry)
+            
+            //return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor)
         }
     }
     
@@ -415,6 +451,53 @@ class SalesViewController: UIViewController, SalesDisplayLogic
                 for objDt in dates {
                     let data = membershipRevenue.filter({$0.date == objDt})
                     let value = data.compactMap({$0.membership_new_revenue}).reduce(0){$0 + $1}
+                    salesValue.append(value)
+                }
+            }
+        }
+        return salesValue
+    }
+    
+    func calculateMembershipRenewRevenue(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction],  dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var salesValue = [Double]()
+        //membership sales
+    
+        let membershipRevenue = filterArray.filter({$0.membership_renew_revenue ?? 0 > 0})
+        
+        switch dateRangeType
+        {
+        
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                let data = membershipRevenue.filter({$0.date == objDt})
+                let value = data.compactMap({$0.membership_renew_revenue}).reduce(0){$0 + $1}
+                salesValue.append(value)
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+            for month in months {
+                let data = membershipRevenue.filter({($0.date?.contains(month)) ?? false})
+                let value = data.compactMap({$0.membership_renew_revenue}).reduce(0){$0 + $1}
+                salesValue.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+                for month in months {
+                    let data = membershipRevenue.filter({($0.date?.contains(month)) ?? false})
+                    let value = data.compactMap({$0.membership_renew_revenue}).reduce(0){$0 + $1}
+                    salesValue.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    let data = membershipRevenue.filter({$0.date == objDt})
+                    let value = data.compactMap({$0.membership_renew_revenue}).reduce(0){$0 + $1}
                     salesValue.append(value)
                 }
             }
@@ -849,8 +932,9 @@ extension SalesViewController: UITableViewDelegate, UITableViewDataSource {
             let index = indexPath.row - 1
             let model = dataModels[index]
             let barGraph = graphData[index]
+            let renewBarGraph = graphDateRenew[index]
             
-            cell.configureCell(model: model, data: [barGraph])
+            cell.configureCell(model: model, data: [barGraph, renewBarGraph])
             return cell
         }
         
