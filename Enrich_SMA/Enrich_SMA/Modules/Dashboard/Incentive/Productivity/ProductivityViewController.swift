@@ -39,9 +39,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     var dateRangeType : DateRangeType = .mtd
     var productivityCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
     
-    var technicianDataJSON: Dashboard.GetRevenueDashboard.Response?
-    
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -71,7 +68,6 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         bottomFilterView.delegate = self
         bottomFilterView.setup(.basic)
         doSomething()
@@ -110,7 +106,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         let dateRange = DateRange(startDate!, endDate)
         
         //Date filter applied
-        let dateFilteredProductivity = technicianDataJSON?.data?.quality_score_data?.filter({ (revenue) -> Bool in
+        let dateFilteredProductivity = GlobalVariables.technicianDataJSON?.data?.quality_score_data?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 return date >= dateRange.start && date <= dateRange.end
             }
@@ -147,7 +143,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         if data == nil, (data?.count ?? 0 <= 0) {
             
-            filteredProductivity = technicianDataJSON?.data?.quality_score_data?.filter({ (freeServices) -> Bool in
+            filteredProductivity = GlobalVariables.technicianDataJSON?.data?.quality_score_data?.filter({ (freeServices) -> Bool in
                 if let date = freeServices.date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -185,7 +181,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         dataModel.removeAll()
         graphData.removeAll()
         
-        let filteredProductivity = technicianDataJSON?.data?.quality_score_data?.filter({ (productivity) -> Bool in
+        let filteredProductivity = GlobalVariables.technicianDataJSON?.data?.quality_score_data?.filter({ (productivity) -> Bool in
             if let date = productivity.date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -217,7 +213,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         }
         
         //RM Optimization
-        let filteredrmOptimization = technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
+        let filteredrmOptimization = GlobalVariables.technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
             if let date = productivity.consumption_date?.date()?.startOfDay {
                 
                 return date >= startDate && date <= endDate
@@ -274,7 +270,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         //Revenue Per Team Member
         //Data Model
-        let salonActiveTech = technicianDataJSON?.data?.configuration?.salon_active_technicians ?? 0
+        let salonActiveTech = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_active_technicians ?? 0
         let revPerTeamMem = (totalRevenue / Double(salonActiveTech))
         let revPerTeamMemModel = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Team Member", value: [revPerTeamMem.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(revPerTeamMemModel)
@@ -283,7 +279,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         //Revenue Per Workstation
         //Data Model
-        let salonStation = technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+        let salonStation = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
         let revPerWorkStation = (totalRevenue / Double(salonStation))
         let revPerWorkStationModel = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Workstation", value: [revPerWorkStation.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(revPerWorkStationModel)
@@ -293,7 +289,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         
         //Revenue Per Square Feet
         //Data Model
-        let salonArea = technicianDataJSON?.data?.configuration?.salon_area ?? 0.0
+        let salonArea = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_area ?? 0.0
         var revPerSqrFeet = 0.0
         if(salonArea > 0){
             revPerSqrFeet = (totalRevenue / salonArea)
@@ -316,7 +312,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     //calculate total revenue
     func calculateRevenue(dateRange : DateRange) -> Double{
         
-        let filteredRevenue = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+        let filteredRevenue = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 
                 return date >= dateRange.start && date <= dateRange.end
@@ -354,7 +350,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             
             
             //Date filter applied
-            filteredProductivity = technicianDataJSON?.data?.quality_score_data?.filter({ (revenue) -> Bool in
+            filteredProductivity = GlobalVariables.technicianDataJSON?.data?.quality_score_data?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -369,7 +365,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             var rmOptimizationRemaning = 0
             
             
-            let filteredrmOptimization = technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
+            let filteredrmOptimization = GlobalVariables.technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
                 if let date = productivity.consumption_date?.date()?.startOfDay {
                     
                     return date >= dateRange.start && date <= dateRange.end
@@ -431,7 +427,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         var revenueMultipliers = [Double]()
         var filteredRevenueTransactions = data
         if data == nil, (data?.count ?? 0 <= 0) {
-            filteredRevenueTransactions = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenueTransactions) -> Bool in
+            filteredRevenueTransactions = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenueTransactions) -> Bool in
                 if let date = revenueTransactions.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -502,12 +498,12 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     }
     
     func revenueMultiplier(forData data:[Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, dateRange:DateRange, dateRangeType:DateRangeType) -> Double {
-        let strFormula = technicianDataJSON?.data?.configuration?.target_achievement_formula?.replacingOccurrences(of: "target", with: "salon_targets")
-        let configuration = technicianDataJSON?.data?.configuration?.dictionary
+        let strFormula = GlobalVariables.technicianDataJSON?.data?.configuration?.target_achievement_formula?.replacingOccurrences(of: "target", with: "salon_targets")
+        let configuration = GlobalVariables.technicianDataJSON?.data?.configuration?.dictionary
 
         var filteredRevenueTransactions:[[String:Any]]? = data?.compactMap({$0.dictionary})
         if data == nil, (data?.count ?? 0 <= 0) {
-            filteredRevenueTransactions = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenueTransactions) -> Bool in
+            filteredRevenueTransactions = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenueTransactions) -> Bool in
                 if let date = revenueTransactions.date?.date()?.startOfDay {
                     return date >= dateRange.start && date <= dateRange.end
                 }
@@ -527,7 +523,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                 revenueMultiExpressionData[comp] = sum
             }
             else if let keys = configuration?.keys, keys.contains(comp), comp == "salon_targets" {
-                let salonTargets = technicianDataJSON?.data?.configuration?.salon_targets ?? []
+                let salonTargets = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_targets ?? []
                 let currentMonthNo = Date().monthNo()
                 var monthsBetweenDates = dateRange.end.monthNumber(from: dateRange.start)
                 switch dateRangeType {
@@ -623,7 +619,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     func calculateRMOptimization(dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
         var rmOptimizationValues = [Double]()
 
-        let filteredrmOptimization = technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
+        let filteredrmOptimization = GlobalVariables.technicianDataJSON?.data?.rm_consumption?.filter({ (productivity) -> Bool in
             if let date = productivity.consumption_date?.date()?.startOfDay {
                 
                 return date >= dateRange.start && date <= dateRange.end

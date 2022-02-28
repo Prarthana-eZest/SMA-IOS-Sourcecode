@@ -233,3 +233,8 @@ enum CTCDetailsCode{
     static let MediclaimCoverage = "Mediclaim Coverage"
     static let LifeInsuranceCoverage = "Life Insurance Coverage"
 }
+
+enum GlobalVariables {
+    static var technicianDataJSON: Dashboard.GetRevenueDashboard.Response?
+}
+

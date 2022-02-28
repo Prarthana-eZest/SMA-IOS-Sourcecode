@@ -247,7 +247,8 @@ extension DashboardVC {
             let userDefaults = UserDefaults.standard
             userDefaults.set(encodable: model, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
             userDefaults.synchronize()
-            
+            GlobalVariables.technicianDataJSON = model
+
             let vc = TechnicianDashboardViewController.instantiate(fromAppStoryboard: .Incentives)
             self.navigationController?.pushViewController(vc, animated: true)
         }
