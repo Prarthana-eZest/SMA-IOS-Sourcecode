@@ -22,7 +22,7 @@ public enum APIErrorMessage: CustomStringConvertible {
 
 open class NetworkLayerAlamofire {
 
-    static let requestTimeOut: TimeInterval = 60
+    static let requestTimeOut: TimeInterval = 120
     public init() {
     }
 

@@ -845,8 +845,8 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
 //                    })
 //
 //                    categotyCount = filteredStrings?.count ?? 0
-                    print("############### \(objPenetration.compare_categories)")
-                    print("******************* \(objTransaction.category)")
+//                    print("############### \(objPenetration.compare_categories)")
+//                    print("******************* \(objTransaction.category)")
                     
 //                    if((objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: "Haircut")) || ($0.containsIgnoringCase(find: "HairColor")) || ($0.containsIgnoringCase(find: "Treatment")) || ($0.containsIgnoringCase(find: "Texture"))})) != nil){
 //

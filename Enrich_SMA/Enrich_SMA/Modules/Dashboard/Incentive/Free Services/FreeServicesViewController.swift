@@ -39,6 +39,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     
     var dateRangeType : DateRangeType = .mtd
     var freeServicesCutomeDateRange:DateRange = DateRange(Date.today.lastYear(), Date.today)
+    var technicianDataJSON: Dashboard.GetRevenueDashboard.Response?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
@@ -70,6 +71,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         bottomFilterView.delegate = self
         bottomFilterView.setup(.basic)
         doSomething()
@@ -103,8 +105,6 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     func updateFreeServiceScreenData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
         
         //Date filter applied
         let dateFilteredFreeService = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
@@ -143,8 +143,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
+          
             //Date filter applied
             filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
@@ -190,8 +189,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
+           
             //Date filter applied
             filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
                 if let date = revenue.date?.date()?.startOfDay {
@@ -235,10 +233,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         dataModel.removeAll()
         graphData.removeAll()
-        
-        let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-        
-        
+       
         let filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
             if let date = freeServices.date?.date()?.startOfDay {
                 
@@ -340,9 +335,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         var filteredFreeServices = data
         
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
-            
+           
             filteredFreeServices = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeServices) -> Bool in
                 if let date = freeServices.date?.date()?.startOfDay {
                     
@@ -380,8 +373,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         //Fetch Data incase not having filtered already
         if data == nil, (data?.count ?? 0 <= 0) {
-            let technicianDataJSON = UserDefaults.standard.value(Dashboard.GetRevenueDashboard.Response.self, forKey: UserDefauiltsKeys.k_key_RevenueDashboard)
-            
+           
             //Date filter applied
             filteredFreeService = technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
                 if let date = freeService.date?.date()?.startOfDay {
