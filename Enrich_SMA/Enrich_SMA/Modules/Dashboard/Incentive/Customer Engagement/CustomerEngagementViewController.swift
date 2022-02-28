@@ -199,7 +199,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                 //                                        ["",value1.abbrevationString, value2.abbrevationString] :
                 //                                        [value1.rounded().abbrevationString]
                 
-                dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: ["",String(filteredcustomerRepeat?.count ?? 0), value1.rounded().abbrevationString], subTitle: ["","Count", "Revenue"], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+                dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: ["",String(filteredcustomerRepeat?.count ?? 0), value1.roundedStringValue()], subTitle: ["","Count", "Revenue"], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
                 return
                 
             case 3://Customer Feedback Received

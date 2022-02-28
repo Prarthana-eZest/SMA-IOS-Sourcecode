@@ -160,8 +160,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
             endingLineNumber = "70"
-            landmarkName = "awakeFromNib()"
-            landmarkType = "7">
+            landmarkName = "EarningDetailsCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -177,22 +177,6 @@
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "layoutSubviews()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7CE0F069-878A-4104-AE86-68CE22EEC585"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Sales/SalesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "934"
-            endingLineNumber = "934"
-            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -592,8 +576,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
             endingLineNumber = "134"
-            landmarkName = "ProductivityViewController"
-            landmarkType = "3">
+            landmarkName = "getGraphEntry(_:forData:atIndex:dateRange:dateRangeType:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -738,6 +722,38 @@
             endingLineNumber = "863"
             landmarkName = "penetrationRatioData(startDate:endDate:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A2430189-E960-40E3-AC4D-B59B5D9CD6DA - ca62a444b7a15124"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SMA_Stage.PenetrationRatiosViewController.penetrationRatioData(startDate: Foundation.Date, endDate: Foundation.Date) -&gt; ()"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Penetration%20Ratios/PenetrationRatiosViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "864"
+                  endingLineNumber = "864"
+                  offsetFromSymbolStart = "33322">
+               </Location>
+               <Location
+                  uuid = "A2430189-E960-40E3-AC4D-B59B5D9CD6DA - e3ec549597f67227"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #12 (Swift.String) -&gt; Swift.Bool in SMA_Stage.PenetrationRatiosViewController.penetrationRatioData(startDate: Foundation.Date, endDate: Foundation.Date) -&gt; ()"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Penetration%20Ratios/PenetrationRatiosViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "864"
+                  endingLineNumber = "864"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -752,8 +768,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "709"
             endingLineNumber = "709"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "resourceUtilizationData(startDate:endDate:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -784,8 +800,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "676"
             endingLineNumber = "676"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "formattedData(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -800,8 +816,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "776"
             endingLineNumber = "776"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "resourceUtilizationData(startDate:endDate:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -816,8 +832,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "830"
             endingLineNumber = "830"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "resourceUtilizationData(startDate:endDate:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -896,8 +912,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "504"
             endingLineNumber = "504"
-            landmarkName = "FreeServicesViewController"
-            landmarkType = "3">
+            landmarkName = "calculateGroomingGiftCards(filterArray:dateRange:dateRangeType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E73D2F84-5384-4739-8E88-2A453FCDE805 - b4ea5f94dfee5e8a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SMA_Stage.FreeServicesViewController.calculateGroomingGiftCards(filterArray: Swift.Array&lt;SMA_Stage.Dashboard.GetRevenueDashboard.Revenue_transaction&gt;, dateRange: (start: Foundation.Date, end: Foundation.Date), dateRangeType: SMA_Stage.DateRangeType) -&gt; Swift.Array&lt;Swift.Double&gt;"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Free%20Services/FreeServicesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "505"
+                  endingLineNumber = "505"
+                  offsetFromSymbolStart = "553">
+               </Location>
+               <Location
+                  uuid = "E73D2F84-5384-4739-8E88-2A453FCDE805 - 23e59ea2561ebe42"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SMA_Stage.Dashboard.GetRevenueDashboard.Revenue_transaction) -&gt; Swift.Bool in SMA_Stage.FreeServicesViewController.calculateGroomingGiftCards(filterArray: Swift.Array&lt;SMA_Stage.Dashboard.GetRevenueDashboard.Revenue_transaction&gt;, dateRange: (start: Foundation.Date, end: Foundation.Date), dateRangeType: SMA_Stage.DateRangeType) -&gt; Swift.Array&lt;Swift.Double&gt;"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Free%20Services/FreeServicesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "505"
+                  endingLineNumber = "505"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -936,7 +984,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C521CCBC-77E8-4BF0-9FFF-11EE91AE58B5"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Sales/SalesViewController.swift"
@@ -952,7 +1000,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AD78B39D-A25A-4605-BF43-CCE7E0374BEA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Sales/SalesViewController.swift"
@@ -968,7 +1016,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BBDA6FAD-E03E-4111-8BDE-DCA360EBBB80"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Sales/SalesViewController.swift"
@@ -977,6 +1025,54 @@
             startingLineNumber = "467"
             endingLineNumber = "467"
             landmarkName = "calculateMembershipRenewRevenue(filterArray:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2DCE7A0-EB5E-491D-840E-BA78FC8978F1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "generateBarData(graphData:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "171A63B2-E8B0-4612-8B97-F9299899834B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Sales/SalesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "935"
+            endingLineNumber = "935"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "84E56AB1-6155-480C-8145-DF9B54F68D45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Sales/SalesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "salesData(startDate:endDate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

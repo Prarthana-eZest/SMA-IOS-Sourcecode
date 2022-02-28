@@ -172,7 +172,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
             print("****************** UNKNOWN ******************")
         }
         
-        dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [value.rounded().abbrevationString], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+        dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [value.roundedStringValue()], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
     }
     
     
@@ -343,7 +343,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
 
         //salon service
         //Data Model
-        let salonServiceModel = EarningsCellDataModel(earningsType: .Footfall, title: "Salon Service", value: [Double(salonServiceCount).abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: footfallCutomeDateRange)
+        let salonServiceModel = EarningsCellDataModel(earningsType: .Footfall, title: "Salon Service", value: [Double(salonServiceCount).roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: footfallCutomeDateRange)
         dataModel.append(salonServiceModel)
         //Graph Data
         graphData.append(getGraphEntry(salonServiceModel.title, forData: filteredFootfallForGraph, atIndex: 0, dateRange: graphDateRange, dateRangeType: graphRangeType))
@@ -351,14 +351,14 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
 
         //home service
         //Data Model
-        let homeServiceModel = EarningsCellDataModel(earningsType: .Footfall, title: "Home Service", value: [Double(homeServiceCount).abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: footfallCutomeDateRange)
+        let homeServiceModel = EarningsCellDataModel(earningsType: .Footfall, title: "Home Service", value: [Double(homeServiceCount).roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: footfallCutomeDateRange)
         dataModel.append(homeServiceModel)
         //Graph Data
         graphData.append(getGraphEntry(homeServiceModel.title, forData: filteredFootfallForGraph, atIndex: 1, dateRange: graphDateRange, dateRangeType: graphRangeType))
 
         //Retail service
         //Data Model
-        let retailProductModel = EarningsCellDataModel(earningsType: .Footfall, title: "Retail Products", value: [Double(retailCount).abbrevationString], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: footfallCutomeDateRange)
+        let retailProductModel = EarningsCellDataModel(earningsType: .Footfall, title: "Retail Products", value: [Double(retailCount).roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: footfallCutomeDateRange)
         dataModel.append(retailProductModel)
         //Graph Data
         graphData.append(getGraphEntry(retailProductModel.title, forData: filteredFootfallForGraph, atIndex: 2, dateRange: graphDateRange, dateRangeType: graphRangeType))
