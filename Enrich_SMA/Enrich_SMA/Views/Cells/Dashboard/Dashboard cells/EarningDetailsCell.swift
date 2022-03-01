@@ -145,7 +145,10 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         }
         graphDtFilter.setTitle(model.dateRangeType.rawValue, for: .normal)
 
-        drawGraph(graphData: data, showRightAxix: (model.earningsType == .CustomerEngagement || model.earningsType == .ResourceUtilisation), isFromRevenueScreen: isFromRevenueScreen)
+//        drawGraph(graphData: data, showRightAxix: (model.earningsType == .CustomerEngagement || model.earningsType == .ResourceUtilisation), isFromRevenueScreen: isFromRevenueScreen)
+
+        drawGraph(graphData: data, showRightAxix: false, isFromRevenueScreen: isFromRevenueScreen)
+        
         
         firstValueView.isHidden = model.cellType != .SingleValue
         
