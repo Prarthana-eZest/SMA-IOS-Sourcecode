@@ -275,6 +275,8 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         
         dataModels.removeAll()
         graphData.removeAll()
+        graphDateRenew.removeAll()
+
         
         let filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (sales) -> Bool in
             if let date = sales.date?.date()?.startOfDay {
