@@ -742,7 +742,7 @@ extension RevenuesViewController: UITableViewDelegate, UITableViewDataSource {
             let barGraph = barGraphData[index]
             let lineGraph = lineGraphData[index]
             
-            cell.configureCell(model: model, data: [lineGraph, barGraph])
+            cell.configureCell(model: model, data: [lineGraph, barGraph], isFromRevenueScreen: true)
             return cell
         }
     }
