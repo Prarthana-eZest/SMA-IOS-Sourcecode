@@ -193,7 +193,7 @@ extension UIViewController {
                 dateRangeUpdate.end = Date.today.nextQuarter()
                 return dateRangeUpdate.end.monthNames(from: dateRangeUpdate.start,withFormat: "MMM yy")
             }
-            else if(dateRange.end.monthNumber(from: dateRange.start)[0] < 3){
+            else if(dateRange.end.monthNumber(from: dateRange.start)[0] > 3){
                 var dateRangeUpdate = DateRange(dateRange.start, dateRange.end)
                 dateRangeUpdate.end = Date.today.showQuarterWithThreeMonths()
                 return dateRangeUpdate.end.monthNames(from: dateRangeUpdate.start,withFormat: "MMM yy")

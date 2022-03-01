@@ -768,7 +768,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "255"
             endingLineNumber = "255"
-            landmarkName = "numberOfDaysFromDates(startDate:fromDate:)"
+            landmarkName = "day(withFormat:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -983,22 +983,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D2DCE7A0-EB5E-491D-840E-BA78FC8978F1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "drawGraph(graphData:showRightAxix:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "171A63B2-E8B0-4612-8B97-F9299899834B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1105,6 +1089,22 @@
             startingLineNumber = "355"
             endingLineNumber = "355"
             landmarkName = "generateBarData(graphData:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8720CDF-7AEA-4DB9-A15B-3C47ED951B6F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Utility/Extensions/ExtentionViewcontroller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "xAxisUnits(forDateRange:rangeType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
