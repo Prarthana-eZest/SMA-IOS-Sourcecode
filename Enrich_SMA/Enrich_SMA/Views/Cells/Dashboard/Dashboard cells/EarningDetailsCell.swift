@@ -124,7 +124,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         secondValueView.backgroundColor = UIColor(red: 96/255.0, green: 201/255.0, blue: 255/255.0, alpha: 0.59)
     }
     
-    func configureCell(model: EarningsCellDataModel, data: [GraphDataEntry]) {
+    func configureCell(model: EarningsCellDataModel, data: [GraphDataEntry], isFromRevenueScreen: Bool = false) {
         resetDataView()
         self.model = model
         self.lblTitle.text = model.title
@@ -145,7 +145,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         }
         graphDtFilter.setTitle(model.dateRangeType.rawValue, for: .normal)
 
-            drawGraph(graphData: data, showRightAxix: (model.earningsType == .CustomerEngagement || model.earningsType == .ResourceUtilisation))
+        drawGraph(graphData: data, showRightAxix: (model.earningsType == .CustomerEngagement || model.earningsType == .ResourceUtilisation), isFromRevenueScreen: isFromRevenueScreen)
         
         firstValueView.isHidden = model.cellType != .SingleValue
         
@@ -210,7 +210,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
 
 extension EarningDetailsCell {
     
-    func drawGraph(graphData: [GraphDataEntry], showRightAxix: Bool) {
+    func drawGraph(graphData: [GraphDataEntry], showRightAxix: Bool, isFromRevenueScreen: Bool) {
         dataModel = graphData
     
         chartView.noDataText = "You need to provide data for the chart."
@@ -219,7 +219,7 @@ extension EarningDetailsCell {
         
         let barData = graphData.filter { $0.graphType == .barGraph }
         if !barData.isEmpty {
-            data.barData = generateBarData(graphData: barData)
+            data.barData = generateBarData(graphData: barData, isFromRevenueScreen: isFromRevenueScreen)
         }
 
         if let lineData = graphData.first(where: { $0.graphType == .linedGraph }) {
@@ -246,24 +246,21 @@ extension EarningDetailsCell {
         xAxis.drawGridLinesEnabled = false
         xAxis.axisLineWidth = 0.5
         xAxis.gridLineDashLengths = [(5.0)]
-        if graphData.count == 1 {
+        if graphData.count == 1 || isFromRevenueScreen {
             xAxis.axisMinimum = 0.5
             xAxis.axisMaximum = Double(graphData.first?.units.count ?? 0) + 1
             xAxis.spaceMin = 0.3
             xAxis.spaceMax = 0.3
         } else if graphData.count == 2 {
-            //xAxis.centerAxisLabelsEnabled = true
-            let groupSpace = 0.3
+            let groupSpace = 0.4
             let barSpace = 0.0
-            let barWidth = 0.3
-            // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
-
-            let groupCount = Double(graphData.first?.units.count ?? 0) + 1
-            let startYear = 0.0
-
-            xAxis.axisMinimum = Double(startYear)
-            let gg = data.barData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-            xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
+            xAxis.centerAxisLabelsEnabled = true
+            xAxis.granularityEnabled = true
+                    
+            xAxis.axisMinimum = 0.0
+            xAxis.axisMaximum = 0.0 + data.barData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(graphData.first?.units.count ?? 0)
+                    
+            chartView.xAxis.granularity = chartView.xAxis.axisMaximum / Double(graphData.first?.units.count ?? 0)
         }
         
         
@@ -322,11 +319,11 @@ extension EarningDetailsCell {
         chartView.fitScreen()
     }
     
-    func generateBarData(graphData: [GraphDataEntry]) -> BarChartData{
+    func generateBarData(graphData: [GraphDataEntry], isFromRevenueScreen: Bool) -> BarChartData{
         
         let barChartData = BarChartData()
         
-        if graphData.count == 1 {
+        if graphData.count == 1 || isFromRevenueScreen {
             graphData.forEach { data in
                 var dataEntries: [BarChartDataEntry] = []
                 
@@ -370,21 +367,11 @@ extension EarningDetailsCell {
             chartDataSet1.highlightColor = UIColor.clear
             barChartData.addDataSet(chartDataSet1)
             
-            let groupSpace = 0.3
+            let groupSpace = 0.4
             let barSpace = 0.0
-            let barWidth = 0.3
-            // (0.3 + 0.05) * 2 + 0.3 = 1.00 -> interval per "group"
-
-            let groupCount = graphData[0].values.count
-            let startYear = 0
-
+            let barWidth = 0.2
             barChartData.barWidth = barWidth
-            //barChartData.xAxis.axisMinimum = Double(startYear)
-            let gg = barChartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
-            //barChartView.xAxis.axisMaximum = Double(startYear) + gg * Double(groupCount)
-
-            barChartData.groupBars(fromX: Double(startYear), groupSpace: groupSpace, barSpace: barSpace)
-
+            barChartData.groupBars(fromX: 0, groupSpace: groupSpace, barSpace: barSpace)
         }
         return barChartData
     }
