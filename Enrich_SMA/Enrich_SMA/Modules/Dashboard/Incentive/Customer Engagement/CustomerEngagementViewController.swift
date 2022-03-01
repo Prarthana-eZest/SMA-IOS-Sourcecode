@@ -373,50 +373,6 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         //Graph Data
         graphData.append(getGraphEntry(hygineSafetyStandModel.title, forData: filteredFreeServiceForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
-////        //Offered Tea / Coffee = 5
-////        let offeredTeaCoffee = filteredCustomerEngagement?.filter({$0.technician_avg_ratings ?? 0 > 0}) ?? []
-////        var offeredTeaCoffeeCount : Double = 0.0
-////        for objofferedTeaCoffee in offeredTeaCoffee {
-////            offeredTeaCoffeeCount = offeredTeaCoffeeCount + (objofferedTeaCoffee.technician_avg_ratings ?? 0)
-////        }
-////        let offeredTeaCoffeeShowData = offeredTeaCoffeeCount / Double(filteredCustomerEngagement?.count ?? 0)
-//
-//        //Data Model
-//        let offeredTeaCoffeeModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Offered Tea / Coffee", value: [offeredTeaCoffeeShowData.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
-//        dataModel.append(offeredTeaCoffeeModel)
-//        //Graph Data
-//        graphData.append(getGraphEntry(offeredTeaCoffeeModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
-        
-      /*  //customer feedback received
-        let customerFeedbackReceived = filteredCustomerEngagement?.filter({$0.no_of_feedbacks ?? 0 > 0}) ?? []
-        var customerFeedbackReceivedCount : Double = 0.0
-        for objcustomerFeedbackReceived in customerFeedbackReceived {
-            customerFeedbackReceivedCount = customerFeedbackReceivedCount +  Double(objcustomerFeedbackReceived.no_of_feedbacks ?? 0)
-        }
-        
-        print("Customer Feedback \(customerFeedbackReceivedCount)")
-        
-        //customers served
-        let customersServed = filteredCustomerEngagement?.filter({$0.no_of_services ?? 0 > 0}) ?? []
-        var customersServedCount : Double = 0.0
-        for objCustomersServed in customersServed {
-            customersServedCount = customersServedCount + Double(objCustomersServed.no_of_services ?? 0)
-        }
-        
-        print("Customers Served \(customersServedCount)")
-        
-        
-        //feedback count
-        var feedbackCount = (customerFeedbackReceivedCount / customersServedCount)
-        if(customerFeedbackReceivedCount == 0 || customersServedCount == 0){
-            feedbackCount = 0
-        }
-        if(customerInteractionShowData < 0 || customerInteractionShowData.abbrevationString == "NaN")
-        {
-            customerInteractionShowData = 0
-        }
-       */
-        
         //Customer repeat = 5
         
         let filteredcustomerRepeat = GlobalVariables.technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
@@ -520,13 +476,21 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             return calculateEaseOfBilling(filterArray: filteredCustomerEngagement ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
         else if(index == 3){//customer interaction bmt
-            return calculateCustomerFeedbackReceived(filterArray: filteredCustomerEngagement!, dateRange: dateRange, dateRangeType: dateRangeType)
+            return calculateCustomerInteractionBMT(filterArray: filteredCustomerEngagement ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+           // return calculateCustomerFeedbackReceived(filterArray: filteredCustomerEngagement!, dateRange: dateRange, dateRangeType: dateRangeType)
         }
         else if(index == 4){ //Hygine and safety standards
             return calculateHygineAndSafety(filterArray: filteredCustomerEngagement!, dateRange: dateRange, dateRangeType: dateRangeType)
         }
         else { //feedback count - need to replace with cutomer repeat for SMA
-            return calculateCustomersFeedbakCount(filterArray: filteredCustomerEngagement!, dateRange: dateRange, dateRangeType: dateRangeType)
+            let filteredcustomerRepeat = GlobalVariables.technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
+                if let date = customerEngagement.date?.date()?.startOfDay {
+                    
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            }) ?? []
+            return calculateCustomerRepeat(filterArray: filteredcustomerRepeat, dateRange: dateRange, dateRangeType: dateRangeType)
         }
     }
     
@@ -896,13 +860,14 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         case .yesterday, .today, .week, .mtd:
             let dates = dateRange.end.dayDates(from: dateRange.start)
             for objDt in dates {
-                if let data = filteredcustomerRepeat.filter({$0.date == objDt}).first
-                {
-                    graphValues.append(Double(data.service_revenue ?? 0))
-                }
-                else {
-                    graphValues.append(Double(0.0))
-                }
+//                if let data = filteredcustomerRepeat.filter({$0.date == objDt}).first
+//                {
+//                    graphValues.append(Double(data.service_revenue ?? 0))
+//                }
+//                else {
+//                    graphValues.append(Double(0.0))
+//                }
+                graphValues.append(Double(filteredcustomerRepeat.filter({$0.date == objDt}).count))
             }
         case .qtd, .ytd:
             let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
@@ -911,12 +876,12 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                     if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
                        rMonth == qMonth
                     {
-                        return Double(revenue.service_revenue ?? 0)
+                        return Double(1)
                     }
                     return 0.0
                 }).reduce(0) {$0 + $1}
                 
-                graphValues.append(value)
+                graphValues.append(Double(value))
             }
             
         case .cutome:
@@ -929,7 +894,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                         if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
                            rMonth == qMonth
                         {
-                            return Double(rewards.service_revenue ?? 0)
+                            return Double(1)
                         }
                         return 0.0
                     }).reduce(0) {$0 + $1}
@@ -940,13 +905,14 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             else {
                 let dates = dateRange.end.dayDates(from: dateRange.start)
                 for objDt in dates {
-                    if let data = filteredcustomerRepeat.filter({$0.date == objDt}).first
-                    {
-                        graphValues.append(Double(data.service_revenue ?? 0))
-                    }
-                    else {
-                        graphValues.append(Double(0.0))
-                    }
+//                    if let data = filteredcustomerRepeat.filter({$0.date == objDt}).count
+//                    {
+//                        graphValues.append(Double(data))
+//                    }
+//                    else {
+//                        graphValues.append(Double(0.0))
+//                    }
+                    graphValues.append(Double(filteredcustomerRepeat.filter({$0.date == objDt}).count))
                 }
             }
         }
