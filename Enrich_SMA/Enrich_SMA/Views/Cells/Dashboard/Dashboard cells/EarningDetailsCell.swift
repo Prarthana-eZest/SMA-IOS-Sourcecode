@@ -203,7 +203,7 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
             var text = ""
             data.forEach {
                 text.append(!text.isEmpty ? "\n" : "")
-                text.append("\($0.dataTitle) \($0.values[entryIndex])")
+                text.append("\($0.dataTitle) \($0.values[entryIndex].roundedStringValue(toFractionDigits: 2))")
             }
             self.parentVC?.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
         }
@@ -254,6 +254,7 @@ extension EarningDetailsCell {
             xAxis.axisMaximum = Double(graphData.first?.units.count ?? 0) + 1
             xAxis.spaceMin = 0.3
             xAxis.spaceMax = 0.3
+            
         } else if graphData.count == 2 {
             let groupSpace = 0.4
             let barSpace = 0.0
@@ -262,7 +263,9 @@ extension EarningDetailsCell {
                     
             xAxis.axisMinimum = 0.0
             xAxis.axisMaximum = 0.0 + data.barData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(graphData.first?.units.count ?? 0)
-                    
+            let formatter = CustomLabelsXAxisValueFormatter()//custom value formatter
+            formatter.labels = graphData.first?.units ?? []
+            xAxis.valueFormatter = formatter
             chartView.xAxis.granularity = chartView.xAxis.axisMaximum / Double(graphData.first?.units.count ?? 0)
         }
         

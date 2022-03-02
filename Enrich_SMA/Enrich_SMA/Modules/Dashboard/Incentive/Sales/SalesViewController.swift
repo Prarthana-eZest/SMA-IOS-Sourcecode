@@ -219,8 +219,8 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         }
         
         let values = index == 0 ?
-            ["",value1.abbrevationString, value2.abbrevationString] :
-            [value1.rounded().abbrevationString]
+            [value1.roundedStringValue(), value2.roundedStringValue()] :
+            [value1.rounded().roundedStringValue()]
         
         dataModels[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: values, subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
     }

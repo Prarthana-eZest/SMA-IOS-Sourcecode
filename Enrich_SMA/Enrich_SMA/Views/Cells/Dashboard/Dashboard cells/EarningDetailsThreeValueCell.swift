@@ -133,7 +133,7 @@ class EarningDetailsThreeValueCell: UITableViewCell, ChartViewDelegate {
             var text = ""
             data.forEach {
                 text.append(!text.isEmpty ? "\n" : "")
-                text.append("\($0.dataTitle) \($0.values[entryIndex])")
+                text.append("\($0.dataTitle) \($0.values[entryIndex].roundedStringValue(toFractionDigits: 2))")
             }
             self.parentVC?.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
         }

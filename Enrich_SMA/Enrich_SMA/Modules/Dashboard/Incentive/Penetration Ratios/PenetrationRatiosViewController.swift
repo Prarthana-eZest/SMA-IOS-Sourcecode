@@ -588,23 +588,51 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         var subCategoryCount : Int = 0
         var ratio : Double = 0.0
         var filterPenetrationArrayWithCategoryData = [Dashboard.GetRevenueDashboard.Revenue_transaction]()
+//        if(penetrationRatioFromServer.count > 0){
+//            for objTransaction in penetrationRatio  {
+//                for objPenetration in penetrationRatioFromServer {
+//                    if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
+//                        categotyCount = categotyCount + 1
+//                        filterPenetrationArrayWithCategoryData.append(objTransaction)
+//                    }
+//
+//                    if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
+//                        subCategoryCount = subCategoryCount + 1
+//                        filterPenetrationArrayWithCategoryData.append(objTransaction)
+//                    }
+//                }
+//            }
+//        }
+        //service count
+        let filteredPenetrationRatio = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (penetrationRatio) -> Bool in
+            if let date = penetrationRatio.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        }) ?? []
+        let serviceCount = filteredPenetrationRatio.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
+        
         if(penetrationRatioFromServer.count > 0){
-            for objTransaction in penetrationRatio  {
-                for objPenetration in penetrationRatioFromServer {
-                    if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
-                        categotyCount = categotyCount + 1
-                        filterPenetrationArrayWithCategoryData.append(objTransaction)
-                    }
+            for objPenetration in penetrationRatioFromServer {
+                
+                for objTransaction in penetrationRatio {
                     
-                    if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
-                        subCategoryCount = subCategoryCount + 1
+                    let filter = objPenetration.compare_categories?.filter({($0 == objTransaction.category ?? "") || ($0 == objTransaction.sub_category ?? "")})
+                    categotyCount += filter?.count ?? 0
+                    
+                    if(objPenetration.to_compare_categories?.contains("All") == true){
+                        filterPenetrationArrayWithCategoryData.append(objTransaction)
+                        subCategoryCount = serviceCount.count
+                    }
+                    else {
+                    let catfilter = objPenetration.to_compare_categories?.filter({($0 == objTransaction.sub_category ?? "") || ($0 == objTransaction.category ?? "")})
+                    subCategoryCount += catfilter?.count ?? 0
                         filterPenetrationArrayWithCategoryData.append(objTransaction)
                     }
                 }
             }
         }
-        
-        
         switch dateRangeType
         {
         case .yesterday, .today, .week, .mtd:
@@ -833,27 +861,6 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 
                 for objTransaction in filteredPenetrationRatio {
                     
-//                    let filteredStrings = objPenetration.compare_categories?.filter({(category: String) -> Bool in
-//
-//                        let cnt = category.range(of: objTransaction.category ?? "")
-//                         return cnt != nil ? true : false
-//                    })
-//
-//                    categotyCount = filteredStrings?.count ?? 0
-//                    print("############### \(objPenetration.compare_categories)")
-//                    print("******************* \(objTransaction.category)")
-                    
-//                    if((objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: "Haircut")) || ($0.containsIgnoringCase(find: "HairColor")) || ($0.containsIgnoringCase(find: "Treatment")) || ($0.containsIgnoringCase(find: "Texture"))})) != nil){
-//
-//                        let filter = objPenetration.compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.sub_category ?? ""))})
-//                        categotyCount += filter?.count ?? 0
-//
-//                        let catfilter = objPenetration.to_compare_categories?.filter({($0.containsIgnoringCase(find: objTransaction.sub_category ?? "")) && ($0.containsIgnoringCase(find: objTransaction.category ?? ""))})
-//                        subCategoryCount += catfilter?.count ?? 0
-//
-//
-//                    }
-//                    else {
                     let filter = objPenetration.compare_categories?.filter({($0 == objTransaction.category ?? "") || ($0 == objTransaction.sub_category ?? "")})
                     categotyCount += filter?.count ?? 0
                     
