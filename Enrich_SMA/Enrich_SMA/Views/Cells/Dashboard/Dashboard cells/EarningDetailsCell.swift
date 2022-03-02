@@ -134,6 +134,8 @@ class EarningDetailsCell: UITableViewCell, ChartViewDelegate {
         self.lblSubTitle.text = model.subTitle[0]
         trendlineView.isHidden = !model.showGraph
         chartParentView.isHidden = !model.isExpanded
+        imageDropDown.transform =  model.isExpanded ? CGAffineTransform(rotationAngle: .pi) : CGAffineTransform.identity
+        btnTreandline.setTitle(model.isExpanded ? "Hide Trendline" : "View Trendline", for: .normal)
         if(model.earningsType == .CustomerEngagement)
         {
             lblLeftAxis.isHidden = false

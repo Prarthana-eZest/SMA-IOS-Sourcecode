@@ -125,47 +125,39 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
             graphData[selectedIndex] = getGraphEntry(model.title, atIndex: selectedIndex, dateRange: dateRange, dateRangeType: rangeType)
         }
         
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        reloadData()
     }
     
     func getGraphEntry(_ title:String, forData data:[Dashboard.GetRevenueDashboard.Quality_score_data]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> GraphDataEntry
     {
         let units = xAxisUnits(forDateRange: dateRange, rangeType: dateRangeType)
-        let values = graphData(forData: data, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType)
+        var values: [Double] = []
+        switch index {
+        case 0: //RM Optimization
+            values = calculateRMOptimization(dateRange: dateRange, dateRangeType: dateRangeType)
+        case 1: //Quality & Safety Audit
+            var filteredProductivity = data
+            if data == nil, (data?.count ?? 0 <= 0) {
+                filteredProductivity = GlobalVariables.technicianDataJSON?.data?.quality_score_data?.filter({ (freeServices) -> Bool in
+                    if let date = freeServices.date?.date()?.startOfDay {
+                        
+                        return date >= dateRange.start && date <= dateRange.end
+                    }
+                    return false
+                })
+            }
+            values = calculateQualityAndSafetyAudit(filterArray: filteredProductivity ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        case 2:
+            values = calculateRevenueMultipliers(dateRange: dateRange, dateRangeType: dateRangeType)
+        case 3, 4, 5:
+            values = calculateRevenues(at: index, dateRange: dateRange, dateRangeType: dateRangeType)
+        default: break
+        }
         let graphColor = EarningDetails.Productivity.graphBarColor
         
         return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor.first!)
     }
-    
-    func graphData(forData data:[Dashboard.GetRevenueDashboard.Quality_score_data]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double] {
 
-        var filteredProductivity = data
-        
-        if data == nil, (data?.count ?? 0 <= 0) {
-            
-            filteredProductivity = GlobalVariables.technicianDataJSON?.data?.quality_score_data?.filter({ (freeServices) -> Bool in
-                if let date = freeServices.date?.date()?.startOfDay {
-                    
-                    return date >= dateRange.start && date <= dateRange.end
-                }
-                return false
-            })
-        }
-        
-        
-        //RM Optimization
-        if(index == 0){
-            return calculateRMOptimization(dateRange: dateRange, dateRangeType: dateRangeType)
-        }
-        else if(index == 1){ // quality and safety audit
-            return calculateQualityAndSafetyAudit(filterArray: filteredProductivity ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
-        }
-        // TODO: check with Firoz
-        else{ // Revnue multiplier
-            return calculateRevenueMultipliers(dateRange: dateRange, dateRangeType: dateRangeType)
-        }
-    }
-    
     func doSomething()
     {
         let request = Productivity.Something.Request()
@@ -300,7 +292,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         let revPerSqrFeetModel = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Square Feet", value: [revPerSqrFeet.roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         dataModel.append(revPerSqrFeetModel)
         //Graph Data
-        graphData.append(getGraphEntry(revPerSqrFeetModel.title, forData: filteredProductivityForGraph, atIndex: 4, dateRange: graphDateRange, dateRangeType: graphRangeType))
+        graphData.append(getGraphEntry(revPerSqrFeetModel.title, forData: filteredProductivityForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
         
         headerModel =  EarningsHeaderDataModel(earningsType: .Productivity, value: 0.0, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: productivityCutomeDateRange)
         headerModel?.value = Double("")
@@ -312,33 +304,19 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
     //calculate total revenue
     func calculateRevenue(dateRange : DateRange) -> Double{
         
-        let filteredRevenue = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+        var filteredRevenue = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
             if let date = revenue.date?.date()?.startOfDay {
                 
                 return date >= dateRange.start && date <= dateRange.end
             }
             return false
         })
-        // Revenue Screen
-//        let serviceData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon)}) ?? []
-//
-//        let homeServiceRevenueData = filteredRevenue?.filter({($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home)}) ?? []
-//
-//        let retailData = filteredRevenue?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)}) ?? []
         
-        let serviceData = filteredRevenue?.filter({ $0.appointment_type  == AppointmentTypes.salon }) ?? []
+        filteredRevenue = filteredRevenue?.filter({ ($0.appointment_type  == AppointmentTypes.salon) || ($0.appointment_type  == AppointmentTypes.home) || ($0.product_category_type  == CategoryTypes.retail) }) ?? []
         
-        let homeServiceRevenueData = filteredRevenue?.filter({ $0.appointment_type  == AppointmentTypes.home }) ?? []
-        
-        let retailData = filteredRevenue?.filter({$0.product_category_type  == CategoryTypes.retail }) ?? []
-        
-        let serviceTotal = serviceData.reduce(0) { $0 + ($1.total ?? 0)}
-        
-        let homeServiceTotal = homeServiceRevenueData.reduce(0) { $0 + ($1.total ?? 0)}
-        
-        let retailTotal = retailData.reduce(0) { $0 + ($1.total ?? 0)}
+        let allRevenue = filteredRevenue?.reduce(0) { $0 + ($1.total ?? 0)}
 
-        return serviceTotal + homeServiceTotal + retailTotal
+        return allRevenue ?? 0.0
     }
     
     func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Quality_score_data]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
@@ -357,6 +335,9 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                 return false
             })
         }
+        
+        //total revenue
+        let totalRevenue = calculateRevenue(dateRange: dateRange)
         
         switch index {
         case 0:
@@ -413,11 +394,33 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         case 2:
             // Revenue multiplier
             let revenueMulti = revenueMultiplier(dateRange: dateRange, dateRangeType: dateRangeType)
-            dataModel[index] = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Multiplier", value: [revenueMulti.roundedStringValue(toFractionDigits: 2)], subTitle: [""], showGraph: modeData.showGraph, cellType: .SingleValue, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+            dataModel[index] = EarningsCellDataModel(earningsType: .Productivity, title: "Target Achivement", value: [revenueMulti.percent], subTitle: [""], showGraph: modeData.showGraph, cellType: .SingleValue, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
             
+        case 3:
+            //Revenue Per Team Member
+            let salonActiveTech = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_active_technicians ?? 0
+            let revPerTeamMem = (totalRevenue / Double(salonActiveTech))
+            dataModel[index] = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Team Member", value: [revPerTeamMem.roundedStringValue()], subTitle: [""], showGraph: modeData.showGraph, cellType: .SingleValue, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+        case 4:
+            //Revenue Per Workstation
+            //Data Model
+            let salonStation = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+            let revPerWorkStation = (totalRevenue / Double(salonStation))
+            dataModel[index] = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Workstation", value: [revPerWorkStation.roundedStringValue()], subTitle: [""], showGraph: modeData.showGraph, cellType: .SingleValue, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+            
+        case 5:
+            //Revenue Per Square Feet
+            let salonArea = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_area ?? 0.0
+            var revPerSqrFeet = 0.0
+            if(salonArea > 0){
+                revPerSqrFeet = (totalRevenue / salonArea)
+            }
+            else {
+                revPerSqrFeet = 0.0
+            }
+            dataModel[index] = EarningsCellDataModel(earningsType: .Productivity, title: "Revenue Per Square Feet", value: [revPerSqrFeet.roundedStringValue()], subTitle: [""], showGraph: modeData.showGraph, cellType: .SingleValue, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
         default:
             break
-        //                continue
         }
     }
     
@@ -444,7 +447,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                 if let transactions = filteredRevenueTransactions?.filter({$0.date == objDt}), let date = objDt.date()
                 {
                     let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date), dateRangeType: dateRangeType)
-                    revenueMultipliers.append(result)
+                    revenueMultipliers.append(result * 100)
                 }
                 else {
                     revenueMultipliers.append(0.0)
@@ -460,7 +463,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                     let monthDateRange = DateRange(mStartDate, mEndDate)
                     result = revenueMultiplier(dateRange: monthDateRange, dateRangeType: dateRangeType)
                 }
-                revenueMultipliers.append(result)
+                revenueMultipliers.append(result * 100)
             }
             
         case .cutome:
@@ -476,7 +479,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                         let monthDateRange = DateRange(mStartDate, mEndDate)
                         result = revenueMultiplier(dateRange: monthDateRange, dateRangeType: dateRangeType)
                     }
-                    revenueMultipliers.append(result)
+                    revenueMultipliers.append(result * 100)
                 }
             }
             else {
@@ -485,7 +488,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                     if let transactions = filteredRevenueTransactions?.filter({$0.date == objDt}), let date = objDt.date()
                     {
                         let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date), dateRangeType: dateRangeType)
-                        revenueMultipliers.append(result)
+                        revenueMultipliers.append(result * 100)
                     }
                     else {
                         revenueMultipliers.append(0.0)
@@ -768,6 +771,74 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
         return qualityAndSafetyValues
     }
     
+    //calculate data for revenue per team member for graphs
+    func calculateRevenues(at index: Int, dateRange:DateRange, dateRangeType: DateRangeType) -> [Double] {
+        
+        var values = [Double]()
+        
+        var filteredRevenue = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (revenue) -> Bool in
+            if let date = revenue.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        })
+        
+        filteredRevenue = filteredRevenue?.filter({ ($0.appointment_type  == AppointmentTypes.salon) || ($0.appointment_type  == AppointmentTypes.home) || ($0.product_category_type  == CategoryTypes.retail) }) ?? []
+                
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                let data = filteredRevenue?.filter({$0.date == objDt})
+                let value = data?.compactMap({$0.total}).reduce(0){$0 + $1} ?? 0.0
+                values.append(value/revenueDivident(index: index))
+            }
+            
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+            for month in months {
+                let data = filteredRevenue?.filter({($0.date?.contains(month)) ?? false}).map({$0.total})
+                let value = data?.reduce(0) {$0 + ($1 ?? 0.0)} ?? 0.0
+                values.append(value/revenueDivident(index: index))
+            }
+            
+        case .cutome:
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "yyyy-MM")
+                for month in months {
+                    let data = filteredRevenue?.filter({($0.date?.contains(month)) ?? false}).map({$0.total})
+                    let value = data?.reduce(0) {$0 + ($1 ?? 0.0)} ?? 0.0
+                    values.append(value/revenueDivident(index: index))
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    let data = filteredRevenue?.filter({$0.date == objDt})
+                    let value = data?.compactMap({$0.total}).reduce(0){$0 + $1} ?? 0.0
+                    values.append(value/revenueDivident(index: index))
+                }
+            }
+        }
+        return values
+    }
+    
+    func revenueDivident(index: Int) -> Double {
+        var divident: Int = 0
+        switch index {
+        case 3: //Revenue Per Team Member
+            divident = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_active_technicians ?? 0
+        case 4: //Revenue Per WorkStation
+            divident = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+        case 5: //Revenue Per Square Feet
+            return GlobalVariables.technicianDataJSON?.data?.configuration?.salon_area ?? 0
+        default: break
+        }
+        return Double(divident)
+    }
 }
 
 extension ProductivityViewController: EarningsFilterDelegate {
@@ -841,7 +912,7 @@ extension ProductivityViewController: EarningDetailsDelegate {
                 let rangeType  = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
                 updateProductivityData(atIndex: indexPath, withStartDate: startDate, endDate: endDate!, rangeType: rangeType)
                 
-                tableView.reloadRows(at: [indexPath], with: .automatic)
+                self.reloadData()
                 let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
                 self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
             }
