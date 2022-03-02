@@ -447,7 +447,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                 if let transactions = filteredRevenueTransactions?.filter({$0.date == objDt}), let date = objDt.date()
                 {
                     let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date), dateRangeType: dateRangeType)
-                    revenueMultipliers.append(result)
+                    revenueMultipliers.append(result * 100)
                 }
                 else {
                     revenueMultipliers.append(0.0)
@@ -463,7 +463,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                     let monthDateRange = DateRange(mStartDate, mEndDate)
                     result = revenueMultiplier(dateRange: monthDateRange, dateRangeType: dateRangeType)
                 }
-                revenueMultipliers.append(result)
+                revenueMultipliers.append(result * 100)
             }
             
         case .cutome:
@@ -479,7 +479,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                         let monthDateRange = DateRange(mStartDate, mEndDate)
                         result = revenueMultiplier(dateRange: monthDateRange, dateRangeType: dateRangeType)
                     }
-                    revenueMultipliers.append(result)
+                    revenueMultipliers.append(result * 100)
                 }
             }
             else {
@@ -488,7 +488,7 @@ class ProductivityViewController: UIViewController, ProductivityDisplayLogic
                     if let transactions = filteredRevenueTransactions?.filter({$0.date == objDt}), let date = objDt.date()
                     {
                         let result = revenueMultiplier(forData: transactions, dateRange: DateRange(date,date), dateRangeType: dateRangeType)
-                        revenueMultipliers.append(result)
+                        revenueMultipliers.append(result * 100)
                     }
                     else {
                         revenueMultipliers.append(0.0)
