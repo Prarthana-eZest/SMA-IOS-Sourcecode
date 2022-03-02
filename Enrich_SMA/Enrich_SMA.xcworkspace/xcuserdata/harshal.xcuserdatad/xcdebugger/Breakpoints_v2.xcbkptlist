@@ -183,22 +183,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D2FD403B-8EC3-4037-B353-4150E87F85BC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "configureCell(model:data:isFromRevenueScreen:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "5CB47AF2-6B38-4154-AB4C-76D5B7B030A5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -687,7 +671,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "505"
                   endingLineNumber = "505"
-                  offsetFromSymbolStart = "39">
+                  offsetFromSymbolStart = "42">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -855,22 +839,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A6995861-61D7-42C8-AEE5-9FA6107D2901"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "configureCell(model:data:isFromRevenueScreen:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "CA593567-6E7B-424A-AFF7-76DEBAFA67AA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -881,22 +849,6 @@
             startingLineNumber = "158"
             endingLineNumber = "158"
             landmarkName = "updateSalesScreenData(atIndex:withStartDate:endDate:rangeType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "83886E49-6C33-4FAF-B1B1-64809D6476BD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "configureCell(model:data:isFromRevenueScreen:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -919,22 +871,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D88E2152-0ACD-4CE8-B0FE-B0A979499228"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "setDataForMembership()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "FA8B95EF-9C12-4908-AF43-558C93826BF2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -951,81 +887,177 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "91D539A8-FD46-4936-AC3E-F1A2A9202030"
+            uuid = "01428C6A-AF51-45DE-853C-D5FA0E46818E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Free Services/FreeServicesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "configureCell(model:data:isFromRevenueScreen:)"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "calculateRewardPoints(filterArray:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FCE5CF6-2AD5-4FEA-81E4-2108CD9F4F10"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Free Services/FreeServicesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
+            landmarkName = "calculateRewardPoints(filterArray:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "61860333-B101-4F44-9061-D00B8479A87D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Customer Engagement/CustomerEngagementViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
+            landmarkName = "calculateServiceLevele(filterArray:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "11B7BC14-ACE2-4A71-97A2-F074E25DAAFC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Customer Engagement/CustomerEngagementViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "update(modeData:withData:atIndex:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "11BC6550-E389-4845-A9AC-E5E9A2765421"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Customer Engagement/CustomerEngagementViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "update(modeData:withData:atIndex:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D1F2B02-092F-4360-8562-C81DDFDBCDAD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Customer Engagement/CustomerEngagementViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "update(modeData:withData:atIndex:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9FAC3A4A-817E-4218-9777-755FC7AF0B06"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Customer Engagement/CustomerEngagementViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "812"
+            endingLineNumber = "812"
+            landmarkName = "calculateHygineAndSafety(filterArray:dateRange:dateRangeType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B74914B-57E4-45C5-9D3E-99A7D758CEEC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Customer Engagement/CustomerEngagementViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1216"
+            endingLineNumber = "1216"
+            landmarkName = "actionDurationFilter(forCell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3B314E5-F3A1-41EA-8502-2B32F036067B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Customer Engagement/CustomerEngagementViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "updateCustomerEngagementData(atIndex:withStartDate:endDate:rangeType:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "91D539A8-FD46-4936-AC3E-F1A2A9202030 - 1c9678b9960efdbd"
+                  uuid = "C3B314E5-F3A1-41EA-8502-2B32F036067B - 91c5e5565e317a55"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "default argument 2 of SMA_Stage.EarningDetailsCell.configureCell(model: SMA_Stage.EarningsCellDataModel, data: Swift.Array&lt;SMA_Stage.GraphDataEntry&gt;, isFromRevenueScreen: Swift.Bool) -&gt; ()"
+                  symbolName = "default argument 2 of SMA_Stage.CustomerEngagementViewController.updateCustomerEngagementData(atIndex: Foundation.IndexPath, withStartDate: Swift.Optional&lt;Foundation.Date&gt;, endDate: Foundation.Date, rangeType: SMA_Stage.DateRangeType) -&gt; ()"
                   moduleName = "SMA_Stage"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Views/Cells/Dashboard/Dashboard%20cells/EarningDetailsCell.swift"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Customer%20Engagement/CustomerEngagementViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
-                  offsetFromSymbolStart = "6">
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "61">
                </Location>
                <Location
-                  uuid = "91D539A8-FD46-4936-AC3E-F1A2A9202030 - d030c705069c8e89"
+                  uuid = "C3B314E5-F3A1-41EA-8502-2B32F036067B - 23a05c3a80ed24bc"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SMA_Stage.EarningDetailsCell.configureCell(model: SMA_Stage.EarningsCellDataModel, data: Swift.Array&lt;SMA_Stage.GraphDataEntry&gt;, isFromRevenueScreen: Swift.Bool) -&gt; ()"
+                  symbolName = "SMA_Stage.CustomerEngagementViewController.updateCustomerEngagementData(atIndex: Foundation.IndexPath, withStartDate: Swift.Optional&lt;Foundation.Date&gt;, endDate: Foundation.Date, rangeType: SMA_Stage.DateRangeType) -&gt; ()"
                   moduleName = "SMA_Stage"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Views/Cells/Dashboard/Dashboard%20cells/EarningDetailsCell.swift"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Customer%20Engagement/CustomerEngagementViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "180">
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "390">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CF86F9E1-45EE-416C-8FCE-337A06DBE32D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "drawGraph(graphData:showRightAxix:isFromRevenueScreen:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DB608A04-C26E-4353-928F-2C308EE65089"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Views/Cells/Dashboard/Dashboard cells/EarningDetailsCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
-            landmarkName = "generateBarData(graphData:isFromRevenueScreen:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

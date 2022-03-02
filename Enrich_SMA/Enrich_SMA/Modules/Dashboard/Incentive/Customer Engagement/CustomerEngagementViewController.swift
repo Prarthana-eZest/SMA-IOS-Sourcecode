@@ -175,6 +175,24 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             // value1 = value1 / Double(filteredCustomerEngagement?.count ?? 0)
             
             case 2:
+                // Easy of Billing
+                if let serviceLevel = customer.over_all_avg_ratings, serviceLevel > 0 {
+                    value1 += serviceLevel
+                }
+                
+            case 3:
+                // Customer interaction BMT
+                if let serviceLevel = customer.front_desk_avg_ratings, serviceLevel > 0 {
+                    value1 += serviceLevel
+                }
+             
+            case 4:
+                // Hygine and safety standards
+                if let serviceLevel = customer.additional_rating_avg_ratings, serviceLevel > 0 {
+                    value1 += serviceLevel
+                }
+                
+            case 5:
                 // Customer Repeat
                 
                 let filteredcustomerRepeat = GlobalVariables.technicianDataJSON?.data?.client_repeat_transactions?.filter({ (customerEngagement) -> Bool in
@@ -199,22 +217,8 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                 //                                        ["",value1.abbrevationString, value2.abbrevationString] :
                 //                                        [value1.rounded().abbrevationString]
                 
-                dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: ["",String(filteredcustomerRepeat?.count ?? 0), value1.roundedStringValue()], subTitle: ["","Count", "Revenue"], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+                dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: [String(filteredcustomerRepeat?.count ?? 0)], subTitle: [""], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
                 return
-                
-            case 3://Customer Feedback Received
-                if let customerFeedback = customer.no_of_feedbacks, customerFeedback > 0 {
-                    value1 += Double(customerFeedback)
-                }
-                
-            case 4://Customer Served
-                break
-                
-            case 5://Feedback Count
-                
-                if let customerFeedback = customer.no_of_feedbacks, customerFeedback > 0 {
-                    value1 += Double(customerFeedback)
-                }
                 
                 
             default:
@@ -229,7 +233,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             
             dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [(value1 / value2).percent], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
         }
-        else if(index == 0 || index == 1){
+        else if(index != 5){
             dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: [((value1 / Double(filteredCustomerEngagement?.count ?? 0))).roundedStringValue(toFractionDigits: 2)],subTitle: [""], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
             
             //            dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [(value1 / Double(filteredCustomerEngagement?.count ?? 0)).rounded().abbrevationString], subTitle: modeData.subTitle, showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
@@ -671,7 +675,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                     return 0.0
                 }).reduce(0) {$0 + $1}
                 
-                graphValues.append(value)
+                graphValues.append(value / Double(customerInteractionArray.count))
             }
             
         case .cutome:
@@ -689,7 +693,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                         return 0.0
                     }).reduce(0) {$0 + $1}
                     
-                    graphValues.append(value)
+                    graphValues.append(value / Double(customerInteractionArray.count))
                 }
             }
             else {
@@ -738,7 +742,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                     return 0.0
                 }).reduce(0) {$0 + $1}
                 
-                graphValues.append(value)
+                graphValues.append(value / Double(customerInteractionArray.count))
             }
             
         case .cutome:
@@ -756,7 +760,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                         return 0.0
                     }).reduce(0) {$0 + $1}
                     
-                    graphValues.append(value)
+                    graphValues.append(value / Double(customerInteractionArray.count))
                 }
             }
             else {
@@ -805,7 +809,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                     return 0.0
                 }).reduce(0) {$0 + $1}
                 
-                graphValues.append(value)
+                graphValues.append(value / Double(customerInteractionArray.count))
             }
             
         case .cutome:
@@ -823,7 +827,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                         return 0.0
                     }).reduce(0) {$0 + $1}
                     
-                    graphValues.append(value)
+                    graphValues.append(value / Double(customerInteractionArray.count))
                 }
             }
             else {

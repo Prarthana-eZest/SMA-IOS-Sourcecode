@@ -156,7 +156,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
             switch index {
             case 0:
                 // Reward points
-                if let fsRevenue = freeService.free_service_revenue, fsRevenue > 0 {
+                if let fsRevenue = freeService.free_service_revenue, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
                     value += fsRevenue
                 }
                 
@@ -203,7 +203,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         for freeService in filteredFreeServices ?? [] {
             // Reward points
-            if let fsRevenue = freeService.free_service_revenue, fsRevenue > 0 {
+            if let fsRevenue = freeService.free_service_revenue, (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) {
                 freeServiceRevenueCount += fsRevenue
             }
             
@@ -257,7 +257,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
         
         for freeService in filteredFreeServices ?? [] {
             // Reward points
-            if let fsRevenue = freeService.free_service_revenue, fsRevenue > 0 {
+            if let fsRevenue = freeService.free_service_revenue,  (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services){
                 freeServiceRevenueCount += fsRevenue
             }
             
@@ -376,7 +376,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
             filteredFreeService = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
                 if let date = freeService.date?.date()?.startOfDay {
                     return  (date >= dateRange.start && date <= dateRange.end) &&
-                        ((freeService.free_service_revenue ?? 0 > 0) ||
+                        ((freeService.free_service_revenue ?? 0 != 0) ||
                             (freeService.complimentary_giftcard ?? 0 > 0 &&
                                 (freeService.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) ||
                             (freeService.grooming_giftcard ?? 0 > 0 &&
@@ -386,7 +386,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
             })
         }
         else {
-            filteredFreeService = filteredFreeService?.filter({($0.free_service_revenue ?? 0 > 0) || ($0.complimentary_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) || ($0.grooming_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services))})
+            filteredFreeService = filteredFreeService?.filter({($0.free_service_revenue ?? 0 != 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) || ($0.complimentary_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) || ($0.grooming_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services))})
         }
         
         let rewardPointsData = graphData(forData: filteredFreeService, atIndex: 0, dateRange: dateRange, dateRangeType: dateRangeType)
@@ -410,7 +410,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     //Calculate rewards points
     func calculateRewardPoints(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
         var freeServicesValues = [Double]()
-        let rewardPoints = filterArray.filter({$0.free_service_revenue ?? 0 > 0})
+        let rewardPoints = filterArray.filter({$0.free_service_revenue ?? 0 != 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
         
         switch dateRangeType
         {
@@ -456,7 +456,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     func calculateComplimentoryGiftVouchers(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
         var freeServicesValues = [Double]()
         
-        let complimentoryGiftVoucher = filterArray.filter({$0.complimentary_giftcard ?? 0 > 0})
+        let complimentoryGiftVoucher = filterArray.filter({$0.complimentary_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
         
         switch dateRangeType
         {
@@ -502,7 +502,7 @@ class FreeServicesViewController: UIViewController, FreeServicesDisplayLogic
     func calculateGroomingGiftCards(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange:DateRange, dateRangeType: DateRangeType) -> [Double]{
         var freeServicesValues = [Double]()
         
-        let groomingGiftCards = filterArray.filter({$0.grooming_giftcard ?? 0 > 0})
+        let groomingGiftCards = filterArray.filter({$0.grooming_giftcard ?? 0 > 0 && ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
         
         switch dateRangeType
         {

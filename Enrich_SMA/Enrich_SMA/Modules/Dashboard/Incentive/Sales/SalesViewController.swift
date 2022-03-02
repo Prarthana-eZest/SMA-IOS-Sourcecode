@@ -618,7 +618,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
             filteredSales = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (freeService) -> Bool in
                 if let date = freeService.date?.date()?.startOfDay {
                     return  (date >= dateRange.start && date <= dateRange.end) &&
-                        ((freeService.membership_new_revenue ?? 0 > 0) ||
+                        ((freeService.membership_new_revenue ?? 0 > 0) || (freeService.membership_renew_revenue ?? 0 > 0) ||
                             (freeService.value_package_revenue ?? 0 > 0) ||
                             (freeService.service_package_revenue ?? 0 > 0 ))
                 }
@@ -626,7 +626,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
             })
         }
         else {
-            filteredSales = filteredSales?.filter({($0.membership_new_revenue ?? 0 > 0) ||
+            filteredSales = filteredSales?.filter({($0.membership_new_revenue ?? 0 > 0) || ($0.membership_renew_revenue ?? 0 > 0) ||
                                                     ($0.value_package_revenue ?? 0 > 0) ||
                                                     ($0.service_package_revenue ?? 0 > 0 )})
         }
