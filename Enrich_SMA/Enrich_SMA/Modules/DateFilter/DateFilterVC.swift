@@ -183,11 +183,13 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
         data.append(PackageFilterModel(title: DateRangeType.ytd.rawValue, isSelected: isSelected(dateRangeType: .ytd), fromDate: DateRangeType.ytd.date, toDate: Date.today, sku: nil))
         data.append(PackageFilterModel(title: selectCustomDateRangeTitle, isSelected: isSelected(dateRangeType: .cutome), fromDate: cutomRange.start, toDate: cutomRange.end, sku: nil))
         }
-        else {
+        else { //Productivity
             data.append(PackageFilterModel(title: DateRangeType.mtd.rawValue, isSelected: isSelected(dateRangeType: .mtd), fromDate: DateRangeType.mtd.date, toDate: Date.today, sku: nil))
             data.append(PackageFilterModel(title: DateRangeType.qtd.rawValue, isSelected: isSelected(dateRangeType: .qtd), fromDate: DateRangeType.qtd.date, toDate: Date.today, sku: nil))
             data.append(PackageFilterModel(title: DateRangeType.ytd.rawValue, isSelected: isSelected(dateRangeType: .ytd), fromDate: DateRangeType.ytd.date, toDate: Date.today, sku: nil))
-            data.append(PackageFilterModel(title: selectCustomDateRangeTitle, isSelected: isSelected(dateRangeType: .cutome), fromDate: cutomRange.start, toDate: cutomRange.end, sku: nil))
+            if !fromChartFilter {
+                data.append(PackageFilterModel(title: selectCustomDateRangeTitle, isSelected: isSelected(dateRangeType: .cutome), fromDate: cutomRange.start, toDate: cutomRange.end, sku: nil))
+            }
         }
         containerViewHeightSetup()
         tableView.reloadData()
