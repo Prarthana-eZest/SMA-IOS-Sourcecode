@@ -242,6 +242,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
         }
         
         var membershipRevenueCount : Double = 0.0
+        var membershipRenewalRevenueCount : Double = 0.0
         var valuePackageRevenueCount : Double = 0.0
         var servicePackageRevenueCount : Double = 0.0
         
@@ -249,6 +250,11 @@ class SalesViewController: UIViewController, SalesDisplayLogic
             // membership revenue
             if let membershipRevenue = sales.membership_new_revenue, membershipRevenue > 0 {
                 membershipRevenueCount += membershipRevenue
+            }
+            
+            // membership renewal
+            if let membershipRevenue = sales.membership_renew_revenue, membershipRevenue > 0 {
+                membershipRenewalRevenueCount += membershipRevenue
             }
             
             // value package revenue
@@ -262,7 +268,7 @@ class SalesViewController: UIViewController, SalesDisplayLogic
             }
         }
         
-        headerModel?.value = membershipRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount
+        headerModel?.value = membershipRevenueCount + membershipRenewalRevenueCount + valuePackageRevenueCount + servicePackageRevenueCount
     }
     
     func salesData(startDate : Date, endDate : Date = Date().startOfDay) {

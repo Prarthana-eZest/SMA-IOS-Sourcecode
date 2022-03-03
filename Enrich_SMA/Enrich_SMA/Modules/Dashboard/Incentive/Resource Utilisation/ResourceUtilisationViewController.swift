@@ -137,12 +137,12 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         let values = graphData(forData: data, atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType)
         var graphColor = [UIColor]()
         
-        if(title == "Attendance" && index == 3){
-            graphColor = EarningDetails.Revenue.graphBarColor
-        }
-        else {
+//        if(title == "Attendance" && index == 3){
+//            graphColor = EarningDetails.ResourceUtilisation.graphBarColor
+//        }
+//        else {
             graphColor = EarningDetails.ResourceUtilisation.graphBarColor
-        }
+       // }
         return GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor.first!)
     }
     
@@ -169,14 +169,16 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         else if(index == 1){//Training time
             return calculateTrainingTime(filterArray: filteredResourceUtilization ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
-        else if(index == 2 ){ // break time
-            return calculateBreakTime(filterArray: filteredResourceUtilization ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        else if(index == 2 ){ // Availability on busy days
+            return calculateAvailabilityOnBusyDays(dateRange: dateRange, dateRangeType: dateRangeType)
         }
         else if(index == 3){//Attendance
             let attendanceData =  GlobalVariables.technicianDataJSON?.data?.attendance_data
             return calculateAttendance(filterArray: attendanceData ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
         }
-        
+        else if(index == 4){ // Store occupancy
+            return calculateStoreOccupancy(filterArray: filteredResourceUtilization ?? [], dateRange: dateRange, dateRangeType: dateRangeType)
+        }
         return[0.0]
         
     }
@@ -656,6 +658,161 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         return values
     }
     
+    //Availability on busy days
+    func calculateAvailabilityOnBusyDays(dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var values = [Double]()
+        let filteredAvailabilityBusyDays =  GlobalVariables.technicianDataJSON?.data?.availability_on_busy_days?.filter({ (resourceUtilisation) -> Bool in
+            if let date = resourceUtilisation.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        }) ?? []
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                if let data = filteredAvailabilityBusyDays.filter({$0.date == objDt}).first
+                {
+                    values.append(Double(data.total_working_time ?? 0 / data.total_shift_time!))
+                }
+                else {
+                    values.append(Double(0.0))
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            for qMonth in months {
+                let value = filteredAvailabilityBusyDays.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        return (Double(revenue.total_working_time ?? 0 / revenue.total_shift_time!))
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
+                values.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+                for qMonth in months {
+                    let value = filteredAvailabilityBusyDays.map ({ (rewards) -> Double in
+                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(Double(rewards.total_working_time ?? 0 / rewards.total_shift_time!))
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    values.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    if let data = filteredAvailabilityBusyDays.filter({$0.date == objDt}).first
+                    {
+                        values.append(Double(data.total_working_time ?? 0 / data.total_shift_time!))
+                    }
+                    else {
+                        values.append(Double(0.0))
+                    }
+                }
+            }
+        }
+        return values
+    }
+    
+    //Store occupancy
+    func calculateStoreOccupancy(filterArray : [Dashboard.GetRevenueDashboard.ResourceUtilization], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
+        var values = [Double]()
+        
+        //Store occupancy denominator value
+        var storeOccupancyDenominatorValue : Double = 0.0
+        let salonStations = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+        let totalDays = Date.today.numberOfDaysFromDates(startDate: dateRange.start, fromDate: dateRange.end) + 1
+        let salonWorkingTime = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
+        storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
+        
+        //get service time
+//        let serviceTime = filterArray.filter({$0.services_time ?? 0 > 0})
+        
+//        var serviceTimeTotal : Double = 0.0
+//        for objServiceTime in serviceTime{
+//            serviceTimeTotal += Double(objServiceTime.services_time ?? 0)
+//        }
+    
+        
+        switch dateRangeType
+        {
+        case .yesterday, .today, .week, .mtd:
+            let dates = dateRange.end.dayDates(from: dateRange.start)
+            for objDt in dates {
+                if let serviceTime = filterArray.filter({$0.services_time ?? 0 > 0}).first
+                {
+                    values.append(Double(serviceTime.services_time ?? 0) / storeOccupancyDenominatorValue)
+                }
+                else {
+                    values.append(Double(0.0))
+                }
+            }
+        case .qtd, .ytd:
+            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            for qMonth in months {
+                let value = filterArray.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        return (Double(revenue.services_time ?? 0) / storeOccupancyDenominatorValue)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
+                values.append(value)
+            }
+            
+        case .cutome:
+            
+            if dateRange.end.days(from: dateRange.start) > 31
+            {
+                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+                for qMonth in months {
+                    let value = filterArray.map ({ (rewards) -> Double in
+                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(Double(rewards.services_time ?? 0) / storeOccupancyDenominatorValue)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    values.append(value)
+                }
+            }
+            else {
+                let dates = dateRange.end.dayDates(from: dateRange.start)
+                for objDt in dates {
+                    if let data = filterArray.filter({$0.date == objDt}).first
+                    {
+                        values.append(Double(data.services_time ?? 0) / storeOccupancyDenominatorValue)
+                    }
+                    else {
+                        values.append(Double(0.0))
+                    }
+                }
+            }
+        }
+        return values
+    }
+    
     func doSomething()
     {
         let request = ResourceUtilisation.Something.Request()
@@ -714,7 +871,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         //Store occupancy denominator value
         var storeOccupancyDenominatorValue : Double = 0.0
         let salonStations = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
-        var totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1 //TODO::
+        var totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1
         let salonWorkingTime = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
         storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
         
@@ -764,7 +921,6 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         let strproductivityAvailableTime = formattedData(productiveAvailable)
         let strproductivityBusyTime = formattedData(productiveBusy)
         
-        print("######## Productive Time : \(strproductivityAvailableTime, strproductivityBusyTime, productiveProductivity.percent)")
         //"Productive Time"
         //Data Model
         let productiveTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Productive Time", value: [strproductivityAvailableTime,strproductivityBusyTime,productiveProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
@@ -784,7 +940,6 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         let strTrainingAvailableTime = formattedData(trainingTimeTotal)
         let strTrainingBusyTime = formattedData(totalShiftTimeCount)
         
-        print("************** Training Time : \(strTrainingAvailableTime, strTrainingBusyTime, trainingProductivity.percent)")
         //"Training Time"
         //Data Model
         let trainingTimeModel = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Training Time", value: [strTrainingAvailableTime,strTrainingBusyTime,trainingProductivity.percent], subTitle: ["Available","Busy","Productivity"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
@@ -885,7 +1040,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         
         if(index == 4){ //------- Store Occupancy
             //TODO::
-            let graphColor = EarningDetails.Revenue.graphBarColor
+            let graphColor = EarningDetails.ResourceUtilisation.graphBarColor
             
             // 2 tile : Buy
             let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "Store Occupancy", units: units, values: values, barColor: graphColor.first!)
@@ -898,7 +1053,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         }
         
         if(index == 3){ // attendance
-            let graphColor = EarningDetails.Revenue.graphBarColor
+            let graphColor = EarningDetails.ResourceUtilisation.graphBarColor
             
             // 2 tile : Buy
             let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "Attendance", units: units, values: values, barColor: graphColor.first!)
@@ -931,11 +1086,12 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             return BarLineGraphEntry(barGraphEntry, lineGraphEntry)
         }
         
+        
         //break time
-        let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: "Busy", units: units, values: values, barColor: graphColor.first!)
+        let barGraphEntry = GraphDataEntry(graphType: .barGraph, dataTitle: title, units: units, values: values, barColor: graphColor.first!)
         
         
-        let lineGraphEntry = GraphDataEntry(graphType: .linedGraph, dataTitle: "Productive", units: units, values: calculateBreakTimeRatio(filterArray: data ?? [], dateRange: dateRange, dateRangeType: dateRangeType), barColor: graphColor.last!)
+        let lineGraphEntry = GraphDataEntry(graphType: .linedGraph, dataTitle: "Productive", units: units, values: calculateAvailabilityOnBusyDays(dateRange: dateRange, dateRangeType: dateRangeType), barColor: graphColor.last!)
         
         //let lineGraphEntry = GraphDataEntry(graphType: .linedGraph, dataTitle: "Productive", units: units, values: graphData(forData: [], atIndex: index, dateRange: dateRange, dateRangeType: dateRangeType), barColor: graphColor.last!)
         
@@ -1005,14 +1161,14 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                     value2 += Double(resourceUtilization.total_shift_time ?? Int(0.0))
                 }
                 
-            case 2:
-                // Break Time
-                if((resourceUtilization.total_shift_time) != nil){
-                    value2 += Double(resourceUtilization.total_shift_time ?? Int(0.0))
-                }
-                if((resourceUtilization.break_time) != nil){
-                    value1 += Double(resourceUtilization.break_time ?? Int(0.0))
-                }
+//            case 2:
+//                // Availability on Busy days
+//                if((resourceUtilization.total_shift_time) != nil){
+//                    value2 += Double(resourceUtilization.total_shift_time ?? Int(0.0))
+//                }
+//                if((resourceUtilization.break_time) != nil){
+//                    value1 += Double(resourceUtilization.break_time ?? Int(0.0))
+//                }
                 
             default:
                 continue
@@ -1020,39 +1176,97 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         }
         
         value3 = Double(Double(value1) / Double(value2))
-        //Make value in Hrs
-        if(value2 >= 60){
-            value2 /= 60
-            strValue2 = "\(value2.roundedStringValue(toFractionDigits: 2)) Hrs"
+        
+        dataModel[index] = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: modeData.title, value: [formattedData(value2),formattedData(value1),value3.percent], subTitle: ["Available","Busy","Productivity"], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+        
+        if(index == 2){ // avialability on busy days
+            let filteredAvailabilityBusyDays =  GlobalVariables.technicianDataJSON?.data?.availability_on_busy_days?.filter({ (resourceUtilisation) -> Bool in
+                if let date = resourceUtilisation.date?.date()?.startOfDay {
+                    
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            }) ?? []
+            
+            let totalShiftTimeAvailableDays = filteredAvailabilityBusyDays.filter({$0.total_shift_time ?? 0 > 0})
+            
+            let totalWorkingTimeAvailableDays = filteredAvailabilityBusyDays.filter({$0.total_working_time ?? 0 > 0})
+            
+            var totalShiftTimeAvailableDaysCount : Double = 0.0
+            var totalWorkingTimeAvailableDaysCount : Double = 0.0
+            
+            for objTotalShiftTime in totalShiftTimeAvailableDays {
+                totalShiftTimeAvailableDaysCount += Double(objTotalShiftTime.total_shift_time ?? 0)
+            }
+            
+            for objTotalWorkingTime in totalWorkingTimeAvailableDays {
+                totalWorkingTimeAvailableDaysCount += Double(objTotalWorkingTime.total_working_time ?? 0)
+            }
+            print("Avialability on Busy days : \((totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount).percent)")
+            //---------Availability On Busy Days
+            //Data Model
+            var availabilityRatio = (totalWorkingTimeAvailableDaysCount / totalShiftTimeAvailableDaysCount)
+            if(availabilityRatio.isNaN){
+                availabilityRatio = 0
+            }
+            dataModel[index] = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Availability On Busy Days", value: [availabilityRatio.percent], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+            
         }
-        else {
-            strValue2 = "\(value2.roundedStringValue(toFractionDigits: 2)) Mins"
+                if(index == 3){//attendance
+                    //Date filter applied
+                    let filteredAttendanceData = GlobalVariables.technicianDataJSON?.data?.attendance_data?.filter({ (resourceUtilization) -> Bool in
+                        if let date = resourceUtilization.date?.date()?.startOfDay {
+                            return date >= dateRange.start && date <= dateRange.end
+                        }
+                        return false
+                    })
+                    var attendanceCount : Double = 0.0
+                    for attendance in filteredAttendanceData ?? []{
+                        attendanceCount += 1
+                    }
+                    let days: Int = getMonthDays()
+                    dataModel[index] = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Attendance", value: ["\(filteredAttendanceData?.count ?? 0)/\(days)"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
+                }
+         
+        if(index == 4){//store occupancy
+            //Date filter applied
+            let filteredAttendanceData = GlobalVariables.technicianDataJSON?.data?.attendance_data?.filter({ (resourceUtilization) -> Bool in
+                if let date = resourceUtilization.date?.date()?.startOfDay {
+                    return date >= dateRange.start && date <= dateRange.end
+                }
+                return false
+            })
+            var attendanceCount : Double = 0.0
+            for attendance in filteredAttendanceData ?? []{
+                attendanceCount += 1
+            }
+            let days: Int = getMonthDays()
+            
+            //Store occupancy denominator value
+            var storeOccupancyDenominatorValue : Double = 0.0
+            let salonStations = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
+            let totalDays = Date.today.numberOfDaysFromDates(startDate: dateRange.start, fromDate: dateRange.end) + 1
+            let salonWorkingTime = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
+            storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
+            
+            let serviceTime = filteredResourceUtilization?.filter({$0.services_time ?? 0 > 0}) ?? []
+            
+            //get service time
+            var serviceTimeTotal : Double = 0.0
+            for objServiceTime in serviceTime{
+                serviceTimeTotal += Double(objServiceTime.services_time ?? 0)
+            }
+            
+            var storeOccupancy : Double = 0.0
+            storeOccupancy = serviceTimeTotal / storeOccupancyDenominatorValue
+            if(storeOccupancy.isNaN){
+                storeOccupancy = 0
+            }
+            
+            dataModel[index] = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Store Occupancy", value: [storeOccupancy.percent], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
         }
-        if(value1 >= 60){
-            value1 /= 60
-            strValue1 = "\(value1.roundedStringValue(toFractionDigits: 2)) Hrs"
-        }
-        else {
-            strValue1 = "\(value1.roundedStringValue(toFractionDigits: 2)) Mins"
-        }
-        //        if(index == 3){//attendance
-        //            //Date filter applied
-        //            let filteredAttendanceData = GlobalVariables.technicianDataJSON?.data?.attendance_data?.filter({ (resourceUtilization) -> Bool in
-        //                if let date = resourceUtilization.date?.date()?.startOfDay {
-        //                    return date >= dateRange.start && date <= dateRange.end
-        //                }
-        //                return false
-        //            })
-        ////            var attendanceCount : Double = 0.0
-        ////            for attendance in filteredAttendanceData ?? []{
-        ////                attendanceCount += 1
-        ////            }
-        //            dataModel[index] = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: "Attendance", value: ["\(filteredAttendanceData?.count)/\(days)"], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: resourceUtilizationCutomeDateRange)
-        //        }
-        // {
-        dataModel[index] = EarningsCellDataModel(earningsType: .ResourceUtilisation, title: modeData.title, value: [strValue2,strValue1,value3.percent], subTitle: ["Available","Busy","Productivity"], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
-        // }
-    }
+         }
+    
     
 }
 

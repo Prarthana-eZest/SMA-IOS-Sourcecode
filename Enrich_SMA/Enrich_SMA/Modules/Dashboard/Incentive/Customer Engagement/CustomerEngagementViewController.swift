@@ -217,7 +217,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                 //                                        ["",value1.abbrevationString, value2.abbrevationString] :
                 //                                        [value1.rounded().abbrevationString]
                 
-                dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: [String(filteredcustomerRepeat?.count ?? 0)], subTitle: [""], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+                dataModel[index] = EarningsCellDataModel(earningsType: .CustomerEngagement, title: modeData.title, value: [(filteredcustomerRepeat?.count ?? 0).roundedStringValue()], subTitle: [""], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
                 return
                 
                 
@@ -395,7 +395,7 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             
             //customer repeat
             //Data Model
-            let customerRepeatModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Repeat", value: [String(filteredcustomerRepeat?.count ?? 0)], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
+            let customerRepeatModel = EarningsCellDataModel(earningsType: .CustomerEngagement, title: "Customer Repeat", value: [(filteredcustomerRepeat?.count ?? 0).roundedStringValue()], subTitle: [""], showGraph: true, cellType: .SingleValue, isExpanded: false, dateRangeType: graphRangeType, customeDateRange: customerEngagementCutomeDateRange)
             dataModel.append(customerRepeatModel)
             //Graph Data
             graphData.append(getGraphEntry(customerRepeatModel.title, forData: filteredFreeServiceForGraph, atIndex: 5, dateRange: graphDateRange, dateRangeType: graphRangeType))
@@ -648,6 +648,15 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
     
     func calculateEaseOfBilling(filterArray : [Dashboard.GetRevenueDashboard.Salon_feedbacks], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
         var graphValues = [Double]()
+        let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+            if let date = customerEngagement.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        }) ?? []
+        var dateCount = 0
+        
         let customerInteractionArray = filterArray.filter({$0.over_all_avg_ratings ?? 0 > 0})
         
         switch dateRangeType
@@ -666,6 +675,16 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         case .qtd, .ytd:
             let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
             for qMonth in months {
+                let dateCnt = filteredCustomerEngagement.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        dateCount += 1
+                        return Double(dateCount)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
                 let value = customerInteractionArray.map ({ (revenue) -> Double in
                     if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
                        rMonth == qMonth
@@ -675,7 +694,8 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                     return 0.0
                 }).reduce(0) {$0 + $1}
                 
-                graphValues.append(value / Double(customerInteractionArray.count))
+                graphValues.append(value / Double(dateCount))
+                dateCount = 0
             }
             
         case .cutome:
@@ -684,16 +704,27 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             {
                 let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
                 for qMonth in months {
-                    let value = customerInteractionArray.map ({ (rewards) -> Double in
-                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                    let dateCnt = filteredCustomerEngagement.map ({ (revenue) -> Double in
+                        if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
                            rMonth == qMonth
                         {
-                            return Double(rewards.over_all_avg_ratings ?? 0)
+                            dateCount += 1
+                            return Double(dateCount)
                         }
                         return 0.0
                     }).reduce(0) {$0 + $1}
                     
-                    graphValues.append(value / Double(customerInteractionArray.count))
+                    let value = customerInteractionArray.map ({ (revenue) -> Double in
+                        if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(revenue.over_all_avg_ratings ?? 0)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    graphValues.append(value / Double(dateCount))
+                    dateCount = 0
                 }
             }
             else {
@@ -715,6 +746,16 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
     
     func calculateCustomerInteractionBMT(filterArray : [Dashboard.GetRevenueDashboard.Salon_feedbacks], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
         var graphValues = [Double]()
+        
+        let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+            if let date = customerEngagement.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        }) ?? []
+        var dateCount = 0
+        
         let customerInteractionArray = filterArray.filter({$0.front_desk_avg_ratings ?? 0 > 0})
         
         switch dateRangeType
@@ -733,6 +774,16 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
         case .qtd, .ytd:
             let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
             for qMonth in months {
+                let dateCnt = filteredCustomerEngagement.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        dateCount += 1
+                        return Double(dateCount)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
                 let value = customerInteractionArray.map ({ (revenue) -> Double in
                     if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
                        rMonth == qMonth
@@ -742,7 +793,8 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                     return 0.0
                 }).reduce(0) {$0 + $1}
                 
-                graphValues.append(value / Double(customerInteractionArray.count))
+                graphValues.append(value / Double(dateCount))
+                dateCount = 0
             }
             
         case .cutome:
@@ -751,16 +803,27 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             {
                 let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
                 for qMonth in months {
-                    let value = customerInteractionArray.map ({ (rewards) -> Double in
-                        if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
+                    let dateCnt = filteredCustomerEngagement.map ({ (revenue) -> Double in
+                        if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
                            rMonth == qMonth
                         {
-                            return Double(rewards.front_desk_avg_ratings ?? 0)
+                            dateCount += 1
+                            return Double(dateCount)
                         }
                         return 0.0
                     }).reduce(0) {$0 + $1}
                     
-                    graphValues.append(value / Double(customerInteractionArray.count))
+                    let value = customerInteractionArray.map ({ (revenue) -> Double in
+                        if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            return Double(revenue.front_desk_avg_ratings ?? 0)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
+                    graphValues.append(value / Double(dateCount))
+                    dateCount = 0
                 }
             }
             else {
@@ -782,8 +845,16 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
     
     func calculateHygineAndSafety(filterArray : [Dashboard.GetRevenueDashboard.Salon_feedbacks], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
         var graphValues = [Double]()
-        let customerInteractionArray = filterArray.filter({$0.additional_rating_avg_ratings ?? 0 > 0})
+        let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
+            if let date = customerEngagement.date?.date()?.startOfDay {
+                
+                return date >= dateRange.start && date <= dateRange.end
+            }
+            return false
+        }) ?? []
         
+        let customerInteractionArray = filterArray.filter({$0.additional_rating_avg_ratings ?? 0 > 0})
+        var dateCount = 0
         switch dateRangeType
         {
         case .yesterday, .today, .week, .mtd:
@@ -799,7 +870,20 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             }
         case .qtd, .ytd:
             let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+           
             for qMonth in months {
+                
+                let dateCnt = filteredCustomerEngagement.map ({ (revenue) -> Double in
+                    if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                       rMonth == qMonth
+                    {
+                        print("Date Month : ************ \(revenue.date)")
+                        dateCount += 1
+                        return Double(dateCount)
+                    }
+                    return 0.0
+                }).reduce(0) {$0 + $1}
+                
                 let value = customerInteractionArray.map ({ (revenue) -> Double in
                     if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
                        rMonth == qMonth
@@ -809,7 +893,8 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                     return 0.0
                 }).reduce(0) {$0 + $1}
                 
-                graphValues.append(value / Double(customerInteractionArray.count))
+                graphValues.append(value / Double(dateCount))
+                dateCount = 0
             }
             
         case .cutome:
@@ -818,6 +903,16 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
             {
                 let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
                 for qMonth in months {
+                    let dateCnt = filteredCustomerEngagement.map ({ (revenue) -> Double in
+                        if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
+                           rMonth == qMonth
+                        {
+                            dateCount += 1
+                            return Double(dateCount)
+                        }
+                        return 0.0
+                    }).reduce(0) {$0 + $1}
+                    
                     let value = customerInteractionArray.map ({ (rewards) -> Double in
                         if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
                            rMonth == qMonth
@@ -827,7 +922,8 @@ class CustomerEngagementViewController: UIViewController, CustomerEngagementDisp
                         return 0.0
                     }).reduce(0) {$0 + $1}
                     
-                    graphValues.append(value / Double(customerInteractionArray.count))
+                    graphValues.append(value / Double(dateCount))
+                    dateCount = 0
                 }
             }
             else {
