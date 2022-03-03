@@ -341,6 +341,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="d9h-5D-eVO"/>
             <connections>
+                <outlet property="btnTreandline" destination="UbM-a7-1T6" id="mXk-Xe-d66"/>
                 <outlet property="chartParentView" destination="w8n-Dp-bcd" id="KQq-Fo-pP4"/>
                 <outlet property="chartView" destination="eat-EP-84B" id="mQ6-OC-xoO"/>
                 <outlet property="firstValueView" destination="JUp-wl-yKs" id="1vm-0p-RfE"/>

@@ -12,6 +12,7 @@ import Charts
 class EarningDetailsThreeValueCell: UITableViewCell, ChartViewDelegate {
     
     @IBOutlet weak private var lblTitle: UILabel!
+    @IBOutlet weak private var btnTreandline: UIButton!
     @IBOutlet weak private var trendlineView: UIStackView!
     @IBOutlet weak private var chartParentView: UIView!
     @IBOutlet weak private var parentView: UIView!
@@ -69,6 +70,7 @@ class EarningDetailsThreeValueCell: UITableViewCell, ChartViewDelegate {
         model.isExpanded = !model.isExpanded
         chartParentView.isHidden = !model.isExpanded
         imageDropDown.image = chartParentView.isHidden ? UIImage(named: "downArrow") : UIImage(named: "upArrow")
+        btnTreandline.setTitle(model.isExpanded ? "Hide Trendline" : "View Trendline", for: .normal)
         delegate?.reloadData()
     }
     
@@ -77,6 +79,8 @@ class EarningDetailsThreeValueCell: UITableViewCell, ChartViewDelegate {
         self.lblTitle.text = model.title
         trendlineView.isHidden = !model.showGraph
         chartParentView.isHidden = !model.isExpanded
+        imageDropDown.transform =  model.isExpanded ? CGAffineTransform(rotationAngle: .pi) : CGAffineTransform.identity
+        btnTreandline.setTitle(model.isExpanded ? "Hide Trendline" : "View Trendline", for: .normal)
        // if chartView.data == nil, !model.isExpanded {
             drawGraph(graphData: data, showRightAxix: (model.earningsType == .CustomerEngagement || model.earningsType == .ResourceUtilisation))
         //}

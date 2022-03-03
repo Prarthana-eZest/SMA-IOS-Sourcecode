@@ -99,6 +99,8 @@ class EarningDetailsHeaderCell: UITableViewCell, ChartViewDelegate {
         graphRangeBtn.setTitle(model.dateRangeType.rawValue, for: .normal)
         tileHeightConstraint.constant = model.earningsType.headerTileHeight
         chartParentView.isHidden = !model.isExpanded
+        imageDropDown.transform =  model.isExpanded ? CGAffineTransform(rotationAngle: .pi) : CGAffineTransform.identity
+        btnTreandline.setTitle(model.isExpanded ? "Hide Trendline" : "View Trendline", for: .normal)
         if(model.earningsType == .FreeServices || model.earningsType == .Footfall  || model.earningsType == .CustomerEngagement || model.earningsType == .Productivity || model.earningsType == .PenetrationRatios || model.earningsType == .ResourceUtilisation){
             lblRupee.isHidden = true
         }
