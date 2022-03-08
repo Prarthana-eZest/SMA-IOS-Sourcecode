@@ -160,7 +160,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5Ob-4t-RtP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="25"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0xH-Co-j33">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewTreandline" translatesAutoresizingMaskIntoConstraints="NO" id="0xH-Co-j33">
                                                                         <rect key="frame" x="0.0" y="7" width="18" height="18"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="18" id="OkF-4G-YHj"/>
@@ -364,7 +364,7 @@
     </objects>
     <resources>
         <image name="downArrow" width="9" height="5"/>
-        <image name="homeIcon" width="18" height="18"/>
+        <image name="viewTreandline" width="19" height="19"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

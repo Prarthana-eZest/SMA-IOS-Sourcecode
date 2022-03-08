@@ -16,6 +16,9 @@ enum CategoryTypes {
     static let services = "Services"
     static let packages = "Packages"
     static let retail = "Retail"
+    static let membership = "Membership"
+    static let giftcard = "Giftcard"
+    static let wallet = "Wallet"
 }
 
 enum AppointmentTypes {

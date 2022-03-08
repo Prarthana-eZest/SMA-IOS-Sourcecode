@@ -187,9 +187,9 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         var values = [Double]()
         
         //Productive time
-        let totalShiftTime = filterArray.filter({$0.services_time ?? 0 > 0})
-        //Busy time
-        //        let totalServiceTime = filterArray.filter({$0.services_time ?? 0 > 0})
+        let totalShiftTime = filterArray.filter({$0.total_shift_time ?? 0 > 0})
+        //training time
+       // let totalTrainingTime = filterArray.filter({$0.tranning_time ?? 0 > 0})
         
         
         switch dateRangeType
@@ -199,7 +199,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             for objDt in dates {
                 if let data = totalShiftTime.filter({$0.date == objDt}).first
                 {
-                    values.append(Double(data.services_time!))
+                    values.append(Double(data.total_shift_time!))
                 }
                 else {
                     values.append(Double(0.0))
@@ -212,7 +212,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                     if let rMonth = data.date?.date()?.string(format: "MMM yy"),
                        rMonth == qMonth
                     {
-                        return Double(data.services_time!)
+                        return Double(data.total_shift_time!)
                     }
                     return 0.0
                 }).reduce(0) {$0 + $1}
@@ -230,7 +230,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                         if let rMonth = data.date?.date()?.string(format: "MMM yy"),
                            rMonth == qMonth
                         {
-                            return Double(data.services_time!)
+                            return Double(data.total_shift_time!)
                         }
                         return 0.0
                     }).reduce(0) {$0 + $1}
@@ -243,7 +243,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                 for objDt in dates {
                     if let data = totalShiftTime.filter({$0.date == objDt}).first
                     {
-                        values.append(Double(data.services_time!))
+                        values.append(Double(data.total_shift_time!))
                     }
                     else {
                         values.append(Double(0.0))
@@ -260,8 +260,8 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         
         //Productive time
         let totalShiftTime = filterArray.filter({$0.total_shift_time ?? 0 > 0})
-        //Busy time
-        //        let totalServiceTime = filterArray.filter({$0.services_time ?? 0 > 0})
+        //Training time
+        let totalTrainingTime = filterArray.filter({$0.services_time ?? 0 > 0})
         
         
         switch dateRangeType
@@ -271,7 +271,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             for objDt in dates {
                 if let data = totalShiftTime.filter({$0.date == objDt}).first
                 {
-                    values.append(Double((Double(data.services_time!) / Double(data.total_shift_time!)) * 100))
+                    values.append(Double((Double(data.services_time! + data.tranning_time!) / Double(data.total_shift_time!)) * 100))
                 }
                 else {
                     values.append(Double(0.0))
@@ -284,7 +284,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                     if let rMonth = data.date?.date()?.string(format: "MMM yy"),
                        rMonth == qMonth
                     {
-                        return Double((Double(data.services_time!) / Double(data.total_shift_time!)) * 100)
+                        return Double((Double(data.services_time! + data.tranning_time!) / Double(data.total_shift_time!)) * 100)
                     }
                     return 0.0
                 }).reduce(0) {$0 + $1}
@@ -302,7 +302,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                         if let rMonth = data.date?.date()?.string(format: "MMM yy"),
                            rMonth == qMonth
                         {
-                            return Double((Double(data.services_time!) / Double(data.total_shift_time!)) * 100)
+                            return Double((Double(data.services_time! + data.tranning_time!) / Double(data.total_shift_time!)) * 100)
                         }
                         return 0.0
                     }).reduce(0) {$0 + $1}
@@ -315,7 +315,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                 for objDt in dates {
                     if let data = totalShiftTime.filter({$0.date == objDt}).first
                     {
-                        values.append(Double((Double(data.services_time!) / Double(data.total_shift_time!)) * 100))
+                        values.append(Double((Double(data.services_time! + data.tranning_time!) / Double(data.total_shift_time!)) * 100))
                     }
                     else {
                         values.append(Double(0.0))
@@ -395,7 +395,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
     func calculateTrainingTime(filterArray : [Dashboard.GetRevenueDashboard.ResourceUtilization], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double]{
         var values = [Double]()
         
-        let totalTranningTime = filterArray.filter({$0.tranning_time ?? 0 > 0})
+        let totalTranningTime = filterArray.filter({$0.total_shift_time ?? 0 > 0})
         //( trainingBusyTime / productivityAvailableTime )
         switch dateRangeType
         {
@@ -404,7 +404,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             for objDt in dates {
                 if let data = totalTranningTime.filter({$0.date == objDt}).first
                 {
-                    values.append(Double(data.tranning_time!))
+                    values.append(Double(data.total_shift_time!))
                 }
                 else {
                     values.append(Double(0.0))
@@ -417,7 +417,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                     if let rMonth = data.date?.date()?.string(format: "MMM yy"),
                        rMonth == qMonth
                     {
-                        return Double(data.tranning_time!)
+                        return Double(data.total_shift_time!)
                     }
                     return 0.0
                 }).reduce(0) {$0 + $1}
@@ -435,7 +435,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                         if let rMonth = data.date?.date()?.string(format: "MMM yy"),
                            rMonth == qMonth
                         {
-                            return Double(data.tranning_time!)
+                            return Double(data.total_shift_time!)
                         }
                         return 0.0
                     }).reduce(0) {$0 + $1}
@@ -448,7 +448,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
                 for objDt in dates {
                     if let data = totalTranningTime.filter({$0.date == objDt}).first
                     {
-                        values.append(Double(data.tranning_time!))
+                        values.append(Double(data.total_shift_time!))
                     }
                     else {
                         values.append(Double(0.0))
@@ -740,7 +740,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         let salonStations = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
         let totalDays = Date.today.numberOfDaysFromDates(startDate: dateRange.start, fromDate: dateRange.end) + 1
         let salonWorkingTime = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
-        storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
+//        storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
         
         //get service time
 //        let serviceTime = filterArray.filter({$0.services_time ?? 0 > 0})
@@ -755,9 +755,11 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         {
         case .yesterday, .today, .week, .mtd:
             let dates = dateRange.end.dayDates(from: dateRange.start)
+            
             for objDt in dates {
                 if let serviceTime = filterArray.filter({$0.services_time ?? 0 > 0}).first
                 {
+                    storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(1)
                     values.append(Double(serviceTime.services_time ?? 0) / storeOccupancyDenominatorValue)
                 }
                 else {
@@ -766,6 +768,8 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             }
         case .qtd, .ytd:
             let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+            let totalDays = Date.today.numberOfDaysFromDates(startDate: dateRange.start, fromDate: dateRange.end) + 1
+            storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
             for qMonth in months {
                 let value = filterArray.map ({ (revenue) -> Double in
                     if let rMonth = revenue.date?.date()?.string(format: "MMM yy"),
@@ -784,6 +788,9 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             if dateRange.end.days(from: dateRange.start) > 31
             {
                 let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+                let totalDays = Date.today.numberOfDaysFromDates(startDate: dateRange.start, fromDate: dateRange.end) + 1
+                storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
+                
                 for qMonth in months {
                     let value = filterArray.map ({ (rewards) -> Double in
                         if let rMonth = rewards.date?.date()?.string(format: "MMM yy"),
@@ -799,6 +806,8 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
             }
             else {
                 let dates = dateRange.end.dayDates(from: dateRange.start)
+                let totalDays = Date.today.numberOfDaysFromDates(startDate: dateRange.start, fromDate: dateRange.end) + 1
+                storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
                 for objDt in dates {
                     if let data = filterArray.filter({$0.date == objDt}).first
                     {
@@ -871,7 +880,7 @@ class ResourceUtilisationViewController: UIViewController, ResourceUtilisationDi
         //Store occupancy denominator value
         var storeOccupancyDenominatorValue : Double = 0.0
         let salonStations = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_stations ?? 0
-        var totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1
+        let totalDays = Date.today.numberOfDaysFromDates(startDate: startDate, fromDate: endDate) + 1
         let salonWorkingTime = GlobalVariables.technicianDataJSON?.data?.configuration?.salon_working_time ?? 0
         storeOccupancyDenominatorValue = Double(salonStations) * Double(salonWorkingTime) * Double(totalDays)
         
