@@ -44,6 +44,9 @@ class EarningDetailsThreeValueCell: UITableViewCell, ChartViewDelegate {
     weak var delegate: EarningDetailsDelegate?
     
     weak var parentVC: UIViewController?
+    
+    let screenWidth: CGFloat = UIScreen.main.bounds.width
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -176,8 +179,12 @@ extension EarningDetailsThreeValueCell {
         xAxis.wordWrapEnabled = true
         xAxis.valueFormatter = CustomValueFormatter(values: graphData.first?.units ?? [])
         xAxis.labelTextColor = UIColor(red: 0.17, green: 0.16, blue: 0.16, alpha: 1.00)
-        if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 8.0) {
-            xAxis.labelFont = font
+        if let font = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 7.0) {
+            if model.dateRangeType != .cutome {
+                xAxis.labelFont = font
+            } else if let font6 = UIFont(name: FontName.FuturaPTMedium.rawValue, size: 6.0) {
+                xAxis.labelFont = font6
+            }
         }
         xAxis.gridColor = UIColor(red: 0.61, green: 0.62, blue: 0.70, alpha: 1.00)
         xAxis.axisLineColor = UIColor(red: 0.61, green: 0.62, blue: 0.70, alpha: 1.00)
