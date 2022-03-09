@@ -69,6 +69,9 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            EZLoadingActivity.show("Loading...", disableUI: true)
+        }
         bottomFilterView.delegate = self
         bottomFilterView.setup(.basic)
         doSomething()
@@ -94,13 +97,11 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
     //@IBOutlet weak var nameTextField: UITextField!
     
     func updateFootfallData(startDate: Date?, endDate: Date = Date().startOfDay) {
-        
-        EZLoadingActivity.show("Loading...", disableUI: true)
         footfallData(startDate:  startDate ?? Date.today, endDate: endDate)
         
     }
     
-    func updateFootfallData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType) {
+    func updateFootfallData(atIndex indexPath:IndexPath, withStartDate startDate: Date?, endDate: Date = Date().startOfDay, rangeType:DateRangeType, rangeTypeString: String) {
         let selectedIndex = indexPath.row - 1
         let dateRange = DateRange(startDate!, endDate)
         
@@ -132,7 +133,11 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
             headerGraphData = getTotalFootfallGraphEntry(forData:dateFilteredFootfall, dateRange: dateRange, dateRangeType: rangeType)
         }
         
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            EZLoadingActivity.hide()
+            self.showToast(alertTitle: alertTitle, message: rangeTypeString, seconds: toastMessageDuration)
+        }
     }
     
     func update(modeData:EarningsCellDataModel, withData data: [Dashboard.GetRevenueDashboard.Revenue_transaction]? = nil, atIndex index : Int, dateRange:DateRange, dateRangeType: DateRangeType) {
@@ -284,7 +289,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
             })
         }
         else {
-            filteredFootfall = filteredFootfall?.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && (($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon) || ($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home))) || ($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)})
+            filteredFootfall = filteredFootfall?.filter({(($0.product_category_type == CategoryTypes.services) && (($0.appointment_type == AppointmentTypes.salon) || ($0.appointment_type == AppointmentTypes.home))) || ($0.product_category_type == CategoryTypes.retail)})
         }
         
         let saloneGraphData = graphData(forData: data, atIndex: 0, dateRange: dateRange, dateRangeType: dateRangeType)
@@ -327,17 +332,17 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         }
 
         //service
-        let salonServiceData = filteredFootfall?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && ($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon)}) ?? []
+        let salonServiceData = filteredFootfall?.filter({($0.product_category_type ==  CategoryTypes.services) && ($0.appointment_type == AppointmentTypes.salon)}) ?? []
         let salonServiceCount : Int = salonServiceData.unique(map: {$0.invoice_number}).count
         print("serviceToatal conunt : \(salonServiceCount)")
 
         //Home
-        let homeServiceRevenueData = filteredFootfall?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && ($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home)}) ?? []
+        let homeServiceRevenueData = filteredFootfall?.filter({($0.product_category_type == CategoryTypes.services) && ($0.appointment_type == AppointmentTypes.home)}) ?? []
         let homeServiceCount : Int = homeServiceRevenueData.unique(map: {$0.invoice_number}).count
         print("homeServiceTotal conunt : \(homeServiceCount)")
 
         //Retail
-        let retailData = filteredFootfall?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)})
+        let retailData = filteredFootfall?.filter({($0.product_category_type == CategoryTypes.retail)})
         let retailCount : Int = retailData?.unique(map: {$0.invoice_number}).count ?? 0
         print("retail conunt : \(retailCount)")
 
@@ -371,15 +376,17 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         headerModel?.dateRangeType = graphRangeType
         headerGraphData = getTotalFootfallGraphEntry(forData: filteredFootfallForGraph, dateRange: graphDateRange, dateRangeType: graphRangeType)
 
-        tableView.reloadData()
-        EZLoadingActivity.hide()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            EZLoadingActivity.hide()
+        }
     }
 
     func calculateSalonService(filterArray: [Dashboard.GetRevenueDashboard.Revenue_transaction], invoiceNumbers: [String], dateRange: DateRange, dateRangeType: DateRangeType) -> [Double] {
         var values = [Double]()
 
         //service
-        let serviceData = filterArray.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && ($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.salon) && invoiceNumbers.contains($0.invoice_number ?? "")})
+        let serviceData = filterArray.filter({($0.product_category_type == CategoryTypes.services) && ($0.appointment_type == AppointmentTypes.salon) && invoiceNumbers.contains($0.invoice_number ?? "")})
 
 
         switch dateRangeType
@@ -427,7 +434,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
 
 
 
-        let homeServiceRevenueData = filterArray.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && ($0.appointment_type ?? "").containsIgnoringCase(find:AppointmentTypes.home) && invoiceNumbers.contains($0.invoice_number  ?? "")})
+        let homeServiceRevenueData = filterArray.filter({($0.product_category_type == CategoryTypes.services) && ($0.appointment_type == AppointmentTypes.home) && invoiceNumbers.contains($0.invoice_number  ?? "")})
 
 
         switch dateRangeType
@@ -472,7 +479,7 @@ class FootfallViewController: UIViewController, FootfallDisplayLogic
         var values = [Double]()
 
 
-        let retailData = filterArray.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail) && invoiceNumbers.contains($0.invoice_number ?? "")})
+        let retailData = filterArray.filter({($0.product_category_type == CategoryTypes.retail) && invoiceNumbers.contains($0.invoice_number ?? "")})
 
 
         switch dateRangeType
@@ -536,7 +543,12 @@ extension FootfallViewController: EarningsFilterDelegate {
                 {
                     footfallCutomeDateRange = DateRange(start,end)
                 }
-                updateFootfallData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
+                DispatchQueue.main.async {
+                    EZLoadingActivity.showOnController("Loading...", disableUI: true, controller: self)
+                }
+                DispatchQueue.global(qos: .default).async {
+                    updateFootfallData(startDate: startDate ?? Date.today, endDate: endDate ?? Date.today)
+                }
             }
         }
     }
@@ -579,11 +591,13 @@ extension FootfallViewController: EarningDetailsDelegate {
                 fromChartFilter = true
 
                 let rangeType  = DateRangeType(rawValue: rangeTypeString ?? "") ?? .cutome
-                updateFootfallData(atIndex: indexPath, withStartDate: startDate, endDate: endDate!, rangeType: rangeType)
-
-                tableView.reloadRows(at: [indexPath], with: .automatic)
                 let text = "You have selected \(rangeTypeString ?? "MTD") filter from Charts."
-                self.showToast(alertTitle: alertTitle, message: text, seconds: toastMessageDuration)
+                DispatchQueue.main.async {
+                    EZLoadingActivity.showOnController("Loading...", disableUI: true, controller: self)
+                }
+                DispatchQueue.global(qos: .default).async {
+                    updateFootfallData(atIndex: indexPath, withStartDate: startDate, endDate: endDate!, rangeType: rangeType, rangeTypeString: text)
+                }
             }
         }
     }
