@@ -14,10 +14,10 @@
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "623"
-            endingLineNumber = "623"
-            landmarkName = "calculatePenetrationRatioForDyanmicData(penetrationRatioFromServer:penetrationRatio:dateRange:dateRangeType:title:)"
-            landmarkType = "9">
+            startingLineNumber = "756"
+            endingLineNumber = "756"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,10 +30,10 @@
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "617"
-            endingLineNumber = "617"
-            landmarkName = "calculateComparisonRatio(revenueTransaction:comapreCategory:toComapreCategory:)"
-            landmarkType = "9">
+            startingLineNumber = "635"
+            endingLineNumber = "635"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,40 +48,216 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "584"
             endingLineNumber = "584"
-            landmarkName = "calculateCompareValue(revenueTransaction:comapreCategories:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A7DDEA9C-D18C-483B-B1F5-FEB060AD4C06"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "605"
-            endingLineNumber = "605"
-            landmarkName = "calculateCompareValue(revenueTransaction:comapreCategories:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "02B8F500-0DDD-4099-8B1C-0E6355FF731A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1103"
+            endingLineNumber = "1103"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04ED0354-F571-4FA7-AA85-3B5470DCB37A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "981"
-            endingLineNumber = "981"
-            landmarkName = "penetrationRatioData(startDate:endDate:)"
-            landmarkType = "9">
+            startingLineNumber = "676"
+            endingLineNumber = "676"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5EC25FA-178E-4A52-A88B-8DD90997E09A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7ACECA53-CE6D-4966-909C-A3E85402C75B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1312"
+            endingLineNumber = "1312"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7902D729-85FB-466D-BDEE-D36BE7534D21"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1406"
+            endingLineNumber = "1406"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7EDD913F-35BC-4B7B-BF09-EABF59765FF2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "7EDD913F-35BC-4B7B-BF09-EABF59765FF2 - 7a6ec43eac2d20bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 2 of SMA_Stage.PenetrationRatiosViewController.updatePenetrationData(atIndex: Foundation.IndexPath, withStartDate: Swift.Optional&lt;Foundation.Date&gt;, endDate: Foundation.Date, rangeType: SMA_Stage.DateRangeType) -&gt; ()"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Penetration%20Ratios/PenetrationRatiosViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  uuid = "7EDD913F-35BC-4B7B-BF09-EABF59765FF2 - aec3132a71319e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SMA_Stage.PenetrationRatiosViewController.updatePenetrationData(atIndex: Foundation.IndexPath, withStartDate: Swift.Optional&lt;Foundation.Date&gt;, endDate: Foundation.Date, rangeType: SMA_Stage.DateRangeType) -&gt; ()"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Penetration%20Ratios/PenetrationRatiosViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "477">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A011263B-2ABD-4197-ACC0-0D8EA5C90C68"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1285"
+            endingLineNumber = "1285"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D867C397-1347-43FD-8A0B-9344C196CF22"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1266"
+            endingLineNumber = "1266"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7669863B-0842-4073-96E7-E2CE9DC0D919"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Enrich_SMA/Modules/Dashboard/Incentive/Penetration Ratios/PenetrationRatiosViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1264"
+            endingLineNumber = "1264"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "7669863B-0842-4073-96E7-E2CE9DC0D919 - e3f0602902179124"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SMA_Stage.PenetrationRatiosViewController.update(modeData: SMA_Stage.EarningsCellDataModel, withData: Swift.Optional&lt;Swift.Array&lt;SMA_Stage.Dashboard.GetRevenueDashboard.Revenue_transaction&gt;&gt;, atIndex: Swift.Int, dateRange: (start: Foundation.Date, end: Foundation.Date), dateRangeType: SMA_Stage.DateRangeType) -&gt; ()"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Penetration%20Ratios/PenetrationRatiosViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1264"
+                  endingLineNumber = "1264"
+                  offsetFromSymbolStart = "23719">
+               </Location>
+               <Location
+                  uuid = "7669863B-0842-4073-96E7-E2CE9DC0D919 - 208561d928026b89"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #14 (SMA_Stage.Dashboard.GetRevenueDashboard.Penetration_ratios) -&gt; Swift.Bool in SMA_Stage.PenetrationRatiosViewController.update(modeData: SMA_Stage.EarningsCellDataModel, withData: Swift.Optional&lt;Swift.Array&lt;SMA_Stage.Dashboard.GetRevenueDashboard.Revenue_transaction&gt;&gt;, atIndex: Swift.Int, dateRange: (start: Foundation.Date, end: Foundation.Date), dateRangeType: SMA_Stage.DateRangeType) -&gt; ()"
+                  moduleName = "SMA_Stage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/harshal/sma-ios/Enrich_SMA/Enrich_SMA/Modules/Dashboard/Incentive/Penetration%20Ratios/PenetrationRatiosViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1264"
+                  endingLineNumber = "1264"
+                  offsetFromSymbolStart = "118">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

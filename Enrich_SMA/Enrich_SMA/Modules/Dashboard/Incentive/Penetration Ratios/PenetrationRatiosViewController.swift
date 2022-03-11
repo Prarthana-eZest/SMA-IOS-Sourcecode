@@ -192,7 +192,7 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         }
         else {
             let penerationRatioFromFilters = GlobalVariables.technicianDataJSON?.data?.filters?.penetration_ratios
-            return calculatePenetrationRatioForDyanmicData(penetrationRatioFromServer: penerationRatioFromFilters ?? [], penetrationRatio: filteredPenetrationRatio ?? [], dateRange: dateRange, dateRangeType: dateRangeType, title: title)
+            return calculatePenetrationRatioForDyanmicData(penetrationRatioFromServer: penerationRatioFromFilters ?? [], filteredPenetrationRatio: filteredPenetrationRatio ?? [], dateRange: dateRange, dateRangeType: dateRangeType, title: title)
         }
     }
     
@@ -581,37 +581,55 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         return values
     }
     
-    func calculateCompareValue(revenueTransaction: [Dashboard.GetRevenueDashboard.Revenue_transaction], comapreCategories : [String]) -> Int {
+    func calculateCompareValue(revenueTransaction: [Dashboard.GetRevenueDashboard.Revenue_transaction], comapreCategories : [String], serviceCount : Int) -> Int {
         var value = 0
         
-        let serviceCount = revenueTransaction.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
+       // let serviceCount = 10// revenueTransaction.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
         
-        if(revenueTransaction.count > 0)
-        {
+//        if(revenueTransaction.count > 0)
+//        {
+        /**
+         for objTransaction in penetrationRatio  {
+             for objPenetration in penetrationRatioFromServer {
+                 if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
+                     categotyCount = categotyCount + 1
+                     filterPenetrationArrayWithCategoryData.append(objTransaction)
+                 }
+                 
+                 if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
+                     subCategoryCount = subCategoryCount + 1
+                     filterPenetrationArrayWithCategoryData.append(objTransaction)
+                 }
+             }
+         }
+         */
+        
             for objComapreCat in comapreCategories{
                 for objRevenueTrans in revenueTransaction{
                     if(objComapreCat.containsIgnoringCase(find: "All")){
-                        value = serviceCount.count
+                        value = serviceCount
                     }
                     else {
-                        if(objRevenueTrans.sub_category != nil && objRevenueTrans.category != nil && ((objRevenueTrans.product_category_type?.containsIgnoringCase(find: CategoryTypes.services)) != nil)){
-                            if((objRevenueTrans.category?.equalsIgnoreCase(string: objComapreCat))! || ((objRevenueTrans.sub_category?.equalsIgnoreCase(string: objComapreCat)) != nil)){
+                        if((objRevenueTrans.product_category_type ?? "").containsIgnoringCase(find: CategoryTypes.services)) {
+                            
+                       if ((objRevenueTrans.category ?? "").containsIgnoringCase(find: objComapreCat) || (objRevenueTrans.sub_category ?? "").containsIgnoringCase(find: objComapreCat)){
+                           // if((revenueTransaction.category?.equalsIgnoreCase(string: objComapreCat))! || ((revenueTransaction.sub_category?.equalsIgnoreCase(string: objComapreCat)) != nil))//{
                             value += 1
                             }
                         }
                     }
                 }
             }
-        }
+       // }
         return value
     }
     
-    func calculateComparisonRatio(revenueTransaction : [Dashboard.GetRevenueDashboard.Revenue_transaction], comapreCategory : [String], toComapreCategory : [String]) -> Double{
+    func calculateComparisonRatio(revenueTransaction : [Dashboard.GetRevenueDashboard.Revenue_transaction], comapreCategory : [String], toComapreCategory : [String], serviceCountData : Int) -> Double{
         var value = 0.0
         
-        let compareValue = Double(calculateCompareValue(revenueTransaction: revenueTransaction, comapreCategories: toComapreCategory))
+        let compareValue = Double(calculateCompareValue(revenueTransaction: revenueTransaction, comapreCategories: toComapreCategory, serviceCount: serviceCountData))
         if(compareValue > 0){
-            value = Double(Double(calculateCompareValue(revenueTransaction: revenueTransaction, comapreCategories: comapreCategory)) / compareValue)
+            value = Double(Double(calculateCompareValue(revenueTransaction: revenueTransaction, comapreCategories: comapreCategory, serviceCount: serviceCountData)) / compareValue)
         }
         
         if(value.isNaN){
@@ -620,68 +638,53 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         return value
     }
     
-    func calculatePenetrationRatioForDyanmicData(penetrationRatioFromServer: [Dashboard.GetRevenueDashboard.Penetration_ratios], penetrationRatio: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange: DateRange, dateRangeType: DateRangeType, title : String) -> [Double]{
+    func calculatePenetrationRatioForDyanmicData(penetrationRatioFromServer: [Dashboard.GetRevenueDashboard.Penetration_ratios], filteredPenetrationRatio: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange: DateRange, dateRangeType: DateRangeType, title : String) -> [Double]{
         var values = [Double]()
-        
+        let serviceCountInt = filteredPenetrationRatio.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
         var categotyCount : Int = 0
-        let subCategoryCount : Int = 0
+        var subCategoryCount : Int = 0
         var ratio : Double = 0.0
-        let filterPenetrationArrayWithCategoryData = [Dashboard.GetRevenueDashboard.Revenue_transaction]()
-        
-//        //service count
-        let filteredPenetrationRatio = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (penetrationRatio) -> Bool in
-            if let date = penetrationRatio.date?.date()?.startOfDay {
-
-                return date >= dateRange.start && date <= dateRange.end
+        var filterPenetrationArrayWithCategoryData = [Dashboard.GetRevenueDashboard.Revenue_transaction]()
+        if(penetrationRatioFromServer.count > 0){
+            for objTransaction in filteredPenetrationRatio  {
+                for objPenetration in penetrationRatioFromServer {
+                    if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
+                        categotyCount = categotyCount + 1
+                        filterPenetrationArrayWithCategoryData.append(objTransaction)
+                    }
+                    
+                    if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
+                        subCategoryCount = subCategoryCount + 1
+                        filterPenetrationArrayWithCategoryData.append(objTransaction)
+                    }
+                }
             }
-            return false
-        }) ?? []
-        
+        }
         var compareCategories = [String]()
         var toCompareCategories = [String]()
-        
-        
-        
+        let category = penetrationRatioFromServer.filter({($0.heading?.containsIgnoringCase(find: title))!})
+        for objPenetration in category{
+            if(objPenetration.heading == title){
+                compareCategories.append(objPenetration.compare_label ?? "")
+                toCompareCategories.append(objPenetration.to_compare_label ?? "")
+            }
+            
         switch dateRangeType
         {
         case .yesterday, .today, .week, .mtd:
             let dates = dateRange.end.dayDates(from: dateRange.start)
-            
             for objDt in dates {
-                if let data = filteredPenetrationRatio.filter({$0.date == objDt}).first {
-                
+                if let data = filterPenetrationArrayWithCategoryData.filter({$0.date == objDt}).first {
                     
+                    values.append(calculateComparisonRatio(revenueTransaction: filterPenetrationArrayWithCategoryData, comapreCategory: compareCategories, toComapreCategory: toCompareCategories, serviceCountData: serviceCountInt.count))
                     
-//                    let dateValues = calculateCategoryData(data: filteredPenetrationRatio, comapreCategory: compareCategories, toCompareCategory: toCompareCategories, dateRange: dateRange, dateRangeType: dateRangeType, titleData: title)
-//                    let arr1 = dateValues[0].category
-//                    let arr2 = dateValues[0].subCategory
-//                    if(arr1.count > 0){
-//                    ratio = Double(arr2.count / arr1.count)
-//                    }
-//                    else {
-//                        ratio = 0
-//                    }
+//                    ratio = Double(subCategoryCount / categotyCount)
 //                    values.append(ratio)
-                    let category = penetrationRatioFromServer.filter({($0.heading?.containsIgnoringCase(find: title))!})
-                    
-                    
-                    for objPenetration in category{
-                        if(objPenetration.heading == title){
-                        compareCategories.append(objPenetration.compare_label ?? "")
-                        toCompareCategories.append(objPenetration.to_compare_label ?? "")
-                        }
-                    }
-                    values.append(calculateComparisonRatio(revenueTransaction: filteredPenetrationRatio, comapreCategory: compareCategories, toComapreCategory: toCompareCategories))
-                    print("######## Title \(title)")
-                    print("Compare category \(compareCategories) \n ************ To compare category \(toCompareCategories)")
-                    compareCategories.removeAll()
-                    toCompareCategories.removeAll()
                 }
                 else {
                     values.append(Double(0.0))
                 }
             }
-            
         case .qtd, .ytd:
             let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
             for qMonth in months {
@@ -745,9 +748,140 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 }
             }
         }
-        return values
         
+        }
+        return values
     }
+    
+//    func calculatePenetrationRatioForDyanmicData(penetrationRatioFromServer: [Dashboard.GetRevenueDashboard.Penetration_ratios], filteredPenetrationRatio: [Dashboard.GetRevenueDashboard.Revenue_transaction] , dateRange: DateRange, dateRangeType: DateRangeType, title : String) -> [Double]{
+//        var values = [Double]()
+//
+//        var categotyCount : Int = 0
+//        let subCategoryCount : Int = 0
+//        var ratio : Double = 0.0
+//        let filterPenetrationArrayWithCategoryData = [Dashboard.GetRevenueDashboard.Revenue_transaction]()
+//
+////        //service count
+////        let filteredPenetrationRatio = GlobalVariables.technicianDataJSON?.data?.revenue_transactions?.filter({ (penetrationRatio) -> Bool in
+////            if let date = penetrationRatio.date?.date()?.startOfDay {
+////
+////                return date >= dateRange.start && date <= dateRange.end
+////            }
+////            return false
+////        }) ?? []
+//
+//        let serviceCountInt = filteredPenetrationRatio.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
+//        var compareCategories = [String]()
+//        var toCompareCategories = [String]()
+//
+//
+//
+//        switch dateRangeType
+//        {
+//        case .yesterday, .today, .week, .mtd:
+//            let dates = dateRange.end.dayDates(from: dateRange.start)
+//
+//            for objDt in dates {
+//                if let data = filteredPenetrationRatio.filter({$0.date == objDt}).first {
+//
+//
+//
+//                    let dateValues = calculateCategoryData(data: filteredPenetrationRatio, comapreCategory: compareCategories, toCompareCategory: toCompareCategories, dateRange: dateRange, dateRangeType: dateRangeType, titleData: title)
+//                    let arr1 = dateValues[0].category
+//                    let arr2 = dateValues[0].subCategory
+//                    if(arr1.count > 0){
+//                    ratio = Double(arr2.count / arr1.count)
+//                    }
+//                    else {
+//                        ratio = 0
+//                    }
+//                    values.append(ratio)
+//                    let category = penetrationRatioFromServer.filter({($0.heading?.containsIgnoringCase(find: title))!})
+//
+//
+//                    for objPenetration in category{
+//                        if(objPenetration.heading == title){
+//                        compareCategories.append(objPenetration.compare_label ?? "")
+//                        toCompareCategories.append(objPenetration.to_compare_label ?? "")
+//                        }
+//                    }
+//                    values.append(calculateComparisonRatio(revenueTransaction: data, comapreCategory: compareCategories, toComapreCategory: toCompareCategories, serviceCountData: serviceCountInt.count))
+//                    print("######## Title \(title)")
+//                    print("Compare category \(compareCategories) \n ************ To compare category \(toCompareCategories)")
+//                    compareCategories.removeAll()
+//                    toCompareCategories.removeAll()
+//                }
+//                else {
+//                    values.append(Double(0.0))
+//                }
+//            }
+//
+//        case .qtd, .ytd:
+//            let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+//            for qMonth in months {
+//                let value = filterPenetrationArrayWithCategoryData.map ({ (services) -> Double in
+//                    if let rMonth = services.date?.date()?.string(format: "MMM yy"),
+//                       rMonth == qMonth
+//                    {
+//                        if(categotyCount == 0){
+//                            ratio = 0
+//                        }
+//                        else {
+//                            ratio = Double(subCategoryCount / categotyCount)
+//                        }
+//                        return ratio
+//                    }
+//                    return 0.0
+//                }).reduce(0) {$0 + $1}
+//
+//                values.append(value)
+//            }
+//
+//        case .cutome:
+//
+//            if dateRange.end.days(from: dateRange.start) > 31
+//            {
+//                let months = dateRange.end.monthNames(from: dateRange.start, withFormat: "MMM yy")
+//                for qMonth in months {
+//                    let value = filterPenetrationArrayWithCategoryData.map ({ (services) -> Double in
+//                        if let rMonth = services.date?.date()?.string(format: "MMM yy"),
+//                           rMonth == qMonth
+//                        {
+//                            if(categotyCount == 0){
+//                                ratio = 0
+//                            }
+//                            else {
+//                                ratio = Double(subCategoryCount / categotyCount)
+//                            }
+//                            return (ratio)
+//                        }
+//                        return 0.0
+//                    }).reduce(0) {$0 + $1}
+//
+//                    values.append(value)
+//                }
+//            }
+//            else {
+//                let dates = dateRange.end.dayDates(from: dateRange.start)
+//                for objDt in dates {
+//                    if let data = filterPenetrationArrayWithCategoryData.filter({$0.date == objDt}).first
+//                    {
+//                        if(categotyCount == 0){
+//                            ratio = 0
+//                        }
+//                        else {
+//                            ratio = Double(subCategoryCount / categotyCount)
+//                        }
+//                    }
+//                    else {
+//                        values.append(Double(0.0))
+//                    }
+//                }
+//            }
+//        }
+//        return values
+//
+//    }
     
     func calculateCategoryData(data : [Dashboard.GetRevenueDashboard.Revenue_transaction] ,comapreCategory : [String], toCompareCategory : [String] , dateRange: DateRange, dateRangeType: DateRangeType, titleData: String) -> [(category : [Dashboard.GetRevenueDashboard.Revenue_transaction], subCategory: [Dashboard.GetRevenueDashboard.Revenue_transaction])]{
         
@@ -887,18 +1021,6 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         
         //customers served - those are customer_id which are served
         let filterCustomerServed = filteredPenetrationRatio.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) && $0.customer_id != nil && $0.customer_id != 0}).unique(map: {$0.customer_id})
-//        let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
-//            if let date = customerEngagement.date?.date()?.startOfDay {
-//
-//                return date >= startDate && date <= endDate
-//            }
-//            return false
-//        })
-//        let customersServed = filteredCustomerEngagement?.filter({$0.no_of_services ?? 0 > 0}) ?? []
-//        var customersServedCount : Double = 0.0
-//        for objCustomersServed in customersServed {
-//            customersServedCount = customersServedCount + Double(objCustomersServed.no_of_services ?? 0)
-//        }
         
         if(filterCustomerServed.count > 0) {
             appBookingRatio =  Double(appBooking.count) / Double(filterCustomerServed.count)
@@ -979,7 +1101,8 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 dataModel.append(penetrationModel)
                 //Graph Data
                 graphData.append(getGraphEntry(penetrationModel.title, forData: filteredPenetrationForGraph, atIndex: index, dateRange: graphDateRange, dateRangeType: graphRangeType))
-                
+                print("INDEX \(index)")
+                print("------------------ penetration ratio title \(penetrationModel.title)")
                 //                dataModel.append(EarningsCellDataModel(earningsType: .PenetrationRatios, title: objPenetration.heading ?? "", value: [String(subCategoryCount),String(categotyCount),String(ratio)], subTitle: [objPenetration.compare_label ?? "" ,objPenetration.to_compare_label ?? "", "Ratio"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: penetrationCutomeDateRange))
                 
                 categotyCount = 0
@@ -1018,9 +1141,19 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         var ratio : Double = 0.0
         
         // for penetration in filteredPenetrationRatio ?? [] {
-        
+        let serviceCount = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
         switch index {
         case 0: // Service Count per Invoice
+            
+            //service count per invoice
+            let serviceCount = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
+            let invoiceService = filteredPenetrationRatio?.compactMap({$0.invoice_number}).unique(map: {$0})
+            count = serviceCount!.count
+            invoceCount = invoiceService!.count
+            if(invoiceService!.count > 0){
+                ratio =  Double(serviceCount!.count) / Double(invoiceService!.count)
+            }
+            /*
             //service count per invoice
             let serviceCount = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
             count = serviceCount?.count ?? 0
@@ -1032,13 +1165,13 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
                 invoceCount = uniqueInvoices?.count ?? 0
                 ratio = Double(count) / Double(countInvoice ?? 0)
             }
-            
+            */
         case 1:
             // Product To Service
             let productCount = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.retail)})
             count = productCount?.count ?? 0
             
-            let serviceCount = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
+           
             invoceCount = serviceCount?.count ?? 0
             
             if(invoceCount > 0){
@@ -1046,14 +1179,14 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
             }
             
         case 2:
-            let appBooking = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && (($0.platform ?? "").containsIgnoringCase(find:platform.CMA))})
-           
-            //customers served - those are customer_id which are served
-            let filterCustomerServed = filteredPenetrationRatio?.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) && $0.customer_id != nil && $0.customer_id != 0}).unique(map: {$0.customer_id})
-            
-            if(filterCustomerServed!.count > 0) {
-                ratio =  Double(appBooking?.count ?? 0) / Double(filterCustomerServed!.count)
-            }
+//            let appBooking = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services) && (($0.platform ?? "").containsIgnoringCase(find:platform.CMA))})
+//
+//            //customers served - those are customer_id which are served
+//            let filterCustomerServed = filteredPenetrationRatio?.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) && $0.customer_id != nil && $0.customer_id != 0}).unique(map: {$0.customer_id})
+//
+//            if(filterCustomerServed!.count > 0) {
+//                ratio =  Double(appBooking?.count ?? 0) / Double(filterCustomerServed!.count)
+//            }
 //            //customers served
 //            let filteredCustomerEngagement = GlobalVariables.technicianDataJSON?.data?.salon_feedbacks?.filter({ (customerEngagement) -> Bool in
 //                if let date = customerEngagement.date?.date()?.startOfDay {
@@ -1063,10 +1196,25 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
 //                return false
 //            })
 //            let customersServed = filteredPenetrationRatio?.unique(map: {$0.customer_id})
-            invoceCount = filterCustomerServed?.count ?? 0
+          //  invoceCount = filterCustomerServed?.count ?? 0
 //            for customers in customersServed ?? []{
 //                invoceCount += customers.no_of_services ?? 0
 //            }
+            
+        
+            //app booking
+            let appBooking = filteredPenetrationRatio?.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) && (($0.platform ?? "").containsIgnoringCase(find:platform.CMA))})
+            
+            var appBookingRatio : Double = 0.0
+            
+            //customers served - those are customer_id which are served
+            let filterCustomerServed = filteredPenetrationRatio?.filter({(($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)) && $0.customer_id != nil && $0.customer_id != 0}).unique(map: {$0.customer_id})
+            
+            if(filterCustomerServed!.count > 0) {
+                appBookingRatio =  Double(appBooking!.count) / Double(filterCustomerServed!.count)
+            }
+            count = appBooking!.count
+            invoceCount = filterCustomerServed?.count ?? 0
             
         case 3:
             //cross sell
@@ -1103,48 +1251,85 @@ class PenetrationRatiosViewController: UIViewController, PenetrationRatiosDispla
         default:
             //Penetration ratio dynamic data
             let penerationRatioFromFilters = GlobalVariables.technicianDataJSON?.data?.filters?.penetration_ratios ?? []
-            
+            //service count per invoice
+            let serviceCount = filteredPenetrationRatio?.filter({($0.product_category_type ?? "").containsIgnoringCase(find:CategoryTypes.services)})
             var categotyCount : Int = 0
             var subCategoryCount : Int = 0
             var ratio : Int = 0
-            //var index = 4 // to set the index for graphs
-            if(penerationRatioFromFilters.count > 0){
-                for objPenetration in penerationRatioFromFilters {
-                    
-                    for objTransaction in filteredPenetrationRatio! {
-                        
+           
+            var compareCategories = [String]()
+            var toCompareCategories = [String]()
+            var filterPenetrationArrayWithCategoryData = [Dashboard.GetRevenueDashboard.Revenue_transaction]()
+            
+            let category = penerationRatioFromFilters.filter({($0.heading?.containsIgnoringCase(find: dataModel[index].title))!})
+            for objPenetration in category{
+                if(objPenetration.heading == dataModel[index].title){
+                    compareCategories.append(objPenetration.compare_label ?? "")
+                    toCompareCategories.append(objPenetration.to_compare_label ?? "")
+                }
+                
+                for objTransaction in filteredPenetrationRatio!  {
+                    for objPenetration in penerationRatioFromFilters {
                         if((objTransaction.category == objPenetration.compare_label!) || (objTransaction.category == objPenetration.to_compare_label!)) {
                             categotyCount = categotyCount + 1
+                            filterPenetrationArrayWithCategoryData.append(objTransaction)
                         }
                         
                         if((objTransaction.sub_category == objPenetration.compare_label) || (objTransaction.sub_category == objPenetration.to_compare_label)){
                             subCategoryCount = subCategoryCount + 1
+                            filterPenetrationArrayWithCategoryData.append(objTransaction)
                         }
-                        
-                        
                     }
-                    if(categotyCount > 0){
-                        ratio = subCategoryCount / categotyCount
-                    }
-                    
+                }
+            }
+            categotyCount = (calculateCompareValue(revenueTransaction: filterPenetrationArrayWithCategoryData, comapreCategories: compareCategories, serviceCount: serviceCount?.count ?? 0))
+                
+            subCategoryCount = (calculateCompareValue(revenueTransaction: filterPenetrationArrayWithCategoryData, comapreCategories: toCompareCategories, serviceCount: serviceCount?.count ?? 0))
+                
+//            if(penerationRatioFromFilters.count > 0){
+//                for objPenetration in penerationRatioFromFilters {
+//
+//                    for objTransaction in filteredPenetrationRatio! {
+//
+//                        let filter = objPenetration.compare_categories?.filter({($0 == objTransaction.category ?? "") || ($0 == objTransaction.sub_category ?? "")})
+//                        categotyCount += filter?.count ?? 0
+//
+//                        if(objPenetration.to_compare_categories?.contains("All") == true){
+//                            subCategoryCount = serviceCount!.count
+//                        }
+//                        else {
+//                        let catfilter = objPenetration.to_compare_categories?.filter({($0 == objTransaction.sub_category ?? "") || ($0 == objTransaction.category ?? "")})
+//                        subCategoryCount += catfilter?.count ?? 0
+//                        }
+//
+//                    }
+//                    if(subCategoryCount > 0){
+//                        ratio = Int(Double(categotyCount) / Double(subCategoryCount))
+//                    }
+            
                     //"penetrationModel"
                     //Data Model
+            dataModel[index] = EarningsCellDataModel(earningsType: .PenetrationRatios, title: dataModel[index].title, value: [categotyCount.roundedStringValue(toFractionDigits: 2),subCategoryCount.roundedStringValue(toFractionDigits: 2),ratio.roundedStringValue(toFractionDigits: 2)], subTitle: [dataModel[index].subTitle[0] ,dataModel[index].subTitle[1], "Ratio"], showGraph: true, cellType: .TripleValue, isExpanded: true, dateRangeType: dateRangeType, customeDateRange: penetrationCutomeDateRange)
                     
-                    
-                    
-                    //                        //index += 1
-                    dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [String(subCategoryCount),String(categotyCount),String(ratio)], subTitle: [modeData.subTitle[0] ,modeData.subTitle[1], modeData.subTitle[2]], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
-                    categotyCount = 0
-                    subCategoryCount = 0
-                }
-                
-            }
+                    compareCategories.removeAll()
+                    toCompareCategories.removeAll()
+                    //                    dataModel.append(penetrationModel)
+//                    //Graph Data
+//                    graphData.append(getGraphEntry(penetrationModel.title, forData: filteredPenetrationForGraph, atIndex: index, dateRange: graphDateRange, dateRangeType: graphRangeType))
+//                    print("INDEX \(index)")
+//                    print("------------------ penetration ratio title \(penetrationModel.title)")
+                    //                dataModel.append(EarningsCellDataModel(earningsType: .PenetrationRatios, title: objPenetration.heading ?? "", value: [String(subCategoryCount),String(categotyCount),String(ratio)], subTitle: [objPenetration.compare_label ?? "" ,objPenetration.to_compare_label ?? "", "Ratio"], showGraph: true, cellType: .TripleValue, isExpanded: false, dateRangeType: dateRangeType, customeDateRange: penetrationCutomeDateRange))
+//                }
+//
+//            }
             return
             
         }
         // }
         
         dataModel[index] = EarningsCellDataModel(earningsType: modeData.earningsType, title: modeData.title, value: [String(count),String(invoceCount),ratio.roundedStringValue(toFractionDigits: 2)], subTitle: [modeData.subTitle[0], modeData.subTitle[1], modeData.subTitle[2]], showGraph: modeData.showGraph, cellType: modeData.cellType, isExpanded: modeData.isExpanded, dateRangeType: modeData.dateRangeType, customeDateRange: modeData.customeDateRange)
+        
+        EZLoadingActivity.hide()
         
     }
     

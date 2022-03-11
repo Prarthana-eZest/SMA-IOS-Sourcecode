@@ -255,6 +255,7 @@ class DateFilterVC: UIViewController, DateFilterDisplayLogic
         }
         
         viewDismissBlock?(true, selectedData?.fromDate?.startOfDay, selectedData?.toDate?.endOfDay, selectedRangeTypeString)
+        EZLoadingActivity.show("Loading...", disableUI: true)
     }
     
     
